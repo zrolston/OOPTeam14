@@ -1,0 +1,17 @@
+# IntelliJ specific files #
+.idea
+out
+
+# Eclipse specific files #
+*.settings
+*.classpath
+*.project
+
+# Compiled source #
+*.iml
+*.class
+*.dll
+*.exe
+*.o
+*.jar
+/bin/
