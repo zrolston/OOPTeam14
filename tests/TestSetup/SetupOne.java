@@ -12,8 +12,8 @@ import Controllers.KeyboardListeners.EditorKeyboardListener;
 import Controllers.MouseListeners.EditorMouseListener;
 import Model.ModelFacade;
 import Model.Utility.HexLocation;
-import Views.ViewUtility.PixelMap;
-import Views.ViewUtility.PixelPoint;
+import Views.Utility.PixelMap;
+import Views.Utility.PixelPoint;
 import Views.Drawers.TileOutlineDrawer;
 import org.junit.Test;
 import javax.swing.*;
@@ -37,6 +37,8 @@ public class SetupOne {
                 for(int j=0; j<simulatedMap[0].length; j++){
                     PixelPoint tileCenter = PixelMap.getTileCenter(simulatedMap[i][j]);
                     TileOutlineDrawer.drawInMap(g, tileCenter);
+                    PixelPoint origin = PixelMap.getMapTileOrigin(simulatedMap[i][j]);
+//                    g.drawRect(origin.getX(), origin.getY(), PixelMap.TILE_FULL_WIDTH, PixelMap.TILE_HEIGHT);
                 }
             }
         }

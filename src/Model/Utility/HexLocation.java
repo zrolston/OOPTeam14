@@ -5,7 +5,8 @@ import java.util.ArrayList;
 /**--------------------------------------------------------------------------------------
 |	HexLocation Class: Created by Alejandro Chavez on 3/26/2017.
 |---------------------------------------------------------------------------------------
-|   Description: Temporary Shell class. Does not have concrete functionality.
+|   Description: Encapsulates the attributes of a Hexatile and takes care of the Mapping
+|   to adjacent Tiles.
 ---------------------------------------------------------------------------------------*/
 
 public class HexLocation implements ILocation{

@@ -10,8 +10,9 @@
 package Controllers.MouseListeners;
 
 import Model.ModelFacade;
-import Views.ViewUtility.PixelPoint;
-import Views.ViewUtility.Camera;
+import Views.Utility.Camera;
+import Views.Utility.PixelPoint;
+
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
