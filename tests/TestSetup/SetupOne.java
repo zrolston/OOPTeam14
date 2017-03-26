@@ -9,8 +9,8 @@ package TestSetup;
 
 import Controllers.EditorMouseListener;
 import Model.Utility.HexLocation;
-import Model.Utility.PixelMap;
-import Model.Utility.PixelPoint;
+import Views.ViewUtility.PixelMap;
+import Views.ViewUtility.PixelPoint;
 import Views.Drawers.TileOutlineDrawer;
 import org.junit.Test;
 import javax.swing.*;
