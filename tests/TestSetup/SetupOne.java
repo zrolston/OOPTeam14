@@ -7,7 +7,9 @@
 
 package TestSetup;
 
-import Controllers.EditorMouseListener;
+import Controllers.KeyboardListeners.EditorKeyboardListener;
+import Controllers.MouseListeners.EditorMouseListener;
+import Model.ModelFacade;
 import Model.Utility.Location;
 import Model.Utility.PixelMap;
 import Model.Utility.PixelPoint;
@@ -41,7 +43,7 @@ public class SetupOne {
 
     @Test
     public static void main(String[] args) throws InterruptedException {
-
+        ModelFacade modelFacade= new ModelFacade(null);
         //Initialize the map simulation
         simulatedMap = new Location[21][21];
         for(int i=0; i<simulatedMap.length; i++){
@@ -50,12 +52,18 @@ public class SetupOne {
             }
         }
 
-        EditorMouseListener listener = new EditorMouseListener();
+        EditorMouseListener mouseListener = new EditorMouseListener(modelFacade);
+        EditorKeyboardListener keyboardListener= new EditorKeyboardListener(modelFacade);
+
         JFrame frame = new JFrame("Drawer/Controller Test");
+
         frame.setSize(new Dimension(PixelMap.SCREEN_WIDTH, PixelMap.SCREEN_HEIGHT));
-        frame.addMouseMotionListener(listener);
-        frame.addMouseListener(listener);
+        frame.addMouseMotionListener(mouseListener);
+        frame.addMouseListener(mouseListener);
+        frame.addKeyListener(keyboardListener);
+
         JPanel test = new TestPanel();
+
         frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
         frame.setVisible(true);
         frame.add(test);
