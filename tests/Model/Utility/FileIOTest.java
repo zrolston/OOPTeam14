@@ -1,16 +1,12 @@
-package UtilityTests;
-/*--------------------------------------------------------------------------------------
-|	TestFileIO Class: Created by Alejandro Chavez on 3/25/2017.
-|---------------------------------------------------------------------------------------
-|   Description: Tests File loading, saving, and future parsing functionality.
----------------------------------------------------------------------------------------*/
+package Model.Utility;
 
-import Utility.FileIO;
 import org.junit.Test;
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
-public class TestFileIO {
-
+/**
+ * Created by Ale on 3/25/2017.
+ */
+public class FileIOTest {
     @Test
     public void testFileLoad(){
         String data = FileIO.loadFileText("testRead.txt");

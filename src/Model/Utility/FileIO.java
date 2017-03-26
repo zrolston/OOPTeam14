@@ -1,6 +1,6 @@
-package Utility;
-/*--------------------------------------------------------------------------------------
-|	FileIO Class: Created by Alejandro Chavez on 3/24/2017.
+package Model.Utility;
+/**--------------------------------------------------------------------------------------
+|	FileIO Class: Created by Alejandro Chavez on 3/26/2017.
 |---------------------------------------------------------------------------------------
 |   Description: Handles Input and Output from a file. Feel free to add any parsing
 |   functionality or anything that may make sense in this class.
