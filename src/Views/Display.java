@@ -2,13 +2,8 @@ package Views;
 
 import Views.MapEditor.MapEditorView;
 import Views.Utility.PixelMap;
-
 import javax.swing.*;
 import java.awt.*;
-
-/**
- * Created by Willie on 3/26/2017.
- */
 
 public class Display extends JFrame {
     JLayeredPane mapEditorView;
