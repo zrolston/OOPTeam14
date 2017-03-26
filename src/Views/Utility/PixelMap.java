@@ -13,7 +13,7 @@ import java.awt.*;
 public class PixelMap {
 
     //Initial Screen Size and Ration (percentage to fullScreen [0.0 - 1.0])
-    private static final double SCREEN_RATIO = 0.4;
+    private static final double SCREEN_RATIO = 0.8;
     private static final int HORIZONTAL_MULTIPLIER = 20;
     private static final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
@@ -27,7 +27,6 @@ public class PixelMap {
     //Dynamic offsets to generate a HexatileRow
     private static int width_offset = (int)(TILE_WIDTH * 1.5);
     private static int height_offset = (int)(0.5*TILE_HEIGHT);
-
 
     //Plain Pixel Mapping based on position
     public static PixelPoint getTileCenter(ILocation hexLocation){
