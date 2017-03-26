@@ -18,7 +18,7 @@ public class MapEditorView extends JLayeredPane {
     private MiniMapView miniMapView;
 
     public MapEditorView() {
-        setBounds(0, 0, PixelMap.SCREEN_WIDTH, PixelMap.SCREEN_WIDTH);
+        setBounds(0, 0, PixelMap.SCREEN_WIDTH, PixelMap.SCREEN_HEIGHT);
         //Initialize SubViews
         tileSelectionView = new TileSelectionView();
         mapSubsectionView = new MapSubsectionView();

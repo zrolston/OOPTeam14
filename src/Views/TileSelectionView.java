@@ -15,7 +15,7 @@ public class TileSelectionView extends JPanel{
 
     TileSelectionView(){
         setLayout(null);
-        setBounds(100, 100, 200, 500);
+        setBounds(50, 50, PixelMap.SCREEN_WIDTH / 5, PixelMap.SCREEN_HEIGHT - 100);
         System.out.println("Width: "+getWidth()+" -- Height: "+getHeight());
         setVisible(true);
     }
