@@ -23,6 +23,7 @@ public class MapSubsectionView extends JPanel {
     }
 
     public void updateImage() {
+        Graphics2D g2 = (Graphics2D) image.getGraphics();
         //TODO: update image with tileImages
     }
 
