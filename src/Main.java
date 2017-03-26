@@ -1,13 +1,17 @@
-/**
- * Created by jordi on 3/26/2017.
- */
-public class Main {
+import Views.Display;
 
+import javax.swing.*;
+
+public class Main {
     public static void main(String[] args) {
-        MapEditor mapEditor=new MapEditor();
-        mapEditor.startMapEditor();
+
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                new Display();
+            }
+        });
+
+
 
     }
-
-
 }
