@@ -6,17 +6,38 @@
 ---------------------------------------------------------------------------------------*/
 package Views.MapEditor.MapView;
 
+import Model.Map.IViewMap;
 import Views.ViewUtility.PixelMap;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class MapSubsectionView extends JPanel {
+
+    BufferedImage image;
+    BufferedImage[][] tileImages;
+
+    public void updateTileImages(IViewMap map) {
+        //TODO: update tileImages with MapDrawingVisitor
+    }
+
+    public void updateImage() {
+        //TODO: update image with tileImages
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(image, 0, 0, null);
+    }
 
     public MapSubsectionView() {
         setBounds(0, 0, PixelMap.SCREEN_WIDTH, PixelMap.SCREEN_HEIGHT);
         setBackground(Color.blue);
         setVisible(true);
         System.out.println(getWidth());
+
+        image = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
     }
 }
