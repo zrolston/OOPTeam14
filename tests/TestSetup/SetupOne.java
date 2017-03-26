@@ -8,7 +8,7 @@
 package TestSetup;
 
 import Controllers.EditorMouseListener;
-import Model.Utility.Location;
+import Model.Utility.HexLocation;
 import Model.Utility.PixelMap;
 import Model.Utility.PixelPoint;
 import Views.Drawers.TileOutlineDrawer;
@@ -19,7 +19,7 @@ import java.awt.*;
 
 public class SetupOne {
 
-    static Location[][] simulatedMap;
+    static HexLocation[][] simulatedMap;
 
     static class TestPanel extends JPanel{
 
@@ -43,10 +43,10 @@ public class SetupOne {
     public static void main(String[] args) throws InterruptedException {
 
         //Initialize the map simulation
-        simulatedMap = new Location[21][21];
+        simulatedMap = new HexLocation[21][21];
         for(int i=0; i<simulatedMap.length; i++){
             for(int j=0; j<simulatedMap[0].length; j++){
-                simulatedMap[i][j] = new Location(i,j);
+                simulatedMap[i][j] = new HexLocation(i,j);
             }
         }
 

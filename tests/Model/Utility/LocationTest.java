@@ -12,47 +12,47 @@ import static org.junit.Assert.*;
  */
 public class LocationTest {
 
-    Location oddCol;
-    Location evenCol;
+    HexLocation oddCol;
+    HexLocation evenCol;
 
-    Location oddSameLoc;
-    Location evenSameLoc;
+    HexLocation oddSameLoc;
+    HexLocation evenSameLoc;
 
-    Location oddNorth;
-    Location oddNorthEast;
-    Location oddNorthWest;
-    Location oddSouth;
-    Location oddSouthEast;
-    Location oddSouthWest;
+    HexLocation oddNorth;
+    HexLocation oddNorthEast;
+    HexLocation oddNorthWest;
+    HexLocation oddSouth;
+    HexLocation oddSouthEast;
+    HexLocation oddSouthWest;
 
-    Location evenNorth;
-    Location evenNorthEast;
-    Location evenNorthWest;
-    Location evenSouth;
-    Location evenSouthEast;
-    Location evenSouthWest;
+    HexLocation evenNorth;
+    HexLocation evenNorthEast;
+    HexLocation evenNorthWest;
+    HexLocation evenSouth;
+    HexLocation evenSouthEast;
+    HexLocation evenSouthWest;
 
     @Before
     public void TestSetup(){
-        oddCol = new Location(2, 3);
-        evenCol = new Location(3, 4);
+        oddCol = new HexLocation(2, 3);
+        evenCol = new HexLocation(3, 4);
 
-        oddSameLoc = new Location(2, 3);
-        evenSameLoc = new Location(3, 4);
+        oddSameLoc = new HexLocation(2, 3);
+        evenSameLoc = new HexLocation(3, 4);
 
-        oddNorth = new Location(1, 3);
-        oddNorthEast = new Location(2, 4);
-        oddNorthWest = new Location(2, 2);
-        oddSouth = new Location(3, 3);
-        oddSouthEast = new Location(3, 4);
-        oddSouthWest = new Location(3, 2);
+        oddNorth = new HexLocation(1, 3);
+        oddNorthEast = new HexLocation(2, 4);
+        oddNorthWest = new HexLocation(2, 2);
+        oddSouth = new HexLocation(3, 3);
+        oddSouthEast = new HexLocation(3, 4);
+        oddSouthWest = new HexLocation(3, 2);
 
-        evenNorth = new Location(2, 4);
-        evenNorthEast = new Location(2, 5);
-        evenNorthWest = new Location(2, 3);
-        evenSouth = new Location(4, 4);
-        evenSouthEast = new Location(3, 5);
-        evenSouthWest = new Location(3, 3);
+        evenNorth = new HexLocation(2, 4);
+        evenNorthEast = new HexLocation(2, 5);
+        evenNorthWest = new HexLocation(2, 3);
+        evenSouth = new HexLocation(4, 4);
+        evenSouthEast = new HexLocation(3, 5);
+        evenSouthWest = new HexLocation(3, 3);
     }
 
     @Test
@@ -72,8 +72,8 @@ public class LocationTest {
 
     @Test
     public void getAdjacentTest() {
-        ArrayList<Location> oddTestLocs = oddCol.getAdjacent();
-        ArrayList<Location> evenTestLocs = evenCol.getAdjacent();
+        ArrayList<ILocation> oddTestLocs = oddCol.getAdjacent();
+        ArrayList<ILocation> evenTestLocs = evenCol.getAdjacent();
 
         assertEquals(6, oddTestLocs.size());
         assertEquals(6, evenTestLocs.size());

@@ -28,20 +28,20 @@ public class PixelMap {
 
 
     //Plain Pixel Mapping based on position
-    public static PixelPoint getTileCenter(Location location){
+    public static PixelPoint getTileCenter(ILocation hexLocation){
         //If odd Column
-        if(location.getCol()%2 == 1) return new PixelPoint(location.getCol()*width_offset, location.getRow()*TILE_HEIGHT);
+        if(hexLocation.getCol()%2 == 1) return new PixelPoint(hexLocation.getCol()*width_offset, hexLocation.getRow()*TILE_HEIGHT);
         //If even Column
-        else return new PixelPoint(location.getCol()*width_offset, location.getRow()*TILE_HEIGHT-height_offset);
+        else return new PixelPoint(hexLocation.getCol()*width_offset, hexLocation.getRow()*TILE_HEIGHT-height_offset);
     }
 
     //Plain Pixel Mapping based on position
-    public static PixelPoint getTileCenter(Location location, Camera camera){
+    public static PixelPoint getTileCenter(ILocation hexLocation, Camera camera){
         //If odd Column
-        if(location.getCol()%2 == 1)
-            return new PixelPoint(location.getCol()*width_offset - camera.getOrigin().getX(), location.getRow()*TILE_HEIGHT - camera.getOrigin().getY());
+        if(hexLocation.getCol()%2 == 1)
+            return new PixelPoint(hexLocation.getCol()*width_offset - camera.getOrigin().getX(), hexLocation.getRow()*TILE_HEIGHT - camera.getOrigin().getY());
             //If even Column
         else
-            return new PixelPoint(location.getCol()*width_offset - camera.getOrigin().getX(), location.getRow()*TILE_HEIGHT-height_offset - camera.getOrigin().getY());
+            return new PixelPoint(hexLocation.getCol()*width_offset - camera.getOrigin().getX(), hexLocation.getRow()*TILE_HEIGHT-height_offset - camera.getOrigin().getY());
     }
 }
