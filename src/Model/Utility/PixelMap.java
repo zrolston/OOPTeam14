@@ -7,6 +7,8 @@ package Model.Utility;
 ---------------------------------------------------------------------------------------*/
 
 import Views.Camera;
+import Views.Drawers.TileOutlineDrawer;
+
 import java.awt.*;
 
 public class PixelMap {
@@ -43,5 +45,24 @@ public class PixelMap {
             //If even Column
         else
             return new PixelPoint(location.getCol()*width_offset - camera.getOrigin().getX(), location.getRow()*TILE_HEIGHT-height_offset - camera.getOrigin().getY());
+    }
+
+    //Provides Pixel origin of an InGame Tile based on the
+    public static PixelPoint getMapTileOrigin(Location location){
+        Camera camera = Camera.getInstance();
+        //If odd Column
+        if(location.getCol()%2 == 1)
+            return new PixelPoint(location.getCol()*width_offset - camera.getOrigin().getX() - TILE_WIDTH, location.getRow()*TILE_HEIGHT - camera.getOrigin().getY() - TILE_HEIGHT/2);
+            //If even Column
+        else
+            return new PixelPoint(location.getCol()*width_offset - camera.getOrigin().getX() - TILE_WIDTH, location.getRow()*TILE_HEIGHT-height_offset - camera.getOrigin().getY() - TILE_HEIGHT/2);
+    }
+
+
+    //Provides validation to coordinates when overlapping tiles.
+    public static boolean tileContains(Location tileLocation, PixelPoint point){
+        PixelPoint center = getTileCenter(tileLocation);
+        Polygon hexagon = TileOutlineDrawer.getHexagon(center);
+        return hexagon.contains(new Point(point.getX(), point.getY()));
     }
 }

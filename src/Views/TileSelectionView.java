@@ -7,7 +7,6 @@
 package Views;
 
 import Model.Utility.PixelMap;
-
 import javax.swing.*;
 import java.awt.*;
 

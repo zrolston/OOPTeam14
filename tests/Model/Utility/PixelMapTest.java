@@ -17,4 +17,12 @@ public class PixelMapTest {
         assert(new PixelPoint((int)(PixelMap.TILE_WIDTH*1.5), (PixelMap.TILE_HEIGHT/2)*2).equals(point2));
         assert(new PixelPoint(2*(int)(PixelMap.TILE_WIDTH*1.5), (PixelMap.TILE_HEIGHT/2)).equals(point3));
     }
+
+    @Test
+    public void testGetMapTileOrigin() throws Exception {
+        PixelPoint point1 = PixelMap.getMapTileOrigin(new Location(0,0));
+        PixelPoint point2 = PixelMap.getMapTileOrigin(new Location(1,1));
+        System.out.println(point1);
+        System.out.println(point2);
+    }
 }

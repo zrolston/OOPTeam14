@@ -36,6 +36,8 @@ public class SetupOne {
                 for(int j=0; j<simulatedMap[0].length; j++){
                     PixelPoint tileCenter = PixelMap.getTileCenter(simulatedMap[i][j]);
                     TileOutlineDrawer.drawInMap(g, tileCenter);
+                    PixelPoint origin = PixelMap.getMapTileOrigin(simulatedMap[i][j]);
+//                    g.drawRect(origin.getX(), origin.getY(), PixelMap.TILE_FULL_WIDTH, PixelMap.TILE_HEIGHT);
                 }
             }
         }
