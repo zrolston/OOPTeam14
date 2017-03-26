@@ -5,10 +5,7 @@
 |   compared to the whole map. Also controls the zoom via a scale ratio. The mapping will
 |   take into consideration Camera to to adjust the things being drawn.
 ---------------------------------------------------------------------------------------*/
-package Views;
-
-import Model.Utility.PixelMap;
-import Model.Utility.PixelPoint;
+package Views.ViewUtility;
 
 public class Camera {
 

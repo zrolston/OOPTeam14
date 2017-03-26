@@ -1,13 +1,12 @@
 /**-------------------------------------------------------------------------------------
-|	MapSubsectionView Class: Created by Alejandro Chavez on 3/26/2017.
+|	MiniMapView Class: Created by Alejandro Chavez on 3/26/2017.
 |---------------------------------------------------------------------------------------
 |   Description: 
 |
 ---------------------------------------------------------------------------------------*/
-package Views;
+package Views.MapEditor.MapView;
 
 import javax.swing.*;
 
-public class MapSubsectionView extends JPanel {
-
+public class MiniMapView extends JPanel {
 }
