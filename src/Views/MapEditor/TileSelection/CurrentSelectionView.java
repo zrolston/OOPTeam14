@@ -1,4 +1,4 @@
-package Views;
+package Views.MapEditor.TileSelection;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,7 +8,7 @@ import java.awt.*;
  */
 public class CurrentSelectionView extends JPanel {
 
-    CurrentSelectionView(Dimension size) {
+    public CurrentSelectionView(Dimension size) {
         setPreferredSize(size);
         setBackground(Color.magenta);
         setVisible(true);

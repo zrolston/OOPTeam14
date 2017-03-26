@@ -4,9 +4,9 @@
 |   Description: 
 |
 ---------------------------------------------------------------------------------------*/
-package Views;
+package Views.MapEditor.MapView;
 
-import Model.Utility.PixelMap;
+import Views.ViewUtility.PixelMap;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,6 +1,7 @@
 package Views;
 
-import Model.Utility.PixelMap;
+import Views.MapEditor.MapEditorView;
+import Views.ViewUtility.PixelMap;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +13,7 @@ import java.awt.*;
 public class Display extends JFrame {
     JLayeredPane mapEditorView;
 
-    Display() {
+    public Display() {
         setupFrame();
         mapEditorView = new MapEditorView();
         add(mapEditorView);
@@ -27,7 +28,4 @@ public class Display extends JFrame {
         setVisible(true);
     }
 
-    public static void main(String[] args) {
-        new Display();
-    }
 }

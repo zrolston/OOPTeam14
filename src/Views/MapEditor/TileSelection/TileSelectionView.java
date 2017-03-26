@@ -4,9 +4,9 @@
 |   Description: 
 |
 ---------------------------------------------------------------------------------------*/
-package Views;
+package Views.MapEditor.TileSelection;
 
-import Model.Utility.PixelMap;
+import Views.ViewUtility.PixelMap;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,7 +17,7 @@ public class TileSelectionView extends JPanel{
     RiverSelectionView riverSelectionView;
     CurrentSelectionView currentSelectionView;
 
-    TileSelectionView(){
+    public TileSelectionView(){
         setLayout(new BorderLayout());
         setBounds(50, 50, PixelMap.SCREEN_WIDTH / 5, PixelMap.SCREEN_HEIGHT - 100);
         System.out.println("Widthh: "+getWidth()+" -- Height: "+getHeight());

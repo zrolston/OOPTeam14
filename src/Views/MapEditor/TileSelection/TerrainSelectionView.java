@@ -1,4 +1,4 @@
-package Views;
+package Views.MapEditor.TileSelection;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,7 +8,7 @@ import java.awt.*;
  */
 public class TerrainSelectionView extends JPanel {
 
-    TerrainSelectionView(Dimension size) {
+    public TerrainSelectionView(Dimension size) {
         setPreferredSize(size);
         setBackground(Color.orange);
         setVisible(true);

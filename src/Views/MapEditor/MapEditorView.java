@@ -4,12 +4,14 @@
 |   Description: 
 |
 ---------------------------------------------------------------------------------------*/
-package Views;
+package Views.MapEditor;
 
-import Model.Utility.PixelMap;
+import Views.MapEditor.MapView.MapSubsectionView;
+import Views.MapEditor.MapView.MiniMapView;
+import Views.ViewUtility.PixelMap;
+import Views.MapEditor.TileSelection.TileSelectionView;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class MapEditorView extends JLayeredPane {
 

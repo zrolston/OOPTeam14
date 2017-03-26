@@ -4,7 +4,7 @@
 |   Description: 
 |
 ---------------------------------------------------------------------------------------*/
-package Views;
+package Views.MapEditor.MapView;
 
 import javax.swing.*;
 

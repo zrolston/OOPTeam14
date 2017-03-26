@@ -1,4 +1,4 @@
-package Model.Utility;
+package Views.ViewUtility;
 /**--------------------------------------------------------------------------------------
 |	PixelMap Class: Created by Alejandro Chavez on 3/26/2017.
 |---------------------------------------------------------------------------------------
@@ -6,7 +6,8 @@ package Model.Utility;
 |   proportions to automatically adjust to screen size.
 ---------------------------------------------------------------------------------------*/
 
-import Views.Camera;
+import Model.Utility.Location;
+
 import java.awt.*;
 
 public class PixelMap {

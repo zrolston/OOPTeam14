@@ -1,9 +1,15 @@
-import Views.View;
+import Views.Display;
+
+import javax.swing.*;
 
 public class main {
     public static void main(String[] args) {
 
-        View view = new View();
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                new Display();
+            }
+        });
 
 
 

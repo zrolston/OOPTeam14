@@ -1,7 +1,8 @@
 package Model.Utility;
 
+import Views.ViewUtility.PixelMap;
+import Views.ViewUtility.PixelPoint;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  * Created by Ale on 3/25/2017.
