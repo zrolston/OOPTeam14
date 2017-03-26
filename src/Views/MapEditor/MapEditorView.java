@@ -4,33 +4,31 @@
 |   Description: 
 |
 ---------------------------------------------------------------------------------------*/
-package Views;
+package Views.MapEditor;
 
-import Model.Utility.PixelMap;
+import Views.MapEditor.MapView.MapSubsectionView;
+import Views.MapEditor.MapView.MiniMapView;
+import Views.ViewUtility.PixelMap;
+import Views.MapEditor.TileSelection.TileSelectionView;
 
 import javax.swing.*;
-import java.awt.*;
 
-public class MapEditorView extends JFrame{
+public class MapEditorView extends JLayeredPane {
 
     private TileSelectionView tileSelectionView;
     private MapSubsectionView mapSubsectionView;
     private MiniMapView miniMapView;
 
     public MapEditorView() {
-        setupFrame();
+        setBounds(0, 0, PixelMap.SCREEN_WIDTH, PixelMap.SCREEN_HEIGHT);
         //Initialize SubViews
         tileSelectionView = new TileSelectionView();
-        add(tileSelectionView);
+        mapSubsectionView = new MapSubsectionView();
+        add(tileSelectionView, 1);
+        add(mapSubsectionView, 2);
         //Add SubViews to Layered Pane
-    }
 
-    private void setupFrame(){
-        setLayout(null);
-        setSize(new Dimension(PixelMap.SCREEN_WIDTH, PixelMap.SCREEN_HEIGHT));
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setResizable(false);
-        setVisible(true);
+        System.out.println(getHeight());
     }
 
 }

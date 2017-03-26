@@ -4,10 +4,10 @@
 |   Description: 
 |
 ---------------------------------------------------------------------------------------*/
-package Views;
+package Views.MapEditor.MapView;
 
 import javax.swing.*;
 
-public class MiniMapView extends JFrame{
+public class MiniMapView extends JPanel {
 
 }

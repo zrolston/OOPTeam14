@@ -3,16 +3,15 @@
  * |	EditorMouseListener Class: Created by Alejandro Chavez on 3/26/2017.
  * |---------------------------------------------------------------------------------------
  * |   Description: Preliminary Mouse Listener. It does smooth Camera movement but it lacks
- * |   the other main functionalities to control the Menu.
+ * |   the other Main functionalities to control the Menu.
  * ---------------------------------------------------------------------------------------
  */
 
 package Controllers.MouseListeners;
 
 import Model.ModelFacade;
-import Model.Utility.PixelPoint;
-import Views.Camera;
-
+import Views.ViewUtility.PixelPoint;
+import Views.ViewUtility.Camera;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;

@@ -4,10 +4,19 @@
 |   Description: 
 |
 ---------------------------------------------------------------------------------------*/
-package Views;
+package Views.MapEditor.MapView;
+
+import Views.ViewUtility.PixelMap;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class MapSubsectionView extends JPanel {
 
+    public MapSubsectionView() {
+        setBounds(0, 0, PixelMap.SCREEN_WIDTH, PixelMap.SCREEN_HEIGHT);
+        setBackground(Color.blue);
+        setVisible(true);
+        System.out.println(getWidth());
+    }
 }

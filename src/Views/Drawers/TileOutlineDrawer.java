@@ -8,9 +8,9 @@ package Views.Drawers;
 ---------------------------------------------------------------------------------------*/
 
 
-import Model.Utility.PixelMap;
-import Model.Utility.PixelPoint;
-import Views.Camera;
+import Views.ViewUtility.PixelMap;
+import Views.ViewUtility.PixelPoint;
+import Views.ViewUtility.Camera;
 import java.awt.*;
 import java.util.*;
 

@@ -7,12 +7,13 @@
 
 package TestSetup;
 
+
 import Controllers.KeyboardListeners.EditorKeyboardListener;
 import Controllers.MouseListeners.EditorMouseListener;
 import Model.ModelFacade;
-import Model.Utility.Location;
-import Model.Utility.PixelMap;
-import Model.Utility.PixelPoint;
+import Model.Utility.HexLocation;
+import Views.ViewUtility.PixelMap;
+import Views.ViewUtility.PixelPoint;
 import Views.Drawers.TileOutlineDrawer;
 import org.junit.Test;
 import javax.swing.*;
@@ -21,7 +22,7 @@ import java.awt.*;
 
 public class SetupOne {
 
-    static Location[][] simulatedMap;
+    static HexLocation[][] simulatedMap;
 
     static class TestPanel extends JPanel{
 
@@ -47,10 +48,10 @@ public class SetupOne {
     public static void main(String[] args) throws InterruptedException {
         ModelFacade modelFacade= new ModelFacade(null);
         //Initialize the map simulation
-        simulatedMap = new Location[21][21];
+        simulatedMap = new HexLocation[21][21];
         for(int i=0; i<simulatedMap.length; i++){
             for(int j=0; j<simulatedMap[0].length; j++){
-                simulatedMap[i][j] = new Location(i,j);
+                simulatedMap[i][j] = new HexLocation(i,j);
             }
         }
 
