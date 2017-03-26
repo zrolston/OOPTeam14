@@ -6,7 +6,7 @@
 ---------------------------------------------------------------------------------------*/
 package Views.MapEditor.TileSelection;
 
-import Views.ViewUtility.PixelMap;
+import Views.Utility.PixelMap;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,25 +18,20 @@ public class TileSelectionView extends JPanel{
     CurrentSelectionView currentSelectionView;
 
     public TileSelectionView(){
-        setLayout(new BorderLayout());
-        setBounds(50, 50, PixelMap.SCREEN_WIDTH / 5, PixelMap.SCREEN_HEIGHT - 100);
-        System.out.println("Widthh: "+getWidth()+" -- Height: "+getHeight());
 
-        terrainSelectionView = new TerrainSelectionView(new Dimension(getWidth() / 2, getHeight() - getWidth()));
-        riverSelectionView = new RiverSelectionView(new Dimension(getWidth() / 2, getHeight() - getWidth()));
+        setLayout(new BorderLayout());
+        setBounds((int)(PixelMap.SCREEN_WIDTH * 0.0125), (int)(PixelMap.SCREEN_HEIGHT * 0.025), (int)(PixelMap.SCREEN_WIDTH * 0.20), (int)(PixelMap.SCREEN_HEIGHT * 0.95));
+
+        terrainSelectionView = new TerrainSelectionView(new Dimension(getWidth() / 2 + 1, getHeight() - getWidth()));
+        riverSelectionView = new RiverSelectionView(new Dimension(getWidth() / 2 + 1, getHeight() - getWidth()));
         currentSelectionView = new CurrentSelectionView(new Dimension(getWidth(), getWidth()));
 
         add(terrainSelectionView, BorderLayout.WEST);
         add(riverSelectionView, BorderLayout.EAST);
         add(currentSelectionView, BorderLayout.SOUTH);
 
+        setBorder(BorderFactory.createLineBorder(new Color(0xff000000), 1));
         setVisible(true);
     }
 
-//    @Override
-//    public void paint(Graphics g){
-//        super.paintComponent(g);
-//        ((Graphics2D)g).setStroke(new BasicStroke(3));
-//        g.drawRect(3,3,getWidth()-6, getHeight()-6);
-//    }
 }
