@@ -6,7 +6,7 @@
 ---------------------------------------------------------------------------------------*/
 package Views.MapEditor.TileSelection;
 
-import Views.ViewUtility.PixelMap;
+import Views.Utility.PixelMap;
 
 import javax.swing.*;
 import java.awt.*;
@@ -31,7 +31,6 @@ public class TileSelectionView extends JPanel{
         add(currentSelectionView, BorderLayout.SOUTH);
 
         setBorder(BorderFactory.createLineBorder(new Color(0xff000000), 1));
-
         setVisible(true);
     }
 
