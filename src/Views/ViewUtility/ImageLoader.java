@@ -38,7 +38,7 @@ public class ImageLoader {
 
         BufferedImage test = null;
         try {
-            cachedImages.put("Mountain", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Mountain.png")));
+            cachedImages.put("Mountain", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/grass_terrain.png")));
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -48,6 +48,6 @@ public class ImageLoader {
     }
 
     public static void main(String[] args) {
-        System.out.println(ImageLoader.getImage("Mountain"));
+        System.out.println(ImageLoader.getImage("grass_terrain"));
     }
 }
