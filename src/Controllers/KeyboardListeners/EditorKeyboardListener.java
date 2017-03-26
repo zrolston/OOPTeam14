@@ -1,6 +1,7 @@
 package Controllers.KeyboardListeners;
 
 import Model.ModelFacade;
+import Views.MapEditor.MapEditorView;
 import javafx.scene.input.KeyCode;
 
 import java.awt.event.KeyEvent;
@@ -15,9 +16,15 @@ import java.util.Set;
 public class EditorKeyboardListener implements KeyListener {
     Set<Integer> pressedKeys= new HashSet<>();
     ModelFacade modelFacade;
+    MapEditorView view;
+
+    public EditorKeyboardListener(ModelFacade modelFacade, MapEditorView mapEditorView) {
+        this.modelFacade=modelFacade;
+        view=mapEditorView;
+    }
 
     public EditorKeyboardListener(ModelFacade modelFacade) {
-        this.modelFacade=modelFacade;
+        this.modelFacade = modelFacade;
     }
 
     @Override
