@@ -14,7 +14,6 @@ public class Display extends JFrame {
 
     Display() {
         setupFrame();
-
         mapEditorView = new MapEditorView();
         add(mapEditorView);
     }

@@ -18,9 +18,9 @@ public class TileSelectionView extends JPanel{
     CurrentSelectionView currentSelectionView;
 
     TileSelectionView(){
-        setLayout(null);
+        setLayout(new BorderLayout());
         setBounds(50, 50, PixelMap.SCREEN_WIDTH / 5, PixelMap.SCREEN_HEIGHT - 100);
-        System.out.println("Width: "+getWidth()+" -- Height: "+getHeight());
+        System.out.println("Widthh: "+getWidth()+" -- Height: "+getHeight());
 
         terrainSelectionView = new TerrainSelectionView(new Dimension(getWidth() / 2, getHeight() / 2));
         riverSelectionView = new RiverSelectionView(new Dimension(getWidth() / 2, getHeight() / 2));

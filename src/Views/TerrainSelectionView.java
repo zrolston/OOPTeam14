@@ -10,6 +10,7 @@ public class TerrainSelectionView extends JPanel {
 
     TerrainSelectionView(Dimension size) {
         setPreferredSize(size);
+        setBackground(Color.orange);
         setVisible(true);
     }
 }

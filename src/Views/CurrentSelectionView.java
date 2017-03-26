@@ -10,6 +10,7 @@ public class CurrentSelectionView extends JPanel {
 
     CurrentSelectionView(Dimension size) {
         setPreferredSize(size);
+        setBackground(Color.magenta);
         setVisible(true);
     }
 }
