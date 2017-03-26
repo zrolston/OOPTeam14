@@ -13,6 +13,10 @@ import java.awt.*;
 
 public class TileSelectionView extends JPanel{
 
+    TerrainSelectionView terrainSelectionView;
+    RiverSelectionView riverSelectionView;
+    CurrentSelectionView currentSelectionView;
+
     TileSelectionView(){
         setLayout(null);
         setBounds(50, 50, PixelMap.SCREEN_WIDTH / 5, PixelMap.SCREEN_HEIGHT - 100);

@@ -22,7 +22,6 @@ public class Display extends JFrame {
     private void setupFrame(){
         setLayout(null);
         setResizable(false);
-        //setSize(new Dimension(PixelMap.SCREEN_WIDTH, PixelMap.SCREEN_HEIGHT));
         getContentPane().setPreferredSize(new Dimension(PixelMap.SCREEN_WIDTH, PixelMap.SCREEN_HEIGHT));
         pack();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
