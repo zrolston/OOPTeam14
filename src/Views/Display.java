@@ -1,7 +1,7 @@
 package Views;
 
 import Views.MapEditor.MapEditorView;
-import Views.ViewUtility.PixelMap;
+import Views.Utility.PixelMap;
 
 import javax.swing.*;
 import java.awt.*;

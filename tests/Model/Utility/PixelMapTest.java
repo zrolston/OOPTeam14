@@ -1,7 +1,7 @@
 package Model.Utility;
 
-import Views.ViewUtility.PixelMap;
-import Views.ViewUtility.PixelPoint;
+import Views.Utility.PixelMap;
+import Views.Utility.PixelPoint;
 import org.junit.Test;
 
 /**

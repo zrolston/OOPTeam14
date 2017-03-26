@@ -7,7 +7,7 @@
 package Views.MapEditor.MapView;
 
 import Model.Map.IViewMap;
-import Views.ViewUtility.PixelMap;
+import Views.Utility.PixelMap;
 
 import javax.swing.*;
 import java.awt.*;

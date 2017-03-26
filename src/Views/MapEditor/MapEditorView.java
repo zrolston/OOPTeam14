@@ -8,7 +8,7 @@ package Views.MapEditor;
 
 import Views.MapEditor.MapView.MapSubsectionView;
 import Views.MapEditor.MapView.MiniMapView;
-import Views.ViewUtility.PixelMap;
+import Views.Utility.PixelMap;
 import Views.MapEditor.TileSelection.TileSelectionView;
 
 import javax.swing.*;
@@ -25,12 +25,13 @@ public class MapEditorView extends JLayeredPane {
         // Initialize SubViews
         tileSelectionView = new TileSelectionView();
         mapSubsectionView = new MapSubsectionView();
+        miniMapView       = new MiniMapView();
 
         // Add SubViews to Layered Pane
         add(tileSelectionView, 1);
-        add(mapSubsectionView, 2);
+        add(miniMapView,       2);
+        add(mapSubsectionView, 3);
 
-        System.out.println(getHeight());
     }
 
 }
