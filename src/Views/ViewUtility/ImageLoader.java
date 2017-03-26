@@ -20,21 +20,6 @@ public class ImageLoader {
 
     static {
         cachedImages = new HashMap<String, BufferedImage>();
-        JarFile jarFile = null;
-//        try {
-//            //testFile = new File(ImageLoader.class.getResource("/Images"));
-//            String resourcePath = ImageLoader.class.getResource("/Images").getPath();
-//            String jarFilePath = resourcePath.substring();
-//            System.out.println(jarFilePath);
-//            jarFile = new JarFile(resourcePath);
-//        }
-//        catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        if (testFile != null) {
-//            System.out.println(testFile);
-//            //System.out.println(testFile.isDirectory());
-//        }
 
         BufferedImage test = null;
         try {
@@ -43,8 +28,6 @@ public class ImageLoader {
         catch (Exception e) {
             e.printStackTrace();
         }
-        //ImageIcon test = new ImageIcon("res/Images/Mountain.png");
-        cachedImages.put("test", test);
     }
 
     public static void main(String[] args) {
