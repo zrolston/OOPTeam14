@@ -13,6 +13,7 @@ import java.awt.*;
 
 public class MiniMapView extends JPanel {
 
+<<<<<<< HEAD
     public MiniMapView() {
         double width  = 0.75;
         double height = 0.75;
@@ -25,4 +26,6 @@ public class MiniMapView extends JPanel {
 
 
 
+=======
+>>>>>>> 4d9cf825fc03fba9536900cd83c2f8ae4bc49724
 }
