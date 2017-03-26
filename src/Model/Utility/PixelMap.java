@@ -12,13 +12,13 @@ import java.awt.*;
 public class PixelMap {
 
     //Initial Screen Size and Ration (percentage to fullScreen [0.0 - 1.0])
-    private static final double SCREEN_RATIO = 1.0;
+    private static final double SCREEN_RATIO = 0.7;
     private static final int HORIZONTAL_MULTIPLIER = 20;
     private static final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
     //Dynamic Pixel Constants dependent on Screen Dimensions
-//    public static final int SCREEN_WIDTH = (int)(screenSize.getWidth()*SCREEN_RATIO), SCREEN_HEIGHT = (int)(screenSize.getHeight()*SCREEN_RATIO);
-    public static final int SCREEN_WIDTH = 1280, SCREEN_HEIGHT = 720;
+    public static final int SCREEN_WIDTH = (int)(screenSize.getWidth()*SCREEN_RATIO), SCREEN_HEIGHT = (int)(screenSize.getHeight()*SCREEN_RATIO);
+    //public static final int SCREEN_WIDTH = 1000, SCREEN_HEIGHT = 720;
     public static final int TILE_WIDTH = SCREEN_WIDTH/HORIZONTAL_MULTIPLIER;
     public static final int TILE_HEIGHT = (int)(1.732*TILE_WIDTH);
     public static final int TILE_FULL_WIDTH = TILE_WIDTH*2;
