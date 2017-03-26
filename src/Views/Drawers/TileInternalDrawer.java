@@ -9,9 +9,9 @@ package Views.Drawers;
 
 
 import Model.Utility.HexLocation;
-import Views.ViewUtility.Camera;
-import Views.ViewUtility.PixelMap;
-import Views.ViewUtility.PixelPoint;
+import Views.Utility.Camera;
+import Views.Utility.PixelMap;
+import Views.Utility.PixelPoint;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

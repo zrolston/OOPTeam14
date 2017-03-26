@@ -10,6 +10,7 @@
 package Controllers.MouseListeners;
 
 import Model.ModelFacade;
+import Views.MapEditor.MapEditorView;
 import Views.Utility.Camera;
 import Views.Utility.PixelPoint;
 
@@ -22,9 +23,14 @@ public class EditorMouseListener implements MouseMotionListener, MouseListener {
 
     Camera camera = Camera.getInstance();
     ModelFacade modelFacade;
+    MapEditorView view;
 
     public EditorMouseListener(ModelFacade modelFacade) {
         this.modelFacade = modelFacade;
+    }
+    public EditorMouseListener(ModelFacade modelFacade, MapEditorView mapEditorView) {
+        this.modelFacade=modelFacade;
+        view=mapEditorView;
     }
 
     //Continuous Methods
