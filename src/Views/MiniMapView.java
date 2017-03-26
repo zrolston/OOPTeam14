@@ -8,5 +8,5 @@ package Views;
 
 import javax.swing.*;
 
-public class MiniMapView extends JFrame{
+public class MiniMapView extends JPanel {
 }

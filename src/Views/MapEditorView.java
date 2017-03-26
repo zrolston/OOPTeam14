@@ -11,26 +11,18 @@ import Model.Utility.PixelMap;
 import javax.swing.*;
 import java.awt.*;
 
-public class MapEditorView extends JFrame{
+public class MapEditorView extends JLayeredPane {
 
     private TileSelectionView tileSelectionView;
     private MapSubsectionView mapSubsectionView;
     private MiniMapView miniMapView;
 
     public MapEditorView() {
-        setupFrame();
         //Initialize SubViews
         tileSelectionView = new TileSelectionView();
-        add(tileSelectionView);
+        tileSelectionView.setBounds(0, 0, PixelMap.SCREEN_WIDTH, PixelMap.SCREEN_HEIGHT);
+        add(tileSelectionView, 1);
         //Add SubViews to Layered Pane
-    }
-
-    private void setupFrame(){
-        setLayout(null);
-        setSize(new Dimension(PixelMap.SCREEN_WIDTH, PixelMap.SCREEN_HEIGHT));
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setResizable(false);
-        setVisible(true);
     }
 
 }
