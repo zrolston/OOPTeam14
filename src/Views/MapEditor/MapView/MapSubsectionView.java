@@ -36,8 +36,11 @@ public class MapSubsectionView extends JPanel {
         setBounds(0, 0, PixelMap.SCREEN_WIDTH, PixelMap.SCREEN_HEIGHT);
         setBackground(Color.blue);
         setVisible(true);
-        System.out.println(getWidth());
 
         image = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
+
+        Graphics2D g2 = (Graphics2D) image.getGraphics();
+        g2.setColor( new Color(0xffCABD80)  );
+        g2.fillRect( 0, 0, image.getWidth(), image.getHeight() );
     }
 }

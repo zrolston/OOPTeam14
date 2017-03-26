@@ -21,12 +21,14 @@ public class MapEditorView extends JLayeredPane {
 
     public MapEditorView() {
         setBounds(0, 0, PixelMap.SCREEN_WIDTH, PixelMap.SCREEN_HEIGHT);
-        //Initialize SubViews
+
+        // Initialize SubViews
         tileSelectionView = new TileSelectionView();
         mapSubsectionView = new MapSubsectionView();
+
+        // Add SubViews to Layered Pane
         add(tileSelectionView, 1);
         add(mapSubsectionView, 2);
-        //Add SubViews to Layered Pane
 
         System.out.println(getHeight());
     }
