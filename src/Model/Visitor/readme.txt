@@ -1,1 +1,0 @@
-Erase when you create the first class on the package. Only used since github ignores empty folders.
