@@ -18,8 +18,9 @@ public class TileSelectionView extends JPanel{
     CurrentSelectionView currentSelectionView;
 
     public TileSelectionView(){
+
         setLayout(new BorderLayout());
-        setBounds((int)(PixelMap.SCREEN_WIDTH * 0.0125), (int)(PixelMap.SCREEN_HEIGHT * 0.025), PixelMap.SCREEN_WIDTH / 5, PixelMap.SCREEN_HEIGHT - 100);
+        setBounds((int)(PixelMap.SCREEN_WIDTH * 0.0125), (int)(PixelMap.SCREEN_HEIGHT * 0.025), (int)(PixelMap.SCREEN_WIDTH * 0.20), (int)(PixelMap.SCREEN_HEIGHT * 0.95));
 
         terrainSelectionView = new TerrainSelectionView(new Dimension(getWidth() / 2, getHeight() - getWidth()));
         riverSelectionView = new RiverSelectionView(new Dimension(getWidth() / 2, getHeight() - getWidth()));
@@ -32,10 +33,4 @@ public class TileSelectionView extends JPanel{
         setVisible(true);
     }
 
-//    @Override
-//    public void paint(Graphics g){
-//        super.paintComponent(g);
-//        ((Graphics2D)g).setStroke(new BasicStroke(3));
-//        g.drawRect(3,3,getWidth()-6, getHeight()-6);
-//    }
 }
