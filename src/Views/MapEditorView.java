@@ -18,11 +18,15 @@ public class MapEditorView extends JLayeredPane {
     private MiniMapView miniMapView;
 
     public MapEditorView() {
+        setBounds(0, 0, PixelMap.SCREEN_WIDTH, PixelMap.SCREEN_WIDTH);
         //Initialize SubViews
         tileSelectionView = new TileSelectionView();
-        tileSelectionView.setBounds(0, 0, PixelMap.SCREEN_WIDTH, PixelMap.SCREEN_HEIGHT);
+        mapSubsectionView = new MapSubsectionView();
         add(tileSelectionView, 1);
+        add(mapSubsectionView, 2);
         //Add SubViews to Layered Pane
+
+        System.out.println(getHeight());
     }
 
 }

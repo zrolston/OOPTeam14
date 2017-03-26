@@ -22,9 +22,9 @@ public class Display extends JFrame {
     private void setupFrame(){
         setLayout(null);
         setSize(new Dimension(PixelMap.SCREEN_WIDTH, PixelMap.SCREEN_HEIGHT));
-        setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
+        setVisible(true);
     }
 
     public static void main(String[] args) {

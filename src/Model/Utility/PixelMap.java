@@ -18,7 +18,7 @@ public class PixelMap {
 
     //Dynamic Pixel Constants dependent on Screen Dimensions
 //    public static final int SCREEN_WIDTH = (int)(screenSize.getWidth()*SCREEN_RATIO), SCREEN_HEIGHT = (int)(screenSize.getHeight()*SCREEN_RATIO);
-    public static final int SCREEN_WIDTH = 1000, SCREEN_HEIGHT = 720;
+    public static final int SCREEN_WIDTH = 1280, SCREEN_HEIGHT = 720;
     public static final int TILE_WIDTH = SCREEN_WIDTH/HORIZONTAL_MULTIPLIER;
     public static final int TILE_HEIGHT = (int)(1.732*TILE_WIDTH);
     public static final int TILE_FULL_WIDTH = TILE_WIDTH*2;
