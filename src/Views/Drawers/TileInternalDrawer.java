@@ -6,10 +6,12 @@
 ---------------------------------------------------------------------------------------*/
 package Views.Drawers;
 
-import Model.Utility.Location;
-import Model.Utility.PixelMap;
-import Model.Utility.PixelPoint;
-import Views.Camera;
+
+
+import Model.Utility.HexLocation;
+import Views.ViewUtility.Camera;
+import Views.ViewUtility.PixelMap;
+import Views.ViewUtility.PixelPoint;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -22,7 +24,7 @@ public class TileInternalDrawer extends Drawer{
         g.drawImage(tile, origin.getX(), origin.getY(), (int)(PixelMap.TILE_WIDTH*camera.getScale()), (int)(PixelMap.TILE_FULL_WIDTH*camera.getScale()), null);
     }
 
-    public static void drawInMap(Graphics g, BufferedImage tile, Location location){
+    public static void drawInMap(Graphics g, BufferedImage tile, HexLocation location){
 
 //        g.drawImage();
     }
