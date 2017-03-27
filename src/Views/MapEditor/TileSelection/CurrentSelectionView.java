@@ -12,23 +12,26 @@ import java.util.ArrayList;
 public class CurrentSelectionView extends JPanel {
 
     private BufferedImage currSelectionImage = null;
+    private Tile currSelection = null;
 
     public CurrentSelectionView(Dimension size) {
         setPreferredSize(size);
-        setBackground(Color.green);
         setVisible(true);
         drawRiverTiles();
     }
 
+    public void update(Tile t) {
+        currSelection = t;
+        drawRiverTiles();
+    }
 
     public void drawRiverTiles() {
-
 
         BuildTileFactory factory = new BuildTileFactory();
         TileDrawingVisitor tdv;
 
-        // TODO: get terrain type from TerrainSelection and river type from RiverSelection
-        Tile currSelection = factory.createTile("PASTURE",  new int[]{} );
+        if(currSelection == null)
+            currSelection = factory.createTile("MOUNTAIN",  new int[]{} );
 
         tdv = new TileDrawingVisitor();
         currSelection.accept( tdv );
@@ -39,7 +42,7 @@ public class CurrentSelectionView extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
 
-        g.setColor( Color.DARK_GRAY );
+        g.setColor( new Color(0xffCABD80)  );
         g.fillRect(0, 0, getWidth(), getHeight());
 
         int width = (int)( getWidth() * 0.90 );

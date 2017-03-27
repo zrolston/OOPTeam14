@@ -28,7 +28,7 @@ public class MiniMapView extends JPanel {
         double height = 0.75;
         setBounds((int)(PixelMap.SCREEN_WIDTH * width), (int)(PixelMap.SCREEN_HEIGHT * height), (int)(PixelMap.SCREEN_WIDTH * (1 - width - 0.0125)), (int)(PixelMap.SCREEN_HEIGHT * (1 - height - 0.0125*2)));
         setBackground(Color.orange);
-        setBorder(BorderFactory.createLineBorder(new Color(0xff000000), 1));
+        setBorder(BorderFactory.createLineBorder(new Color(0xff111111) , 2));
         setVisible(true);
 
         miniMapImage = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
@@ -49,7 +49,6 @@ public class MiniMapView extends JPanel {
 //        BufferedImage wholeMapImage = new BufferedImage(wholeMapWidth , wholeMapHeight , BufferedImage.TYPE_INT_ARGB);
 //        Graphics2D g2d = (Graphics2D) wholeMapImage.getGraphics();
 //
-
 
         // until we do the above, we will just draw map subsection image in mini map
         BufferedImage wholeMapImage = mapSubsectionView.getImage();

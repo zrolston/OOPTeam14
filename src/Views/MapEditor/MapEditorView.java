@@ -45,4 +45,12 @@ public class MapEditorView extends JLayeredPane {
     public MiniMapView getMiniMapView() {
         return miniMapView;
     }
+
+    // TODO:
+
+
+
+
+
+
 }

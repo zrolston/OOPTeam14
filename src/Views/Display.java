@@ -4,6 +4,7 @@ import Controllers.KeyboardListeners.EditorKeyboardListener;
 import Model.ModelFacade;
 import Views.MapEditor.MapEditorView;
 import Views.MapEditor.MapView.MapSubsectionView;
+import Views.MapEditor.TileSelection.TileSelectionView;
 import Views.Utility.PixelMap;
 import javax.swing.*;
 import java.awt.*;
@@ -31,6 +32,9 @@ public class Display extends JFrame {
         setVisible(true);
     }
 
+    public TileSelectionView getTileSelectionView() {
+        return mapEditorView.getTileSelectionView();
+    }
     public void updateMap(){
         mapSubsectionView.repaint();
     }
