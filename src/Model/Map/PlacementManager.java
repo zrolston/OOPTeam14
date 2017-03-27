@@ -100,15 +100,8 @@ public class PlacementManager {
         ILocation location;
         Slot newSlot = new Slot();
         BuildTile targetTile;
-        HexaIndex index = null;
 
-        for(int i = 1; i < 7; i++){
-
-            try {
-                index = HexaIndex.createIndex(i);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        for(HexaIndex index : HexaIndex.getAllPossible()){
 
             location = loc.getLocationAtIndex(index);
 

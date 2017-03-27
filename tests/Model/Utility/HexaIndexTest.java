@@ -2,6 +2,8 @@ package Model.Utility;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.*;
 
 /**
@@ -39,6 +41,19 @@ public class HexaIndexTest {
         hexaIndex = HexaIndex.createIndex(1);
         assertEquals(4, hexaIndex.getOppositeSide().getValue());
 
+    }
+
+    @Test
+    public void getAllPossibleTest() throws Exception {
+        ArrayList<HexaIndex> list = HexaIndex.getAllPossible();
+
+        assertEquals(6, list.size());
+        assertTrue(list.contains(HexaIndex.createIndex(1)));
+        assertTrue(list.contains(HexaIndex.createIndex(2)));
+        assertTrue(list.contains(HexaIndex.createIndex(3)));
+        assertTrue(list.contains(HexaIndex.createIndex(4)));
+        assertTrue(list.contains(HexaIndex.createIndex(5)));
+        assertTrue(list.contains(HexaIndex.createIndex(6)));
     }
 
 }
