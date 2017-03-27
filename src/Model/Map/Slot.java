@@ -4,15 +4,16 @@ import Model.Edge.Edge;
 import Model.Utility.HexaIndex;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class Slot {
-    private HashMap<HexaIndex, Edge> edges;
+    private Map<HexaIndex, Edge> edges;
 
     public Slot(){
         edges = new HashMap<HexaIndex, Edge>();
     }
 
-    public boolean checkMatch(HashMap<HexaIndex, Edge> inputMap){
+    public boolean checkMatch(Map<HexaIndex, Edge> inputMap){
 
         boolean match = true;
 
@@ -36,7 +37,7 @@ public class Slot {
         edges.remove(index);
     }
 
-    public HashMap<HexaIndex,Edge> getEdges() {
+    public Map<HexaIndex,Edge> getEdges() {
         return edges;
     }
 }
