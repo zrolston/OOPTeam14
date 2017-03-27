@@ -28,6 +28,8 @@ public class MapDrawingVisitorTest {
     public void testDefaultImage() throws IOException {
         int addTileRow = 0;
         int addTileColumn = 0;
+        int length = 10;
+        int height = 10;
 
         BufferedImage testImg = ImageLoader.getImage("DESERT");
         BufferedImage defaultImg = ImageLoader.getImage("OUTLINE");
@@ -37,13 +39,14 @@ public class MapDrawingVisitorTest {
         BuildTileFactory factory = new BuildTileFactory();
         BuildTile t = factory.createTile("DESERT", new int[]{});
 
-        BuildMap map = new BuildMap(10, 10);
+        BuildMap map = new BuildMap(length, height);
         map.addTile(t, new HexLocation(addTileRow, addTileColumn));
 
         MapDrawingVisitor mdv = new MapDrawingVisitor();
+        map.accept(mdv);
         BufferedImage[][] imgArray = mdv.getImageArray();
-        assertEquals(imgArray[0].length, 2);
-        assertEquals(imgArray.length, 2);
+        assertEquals(imgArray[0].length, length);
+        assertEquals(imgArray.length, height);
 
         for(int i = 0; i < cameraHeight; i++){
             for(int j = 0; j < cameraWidth; j++){
