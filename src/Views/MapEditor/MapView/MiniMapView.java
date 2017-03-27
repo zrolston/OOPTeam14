@@ -7,7 +7,6 @@
 package Views.MapEditor.MapView;
 
 import Views.Utility.PixelMap;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -21,6 +20,4 @@ public class MiniMapView extends JPanel {
         setBorder(BorderFactory.createLineBorder(new Color(0xff000000), 1));
         setVisible(true);
     }
-
-
 }

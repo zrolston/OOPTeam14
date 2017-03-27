@@ -5,7 +5,22 @@ import Model.Edge.RiverEdge;
 import Model.Edge.SeaEdge;
 import Model.Terrain.*;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
 public class TileDrawingVisitor implements TileVisitor {
+    private BufferedImage image;
+
+    public TileDrawingVisitor(){
+        try {
+            image = ImageIO.read(new File("res/Images/grass_terrain.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void visitSea(SeaTerrain sea) {
 
@@ -49,5 +64,9 @@ public class TileDrawingVisitor implements TileVisitor {
     @Override
     public void visitRiverEdge(RiverEdge riverEdge) {
 
+    }
+
+    public BufferedImage getImage(){
+        return image;
     }
 }
