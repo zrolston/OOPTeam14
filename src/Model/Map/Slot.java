@@ -40,4 +40,15 @@ public class Slot {
     public Map<HexaIndex,Edge> getEdges() {
         return edges;
     }
+
+    public boolean hasEdge(HexaIndex index) {
+        if(edges.get(index) == null){
+            return false;
+        }
+        return true;
+    }
+
+    public boolean isEmpty() {
+        return edges.isEmpty();
+    }
 }

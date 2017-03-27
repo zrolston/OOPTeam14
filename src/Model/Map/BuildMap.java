@@ -8,7 +8,6 @@ import Model.Visitor.MapVisitor;
 public class BuildMap implements IViewMap {
     private BuildTile[][] map;
     private int HEIGHT, WIDTH;
-    private ValidationManager validationManager;
 
     public BuildMap(int length, int width){
         this.HEIGHT = length;
@@ -40,8 +39,27 @@ public class BuildMap implements IViewMap {
     }
 
     @Override
-    public Tile getTileAt(ILocation location) {
-        return null;
+    public BuildTile getTileAt(ILocation location) {
+        return map[location.getCol()][location.getRow()];
+    }
+
+    public boolean locationInBounds(ILocation location){
+        if(location.getCol() > this.WIDTH || location.getCol() < 0 || location.getRow() > this.HEIGHT || location.getRow() < 0){
+            return false;
+        }
+        return true;
+    }
+
+    public boolean tileExistsAt(ILocation location){
+
+        if(!locationInBounds(location)){
+            return false;
+        }
+
+        if(map[location.getCol()][location.getRow()] == null){
+            return false;
+        }
+        return true;
     }
 
     public boolean validateMap(){
@@ -59,5 +77,13 @@ public class BuildMap implements IViewMap {
                 map[i][j] = null;
             }
         }
+    }
+
+    public int getHEIGHT(){
+        return HEIGHT;
+    }
+
+    public int getWIDTH(){
+        return WIDTH;
     }
 }

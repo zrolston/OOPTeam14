@@ -24,4 +24,8 @@ public class BuildTile extends Tile {
     public void accept(TileVisitor v) {
         getTerrain().accept(v);
     }
+
+    public Edge getEdgeAt(HexaIndex index) {
+        return edgeMap.get(index);
+    }
 }
