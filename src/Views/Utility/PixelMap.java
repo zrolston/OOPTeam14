@@ -53,15 +53,59 @@ public class PixelMap {
         Camera camera = Camera.getInstance();
         //If odd Column
         if(location.getCol()%2 == 1)
-            return new PixelPoint(location.getCol()*width_offset - camera.getOrigin().getX() - TILE_WIDTH, location.getRow()*TILE_HEIGHT - camera.getOrigin().getY() - TILE_HEIGHT/2);
+            return new PixelPoint(location.getCol()*width_offset - camera.getOrigin().getX(), location.getRow()*TILE_HEIGHT - camera.getOrigin().getY());
             //If even Column
         else
-            return new PixelPoint(location.getCol()*width_offset - camera.getOrigin().getX() - TILE_WIDTH, location.getRow()*TILE_HEIGHT-height_offset - camera.getOrigin().getY() - TILE_HEIGHT/2);
+            return new PixelPoint(location.getCol()*width_offset - camera.getOrigin().getX(), location.getRow()*TILE_HEIGHT + height_offset - camera.getOrigin().getY());
     }
 
     public static HexLocation getHexLocationAtPixelPoint(PixelPoint point) {
         Camera camera = Camera.getInstance();
-        return null;
+
+        int xPosition = point.getX() + camera.getOrigin().getX();
+        int yPosition = point.getY() + camera.getOrigin().getY();
+
+        HexLocation location = null;
+
+        int column = (int) (xPosition / width_offset);
+        if (column % 2 == 0) {
+            int row = (int) ((yPosition - height_offset) / TILE_HEIGHT);
+            if (yPosition - height_offset < 0)
+                row -= 1;
+            int xPositionInTile = xPosition - column*width_offset;
+            int yPositionInTile = yPosition - height_offset - row*TILE_HEIGHT;
+            location = new HexLocation(row, column);
+            if (xPositionInTile < (TILE_WIDTH / 2)) {
+                if (yPositionInTile < (TILE_HEIGHT / 2)) {
+                    if (xPositionInTile * 1.732 < yPositionInTile)
+                        location = new HexLocation(row, column - 1);
+                }
+                else {
+                    if (xPositionInTile * 1.732 < (TILE_HEIGHT - yPositionInTile))
+                        location = new HexLocation(row + 1, column - 1);
+                }
+            }
+        }
+        else {
+            int row = (int) (yPosition / TILE_HEIGHT);
+            if (yPosition < 0)
+                row -= 1;
+            int xPositionInTile = xPosition - column*width_offset;
+            int yPositionInTile = yPosition - row*TILE_HEIGHT;
+            location = new HexLocation(row, column);
+            if (xPositionInTile < (TILE_WIDTH / 2)) {
+                if (yPositionInTile < (TILE_HEIGHT / 2)) {
+                    if (xPositionInTile * 1.732 < yPositionInTile)
+                        location = new HexLocation(row - 1, column - 1);
+                }
+                else {
+                    if (xPositionInTile * 1.732 < (TILE_HEIGHT - yPositionInTile))
+                        location = new HexLocation(row, column - 1);
+                }
+            }
+        }
+
+        return location;
     }
 
     //Provides validation to coordinates when overlapping tiles.

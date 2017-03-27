@@ -13,6 +13,7 @@ import Model.ModelFacade;
 import Model.Utility.HexLocation;
 import Model.Visitor.MapDrawingVisitor;
 import Views.Drawers.TileInternalDrawer;
+import Views.Utility.Camera;
 import Views.Utility.PixelMap;
 import Views.Utility.PixelPoint;
 

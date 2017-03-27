@@ -10,9 +10,11 @@
 package Controllers.MouseListeners;
 
 import Model.ModelFacade;
+import Model.Utility.HexLocation;
 import Views.MapEditor.MapEditorView;
 import Views.MapEditor.MapView.MapSubsectionView;
 import Views.Utility.Camera;
+import Views.Utility.PixelMap;
 import Views.Utility.PixelPoint;
 
 import java.awt.event.MouseEvent;
@@ -51,7 +53,9 @@ public class MapSubsectionMouseListener implements MouseMotionListener, MouseLis
     //-------------------------------------------------------------------
     @Override
     public void mouseClicked(MouseEvent e) {
-        System.out.println(camera.getOrigin().getX() + " " + camera.getOrigin().getY());
+        HexLocation temp = PixelMap.getHexLocationAtPixelPoint(new PixelPoint(e.getX(), e.getY()));
+        if (temp != null)
+            System.out.println(temp.getRow() + " " + temp.getCol());
     }
 
     @Override
