@@ -13,6 +13,7 @@ import Model.ModelFacade;
 import Model.Utility.HexLocation;
 import Model.Visitor.MapDrawingVisitor;
 import Views.Drawers.TileInternalDrawer;
+import Views.Drawers.TileOutlineDrawer;
 import Views.Utility.PixelMap;
 import Views.Utility.PixelPoint;
 
@@ -36,7 +37,8 @@ public class MapSubsectionView extends JPanel {
     public void updateImage() {
         Graphics2D g2 = (Graphics2D) image.getGraphics();
 
-        g2.setColor( new Color(0xffCABD80)  );
+//        g2.setColor( new Color(0xffCABD80)  );
+        g2.setColor(new Color(255, 255, 255));
         g2.fillRect( 0, 0, image.getWidth(), image.getHeight() );
 
         for (int i = 0; i < tileImages.length; i++) {
@@ -45,6 +47,8 @@ public class MapSubsectionView extends JPanel {
                 TileInternalDrawer.drawInMap(g2, tileImages[i][j], origin);
             }
         }
+//        TileOutlineDrawer.drawValidEdge(g2, new HexLocation(1,1));
+//        TileOutlineDrawer.drawInvalidEdge(g2, new HexLocation(3,3));
     }
 
 
