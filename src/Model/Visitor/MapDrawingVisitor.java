@@ -3,6 +3,7 @@ package Model.Visitor;
 import Model.Map.IViewMap;
 import Model.Tile.Tile;
 import Model.Utility.ILocation;
+import Views.ViewUtility.ImageLoader;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -28,13 +29,16 @@ public class MapDrawingVisitor implements MapVisitor {
         Will return array of tiles in the camera window. There will
         be null tiles.
         */
+        ImageLoader imageLoader = new ImageLoader();
         TileDrawingVisitor tdv = new TileDrawingVisitor();
         for (int col = 0; col < width; col++) {
             for (int row = 0; row < height; row++) {
                 if(tiles[row][col] == null){
                     try {
-                        imageArray[row][col] = ImageIO.read(new File("res/Images/defaultImage.png"));//TODO imageLoader.getDefaultImage();
-                    } catch (IOException e) {
+                        imageArray[row][col] = imageLoader.getImage("Rock");
+//                        System.out.println("i: "+col+" -- j: "+row);
+//                        System.out.println(imageArray[row][col]);
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }

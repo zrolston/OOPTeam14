@@ -6,8 +6,9 @@ package Views.Utility;
 |   proportions to automatically adjust to screen size.
 ---------------------------------------------------------------------------------------*/
 
-import Model.Utility.ILocation;
 
+import Views.Drawers.TileOutlineDrawer;
+import Model.Utility.ILocation;
 import java.awt.*;
 
 public class PixelMap {
@@ -44,5 +45,24 @@ public class PixelMap {
             //If even Column
         else
             return new PixelPoint(hexLocation.getCol()*width_offset - camera.getOrigin().getX(), hexLocation.getRow()*TILE_HEIGHT-height_offset - camera.getOrigin().getY());
+    }
+
+    //Provides Pixel origin of an InGame Tile based on the
+    public static PixelPoint getMapTileOrigin(ILocation location){
+        Camera camera = Camera.getInstance();
+        //If odd Column
+        if(location.getCol()%2 == 1)
+            return new PixelPoint(location.getCol()*width_offset - camera.getOrigin().getX() - TILE_WIDTH, location.getRow()*TILE_HEIGHT - camera.getOrigin().getY() - TILE_HEIGHT/2);
+            //If even Column
+        else
+            return new PixelPoint(location.getCol()*width_offset - camera.getOrigin().getX() - TILE_WIDTH, location.getRow()*TILE_HEIGHT-height_offset - camera.getOrigin().getY() - TILE_HEIGHT/2);
+    }
+
+
+    //Provides validation to coordinates when overlapping tiles.
+    public static boolean tileContains(ILocation tileLocation, PixelPoint point){
+        PixelPoint center = getTileCenter(tileLocation);
+        Polygon hexagon = TileOutlineDrawer.getHexagon(center);
+        return hexagon.contains(new Point(point.getX(), point.getY()));
     }
 }

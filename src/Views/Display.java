@@ -1,17 +1,23 @@
 package Views;
 
+import Controllers.KeyboardListeners.EditorKeyboardListener;
+import Model.ModelFacade;
 import Views.MapEditor.MapEditorView;
+import Views.MapEditor.MapView.MapSubsectionView;
 import Views.Utility.PixelMap;
 import javax.swing.*;
 import java.awt.*;
 
 public class Display extends JFrame {
-    JLayeredPane mapEditorView;
+    MapEditorView mapEditorView;
+    MapSubsectionView mapSubsectionView;
 
     public Display() {
         setupFrame();
         mapEditorView = new MapEditorView();
-        add(mapEditorView);
+        add( mapEditorView );
+        mapSubsectionView = mapEditorView.getMapSubsectionView();
+        addKeyListener(new EditorKeyboardListener(new ModelFacade(null)));
     }
 
     private void setupFrame(){
@@ -19,6 +25,10 @@ public class Display extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
         setVisible(true);
+    }
+
+    public void updateMap(){
+        mapSubsectionView.repaint();
     }
 
 }

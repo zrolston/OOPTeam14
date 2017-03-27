@@ -11,4 +11,6 @@ public interface ILocation {
     public int getCol();
 
     public ArrayList<ILocation> getAdjacent();
+
+    public ILocation getLocationAtIndex(HexaIndex index);
 }
