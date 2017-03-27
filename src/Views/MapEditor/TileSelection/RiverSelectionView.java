@@ -63,17 +63,17 @@ public class RiverSelectionView extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
 
-        g.setColor( new Color(0xffCABD80) );
-        g.fillRect(0, 0, getWidth(), getHeight());
-
         int width = (int)( getWidth() * 0.90 );
         while(getHeight() / width < riverTypes.size()) {
             width -= 5;
         }
 
+        g.setColor( new Color(0xffCABD80)  );
+        g.fillRect(0, 0, getWidth(), getHeight());
+
         int i = 0;
         for(BufferedImage img : riverImages ) {
-            g.drawImage(img, 6, 7  + i * width, width, width, null);
+            g.drawImage(img, (int)(width * .05), (int)(width * .05)  + i * width, width, width, null);
             i++;
         }
     }
