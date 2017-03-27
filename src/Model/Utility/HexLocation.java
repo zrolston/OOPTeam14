@@ -68,6 +68,73 @@ public class HexLocation implements ILocation{
     }
 
     @Override
+    public ILocation getLocationAtIndex(HexaIndex index) {
+
+        ILocation myAdj = this;
+
+        if(this.col % 2 == 0){
+
+            switch(index.getValue()) {
+                //North
+                case 1: myAdj = (new HexLocation(this.row + -1, this.col + 0));
+                break;
+
+                //NorthEast
+                case 2: myAdj = (new HexLocation(this.row + -1, this.col + 1));
+                break;
+
+                //SouthEast
+                case 3: myAdj = (new HexLocation(this.row + 0, this.col + 1));
+                break;
+
+                //South
+                case 4: myAdj = (new HexLocation(this.row + 1, this.col + 0));
+                break;
+
+                //SouthWest
+                case 5: myAdj = (new HexLocation(this.row + 0, this.col + -1));
+                break;
+
+                //NorthWest
+                case 6: myAdj = (new HexLocation(this.row + -1, this.col + -1));
+                break;
+            }
+        }
+
+        else{
+
+            switch(index.getValue()) {
+                //North
+                case 1: myAdj = (new HexLocation(this.row + -1, this.col + 0));
+                break;
+
+                //NorthEast
+                case 2: myAdj = (new HexLocation(this.row + 0, this.col + 1));
+                break;
+
+                //SouthEast
+                case 3: myAdj = (new HexLocation(this.row + 1, this.col + 1));
+                break;
+
+                //South
+                case 4: myAdj = (new HexLocation(this.row + 1, this.col + 0));
+                break;
+
+                //SouthWest
+                case 5: myAdj = (new HexLocation(this.row + 1, this.col + -1));
+                break;
+
+                //NorthWest
+                case 6: myAdj = (new HexLocation(this.row + 0, this.col + -1));
+                break;
+
+            }
+        }
+
+        return myAdj;
+    }
+
+    @Override
     public boolean equals(Object location){
         boolean equal = location instanceof HexLocation;
         if(!equal)
@@ -82,7 +149,4 @@ public class HexLocation implements ILocation{
         return this.row == hexLocation.getRow() && this.col == hexLocation.getCol();
     }
 
-
-    //TODO Maybe a directional system???
-    public HexLocation getDirection(){return null;}
 }

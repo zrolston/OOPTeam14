@@ -1,8 +1,8 @@
 package Model;
 
 import Model.Map.BuildMap;
-import Views.ViewUtility.Camera;
-import Views.ViewUtility.PixelPoint;
+import Views.Utility.Camera;
+import Views.Utility.PixelPoint;
 
 /**
  * Created by jordi on 3/26/2017.
