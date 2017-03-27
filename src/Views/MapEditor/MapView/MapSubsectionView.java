@@ -1,8 +1,8 @@
 /**-------------------------------------------------------------------------------------
 |	MapSubsectionView Class: Created by Alejandro Chavez on 3/26/2017.
 |---------------------------------------------------------------------------------------
-|   Description: 
-|
+|   Description: This is the Map Part of the View where the user will drop and move the
+|   Tiles to. This View contains the virtual representation of the Map.
 ---------------------------------------------------------------------------------------*/
 package Views.MapEditor.MapView;
 
@@ -14,6 +14,7 @@ import Model.ModelFacade;
 import Model.Utility.HexLocation;
 import Model.Visitor.MapDrawingVisitor;
 import Views.Drawers.TileInternalDrawer;
+import Views.Drawers.TileOutlineDrawer;
 import Views.Utility.PixelMap;
 import Views.Utility.PixelPoint;
 
@@ -37,6 +38,8 @@ public class MapSubsectionView extends JPanel {
         //TODO: update image with tileImages
     }
 
+
+    //This method is temporary until we load the real Map
     public void updateCachedMap(){
         map.accept(drawingVisitor);
         tileImages = drawingVisitor.getImageArray();
@@ -49,8 +52,11 @@ public class MapSubsectionView extends JPanel {
 
         for (int i = 0; i < tileImages.length; i++) {
             for (int j = 0; j < tileImages[i].length; j++) {
-                PixelPoint origin = PixelMap.getMapTileOrigin(new HexLocation(i, j));
-                TileInternalDrawer.drawInMap(g, tileImages[i][j], origin);
+//                PixelPoint origin = PixelMap.getMapTileOrigin(new HexLocation(i, j));
+//                TileInternalDrawer.drawInMap(g, tileImages[i][j], origin);
+
+                PixelPoint center = PixelMap.getTileCenter(new HexLocation(i, j));
+                TileOutlineDrawer.drawInMap(g, center);
             }
         }
     }
@@ -73,9 +79,9 @@ public class MapSubsectionView extends JPanel {
 
         image = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
 
-        Graphics2D g2 = (Graphics2D) image.getGraphics();
-        g2.setColor( new Color(0xffCABD80)  );
-        g2.fillRect( 0, 0, image.getWidth(), image.getHeight() );
+//        Graphics2D g2 = (Graphics2D) image.getGraphics();
+//        g2.setColor( new Color(255, 255, 255)  );
+//        g2.fillRect( 0, 0, image.getWidth(), image.getHeight() );
 
     }
 }

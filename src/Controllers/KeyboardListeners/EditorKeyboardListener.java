@@ -4,6 +4,8 @@ import Model.ModelFacade;
 import Views.MapEditor.MapEditorView;
 import javafx.scene.input.KeyCode;
 
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.security.Key;
@@ -14,9 +16,14 @@ import java.util.Set;
  * Created by jordi on 3/26/2017.
  */
 public class EditorKeyboardListener implements KeyListener {
+    Component component;
     Set<Integer> pressedKeys= new HashSet<>();
     ModelFacade modelFacade;
     MapEditorView view;
+
+    public void setComponent(Component component) {
+        this.component = component;
+    }
 
     public EditorKeyboardListener(ModelFacade modelFacade, MapEditorView mapEditorView) {
         this.modelFacade=modelFacade;
@@ -47,11 +54,13 @@ public class EditorKeyboardListener implements KeyListener {
     public void unlockCamera(){
         if (pressedKeys.contains(KeyEvent.VK_CONTROL)){
             modelFacade.unlockCamera();
+            if(component != null)component.setCursor(new Cursor(Cursor.HAND_CURSOR));
         }
     }
     public void lockCamera(){
         if (!pressedKeys.contains(KeyEvent.VK_CONTROL)) {
             modelFacade.lockCamera();
+            if(component != null)component.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         }
     }
 }
