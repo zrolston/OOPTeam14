@@ -20,7 +20,7 @@ public class Camera {
 
     private Camera(int x, int y){
         origin = new PixelPoint(x, y);
-        scale = 1.0;
+        scale = 1.0225;
         width = PixelMap.SCREEN_WIDTH;
         height = PixelMap.SCREEN_HEIGHT;
     }
