@@ -28,8 +28,8 @@ public class MapDrawingVisitorTest {
         int addTileRow = 0;
         int addTileColumn = 0;
 
-        BufferedImage testImg = ImageIO.read(new File("res/Images/testImage.png"));
-        BufferedImage defaultImg = ImageIO.read(new File("res/Images/defaultImage.png"));
+        BufferedImage testImg = ImageIO.read(new File("res/Images/mountain.png"));
+        BufferedImage defaultImg = ImageIO.read(new File("res/Images/desert.png"));
         byte[] testImageArray = ((DataBufferByte) testImg.getData().getDataBuffer()).getData();
         byte[] defaultImageArray = ((DataBufferByte) defaultImg.getData().getDataBuffer()).getData();
 

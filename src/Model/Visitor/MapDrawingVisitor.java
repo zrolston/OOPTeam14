@@ -18,6 +18,10 @@ public class MapDrawingVisitor implements MapVisitor {
         this.bottomRight = bottomRight;
     }
 
+    public MapDrawingVisitor(ILocation location){
+        //TODO implement
+    }
+
     @Override
     public void visitMap(IViewMap map) {
         Tile[][] tiles = map.getTiles(topLeft, bottomRight);
@@ -33,7 +37,7 @@ public class MapDrawingVisitor implements MapVisitor {
             for (int row = 0; row < height; row++) {
                 if(tiles[row][col] == null){
                     try {
-                        imageArray[row][col] = ImageIO.read(new File("res/Images/Mountain.png"));//TODO imageLoader.getDefaultImage();
+                        imageArray[row][col] = ImageIO.read(new File("res/Images/desert.png"));//TODO imageLoader.getDefaultImage();
 //                        System.out.println("i: "+col+" -- j: "+row);
 //                        System.out.println(imageArray[row][col]);
                     } catch (IOException e) {
