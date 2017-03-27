@@ -19,7 +19,7 @@ public class MapEditorView extends JLayeredPane {
     private MapSubsectionView mapSubsectionView;
     private MiniMapView miniMapView;
 
-    public MapEditorView() {
+    public MapEditorView()  {
         setBounds(0, 0, PixelMap.SCREEN_WIDTH, PixelMap.SCREEN_HEIGHT);
 
         // Initialize SubViews
@@ -28,10 +28,21 @@ public class MapEditorView extends JLayeredPane {
         miniMapView       = new MiniMapView();
 
         // Add SubViews to Layered Pane
-        add(tileSelectionView, 1);
-        add(miniMapView,       2);
-        add(mapSubsectionView, 3);
+        add(tileSelectionView, new Integer(3));
+        add(miniMapView,       new Integer(2));
+        add(mapSubsectionView, new Integer(1));
 
     }
 
+    public TileSelectionView getTileSelectionView() {
+        return tileSelectionView;
+    }
+
+    public MapSubsectionView getMapSubsectionView() {
+        return mapSubsectionView;
+    }
+
+    public MiniMapView getMiniMapView() {
+        return miniMapView;
+    }
 }

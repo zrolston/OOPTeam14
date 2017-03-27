@@ -23,7 +23,7 @@ public class MapEditorController {
 
     private void initializeListeners(ModelFacade modelFacade, MapEditorView mapEditorView) {
         keyboardListener = new EditorKeyboardListener(modelFacade, mapEditorView);
-        mouseListener = new EditorMouseListener(modelFacade, mapEditorView);
+        mouseListener = new EditorMouseListener(modelFacade);
     }
     private void linkListenersToView(MapEditorView mapEditorView){
         //TODO: link the views to the listeners
