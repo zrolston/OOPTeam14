@@ -5,10 +5,7 @@
 |   compared to the whole map. Also controls the zoom via a scale ratio. The mapping will
 |   take into consideration Camera to to adjust the things being drawn.
 ---------------------------------------------------------------------------------------*/
-package Views;
-
-import Model.Utility.PixelMap;
-import Model.Utility.PixelPoint;
+package Views.Utility;
 
 public class Camera {
 
@@ -19,7 +16,7 @@ public class Camera {
     private static Camera instance = null;
     private int moveOffset = PixelMap.TILE_WIDTH/16;
     private PixelPoint press = null;
-    private boolean cameraMovement =  true;
+    private boolean cameraMovement =  false;
 
     private Camera(int x, int y){
         origin = new PixelPoint(x, y);
@@ -77,12 +74,17 @@ public class Camera {
         }
     }
     public void move(PixelPoint current){
+
         if(cameraMovement) {
-            int xOffset = current.getX() - press.getX();
-            int yOffset = current.getY() - press.getY();
-            origin.moveX(-xOffset);
-            origin.moveY(-yOffset);
-            press = current;
+            try {
+                int xOffset = current.getX() - press.getX();
+                int yOffset = current.getY() - press.getY();
+                origin.moveX(-xOffset);
+                origin.moveY(-yOffset);
+                press = current;
+            }
+            //Catching any synchronization Error
+            catch(NullPointerException e){ }
         }
     }
     public void releasePress(){

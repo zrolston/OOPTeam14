@@ -15,7 +15,7 @@ public class TileDrawingVisitor implements TileVisitor {
 
     public TileDrawingVisitor(){
         try {
-            image = ImageIO.read(new File("res/Images/mountain.png"));
+            image = ImageIO.read(new File("res/Images/desert.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
