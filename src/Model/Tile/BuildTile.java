@@ -2,7 +2,6 @@ package Model.Tile;
 
 import Model.Edge.Edge;
 import Model.Terrain.Terrain;
-import Model.Utility.Index;
 import Model.Visitor.TileVisitor;
 
 import java.util.HashMap;
