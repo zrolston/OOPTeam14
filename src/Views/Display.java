@@ -10,7 +10,7 @@ import java.awt.*;
 
 public class Display extends JFrame {
     MapEditorView mapEditorView;
-    MapSubsectionView mapSubsectionView;
+    MapSubsectionView  mapSubsectionView;
 
     public Display() {
         setupFrame();

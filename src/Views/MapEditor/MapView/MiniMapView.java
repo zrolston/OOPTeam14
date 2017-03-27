@@ -6,7 +6,11 @@
 ---------------------------------------------------------------------------------------*/
 package Views.MapEditor.MapView;
 
+import Model.Utility.HexLocation;
+import Views.Drawers.TileInternalDrawer;
 import Views.Utility.PixelMap;
+import Views.Utility.PixelPoint;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -38,14 +42,27 @@ public class MiniMapView extends JPanel {
     }
 
     public void redrawMiniMap() {
-//        int wholeMapWidth = PixelMap.
-//        BufferedImage wholeMapImage = new BufferedImage()
+
+        //TODO: create full map image, scale it down, display in mini map
+//        int wholeMapWidth = PixelMap.TILE_WIDTH * tileImages.length;
+//        int wholeMapHeight = PixelMap.TILE_HEIGHT * tileImages[0].length;
+//        BufferedImage wholeMapImage = new BufferedImage(wholeMapWidth , wholeMapHeight , BufferedImage.TYPE_INT_ARGB);
+//        Graphics2D g2d = (Graphics2D) wholeMapImage.getGraphics();
 //
 
-        Graphics2D g2d = (Graphics2D) miniMapImage.getGraphics();
 
+        // until we do the above, we will just draw map subsection image in mini map
+        BufferedImage wholeMapImage = mapSubsectionView.getImage();
+        Graphics2D g2 = (Graphics2D) miniMapImage.createGraphics();
+        g2.drawImage(wholeMapImage, 0, 0, miniMapImage.getWidth(),  miniMapImage.getHeight(), null);
 
-
-
+        repaint();
     }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(miniMapImage, 0, 0, null);
+    }
+
 }

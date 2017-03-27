@@ -35,7 +35,7 @@ public class MapDrawingVisitor implements MapVisitor {
         for (int col = 0; col < width; col++) {
             for (int row = 0; row < height; row++) {
                 if(tiles[row][col] == null){
-                    imageArray[row][col] = ImageLoader.getImage("OUTLINE");//TODO imageLoader.getDefaultImage();
+                    imageArray[row][col] = ImageLoader.getImage("SEA");
 //                  System.out.println("i: "+col+" -- j: "+row);
 //                  System.out.println(imageArray[row][col]);
                 }

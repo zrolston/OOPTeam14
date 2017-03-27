@@ -73,14 +73,18 @@ public class TileDrawingVisitor implements TileVisitor {
 
     public BufferedImage getImage(){
         BufferedImage allTogether = terrainImage;
+        Graphics g = allTogether.getGraphics();
         if(!riverIndices.isEmpty()){
-            Graphics g = allTogether.getGraphics();
             try {
                 g.drawImage(getAdjustedRiverImage(), 0, 0, null);
             } catch (BadAttributeValueExpException e) {
                 e.printStackTrace();
             }
         }
+
+        BufferedImage outline = ImageLoader.getImage("OUTLINE");
+        g.drawImage(outline, 0, 0, null);
+
         return allTogether;
     }
 

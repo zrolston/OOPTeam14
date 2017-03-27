@@ -43,6 +43,7 @@ public class MapSubsectionView extends JPanel {
                 TileInternalDrawer.drawInMap(g2, tileImages[i][j], origin);
             }
         }
+
     }
 
     @Override
@@ -72,4 +73,9 @@ public class MapSubsectionView extends JPanel {
     public BufferedImage[][] getTileImages() {
         return tileImages;
     }
+
+    public BufferedImage getImage() {
+        return image;
+    }
+
 }

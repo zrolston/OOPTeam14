@@ -19,7 +19,7 @@ public class ImageLoader {
             cachedImages.put("DESERT", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/desert.png")));
             cachedImages.put("MOUNTAIN", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/mountain.png")));
             cachedImages.put("OUTLINE", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/outline.png")));
-            cachedImages.put("PASTRUE", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/pasture.png")));
+            cachedImages.put("PASTURE", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/pasture.png")));
             cachedImages.put("RIVER0", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/river0.png")));
             cachedImages.put("RIVER1", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/river1.png")));
             cachedImages.put("RIVER2", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/river2.png")));
