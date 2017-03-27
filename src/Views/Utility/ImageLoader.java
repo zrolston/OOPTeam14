@@ -1,6 +1,7 @@
 package Views.Utility;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
 
@@ -9,11 +10,16 @@ public class ImageLoader {
     private static HashMap<String, BufferedImage> cachedImages;
 
     public static BufferedImage getImage(String imageName) {
-        return cachedImages.get(imageName);
+        BufferedImage old = cachedImages.get(imageName);
+        BufferedImage copy = new BufferedImage(old.getWidth(), old.getHeight(), old.getType());
+        Graphics g = copy.getGraphics();
+        g.drawImage(old, 0, 0, null);
+        g.dispose();
+        return copy;
     }
 
     public static BufferedImage getDefaultImage(){
-        return cachedImages.get("ROCK");
+        return getImage("ROCK");
     }
 
     static {
