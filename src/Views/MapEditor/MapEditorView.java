@@ -25,7 +25,7 @@ public class MapEditorView extends JLayeredPane {
         // Initialize SubViews
         tileSelectionView = new TileSelectionView();
         mapSubsectionView = new MapSubsectionView();
-        miniMapView       = new MiniMapView();
+        miniMapView       = new MiniMapView( mapSubsectionView );
 
         // Add SubViews to Layered Pane
         add(tileSelectionView, new Integer(3));

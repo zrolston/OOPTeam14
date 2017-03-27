@@ -9,15 +9,43 @@ package Views.MapEditor.MapView;
 import Views.Utility.PixelMap;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class MiniMapView extends JPanel {
 
-    public MiniMapView() {
+    BufferedImage miniMapImage = null;
+    BufferedImage[][] tileImages;
+    MapSubsectionView mapSubsectionView = null;
+
+
+    public MiniMapView(MapSubsectionView mapSubsectionView) {
+        this.mapSubsectionView = mapSubsectionView;
         double width  = 0.75;
         double height = 0.75;
         setBounds((int)(PixelMap.SCREEN_WIDTH * width), (int)(PixelMap.SCREEN_HEIGHT * height), (int)(PixelMap.SCREEN_WIDTH * (1 - width - 0.0125)), (int)(PixelMap.SCREEN_HEIGHT * (1 - height - 0.0125*2)));
         setBackground(Color.orange);
         setBorder(BorderFactory.createLineBorder(new Color(0xff000000), 1));
         setVisible(true);
+
+        miniMapImage = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
+
+        updateMiniMap();
+        redrawMiniMap();
+    }
+
+    public void updateMiniMap() {
+        this.tileImages = mapSubsectionView.getTileImages();
+    }
+
+    public void redrawMiniMap() {
+//        int wholeMapWidth = PixelMap.
+//        BufferedImage wholeMapImage = new BufferedImage()
+//
+
+        Graphics2D g2d = (Graphics2D) miniMapImage.getGraphics();
+
+
+
+
     }
 }
