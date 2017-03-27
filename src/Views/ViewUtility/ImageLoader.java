@@ -29,6 +29,9 @@ public class ImageLoader {
             cachedImages.put("River 2-2", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/river2-2.png")));
             cachedImages.put("River 2-3", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/river2-3.png")));
             cachedImages.put("River 3", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/river3.png")));
+
+            cachedImages.put("Outline", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/outline.png")));
+
         }
         catch (Exception e) {
             e.printStackTrace();
