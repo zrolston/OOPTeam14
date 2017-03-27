@@ -22,6 +22,11 @@ public class BuildMap implements IViewMap {
     }
 
     @Override
+    public BuildTile[][] getTiles() {
+        return this.map;
+    }
+
+    @Override
     public BuildTile[][] getTiles(ILocation topLeft, ILocation bottomRight) {
         int col1 = topLeft.getCol();
         int col2 = bottomRight.getCol();

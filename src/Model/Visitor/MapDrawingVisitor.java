@@ -11,12 +11,9 @@ import java.io.File;
 import java.io.IOException;
 
 public class MapDrawingVisitor implements MapVisitor {
-    private ILocation topLeft, bottomRight;
     private BufferedImage[][] imageArray;
 
-    public MapDrawingVisitor(ILocation topLeft, ILocation bottomRight){
-        this.topLeft = topLeft;
-        this.bottomRight = bottomRight;
+    public MapDrawingVisitor(){
     }
 
     public MapDrawingVisitor(ILocation location){
@@ -25,7 +22,7 @@ public class MapDrawingVisitor implements MapVisitor {
 
     @Override
     public void visitMap(IViewMap map) {
-        Tile[][] tiles = map.getTiles(topLeft, bottomRight);
+        Tile[][] tiles = map.getTiles();
         int height = tiles.length;
         int width = tiles[0].length;
         imageArray = new BufferedImage[width][height];
@@ -33,6 +30,7 @@ public class MapDrawingVisitor implements MapVisitor {
         Will return array of tiles in the camera window. There will
         be null tiles.
         */
+        ImageLoader imageLoader = new ImageLoader();
         TileDrawingVisitor tdv = new TileDrawingVisitor();
         for (int col = 0; col < width; col++) {
             for (int row = 0; row < height; row++) {

@@ -16,6 +16,7 @@ import java.util.Set;
  * Created by jordi on 3/26/2017.
  */
 public class EditorKeyboardListener implements KeyListener {
+
     Component component;
     Set<Integer> pressedKeys= new HashSet<>();
     ModelFacade modelFacade;

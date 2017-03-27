@@ -6,6 +6,7 @@
 ---------------------------------------------------------------------------------------*/
 package Views.MapEditor.TileSelection;
 
+import Controllers.MouseListeners.TileSelectionMouseListener;
 import Views.Utility.PixelMap;
 
 import javax.swing.*;
@@ -20,7 +21,7 @@ public class TileSelectionView extends JPanel{
     public TileSelectionView(){
 
         setLayout(new BorderLayout());
-        setBounds((int)(PixelMap.SCREEN_WIDTH * 0.0125), (int)(PixelMap.SCREEN_HEIGHT * 0.025), (int)(PixelMap.SCREEN_WIDTH * 0.20), (int)(PixelMap.SCREEN_HEIGHT * 0.95));
+        setBounds((int)(PixelMap.SCREEN_WIDTH * 0.0125), (int)(PixelMap.SCREEN_HEIGHT * 0.025), (int)(PixelMap.SCREEN_WIDTH * 0.155), (int)(PixelMap.SCREEN_HEIGHT * 0.95));
 
         terrainSelectionView = new TerrainSelectionView(new Dimension(getWidth() / 2 + 1, getHeight() - getWidth()));
         riverSelectionView = new RiverSelectionView(new Dimension(getWidth() / 2 + 1, getHeight() - getWidth()));
@@ -31,6 +32,11 @@ public class TileSelectionView extends JPanel{
         add(currentSelectionView, BorderLayout.SOUTH);
 
         setBorder(BorderFactory.createLineBorder(new Color(0xff000000), 1));
+
+        TileSelectionMouseListener listener = new TileSelectionMouseListener(this);
+        addMouseListener(listener);
+        addMouseMotionListener(listener);
+
         setVisible(true);
     }
 

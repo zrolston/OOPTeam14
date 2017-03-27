@@ -15,7 +15,7 @@ public class Main {
 
         while (true){
             try {
-                Thread.sleep(10);
+                Thread.sleep(15);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
