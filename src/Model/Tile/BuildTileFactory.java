@@ -5,6 +5,8 @@ import Model.Edge.LandEdge;
 import Model.Edge.RiverEdge;
 import Model.Edge.SeaEdge;
 import Model.Terrain.*;
+import Model.Utility.HexaIndex;
+
 import java.util.*;
 
 public class BuildTileFactory {
@@ -15,7 +17,7 @@ public class BuildTileFactory {
 
     public BuildTile createTile(String terrainType, int[] riverIndices) throws RuntimeException{
         Terrain t = getTerrain(terrainType);
-        Map<Integer, Edge> edgeMap = new HashMap<>(NUMEDGES);
+        Map<HexaIndex, Edge> edgeMap = new HashMap<>(NUMEDGES);
 
         List<Integer> list = new ArrayList<>();
         for (int riverIndex : riverIndices) {
@@ -23,17 +25,29 @@ public class BuildTileFactory {
         }
 
         if (terrainType.equals("SEA")){
-            for (int i = 0; i < NUMEDGES; i++) {
-                edgeMap.put(i, new SeaEdge());
+            for (int i = 1; i < NUMEDGES+1; i++) {
+                try {
+                    edgeMap.put(HexaIndex.createIndex(i), new SeaEdge());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
         else{
-            for (int i = 0; i < NUMEDGES; i++) {
+            for (int i = 1; i < NUMEDGES+1; i++) {
                 if(list.contains(i)){
-                    edgeMap.put(i, new RiverEdge());
+                    try {
+                        edgeMap.put(HexaIndex.createIndex(i), new RiverEdge());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
                 else{
-                    edgeMap.put(i, new LandEdge());
+                    try {
+                        edgeMap.put(HexaIndex.createIndex(i), new LandEdge());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }
