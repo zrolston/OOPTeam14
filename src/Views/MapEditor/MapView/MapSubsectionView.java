@@ -1,8 +1,8 @@
 /**-------------------------------------------------------------------------------------
 |	MapSubsectionView Class: Created by Alejandro Chavez on 3/26/2017.
 |---------------------------------------------------------------------------------------
-|   Description: 
-|
+|   Description: This is the Map Part of the View where the user will drop and move the
+|   Tiles to. This View contains the virtual representation of the Map.
 ---------------------------------------------------------------------------------------*/
 package Views.MapEditor.MapView;
 
@@ -24,6 +24,8 @@ public class MapSubsectionView extends JPanel {
 
     BufferedImage image;
     BufferedImage[][] tileImages;
+    MapDrawingVisitor drawingVisitor;
+    IViewMap map;
 
     public void updateCachedImages(IViewMap map) {
         MapDrawingVisitor drawingVisitor = new MapDrawingVisitor();
@@ -45,6 +47,13 @@ public class MapSubsectionView extends JPanel {
         }
     }
 
+
+    //This method is temporary until we load the real Map
+    public void updateCachedMap(){
+        map.accept(drawingVisitor);
+        tileImages = drawingVisitor.getImageArray();
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -52,6 +61,11 @@ public class MapSubsectionView extends JPanel {
     }
 
     public MapSubsectionView() {
+        //Setting up visitor and Map
+        map = new BuildMap(21, 21);
+        drawingVisitor = new MapDrawingVisitor();
+        updateCachedMap();
+
         //Adding some Listeners to test
         ModelFacade modelFacade = new ModelFacade(null);
         MapSubsectionMouseListener listener = new MapSubsectionMouseListener(modelFacade, this);

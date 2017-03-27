@@ -16,6 +16,10 @@ public class MapDrawingVisitor implements MapVisitor {
     public MapDrawingVisitor(){
     }
 
+    public MapDrawingVisitor(ILocation location){
+        //TODO implement
+    }
+
     @Override
     public void visitMap(IViewMap map) {
         Tile[][] tiles = map.getTiles();
@@ -31,13 +35,9 @@ public class MapDrawingVisitor implements MapVisitor {
         for (int col = 0; col < width; col++) {
             for (int row = 0; row < height; row++) {
                 if(tiles[row][col] == null){
-                    try {
-                        imageArray[row][col] = imageLoader.getImage("Rock");
-//                        System.out.println("i: "+col+" -- j: "+row);
-//                        System.out.println(imageArray[row][col]);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+                    imageArray[row][col] = ImageLoader.getImage("OUTLINE");//TODO imageLoader.getDefaultImage();
+//                  System.out.println("i: "+col+" -- j: "+row);
+//                  System.out.println(imageArray[row][col]);
                 }
                 else{
                     tiles[row][col].accept(tdv);

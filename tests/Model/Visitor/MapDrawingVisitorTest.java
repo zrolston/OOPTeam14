@@ -5,6 +5,7 @@ import Model.Tile.BuildTile;
 import Model.Tile.BuildTileFactory;
 import Model.Tile.Tile;
 import Model.Utility.HexLocation;
+import Views.ViewUtility.ImageLoader;
 import org.junit.Test;
 
 import javax.imageio.ImageIO;
@@ -28,13 +29,13 @@ public class MapDrawingVisitorTest {
         int addTileRow = 0;
         int addTileColumn = 0;
 
-        BufferedImage testImg = ImageIO.read(new File("res/Images/testImage.png"));
-        BufferedImage defaultImg = ImageIO.read(new File("res/Images/defaultImage.png"));
+        BufferedImage testImg = ImageLoader.getImage("DESERT");
+        BufferedImage defaultImg = ImageLoader.getImage("OUTLINE");
         byte[] testImageArray = ((DataBufferByte) testImg.getData().getDataBuffer()).getData();
         byte[] defaultImageArray = ((DataBufferByte) defaultImg.getData().getDataBuffer()).getData();
 
         BuildTileFactory factory = new BuildTileFactory();
-        BuildTile t = factory.createTile("ROCK", new int[]{});
+        BuildTile t = factory.createTile("DESERT", new int[]{});
 
         BuildMap map = new BuildMap(10, 10);
         map.addTile(t, new HexLocation(addTileRow, addTileColumn));
