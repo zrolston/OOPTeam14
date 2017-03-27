@@ -3,6 +3,7 @@ package Views.MapEditor.TileSelection;
 import Model.Tile.BuildTileFactory;
 import Model.Tile.Tile;
 import Model.Visitor.TileDrawingVisitor;
+import Views.ViewUtility.ImageLoader;
 
 import javax.swing.*;
 import java.awt.*;
@@ -37,6 +38,7 @@ public class TerrainSelectionView extends JPanel {
             terrainImages.add( tdv.getImage() );
         }
 
+
         repaint();
     }
 
@@ -46,10 +48,14 @@ public class TerrainSelectionView extends JPanel {
         g.setColor( Color.orange );
         g.fillRect(0, 0, getWidth(), getHeight());
 
+        // TODO: put in TileDrawingVisitor
+        BufferedImage outlineImage = ImageLoader.getImage("Outline");
+
         int width = (int)( getWidth() * 0.90 );
         int i = 0;
         for(BufferedImage img : terrainImages ) {
             g.drawImage(img, 2, 7  + i * width, width, width, null);
+            g.drawImage(outlineImage, 2, 7  + i * width, width, width, null);
             i++;
         }
     }

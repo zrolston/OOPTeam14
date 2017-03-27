@@ -16,18 +16,21 @@ public class ImageLoader {
         cachedImages = new HashMap<String, BufferedImage>();
 
         try {
-            cachedImages.put("DESERT", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/desert.png")));
-            cachedImages.put("MOUNTAIN", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/mountain.png")));
-            cachedImages.put("OUTLINE", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/outline.png")));
-            cachedImages.put("PASTRUE", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/pasture.png")));
-            cachedImages.put("RIVER0", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/river0.png")));
-            cachedImages.put("RIVER1", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/river1.png")));
-            cachedImages.put("RIVER2", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/river2.png")));
-            cachedImages.put("RIVER2-2", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/river2-2.png")));
-            cachedImages.put("RIVER3", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/river3.png")));
-            cachedImages.put("ROCK", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/rock.png")));
-            cachedImages.put("SEA", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/sea.png")));
-            cachedImages.put("WOODS", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/woods.png")));
+            cachedImages.put("Mountain", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/mountain.png")));
+            cachedImages.put("Desert", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/desert.png")));
+            cachedImages.put("Pasture", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/pasture.png")));
+            cachedImages.put("Rock", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/rock.png")));
+            cachedImages.put("Woods", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/woods.png")));
+            cachedImages.put("Sea", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/sea.png")));
+
+            cachedImages.put("River 1", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/river1.png")));
+            cachedImages.put("River 2-1", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/river2-1.png")));
+            cachedImages.put("River 2-2", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/river2-2.png")));
+            cachedImages.put("River 2-3", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/river2-3.png")));
+            cachedImages.put("River 3", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/river3.png")));
+
+            cachedImages.put("Outline", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/outline.png")));
+
         }
         catch (Exception e) {
             e.printStackTrace();
