@@ -27,6 +27,7 @@ public class CurrentSelectionView extends JPanel {
         BuildTileFactory factory = new BuildTileFactory();
         TileDrawingVisitor tdv;
 
+        // TODO: get terrain type from TerrainSelection and river type from RiverSelection
         Tile currSelection = factory.createTile("PASTURE",  new int[]{} );
 
         tdv = new TileDrawingVisitor();

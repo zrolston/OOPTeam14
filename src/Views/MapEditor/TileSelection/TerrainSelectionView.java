@@ -51,7 +51,7 @@ public class TerrainSelectionView extends JPanel {
 
         int width = (int)( getWidth() * 0.90 );
         while(getHeight() / width < 6) {
-            width--;
+            width -= 5;
         }
         int i = 0;
         for(BufferedImage img : terrainImages ) {

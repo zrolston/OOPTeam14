@@ -36,6 +36,7 @@ public class RiverSelectionView extends JPanel {
         BuildTileFactory factory = new BuildTileFactory();
         TileDrawingVisitor tdv;
 
+        // TODO: get terrain type from TerrainSelection
         String terrain = "MOUNTAIN";
 
         ArrayList<Tile> tiles = new ArrayList<>();
@@ -58,6 +59,10 @@ public class RiverSelectionView extends JPanel {
         g.fillRect(0, 0, getWidth(), getHeight());
 
         int width = (int)( getWidth() * 0.90 );
+        while(getHeight() / width < 5) {
+            width -= 5;
+        }
+
         int i = 0;
         for(BufferedImage img : riverImages ) {
             g.drawImage(img, 6, 7  + i * width, width, width, null);
