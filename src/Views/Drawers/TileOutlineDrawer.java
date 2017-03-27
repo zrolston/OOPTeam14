@@ -8,6 +8,7 @@ package Views.Drawers;
 ---------------------------------------------------------------------------------------*/
 
 
+import Model.Utility.HexLocation;
 import Views.Utility.PixelMap;
 import Views.Utility.PixelPoint;
 import Views.Utility.Camera;
@@ -36,6 +37,28 @@ public class TileOutlineDrawer extends Drawer{
         //Draw Hexatile Outline
         Polygon tileShape = getHexagon(center, camera.getOrigin().getX(), camera.getOrigin().getY());
         g.drawPolygon(tileShape);
+    }
+
+
+    public static void drawValidEdge(Graphics g, HexLocation tileLocation){
+        drawEdge(g, tileLocation, new Color(0, 0, 255));
+    }
+
+    public static void drawInvalidEdge(Graphics g, HexLocation tileLocation){
+        drawEdge(g, tileLocation, new Color(255, 0, 0));
+    }
+
+
+    private static void drawEdge(Graphics g, HexLocation tileLocation, Color color){
+        Camera camera = Camera.getInstance();
+        PixelPoint center = PixelMap.getTileCenter(tileLocation, camera);
+        Polygon hexatile = getHexagon(center);
+        ((Graphics2D)g).setStroke(new BasicStroke(5));
+
+        Color prev = g.getColor();
+        g.setColor(color);
+        g.drawPolygon(hexatile);
+        g.setColor(prev);
     }
 
 

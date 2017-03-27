@@ -14,7 +14,7 @@ import java.awt.*;
 public class PixelMap {
 
     //Initial Screen Size and Ration (percentage to fullScreen [0.0 - 1.0])
-    private static final double SCREEN_RATIO = 0.8;
+    private static final double SCREEN_RATIO = 0.9;
     private static final int HORIZONTAL_MULTIPLIER = 20;
     private static final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
