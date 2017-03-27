@@ -28,10 +28,10 @@ public class RiverSelectionView extends JPanel {
         // types of rivers a tile may contain
         riverTypes.add( new int[]{} );
         riverTypes.add( new int[]{1} );
-        riverTypes.add( new int[]{1} );
-        riverTypes.add( new int[]{1} );
-        riverTypes.add( new int[]{1} );
-        riverTypes.add( new int[]{1} );
+        riverTypes.add( new int[]{1, 2} );
+        riverTypes.add( new int[]{1, 3} );
+        riverTypes.add( new int[]{1, 4} );
+        riverTypes.add( new int[]{1, 3, 5} );
 
         BuildTileFactory factory = new BuildTileFactory();
         TileDrawingVisitor tdv;

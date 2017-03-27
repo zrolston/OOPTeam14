@@ -33,7 +33,7 @@ public class TileDrawingVisitorTest {
     @Test
     public void testFunctionality(){
         BuildTileFactory factory = new BuildTileFactory();
-        Tile t = factory.createTile("MOUNTAIN", new int[]{1, 3, 5});
+        Tile t = factory.createTile("MOUNTAIN", new int[]{2, 4, 6});
         TileDrawingVisitor tdv = new TileDrawingVisitor();
         t.accept(
                 tdv
