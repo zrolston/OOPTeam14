@@ -57,6 +57,7 @@ public class TileDrawingVisitor implements TileVisitor {
     @Override
     public void visitSeaEdge(SeaEdge seaEdge) {
         currentEdgeIndex++;
+        //TODO Decouple this from assuming edgeList in tile is ordered
     }
 
     @Override
