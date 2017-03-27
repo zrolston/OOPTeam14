@@ -9,7 +9,7 @@ package TestSetup;
 
 
 import Controllers.KeyboardListeners.EditorKeyboardListener;
-import Controllers.MouseListeners.EditorMouseListener;
+import Controllers.MouseListeners.MapSubsectionMouseListener;
 import Model.ModelFacade;
 import Model.Utility.HexLocation;
 import Views.Utility.PixelMap;
@@ -55,7 +55,7 @@ public class SetupOne {
             }
         }
 
-        EditorMouseListener mouseListener = new EditorMouseListener(modelFacade);
+        MapSubsectionMouseListener mouseListener = new MapSubsectionMouseListener(modelFacade);
         EditorKeyboardListener keyboardListener= new EditorKeyboardListener(modelFacade);
 
         JFrame frame = new JFrame("Drawer/Controller Test");

@@ -16,11 +16,11 @@ public class Camera {
     private static Camera instance = null;
     private int moveOffset = PixelMap.TILE_WIDTH/16;
     private PixelPoint press = null;
-    private boolean cameraMovement =  false;
+    private boolean cameraMovement =  true;
 
     private Camera(int x, int y){
         origin = new PixelPoint(x, y);
-        scale = 1.0;
+        scale = 1.0225;
         width = PixelMap.SCREEN_WIDTH;
         height = PixelMap.SCREEN_HEIGHT;
     }

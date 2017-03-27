@@ -7,6 +7,7 @@ package Views.Utility;
 ---------------------------------------------------------------------------------------*/
 
 
+import Model.Utility.HexLocation;
 import Views.Drawers.TileOutlineDrawer;
 import Model.Utility.ILocation;
 import java.awt.*;
@@ -14,7 +15,7 @@ import java.awt.*;
 public class PixelMap {
 
     //Initial Screen Size and Ration (percentage to fullScreen [0.0 - 1.0])
-    private static final double SCREEN_RATIO = 0.8;
+    private static final double SCREEN_RATIO = 0.9;
     private static final int HORIZONTAL_MULTIPLIER = 20;
     private static final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
@@ -52,16 +53,65 @@ public class PixelMap {
         Camera camera = Camera.getInstance();
         //If odd Column
         if(location.getCol()%2 == 1)
-            return new PixelPoint(location.getCol()*width_offset - camera.getOrigin().getX() - TILE_WIDTH, location.getRow()*TILE_HEIGHT - camera.getOrigin().getY() - TILE_HEIGHT/2);
+            return new PixelPoint(location.getCol()*width_offset - camera.getOrigin().getX(), location.getRow()*TILE_HEIGHT - camera.getOrigin().getY());
             //If even Column
         else
-            return new PixelPoint(location.getCol()*width_offset - camera.getOrigin().getX() - TILE_WIDTH, location.getRow()*TILE_HEIGHT-height_offset - camera.getOrigin().getY() - TILE_HEIGHT/2);
+            return new PixelPoint(location.getCol()*width_offset - camera.getOrigin().getX(), location.getRow()*TILE_HEIGHT + height_offset - camera.getOrigin().getY());
     }
 
+    public static HexLocation getHexLocationAtPixelPoint(PixelPoint point) {
+        Camera camera = Camera.getInstance();
+
+        int xPosition = point.getX() + camera.getOrigin().getX();
+        int yPosition = point.getY() + camera.getOrigin().getY();
+
+        HexLocation location = null;
+
+        int column = (int) (xPosition / width_offset);
+        if (column % 2 == 0) {
+            int row = (int) ((yPosition - height_offset) / TILE_HEIGHT);
+            if (yPosition - height_offset < 0)
+                row -= 1;
+            int xPositionInTile = xPosition - column*width_offset;
+            int yPositionInTile = yPosition - height_offset - row*TILE_HEIGHT;
+            location = new HexLocation(row, column);
+            if (xPositionInTile < (TILE_WIDTH / 2)) {
+                if (yPositionInTile < (TILE_HEIGHT / 2)) {
+                    if (xPositionInTile * 1.732 < yPositionInTile)
+                        location = new HexLocation(row, column - 1);
+                }
+                else {
+                    if (xPositionInTile * 1.732 < (TILE_HEIGHT - yPositionInTile))
+                        location = new HexLocation(row + 1, column - 1);
+                }
+            }
+        }
+        else {
+            int row = (int) (yPosition / TILE_HEIGHT);
+            if (yPosition < 0)
+                row -= 1;
+            int xPositionInTile = xPosition - column*width_offset;
+            int yPositionInTile = yPosition - row*TILE_HEIGHT;
+            location = new HexLocation(row, column);
+            if (xPositionInTile < (TILE_WIDTH / 2)) {
+                if (yPositionInTile < (TILE_HEIGHT / 2)) {
+                    if (xPositionInTile * 1.732 < yPositionInTile)
+                        location = new HexLocation(row - 1, column - 1);
+                }
+                else {
+                    if (xPositionInTile * 1.732 < (TILE_HEIGHT - yPositionInTile))
+                        location = new HexLocation(row, column - 1);
+                }
+            }
+        }
+
+        return location;
+    }
 
     //Provides validation to coordinates when overlapping tiles.
     public static boolean tileContains(ILocation tileLocation, PixelPoint point){
-        PixelPoint center = getTileCenter(tileLocation);
+        Camera camera = Camera.getInstance();
+        PixelPoint center = getTileCenter(tileLocation, camera);
         Polygon hexagon = TileOutlineDrawer.getHexagon(center);
         return hexagon.contains(new Point(point.getX(), point.getY()));
     }

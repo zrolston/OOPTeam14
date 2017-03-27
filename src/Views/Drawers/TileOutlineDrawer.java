@@ -8,6 +8,7 @@ package Views.Drawers;
 ---------------------------------------------------------------------------------------*/
 
 
+import Model.Utility.HexLocation;
 import Views.Utility.PixelMap;
 import Views.Utility.PixelPoint;
 import Views.Utility.Camera;
@@ -31,11 +32,37 @@ public class TileOutlineDrawer extends Drawer{
         //Set Stroke
         Graphics2D g2 = (Graphics2D) g;
         g2.setStroke(new BasicStroke(2));
+        g.setColor(new Color(0,0,0));
         Camera camera = Camera.getInstance();
 
         //Draw Hexatile Outline
         Polygon tileShape = getHexagon(center, camera.getOrigin().getX(), camera.getOrigin().getY());
         g.drawPolygon(tileShape);
+    }
+
+
+    public static void drawValidEdge(Graphics g, HexLocation tileLocation){
+        drawEdge(g, tileLocation, new Color(0, 0, 255));
+    }
+
+    public static void drawInvalidEdge(Graphics g, HexLocation tileLocation){
+        drawEdge(g, tileLocation, new Color(255, 0, 0));
+    }
+
+    public static void drawActiveTile(Graphics g, HexLocation tileLocation){
+        drawEdge(g, tileLocation, new Color(0, 255, 255));
+    }
+
+
+    private static void drawEdge(Graphics g, HexLocation tileLocation, Color color){
+        PixelPoint origin = PixelMap.getMapTileOrigin(tileLocation);
+        PixelPoint center = new PixelPoint(origin.getX()+PixelMap.TILE_WIDTH, origin.getY()+PixelMap.TILE_HEIGHT/2);
+        Polygon hexatile = getHexagon(center);
+        ((Graphics2D)g).setStroke(new BasicStroke(5));
+        Color prev = g.getColor();
+        g.setColor(color);
+        g.drawPolygon(hexatile);
+        g.setColor(prev);
     }
 
 

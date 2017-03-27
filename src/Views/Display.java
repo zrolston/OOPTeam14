@@ -4,20 +4,25 @@ import Controllers.KeyboardListeners.EditorKeyboardListener;
 import Model.ModelFacade;
 import Views.MapEditor.MapEditorView;
 import Views.MapEditor.MapView.MapSubsectionView;
+import Views.MapEditor.TileSelection.TileSelectionView;
 import Views.Utility.PixelMap;
 import javax.swing.*;
 import java.awt.*;
 
 public class Display extends JFrame {
     MapEditorView mapEditorView;
-    MapSubsectionView mapSubsectionView;
+    MapSubsectionView  mapSubsectionView;
 
     public Display() {
         setupFrame();
         mapEditorView = new MapEditorView();
+        addKeyListener(new EditorKeyboardListener(new ModelFacade(null)));
         add(mapEditorView);
         mapSubsectionView = mapEditorView.getMapSubsectionView();
-        addKeyListener(new EditorKeyboardListener(new ModelFacade(null)));
+
+        EditorKeyboardListener listener = new EditorKeyboardListener(new ModelFacade(null));
+        listener.setComponent(this);
+        addKeyListener(listener);
     }
 
     private void setupFrame(){
@@ -27,6 +32,9 @@ public class Display extends JFrame {
         setVisible(true);
     }
 
+    public TileSelectionView getTileSelectionView() {
+        return mapEditorView.getTileSelectionView();
+    }
     public void updateMap(){
         mapSubsectionView.repaint();
     }

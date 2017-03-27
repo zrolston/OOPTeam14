@@ -3,24 +3,24 @@ package Model.Visitor;
 import Model.Map.IViewMap;
 import Model.Tile.Tile;
 import Model.Utility.ILocation;
+import Views.Utility.ImageLoader;
 
-import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 public class MapDrawingVisitor implements MapVisitor {
-    private ILocation topLeft, bottomRight;
     private BufferedImage[][] imageArray;
 
-    public MapDrawingVisitor(ILocation topLeft, ILocation bottomRight){
-        this.topLeft = topLeft;
-        this.bottomRight = bottomRight;
+    public MapDrawingVisitor(){
+    }
+
+    public MapDrawingVisitor(ILocation location){
+        //TODO implement
     }
 
     @Override
     public void visitMap(IViewMap map) {
-        Tile[][] tiles = map.getTiles(topLeft, bottomRight);
+
+        Tile[][] tiles = map.getTiles();
         int height = tiles.length;
         int width = tiles[0].length;
         imageArray = new BufferedImage[width][height];
@@ -32,13 +32,10 @@ public class MapDrawingVisitor implements MapVisitor {
         for (int col = 0; col < width; col++) {
             for (int row = 0; row < height; row++) {
                 if(tiles[row][col] == null){
-                    try {
-                        imageArray[row][col] = ImageIO.read(new File("res/Images/Mountain.png"));//TODO imageLoader.getDefaultImage();
-//                        System.out.println("i: "+col+" -- j: "+row);
-//                        System.out.println(imageArray[row][col]);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+
+                    imageArray[row][col] = ImageLoader.getDefaultImage();
+//                  System.out.println("i: "+col+" -- j: "+row);
+//                  System.out.println(imageArray[row][col]);
                 }
                 else{
                     tiles[row][col].accept(tdv);

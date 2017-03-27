@@ -23,6 +23,7 @@ public class BuildTile extends Tile {
     @Override
     public void accept(TileVisitor v) {
         getTerrain().accept(v);
+        edgeMap.forEach((index, edge) -> edge.accept(v));
     }
 
     public Edge getEdgeAt(HexaIndex index) {

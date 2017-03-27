@@ -3,14 +3,12 @@ package Model.Visitor;
 import Model.Map.BuildMap;
 import Model.Tile.BuildTile;
 import Model.Tile.BuildTileFactory;
-import Model.Tile.Tile;
 import Model.Utility.HexLocation;
+import Views.Utility.ImageLoader;
 import org.junit.Test;
 
-import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
-import java.io.File;
 import java.io.IOException;
 import static org.junit.Assert.*;
 
@@ -27,23 +25,25 @@ public class MapDrawingVisitorTest {
     public void testDefaultImage() throws IOException {
         int addTileRow = 0;
         int addTileColumn = 0;
+        int length = 10;
+        int height = 10;
 
-        BufferedImage testImg = ImageIO.read(new File("res/Images/testImage.png"));
-        BufferedImage defaultImg = ImageIO.read(new File("res/Images/defaultImage.png"));
+        BufferedImage testImg = ImageLoader.getImage("DESERT");
+        BufferedImage defaultImg = ImageLoader.getImage("OUTLINE");
         byte[] testImageArray = ((DataBufferByte) testImg.getData().getDataBuffer()).getData();
         byte[] defaultImageArray = ((DataBufferByte) defaultImg.getData().getDataBuffer()).getData();
 
         BuildTileFactory factory = new BuildTileFactory();
-        BuildTile t = factory.createTile("ROCK", new int[]{});
+        BuildTile t = factory.createTile("DESERT", new int[]{});
 
-        BuildMap map = new BuildMap(10, 10);
+        BuildMap map = new BuildMap(length, height);
         map.addTile(t, new HexLocation(addTileRow, addTileColumn));
 
-        MapDrawingVisitor mdv = new MapDrawingVisitor(new HexLocation(0, 0), new HexLocation(cameraHeight-1, cameraWidth-1));
+        MapDrawingVisitor mdv = new MapDrawingVisitor();
         map.accept(mdv);
         BufferedImage[][] imgArray = mdv.getImageArray();
-        assertEquals(imgArray[0].length, 2);
-        assertEquals(imgArray.length, 2);
+        assertEquals(imgArray[0].length, length);
+        assertEquals(imgArray.length, height);
 
         for(int i = 0; i < cameraHeight; i++){
             for(int j = 0; j < cameraWidth; j++){
