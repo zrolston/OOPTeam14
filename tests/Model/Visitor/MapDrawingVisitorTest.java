@@ -39,8 +39,7 @@ public class MapDrawingVisitorTest {
         BuildMap map = new BuildMap(10, 10);
         map.addTile(t, new HexLocation(addTileRow, addTileColumn));
 
-        MapDrawingVisitor mdv = new MapDrawingVisitor(new HexLocation(0, 0), new HexLocation(cameraHeight-1, cameraWidth-1));
-        map.accept(mdv);
+        MapDrawingVisitor mdv = new MapDrawingVisitor();
         BufferedImage[][] imgArray = mdv.getImageArray();
         assertEquals(imgArray[0].length, 2);
         assertEquals(imgArray.length, 2);

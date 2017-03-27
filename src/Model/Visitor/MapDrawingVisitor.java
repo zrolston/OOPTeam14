@@ -11,17 +11,14 @@ import java.io.File;
 import java.io.IOException;
 
 public class MapDrawingVisitor implements MapVisitor {
-    private ILocation topLeft, bottomRight;
     private BufferedImage[][] imageArray;
 
-    public MapDrawingVisitor(ILocation topLeft, ILocation bottomRight){
-        this.topLeft = topLeft;
-        this.bottomRight = bottomRight;
+    public MapDrawingVisitor(){
     }
 
     @Override
     public void visitMap(IViewMap map) {
-        Tile[][] tiles = map.getTiles(topLeft, bottomRight);
+        Tile[][] tiles = map.getTiles();
         int height = tiles.length;
         int width = tiles[0].length;
         imageArray = new BufferedImage[width][height];
