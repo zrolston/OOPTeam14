@@ -79,15 +79,8 @@ public class PlacementManager {
         ILocation location;
         Slot target = slots.get(loc);
         BuildTile targetTile;
-        HexaIndex index = null;
 
-        for(int i = 1; i < 7; i++){
-
-            try {
-                index = HexaIndex.createIndex(i);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        for(HexaIndex index : HexaIndex.getAllPossible()){
 
             location = loc.getLocationAtIndex(index);
 
@@ -132,7 +125,7 @@ public class PlacementManager {
 
         for(Slot targetSlot: slots.values()) {
 
-            for (Edge e : targetSlot.getEdges().values()) {
+            for (Edge e : targetSlot.getAllEdges()) {
                 e.accept(riverCountVisitor);
             }
 

@@ -1,5 +1,6 @@
 package Model.Utility;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 /**
@@ -41,6 +42,15 @@ public class HexaIndex{
         return this.equals(myOther);
     }
 
+    public static ArrayList<HexaIndex> getAllPossible(){
+        ArrayList<HexaIndex> hexaIndices = new ArrayList<>();
+
+        for(int i = lowerboundary+1; i<upperboundary; i++){
+            hexaIndices.add(new HexaIndex(i));
+        }
+
+        return hexaIndices;
+    }
 
     public boolean equals(HexaIndex hexIndex){
         return this.value == hexIndex.getValue() ;

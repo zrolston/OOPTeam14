@@ -3,6 +3,8 @@ package Model.Map;
 import Model.Edge.Edge;
 import Model.Utility.HexaIndex;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -50,5 +52,9 @@ public class Slot {
 
     public boolean isEmpty() {
         return edges.isEmpty();
+    }
+
+    public Collection<Edge> getAllEdges() {
+        return edges.values();
     }
 }
