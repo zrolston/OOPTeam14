@@ -69,6 +69,41 @@ public class LocationTest {
         assertEquals(2, oddCol.getRow());
     }
 
+    @Test
+    public void getDirectionAtTest() {
+
+        HexaIndex index1 = null;
+        HexaIndex index2 = null;
+        HexaIndex index3 = null;
+        HexaIndex index4 = null;
+        HexaIndex index5 = null;
+        HexaIndex index6 = null;
+
+        try {
+            index1 = HexaIndex.createIndex(1);
+            index2 = HexaIndex.createIndex(2);
+            index3 = HexaIndex.createIndex(3);
+            index4 = HexaIndex.createIndex(4);
+            index5 = HexaIndex.createIndex(5);
+            index6 = HexaIndex.createIndex(6);
+        } catch (Exception e) {
+            System.out.print(e.toString());
+        }
+
+        assertEquals(oddCol.getLocationAtIndex(index1), (oddNorth));
+        assertEquals(oddCol.getLocationAtIndex(index2), (oddNorthEast));
+        assertEquals(oddCol.getLocationAtIndex(index6), (oddNorthWest));
+        assertEquals(oddCol.getLocationAtIndex(index5), (oddSouthWest));
+        assertEquals(oddCol.getLocationAtIndex(index3), (oddSouthEast));
+        assertEquals(oddCol.getLocationAtIndex(index4), (oddSouth));
+
+        assertEquals(evenCol.getLocationAtIndex(index1), (evenNorth));
+        assertEquals(evenCol.getLocationAtIndex(index2), (evenNorthEast));
+        assertEquals(evenCol.getLocationAtIndex(index6), (evenNorthWest));
+        assertEquals(evenCol.getLocationAtIndex(index5), (evenSouthWest));
+        assertEquals(evenCol.getLocationAtIndex(index3), (evenSouthEast));
+        assertEquals(evenCol.getLocationAtIndex(index4), (evenSouth));
+    }
 
     @Test
     public void getAdjacentTest() {

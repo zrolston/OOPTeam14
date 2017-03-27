@@ -1,9 +1,11 @@
 package Model.Utility;
 
+import java.util.Objects;
+
 /**
  * Created by jordi on 3/26/2017.
  */
-public class HexaIndex {
+public class HexaIndex{
     private static int upperboundary = 7;
     private static int lowerboundary = 0;
 
@@ -20,12 +22,31 @@ public class HexaIndex {
         throw (new RuntimeException("wrong tile boundary"));
     }
 
-    public HexaIndex getOppositeSide() throws Exception {
+    public HexaIndex getOppositeSide(){
         int futureValue = (value + 2) % (upperboundary - 1) + 1;
-        return HexaIndex.createIndex(futureValue);
+        return new HexaIndex(futureValue);
     }
 
     public int getValue() {
         return value;
+    }
+
+    @Override
+    public boolean equals(Object ind){
+        boolean equal = ind instanceof HexaIndex;
+        if(!equal)
+            return false;
+
+        HexaIndex myOther = (HexaIndex) ind;
+        return this.equals(myOther);
+    }
+
+
+    public boolean equals(HexaIndex hexIndex){
+        return this.value == hexIndex.getValue() ;
+    }
+
+    public int hashCode(){
+        return Objects.hash(this.value);
     }
 }
