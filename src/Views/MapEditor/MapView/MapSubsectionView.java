@@ -36,7 +36,7 @@ public class MapSubsectionView extends JPanel {
         Graphics2D g2 = (Graphics2D) image.getGraphics();
 
 //        g2.setColor( new Color(0xffCABD80)  );
-        g2.setColor(new Color(255, 255, 255));
+        g2.setColor(new Color(0xffF5F5DC));
         g2.fillRect( 0, 0, image.getWidth(), image.getHeight() );
 
         for (int i = 0; i < tileImages.length; i++) {
