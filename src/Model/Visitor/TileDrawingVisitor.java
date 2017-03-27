@@ -73,7 +73,7 @@ public class TileDrawingVisitor implements TileVisitor {
 
     public BufferedImage getImage(){
         BufferedImage allTogether = terrainImage;
-        Graphics g = allTogether.getGraphics();
+        Graphics g = allTogether.createGraphics();
         if(!riverIndices.isEmpty()){
             try {
                 g.drawImage(getAdjustedRiverImage(), 0, 0, null);
@@ -91,7 +91,7 @@ public class TileDrawingVisitor implements TileVisitor {
     private BufferedImage getAdjustedRiverImage() throws BadAttributeValueExpException {
         int numSides = riverIndices.size();
         int startingIndex = riverIndices.get(0);
-        BufferedImage temp;
+        BufferedImage temp = null;
 
         switch (numSides){
             case 1: {

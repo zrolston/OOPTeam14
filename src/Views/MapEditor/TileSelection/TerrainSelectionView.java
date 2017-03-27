@@ -27,13 +27,14 @@ public class TerrainSelectionView extends JPanel {
     public void drawTerrains() {
 
         BuildTileFactory factory = new BuildTileFactory();
-        TileDrawingVisitor tdv = new TileDrawingVisitor();
+        TileDrawingVisitor tdv;
 
         ArrayList<Tile> tiles = new ArrayList<>();
         for(String s : terrainTypes)
             tiles.add( factory.createTile(s, new int[]{}) );
 
         for(Tile t : tiles) {
+            tdv = new TileDrawingVisitor();
             t.accept( tdv );
             terrainImages.add( tdv.getImage() );
         }
@@ -48,14 +49,10 @@ public class TerrainSelectionView extends JPanel {
         g.setColor( Color.orange );
         g.fillRect(0, 0, getWidth(), getHeight());
 
-        // TODO: put in TileDrawingVisitor
-        BufferedImage outlineImage = ImageLoader.getImage("OUTLINE");
-
         int width = (int)( getWidth() * 0.90 );
         int i = 0;
         for(BufferedImage img : terrainImages ) {
             g.drawImage(img, 2, 7  + i * width, width, width, null);
-            g.drawImage(outlineImage, 2, 7  + i * width, width, width, null);
             i++;
         }
     }
