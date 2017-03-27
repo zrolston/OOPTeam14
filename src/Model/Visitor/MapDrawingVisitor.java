@@ -3,6 +3,7 @@ package Model.Visitor;
 import Model.Map.IViewMap;
 import Model.Tile.Tile;
 import Model.Utility.ILocation;
+import Views.ViewUtility.ImageLoader;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -36,13 +37,9 @@ public class MapDrawingVisitor implements MapVisitor {
         for (int col = 0; col < width; col++) {
             for (int row = 0; row < height; row++) {
                 if(tiles[row][col] == null){
-                    try {
-                        imageArray[row][col] = ImageIO.read(new File("res/Images/desert.png"));//TODO imageLoader.getDefaultImage();
-//                        System.out.println("i: "+col+" -- j: "+row);
-//                        System.out.println(imageArray[row][col]);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    imageArray[row][col] = ImageLoader.getImage("OUTLINE");//TODO imageLoader.getDefaultImage();
+//                  System.out.println("i: "+col+" -- j: "+row);
+//                  System.out.println(imageArray[row][col]);
                 }
                 else{
                     tiles[row][col].accept(tdv);

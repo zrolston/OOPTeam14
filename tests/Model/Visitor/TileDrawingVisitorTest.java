@@ -3,6 +3,7 @@ package Model.Visitor;
 import Model.Tile.BuildTileFactory;
 import Model.Tile.Tile;
 import Model.Visitor.TileDrawingVisitor;
+import Views.ViewUtility.ImageLoader;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -19,16 +20,16 @@ public class TileDrawingVisitorTest {
 
     @Test
     public void testDefaultImage() throws IOException {
-        BufferedImage testImg = ImageIO.read(new File("res/Images/mountain.png"));
+        BufferedImage testImg = ImageLoader.getImage("MOUNTAIN");
         byte[] testByteArray = ((DataBufferByte) testImg.getData().getDataBuffer()).getData();
         BuildTileFactory factory = new BuildTileFactory();
-        Tile t = factory.createTile("ROCK", new int[]{});
+        Tile t = factory.createTile("MOUNTAIN", new int[]{});
         TileDrawingVisitor tdv = new TileDrawingVisitor();
         t.accept(
                 tdv
         );
         BufferedImage visitorImage = tdv.getImage();
-        byte[] vByteArray = ((DataBufferByte) testImg.getData().getDataBuffer()).getData();
+        byte[] vByteArray = ((DataBufferByte) visitorImage.getData().getDataBuffer()).getData();
         assertArrayEquals(testByteArray, vByteArray);
     }
     @Test
