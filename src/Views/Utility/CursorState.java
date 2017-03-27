@@ -1,6 +1,8 @@
 package Views.Utility;
 
 
+import Model.Utility.HexLocation;
+
 /**
  * Created by Ale on 3/27/2017.
  */
@@ -8,6 +10,7 @@ public class CursorState {
     private static CursorState ourInstance = new CursorState();
     private PixelPoint cursor;
     private PixelPoint dragged;
+    private HexLocation activeTile;
     private boolean draggingTile = false;
 
     public static CursorState getInstance() {
@@ -17,6 +20,7 @@ public class CursorState {
     private CursorState() {
         cursor = new PixelPoint(0,0);
         dragged = new PixelPoint(0, 0);
+        activeTile = new HexLocation(0,0);
     }
 
 
@@ -40,4 +44,11 @@ public class CursorState {
     public void startDraggingTile(){ draggingTile = true; }
     public void stopDraggingTile(){ draggingTile = false; }
 
+    public HexLocation getActiveTile() {
+        return activeTile;
+    }
+
+    public void setActiveTile(HexLocation activeTile) {
+        this.activeTile = activeTile;
+    }
 }

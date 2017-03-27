@@ -13,6 +13,8 @@ import Model.ModelFacade;
 import Model.Utility.HexLocation;
 import Model.Visitor.MapDrawingVisitor;
 import Views.Drawers.TileInternalDrawer;
+import Views.Drawers.TileOutlineDrawer;
+import Views.Utility.CursorState;
 import Views.Utility.PixelMap;
 import Views.Utility.PixelPoint;
 
@@ -46,15 +48,13 @@ public class MapSubsectionView extends JPanel {
         }
 
         g2.dispose();
-
-//        TileOutlineDrawer.drawValidEdge(g2, new HexLocation(1,1));
-//        TileOutlineDrawer.drawInvalidEdge(g2, new HexLocation(3,3));
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(image, 0, 0, null);
+        TileOutlineDrawer.drawActiveTile(g, CursorState.getInstance().getActiveTile());
     }
 
     public MapSubsectionView() {
