@@ -19,7 +19,7 @@ public class ImageLoader {
     }
 
     public static BufferedImage getDefaultImage(){
-        return getImage("ROCK");
+        return getImage("OUTLINE");
     }
 
     static {
