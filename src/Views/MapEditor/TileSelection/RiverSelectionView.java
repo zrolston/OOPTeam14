@@ -59,7 +59,7 @@ public class RiverSelectionView extends JPanel {
         g.fillRect(0, 0, getWidth(), getHeight());
 
         int width = (int)( getWidth() * 0.90 );
-        while(getHeight() / width < 5) {
+        while(getHeight() / width < 6) {
             width -= 5;
         }
 
