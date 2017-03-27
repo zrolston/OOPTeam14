@@ -91,7 +91,7 @@ public class TileDrawingVisitor implements TileVisitor {
 
         switch (numSides){
             case 1: {
-                temp = ImageLoader.getImage("RIVER0");
+                temp = ImageLoader.getImage("RIVER1");
                 if(startingIndex != 0){
                     temp = rotateImage(temp, (startingIndex*Math.PI) / 3);
                 }
@@ -100,7 +100,7 @@ public class TileDrawingVisitor implements TileVisitor {
             case 2: {
                 int difference = riverIndices.get(1) - startingIndex;
                 if(difference == 1 || difference == 5){   //Adjacent
-                    temp = ImageLoader.getImage("RIVER1");
+                    temp = ImageLoader.getImage("RIVER2-1");
                     if(riverIndices.get(1) == 5){
                         startingIndex = 5;
                     }
@@ -110,7 +110,7 @@ public class TileDrawingVisitor implements TileVisitor {
                     return temp;
                 }
                 else if(difference == 2 || difference == 4){   //Intermediate
-                    temp = ImageLoader.getImage("RIVER2");
+                    temp = ImageLoader.getImage("RIVER2-2");
                     if(riverIndices.get(1) == 5){
                         startingIndex = 5;
                     }
@@ -120,7 +120,7 @@ public class TileDrawingVisitor implements TileVisitor {
                     return temp;
                 }
                 else{   //Opposite
-                    temp = ImageLoader.getImage("RIVER3");
+                    temp = ImageLoader.getImage("RIVER2-3");
                     if(startingIndex != 0){
                         temp = rotateImage(temp, (startingIndex*Math.PI) / 3);
                     }
@@ -128,7 +128,7 @@ public class TileDrawingVisitor implements TileVisitor {
                 }
             }
             case 3:{
-                temp = ImageLoader.getImage("RIVER2-2");
+                temp = ImageLoader.getImage("RIVER3");
                 if(startingIndex != 0){
                     temp = rotateImage(temp, (Math.PI) / 3);
                 }
