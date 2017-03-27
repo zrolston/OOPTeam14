@@ -49,7 +49,7 @@ public class TerrainSelectionView extends JPanel {
         g.fillRect(0, 0, getWidth(), getHeight());
 
         // TODO: put in TileDrawingVisitor
-        BufferedImage outlineImage = ImageLoader.getImage("Outline");
+        BufferedImage outlineImage = ImageLoader.getImage("OUTLINE");
 
         int width = (int)( getWidth() * 0.90 );
         int i = 0;

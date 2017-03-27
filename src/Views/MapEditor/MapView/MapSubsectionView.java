@@ -24,8 +24,6 @@ public class MapSubsectionView extends JPanel {
 
     BufferedImage image;
     BufferedImage[][] tileImages;
-    MapDrawingVisitor drawingVisitor;
-    IViewMap map;
 
     public void updateCachedImages(IViewMap map) {
         MapDrawingVisitor drawingVisitor = new MapDrawingVisitor();
@@ -47,13 +45,6 @@ public class MapSubsectionView extends JPanel {
         }
     }
 
-
-    //This method is temporary until we load the real Map
-    public void updateCachedMap(){
-        map.accept(drawingVisitor);
-        tileImages = drawingVisitor.getImageArray();
-    }
-
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -61,11 +52,6 @@ public class MapSubsectionView extends JPanel {
     }
 
     public MapSubsectionView() {
-        //Setting up visitor and Map
-        map = new BuildMap(21, 21);
-        drawingVisitor = new MapDrawingVisitor();
-        updateCachedMap();
-
         //Adding some Listeners to test
         ModelFacade modelFacade = new ModelFacade(null);
         MapSubsectionMouseListener listener = new MapSubsectionMouseListener(modelFacade, this);
