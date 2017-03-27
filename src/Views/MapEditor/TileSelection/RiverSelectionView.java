@@ -7,6 +7,7 @@ import Views.Utility.ImageLoader;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
@@ -22,7 +23,6 @@ public class RiverSelectionView extends JPanel {
         drawRiverTiles();
     }
 
-
     public void drawRiverTiles() {
 
         // types of rivers a tile may contain
@@ -36,9 +36,11 @@ public class RiverSelectionView extends JPanel {
         BuildTileFactory factory = new BuildTileFactory();
         TileDrawingVisitor tdv;
 
+        String terrain = "MOUNTAIN";
+
         ArrayList<Tile> tiles = new ArrayList<>();
         for(int i = 0; i < riverTypes.size(); i++) {
-            tiles.add( factory.createTile("PASTURE",  riverTypes.get( i ) ) );
+            tiles.add( factory.createTile(terrain,  riverTypes.get( i ) ) );
         }
 
         for(Tile t : tiles) {

@@ -62,6 +62,11 @@ public class MiniMapView extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+
+        // TODO: fix!!! we should call these only when the mapSubSectionView image updates
+        updateMiniMap();
+        redrawMiniMap();
+
         g.drawImage(miniMapImage, 0, 0, null);
     }
 

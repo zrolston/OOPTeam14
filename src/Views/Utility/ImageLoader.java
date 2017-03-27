@@ -13,7 +13,7 @@ public class ImageLoader {
     }
 
     public static BufferedImage getDefaultImage(){
-        return cachedImages.get("OUTLINE");
+        return cachedImages.get("ROCK");
     }
 
     static {
