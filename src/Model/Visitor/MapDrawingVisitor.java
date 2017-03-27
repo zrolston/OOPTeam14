@@ -18,6 +18,10 @@ public class MapDrawingVisitor implements MapVisitor {
         this.bottomRight = bottomRight;
     }
 
+    public MapDrawingVisitor(ILocation location){
+        //TODO implement
+    }
+
     @Override
     public void visitMap(IViewMap map) {
         Tile[][] tiles = map.getTiles(topLeft, bottomRight);
