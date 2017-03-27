@@ -55,7 +55,7 @@ public class RiverSelectionView extends JPanel {
             t.accept( tdv );
             riverImages.add( tdv.getImage() );
         }
-
+        repaint();
     }
 
 

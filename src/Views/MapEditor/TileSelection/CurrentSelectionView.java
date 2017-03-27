@@ -17,15 +17,15 @@ public class CurrentSelectionView extends JPanel {
     public CurrentSelectionView(Dimension size) {
         setPreferredSize(size);
         setVisible(true);
-        drawRiverTiles();
+        drawCurrentSelection();
     }
 
     public void update(Tile t) {
         currSelection = t;
-        drawRiverTiles();
+        drawCurrentSelection();
     }
 
-    public void drawRiverTiles() {
+    public void drawCurrentSelection() {
 
         BuildTileFactory factory = new BuildTileFactory();
         TileDrawingVisitor tdv;
@@ -36,7 +36,7 @@ public class CurrentSelectionView extends JPanel {
         tdv = new TileDrawingVisitor();
         currSelection.accept( tdv );
         currSelectionImage = tdv.getImage();
-
+        repaint();
     }
 
     @Override
