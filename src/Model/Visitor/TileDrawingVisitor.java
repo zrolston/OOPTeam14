@@ -4,7 +4,7 @@ import Model.Edge.LandEdge;
 import Model.Edge.RiverEdge;
 import Model.Edge.SeaEdge;
 import Model.Terrain.*;
-import Views.ViewUtility.ImageLoader;
+import Views.Utility.ImageLoader;
 
 import javax.management.BadAttributeValueExpException;
 import java.awt.*;

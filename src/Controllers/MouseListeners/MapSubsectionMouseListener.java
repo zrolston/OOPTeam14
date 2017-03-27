@@ -51,6 +51,7 @@ public class MapSubsectionMouseListener implements MouseMotionListener, MouseLis
     //-------------------------------------------------------------------
     @Override
     public void mouseClicked(MouseEvent e) {
+        System.out.println(camera.getOrigin().getX() + " " + camera.getOrigin().getY());
     }
 
     @Override

@@ -3,7 +3,7 @@ package Views.MapEditor.TileSelection;
 import Model.Tile.BuildTileFactory;
 import Model.Tile.Tile;
 import Model.Visitor.TileDrawingVisitor;
-import Views.ViewUtility.ImageLoader;
+import Views.Utility.ImageLoader;
 
 import javax.swing.*;
 import java.awt.*;

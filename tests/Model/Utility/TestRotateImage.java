@@ -1,6 +1,6 @@
 package Model.Utility;
 
-import Views.ViewUtility.ImageLoader;
+import Views.Utility.ImageLoader;
 import org.junit.Test;
 
 import javax.imageio.ImageIO;

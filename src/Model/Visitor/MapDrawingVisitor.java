@@ -3,12 +3,9 @@ package Model.Visitor;
 import Model.Map.IViewMap;
 import Model.Tile.Tile;
 import Model.Utility.ILocation;
-import Views.ViewUtility.ImageLoader;
+import Views.Utility.ImageLoader;
 
-import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 public class MapDrawingVisitor implements MapVisitor {
     private BufferedImage[][] imageArray;

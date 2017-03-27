@@ -7,6 +7,7 @@ package Views.Utility;
 ---------------------------------------------------------------------------------------*/
 
 
+import Model.Utility.HexLocation;
 import Views.Drawers.TileOutlineDrawer;
 import Model.Utility.ILocation;
 import java.awt.*;
@@ -58,6 +59,10 @@ public class PixelMap {
             return new PixelPoint(location.getCol()*width_offset - camera.getOrigin().getX() - TILE_WIDTH, location.getRow()*TILE_HEIGHT-height_offset - camera.getOrigin().getY() - TILE_HEIGHT/2);
     }
 
+    public static HexLocation getHexLocationAtPixelPoint(PixelPoint point) {
+        Camera camera = Camera.getInstance();
+        return null;
+    }
 
     //Provides validation to coordinates when overlapping tiles.
     public static boolean tileContains(ILocation tileLocation, PixelPoint point){
