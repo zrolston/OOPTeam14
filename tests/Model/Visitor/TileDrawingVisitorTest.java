@@ -2,15 +2,13 @@ package Model.Visitor;
 
 import Model.Tile.BuildTileFactory;
 import Model.Tile.Tile;
-import Model.Visitor.TileDrawingVisitor;
-import Views.ViewUtility.ImageLoader;
+import Views.Utility.ImageLoader;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
-import java.io.File;
 import java.io.IOException;
 
 /**
