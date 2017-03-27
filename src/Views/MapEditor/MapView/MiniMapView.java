@@ -1,8 +1,8 @@
 /**-------------------------------------------------------------------------------------
 |	MiniMapView Class: Created by Alejandro Chavez on 3/26/2017.
 |---------------------------------------------------------------------------------------
-|   Description: 
-|
+|   Description: Minimized representation of the map. Weill most likely run on a different
+|   Thread than the main map rendering to evade conflicts.
 ---------------------------------------------------------------------------------------*/
 package Views.MapEditor.MapView;
 

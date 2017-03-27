@@ -15,7 +15,6 @@ public class ImageLoader {
     static {
         cachedImages = new HashMap<String, BufferedImage>();
 
-        BufferedImage test = null;
         try {
             cachedImages.put("Mountain", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/mountain.png")));
             cachedImages.put("Desert", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/desert.png")));

@@ -46,32 +46,48 @@ public class TileCreationTest {
     public void testPlainEdges(){
         BuildTileFactory factory = new BuildTileFactory();
         BuildTile seaTile = factory.createTile("SEA", new int[]{});
-        Map<Integer, Edge> edgeMap = new HashMap<>(seaTile.getEdges());
+        Map<HexaIndex, Edge> edgeMap = new HashMap<>(seaTile.getEdges());
         assertEquals(edgeMap.size(), 6);
-        for (int i = 0; i < 6; i++){
-            assertEquals(edgeMap.get(i).getClass(), (new SeaEdge()).getClass());
+        for (int i = 1; i < 7; i++){
+            try {
+                assertEquals(edgeMap.get(HexaIndex.createIndex(i)).getClass(), (new SeaEdge()).getClass());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         BuildTile landTile = factory.createTile("ROCK", new int[]{});
         edgeMap = new HashMap<>(landTile.getEdges());
         assertEquals(edgeMap.size(), 6);
-        for (int i = 0; i < 6; i++){
-            assertEquals(edgeMap.get(i).getClass(), (new LandEdge()).getClass());
+        for (int i = 1; i < 7; i++){
+            try {
+                assertEquals(edgeMap.get(HexaIndex.createIndex(i)).getClass(), (new LandEdge()).getClass());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
     @Test
     public void testRiverEdges(){
         BuildTileFactory factory = new BuildTileFactory();
-        BuildTile riverTile = factory.createTile("ROCK", new int[]{0, 3});
-        Map<Integer, Edge> edgeMap = new HashMap<>(riverTile.getEdges());
+        BuildTile riverTile = factory.createTile("ROCK", new int[]{1, 4});
+        Map<HexaIndex, Edge> edgeMap = new HashMap<>(riverTile.getEdges());
         assertEquals(edgeMap.size(), 6);
-        for (int i = 0; i < 6; i++){
-            if (i == 0 || i == 3){
-                assertEquals(edgeMap.get(i).getClass(), (new RiverEdge()).getClass());
+        for (int i = 1; i < 7; i++){
+            if (i == 1 || i == 4){
+                try {
+                    assertEquals(edgeMap.get(HexaIndex.createIndex(i)).getClass(), (new RiverEdge()).getClass());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
             else{
-                assertEquals(edgeMap.get(i).getClass(), (new LandEdge()).getClass());
+                try {
+                    assertEquals(edgeMap.get(HexaIndex.createIndex(i)).getClass(), (new LandEdge()).getClass());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

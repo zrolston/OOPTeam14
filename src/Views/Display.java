@@ -15,9 +15,13 @@ public class Display extends JFrame {
     public Display() {
         setupFrame();
         mapEditorView = new MapEditorView();
-        add( mapEditorView );
-        mapSubsectionView = mapEditorView.getMapSubsectionView();
         addKeyListener(new EditorKeyboardListener(new ModelFacade(null)));
+        add(mapEditorView);
+        mapSubsectionView = mapEditorView.getMapSubsectionView();
+
+        EditorKeyboardListener listener = new EditorKeyboardListener(new ModelFacade(null));
+        listener.setComponent(this);
+        addKeyListener(listener);
     }
 
     private void setupFrame(){
