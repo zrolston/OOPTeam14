@@ -37,7 +37,7 @@ public class MapDrawingVisitor implements MapVisitor {
             for (int row = 0; row < height; row++) {
                 if(tiles[row][col] == null){
                     try {
-                        imageArray[row][col] = ImageIO.read(new File("res/Images/defaultImage.png"));//TODO imageLoader.getDefaultImage();
+                        imageArray[row][col] = ImageIO.read(new File("res/Images/desert.png"));//TODO imageLoader.getDefaultImage();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
