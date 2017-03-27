@@ -6,6 +6,7 @@
 ---------------------------------------------------------------------------------------*/
 package Views.MapEditor.TileSelection;
 
+import Controllers.MouseListeners.TileSelectionMouseListener;
 import Views.Utility.PixelMap;
 
 import javax.swing.*;
@@ -31,6 +32,11 @@ public class TileSelectionView extends JPanel{
         add(currentSelectionView, BorderLayout.SOUTH);
 
         setBorder(BorderFactory.createLineBorder(new Color(0xff000000), 1));
+
+        TileSelectionMouseListener listener = new TileSelectionMouseListener(this);
+        addMouseListener(listener);
+        addMouseMotionListener(listener);
+
         setVisible(true);
     }
 

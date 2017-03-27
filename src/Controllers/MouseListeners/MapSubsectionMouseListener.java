@@ -1,6 +1,6 @@
 /**
  * -------------------------------------------------------------------------------------
- * |	EditorMouseListener Class: Created by Alejandro Chavez on 3/26/2017.
+ * |	MapSubsectionMouseListener Class: Created by Alejandro Chavez on 3/26/2017.
  * |---------------------------------------------------------------------------------------
  * |   Description: Preliminary Mouse Listener. It does smooth Camera movement but it lacks
  * |   the other Main functionalities to control the Menu.
@@ -11,6 +11,7 @@ package Controllers.MouseListeners;
 
 import Model.ModelFacade;
 import Views.MapEditor.MapEditorView;
+import Views.MapEditor.MapView.MapSubsectionView;
 import Views.Utility.Camera;
 import Views.Utility.PixelPoint;
 
@@ -19,18 +20,18 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 
-public class EditorMouseListener implements MouseMotionListener, MouseListener {
+public class MapSubsectionMouseListener implements MouseMotionListener, MouseListener {
 
     Camera camera = Camera.getInstance();
     ModelFacade modelFacade;
-    MapEditorView view;
+    MapSubsectionView view;
 
-    public EditorMouseListener(ModelFacade modelFacade) {
+    public MapSubsectionMouseListener(ModelFacade modelFacade) {
         this.modelFacade = modelFacade;
     }
-    public EditorMouseListener(ModelFacade modelFacade, MapEditorView mapEditorView) {
-        this.modelFacade=modelFacade;
-        view=mapEditorView;
+    public MapSubsectionMouseListener(ModelFacade modelFacade, MapSubsectionView mapSubsectionView) {
+        this.modelFacade = modelFacade;
+        view = mapSubsectionView;
     }
 
     //Continuous Methods
@@ -38,6 +39,7 @@ public class EditorMouseListener implements MouseMotionListener, MouseListener {
     @Override
     public void mouseDragged(MouseEvent e) {
         camera.move(new PixelPoint(e.getX(), e.getY()));
+        view.updateImage();
     }
 
     @Override
@@ -59,6 +61,7 @@ public class EditorMouseListener implements MouseMotionListener, MouseListener {
     @Override
     public void mouseReleased(MouseEvent e) {
         camera.releasePress();
+        view.updateImage();
     }
 
     @Override
