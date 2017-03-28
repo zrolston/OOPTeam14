@@ -35,7 +35,7 @@ public class BuildTile extends Tile {
             try {
                 int newIndex = (index.getValue() + 1) % 6;
                 if (newIndex == 0){
-                    newIndex++;
+                    newIndex = 6;
                 }
                 newMap.put(HexaIndex.createIndex(newIndex), edge);
             } catch (Exception e) {

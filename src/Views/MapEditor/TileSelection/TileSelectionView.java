@@ -6,10 +6,7 @@
 ---------------------------------------------------------------------------------------*/
 package Views.MapEditor.TileSelection;
 
-//import Controllers.MouseListeners.TileSelectionMouseListener;
 import Controllers.MouseListeners.TileSelectionMouseListener;
-import Model.Terrain.Terrain;
-import Model.Tile.Tile;
 import Views.Utility.PixelMap;
 
 import javax.swing.*;
