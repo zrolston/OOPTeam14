@@ -15,8 +15,8 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class CurrentSelectionView extends JPanel {
-
-    private static BufferedImage currSelectionImage = null;
+    
+    private BufferedImage currSelectionImage = null;
     private TileIterator terrainIterator = new TerrainIterator();
     private TileIterator riverIterator = terrainIterator.getRiverIterator();
     private RiverSelectionView riverSelectionView = null;
@@ -47,6 +47,12 @@ public class CurrentSelectionView extends JPanel {
         repaint();
     }
 
+    public void rotate() {
+
+        ( (RiverIterator)(riverIterator) ) .rotate();
+        drawCurrentSelection();
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
 
@@ -57,10 +63,9 @@ public class CurrentSelectionView extends JPanel {
         g.drawImage(currSelectionImage, (int)(width * .05), (int)(width * .05), width, width, null);
 
     }
-
     //Gives global access to currently selected image without breaking encapsulation
-    /** Note: It spits out a copy of the currently selected image */
-    public static BufferedImage getSelectedTile(){
-        return ImageLoader.getDeepCopy(currSelectionImage);
+    // Note: It spits out a copy of the currently selected image
+    public BufferedImage getSelectedTile(){
+        return ( (RiverIterator)(riverIterator) ) .getSelectedTileImage();
     }
 }

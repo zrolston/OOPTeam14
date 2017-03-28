@@ -6,6 +6,7 @@
 ---------------------------------------------------------------------------------------*/
 package Views.MapEditor.TileSelection;
 
+//import Controllers.MouseListeners.TileSelectionMouseListener;
 import Controllers.MouseListeners.TileSelectionMouseListener;
 import Model.Terrain.Terrain;
 import Model.Tile.Tile;
@@ -36,7 +37,7 @@ public class TileSelectionView extends JPanel{
 
         setBorder(BorderFactory.createLineBorder(new Color(0xff000000), 2));
 
-        TileSelectionMouseListener listener = new TileSelectionMouseListener(this);
+        TileSelectionMouseListener listener = new TileSelectionMouseListener(this, currentSelectionView);
         addMouseListener(listener);
         addMouseMotionListener(listener);
 
