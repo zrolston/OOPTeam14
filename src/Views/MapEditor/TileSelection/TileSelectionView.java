@@ -39,9 +39,6 @@ public class TileSelectionView extends JPanel{
 
         TileSelectionMouseListener listener = new TileSelectionMouseListener(this, currentSelectionView);
 
-//
-//        currentSelectionView.addMouseListener(listener);
-//        currentSelectionView.addMouseMotionListener(listener);
         addMouseListener(listener);
         addMouseMotionListener(listener);
 
@@ -66,7 +63,5 @@ public class TileSelectionView extends JPanel{
     	int recWidth = (int)(getWidth() * 0.97);
     	int recHeight = (int)(getHeight() * 0.71);
     	g.drawRect(0, 0, recWidth, (int)(getHeight() * 0.99));
-    	//g.drawLine(recWidth/2, 0, recWidth/2, recHeight);
-    	//g.drawLine(0, recHeight, recWidth, recHeight);
     }
 }
