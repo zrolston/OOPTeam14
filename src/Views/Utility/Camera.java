@@ -20,7 +20,7 @@ public class Camera {
 
     private Camera(int x, int y){
         origin = new PixelPoint(x, y);
-        scale = 1.0225;
+        scale = 1.0;
         width = PixelMap.SCREEN_WIDTH;
         height = PixelMap.SCREEN_HEIGHT;
     }
@@ -46,6 +46,9 @@ public class Camera {
     public void zoomOut(){
         if(scale > 0.1)
             scale -= 0.1;
+    }
+    public void setScale(double scale) {
+        this.scale = scale;
     }
 
     //NumKey Camera movement (uses a set offset)

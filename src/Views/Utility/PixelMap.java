@@ -30,6 +30,18 @@ public class PixelMap {
     private static int width_offset = (int)(TILE_WIDTH * 1.5);
     private static int height_offset = (int)(0.5*TILE_HEIGHT);
 
+    //Get the actual height given the camera scale
+    public static double getActualHeight() {
+        Camera camera = Camera.getInstance();
+        return TILE_HEIGHT * camera.getScale();
+    }
+
+    //Get the actual width give the camera scale
+    public static double getActualWidth() {
+        Camera camera = Camera.getInstance();
+        return TILE_WIDTH * camera.getScale();
+    }
+
     //Plain Pixel Mapping based on position
     public static PixelPoint getTileCenter(ILocation hexLocation){
         //If odd Column
@@ -53,17 +65,17 @@ public class PixelMap {
         Camera camera = Camera.getInstance();
         //If odd Column
         if(location.getCol()%2 == 1)
-            return new PixelPoint(location.getCol()*width_offset - camera.getOrigin().getX(), location.getRow()*TILE_HEIGHT - camera.getOrigin().getY());
+            return new PixelPoint((int) (location.getCol()*width_offset*camera.getScale()) - camera.getOrigin().getX(), (int) (location.getRow()*TILE_HEIGHT*camera.getScale()) - camera.getOrigin().getY());
             //If even Column
         else
-            return new PixelPoint(location.getCol()*width_offset - camera.getOrigin().getX(), location.getRow()*TILE_HEIGHT + height_offset - camera.getOrigin().getY());
+            return new PixelPoint((int) (location.getCol()*width_offset*camera.getScale()) - camera.getOrigin().getX(), (int) ((location.getRow()*TILE_HEIGHT + height_offset)*camera.getScale()) - camera.getOrigin().getY());
     }
 
     public static HexLocation getHexLocationAtPixelPoint(PixelPoint point) {
         Camera camera = Camera.getInstance();
 
-        int xPosition = point.getX() + camera.getOrigin().getX();
-        int yPosition = point.getY() + camera.getOrigin().getY();
+        double xPosition = (point.getX() + camera.getOrigin().getX())/camera.getScale();
+        double yPosition = (point.getY() + camera.getOrigin().getY())/camera.getScale();
 
         HexLocation location = null;
 
@@ -72,8 +84,8 @@ public class PixelMap {
             int row = (int) ((yPosition - height_offset) / TILE_HEIGHT);
             if (yPosition - height_offset < 0)
                 row -= 1;
-            int xPositionInTile = xPosition - column*width_offset;
-            int yPositionInTile = yPosition - height_offset - row*TILE_HEIGHT;
+            double xPositionInTile = xPosition - column*width_offset;
+            double yPositionInTile = yPosition - height_offset - row*TILE_HEIGHT;
             location = new HexLocation(row, column);
             if (xPositionInTile < (TILE_WIDTH / 2)) {
                 if (yPositionInTile < (TILE_HEIGHT / 2)) {
@@ -90,8 +102,8 @@ public class PixelMap {
             int row = (int) (yPosition / TILE_HEIGHT);
             if (yPosition < 0)
                 row -= 1;
-            int xPositionInTile = xPosition - column*width_offset;
-            int yPositionInTile = yPosition - row*TILE_HEIGHT;
+            double xPositionInTile = xPosition - column*width_offset;
+            double yPositionInTile = yPosition - row*TILE_HEIGHT;
             location = new HexLocation(row, column);
             if (xPositionInTile < (TILE_WIDTH / 2)) {
                 if (yPositionInTile < (TILE_HEIGHT / 2)) {
@@ -111,7 +123,7 @@ public class PixelMap {
     public static boolean isTileVisible(ILocation tileLocation) {
         Camera camera = Camera.getInstance();
         PixelPoint topLeft = getMapTileOrigin(tileLocation);
-        PixelPoint bottomRight = new PixelPoint(topLeft.getX() + TILE_FULL_WIDTH, topLeft.getY() + TILE_HEIGHT);
+        PixelPoint bottomRight = new PixelPoint(topLeft.getX() + (int) (TILE_FULL_WIDTH*camera.getScale()), topLeft.getY() + (int) (TILE_HEIGHT*camera.getScale()));
         if (((topLeft.getX() > 0) && (topLeft.getX() < SCREEN_WIDTH)) && ((topLeft.getY() > 0) && (topLeft.getY() < SCREEN_HEIGHT)))
             return true;
         else if (((bottomRight.getX() > 0) && (bottomRight.getX() < SCREEN_WIDTH)) && ((bottomRight.getY() > 0)) && (bottomRight.getY() < SCREEN_HEIGHT))
