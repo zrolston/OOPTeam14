@@ -16,12 +16,14 @@ public class TerrainSelectionView extends JPanel {
 
     private ArrayList<BufferedImage> terrainImages = new ArrayList<>();
     private TileIterator terrainIterator = new TerrainIterator();
-
+    private BufferedImage shadow;
+    
     public TerrainSelectionView(Dimension size) {
         setPreferredSize(size);
         setVisible(true);
         setOpaque(false);
         drawTerrains();
+        shadow = ImageLoader.getImage("TILE_SHADOW");
     }
 
 
@@ -52,6 +54,7 @@ public class TerrainSelectionView extends JPanel {
 
         int i = 0;
         for(BufferedImage img : terrainImages ) {
+        	g.drawImage(shadow, (int)(width * .05) + 1, (int)(width * .05)  + i * width + 3, width, (int)(width * 0.9), null);
             g.drawImage(img, (int)(width * .05), (int)(width * .05)  + i * width, width, (int)(width * 0.9), null);
             i++;
         }
