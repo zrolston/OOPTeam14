@@ -69,7 +69,7 @@ public class MapSubsectionView extends JPanel {
 
         setBounds(0, 0, PixelMap.SCREEN_WIDTH, PixelMap.SCREEN_HEIGHT);
 
-        BuildMap map = new BuildMap(21,21);
+        BuildMap map = BuildMap.getInstance();
         updateCachedImages(map);
         image = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
 
