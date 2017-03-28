@@ -27,7 +27,8 @@ public class TileSelectionView extends JPanel{
 
         terrainSelectionView = new TerrainSelectionView(new Dimension(getWidth() / 2 + 1, getHeight() - getWidth()));
         riverSelectionView = new RiverSelectionView(new Dimension(getWidth() / 2 + 1, getHeight() - getWidth()));
-        currentSelectionView = new CurrentSelectionView(new Dimension(getWidth(), getWidth()));
+        currentSelectionView = new CurrentSelectionView(new Dimension(getWidth(), getWidth()), riverSelectionView);
+
 
         add(terrainSelectionView, BorderLayout.WEST);
         add(riverSelectionView, BorderLayout.EAST);

@@ -18,14 +18,20 @@ public class CurrentSelectionView extends JPanel {
     private BufferedImage currSelectionImage = null;
     private TileIterator terrainIterator = new TerrainIterator();
     private TileIterator riverIterator = terrainIterator.getRiverIterator();
+    private RiverSelectionView riverSelectionView = null;
 
-    public CurrentSelectionView(Dimension size) {
+    public CurrentSelectionView(Dimension size, RiverSelectionView riverSelectionView) {
+        this.riverSelectionView = riverSelectionView;
         setPreferredSize(size);
         setVisible(true);
         drawCurrentSelection();
     }
 
     public void update( int tileIndex ) {
+
+        this.riverIterator = riverSelectionView.getIterator();
+
+
         ( (RiverIterator)(riverIterator) ).setSelectedTile( tileIndex );
         currSelectionImage = ( (RiverIterator)(riverIterator) ) .getSelectedTileImage();
     }

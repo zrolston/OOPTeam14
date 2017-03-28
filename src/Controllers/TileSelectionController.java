@@ -45,7 +45,7 @@ public class TileSelectionController implements MouseMotionListener{
 
 
             riverSelectionView.update( tileIndex );
-            currentSelectionView.update(tileIndex );
+            currentSelectionView.update( 0 );
 
 
 

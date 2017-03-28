@@ -27,11 +27,15 @@ public class RiverSelectionView extends JPanel {
     }
 
     public void update(int index) {
-        riverIterator.first();
+
+        riverImages.clear();
+
+        terrainIterator.first();
         for(int i = 0; i < index; i++) {
-            riverIterator.next();
+            terrainIterator.next();
         }
         riverIterator = terrainIterator.getRiverIterator();
+        drawRiverTiles();
     }
 
     public void drawRiverTiles() {
@@ -43,6 +47,10 @@ public class RiverSelectionView extends JPanel {
         }
 
         repaint();
+    }
+
+    public TileIterator getIterator() {
+        return riverIterator;
     }
 
 
