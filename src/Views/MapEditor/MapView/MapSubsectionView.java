@@ -15,6 +15,7 @@ import Model.Visitor.MapDrawingVisitor;
 import Views.Drawers.TileInternalDrawer;
 import Views.Drawers.TileOutlineDrawer;
 import Views.Utility.CursorState;
+import Views.Utility.ImageLoader;
 import Views.Utility.PixelMap;
 import Views.Utility.PixelPoint;
 
@@ -23,7 +24,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class MapSubsectionView extends JPanel {
-
+	BufferedImage background;
     BufferedImage image;
     BufferedImage[][] tileImages;
 
@@ -31,15 +32,13 @@ public class MapSubsectionView extends JPanel {
         MapDrawingVisitor drawingVisitor = new MapDrawingVisitor();
         map.accept(drawingVisitor);
         tileImages = drawingVisitor.getImageArray();
+        background = ImageLoader.getImage("BACKGROUND");
     }
 
     public void updateImage() {
         Graphics2D g2 = (Graphics2D) image.getGraphics();
-
-//        g2.setColor( new Color(0xffCABD80)  );
-        g2.setColor(new Color(0xffF5F5DC));
-        g2.fillRect( 0, 0, image.getWidth(), image.getHeight() );
-
+        g2.drawImage(background, 0, 0, getWidth(), getHeight(), null);
+        g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
         for (int i = 0; i < tileImages.length; i++) {
             for (int j = 0; j < tileImages[i].length; j++) {
                 PixelPoint origin = PixelMap.getMapTileOrigin(new HexLocation(i, j));
