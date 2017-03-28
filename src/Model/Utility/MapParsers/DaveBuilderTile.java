@@ -6,15 +6,14 @@ import java.util.List;
 
 /**
  * Created by jordi on 3/27/2017.
- *
+ * <p>
  * This class is used as a data bag for placing tiles
- *
  */
 public class DaveBuilderTile {
     private CubeLocation cubeLocation;
     private String terrain;
-    private int[] rivers = new int[3];
-    //TODO: ask if checking for empty array of rivers
+    private int[] rivers;
+    //TODO: ask if checking for empty array of rivers, more like make this an arraylist instead of an array
 
     public DaveBuilderTile(String[] tile) throws RuntimeException {
 
@@ -25,6 +24,13 @@ public class DaveBuilderTile {
         buildLocation(tile);
         setTerrain(tile[3]);
         setRivers(tile);
+    }
+
+    public DaveBuilderTile(CubeLocation cubeLocation, String terrain, List<Integer> rivers) {
+        this.cubeLocation = cubeLocation;
+        this.terrain = terrain;
+
+        initializeRivers(rivers);
     }
 
     private void buildLocation(String[] location) {
@@ -42,13 +48,32 @@ public class DaveBuilderTile {
     }
 
     private void setRivers(String[] tile) {
-        if (tile.length > 4) {
-            for (int i = 4; i < tile.length && i < 7; i++) {
-                int temp = Integer.parseInt(tile[i]);
-                this.rivers[i-4]=temp;
+        int arrayLength = tile.length - 4;
+        List<Integer> tempRivers = new ArrayList<>();
+        if (arrayLength > 0) {
+            for (int i = 0; i < arrayLength && i < 3; i++) {
+                int temp = Integer.parseInt(tile[i+4]);
+                tempRivers.add(temp);
             }
         }
+        initializeRivers(tempRivers);
     }
+
+    private void initializeRivers(List<Integer> tempRivers) {
+        if (!tempRivers.isEmpty()) {
+            rivers = new int[tempRivers.size()];
+            for (int i = 0; i < tempRivers.size(); i++) {
+                rivers[i]=tempRivers.get(i);
+            }
+        return;
+        }
+        rivers= new int[]{};
+    }
+
+    private boolean isEmpty(int length) {
+        return length <= 0;
+    }
+
 
     public CubeLocation getCubeLocation() {
         return cubeLocation;
@@ -60,5 +85,14 @@ public class DaveBuilderTile {
 
     public int[] getRivers() {
         return rivers;
+    }
+
+    @Override
+    public String toString() {
+        return "DaveBuilderTile{" +
+                "cubeLocation=" + cubeLocation.toString() +
+                ", terrain='" + terrain + '\'' +
+                ", rivers=" + Arrays.toString(rivers) +
+                '}';
     }
 }

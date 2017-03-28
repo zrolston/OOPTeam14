@@ -7,5 +7,5 @@ import Model.Map.BuildMap;
  */
 public interface MapParser {
     void parseData(String builder);
-    String saveMap(BuildMap map);
+    void saveMap(BuildMap map);
 }

@@ -1,1 +1,6 @@
-Extra content
+5
+(-10 15 -5) DESERT (2 3 5 )
+(0 0 0) ROCK (2 )
+(5 -3 -2) MOUNTAIN
+(0 -1 1) PASTURE (2 3 )
+(0 -2 2) ROCK (2 )

@@ -43,8 +43,8 @@ public class FileIO {
 
     //Just saves text in a file based on fileName and content. Substitutes whatever the file had before
     //Note: Does NOT save text in any specific format. Loads from SavedMaps folder
-    public static void saveFileText(String fileName, String content){
-        try(PrintWriter out = new PrintWriter(mapsDir + fileName)) {
+    public static void saveFileText(String path, String content){
+        try(PrintWriter out = new PrintWriter(path)) {
             out.print(content);
         }
         catch(IOException e){
