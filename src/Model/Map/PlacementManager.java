@@ -26,7 +26,7 @@ public class PlacementManager {
             return true;
         }
 
-        if(buildMap.tileExistsAt(loc) || !this.slotExistsAt(loc)){
+        if(buildMap.tileExistsAt(loc) || !this.slotExistsAt(loc) || !buildMap.locationInBounds(loc)){
             return false;
         }
 
@@ -45,7 +45,7 @@ public class PlacementManager {
                 this.updateSlot(loc);
             }
 
-            else if(!buildMap.tileExistsAt(loc) && buildMap.locationInBounds(loc)){
+            else if(!buildMap.tileExistsAt(loc)){
                 //CREATE A NEW SLOT
                 this.createSlotAt(loc);
             }
@@ -120,9 +120,7 @@ public class PlacementManager {
 
         for(Slot targetSlot: slots.values()) {
 
-            for (Edge e : targetSlot.getAllEdges()) {
-                e.accept(riverCountVisitor);
-            }
+            targetSlot.accept(riverCountVisitor);
 
             if(riverCountVisitor.getRiverCount() != 0){
                 riverCountVisitor.clearRiverCount();

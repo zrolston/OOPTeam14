@@ -47,11 +47,12 @@ public class TileSelectionMouseListener implements MouseMotionListener, MouseLis
             modelFacade.placeTile(
                     tile,
                     PixelMap.getHexLocationAtPixelPoint(
-                            new PixelPoint(e.getX(), e.getY())
+                            getRealMousePosition(new PixelPoint(e.getX(), e.getY()))
                     )
             );
             MapSubsectionView.updateCachedImages(BuildMap.getInstance());
             currentSelectionView.update(0);
+            cursorState.setMarkerType(CursorState.NORMAL);
         }
         updateActiveTile(e);
         cursorState.setDragged(e.getX(), e.getY());
@@ -79,6 +80,13 @@ public class TileSelectionMouseListener implements MouseMotionListener, MouseLis
         updateActiveTile(e);
         if(cursorState.isDraggingTile()){
             cursorState.setDragged(e.getX(), e.getY());
+            BuildTile tile = (BuildTile)currentSelectionView.getSelectedTile();
+            HexLocation location = PixelMap.getHexLocationAtPixelPoint(getRealMousePosition(new PixelPoint(e.getX(), e.getY())));
+            if(modelFacade.validateLocation(tile, location)){
+                cursorState.setMarkerType(CursorState.VALID);
+            }else{
+                cursorState.setMarkerType(CursorState.INVALID);
+            }
         }
     }
 
@@ -88,7 +96,11 @@ public class TileSelectionMouseListener implements MouseMotionListener, MouseLis
     }
 
     public void updateActiveTile(MouseEvent e){
-        HexLocation location = PixelMap.getHexLocationAtPixelPoint(new PixelPoint(e.getX(), e.getY()));
+        HexLocation location = PixelMap.getHexLocationAtPixelPoint(getRealMousePosition(new PixelPoint(e.getX(), e.getY())));
         cursorState.setActiveTile(location);
+    }
+
+    private PixelPoint getRealMousePosition(PixelPoint p) {
+        return new PixelPoint(p.getX() + (int) view.getBounds().getX(), p.getY() + (int) view.getBounds().getY());
     }
 }

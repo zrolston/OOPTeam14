@@ -7,6 +7,8 @@
 ---------------------------------------------------------------------------------------*/
 package Views.Utility;
 
+import Model.Map.BuildMap;
+
 public class Camera {
 
     private PixelPoint origin;
@@ -27,11 +29,12 @@ public class Camera {
 
     public static Camera getInstance(){
         if(instance == null){
-            instance = new Camera(0,0);
+            instance = new Camera(-PixelMap.SCREEN_WIDTH / 4, -PixelMap.SCREEN_HEIGHT / 15);
+//            instance = new Camera(0, 0);
+
         }
         return instance;
     }
-
 
     //Getters
     public PixelPoint getOrigin() { return origin.clone(); }
@@ -46,6 +49,9 @@ public class Camera {
     public void zoomOut(){
         if(scale > 0.1)
             scale -= 0.1;
+    }
+    public void setScale(double scale) {
+        this.scale = scale;
     }
 
     //NumKey Camera movement (uses a set offset)
