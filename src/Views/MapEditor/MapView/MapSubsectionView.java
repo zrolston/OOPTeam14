@@ -40,12 +40,14 @@ public class MapSubsectionView extends JPanel {
         Graphics2D g2 = (Graphics2D) image.getGraphics();
         g2.drawImage(background, 0, 0, getWidth(), getHeight(), null);
         g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
-//        for (int i = 0; i < tileImages.length; i++) {
-//            for (int j = 0; j < tileImages[i].length; j++) {
-//                PixelPoint origin = PixelMap.getMapTileOrigin(new HexLocation(i, j));
-//                TileInternalDrawer.drawInMap(g2, tileImages[i][j], origin);
-//            }
-//        }
+        for (int i = 0; i < tileImages.length; i++) {
+            for (int j = 0; j < tileImages[i].length; j++) {
+                if (PixelMap.isTileVisible(new HexLocation(i, j))) {
+                    PixelPoint origin = PixelMap.getMapTileOrigin(new HexLocation(i, j));
+                    TileInternalDrawer.drawInMap(g2, tileImages[i][j], origin);
+                }
+            }
+        }
 
         g2.dispose();
     }
@@ -55,15 +57,6 @@ public class MapSubsectionView extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(image, 0, 0, null);
-
-        //Update the Map in Real Time with the Loop
-        //Note: Updating the background on Tick will make the game extremely laggy
-        for (int i = 0; i < tileImages.length; i++) {
-            for (int j = 0; j < tileImages[i].length; j++) {
-                PixelPoint origin = PixelMap.getMapTileOrigin(new HexLocation(i, j));
-                TileInternalDrawer.drawInMap(g, tileImages[i][j], origin);
-            }
-        }
 
         //Update the Marker
         if(cursorState.isMarkerActive()) {
