@@ -22,8 +22,12 @@ public class TileIteratorTest {
         TileIterator iter2 = iter1.getRiverIterator();
         iter2.first();
         test = iter2.getImage();
+        ((RiverIterator)iter2).setSelectedTile(1);
+        test = ((RiverIterator) iter2).getSelectedTileImage();
+        iter2.rotate();
+        test = ((RiverIterator) iter2).getSelectedTileImage();
+
         iter2.next();
-        test = iter2.getImage();
         iter2.next();
         test = iter2.getImage();
         iter2.next();

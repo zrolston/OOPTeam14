@@ -33,7 +33,11 @@ public class BuildTile extends Tile {
         Map<HexaIndex, Edge> newMap = new HashMap<>();
         edgeMap.forEach((index, edge) -> {
             try {
-                newMap.put(HexaIndex.createIndex((index.getValue() + 1) % 7), edge);
+                int newIndex = (index.getValue() + 1) % 6;
+                if (newIndex == 0){
+                    newIndex++;
+                }
+                newMap.put(HexaIndex.createIndex(newIndex), edge);
             } catch (Exception e) {
                 e.printStackTrace();
             }
