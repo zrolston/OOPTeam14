@@ -1,6 +1,7 @@
 package Controllers.MouseListeners;
 
 import Model.Map.BuildMap;
+import Model.Map.PlacementManager;
 import Model.ModelFacade;
 import Model.Tile.BuildTile;
 import Model.Utility.HexLocation;
@@ -11,6 +12,7 @@ import Views.Utility.CursorState;
 import Views.Utility.PixelMap;
 import Views.Utility.PixelPoint;
 
+import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -21,7 +23,10 @@ public class TileSelectionMouseListener implements MouseMotionListener, MouseLis
     CursorState cursorState = CursorState.getInstance();
     CurrentSelectionView currentSelectionView;
     ModelFacade modelFacade;
+
     private boolean mousePressed;
+
+
 
     public TileSelectionMouseListener(TileSelectionView tileSelectionView, CurrentSelectionView currentSelectionView) {
         this.view = tileSelectionView;
@@ -36,6 +41,7 @@ public class TileSelectionMouseListener implements MouseMotionListener, MouseLis
 
     @Override
     public void mousePressed(MouseEvent e) {
+
         if (e.getY() > (view.getBounds().getHeight() - view.getBounds().getWidth()))
             mousePressed = true;
     }
