@@ -14,10 +14,7 @@ import Model.Utility.HexLocation;
 import Model.Visitor.MapDrawingVisitor;
 import Views.Drawers.TileInternalDrawer;
 import Views.Drawers.TileOutlineDrawer;
-import Views.Utility.CursorState;
-import Views.Utility.ImageLoader;
-import Views.Utility.PixelMap;
-import Views.Utility.PixelPoint;
+import Views.Utility.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -77,9 +74,10 @@ public class MapSubsectionView extends JPanel {
 
         //Update the Dragging of the Tile
         if(cursorState.isDraggingTile()) {
+            Camera camera = Camera.getInstance();
             PixelPoint origin = cursorState.getDragged();
-            PixelPoint center = new PixelPoint(origin.getX() - PixelMap.TILE_WIDTH, origin.getY() - PixelMap.TILE_HEIGHT/2);
-            g.drawImage(cursorState.getDraggedImage(), center.getX(), center.getY(), PixelMap.TILE_FULL_WIDTH, PixelMap.TILE_HEIGHT, null);
+            PixelPoint center = new PixelPoint(origin.getX() - (int)(PixelMap.TILE_WIDTH*camera.getScale()), origin.getY() - (int)(PixelMap.TILE_HEIGHT/2*camera.getScale()));
+            g.drawImage(cursorState.getDraggedImage(), center.getX(), center.getY(), (int)(PixelMap.TILE_FULL_WIDTH*camera.getScale()), (int)(PixelMap.TILE_HEIGHT*camera.getScale()), null);
         }
     }
 
