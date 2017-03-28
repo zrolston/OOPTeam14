@@ -58,6 +58,10 @@ public class TileSelectionView extends JPanel{
     protected void paintComponent(Graphics g) {
     	g.setColor(Color.BLACK);
     	g.drawImage(panelBackground, 0, 0, (int)(getWidth() * 1.145), (int)(getHeight() * 1.032), null);
-    	g.drawRect(0, 0, getWidth() - 7, getHeight() - 8);
+    	int recWidth = (int)(getWidth() * 0.97);
+    	int recHeight = (int)(getHeight() * 0.7);
+    	g.drawRect(0, 0, recWidth, recHeight);
+    	g.drawLine(recWidth/2, 0, recWidth/2, recHeight);
+    	g.drawLine(0, recHeight, recWidth, recHeight);
     }
 }
