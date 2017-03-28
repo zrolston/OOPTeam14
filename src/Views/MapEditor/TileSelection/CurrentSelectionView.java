@@ -51,6 +51,7 @@ public class CurrentSelectionView extends JPanel {
 
     @Override
     protected void paintComponent(Graphics g) {
+    	((Graphics2D)g).setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
         g.setColor( new Color(0xffCABD80)  );
         g.fillRect(0, 0, getWidth(), getHeight());
         int width = (int)( getWidth() * 0.90 );

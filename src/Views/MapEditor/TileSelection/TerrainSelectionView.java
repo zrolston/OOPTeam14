@@ -38,7 +38,7 @@ public class TerrainSelectionView extends JPanel {
 
     @Override
     protected void paintComponent(Graphics g) {
-
+    	((Graphics2D)g).setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
         int width = (int)( getWidth() * 0.90 );
         while(getHeight() / width < terrainImages.size()) {
             width -= 5;
