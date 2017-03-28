@@ -13,7 +13,7 @@ public class LoadButtonListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         JFileChooser chooser = new JFileChooser();
-        chooser.setCurrentDirectory(new File("."));
+        chooser.setCurrentDirectory(new File("./res/SavedMaps"));
         chooser.setVisible(true);
         File file = null;
         if (chooser.showOpenDialog(chooser) == JFileChooser.APPROVE_OPTION) {
