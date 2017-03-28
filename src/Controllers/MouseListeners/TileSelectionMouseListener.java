@@ -52,6 +52,7 @@ public class TileSelectionMouseListener implements MouseMotionListener, MouseLis
             );
             MapSubsectionView.updateCachedImages(BuildMap.getInstance());
             currentSelectionView.update(0);
+            cursorState.setMarkerType(CursorState.NORMAL);
         }
         updateActiveTile(e);
         cursorState.setDragged(e.getX(), e.getY());
@@ -79,6 +80,13 @@ public class TileSelectionMouseListener implements MouseMotionListener, MouseLis
         updateActiveTile(e);
         if(cursorState.isDraggingTile()){
             cursorState.setDragged(e.getX(), e.getY());
+            BuildTile tile = (BuildTile)currentSelectionView.getSelectedTile();
+            HexLocation location = PixelMap.getHexLocationAtPixelPoint(new PixelPoint(e.getX(), e.getY()));
+            if(modelFacade.validateLocation(tile, location)){
+                cursorState.setMarkerType(CursorState.VALID);
+            }else{
+                cursorState.setMarkerType(CursorState.INVALID);
+            }
         }
     }
 
