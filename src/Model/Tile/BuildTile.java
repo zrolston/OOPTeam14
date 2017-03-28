@@ -6,6 +6,7 @@ import Model.Edge.RiverEdge;
 import Model.Edge.SeaEdge;
 import Model.Terrain.Terrain;
 import Model.Utility.HexaIndex;
+import Model.Visitor.EdgeVisitor;
 import Model.Visitor.TileVisitor;
 
 import java.util.HashMap;
@@ -51,6 +52,11 @@ public class BuildTile extends Tile {
     @Override
     public void accept(TileVisitor v) {
         getTerrain().accept(v);
+        edgeMap.accept(v);
+    }
+
+    @Override
+    public void accept(EdgeVisitor v) {
         edgeMap.accept(v);
     }
 }

@@ -1,6 +1,7 @@
 package Model.Tile;
 
 import Model.Terrain.Terrain;
+import Model.Visitor.EdgeVisitor;
 import Model.Visitor.TileVisitor;
 
 public abstract class Tile {
@@ -17,4 +18,6 @@ public abstract class Tile {
     }
 
     public abstract void accept(TileVisitor v);
+
+    public abstract void accept(EdgeVisitor v);
 }
