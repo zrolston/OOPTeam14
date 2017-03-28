@@ -30,7 +30,7 @@ public class MapEditorView extends JLayeredPane {
         tileSelectionView = new TileSelectionView();
         mapSubsectionView = new MapSubsectionView();
         miniMapView       = new MiniMapView( mapSubsectionView );
-        scaleSliderView   = new ScaleSliderView();
+        scaleSliderView   = new ScaleSliderView( mapSubsectionView );
 
         // Add SubViews to Layered Pane
         add(tileSelectionView, new Integer(3));
