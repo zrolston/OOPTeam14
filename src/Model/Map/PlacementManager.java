@@ -20,6 +20,14 @@ public class PlacementManager {
         riverCountVisitor = new RiverCountVisitor();
     }
 
+    public boolean validateMap(){
+        if(validateRivers()){
+            return true;
+        }
+
+        return false;
+    }
+
     public boolean validate(BuildTile target, ILocation loc){
 
         if(slots.isEmpty()){
