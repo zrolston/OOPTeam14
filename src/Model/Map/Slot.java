@@ -35,11 +35,6 @@ public class Slot {
         return edges.hasEdge(index);
     }
 
-    public Collection<Edge> getAllEdges() {
-        Map<HexaIndex, Edge> _edges = edges.getEdges();
-        return _edges.values();
-    }
-
     public boolean hasEdges() {
         return !this.edges.isEmpty();
     }
