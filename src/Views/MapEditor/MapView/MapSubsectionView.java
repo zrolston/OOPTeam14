@@ -72,8 +72,9 @@ public class MapSubsectionView extends JPanel {
 
         //Update the Dragging of the Tile
         if(cursorState.isDraggingTile()) {
-            PixelPoint point = cursorState.getDragged();
-            g.drawImage(cursorState.getDraggedImage(), point.getX(), point.getY(), PixelMap.TILE_FULL_WIDTH, PixelMap.TILE_HEIGHT, null);
+            PixelPoint origin = cursorState.getDragged();
+            PixelPoint center = new PixelPoint(origin.getX() - PixelMap.TILE_WIDTH, origin.getY() - PixelMap.TILE_HEIGHT/2);
+            g.drawImage(cursorState.getDraggedImage(), center.getX(), center.getY(), PixelMap.TILE_FULL_WIDTH, PixelMap.TILE_HEIGHT, null);
         }
     }
 

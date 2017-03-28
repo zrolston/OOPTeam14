@@ -7,6 +7,7 @@
 package Views.MapEditor.TileSelection;
 
 import Controllers.MouseListeners.TileSelectionMouseListener;
+import Views.Utility.ImageLoader;
 import Views.Utility.PixelMap;
 
 import javax.swing.*;
@@ -29,8 +30,7 @@ public class TileSelectionView extends JPanel{
         riverSelectionView = new RiverSelectionView(new Dimension(getWidth() / 2 + 1, getHeight() - getWidth()));
         currentSelectionView = new CurrentSelectionView(new Dimension(getWidth(), getWidth()), riverSelectionView);
 
-        //This was causing some View Bugs [Uncomment at your own risk]
-//        panelBackground = ImageLoader.getImage("PANEL_BACKGROUND");
+        panelBackground = ImageLoader.getImage("PANEL_BACKGROUND");
 
         add(terrainSelectionView, BorderLayout.WEST);
         add(riverSelectionView, BorderLayout.EAST);
