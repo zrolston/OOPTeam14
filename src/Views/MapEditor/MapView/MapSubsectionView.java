@@ -67,7 +67,12 @@ public class MapSubsectionView extends JPanel {
 
         //Update the Marker
         if(cursorState.isMarkerActive()) {
-            TileOutlineDrawer.drawActiveTile(g, CursorState.getInstance().getActiveTile());
+            if(cursorState.getMarkerType() == CursorState.NORMAL)
+                TileOutlineDrawer.drawActiveTile(g, CursorState.getInstance().getActiveTile());
+            else if(cursorState.getMarkerType() == CursorState.VALID)
+                TileOutlineDrawer.drawValidEdge(g, CursorState.getInstance().getActiveTile());
+            else if(cursorState.getMarkerType() == CursorState.INVALID)
+                TileOutlineDrawer.drawInvalidEdge(g, CursorState.getInstance().getActiveTile());
         }
 
         //Update the Dragging of the Tile
