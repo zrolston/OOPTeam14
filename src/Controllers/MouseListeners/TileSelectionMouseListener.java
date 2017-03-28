@@ -79,7 +79,7 @@ public class TileSelectionMouseListener implements MouseMotionListener, MouseLis
     public void mouseDragged(MouseEvent e) {
         updateActiveTile(e);
         if(cursorState.isDraggingTile()){
-            cursorState.setDragged(e.getX(), e.getY());
+            cursorState.setDragged(e.getX() + (int) view.getBounds().getX(), e.getY() + (int) view.getBounds().getY());
             BuildTile tile = (BuildTile)currentSelectionView.getSelectedTile();
             HexLocation location = PixelMap.getHexLocationAtPixelPoint(getRealMousePosition(new PixelPoint(e.getX(), e.getY())));
             if(modelFacade.validateLocation(tile, location)){
