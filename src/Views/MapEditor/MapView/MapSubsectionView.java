@@ -24,16 +24,18 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class MapSubsectionView extends JPanel {
-	BufferedImage background;
-    BufferedImage image;
-    BufferedImage[][] tileImages;
-    CursorState cursorState = CursorState.getInstance();
+	private static BufferedImage background;
+    private BufferedImage image;
+    private static BufferedImage[][] tileImages;
+    private CursorState cursorState = CursorState.getInstance();
+    private static boolean cachedImagesUpdated = false;
 
-    public void updateCachedImages(IViewMap map) {
+    public static void updateCachedImages(IViewMap map) {
         MapDrawingVisitor drawingVisitor = new MapDrawingVisitor();
         map.accept(drawingVisitor);
         tileImages = drawingVisitor.getImageArray();
         background = ImageLoader.getImage("BACKGROUND");
+        cachedImagesUpdated = true;
     }
 
     public void updateImage() {
@@ -48,7 +50,6 @@ public class MapSubsectionView extends JPanel {
                 }
             }
         }
-
         g2.dispose();
     }
 
@@ -56,6 +57,12 @@ public class MapSubsectionView extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+
+        if (cachedImagesUpdated){
+            updateImage();
+            cachedImagesUpdated = false;
+        }
+
         g.drawImage(image, 0, 0, null);
 
         //Update the Marker
@@ -65,8 +72,9 @@ public class MapSubsectionView extends JPanel {
 
         //Update the Dragging of the Tile
         if(cursorState.isDraggingTile()) {
-            PixelPoint point = cursorState.getDragged();
-            g.drawImage(cursorState.getDraggedImage(), point.getX(), point.getY(), PixelMap.TILE_FULL_WIDTH, PixelMap.TILE_HEIGHT, null);
+            PixelPoint origin = cursorState.getDragged();
+            PixelPoint center = new PixelPoint(origin.getX() - PixelMap.TILE_WIDTH, origin.getY() - PixelMap.TILE_HEIGHT/2);
+            g.drawImage(cursorState.getDraggedImage(), center.getX(), center.getY(), PixelMap.TILE_FULL_WIDTH, PixelMap.TILE_HEIGHT, null);
         }
     }
 

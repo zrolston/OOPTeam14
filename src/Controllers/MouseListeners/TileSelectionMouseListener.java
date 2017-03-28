@@ -1,5 +1,8 @@
 package Controllers.MouseListeners;
 
+import Model.Map.BuildMap;
+import Model.ModelFacade;
+import Model.Tile.BuildTile;
 import Model.Utility.HexLocation;
 import Views.MapEditor.MapView.MapSubsectionView;
 import Views.MapEditor.TileSelection.CurrentSelectionView;
@@ -17,10 +20,13 @@ public class TileSelectionMouseListener implements MouseMotionListener, MouseLis
     TileSelectionView view;
     CursorState cursorState = CursorState.getInstance();
     CurrentSelectionView currentSelectionView;
+    ModelFacade modelFacade;
+    private boolean mousePressed;
 
     public TileSelectionMouseListener(TileSelectionView tileSelectionView, CurrentSelectionView currentSelectionView) {
         this.view = tileSelectionView;
         this.currentSelectionView = currentSelectionView;
+        modelFacade = ModelFacade.getInstance();
     }
 
     @Override
@@ -30,14 +36,22 @@ public class TileSelectionMouseListener implements MouseMotionListener, MouseLis
 
     @Override
     public void mousePressed(MouseEvent e) {
-        cursorState.setDragged(e.getX(), e.getY());
-        cursorState.setDraggedImage(currentSelectionView.getSelectedTile());
-        cursorState.startDraggingTile();
-        cursorState.setDraggedImage(currentSelectionView.getSelectedTile());
+        mousePressed = true;
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
+        mousePressed = false;
+        if(cursorState.isDraggingTile()){
+            BuildTile tile = (BuildTile)currentSelectionView.getSelectedTile();
+            modelFacade.placeTile(
+                    tile,
+                    PixelMap.getHexLocationAtPixelPoint(
+                            new PixelPoint(e.getX(), e.getY())
+                    )
+            );
+            MapSubsectionView.updateCachedImages(BuildMap.getInstance());
+        }
         updateActiveTile(e);
         cursorState.setDragged(e.getX(), e.getY());
         cursorState.stopDraggingTile();
@@ -46,16 +60,22 @@ public class TileSelectionMouseListener implements MouseMotionListener, MouseLis
 
     @Override
     public void mouseEntered(MouseEvent e) {
-
+        cursorState.setMarkerActive(false);
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-
+        if(mousePressed){
+            cursorState.setDragged(e.getX(), e.getY());
+            cursorState.startDraggingTile();
+            cursorState.setDraggedImage(currentSelectionView.getSelectedTileImage());
+        }
+        cursorState.setMarkerActive(true);
     }
 
     @Override
     public void mouseDragged(MouseEvent e) {
+        updateActiveTile(e);
         if(cursorState.isDraggingTile()){
             cursorState.setDragged(e.getX(), e.getY());
         }

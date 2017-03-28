@@ -59,7 +59,11 @@ public class CurrentSelectionView extends JPanel {
     }
     //Gives global access to currently selected image without breaking encapsulation
     // Note: It spits out a copy of the currently selected image
-    public BufferedImage getSelectedTile(){
+    public BufferedImage getSelectedTileImage(){
         return ( (RiverIterator)(riverIterator) ) .getSelectedTileImage();
+    }
+
+    public Tile getSelectedTile(){
+        return ((RiverIterator)riverIterator).getSelectedTile();
     }
 }

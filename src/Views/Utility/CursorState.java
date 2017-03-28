@@ -2,7 +2,6 @@ package Views.Utility;
 
 
 import Model.Utility.HexLocation;
-
 import java.awt.image.BufferedImage;
 
 /**
@@ -48,12 +47,10 @@ public class CursorState {
     }
 
     public void startDraggingTile(){
-        markerActive = false;
         draggingTile = true;
     }
     public void stopDraggingTile(){
-//        draggingTile = false;
-        markerActive = true;
+        draggingTile = false;
     }
 
     public HexLocation getActiveTile() {

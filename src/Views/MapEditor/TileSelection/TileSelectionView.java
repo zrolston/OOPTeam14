@@ -30,15 +30,18 @@ public class TileSelectionView extends JPanel{
         riverSelectionView = new RiverSelectionView(new Dimension(getWidth() / 2 + 1, getHeight() - getWidth()));
         currentSelectionView = new CurrentSelectionView(new Dimension(getWidth(), getWidth()), riverSelectionView);
 
-        //This was causing some View Bugs [Uncomment at your own risk]
-//        panelBackground = ImageLoader.getImage("PANEL_BACKGROUND");
+        panelBackground = ImageLoader.getImage("PANEL_BACKGROUND");
 
         add(terrainSelectionView, BorderLayout.WEST);
         add(riverSelectionView, BorderLayout.EAST);
         add(currentSelectionView, BorderLayout.SOUTH);
-        
-        
+
+
         TileSelectionMouseListener listener = new TileSelectionMouseListener(this, currentSelectionView);
+
+//
+//        currentSelectionView.addMouseListener(listener);
+//        currentSelectionView.addMouseMotionListener(listener);
         addMouseListener(listener);
         addMouseMotionListener(listener);
 
