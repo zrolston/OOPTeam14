@@ -50,7 +50,6 @@ public class MapSubsectionMouseListener implements MouseMotionListener, MouseLis
     @Override
     public void mouseMoved(MouseEvent e) {
         HexLocation location = PixelMap.getHexLocationAtPixelPoint(new PixelPoint(e.getX(), e.getY()));
-        System.out.println(location);
         CursorState.getInstance().setActiveTile(location);
     }
 

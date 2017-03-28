@@ -3,6 +3,8 @@ package Views.Utility;
 
 import Model.Utility.HexLocation;
 
+import java.awt.image.BufferedImage;
+
 /**
  * Created by Ale on 3/27/2017.
  */
@@ -12,6 +14,7 @@ public class CursorState {
     private PixelPoint dragged;
     private HexLocation activeTile;
     private boolean draggingTile = false;
+    private BufferedImage draggedImage = null;
 
     public static CursorState getInstance() {
         return ourInstance;
@@ -27,6 +30,7 @@ public class CursorState {
     public PixelPoint getCursor() { return cursor.clone(); }
     public PixelPoint getDragged() { return dragged.clone(); }
     public boolean isDraggingTile() { return draggingTile; }
+    public BufferedImage getDraggedImage() { return draggedImage; }
 
 
     public void setCursor(PixelPoint cursor) { this.cursor = cursor; }
@@ -48,7 +52,6 @@ public class CursorState {
         return activeTile;
     }
 
-    public void setActiveTile(HexLocation activeTile) {
-        this.activeTile = activeTile;
-    }
+    public void setActiveTile(HexLocation activeTile) { this.activeTile = activeTile; }
+    public void setDraggedImage(BufferedImage draggedImage) { this.draggedImage = draggedImage; }
 }
