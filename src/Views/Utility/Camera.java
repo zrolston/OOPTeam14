@@ -32,7 +32,6 @@ public class Camera {
         return instance;
     }
 
-
     //Getters
     public PixelPoint getOrigin() { return origin.clone(); }
     public Double getScale() { return scale; }
