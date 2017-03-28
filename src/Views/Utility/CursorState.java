@@ -14,6 +14,7 @@ public class CursorState {
     private PixelPoint dragged;
     private HexLocation activeTile;
     private boolean draggingTile = false;
+//    private String cursorStae
     private BufferedImage draggedImage = null;
 
     public static CursorState getInstance() {

@@ -29,14 +29,15 @@ public class TileSelectionMouseListener implements MouseMotionListener, MouseLis
 
     @Override
     public void mousePressed(MouseEvent e) {
-        System.out.println("Selected"+new PixelPoint(e.getX(), e.getY()));
-        cursorState.setDraggedImage(CurrentSelectionView.getSelectedTile());
+        cursorState.setDragged(e.getX(), e.getY());
         cursorState.startDraggingTile();
+        cursorState.setDraggedImage(CurrentSelectionView.getSelectedTile());
+
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        System.out.println("Released: "+new PixelPoint(e.getX(), e.getY()));
+        cursorState.setDragged(e.getX(), e.getY());
         cursorState.stopDraggingTile();
         cursorState.setDraggedImage(null);
     }
