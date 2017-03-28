@@ -58,7 +58,6 @@ public class TileSelectionMouseListener implements MouseMotionListener, MouseLis
     @Override
     public void mouseDragged(MouseEvent e) {
         if(cursorState.isDraggingTile()){
-            System.out.println();
             cursorState.setDragged(e.getX(), e.getY());
         }
     }

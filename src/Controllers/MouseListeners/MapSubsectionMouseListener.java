@@ -70,7 +70,7 @@ public class MapSubsectionMouseListener implements MouseMotionListener, MouseLis
     @Override
     public void mouseReleased(MouseEvent e) {
         camera.releasePress();
-//        view.updateImage();
+        view.updateImage();
     }
 
     @Override
