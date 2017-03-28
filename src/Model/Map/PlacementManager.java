@@ -15,8 +15,7 @@ public class PlacementManager {
     public PlacementManager(){
         slots = new HashMap<ILocation, Slot>();
 
-        //TODO MAKE MAP SINGLETON
-        //buildMap = BuildMap.getInstance();
+        buildMap = BuildMap.getInstance();
 
         riverCountVisitor = new RiverCountVisitor();
     }
