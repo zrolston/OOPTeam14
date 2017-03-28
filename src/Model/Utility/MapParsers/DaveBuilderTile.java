@@ -65,7 +65,9 @@ public class DaveBuilderTile {
             for (int i = 0; i < tempRivers.size(); i++) {
                 rivers[i]=tempRivers.get(i);
             }
+        return;
         }
+        rivers= new int[]{};
     }
 
     private boolean isEmpty(int length) {
