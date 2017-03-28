@@ -1,16 +1,9 @@
 package Views.MapEditor.TileSelection;
 
-import Model.Tile.BuildTileFactory;
-import Model.Tile.Tile;
-import Model.Utility.RiverIterator;
 import Model.Utility.TerrainIterator;
 import Model.Utility.TileIterator;
-import Model.Visitor.TileDrawingVisitor;
-import Views.Utility.ImageLoader;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
@@ -27,15 +20,7 @@ public class RiverSelectionView extends JPanel {
     }
 
     public void update(int index) {
-
-
-//        if(index == riverImages.size() - 1) {
-//            riverImages.clear();
-//            drawRiverTiles();
-//        }
-
         riverImages.clear();
-
         terrainIterator.first();
         for(int i = 0; i < index; i++) {
             terrainIterator.next();

@@ -43,7 +43,6 @@ public class TerrainIterator implements TileIterator {
 
     @Override
     public BufferedImage getImage() {
-        tdv = new TileDrawingVisitor();
         tileList.get(currentIndex).accept(tdv);
         return tdv.getImage();
     }
@@ -61,5 +60,20 @@ public class TerrainIterator implements TileIterator {
     @Override
     public int getSize() {
         return terrainList.length;
+    }
+
+    @Override
+    public void setSelectedTile(int index) {
+
+    }
+
+    @Override
+    public Tile getSelectedTile() {
+        return null;
+    }
+
+    @Override
+    public BufferedImage getSelectedTileImage() {
+        return null;
     }
 }

@@ -1,17 +1,16 @@
 package Model.Visitor;
 
-import Model.Edge.LandEdge;
-import Model.Edge.RiverEdge;
-import Model.Edge.SeaEdge;
+import Model.Edge.*;
 import Model.Terrain.*;
+import Model.Utility.HexaIndex;
 import Views.Utility.ImageLoader;
-
 import javax.management.BadAttributeValueExpException;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Map;
 
 public class TileDrawingVisitor implements TileVisitor {
     private BufferedImage terrainImage;
@@ -55,20 +54,30 @@ public class TileDrawingVisitor implements TileVisitor {
     }
 
     @Override
+    public void visitEdgeMap(EdgeMap edgeMap) {
+        currentEdgeIndex = 0;
+        riverIndices = new ArrayList<>();
+        //Take care of the traversal
+        Map<HexaIndex, Edge> edges = edgeMap.getEdges();
+        edges.forEach(
+                    (index, edge ) -> {
+                        currentEdgeIndex = index.getValue() - 1;
+                        edge.accept(this);
+                    }
+                );
+    }
+
+    @Override
     public void visitSeaEdge(SeaEdge seaEdge) {
-        currentEdgeIndex++;
-        //TODO Decouple this from assuming edgeList in tile is ordered
     }
 
     @Override
     public void visitLandEdge(LandEdge landEdge) {
-        currentEdgeIndex++;
     }
 
     @Override
     public void visitRiverEdge(RiverEdge riverEdge) {
         riverIndices.add(currentEdgeIndex);
-        currentEdgeIndex++;
     }
 
     public BufferedImage getImage(){

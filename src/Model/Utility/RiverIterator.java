@@ -49,7 +49,6 @@ public class RiverIterator implements TileIterator {
 
     @Override
     public BufferedImage getImage() {
-        tdv = new TileDrawingVisitor();
         tileList.get(currentIndex).accept(tdv);
         return tdv.getImage();
     }
@@ -69,16 +68,18 @@ public class RiverIterator implements TileIterator {
         return riverIndexList.length;
     }
 
+    @Override
     public void setSelectedTile(int index){
         selectedTile = tileList.get(index).clone();
     }
 
+    @Override
     public BufferedImage getSelectedTileImage(){
-        tdv = new TileDrawingVisitor();
         selectedTile.accept(tdv);
         return tdv.getImage();
     }
 
+    @Override
     public Tile getSelectedTile(){
         return selectedTile;
     }

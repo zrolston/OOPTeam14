@@ -1,6 +1,7 @@
 package Model.Tile;
 
 import Model.Terrain.Terrain;
+import Model.Visitor.EdgeVisitor;
 import Model.Visitor.TileVisitor;
 
 public abstract class Tile {

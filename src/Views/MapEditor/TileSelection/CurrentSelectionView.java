@@ -1,18 +1,11 @@
 package Views.MapEditor.TileSelection;
 
-import Model.Terrain.Terrain;
-import Model.Tile.BuildTileFactory;
 import Model.Tile.Tile;
-import Model.Utility.RiverIterator;
 import Model.Utility.TerrainIterator;
 import Model.Utility.TileIterator;
-import Model.Visitor.TileDrawingVisitor;
-import Views.Utility.ImageLoader;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 
 public class CurrentSelectionView extends JPanel {
     
@@ -31,21 +24,20 @@ public class CurrentSelectionView extends JPanel {
     public void update( int tileIndex ) {
 
         this.riverIterator = riverSelectionView.getIterator();
-
-        ( (RiverIterator)(riverIterator) ).setSelectedTile( tileIndex );
-        currSelectionImage = ( (RiverIterator)(riverIterator) ) .getSelectedTileImage();
+        riverIterator.setSelectedTile( tileIndex );
+        currSelectionImage = riverIterator.getSelectedTileImage();
 
     }
 
     public void drawCurrentSelection() {
 
-        currSelectionImage = ( (RiverIterator)(riverIterator) ) .getSelectedTileImage();
+        currSelectionImage = riverIterator.getSelectedTileImage();
         repaint();
     }
 
     public void rotate() {
 
-        ( (RiverIterator)(riverIterator) ) .rotate();
+        riverIterator.rotate();
         drawCurrentSelection();
     }
 
@@ -60,10 +52,10 @@ public class CurrentSelectionView extends JPanel {
     //Gives global access to currently selected image without breaking encapsulation
     // Note: It spits out a copy of the currently selected image
     public BufferedImage getSelectedTileImage(){
-        return ( (RiverIterator)(riverIterator) ) .getSelectedTileImage();
+        return riverIterator.getSelectedTileImage();
     }
 
     public Tile getSelectedTile(){
-        return ((RiverIterator)riverIterator).getSelectedTile();
+        return riverIterator.getSelectedTile();
     }
 }

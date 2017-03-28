@@ -51,6 +51,7 @@ public class TileSelectionMouseListener implements MouseMotionListener, MouseLis
                     )
             );
             MapSubsectionView.updateCachedImages(BuildMap.getInstance());
+            currentSelectionView.update(0);
         }
         updateActiveTile(e);
         cursorState.setDragged(e.getX(), e.getY());
