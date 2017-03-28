@@ -41,8 +41,6 @@ public class PlacementManager {
 
         buildMap.addTile(tile, location);
 
-        Slot targetSlot = this.getSlotAt(location);
-
         for(ILocation loc : location.getAdjacent()){
             if(slotExistsAt(loc)){
                 //UPDATE CURRENT SLOT
