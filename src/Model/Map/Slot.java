@@ -1,43 +1,47 @@
 package Model.Map;
 
 import Model.Edge.Edge;
+import Model.Edge.EdgeMap;
 import Model.Utility.HexaIndex;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Slot {
-    private Map<HexaIndex, Edge> edges;
+    private EdgeMap edges;
 
     public Slot(){
-        edges = new HashMap<HexaIndex, Edge>();
+        edges = new EdgeMap();
     }
 
-    public boolean checkMatch(Map<HexaIndex, Edge> inputMap){
-
-        boolean match = true;
-
-        for(HexaIndex i : edges.keySet()){
-
-            match = edges.get(i).matchesWith(inputMap.get(i));
-
-            if(!match){
-                return false;
-            }
-        }
-
-        return true;
+    public boolean checkMatch(EdgeMap inputMap){
+        return edges.matches(inputMap);
     }
 
     public void addEdge(HexaIndex index, Edge edge){
-        edges.put(index, edge);
+        edges.addEdge(index, edge);
     }
 
     public void removeEdge(HexaIndex index){
-        edges.remove(index);
+        edges.removeEdge(index);
     }
 
-    public Map<HexaIndex,Edge> getEdges() {
+    public EdgeMap getEdges() {
         return edges;
+    }
+
+    public boolean hasEdge(HexaIndex index) {
+        return edges.hasEdge(index);
+    }
+
+    public boolean isEmpty() {
+        return edges.isEmpty();
+    }
+
+    public Collection<Edge> getAllEdges() {
+        Map<HexaIndex, Edge> _edges = edges.getEdges();
+        return _edges.values();
     }
 }

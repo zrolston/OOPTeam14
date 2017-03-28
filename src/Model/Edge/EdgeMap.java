@@ -13,7 +13,11 @@ public class EdgeMap {
     private Map<HexaIndex, Edge> edgeMap;
 
     public EdgeMap(Map<HexaIndex, Edge> mapping){
-        this.edgeMap = mapping;
+        this.edgeMap = new HashMap<>(mapping);
+    }
+
+    public EdgeMap(){
+        edgeMap = new HashMap<>();
     }
 
     public void rotate(){
@@ -36,7 +40,40 @@ public class EdgeMap {
         return edgeMap;
     }
 
+    public boolean hasEdge(HexaIndex index){
+        return edgeMap.containsKey(index);
+    }
+
+    public boolean isEmpty(){
+        return edgeMap.isEmpty();
+    }
+
+    public boolean matches(EdgeMap newMap){
+        boolean matches = true;
+        Map<HexaIndex, Edge> _newMap = newMap.getEdges();
+        for (HexaIndex index : edgeMap.keySet()){
+            matches = edgeMap.get(index).matchesWith(_newMap.get(index));
+            if(!matches){
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public void addEdge(HexaIndex index, Edge edge){
+        edgeMap.put(index, edge);
+    }
+
+    public void removeEdge(HexaIndex index){
+        edgeMap.remove(index);
+    }
+
     public void accept(EdgeVisitor v){
         v.visitEdgeMap(this);
+    }
+
+    public Edge getEdgeAt(HexaIndex index){
+        return edgeMap.get(index);
     }
 }
