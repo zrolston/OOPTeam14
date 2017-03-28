@@ -24,12 +24,12 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class MapSubsectionView extends JPanel {
-	BufferedImage background;
-    BufferedImage image;
-    BufferedImage[][] tileImages;
-    CursorState cursorState = CursorState.getInstance();
+	private static BufferedImage background;
+    private BufferedImage image;
+    private static BufferedImage[][] tileImages;
+    private CursorState cursorState = CursorState.getInstance();
 
-    public void updateCachedImages(IViewMap map) {
+    public static void updateCachedImages(IViewMap map) {
         MapDrawingVisitor drawingVisitor = new MapDrawingVisitor();
         map.accept(drawingVisitor);
         tileImages = drawingVisitor.getImageArray();

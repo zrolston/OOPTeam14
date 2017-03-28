@@ -7,7 +7,6 @@
 package Views.MapEditor.TileSelection;
 
 import Controllers.MouseListeners.TileSelectionMouseListener;
-import Views.Utility.ImageLoader;
 import Views.Utility.PixelMap;
 
 import javax.swing.*;
@@ -36,11 +35,15 @@ public class TileSelectionView extends JPanel{
         add(terrainSelectionView, BorderLayout.WEST);
         add(riverSelectionView, BorderLayout.EAST);
         add(currentSelectionView, BorderLayout.SOUTH);
-        
-        
+
+
         TileSelectionMouseListener listener = new TileSelectionMouseListener(this, currentSelectionView);
-        addMouseListener(listener);
-        addMouseMotionListener(listener);
+
+
+        currentSelectionView.addMouseListener(listener);
+        currentSelectionView.addMouseMotionListener(listener);
+//        addMouseListener(listener);
+//        addMouseMotionListener(listener);
 
         setVisible(true);
     }

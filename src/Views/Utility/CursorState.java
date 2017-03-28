@@ -52,8 +52,8 @@ public class CursorState {
         draggingTile = true;
     }
     public void stopDraggingTile(){
-//        draggingTile = false;
-        markerActive = true;
+        draggingTile = false;
+//        markerActive = true;
     }
 
     public HexLocation getActiveTile() {

@@ -39,7 +39,7 @@ public class Main {
 
             while (true){
                 try {
-                    Thread.sleep(15);
+                    Thread.sleep(20);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
