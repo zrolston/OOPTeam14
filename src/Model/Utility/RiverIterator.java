@@ -8,7 +8,6 @@ import Model.Visitor.TileDrawingVisitor;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-
 public class RiverIterator implements TileIterator {
     final int[][] riverIndexList = { { }, { 1 }, { 1, 2 }, { 1, 3 }, {1, 4}, {1, 3, 5} };
     ArrayList<BuildTile> tileList;
@@ -24,9 +23,10 @@ public class RiverIterator implements TileIterator {
         tileList = new ArrayList<>();
         tdv = new TileDrawingVisitor();
         for (int[] ints : riverIndexList) {
-            tileList.add(
-                    factory.createTile(terrain, ints)
-            );
+            BuildTile newTile = factory.createTile(terrain, ints);
+            if (newTile != null){
+                tileList.add(newTile);
+            }
         }
         selectedTile = tileList.get(0).clone();
     }
@@ -65,7 +65,7 @@ public class RiverIterator implements TileIterator {
 
     @Override
     public int getSize() {
-        return riverIndexList.length;
+        return tileList.size();
     }
 
     @Override
