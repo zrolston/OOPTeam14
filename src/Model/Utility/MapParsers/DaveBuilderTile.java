@@ -12,7 +12,7 @@ import java.util.List;
 public class DaveBuilderTile {
     private CubeLocation cubeLocation;
     private String terrain;
-    private int[] rivers = new int[]{-1,-1,-1};
+    private int[] rivers;
     //TODO: ask if checking for empty array of rivers, more like make this an arraylist instead of an array
 
     public DaveBuilderTile(String[] tile) throws RuntimeException {
@@ -26,13 +26,11 @@ public class DaveBuilderTile {
         setRivers(tile);
     }
 
-    public DaveBuilderTile(int x, int y, int z, String terrain, List<Integer>rivers) {
+    public DaveBuilderTile(int x, int y, int z, String terrain, List<Integer> rivers) {
         this.cubeLocation = new CubeLocation(x, y, z);
         this.terrain = terrain;
 
-        for (int i = 0; i < rivers.size() && i < 3; i++) {
-            this.rivers[i] = rivers.get(i);
-        }
+        initializeRivers(rivers);
     }
 
     private void buildLocation(String[] location) {
@@ -50,13 +48,30 @@ public class DaveBuilderTile {
     }
 
     private void setRivers(String[] tile) {
-        if (tile.length > 4) {
-            for (int i = 4; i < tile.length && i < 7; i++) {
-                int temp = Integer.parseInt(tile[i]);
-                this.rivers[i - 4] = temp;
+        int arrayLength = tile.length - 4;
+        List<Integer> tempRivers = new ArrayList<>();
+        if (arrayLength > 0) {
+            for (int i = 0; i < arrayLength && i < 3; i++) {
+                int temp = Integer.parseInt(tile[i+4]);
+                tempRivers.add(temp);
+            }
+        }
+        initializeRivers(tempRivers);
+    }
+
+    private void initializeRivers(List<Integer> tempRivers) {
+        if (!tempRivers.isEmpty()) {
+            rivers = new int[tempRivers.size()];
+            for (int i = 0; i < tempRivers.size(); i++) {
+                rivers[i]=tempRivers.get(i);
             }
         }
     }
+
+    private boolean isEmpty(int length) {
+        return length <= 0;
+    }
+
 
     public CubeLocation getCubeLocation() {
         return cubeLocation;

@@ -56,7 +56,7 @@ public class DaveBuilderTest {
         daveBuilder = new DaveBuilder();
 
         methodParameters = new Class[]{String[].class};
-        params = new Object[]{new String[]{"numberOfTiles", "0 0 0 pasture 0 1 2", "1 1 0 woods 0 1 2", "2 2 0 rock 0 1 2"}};
+        params = new Object[]{new String[]{"numberOfTiles", "0 0 0 pasture 0 1 2", "1 1 0 woods 0 1 2", "2 2 0 rock 0"}};
 
         Method m = r.getDeclaredMethod("extractTilesInfo", methodParameters);
         m.setAccessible(true);
@@ -65,7 +65,7 @@ public class DaveBuilderTest {
 
         assertEquals("DaveBuilderTile{cubeLocation=(0, 0, 0), terrain='pasture', rivers=[0, 1, 2]}", daveBuilders.get(0).toString());
         assertEquals("DaveBuilderTile{cubeLocation=(1, 1, 0), terrain='woods', rivers=[0, 1, 2]}", daveBuilders.get(1).toString());
-        assertEquals("DaveBuilderTile{cubeLocation=(2, 2, 0), terrain='rock', rivers=[0, 1, 2]}", daveBuilders.get(2).toString());
+        assertEquals("DaveBuilderTile{cubeLocation=(2, 2, 0), terrain='rock', rivers=[0]}", daveBuilders.get(2).toString());
 
     }
 
@@ -189,7 +189,7 @@ public class DaveBuilderTest {
 
         String expectedResult="2\n" +
                 "(0 0 0) pasture (0 0 0 )\n" +
-                "(0 3 2) mountain (1 -1 -1 )\n";
+                "(0 3 2) mountain (1 )\n";
 
         assertEquals(expectedResult,output);
         //TODO: fix this make rivers an arraylist

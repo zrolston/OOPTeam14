@@ -236,10 +236,11 @@ public class DaveBuilder implements MapParser {
 
 
     /**
-     * this class might seem to break LoD but in reality all this information is located in this class
-     * the reason for using classes such as CubeLocation and DaveBuilderTile is so that this is more organized
-     * and so that there are less bugs
+     * creates the output string
      *
+     * this class might seem to break LoD but in reality all this information is located in this class
+     * the reason for using classes such as CubeLocation and DaveBuilderTile is so that the code is more organized
+     * and so that there are less bugs
      * @param tiles
      * @return
      */
