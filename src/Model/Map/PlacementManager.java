@@ -26,7 +26,7 @@ public class PlacementManager {
             return true;
         }
 
-        if(buildMap.tileExistsAt(loc) || !this.slotExistsAt(loc)){
+        if(buildMap.tileExistsAt(loc) || !this.slotExistsAt(loc) || !buildMap.locationInBounds(loc)){
             return false;
         }
 
