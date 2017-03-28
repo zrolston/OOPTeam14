@@ -13,8 +13,15 @@ public class EdgeSavingVisitor implements EdgeVisitor {
     private int currentEdgeIndex;
     private ArrayList<Integer> riverIndices;
 
+    public EdgeSavingVisitor(){
+        currentEdgeIndex = 0;
+        riverIndices = new ArrayList<>();
+    }
+
     @Override
     public void visitEdgeMap(EdgeMap edgeMap) {
+        currentEdgeIndex = 0;
+        riverIndices = new ArrayList<>();
         //Take care of the traversal
         Map<HexaIndex, Edge> edges = edgeMap.getEdges();
         edges.forEach(
