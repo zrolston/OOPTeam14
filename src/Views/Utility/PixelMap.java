@@ -108,6 +108,18 @@ public class PixelMap {
         return location;
     }
 
+    public static boolean isTileVisible(ILocation tileLocation) {
+        Camera camera = Camera.getInstance();
+        PixelPoint topLeft = getMapTileOrigin(tileLocation);
+        PixelPoint bottomRight = new PixelPoint(topLeft.getX() + TILE_FULL_WIDTH, topLeft.getY() + TILE_HEIGHT);
+        if (((topLeft.getX() > 0) && (topLeft.getX() < SCREEN_WIDTH)) && ((topLeft.getY() > 0) && (topLeft.getY() < SCREEN_HEIGHT)))
+            return true;
+        else if (((bottomRight.getX() > 0) && (bottomRight.getX() < SCREEN_WIDTH)) && ((bottomRight.getY() > 0)) && (bottomRight.getY() < SCREEN_HEIGHT))
+            return true;
+        else
+            return false;
+    }
+
     //Provides validation to coordinates when overlapping tiles.
     public static boolean tileContains(ILocation tileLocation, PixelPoint point){
         Camera camera = Camera.getInstance();

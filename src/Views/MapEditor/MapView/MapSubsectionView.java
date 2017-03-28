@@ -42,8 +42,10 @@ public class MapSubsectionView extends JPanel {
         g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
         for (int i = 0; i < tileImages.length; i++) {
             for (int j = 0; j < tileImages[i].length; j++) {
-                PixelPoint origin = PixelMap.getMapTileOrigin(new HexLocation(i, j));
-                TileInternalDrawer.drawInMap(g2, tileImages[i][j], origin);
+                if (PixelMap.isTileVisible(new HexLocation(i, j))) {
+                    PixelPoint origin = PixelMap.getMapTileOrigin(new HexLocation(i, j));
+                    TileInternalDrawer.drawInMap(g2, tileImages[i][j], origin);
+                }
             }
         }
 

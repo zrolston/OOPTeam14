@@ -45,7 +45,7 @@ public class MapSubsectionMouseListener implements MouseMotionListener, MouseLis
     @Override
     public void mouseDragged(MouseEvent e) {
         camera.move(new PixelPoint(e.getX(), e.getY()));
-//        view.updateImage();
+        view.updateImage();
     }
 
     @Override
