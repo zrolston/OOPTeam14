@@ -27,7 +27,7 @@ public class PlacementManagerTest {
     }
 
     @Test
-    public void validate() {
+    public void ValidateAfterRemove() {
         BuildMap.reset();
         buildMap = BuildMap.getInstance();
         placementManager = new PlacementManager();
@@ -39,42 +39,7 @@ public class PlacementManagerTest {
         tile = btf.createTile("WOODS",  new int[]{});
         placementManager.placeTileAt(tile, new HexLocation(6, 4));
 
-        BuildTile LandTile = btf.createTile("DESERT",  new int[]{});
-        BuildTile SeaTile = btf.createTile("SEA",  new int[]{});
-        BuildTile RiverTile = btf.createTile("MOUNTAIN",  new int[]{1, 3});
-
-        assertTrue(placementManager.validate(LandTile, new HexLocation(3, 5)));
-        assertTrue(placementManager.validate(LandTile, new HexLocation(4, 6)));
-        assertTrue(placementManager.validate(LandTile, new HexLocation(5, 6)));
-        assertTrue(placementManager.validate(LandTile, new HexLocation(6, 6)));
-        assertFalse(placementManager.validate(LandTile, new HexLocation(6, 5)));
-        assertTrue(placementManager.validate(LandTile, new HexLocation(7, 4)));
-        assertTrue(placementManager.validate(LandTile, new HexLocation(6, 3)));
-        assertTrue(placementManager.validate(LandTile, new HexLocation(5, 3)));
-        assertTrue(placementManager.validate(LandTile, new HexLocation(5, 4)));
-        assertTrue(placementManager.validate(LandTile, new HexLocation(4, 4)));
-
-        assertTrue(placementManager.validate(SeaTile, new HexLocation(3, 5)));
-        assertTrue(placementManager.validate(SeaTile, new HexLocation(4, 6)));
-        assertTrue(placementManager.validate(SeaTile, new HexLocation(5, 6)));
-        assertTrue(placementManager.validate(SeaTile, new HexLocation(6, 6)));
-        assertTrue(placementManager.validate(SeaTile, new HexLocation(6, 5)));
-        assertTrue(placementManager.validate(SeaTile, new HexLocation(7, 4)));
-        assertTrue(placementManager.validate(SeaTile, new HexLocation(6, 3)));
-        assertTrue(placementManager.validate(SeaTile, new HexLocation(5, 3)));
-        assertTrue(placementManager.validate(SeaTile, new HexLocation(5, 4)));
-        assertTrue(placementManager.validate(SeaTile, new HexLocation(4, 4)));
-
-        assertTrue(placementManager.validate(RiverTile, new HexLocation(3, 5)));
-        assertTrue(placementManager.validate(RiverTile, new HexLocation(4, 6)));
-        assertTrue(placementManager.validate(RiverTile, new HexLocation(5, 6)));
-        assertTrue(placementManager.validate(RiverTile, new HexLocation(6, 6)));
-        assertTrue(placementManager.validate(RiverTile, new HexLocation(6, 5)));
-        assertFalse(placementManager.validate(RiverTile, new HexLocation(7, 4)));
-        assertTrue(placementManager.validate(RiverTile, new HexLocation(6, 3)));
-        assertFalse(placementManager.validate(RiverTile, new HexLocation(5, 3)));
-        assertFalse(placementManager.validate(RiverTile, new HexLocation(5, 4)));
-        assertTrue(placementManager.validate(RiverTile, new HexLocation(4, 4)));
+        BuildTile RiverTile;
 
         RiverTile = btf.createTile("MOUNTAIN",  new int[]{3, 4});
 
@@ -108,6 +73,106 @@ public class PlacementManagerTest {
 
         assertFalse(placementManager.validate(RiverTile, new HexLocation(5, 5)));
         assertTrue(placementManager.validate(tile, new HexLocation(5, 5)));
+    }
+
+    @Test
+    public void SeaValidateTest() {
+        BuildMap.reset();
+        buildMap = BuildMap.getInstance();
+        placementManager = new PlacementManager();
+
+        BuildTile tile = btf.createTile("ROCK", new int[]{1, 4});
+        placementManager.placeTileAt(tile, new HexLocation(5, 5));
+        tile = btf.createTile("SEA", new int[]{});
+        placementManager.placeTileAt(tile, new HexLocation(4, 5));
+        tile = btf.createTile("WOODS", new int[]{});
+        placementManager.placeTileAt(tile, new HexLocation(6, 4));
+
+        BuildTile SeaTile = btf.createTile("SEA", new int[]{});
+
+        assertTrue(placementManager.validate(SeaTile, new HexLocation(3, 5)));
+        assertTrue(placementManager.validate(SeaTile, new HexLocation(4, 6)));
+        assertTrue(placementManager.validate(SeaTile, new HexLocation(5, 6)));
+        assertTrue(placementManager.validate(SeaTile, new HexLocation(6, 6)));
+        assertTrue(placementManager.validate(SeaTile, new HexLocation(6, 5)));
+        assertTrue(placementManager.validate(SeaTile, new HexLocation(7, 4)));
+        assertTrue(placementManager.validate(SeaTile, new HexLocation(6, 3)));
+        assertTrue(placementManager.validate(SeaTile, new HexLocation(5, 3)));
+        assertTrue(placementManager.validate(SeaTile, new HexLocation(5, 4)));
+        assertTrue(placementManager.validate(SeaTile, new HexLocation(4, 4)));
+
+        assertFalse(placementManager.validate(SeaTile, new HexLocation(4, 5)));
+        assertFalse(placementManager.validate(SeaTile, new HexLocation(6, 4)));
+        assertFalse(placementManager.validate(SeaTile, new HexLocation(5, 5)));
+
+        assertFalse(placementManager.validate(SeaTile, new HexLocation(20, 20)));
+    }
+
+    @Test
+    public void LandValidate() {
+        BuildMap.reset();
+        buildMap = BuildMap.getInstance();
+        placementManager = new PlacementManager();
+
+        BuildTile tile = btf.createTile("ROCK", new int[]{1, 4});
+        placementManager.placeTileAt(tile, new HexLocation(5, 5));
+        tile = btf.createTile("SEA", new int[]{});
+        placementManager.placeTileAt(tile, new HexLocation(4, 5));
+        tile = btf.createTile("WOODS", new int[]{});
+        placementManager.placeTileAt(tile, new HexLocation(6, 4));
+
+        BuildTile LandTile = btf.createTile("DESERT", new int[]{});
+
+        assertTrue(placementManager.validate(LandTile, new HexLocation(3, 5)));
+        assertTrue(placementManager.validate(LandTile, new HexLocation(4, 6)));
+        assertTrue(placementManager.validate(LandTile, new HexLocation(5, 6)));
+        assertTrue(placementManager.validate(LandTile, new HexLocation(6, 6)));
+        assertFalse(placementManager.validate(LandTile, new HexLocation(6, 5)));
+        assertTrue(placementManager.validate(LandTile, new HexLocation(7, 4)));
+        assertTrue(placementManager.validate(LandTile, new HexLocation(6, 3)));
+        assertTrue(placementManager.validate(LandTile, new HexLocation(5, 3)));
+        assertTrue(placementManager.validate(LandTile, new HexLocation(5, 4)));
+        assertTrue(placementManager.validate(LandTile, new HexLocation(4, 4)));
+
+        assertFalse(placementManager.validate(LandTile, new HexLocation(4, 5)));
+        assertFalse(placementManager.validate(LandTile, new HexLocation(6, 4)));
+        assertFalse(placementManager.validate(LandTile, new HexLocation(5, 5)));
+
+        assertFalse(placementManager.validate(LandTile, new HexLocation(20, 20)));
+    }
+
+    @Test
+    public void RiverValidate() {
+        BuildMap.reset();
+        buildMap = BuildMap.getInstance();
+        placementManager = new PlacementManager();
+
+        BuildTile tile = btf.createTile("ROCK", new int[]{1, 4});
+        placementManager.placeTileAt(tile, new HexLocation(5, 5));
+        tile = btf.createTile("SEA", new int[]{});
+        placementManager.placeTileAt(tile, new HexLocation(4, 5));
+        tile = btf.createTile("WOODS", new int[]{});
+        placementManager.placeTileAt(tile, new HexLocation(6, 4));
+
+        BuildTile RiverTile = btf.createTile("MOUNTAIN", new int[]{1, 3});
+
+        assertTrue(placementManager.validate(RiverTile, new HexLocation(3, 5)));
+        assertTrue(placementManager.validate(RiverTile, new HexLocation(4, 6)));
+        assertTrue(placementManager.validate(RiverTile, new HexLocation(5, 6)));
+        assertTrue(placementManager.validate(RiverTile, new HexLocation(6, 6)));
+        assertTrue(placementManager.validate(RiverTile, new HexLocation(6, 5)));
+        assertFalse(placementManager.validate(RiverTile, new HexLocation(7, 4)));
+        assertTrue(placementManager.validate(RiverTile, new HexLocation(6, 3)));
+        assertFalse(placementManager.validate(RiverTile, new HexLocation(5, 3)));
+        assertFalse(placementManager.validate(RiverTile, new HexLocation(5, 4)));
+        assertTrue(placementManager.validate(RiverTile, new HexLocation(4, 4)));
+
+        assertFalse(placementManager.validate(RiverTile, new HexLocation(4, 5)));
+        assertFalse(placementManager.validate(RiverTile, new HexLocation(6, 4)));
+        assertFalse(placementManager.validate(RiverTile, new HexLocation(5, 5)));
+
+        assertFalse(placementManager.validate(RiverTile, new HexLocation(20, 20)));
+
     }
 
     @Test
