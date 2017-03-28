@@ -30,7 +30,7 @@ public class PlacementManager {
 
     public boolean validate(BuildTile target, ILocation loc){
 
-        if(slots.isEmpty()){
+        if(slots.isEmpty() && buildMap.locationInBounds(loc)){
             return true;
         }
 
