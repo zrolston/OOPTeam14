@@ -100,10 +100,6 @@ public class MapSubsectionView extends JPanel {
         setVisible(true);
     }
 
-    public BufferedImage[][] getTileImages() {
-        return tileImages;
-    }
-
     public BufferedImage getImage() {
         return image;
     }
