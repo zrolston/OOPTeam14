@@ -30,6 +30,7 @@ public class ScaleSliderView extends JSlider {
         //Add controller
         addChangeListener(new ScaleSliderController());
 
+        setFocusable(false);
         setVisible(true);
     }
 }
