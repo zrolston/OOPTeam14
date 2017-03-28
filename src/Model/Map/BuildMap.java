@@ -81,18 +81,29 @@ public class BuildMap implements IViewMap {
     public boolean validateMap(){
         return true;
     }
+
     public void addTile(BuildTile tile, ILocation location){
         map[location.getRow()][location.getCol()] = tile;
     }
+
     public void removeTile(ILocation location){
         map[location.getRow()][location.getCol()] = null;
     }
+
     public void clear(){
         for(int i = 0; i < HEIGHT; i++){
             for(int j = 0; j < WIDTH; j++){
                 map[i][j] = null;
             }
         }
+    }
+
+    public int getHEIGHT() {
+        return HEIGHT;
+    }
+
+    public int getWIDTH() {
+        return WIDTH;
     }
 
     public static void reset(){

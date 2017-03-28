@@ -8,7 +8,7 @@ import Views.MapEditor.TileSelection.TileSelectionView;
 import javax.swing.*;
 import java.awt.event.*;
 
-public class TileSelectionController implements MouseMotionListener{
+public class TileSelectionController implements MouseListener{
 
     private TileSelectionView tileSelectionView = null;
     private TerrainSelectionView terrainSelectionView = null;
@@ -22,32 +22,48 @@ public class TileSelectionController implements MouseMotionListener{
         this.riverSelectionView = tileSelectionView.getRiverSelectionView();
         this.currentSelectionView = tileSelectionView.getCurrentSelectionView();
 
-        tileSelectionView.addMouseMotionListener(this);
+        tileSelectionView.addMouseListener(this);
     }
 
     @Override
-    public void mouseDragged(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseMoved(MouseEvent e) {
-
+    public void mouseReleased(MouseEvent e) {
         double x = (double)(e.getPoint().getX() / tileSelectionView.getWidth());
         double y = (double)(e.getPoint().getY() / tileSelectionView.getHeight());
 
         // 6 is the number of tiles on display
-        int tileIndex = (int)( y / (0.75 / 6) );
+        int tileIndex = (int)( y / (0.7 / 6) );
+        
+        if (tileIndex >= 0 && tileIndex < 6) {
+            
+            if( y < 0.75 && x < 0.5) {      // click in terrain panel
+                riverSelectionView.update( tileIndex );
+                currentSelectionView.update( 0 );
+            } else if( y < 0.75 && x > 0.5 && x < 1) { // click in river panel
+                currentSelectionView.update( tileIndex );
+            }
+        } else if( y > 0.75 ) { // click in current selection panel
+                currentSelectionView.rotate();
+            }
+     }
 
-        if( y < 0.75 && x < 0.5) {      // click in terrain panel
-            riverSelectionView.update( terrainSelectionView.getTerrainString( tileIndex ) );
-            currentSelectionView.update( terrainSelectionView.getSelectedTile(tileIndex) );
-        }
-        else if( y < 0.75 && x > 0.5) { // click in river panel
-            currentSelectionView.update( riverSelectionView.getSelectedTile(tileIndex) );
-        }
-        else if( y > 0.75 ) { // click in current selection panel
 
-        }
+    @Override
+    public void mousePressed(MouseEvent e) {
+
     }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
+
+
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+	}
 }

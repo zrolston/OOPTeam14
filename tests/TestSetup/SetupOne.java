@@ -46,7 +46,7 @@ public class SetupOne {
 
     @Test
     public static void main(String[] args) throws InterruptedException {
-        ModelFacade modelFacade= new ModelFacade(null);
+        ModelFacade modelFacade= ModelFacade.getInstance();
         //Initialize the map simulation
         simulatedMap = new HexLocation[21][21];
         for(int i=0; i<simulatedMap.length; i++){

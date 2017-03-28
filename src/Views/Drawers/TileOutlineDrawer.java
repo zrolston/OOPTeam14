@@ -55,9 +55,11 @@ public class TileOutlineDrawer extends Drawer{
 
 
     private static void drawEdge(Graphics g, HexLocation tileLocation, Color color){
+        Camera camera = Camera.getInstance();
         PixelPoint origin = PixelMap.getMapTileOrigin(tileLocation);
-        PixelPoint center = new PixelPoint(origin.getX()+PixelMap.TILE_WIDTH, origin.getY()+PixelMap.TILE_HEIGHT/2);
+        PixelPoint center = new PixelPoint(origin.getX()+(int)(PixelMap.TILE_WIDTH*camera.getScale()), origin.getY()+(int)(PixelMap.TILE_HEIGHT/2*camera.getScale()));
         Polygon hexatile = getHexagon(center);
+        ((Graphics2D)g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         ((Graphics2D)g).setStroke(new BasicStroke(5));
         Color prev = g.getColor();
         g.setColor(color);
@@ -71,17 +73,17 @@ public class TileOutlineDrawer extends Drawer{
     private static java.util.List<PixelPoint> getHexatilePoints(PixelPoint center, int xOffset, int yOffset){
         java.util.List<PixelPoint> points = new ArrayList<>();
         //Top-Left point
-        points.add(new PixelPoint(center.getX() - PixelMap.TILE_WIDTH/2 - xOffset, center.getY() - PixelMap.TILE_HEIGHT/2 - yOffset));
+        points.add(new PixelPoint(center.getX() - (int)(PixelMap.getActualWidth()/2) - xOffset, center.getY() - (int)(PixelMap.getActualHeight()/2) - yOffset));
         //Left point
-        points.add(new PixelPoint(center.getX() - PixelMap.TILE_WIDTH - xOffset, center.getY() - yOffset));
+        points.add(new PixelPoint(center.getX() - (int)(PixelMap.getActualWidth()) - xOffset, center.getY() - yOffset));
         //Bottom-Left point
-        points.add(new PixelPoint(center.getX() - PixelMap.TILE_WIDTH/2 - xOffset, center.getY() + PixelMap.TILE_HEIGHT/2 - yOffset));
+        points.add(new PixelPoint(center.getX() - (int)(PixelMap.getActualWidth()/2) - xOffset, center.getY() + (int)(PixelMap.getActualHeight()/2) - yOffset));
         //Bottom-Right point
-        points.add(new PixelPoint(center.getX() + PixelMap.TILE_WIDTH/2 - xOffset, center.getY() + PixelMap.TILE_HEIGHT/2 - yOffset));
+        points.add(new PixelPoint(center.getX() + (int)(PixelMap.getActualWidth()/2) - xOffset, center.getY() + (int)(PixelMap.getActualHeight()/2) - yOffset));
         //Right point
-        points.add(new PixelPoint(center.getX() + PixelMap.TILE_WIDTH - xOffset, center.getY() - yOffset));
+        points.add(new PixelPoint(center.getX() + (int)(PixelMap.getActualWidth()) - xOffset, center.getY() - yOffset));
         //Top-Right point
-        points.add(new PixelPoint(center.getX() + PixelMap.TILE_WIDTH/2 - xOffset, center.getY() - PixelMap.TILE_HEIGHT/2 - yOffset));
+        points.add(new PixelPoint(center.getX() + (int)(PixelMap.getActualWidth()/2) - xOffset, center.getY() - (int)(PixelMap.getActualHeight()/2) - yOffset));
         return points;
     }
 

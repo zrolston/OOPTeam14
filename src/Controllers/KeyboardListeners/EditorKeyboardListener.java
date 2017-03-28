@@ -22,7 +22,7 @@ public class EditorKeyboardListener implements KeyListener {
 
     Component component;
     Set<Integer> pressedKeys= new HashSet<>();
-    ModelFacade modelFacade;
+    ModelFacade modelFacade = ModelFacade.getInstance();
     MapEditorView view;
 
     public void setComponent(Component component) {
@@ -30,12 +30,12 @@ public class EditorKeyboardListener implements KeyListener {
     }
 
     public EditorKeyboardListener(ModelFacade modelFacade, MapEditorView mapEditorView) {
-        this.modelFacade=modelFacade;
+//        this.modelFacade=modelFacade;
         view=mapEditorView;
     }
 
     public EditorKeyboardListener(ModelFacade modelFacade) {
-        this.modelFacade = modelFacade;
+//        this.modelFacade = modelFacade;
     }
 
     @Override

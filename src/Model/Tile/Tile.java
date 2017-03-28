@@ -1,6 +1,7 @@
 package Model.Tile;
 
 import Model.Terrain.Terrain;
+import Model.Visitor.EdgeVisitor;
 import Model.Visitor.TileVisitor;
 
 public abstract class Tile {
@@ -9,6 +10,8 @@ public abstract class Tile {
     protected Tile(Terrain terrain){
         this.terrain = terrain;
     }
+
+    public abstract Tile clone();
 
     public Terrain getTerrain(){
         return this.terrain;

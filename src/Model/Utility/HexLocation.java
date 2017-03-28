@@ -30,26 +30,6 @@ public class HexLocation implements ILocation{
             myAdj.add(new HexLocation(this.row + -1, this.col + 0));
 
             //NorthWest
-            myAdj.add(new HexLocation(this.row + -1, this.col + -1));
-
-            //NorthEast
-            myAdj.add(new HexLocation(this.row + -1, this.col + 1));
-
-            //South
-            myAdj.add(new HexLocation(this.row + 1, this.col + 0));
-
-            //SouthWest
-            myAdj.add(new HexLocation(this.row + 0, this.col + -1));
-
-            //SouthEast
-            myAdj.add(new HexLocation(this.row + 0, this.col + 1));
-        }
-
-        else{
-            //North
-            myAdj.add(new HexLocation(this.row + -1, this.col + 0));
-
-            //NorthWest
             myAdj.add(new HexLocation(this.row + 0, this.col + -1));
 
             //NorthEast
@@ -63,6 +43,26 @@ public class HexLocation implements ILocation{
 
             //SouthEast
             myAdj.add(new HexLocation(this.row + 1, this.col + 1));
+        }
+
+        else{
+            //North
+            myAdj.add(new HexLocation(this.row + -1, this.col + 0));
+
+            //NorthWest
+            myAdj.add(new HexLocation(this.row + -1, this.col + -1));
+
+            //NorthEast
+            myAdj.add(new HexLocation(this.row + -1, this.col + 1));
+
+            //South
+            myAdj.add(new HexLocation(this.row + 1, this.col + 0));
+
+            //SouthWest
+            myAdj.add(new HexLocation(this.row, this.col + -1));
+
+            //SouthEast
+            myAdj.add(new HexLocation(this.row, this.col + 1));
         }
 
         return myAdj;
@@ -81,36 +81,7 @@ public class HexLocation implements ILocation{
                 break;
 
                 //NorthEast
-                case 2: myAdj = (new HexLocation(this.row + -1, this.col + 1));
-                break;
-
-                //SouthEast
-                case 3: myAdj = (new HexLocation(this.row + 0, this.col + 1));
-                break;
-
-                //South
-                case 4: myAdj = (new HexLocation(this.row + 1, this.col + 0));
-                break;
-
-                //SouthWest
-                case 5: myAdj = (new HexLocation(this.row + 0, this.col + -1));
-                break;
-
-                //NorthWest
-                case 6: myAdj = (new HexLocation(this.row + -1, this.col + -1));
-                break;
-            }
-        }
-
-        else{
-
-            switch(index.getValue()) {
-                //North
-                case 1: myAdj = (new HexLocation(this.row + -1, this.col + 0));
-                break;
-
-                //NorthEast
-                case 2: myAdj = (new HexLocation(this.row + 0, this.col + 1));
+                case 2: myAdj = (new HexLocation(this.row, this.col + 1));
                 break;
 
                 //SouthEast
@@ -126,7 +97,36 @@ public class HexLocation implements ILocation{
                 break;
 
                 //NorthWest
-                case 6: myAdj = (new HexLocation(this.row + 0, this.col + -1));
+                case 6: myAdj = (new HexLocation(this.row, this.col + -1));
+                break;
+            }
+        }
+
+        else{
+
+            switch(index.getValue()) {
+                //North
+                case 1: myAdj = (new HexLocation(this.row + -1, this.col + 0));
+                break;
+
+                //NorthEast
+                case 2: myAdj = (new HexLocation(this.row - 1, this.col + 1));
+                break;
+
+                //SouthEast
+                case 3: myAdj = (new HexLocation(this.row, this.col + 1));
+                break;
+
+                //South
+                case 4: myAdj = (new HexLocation(this.row + 1, this.col + 0));
+                break;
+
+                //SouthWest
+                case 5: myAdj = (new HexLocation(this.row, this.col + -1));
+                break;
+
+                //NorthWest
+                case 6: myAdj = (new HexLocation(this.row - 1, this.col + -1));
                 break;
 
             }
@@ -156,5 +156,9 @@ public class HexLocation implements ILocation{
     public boolean equals(HexLocation hexLocation){
         return this.row == hexLocation.getRow() && this.col == hexLocation.getCol();
     }
+
+
+
+
 
 }

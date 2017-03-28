@@ -13,15 +13,11 @@ public class PlacementManager {
     private RiverCountVisitor riverCountVisitor;
 
     public PlacementManager(){
-        slots = new HashMap<ILocation, Slot>();
+        slots = new HashMap<>();
 
         buildMap = BuildMap.getInstance();
 
         riverCountVisitor = new RiverCountVisitor();
-    }
-
-    private Slot getSlotAt(ILocation location){
-        return slots.get(location);
     }
 
     public boolean validate(BuildTile target, ILocation loc){
@@ -38,7 +34,6 @@ public class PlacementManager {
         return mySlot.checkMatch(target.getEdges());
     }
 
-
     //Precondition:  Tile/Location is a valid placement.
     public void placeTileAt(BuildTile tile, ILocation location){
 
@@ -50,7 +45,7 @@ public class PlacementManager {
                 this.updateSlot(loc);
             }
 
-            else if(!buildMap.tileExistsAt(loc) && buildMap.locationInBounds(loc)){
+            else if(!buildMap.tileExistsAt(loc)){
                 //CREATE A NEW SLOT
                 this.createSlotAt(loc);
             }
@@ -125,9 +120,7 @@ public class PlacementManager {
 
         for(Slot targetSlot: slots.values()) {
 
-            for (Edge e : targetSlot.getAllEdges()) {
-                e.accept(riverCountVisitor);
-            }
+            targetSlot.accept(riverCountVisitor);
 
             if(riverCountVisitor.getRiverCount() != 0){
                 riverCountVisitor.clearRiverCount();
@@ -143,10 +136,6 @@ public class PlacementManager {
             return false;
         }
         return true;
-    }
-
-    public HashMap<ILocation,Slot> getSlots() {
-        return slots;
     }
 
     public int getNumSlots(){

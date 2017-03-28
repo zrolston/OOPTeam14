@@ -28,7 +28,6 @@ public class MapDrawingVisitor implements MapVisitor {
         Will return array of tiles in the camera window. There will
         be null tiles.
         */
-        TileDrawingVisitor tdv = new TileDrawingVisitor();
         for (int col = 0; col < width; col++) {
             for (int row = 0; row < height; row++) {
                 if(tiles[row][col] == null){
@@ -38,6 +37,7 @@ public class MapDrawingVisitor implements MapVisitor {
 //                  System.out.println(imageArray[row][col]);
                 }
                 else{
+                    TileDrawingVisitor tdv = new TileDrawingVisitor();
                     tiles[row][col].accept(tdv);
                     imageArray[row][col] = tdv.getImage();
                 }

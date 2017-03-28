@@ -16,11 +16,11 @@ public class Camera {
     private static Camera instance = null;
     private int moveOffset = PixelMap.TILE_WIDTH/16;
     private PixelPoint press = null;
-    private boolean cameraMovement =  true;
+    private boolean cameraMovement =  false;
 
     private Camera(int x, int y){
         origin = new PixelPoint(x, y);
-        scale = 1.0225;
+        scale = 1.0;
         width = PixelMap.SCREEN_WIDTH;
         height = PixelMap.SCREEN_HEIGHT;
     }
@@ -30,12 +30,6 @@ public class Camera {
             instance = new Camera(0,0);
         }
         return instance;
-    }
-
-    public static void initialize(int x, int y){
-        if(instance == null){
-            instance = new Camera(x, y);
-        }
     }
 
     //Getters
@@ -51,6 +45,9 @@ public class Camera {
     public void zoomOut(){
         if(scale > 0.1)
             scale -= 0.1;
+    }
+    public void setScale(double scale) {
+        this.scale = scale;
     }
 
     //NumKey Camera movement (uses a set offset)

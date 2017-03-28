@@ -1,52 +1,65 @@
 package Views.MapEditor.TileSelection;
 
-import Model.Tile.BuildTileFactory;
 import Model.Tile.Tile;
-import Model.Visitor.TileDrawingVisitor;
+import Model.Utility.TerrainIterator;
+import Model.Utility.TileIterator;
+import Views.Utility.ImageLoader;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 
 public class CurrentSelectionView extends JPanel {
-
+    
     private BufferedImage currSelectionImage = null;
-    private Tile currSelection = null;
-
-    public CurrentSelectionView(Dimension size) {
+    private TileIterator terrainIterator = new TerrainIterator();
+    private TileIterator riverIterator = terrainIterator.getRiverIterator();
+    private RiverSelectionView riverSelectionView = null;
+    private BufferedImage shadow;
+    
+    public CurrentSelectionView(Dimension size, RiverSelectionView riverSelectionView) {
+        this.riverSelectionView = riverSelectionView;
         setPreferredSize(size);
         setVisible(true);
+        setOpaque(false);
         drawCurrentSelection();
+        shadow = ImageLoader.getImage("TILE_SHADOW");
     }
 
-    public void update(Tile t) {
-        currSelection = t;
-        drawCurrentSelection();
+    public void update( int tileIndex ) {
+
+        this.riverIterator = riverSelectionView.getIterator();
+        riverIterator.setSelectedTile( tileIndex );
+        currSelectionImage = riverIterator.getSelectedTileImage();
+
     }
 
     public void drawCurrentSelection() {
 
-        BuildTileFactory factory = new BuildTileFactory();
-        TileDrawingVisitor tdv;
-
-        if(currSelection == null)
-            currSelection = factory.createTile("MOUNTAIN",  new int[]{} );
-
-        tdv = new TileDrawingVisitor();
-        currSelection.accept( tdv );
-        currSelectionImage = tdv.getImage();
+        currSelectionImage = riverIterator.getSelectedTileImage();
         repaint();
+    }
+
+    public void rotate() {
+
+        riverIterator.rotate();
+        drawCurrentSelection();
     }
 
     @Override
     protected void paintComponent(Graphics g) {
-
-        g.setColor( new Color(0xffCABD80)  );
-        g.fillRect(0, 0, getWidth(), getHeight());
-
+    	((Graphics2D)g).setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
         int width = (int)( getWidth() * 0.90 );
-        g.drawImage(currSelectionImage, (int)(width * .05), (int)(width * .05), width, width, null);
+        g.drawImage(shadow, (int)(width * .05), (int)(width * .05) + 13, width, (int)(width * 0.9), null);
+        g.drawImage(currSelectionImage, (int)(width * .05) - 3, (int)(width * .05) + 10, width, (int)(width * 0.9), null);
+    }
+    //Gives global access to currently selected image without breaking encapsulation
+    // Note: It spits out a copy of the currently selected image
+    public BufferedImage getSelectedTileImage(){
+        return riverIterator.getSelectedTileImage();
+    }
 
+    public Tile getSelectedTile(){
+        return riverIterator.getSelectedTile();
     }
 }

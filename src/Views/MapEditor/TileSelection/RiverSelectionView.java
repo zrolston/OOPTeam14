@@ -1,88 +1,73 @@
 package Views.MapEditor.TileSelection;
 
-import Model.Tile.BuildTileFactory;
-import Model.Tile.Tile;
-import Model.Visitor.TileDrawingVisitor;
+import Model.Utility.TerrainIterator;
+import Model.Utility.TileIterator;
 import Views.Utility.ImageLoader;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class RiverSelectionView extends JPanel {
 
-    private static ArrayList< int[] > riverTypes = new ArrayList<>();
     private ArrayList<BufferedImage> riverImages = new ArrayList<>();
-    private ArrayList<Tile> tiles = new ArrayList<>();
-
-    private String terrainSelection = "MOUNTAIN";
-
+    private TileIterator terrainIterator = new TerrainIterator();
+    private TileIterator riverIterator = terrainIterator.getRiverIterator();
+    private BufferedImage shadow;
+    
     public RiverSelectionView(Dimension size) {
         setPreferredSize(size);
         setVisible(true);
+        setOpaque(false);
         drawRiverTiles();
+        shadow = ImageLoader.getImage("TILE_SHADOW");
     }
 
-    public void update(String terrain) {
-        terrainSelection = terrain;
+    public void update(int index) {
+        riverImages.clear();
+        terrainIterator.first();
+        for(int i = 0; i < index; i++) {
+            terrainIterator.next();
+        }
+        riverIterator = terrainIterator.getRiverIterator();
         drawRiverTiles();
     }
 
     public void drawRiverTiles() {
 
-        riverTypes.clear();
-        riverImages.clear();
-        tiles.clear();
-
-        riverTypes.add( new int[]{} );
-        riverTypes.add( new int[]{1} );
-        riverTypes.add( new int[]{1, 2} );
-        riverTypes.add( new int[]{1, 3} );
-        riverTypes.add( new int[]{3, 6} );
-        riverTypes.add( new int[]{1, 3, 5} );
-
-        BuildTileFactory factory = new BuildTileFactory();
-        TileDrawingVisitor tdv;
-
-        for(int i = 0; i < riverTypes.size(); i++) {
-            tiles.add( factory.createTile(terrainSelection,  riverTypes.get( i ) ) );
+        riverIterator.first();
+        for(int i = 0; i < terrainIterator.getSize(); i++) {
+            riverImages.add( riverIterator.getImage()  );
+            riverIterator.next();
         }
 
-        for(Tile t : tiles) {
-            tdv = new TileDrawingVisitor();
-            t.accept( tdv );
-            riverImages.add( tdv.getImage() );
-        }
         repaint();
+    }
+
+    public TileIterator getIterator() {
+        return riverIterator;
     }
 
 
 
     @Override
     protected void paintComponent(Graphics g) {
-
-        g.setColor( new Color(0xffCABD80) );
-        g.fillRect(0, 0, getWidth(), getHeight());
-
+    	((Graphics2D)g).setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
         int width = (int)( getWidth() * 0.90 );
-        while(getHeight() / width < riverTypes.size()) {
+        while(getHeight() / width < riverImages.size()) {
             width -= 5;
         }
 
+        //g.setColor( new Color(0xffCABD80)  );
+        //g.fillRect(0, 0, getWidth(), getHeight());
+
         int i = 0;
         for(BufferedImage img : riverImages ) {
-            g.drawImage(img, 6, 7  + i * width, width, width, null);
+        	g.drawImage(shadow, (int)(width * .05) + 1, (int)(width * .05)  + i * width + 3, width, (int)(width * 0.9), null);
+            g.drawImage(img, (int)(width * .05), (int)(width * .05)  + i * width, width, (int)(width * 0.9), null);
             i++;
         }
     }
 
-
-    public Tile getSelectedTile( int index ) {
-        return tiles.get(index);
-    }
-    public int[] getRiverType( int index ) {
-        return riverTypes.get( index );
-    }
 }

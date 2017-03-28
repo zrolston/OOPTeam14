@@ -3,6 +3,8 @@ package Views.Utility;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.awt.image.ColorModel;
+import java.awt.image.WritableRaster;
 import java.util.HashMap;
 
 public class ImageLoader {
@@ -24,7 +26,6 @@ public class ImageLoader {
 
     static {
         cachedImages = new HashMap<String, BufferedImage>();
-
         try {
             cachedImages.put("DESERT", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/desert.png")));
             cachedImages.put("MOUNTAIN", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/mountain.png")));
@@ -39,14 +40,19 @@ public class ImageLoader {
             cachedImages.put("ROCK", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/rock.png")));
             cachedImages.put("SEA", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/sea.png")));
             cachedImages.put("WOODS", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/woods.png")));
-
+            cachedImages.put("TILE_SHADOW", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/tileShadow.png")));
+            cachedImages.put("BACKGROUND", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/GUI/background.jpg")));
+            cachedImages.put("PANEL_BACKGROUND", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/GUI/panelBackground.png")));
         }
         catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public static void main(String[] args) {
-        System.out.println(ImageLoader.getImage("Mountain"));
+    public static BufferedImage getDeepCopy(BufferedImage image) {
+        ColorModel cm = image.getColorModel();
+        boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
+        WritableRaster raster = image.copyData(null);
+        return new BufferedImage(cm, raster, isAlphaPremultiplied, null);
     }
 }

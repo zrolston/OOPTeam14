@@ -2,6 +2,8 @@ package Views.MapEditor.TileSelection;
 
 import Model.Tile.BuildTileFactory;
 import Model.Tile.Tile;
+import Model.Utility.TerrainIterator;
+import Model.Utility.TileIterator;
 import Model.Visitor.TileDrawingVisitor;
 import Views.Utility.ImageLoader;
 
@@ -12,55 +14,48 @@ import java.util.ArrayList;
 
 public class TerrainSelectionView extends JPanel {
 
-    private final static String[] terrainTypes = {"DESERT", "MOUNTAIN", "PASTURE", "ROCK", "SEA", "WOODS"};
     private ArrayList<BufferedImage> terrainImages = new ArrayList<>();
-    private ArrayList<Tile> tiles = new ArrayList<>();
-
+    private TileIterator terrainIterator = new TerrainIterator();
+    private BufferedImage shadow;
+    
     public TerrainSelectionView(Dimension size) {
         setPreferredSize(size);
         setVisible(true);
-
+        setOpaque(false);
         drawTerrains();
+        shadow = ImageLoader.getImage("TILE_SHADOW");
     }
 
 
     public void drawTerrains() {
 
-        BuildTileFactory factory = new BuildTileFactory();
-        TileDrawingVisitor tdv;
-
-        for(String s : terrainTypes)
-            tiles.add( factory.createTile(s, new int[]{}) );
-
-        for(Tile t : tiles) {
-            tdv = new TileDrawingVisitor();
-            t.accept( tdv );
-            terrainImages.add( tdv.getImage() );
+        terrainIterator.first();
+        for(int i = 0; i < terrainIterator.getSize(); i++) {
+            terrainImages.add( terrainIterator.getImage()  );
+            terrainIterator.next();
         }
 
         repaint();
     }
 
-    public Tile getSelectedTile( int index ) {
-        return tiles.get(index);
-    }
-    public String getTerrainString( int index ) {
-        return terrainTypes[index];
-    }
-
     @Override
     protected void paintComponent(Graphics g) {
-
-        g.setColor( new Color(0xffCABD80)  );
-        g.fillRect(0, 0, getWidth(), getHeight());
-
+    	
+    	super.paintComponent(g);
+    	((Graphics2D)g).setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+    	((Graphics2D)g).setRenderingHint(RenderingHints.KEY_INTERPOLATION,RenderingHints.VALUE_INTERPOLATION_BILINEAR);
         int width = (int)( getWidth() * 0.90 );
-        while(getHeight() / width < terrainTypes.length) {
+        while(getHeight() / width < terrainImages.size()) {
             width -= 5;
         }
+
+        //g.setColor( new Color(0xffCABD80)  );
+        //g.fillRect(0, 0, (int)(getWidth() * .975), getHeight());
+
         int i = 0;
         for(BufferedImage img : terrainImages ) {
-            g.drawImage(img, 2, 7  + i * width, width, width, null);
+        	g.drawImage(shadow, (int)(width * .05) + 1, (int)(width * .05)  + i * width + 3, width, (int)(width * 0.9), null);
+            g.drawImage(img, (int)(width * .05), (int)(width * .05)  + i * width, width, (int)(width * 0.9), null);
             i++;
         }
     }

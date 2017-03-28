@@ -8,6 +8,7 @@ public class MapEditor {
     MapEditorController mapEditorController;
     MapEditorView mapEditorView;
 
+
     //Todo: create a view and pass the controller to it
 
     public MapEditor() {

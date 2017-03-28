@@ -42,7 +42,7 @@ public class TileCreationTest {
         }
     }
 
-    @Test
+/*    @Test
     public void testPlainEdges(){
         BuildTileFactory factory = new BuildTileFactory();
         BuildTile seaTile = factory.createTile("SEA", new int[]{});
@@ -66,9 +66,9 @@ public class TileCreationTest {
                 e.printStackTrace();
             }
         }
-    }
+    }*/
 
-    @Test
+/*    @Test
     public void testRiverEdges(){
         BuildTileFactory factory = new BuildTileFactory();
         BuildTile riverTile = factory.createTile("ROCK", new int[]{1, 4});
@@ -90,6 +90,6 @@ public class TileCreationTest {
                 }
             }
         }
-    }
+    }*/
 
 }

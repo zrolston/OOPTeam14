@@ -21,13 +21,14 @@ public class FileIO {
     public static String loadFileText(String fileName){
         String result = "";
         try {
-            BufferedReader br = new BufferedReader(new FileReader(mapsDir + fileName));
+            BufferedReader br = new BufferedReader(new FileReader( fileName));
             StringBuilder sb = new StringBuilder();
             String line = br.readLine();
 
             while (line != null) {
                 sb.append(line);
-                sb.append("\n");
+                sb.append("|");
+//                sb.append("\n");
                 line = br.readLine();
             }
             br.close();
@@ -42,8 +43,8 @@ public class FileIO {
 
     //Just saves text in a file based on fileName and content. Substitutes whatever the file had before
     //Note: Does NOT save text in any specific format. Loads from SavedMaps folder
-    public static void saveFileText(String fileName, String content){
-        try(PrintWriter out = new PrintWriter(mapsDir + fileName)) {
+    public static void saveFileText(String path, String content){
+        try(PrintWriter out = new PrintWriter(path)) {
             out.print(content);
         }
         catch(IOException e){
