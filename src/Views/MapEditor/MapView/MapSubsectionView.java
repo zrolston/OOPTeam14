@@ -55,6 +55,9 @@ public class MapSubsectionView extends JPanel {
         super.paintComponent(g);
         g.drawImage(image, 0, 0, null);
         TileOutlineDrawer.drawActiveTile(g, CursorState.getInstance().getActiveTile());
+        CursorState cursorState = CursorState.getInstance();
+        PixelPoint point = cursorState.getDragged();
+        g.drawImage(cursorState.getDraggedImage(),point.getX(), point.getY(), PixelMap.TILE_FULL_WIDTH, PixelMap.TILE_HEIGHT, null);
     }
 
     public MapSubsectionView() {

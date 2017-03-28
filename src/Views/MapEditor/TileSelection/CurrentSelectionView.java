@@ -3,6 +3,7 @@ package Views.MapEditor.TileSelection;
 import Model.Tile.BuildTileFactory;
 import Model.Tile.Tile;
 import Model.Visitor.TileDrawingVisitor;
+import Views.Utility.ImageLoader;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 
 public class CurrentSelectionView extends JPanel {
 
-    private BufferedImage currSelectionImage = null;
+    private static BufferedImage currSelectionImage = null;
     private Tile currSelection = null;
 
     public CurrentSelectionView(Dimension size) {
@@ -48,5 +49,11 @@ public class CurrentSelectionView extends JPanel {
         int width = (int)( getWidth() * 0.90 );
         g.drawImage(currSelectionImage, (int)(width * .05), (int)(width * .05), width, width, null);
 
+    }
+
+    //Gives global access to currently selected image without breaking encapsulation
+    /** Note: It spits out a copy of the currently selected image */
+    public static BufferedImage getSelectedTile(){
+        return ImageLoader.getDeepCopy(currSelectionImage);
     }
 }
