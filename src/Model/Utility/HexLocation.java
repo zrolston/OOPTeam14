@@ -1,6 +1,7 @@
 package Model.Utility;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**--------------------------------------------------------------------------------------
 |	HexLocation Class: Created by Alejandro Chavez on 3/26/2017.
@@ -29,26 +30,6 @@ public class HexLocation implements ILocation{
             myAdj.add(new HexLocation(this.row + -1, this.col + 0));
 
             //NorthWest
-            myAdj.add(new HexLocation(this.row + -1, this.col + -1));
-
-            //NorthEast
-            myAdj.add(new HexLocation(this.row + -1, this.col + 1));
-
-            //South
-            myAdj.add(new HexLocation(this.row + 1, this.col + 0));
-
-            //SouthWest
-            myAdj.add(new HexLocation(this.row + 0, this.col + -1));
-
-            //SouthEast
-            myAdj.add(new HexLocation(this.row + 0, this.col + 1));
-        }
-
-        else{
-            //North
-            myAdj.add(new HexLocation(this.row + -1, this.col + 0));
-
-            //NorthWest
             myAdj.add(new HexLocation(this.row + 0, this.col + -1));
 
             //NorthEast
@@ -61,7 +42,27 @@ public class HexLocation implements ILocation{
             myAdj.add(new HexLocation(this.row + 1, this.col + -1));
 
             //SouthEast
-            myAdj.add(new HexLocation(this.row + 1, this.col + 1));
+            myAdj.add(new HexLocation(this.row + -1, this.col + 1));
+        }
+
+        else{
+            //North
+            myAdj.add(new HexLocation(this.row + -1, this.col + 0));
+
+            //NorthWest
+            myAdj.add(new HexLocation(this.row + -1, this.col + -1));
+
+            //NorthEast
+            myAdj.add(new HexLocation(this.row + -1, this.col + 1));
+
+            //South
+            myAdj.add(new HexLocation(this.row + 1, this.col + 0));
+
+            //SouthWest
+            myAdj.add(new HexLocation(this.row, this.col + -1));
+
+            //SouthEast
+            myAdj.add(new HexLocation(this.row, this.col + 1));
         }
 
         return myAdj;
@@ -148,6 +149,9 @@ public class HexLocation implements ILocation{
         return "("+row+", "+col+")";
     }
 
+    public int hashCode(){
+        return Objects.hash(this.row, this.col);
+    }
 
     public boolean equals(HexLocation hexLocation){
         return this.row == hexLocation.getRow() && this.col == hexLocation.getCol();

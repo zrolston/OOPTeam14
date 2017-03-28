@@ -1,6 +1,7 @@
 package Model;
 
 import Model.Map.BuildMap;
+import Model.Map.PlacementManager;
 import Model.Tile.BuildTile;
 import Model.Utility.ILocation;
 import Views.Utility.Camera;
@@ -12,22 +13,23 @@ import Views.Utility.PixelPoint;
  */
 public class ModelFacade {
     static ModelFacade modelFacade;
-    BuildMap map;
+    //TODO Use PlacementManager
+    PlacementManager manager;
     Camera camera=Camera.getInstance();
     //Todo:add tileFactory to this
 
 
-    private ModelFacade(BuildMap map) {
-        this.map = map;
+    private ModelFacade(PlacementManager manager) {
+        this.manager = manager;
     }
 
     public void moveCamera(PixelPoint current){
         camera.move(current);
     }
 
-    public static void initialize(BuildMap map){
+    public static void initialize(PlacementManager manager){
         if (!isInitialized()){
-            modelFacade=new ModelFacade(map);
+            modelFacade=new ModelFacade(manager);
         }
     }
 
@@ -56,14 +58,28 @@ public class ModelFacade {
         camera.enableMovement();
     }
 
+    public boolean validateLocation(BuildTile tile, ILocation location){
+        return manager.validate(tile, location);
+    }
+
+    public boolean validateRivers(){
+        return manager.validateRivers();
+    }
+
     public void placeTile(BuildTile tile, ILocation iLocation){
-        map.addTile(tile,iLocation);
+        if(manager.validate(tile, iLocation)){
+            manager.placeTileAt(tile, iLocation);
+        }
+    }
+
+    public void removeTileAt(ILocation location){
+        manager.removeTileAt(location);
     }
 
     public int getMapWidth(){
-        return map.getWIDTH();
+        return BuildMap.getInstance().getWIDTH();
     }
     public int getMapLength(){
-        return map.getHEIGHT();
+        return BuildMap.getInstance().getHEIGHT();
     }
 }

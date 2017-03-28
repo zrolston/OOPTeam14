@@ -1,6 +1,7 @@
 package Model.Utility.MapParsers;
 
 import Model.Map.BuildMap;
+import Model.Map.PlacementManager;
 import Model.ModelFacade;
 import Model.Terrain.TerrainType;
 import Model.Tile.BuildTile;
@@ -40,7 +41,7 @@ public class DaveBuilderTest {
 
     @Test
     public void cleanString() throws Exception {
-        ModelFacade.initialize(map);
+        ModelFacade.initialize(new PlacementManager());
         daveBuilder = new DaveBuilder();
 
         methodParameters = new Class[]{String.class};
@@ -55,7 +56,7 @@ public class DaveBuilderTest {
 
     @Test
     public void extractTilesInfo() throws Exception {
-        ModelFacade.initialize(map);
+        ModelFacade.initialize(new PlacementManager());
         daveBuilder = new DaveBuilder();
 
         methodParameters = new Class[]{String[].class};
@@ -74,8 +75,7 @@ public class DaveBuilderTest {
 
     @Test
     public void convertToOddQOffset() throws Exception {
-        BuildMap map = BuildMap.getInstance();
-        ModelFacade.initialize(map);
+        ModelFacade.initialize(new PlacementManager());
         DaveBuilder daveBuilder = new DaveBuilder();
 
         Class r = DaveBuilder.class;
@@ -115,14 +115,11 @@ public class DaveBuilderTest {
         params = new Object[]{new CubeLocation(11, 4, -15)};
         hex = (HexLocation) m.invoke(daveBuilder, params);
         assertEquals("(0, 21)", hex.toString());
-
-
     }
 
     @Test
     public void convertToCube() throws Exception {
-        BuildMap map = BuildMap.getInstance();
-        ModelFacade.initialize(map);
+        ModelFacade.initialize(new PlacementManager());
         DaveBuilder daveBuilder = new DaveBuilder();
 
         Class r = DaveBuilder.class;
@@ -152,26 +149,20 @@ public class DaveBuilderTest {
         params = new Object[]{new Integer(0), new Integer(21)};
         cube = (CubeLocation) m.invoke(daveBuilder, params);
         assertEquals("(11, 4, -15)", cube.toString());
-
-
     }
-
 
     @Test
     public void buildMap() throws Exception {
-        BuildMap map = BuildMap.getInstance();
-        ModelFacade.initialize(map);
+        ModelFacade.initialize(new PlacementManager());
         DaveBuilder daveBuilder = new DaveBuilder();
 
         daveBuilder.buildMap();
     }
 
-
     @Test
     public void formatTiles() throws Exception {
-        ModelFacade.initialize(map);
+        ModelFacade.initialize(new PlacementManager());
         daveBuilder = new DaveBuilder();
-
 
         Class[] methodParameters = new Class[]{DaveBuilderTile[].class};
         List<Integer> l1 = new ArrayList<>();
@@ -201,8 +192,7 @@ public class DaveBuilderTest {
 
     @Test
     public void saveMap() throws Exception {
-        map = BuildMap.getInstance();
-        ModelFacade.initialize(map);
+        ModelFacade.initialize(new PlacementManager());
         daveBuilder = new DaveBuilder();
         BuildTileFactory tileFactory= new BuildTileFactory();
         BuildTile desert= tileFactory.createTile(TerrainType.DESERT.toString(), new int[] {2,3,5});

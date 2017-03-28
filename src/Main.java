@@ -1,5 +1,6 @@
 import Controllers.TileSelectionController;
 import Model.Map.BuildMap;
+import Model.Map.PlacementManager;
 import Model.ModelFacade;
 import Views.Display;
 import Views.MapEditor.MapView.MapSubsectionView;
@@ -8,8 +9,8 @@ import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
-        BuildMap map= BuildMap.getInstance();
-        ModelFacade.initialize(map);
+        BuildMap map = BuildMap.getInstance();
+        ModelFacade.initialize(new PlacementManager());
         Display display = new Display();
 
         // TODO:  initialize somewhere else
