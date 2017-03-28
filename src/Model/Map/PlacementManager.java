@@ -10,7 +10,7 @@ import java.util.HashMap;
 public class PlacementManager {
     private HashMap<ILocation, Slot> slots;
     private BuildMap buildMap;
-    RiverCountVisitor riverCountVisitor;
+    private RiverCountVisitor riverCountVisitor;
 
     public PlacementManager(){
         slots = new HashMap<>();
@@ -20,20 +20,19 @@ public class PlacementManager {
         riverCountVisitor = new RiverCountVisitor();
     }
 
-    private Slot getSlotAt(ILocation location){
-        return slots.get(location);
-    }
-
     public boolean validate(BuildTile target, ILocation loc){
 
-        if(!buildMap.tileExistsAt(loc) || !this.slotExistsAt(loc)){
+        if(slots.isEmpty()){
+            return true;
+        }
+
+        if(buildMap.tileExistsAt(loc) || !this.slotExistsAt(loc)){
             return false;
         }
 
         Slot mySlot = slots.get(loc);
         return mySlot.checkMatch(target.getEdges());
     }
-
 
     //Precondition:  Tile/Location is a valid placement.
     public void placeTileAt(BuildTile tile, ILocation location){
@@ -51,6 +50,8 @@ public class PlacementManager {
                 this.createSlotAt(loc);
             }
         }
+
+        slots.remove(location);
     }
 
     public void removeTileAt(ILocation targetLocation){
@@ -61,10 +62,6 @@ public class PlacementManager {
             if(slotExistsAt(adjLocation)){
 
                 this.updateSlot(adjLocation);
-
-                if(slots.get(adjLocation).isEmpty()){
-                    slots.remove(adjLocation);
-                }
             }
         }
 
@@ -90,6 +87,10 @@ public class PlacementManager {
                 target.removeEdge(index);
             }
         }
+
+        if(!target.hasEdges()){
+            slots.remove(loc);
+        }
     }
 
     private void createSlotAt(ILocation loc) {
@@ -106,6 +107,10 @@ public class PlacementManager {
                 targetTile = buildMap.getTileAt(location);
                 newSlot.addEdge(index, targetTile.getEdgeAt(index.getOppositeSide()));
             }
+        }
+
+        if(newSlot.hasEdges()) {
+            slots.put(loc, newSlot);
         }
     }
 
@@ -135,4 +140,7 @@ public class PlacementManager {
         return true;
     }
 
+    public int getNumSlots(){
+        return slots.size();
+    }
 }

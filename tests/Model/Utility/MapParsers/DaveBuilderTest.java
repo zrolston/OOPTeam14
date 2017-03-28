@@ -1,6 +1,7 @@
 package Model.Utility.MapParsers;
 
 import Model.Map.BuildMap;
+import Model.Map.PlacementManager;
 import Model.ModelFacade;
 import org.junit.Test;
 
@@ -39,8 +40,7 @@ public class DaveBuilderTest {
 
     @Test
     public void convertToOddQOffset() throws Exception {
-        BuildMap map= BuildMap.getInstance();
-        ModelFacade.initialize(map);
+        ModelFacade.initialize(new PlacementManager());
         DaveBuilder daveBuilder= new DaveBuilder();
 
         CubeLocation cubeLocation=new CubeLocation(1,2,3);
@@ -56,8 +56,7 @@ public class DaveBuilderTest {
 
     @Test
     public void parseData() throws Exception {
-        BuildMap map= BuildMap.getInstance();
-        ModelFacade.initialize(map);
+        ModelFacade.initialize(new PlacementManager());
         DaveBuilder daveBuilder= new DaveBuilder();
         JButton jButton = new JButton();
         final JFileChooser fc = new JFileChooser();

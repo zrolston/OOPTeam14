@@ -1,6 +1,7 @@
 package Model.Utility;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**--------------------------------------------------------------------------------------
 |	HexLocation Class: Created by Alejandro Chavez on 3/26/2017.
@@ -148,6 +149,9 @@ public class HexLocation implements ILocation{
         return "("+row+", "+col+")";
     }
 
+    public int hashCode(){
+        return Objects.hash(this.row, this.col);
+    }
 
     public boolean equals(HexLocation hexLocation){
         return this.row == hexLocation.getRow() && this.col == hexLocation.getCol();

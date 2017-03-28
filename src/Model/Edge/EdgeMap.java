@@ -76,4 +76,8 @@ public class EdgeMap {
     public Edge getEdgeAt(HexaIndex index){
         return edgeMap.get(index);
     }
+
+    public int size(){
+        return edgeMap.size();
+    }
 }

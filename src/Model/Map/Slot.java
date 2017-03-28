@@ -36,12 +36,16 @@ public class Slot {
         return edges.hasEdge(index);
     }
 
-    public boolean isEmpty() {
-        return edges.isEmpty();
-    }
-
     public Collection<Edge> getAllEdges() {
         Map<HexaIndex, Edge> _edges = edges.getEdges();
         return _edges.values();
+    }
+
+    public boolean hasEdges() {
+        return !this.edges.isEmpty();
+    }
+
+    public int edgeSize(){
+        return edges.size();
     }
 }
