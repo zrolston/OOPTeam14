@@ -42,10 +42,10 @@ public class TileSelectionController implements MouseListener{
             else if( y < 0.75 && x > 0.5) { // click in river panel
                 currentSelectionView.update( tileIndex );
             }
+        }
             else if( y > 0.75 ) { // click in current selection panel
                 currentSelectionView.rotate();
             }
-        }
      }
 
 
