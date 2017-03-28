@@ -1,4 +1,6 @@
 import Controllers.TileSelectionController;
+import Model.Map.BuildMap;
+import Model.ModelFacade;
 import Views.Display;
 
 import javax.swing.*;
@@ -6,6 +8,8 @@ import javax.swing.*;
 public class Main {
     public static void main(String[] args) {
         Display display = new Display();
+        BuildMap map=new BuildMap(21,21);
+        ModelFacade.initialize(map);
 
         // TODO:  initialize somewhere else
         TileSelectionController tileSelectionController = new TileSelectionController(display.getTileSelectionView());

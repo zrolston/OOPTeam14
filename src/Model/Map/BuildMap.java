@@ -65,4 +65,12 @@ public class BuildMap implements IViewMap {
             }
         }
     }
+
+    public int getHEIGHT() {
+        return HEIGHT;
+    }
+
+    public int getWIDTH() {
+        return WIDTH;
+    }
 }

@@ -59,13 +59,14 @@ public class MapSubsectionView extends JPanel {
 
     public MapSubsectionView() {
         //Adding some Listeners to test
-        ModelFacade modelFacade = new ModelFacade(null);
+        ModelFacade modelFacade = ModelFacade.getInstance();
         MapSubsectionMouseListener listener = new MapSubsectionMouseListener(modelFacade, this);
         addMouseListener(listener);
         addMouseMotionListener(listener);
 
         setBounds(0, 0, PixelMap.SCREEN_WIDTH, PixelMap.SCREEN_HEIGHT);
 
+        //TODO: MAKE SURE THAT THE FACADE AND THIS ARE USING THE SAME MAP
         BuildMap map = new BuildMap(21,21);
         updateCachedImages(map);
         image = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
