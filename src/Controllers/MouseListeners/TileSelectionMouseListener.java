@@ -3,7 +3,6 @@ package Controllers.MouseListeners;
 import Model.Map.BuildMap;
 import Model.ModelFacade;
 import Model.Tile.BuildTile;
-import Model.Tile.Tile;
 import Model.Utility.HexLocation;
 import Views.MapEditor.MapView.MapSubsectionView;
 import Views.MapEditor.TileSelection.CurrentSelectionView;
@@ -38,9 +37,6 @@ public class TileSelectionMouseListener implements MouseMotionListener, MouseLis
     @Override
     public void mousePressed(MouseEvent e) {
         mousePressed = true;
-//        cursorState.setDragged(e.getX(), e.getY());
-//        cursorState.startDraggingTile();
-//        cursorState.setDraggedImage(currentSelectionView.getSelectedTileImage());
     }
 
     @Override
@@ -64,7 +60,7 @@ public class TileSelectionMouseListener implements MouseMotionListener, MouseLis
 
     @Override
     public void mouseEntered(MouseEvent e) {
-
+        cursorState.setMarkerActive(false);
     }
 
     @Override
@@ -74,10 +70,12 @@ public class TileSelectionMouseListener implements MouseMotionListener, MouseLis
             cursorState.startDraggingTile();
             cursorState.setDraggedImage(currentSelectionView.getSelectedTileImage());
         }
+        cursorState.setMarkerActive(true);
     }
 
     @Override
     public void mouseDragged(MouseEvent e) {
+        updateActiveTile(e);
         if(cursorState.isDraggingTile()){
             cursorState.setDragged(e.getX(), e.getY());
         }

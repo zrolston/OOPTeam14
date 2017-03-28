@@ -28,12 +28,14 @@ public class MapSubsectionView extends JPanel {
     private BufferedImage image;
     private static BufferedImage[][] tileImages;
     private CursorState cursorState = CursorState.getInstance();
+    private static boolean cachedImagesUpdated = false;
 
     public static void updateCachedImages(IViewMap map) {
         MapDrawingVisitor drawingVisitor = new MapDrawingVisitor();
         map.accept(drawingVisitor);
         tileImages = drawingVisitor.getImageArray();
         background = ImageLoader.getImage("BACKGROUND");
+        cachedImagesUpdated = true;
     }
 
     public void updateImage() {
@@ -48,7 +50,6 @@ public class MapSubsectionView extends JPanel {
                 }
             }
         }
-
         g2.dispose();
     }
 
@@ -56,6 +57,12 @@ public class MapSubsectionView extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+
+        if (cachedImagesUpdated){
+            updateImage();
+            cachedImagesUpdated = false;
+        }
+
         g.drawImage(image, 0, 0, null);
 
         //Update the Marker
