@@ -56,7 +56,7 @@ public class BuildMap implements IViewMap {
 
     @Override
     public BuildTile getTileAt(ILocation location) {
-        return map[location.getCol()][location.getRow()];
+        return map[location.getRow()][location.getCol()];
     }
 
     public boolean locationInBounds(ILocation location){
@@ -72,7 +72,7 @@ public class BuildMap implements IViewMap {
             return false;
         }
 
-        if(map[location.getCol()][location.getRow()] == null){
+        if(map[location.getRow()][location.getCol()] == null){
             return false;
         }
         return true;
@@ -95,11 +95,7 @@ public class BuildMap implements IViewMap {
         }
     }
 
-    public int getHEIGHT(){
-        return HEIGHT;
-    }
-
-    public int getWIDTH(){
-        return WIDTH;
+    public static void reset(){
+        buildMap = null;
     }
 }

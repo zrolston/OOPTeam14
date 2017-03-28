@@ -36,6 +36,6 @@ public class RiverCountVisitor implements EdgeVisitor{
 
     @Override
     public void visitRiverEdge(RiverEdge riverEdge) {
-
+        riverCount++;
     }
 }

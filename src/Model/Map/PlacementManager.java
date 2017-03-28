@@ -10,7 +10,7 @@ import java.util.HashMap;
 public class PlacementManager {
     private HashMap<ILocation, Slot> slots;
     private BuildMap buildMap;
-    RiverCountVisitor riverCountVisitor;
+    private RiverCountVisitor riverCountVisitor;
 
     public PlacementManager(){
         slots = new HashMap<ILocation, Slot>();
@@ -26,7 +26,11 @@ public class PlacementManager {
 
     public boolean validate(BuildTile target, ILocation loc){
 
-        if(!buildMap.tileExistsAt(loc) || !this.slotExistsAt(loc)){
+        if(slots.isEmpty()){
+            return true;
+        }
+
+        if(buildMap.tileExistsAt(loc) || !this.slotExistsAt(loc)){
             return false;
         }
 
@@ -51,6 +55,8 @@ public class PlacementManager {
                 this.createSlotAt(loc);
             }
         }
+
+        slots.remove(location);
     }
 
     public void removeTileAt(ILocation targetLocation){
@@ -61,10 +67,6 @@ public class PlacementManager {
             if(slotExistsAt(adjLocation)){
 
                 this.updateSlot(adjLocation);
-
-                if(slots.get(adjLocation).isEmpty()){
-                    slots.remove(adjLocation);
-                }
             }
         }
 
@@ -90,6 +92,10 @@ public class PlacementManager {
                 target.removeEdge(index);
             }
         }
+
+        if(!target.hasEdges()){
+            slots.remove(loc);
+        }
     }
 
     private void createSlotAt(ILocation loc) {
@@ -106,6 +112,10 @@ public class PlacementManager {
                 targetTile = buildMap.getTileAt(location);
                 newSlot.addEdge(index, targetTile.getEdgeAt(index.getOppositeSide()));
             }
+        }
+
+        if(newSlot.hasEdges()) {
+            slots.put(loc, newSlot);
         }
     }
 
@@ -135,4 +145,11 @@ public class PlacementManager {
         return true;
     }
 
+    public HashMap<ILocation,Slot> getSlots() {
+        return slots;
+    }
+
+    public int getNumSlots(){
+        return slots.size();
+    }
 }

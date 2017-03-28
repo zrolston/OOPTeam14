@@ -50,11 +50,11 @@ public class Slot {
         return true;
     }
 
-    public boolean isEmpty() {
-        return edges.isEmpty();
-    }
-
     public Collection<Edge> getAllEdges() {
         return edges.values();
+    }
+
+    public boolean hasEdges() {
+        return this.edges.size() > 0;
     }
 }
