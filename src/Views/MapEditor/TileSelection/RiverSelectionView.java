@@ -69,8 +69,8 @@ public class RiverSelectionView extends JPanel {
             width -= 5;
         }
 
-        g.setColor( new Color(0xffCABD80)  );
-        g.fillRect(0, 0, getWidth(), getHeight());
+        //g.setColor( new Color(0xffCABD80)  );
+        //g.fillRect(0, 0, getWidth(), getHeight());
 
         int i = 0;
         for(BufferedImage img : riverImages ) {

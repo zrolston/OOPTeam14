@@ -52,10 +52,10 @@ public class CurrentSelectionView extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
     	((Graphics2D)g).setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
-        g.setColor( new Color(0xffCABD80)  );
-        g.fillRect(0, 0, getWidth(), getHeight());
+        //g.setColor( new Color(0xffCABD80)  );
+        //g.fillRect(0, 0, getWidth(), getHeight());
         int width = (int)( getWidth() * 0.90 );
-        g.drawImage(currSelectionImage, (int)(width * .05), (int)(width * .05) + 20, width, (int)(width * 0.9), null);
+        g.drawImage(currSelectionImage, (int)(width * .05) - 3, (int)(width * .05) + 10, width, (int)(width * 0.9), null);
     }
     //Gives global access to currently selected image without breaking encapsulation
     // Note: It spits out a copy of the currently selected image
