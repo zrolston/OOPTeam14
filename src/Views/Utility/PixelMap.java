@@ -74,8 +74,8 @@ public class PixelMap {
     public static HexLocation getHexLocationAtPixelPoint(PixelPoint point) {
         Camera camera = Camera.getInstance();
 
-        double xPosition = point.getX()/camera.getScale() + camera.getOrigin().getX();
-        double yPosition = point.getY()/camera.getScale() + camera.getOrigin().getY();
+        double xPosition = (point.getX() + camera.getOrigin().getX())/camera.getScale();
+        double yPosition = (point.getY() + camera.getOrigin().getY())/camera.getScale();
 
         HexLocation location = null;
 
