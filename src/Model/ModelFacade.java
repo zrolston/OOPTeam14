@@ -68,8 +68,8 @@ public class ModelFacade {
         return manager.validate(tile, location);
     }
 
-    public boolean validateRivers(){
-        return manager.validateRivers();
+    public boolean validateMap(){
+        return manager.validateMap();
     }
 
     public void placeTile(BuildTile tile, ILocation iLocation){
