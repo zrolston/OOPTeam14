@@ -45,7 +45,7 @@ public class TerrainSelectionView extends JPanel {
         }
 
         g.setColor( new Color(0xffCABD80)  );
-        g.fillRect(0, 0, (int)(getWidth() * .95), getHeight());
+        g.fillRect(0, 0, (int)(getWidth() * .975), getHeight());
 
         int i = 0;
         for(BufferedImage img : terrainImages ) {
