@@ -13,8 +13,8 @@ import java.awt.event.MouseMotionListener;
 public class TileSelectionMouseListener implements MouseMotionListener, MouseListener {
 
     TileSelectionView view;
-    CurrentSelectionView currentSelectionView;
     CursorState cursorState = CursorState.getInstance();
+    CurrentSelectionView currentSelectionView;
 
     public TileSelectionMouseListener(TileSelectionView tileSelectionView, CurrentSelectionView currentSelectionView) {
         this.view = tileSelectionView;
@@ -28,14 +28,17 @@ public class TileSelectionMouseListener implements MouseMotionListener, MouseLis
 
     @Override
     public void mousePressed(MouseEvent e) {
+        cursorState.setDragged(e.getX(), e.getY());
         System.out.println("Selected"+new PixelPoint(e.getX(), e.getY()));
         cursorState.setDraggedImage(currentSelectionView.getSelectedTile());
         cursorState.startDraggingTile();
+        cursorState.setDraggedImage(currentSelectionView.getSelectedTile());
+
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        System.out.println("Released: "+new PixelPoint(e.getX(), e.getY()));
+        cursorState.setDragged(e.getX(), e.getY());
         cursorState.stopDraggingTile();
         cursorState.setDraggedImage(null);
     }

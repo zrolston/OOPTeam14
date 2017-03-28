@@ -38,18 +38,19 @@ public class TerrainSelectionView extends JPanel {
 
     @Override
     protected void paintComponent(Graphics g) {
-
+    	((Graphics2D)g).setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+    	((Graphics2D)g).setRenderingHint(RenderingHints.KEY_INTERPOLATION,RenderingHints.VALUE_INTERPOLATION_BILINEAR);
         int width = (int)( getWidth() * 0.90 );
         while(getHeight() / width < terrainImages.size()) {
             width -= 5;
         }
 
-        g.setColor( new Color(0xffCABD80)  );
-        g.fillRect(0, 0, (int)(getWidth() * .975), getHeight());
+        //g.setColor( new Color(0xffCABD80)  );
+        //g.fillRect(0, 0, (int)(getWidth() * .975), getHeight());
 
         int i = 0;
         for(BufferedImage img : terrainImages ) {
-            g.drawImage(img, (int)(width * .05), (int)(width * .05)  + i * width, width, width, null);
+            g.drawImage(img, (int)(width * .05), (int)(width * .05)  + i * width, width, (int)(width * 0.9), null);
             i++;
         }
     }

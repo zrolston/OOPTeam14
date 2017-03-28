@@ -7,17 +7,20 @@
 package Views.MapEditor.TileSelection;
 
 import Controllers.MouseListeners.TileSelectionMouseListener;
+import Views.Utility.ImageLoader;
 import Views.Utility.PixelMap;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class TileSelectionView extends JPanel{
 
     TerrainSelectionView terrainSelectionView;
     RiverSelectionView riverSelectionView;
     CurrentSelectionView currentSelectionView;
-
+    BufferedImage panelBackground;
+    
     public TileSelectionView(){
 
         setLayout(new BorderLayout());
@@ -26,14 +29,13 @@ public class TileSelectionView extends JPanel{
         terrainSelectionView = new TerrainSelectionView(new Dimension(getWidth() / 2 + 1, getHeight() - getWidth()));
         riverSelectionView = new RiverSelectionView(new Dimension(getWidth() / 2 + 1, getHeight() - getWidth()));
         currentSelectionView = new CurrentSelectionView(new Dimension(getWidth(), getWidth()), riverSelectionView);
-
+        panelBackground = ImageLoader.getImage("PANEL_BACKGROUND");
 
         add(terrainSelectionView, BorderLayout.WEST);
         add(riverSelectionView, BorderLayout.EAST);
         add(currentSelectionView, BorderLayout.SOUTH);
-
-        setBorder(BorderFactory.createLineBorder(new Color(0xff000000), 2));
-
+        
+        
         TileSelectionMouseListener listener = new TileSelectionMouseListener(this, currentSelectionView);
         addMouseListener(listener);
         addMouseMotionListener(listener);
@@ -51,5 +53,11 @@ public class TileSelectionView extends JPanel{
     public CurrentSelectionView getCurrentSelectionView() {
         return currentSelectionView;
     }
-
+    
+    @Override
+    protected void paintComponent(Graphics g) {
+    	g.setColor(Color.BLACK);
+    	g.drawImage(panelBackground, 0, 0, (int)(getWidth() * 1.145), (int)(getHeight() * 1.032), null);
+    	g.drawRect(0, 0, getWidth() - 7, getHeight() - 8);
+    }
 }
