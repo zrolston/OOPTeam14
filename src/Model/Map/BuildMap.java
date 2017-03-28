@@ -55,20 +55,18 @@ public class BuildMap implements IViewMap {
         return window;
     }
 
-    @Override
-    public Tile getTileAt(ILocation location) {
-        return null;
-    }
-
     public boolean validateMap(){
         return true;
     }
+
     public void addTile(BuildTile tile, ILocation location){
         map[location.getRow()][location.getCol()] = tile;
     }
+
     public void removeTile(ILocation location){
         map[location.getRow()][location.getCol()] = null;
     }
+
     public void clear(){
         for(int i = 0; i < HEIGHT; i++){
             for(int j = 0; j < WIDTH; j++){

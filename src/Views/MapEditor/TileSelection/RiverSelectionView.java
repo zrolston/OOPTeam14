@@ -16,6 +16,7 @@ public class RiverSelectionView extends JPanel {
     public RiverSelectionView(Dimension size) {
         setPreferredSize(size);
         setVisible(true);
+        setOpaque(false);
         drawRiverTiles();
     }
 

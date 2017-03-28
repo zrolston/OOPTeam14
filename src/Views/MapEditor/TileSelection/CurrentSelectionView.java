@@ -18,6 +18,7 @@ public class CurrentSelectionView extends JPanel {
         this.riverSelectionView = riverSelectionView;
         setPreferredSize(size);
         setVisible(true);
+        setOpaque(false);
         drawCurrentSelection();
     }
 
