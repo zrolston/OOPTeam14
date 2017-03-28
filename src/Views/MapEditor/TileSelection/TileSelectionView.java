@@ -6,10 +6,7 @@
 ---------------------------------------------------------------------------------------*/
 package Views.MapEditor.TileSelection;
 
-//import Controllers.MouseListeners.TileSelectionMouseListener;
 import Controllers.MouseListeners.TileSelectionMouseListener;
-import Model.Terrain.Terrain;
-import Model.Tile.Tile;
 import Views.Utility.ImageLoader;
 import Views.Utility.PixelMap;
 
@@ -27,7 +24,7 @@ public class TileSelectionView extends JPanel{
     public TileSelectionView(){
 
         setLayout(new BorderLayout());
-        setBounds((int)(PixelMap.SCREEN_WIDTH * 0.0125), (int)(PixelMap.SCREEN_HEIGHT * 0.025), (int)(PixelMap.SCREEN_WIDTH * 0.155), (int)(PixelMap.SCREEN_HEIGHT * 0.95));
+        setBounds((int)(PixelMap.SCREEN_WIDTH * 0.0125), (int)(PixelMap.SCREEN_HEIGHT * 0.025), (int)(PixelMap.SCREEN_WIDTH * (0.0125 + 0.155)), (int)(PixelMap.SCREEN_HEIGHT * 0.95));
 
         terrainSelectionView = new TerrainSelectionView(new Dimension(getWidth() / 2 + 1, getHeight() - getWidth()));
         riverSelectionView = new RiverSelectionView(new Dimension(getWidth() / 2 + 1, getHeight() - getWidth()));
@@ -62,8 +59,12 @@ public class TileSelectionView extends JPanel{
     @Override
     protected void paintComponent(Graphics g) {
     	g.setColor(Color.BLACK);
-        //This was causing some View Bugs [Uncomment at your own risk]
-//    	g.drawImage(panelBackground, 0, 0, null);
-    	g.drawRect(0, 0, getWidth() - 7, getHeight() - 8);
+    	g.drawImage(panelBackground, 0, 0, (int)(getWidth() * 1.145), (int)(getHeight() * 1.032), null);
+    	int recWidth = (int)(getWidth() * 0.97);
+    	int recHeight = (int)(getHeight() * 0.71);
+    	g.drawRect(0, 0, recWidth, (int)(getHeight() * 0.99));
+    	g.drawLine(recWidth/2, 0, recWidth/2, recHeight);
+    	g.drawLine(0, recHeight, recWidth, recHeight);
+
     }
 }

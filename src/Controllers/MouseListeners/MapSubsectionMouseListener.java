@@ -28,6 +28,7 @@ import java.awt.event.MouseMotionListener;
 public class MapSubsectionMouseListener implements MouseMotionListener, MouseListener {
 
     Camera camera = Camera.getInstance();
+    CursorState cursorState = CursorState.getInstance();
     ModelFacade modelFacade;
     MapSubsectionView view;
 
@@ -43,7 +44,6 @@ public class MapSubsectionMouseListener implements MouseMotionListener, MouseLis
     //-------------------------------------------------------------------
     @Override
     public void mouseDragged(MouseEvent e) {
-        updateActiveTile(e);
         camera.move(new PixelPoint(e.getX(), e.getY()));
 //        view.updateImage();
     }
@@ -70,7 +70,6 @@ public class MapSubsectionMouseListener implements MouseMotionListener, MouseLis
     @Override
     public void mouseReleased(MouseEvent e) {
         camera.releasePress();
-        updateActiveTile(e);
 //        view.updateImage();
     }
 
@@ -83,8 +82,7 @@ public class MapSubsectionMouseListener implements MouseMotionListener, MouseLis
     }
 
     public void updateActiveTile(MouseEvent e){
-        CursorState cursorState = CursorState.getInstance();
         HexLocation location = PixelMap.getHexLocationAtPixelPoint(new PixelPoint(e.getX(), e.getY()));
-        CursorState.getInstance().setActiveTile(location);
+        cursorState.setActiveTile(location);
     }
 }

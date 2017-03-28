@@ -91,7 +91,7 @@ public class TileDrawingVisitor implements TileVisitor {
     private BufferedImage getAdjustedRiverImage() throws BadAttributeValueExpException {
         int numSides = riverIndices.size();
         int startingIndex = riverIndices.get(0);
-        BufferedImage temp = null;
+        BufferedImage temp;
 
         switch (numSides){
             case 1: {
@@ -105,8 +105,8 @@ public class TileDrawingVisitor implements TileVisitor {
                 int difference = riverIndices.get(1) - startingIndex;
                 if(difference == 1 || difference == 5){   //Adjacent
                     temp = ImageLoader.getImage("RIVER2-1");
-                    if(riverIndices.get(1) == 5){
-                        startingIndex = 5;
+                    if(difference == 5){
+                        startingIndex = riverIndices.get(1);
                     }
                     if(startingIndex != 0){
                         temp = rotateImage(temp, (startingIndex*Math.PI) / 3);
@@ -115,8 +115,8 @@ public class TileDrawingVisitor implements TileVisitor {
                 }
                 else if(difference == 2 || difference == 4){   //Intermediate
                     temp = ImageLoader.getImage("RIVER2-2");
-                    if(riverIndices.get(1) == 5){
-                        startingIndex = 5;
+                    if(difference == 4){
+                        startingIndex = riverIndices.get(1);
                     }
                     if(startingIndex != 0){
                         temp = rotateImage(temp, (startingIndex*Math.PI) / 3);
