@@ -74,7 +74,7 @@ public class RiverSelectionView extends JPanel {
 
         int i = 0;
         for(BufferedImage img : riverImages ) {
-            g.drawImage(img, (int)(width * .05), (int)(width * .05)  + i * width, width, width, null);
+            g.drawImage(img, (int)(width * .05), (int)(width * .05)  + i * width, width, (int)(width * 0.9), null);
             i++;
         }
     }

@@ -49,7 +49,7 @@ public class TerrainSelectionView extends JPanel {
 
         int i = 0;
         for(BufferedImage img : terrainImages ) {
-            g.drawImage(img, (int)(width * .05), (int)(width * .05)  + i * width, width, width, null);
+            g.drawImage(img, (int)(width * .05), (int)(width * .05)  + i * width, width, (int)(width * 0.9), null);
             i++;
         }
     }
