@@ -5,9 +5,6 @@ import Model.Edge.EdgeMap;
 import Model.Utility.HexaIndex;
 import Model.Visitor.EdgeVisitor;
 
-import java.util.Collection;
-import java.util.Map;
-
 public class Slot {
     private EdgeMap edges;
 
@@ -35,11 +32,6 @@ public class Slot {
         return edges.hasEdge(index);
     }
 
-    public Collection<Edge> getAllEdges() {
-        Map<HexaIndex, Edge> _edges = edges.getEdges();
-        return _edges.values();
-    }
-
     public boolean hasEdges() {
         return !this.edges.isEmpty();
     }
@@ -47,6 +39,7 @@ public class Slot {
     public int edgeSize(){
         return edges.size();
     }
+
     public void accept(EdgeVisitor v){
         edges.accept(v);
     }

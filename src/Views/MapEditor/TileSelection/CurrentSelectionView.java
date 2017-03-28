@@ -29,8 +29,10 @@ public class CurrentSelectionView extends JPanel {
     public void update( int tileIndex ) {
 
         this.riverIterator = riverSelectionView.getIterator();
-        riverIterator.setSelectedTile( tileIndex );
-        currSelectionImage = riverIterator.getSelectedTileImage();
+        if (tileIndex < riverIterator.getSize()){
+            riverIterator.setSelectedTile( tileIndex );
+            currSelectionImage = riverIterator.getSelectedTileImage();
+        }
 
     }
 
