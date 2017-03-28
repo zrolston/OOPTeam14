@@ -3,6 +3,7 @@ package Views.MapEditor;
 import Controllers.ButtonListener.LoadButtonListener;
 import Controllers.ButtonListener.SaveButtonListener;
 import Controllers.ButtonListener.ValidateButtonListener;
+import Controllers.ButtonListener.clearButtonListener;
 import Views.Utility.ImageLoader;
 import Views.Utility.PixelMap;
 
@@ -18,7 +19,7 @@ public class ButtonPanelView extends JPanel {
     BufferedImage panelBackground = null;
 
     public ButtonPanelView() {
-        setLayout(new GridLayout(0,3));
+        setLayout(new GridLayout(0,2));
         setBounds(PixelMap.SCREEN_WIDTH*15/20, PixelMap.SCREEN_HEIGHT/40, PixelMap.SCREEN_WIDTH*2/10, PixelMap.SCREEN_HEIGHT/20);
 
         panelBackground = ImageLoader.getImage("PANEL_BACKGROUND");
@@ -43,9 +44,16 @@ public class ButtonPanelView extends JPanel {
         validateButton.setFocusable(false);
         validateButton.addActionListener(new ValidateButtonListener(validateButton));
 
+        JButton clearButton = new JButton("Clear");
+        clearButton.setBackground(new Color( 0xffCABD80 )  );
+        clearButton.setOpaque(true);
+        clearButton.setFocusable(false);
+        clearButton.addActionListener(  new clearButtonListener(clearButton));
+
         add(saveButton);
         add(loadButton);
         add(validateButton);
+        add(clearButton);
 
         this.setBackground( new Color( 0xffCABD80 )   );
 

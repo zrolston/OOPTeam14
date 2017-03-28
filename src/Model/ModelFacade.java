@@ -97,6 +97,10 @@ public class ModelFacade {
         return BuildMap.getInstance().getHEIGHT();
     }
 
+    public void clearMap() {
+        manager.clear();
+    }
+
     public void loadMap(String path){
         manager.clear();
         daveBuilder.buildMap(path);
