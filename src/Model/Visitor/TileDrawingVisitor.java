@@ -55,6 +55,8 @@ public class TileDrawingVisitor implements TileVisitor {
 
     @Override
     public void visitEdgeMap(EdgeMap edgeMap) {
+        currentEdgeIndex = 0;
+        riverIndices = new ArrayList<>();
         //Take care of the traversal
         Map<HexaIndex, Edge> edges = edgeMap.getEdges();
         edges.forEach(
