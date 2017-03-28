@@ -30,6 +30,18 @@ public class PixelMap {
     private static int width_offset = (int)(TILE_WIDTH * 1.5);
     private static int height_offset = (int)(0.5*TILE_HEIGHT);
 
+    //Get the actual height given the camera scale
+    public static double getActualHeight() {
+        Camera camera = Camera.getInstance();
+        return TILE_HEIGHT * camera.getScale();
+    }
+
+    //Get the actual width give the camera scale
+    public static double getActualWidth() {
+        Camera camera = Camera.getInstance();
+        return TILE_WIDTH * camera.getScale();
+    }
+
     //Plain Pixel Mapping based on position
     public static PixelPoint getTileCenter(ILocation hexLocation){
         //If odd Column
@@ -62,8 +74,8 @@ public class PixelMap {
     public static HexLocation getHexLocationAtPixelPoint(PixelPoint point) {
         Camera camera = Camera.getInstance();
 
-        double xPosition = point.getX()*camera.getScale() + camera.getOrigin().getX();
-        double yPosition = point.getY()*camera.getScale() + camera.getOrigin().getY();
+        double xPosition = point.getX()/camera.getScale() + camera.getOrigin().getX();
+        double yPosition = point.getY()/camera.getScale() + camera.getOrigin().getY();
 
         HexLocation location = null;
 
