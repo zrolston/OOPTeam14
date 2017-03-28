@@ -27,9 +27,9 @@ public class RiverSelectionView extends JPanel {
     }
 
     public void update(int index) {
-        terrainIterator.first();
+        riverIterator.first();
         for(int i = 0; i < index; i++) {
-            terrainIterator.next();
+            riverIterator.next();
         }
         riverIterator = terrainIterator.getRiverIterator();
     }
