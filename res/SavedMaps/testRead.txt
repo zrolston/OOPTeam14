@@ -1,4 +1,7 @@
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-Duis auctor, odio molestie elementum euismod, tortor tortor tempus augue, bibendum venenatis elit metus quis felis.
-Aenean risus nisi, commodo sit amet convallis eget, ultricies sit amet ante.
-Nulla molestie, mi et dapibus sagittis, velit enim scelerisque elit, sed aliquam ligula nibh nec augue.
+6
+(0 0 0) pasture (0 1 2)
+(1 1 0) woods (0 1 2)
+(2 2 0) rock (0 1 2 )
+(0 3 3) mountain (0 1 2)
+(0 4 0) desert (0 1)
+(0 5 0) sea (0)

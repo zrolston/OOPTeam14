@@ -15,7 +15,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class CurrentSelectionView extends JPanel {
-
+    
     private BufferedImage currSelectionImage = null;
     private TileIterator terrainIterator = new TerrainIterator();
     private TileIterator riverIterator = terrainIterator.getRiverIterator();
@@ -35,14 +35,10 @@ public class CurrentSelectionView extends JPanel {
         ( (RiverIterator)(riverIterator) ).setSelectedTile( tileIndex );
         currSelectionImage = ( (RiverIterator)(riverIterator) ) .getSelectedTileImage();
 
-
-        System.out.println("index: " + tileIndex + "\n" +   ( (RiverIterator)(riverIterator) ).getSelectedTile().toString() );
-
     }
 
     public void drawCurrentSelection() {
 
-//        System.out.println(  ( (RiverIterator)(riverIterator) ).getSelectedTile().toString() );
         currSelectionImage = ( (RiverIterator)(riverIterator) ) .getSelectedTileImage();
         repaint();
     }
