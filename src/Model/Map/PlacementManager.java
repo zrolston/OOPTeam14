@@ -45,7 +45,7 @@ public class PlacementManager {
                 this.updateSlot(loc);
             }
 
-            else if(!buildMap.tileExistsAt(loc) && buildMap.locationInBounds(loc)){
+            else if(!buildMap.tileExistsAt(loc)){
                 //CREATE A NEW SLOT
                 this.createSlotAt(loc);
             }
