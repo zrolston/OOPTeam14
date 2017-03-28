@@ -20,7 +20,7 @@ public class TerrainSelectionView extends JPanel {
     public TerrainSelectionView(Dimension size) {
         setPreferredSize(size);
         setVisible(true);
-
+        setOpaque(false);
         drawTerrains();
     }
 
@@ -38,6 +38,8 @@ public class TerrainSelectionView extends JPanel {
 
     @Override
     protected void paintComponent(Graphics g) {
+    	
+    	super.paintComponent(g);
     	((Graphics2D)g).setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
     	((Graphics2D)g).setRenderingHint(RenderingHints.KEY_INTERPOLATION,RenderingHints.VALUE_INTERPOLATION_BILINEAR);
         int width = (int)( getWidth() * 0.90 );
