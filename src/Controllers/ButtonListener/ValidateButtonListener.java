@@ -1,6 +1,7 @@
 package Controllers.ButtonListener;
 
 import Model.ModelFacade;
+import Views.Utility.ImageLoader;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,9 +23,12 @@ public class ValidateButtonListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         ModelFacade model = ModelFacade.getInstance();
-        if (model.validateMap())
+        if (model.validateMap()) {
+        	button.setIcon(new ImageIcon(ImageLoader.getImage("HAPPY_CAT")));
             button.setBackground(Color.green);
-        else
+        } else {
+        	button.setIcon(new ImageIcon(ImageLoader.getImage("SAD_CAT")));
             button.setBackground(Color.red);
+        }
     }
 }

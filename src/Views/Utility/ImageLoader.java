@@ -44,6 +44,9 @@ public class ImageLoader {
             cachedImages.put("BACKGROUND", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/GUI/background.jpg")));
             cachedImages.put("PANEL_BACKGROUND", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/GUI/panelBackground.png")));
             cachedImages.put("SCROLL_BACKGROUND", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/GUI/scrollBackground.png")));     
+            cachedImages.put("HAPPY_CAT", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/happyCat.png")));
+            cachedImages.put("SAD_CAT", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/sadCat.png")));     
+       
         }
         catch (Exception e) {
             e.printStackTrace();

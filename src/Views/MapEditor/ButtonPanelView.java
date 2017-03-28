@@ -38,8 +38,9 @@ public class ButtonPanelView extends JPanel {
         loadButton.setFocusable(false);
         loadButton.addActionListener(new LoadButtonListener());
 
-        JButton validateButton = new JButton("Validate");
-        validateButton.setBackground(new Color( 0xffCABD80 )  );
+
+        JButton validateButton = new JButton(new ImageIcon(ImageLoader.getImage("SAD_CAT")));
+        validateButton.setBackground(Color.red);
         validateButton.setOpaque(true);
         validateButton.setFocusable(false);
         validateButton.addActionListener(new ValidateButtonListener(validateButton));
