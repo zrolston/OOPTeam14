@@ -98,6 +98,7 @@ public class ModelFacade {
     }
 
     public void loadMap(String path){
+        manager.clear();
         daveBuilder.buildMap(path);
     }
     public void saveMap(BuildMap map,String path){
