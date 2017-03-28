@@ -57,6 +57,7 @@ public class MapSubsectionMouseListener implements MouseMotionListener, MouseLis
         HexLocation temp = PixelMap.getHexLocationAtPixelPoint(new PixelPoint(e.getX(), e.getY()));
         if (temp != null)
             System.out.println(temp.getRow() + " " + temp.getCol());
+        view.updateImage();
     }
 
     @Override
