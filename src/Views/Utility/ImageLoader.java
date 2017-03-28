@@ -41,7 +41,7 @@ public class ImageLoader {
             cachedImages.put("SEA", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/sea.png")));
             cachedImages.put("WOODS", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/woods.png")));
             cachedImages.put("BACKGROUND", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/GUI/background.jpg")));
-            cachedImages.put("PANEL_SHADOW", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/GUI/panelShadow.png")));
+            cachedImages.put("PANEL_BACKGROUND", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/GUI/panelBackground.png")));
         }
         catch (Exception e) {
             e.printStackTrace();
