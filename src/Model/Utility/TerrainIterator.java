@@ -43,6 +43,7 @@ public class TerrainIterator implements TileIterator {
 
     @Override
     public BufferedImage getImage() {
+        tdv = new TileDrawingVisitor();
         tileList.get(currentIndex).accept(tdv);
         return tdv.getImage();
     }

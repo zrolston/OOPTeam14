@@ -74,10 +74,10 @@ public class RiverIterator implements TileIterator {
     }
 
     public BufferedImage getSelectedTileImage(){
+        tdv = new TileDrawingVisitor();
         selectedTile.accept(tdv);
         return tdv.getImage();
     }
-
 
     public Tile getSelectedTile(){
         return selectedTile;
