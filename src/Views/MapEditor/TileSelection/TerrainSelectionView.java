@@ -2,6 +2,8 @@ package Views.MapEditor.TileSelection;
 
 import Model.Tile.BuildTileFactory;
 import Model.Tile.Tile;
+import Model.Utility.TerrainIterator;
+import Model.Utility.TileIterator;
 import Model.Visitor.TileDrawingVisitor;
 import Views.Utility.ImageLoader;
 
@@ -12,9 +14,9 @@ import java.util.ArrayList;
 
 public class TerrainSelectionView extends JPanel {
 
-    private final static String[] terrainTypes = {"DESERT", "MOUNTAIN", "PASTURE", "ROCK", "SEA", "WOODS"};
     private ArrayList<BufferedImage> terrainImages = new ArrayList<>();
     private ArrayList<Tile> tiles = new ArrayList<>();
+    private TileIterator terrainIterator = new TerrainIterator();
 
     public TerrainSelectionView(Dimension size) {
         setPreferredSize(size);
@@ -26,16 +28,10 @@ public class TerrainSelectionView extends JPanel {
 
     public void drawTerrains() {
 
-        BuildTileFactory factory = new BuildTileFactory();
-        TileDrawingVisitor tdv;
-
-        for(String s : terrainTypes)
-            tiles.add( factory.createTile(s, new int[]{}) );
-
-        for(Tile t : tiles) {
-            tdv = new TileDrawingVisitor();
-            t.accept( tdv );
-            terrainImages.add( tdv.getImage() );
+        terrainIterator.first();
+        for(int i = 0; i < terrainIterator.getSize(); i++) {
+            terrainImages.add( terrainIterator.getImage()  );
+            terrainIterator.next();
         }
 
         repaint();
@@ -44,9 +40,9 @@ public class TerrainSelectionView extends JPanel {
     public Tile getSelectedTile( int index ) {
         return tiles.get(index);
     }
-    public String getTerrainString( int index ) {
-        return terrainTypes[index];
-    }
+//    public String getTerrainString( int index ) {
+//        return terrainTypes[index];
+//    }
 
     @Override
     protected void paintComponent(Graphics g) {
@@ -55,7 +51,7 @@ public class TerrainSelectionView extends JPanel {
         g.fillRect(0, 0, getWidth(), getHeight());
 
         int width = (int)( getWidth() * 0.90 );
-        while(getHeight() / width < terrainTypes.length) {
+        while(getHeight() / width < terrainImages.size()) {
             width -= 5;
         }
         int i = 0;

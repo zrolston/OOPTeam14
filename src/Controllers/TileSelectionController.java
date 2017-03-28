@@ -40,11 +40,18 @@ public class TileSelectionController implements MouseMotionListener{
         int tileIndex = (int)( y / (0.75 / 6) );
 
         if( y < 0.75 && x < 0.5) {      // click in terrain panel
-            riverSelectionView.update( terrainSelectionView.getTerrainString( tileIndex ) );
-            currentSelectionView.update( terrainSelectionView.getSelectedTile(tileIndex) );
+
+
+
+
+            riverSelectionView.update( tileIndex );
+            currentSelectionView.update(tileIndex );
+
+
+
         }
         else if( y < 0.75 && x > 0.5) { // click in river panel
-            currentSelectionView.update( riverSelectionView.getSelectedTile(tileIndex) );
+            currentSelectionView.update( tileIndex );
         }
         else if( y > 0.75 ) { // click in current selection panel
 

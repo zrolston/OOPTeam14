@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class TerrainIterator implements TileIterator {
-    final String[] terrainList = {"WOODS", "PLAINS", "MOUNTAIN", "PASTURE", "ROCK", "SEA"};
+    final String[] terrainList = {"WOODS", "DESERT", "MOUNTAIN", "PASTURE", "ROCK", "SEA"};
     BuildTileFactory factory;
     ArrayList<BuildTile> tileList;
     int currentIndex;

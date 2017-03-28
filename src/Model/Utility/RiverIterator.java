@@ -72,6 +72,12 @@ public class RiverIterator implements TileIterator {
         selectedTile = tileList.get(index).clone();
     }
 
+    public BufferedImage getSelectedTileImage(){
+        selectedTile.accept(tdv);
+        return tdv.getImage();
+    }
+
+
     public Tile getSelectedTile(){
         return selectedTile;
     }

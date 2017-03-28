@@ -1,7 +1,11 @@
 package Views.MapEditor.TileSelection;
 
+import Model.Terrain.Terrain;
 import Model.Tile.BuildTileFactory;
 import Model.Tile.Tile;
+import Model.Utility.RiverIterator;
+import Model.Utility.TerrainIterator;
+import Model.Utility.TileIterator;
 import Model.Visitor.TileDrawingVisitor;
 
 import javax.swing.*;
@@ -12,7 +16,8 @@ import java.util.ArrayList;
 public class CurrentSelectionView extends JPanel {
 
     private BufferedImage currSelectionImage = null;
-    private Tile currSelection = null;
+    private TileIterator terrainIterator = new TerrainIterator();
+    private TileIterator riverIterator = terrainIterator.getRiverIterator();
 
     public CurrentSelectionView(Dimension size) {
         setPreferredSize(size);
@@ -20,22 +25,14 @@ public class CurrentSelectionView extends JPanel {
         drawCurrentSelection();
     }
 
-    public void update(Tile t) {
-        currSelection = t;
-        drawCurrentSelection();
+    public void update( int tileIndex ) {
+        ( (RiverIterator)(riverIterator) ).setSelectedTile( tileIndex );
+        currSelectionImage = ( (RiverIterator)(riverIterator) ) .getSelectedTileImage();
     }
 
     public void drawCurrentSelection() {
 
-        BuildTileFactory factory = new BuildTileFactory();
-        TileDrawingVisitor tdv;
-
-        if(currSelection == null)
-            currSelection = factory.createTile("MOUNTAIN",  new int[]{} );
-
-        tdv = new TileDrawingVisitor();
-        currSelection.accept( tdv );
-        currSelectionImage = tdv.getImage();
+        currSelectionImage = ( (RiverIterator)(riverIterator) ) .getSelectedTileImage();
         repaint();
     }
 
