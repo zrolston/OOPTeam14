@@ -1,6 +1,5 @@
 package Model.Map;
 
-import Model.Edge.Edge;
 import Model.Tile.BuildTile;
 import Model.Utility.HexaIndex;
 import Model.Utility.ILocation;
