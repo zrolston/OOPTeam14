@@ -8,7 +8,7 @@ import javax.swing.*;
 public class Main {
     public static void main(String[] args) {
         Display display = new Display();
-        BuildMap map=new BuildMap(21,21);
+        BuildMap map= BuildMap.getInstance();
         ModelFacade.initialize(map);
 
         // TODO:  initialize somewhere else

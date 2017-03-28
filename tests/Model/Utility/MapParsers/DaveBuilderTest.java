@@ -39,7 +39,7 @@ public class DaveBuilderTest {
 
     @Test
     public void convertToOddQOffset() throws Exception {
-        BuildMap map= new BuildMap(21,21);
+        BuildMap map= BuildMap.getInstance();
         ModelFacade.initialize(map);
         DaveBuilder daveBuilder= new DaveBuilder();
 
@@ -56,7 +56,7 @@ public class DaveBuilderTest {
 
     @Test
     public void parseData() throws Exception {
-        BuildMap map= new BuildMap(21,21);
+        BuildMap map= BuildMap.getInstance();
         ModelFacade.initialize(map);
         DaveBuilder daveBuilder= new DaveBuilder();
         JButton jButton = new JButton();
