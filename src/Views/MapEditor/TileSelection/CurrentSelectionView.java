@@ -47,6 +47,12 @@ public class CurrentSelectionView extends JPanel {
         repaint();
     }
 
+    public void rotate() {
+
+        ( (RiverIterator)(riverIterator) ) .rotate();
+        drawCurrentSelection();
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
 

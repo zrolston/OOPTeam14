@@ -49,7 +49,7 @@ public class TileSelectionController implements MouseListener{
             currentSelectionView.update( tileIndex );
         }
         else if( y > 0.75 ) { // click in current selection panel
-
+            currentSelectionView.rotate();
         }
     }
 
