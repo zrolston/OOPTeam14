@@ -39,11 +39,11 @@ public class TileSelectionView extends JPanel{
 
         TileSelectionMouseListener listener = new TileSelectionMouseListener(this, currentSelectionView);
 
-
-        currentSelectionView.addMouseListener(listener);
-        currentSelectionView.addMouseMotionListener(listener);
-//        addMouseListener(listener);
-//        addMouseMotionListener(listener);
+//
+//        currentSelectionView.addMouseListener(listener);
+//        currentSelectionView.addMouseMotionListener(listener);
+        addMouseListener(listener);
+        addMouseMotionListener(listener);
 
         setVisible(true);
     }
