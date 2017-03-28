@@ -48,7 +48,6 @@ public class CurrentSelectionView extends JPanel {
 
     @Override
     protected void paintComponent(Graphics g) {
-    	((Graphics2D)g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
     	((Graphics2D)g).setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
         int width = (int)( getWidth() * 0.90 );
         g.drawImage(shadow, (int)(width * .05), (int)(width * .05) + 13, width, (int)(width * 0.9), null);
