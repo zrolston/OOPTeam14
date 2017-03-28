@@ -157,4 +157,8 @@ public class HexLocation implements ILocation{
         return this.row == hexLocation.getRow() && this.col == hexLocation.getCol();
     }
 
+
+
+
+
 }
