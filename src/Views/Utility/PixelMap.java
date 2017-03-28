@@ -45,7 +45,7 @@ public class PixelMap {
     //Plain Pixel Mapping based on position
     public static PixelPoint getTileCenter(ILocation hexLocation){
         //If odd Column
-        if(hexLocation.getCol()%2 == 1) return new PixelPoint(hexLocation.getCol()*width_offset, hexLocation.getRow()*TILE_HEIGHT);
+        if((hexLocation.getCol()%2 == 1) || (hexLocation.getCol()%2 == -1)) return new PixelPoint(hexLocation.getCol()*width_offset, hexLocation.getRow()*TILE_HEIGHT);
         //If even Column
         else return new PixelPoint(hexLocation.getCol()*width_offset, hexLocation.getRow()*TILE_HEIGHT-height_offset);
     }
@@ -53,7 +53,7 @@ public class PixelMap {
     //Plain Pixel Mapping based on position
     public static PixelPoint getTileCenter(ILocation hexLocation, Camera camera){
         //If odd Column
-        if(hexLocation.getCol()%2 == 1)
+        if((hexLocation.getCol()%2 == 1) || (hexLocation.getCol()%2 == -1))
             return new PixelPoint(hexLocation.getCol()*width_offset - camera.getOrigin().getX(), hexLocation.getRow()*TILE_HEIGHT - camera.getOrigin().getY());
             //If even Column
         else
@@ -64,7 +64,7 @@ public class PixelMap {
     public static PixelPoint getMapTileOrigin(ILocation location){
         Camera camera = Camera.getInstance();
         //If odd Column
-        if(location.getCol()%2 == 1)
+        if((location.getCol()%2 == 1) || (location.getCol()%2 == -1))
             return new PixelPoint((int) (location.getCol()*width_offset*camera.getScale()) - camera.getOrigin().getX(), (int) (location.getRow()*TILE_HEIGHT*camera.getScale()) - camera.getOrigin().getY());
             //If even Column
         else
