@@ -149,10 +149,7 @@ public class DaveBuilderTest {
         params = new Object[]{new Integer(0), new Integer(21)};
         cube = (CubeLocation) m.invoke(daveBuilder, params);
         assertEquals("(11, 4, -15)", cube.toString());
-
-
     }
-
 
     @Test
     public void buildMap() throws Exception {
@@ -161,7 +158,6 @@ public class DaveBuilderTest {
 
         daveBuilder.buildMap();
     }
-
 
     @Test
     public void formatTiles() throws Exception {

@@ -30,26 +30,6 @@ public class HexLocation implements ILocation{
             myAdj.add(new HexLocation(this.row + -1, this.col + 0));
 
             //NorthWest
-            myAdj.add(new HexLocation(this.row + -1, this.col + -1));
-
-            //NorthEast
-            myAdj.add(new HexLocation(this.row + -1, this.col + 1));
-
-            //South
-            myAdj.add(new HexLocation(this.row + 1, this.col + 0));
-
-            //SouthWest
-            myAdj.add(new HexLocation(this.row + 0, this.col + -1));
-
-            //SouthEast
-            myAdj.add(new HexLocation(this.row + 0, this.col + 1));
-        }
-
-        else{
-            //North
-            myAdj.add(new HexLocation(this.row + -1, this.col + 0));
-
-            //NorthWest
             myAdj.add(new HexLocation(this.row + 0, this.col + -1));
 
             //NorthEast
@@ -62,7 +42,27 @@ public class HexLocation implements ILocation{
             myAdj.add(new HexLocation(this.row + 1, this.col + -1));
 
             //SouthEast
-            myAdj.add(new HexLocation(this.row + 1, this.col + 1));
+            myAdj.add(new HexLocation(this.row + -1, this.col + 1));
+        }
+
+        else{
+            //North
+            myAdj.add(new HexLocation(this.row + -1, this.col + 0));
+
+            //NorthWest
+            myAdj.add(new HexLocation(this.row + -1, this.col + -1));
+
+            //NorthEast
+            myAdj.add(new HexLocation(this.row + -1, this.col + 1));
+
+            //South
+            myAdj.add(new HexLocation(this.row + 1, this.col + 0));
+
+            //SouthWest
+            myAdj.add(new HexLocation(this.row, this.col + -1));
+
+            //SouthEast
+            myAdj.add(new HexLocation(this.row, this.col + 1));
         }
 
         return myAdj;

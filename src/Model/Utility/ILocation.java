@@ -7,10 +7,10 @@ import java.util.List;
  * Created by zrgam_000 on 3/26/2017.
  */
 public interface ILocation {
-    public int getRow();
-    public int getCol();
+    int getRow();
+    int getCol();
 
-    public ArrayList<ILocation> getAdjacent();
+    ArrayList<ILocation> getAdjacent();
 
-    public ILocation getLocationAtIndex(HexaIndex index);
+    ILocation getLocationAtIndex(HexaIndex index);
 }

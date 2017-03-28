@@ -67,7 +67,9 @@ public class ModelFacade {
     }
 
     public void placeTile(BuildTile tile, ILocation iLocation){
-        manager.placeTileAt(tile, iLocation);
+        if(manager.validate(tile, iLocation)){
+            manager.placeTileAt(tile, iLocation);
+        }
     }
 
     public void removeTileAt(ILocation location){
