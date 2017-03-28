@@ -16,11 +16,11 @@ public class Display extends JFrame {
     public Display() {
         setupFrame();
         mapEditorView = new MapEditorView();
-        addKeyListener(new EditorKeyboardListener(new ModelFacade(null)));
+        addKeyListener(new EditorKeyboardListener(ModelFacade.getInstance()));
         add(mapEditorView);
         mapSubsectionView = mapEditorView.getMapSubsectionView();
 
-        EditorKeyboardListener listener = new EditorKeyboardListener(new ModelFacade(null));
+        EditorKeyboardListener listener = new EditorKeyboardListener(ModelFacade.getInstance());
         listener.setComponent(this);
         addKeyListener(listener);
     }
@@ -36,7 +36,9 @@ public class Display extends JFrame {
         return mapEditorView.getTileSelectionView();
     }
     public void updateMap(){
+        mapEditorView.repaint();
         mapSubsectionView.repaint();
     }
+
 
 }

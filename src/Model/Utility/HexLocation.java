@@ -144,6 +144,10 @@ public class HexLocation implements ILocation{
         return this.equals(myOther);
     }
 
+    public String toString(){
+        return "("+row+", "+col+")";
+    }
+
 
     public boolean equals(HexLocation hexLocation){
         return this.row == hexLocation.getRow() && this.col == hexLocation.getCol();

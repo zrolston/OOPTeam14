@@ -21,13 +21,14 @@ public class FileIO {
     public static String loadFileText(String fileName){
         String result = "";
         try {
-            BufferedReader br = new BufferedReader(new FileReader(mapsDir + fileName));
+            BufferedReader br = new BufferedReader(new FileReader( fileName));
             StringBuilder sb = new StringBuilder();
             String line = br.readLine();
 
             while (line != null) {
                 sb.append(line);
-                sb.append("\n");
+                sb.append("|");
+//                sb.append("\n");
                 line = br.readLine();
             }
             br.close();

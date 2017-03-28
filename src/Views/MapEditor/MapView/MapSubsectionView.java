@@ -13,6 +13,8 @@ import Model.ModelFacade;
 import Model.Utility.HexLocation;
 import Model.Visitor.MapDrawingVisitor;
 import Views.Drawers.TileInternalDrawer;
+import Views.Drawers.TileOutlineDrawer;
+import Views.Utility.CursorState;
 import Views.Utility.PixelMap;
 import Views.Utility.PixelPoint;
 
@@ -46,27 +48,30 @@ public class MapSubsectionView extends JPanel {
         }
 
         g2.dispose();
-
-//        TileOutlineDrawer.drawValidEdge(g2, new HexLocation(1,1));
-//        TileOutlineDrawer.drawInvalidEdge(g2, new HexLocation(3,3));
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(image, 0, 0, null);
+        TileOutlineDrawer.drawActiveTile(g, CursorState.getInstance().getActiveTile());
+        CursorState cursorState = CursorState.getInstance();
+        PixelPoint point = cursorState.getDragged();
+        g.drawImage(cursorState.getDraggedImage(),point.getX(), point.getY(), PixelMap.TILE_FULL_WIDTH, PixelMap.TILE_HEIGHT, null);
     }
 
     public MapSubsectionView() {
         //Adding some Listeners to test
-        ModelFacade modelFacade = new ModelFacade(null);
+        ModelFacade modelFacade = ModelFacade.getInstance();
         MapSubsectionMouseListener listener = new MapSubsectionMouseListener(modelFacade, this);
         addMouseListener(listener);
         addMouseMotionListener(listener);
 
         setBounds(0, 0, PixelMap.SCREEN_WIDTH, PixelMap.SCREEN_HEIGHT);
 
-        BuildMap map = new BuildMap(21,21);
+        //TODO: MAKE SURE THAT THE FACADE AND THIS ARE USING THE SAME MAP
+
+        BuildMap map = BuildMap.getInstance();
         updateCachedImages(map);
         image = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
 

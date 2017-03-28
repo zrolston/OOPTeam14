@@ -8,10 +8,13 @@ package Views.MapEditor;
 
 import Views.MapEditor.MapView.MapSubsectionView;
 import Views.MapEditor.MapView.MiniMapView;
+import Views.Utility.CursorState;
 import Views.Utility.PixelMap;
 import Views.MapEditor.TileSelection.TileSelectionView;
+import Views.Utility.PixelPoint;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class MapEditorView extends JLayeredPane {
 
@@ -48,7 +51,12 @@ public class MapEditorView extends JLayeredPane {
 
     // TODO:
 
-
+    @Override
+    protected void paintComponent(Graphics g) {
+//        CursorState cursorState = CursorState.getInstance();
+//        PixelPoint point = cursorState.getCursor();
+//        g.drawImage(cursorState.getDraggedImage(),point.getX(), point.getY(), PixelMap.TILE_FULL_WIDTH, PixelMap.TILE_HEIGHT, null);
+    }
 
 
 

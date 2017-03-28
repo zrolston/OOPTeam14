@@ -77,11 +77,11 @@ public class PixelMap {
             location = new HexLocation(row, column);
             if (xPositionInTile < (TILE_WIDTH / 2)) {
                 if (yPositionInTile < (TILE_HEIGHT / 2)) {
-                    if (xPositionInTile * 1.732 < yPositionInTile)
+                    if (((TILE_WIDTH / 2) - xPositionInTile) * 1.732 > yPositionInTile)
                         location = new HexLocation(row, column - 1);
                 }
                 else {
-                    if (xPositionInTile * 1.732 < (TILE_HEIGHT - yPositionInTile))
+                    if (((TILE_WIDTH / 2) - xPositionInTile) * 1.732 > (TILE_HEIGHT - yPositionInTile))
                         location = new HexLocation(row + 1, column - 1);
                 }
             }
@@ -95,11 +95,11 @@ public class PixelMap {
             location = new HexLocation(row, column);
             if (xPositionInTile < (TILE_WIDTH / 2)) {
                 if (yPositionInTile < (TILE_HEIGHT / 2)) {
-                    if (xPositionInTile * 1.732 < yPositionInTile)
+                    if (((TILE_WIDTH / 2) - xPositionInTile) * 1.732 > yPositionInTile)
                         location = new HexLocation(row - 1, column - 1);
                 }
                 else {
-                    if (xPositionInTile * 1.732 < (TILE_HEIGHT - yPositionInTile))
+                    if (((TILE_WIDTH / 2) - xPositionInTile) * 1.732 > (TILE_HEIGHT - yPositionInTile))
                         location = new HexLocation(row, column - 1);
                 }
             }
@@ -110,7 +110,8 @@ public class PixelMap {
 
     //Provides validation to coordinates when overlapping tiles.
     public static boolean tileContains(ILocation tileLocation, PixelPoint point){
-        PixelPoint center = getTileCenter(tileLocation);
+        Camera camera = Camera.getInstance();
+        PixelPoint center = getTileCenter(tileLocation, camera);
         Polygon hexagon = TileOutlineDrawer.getHexagon(center);
         return hexagon.contains(new Point(point.getX(), point.getY()));
     }

@@ -55,6 +55,7 @@ public class BuildTileFactory {
     }
 
     private Terrain getTerrain(String terrain){
+        terrain=terrain.toUpperCase();
         switch (terrain) {
             case "DESERT":
                 return new DesertTerrain();

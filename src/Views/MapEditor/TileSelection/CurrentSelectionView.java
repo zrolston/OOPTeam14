@@ -7,6 +7,7 @@ import Model.Utility.RiverIterator;
 import Model.Utility.TerrainIterator;
 import Model.Utility.TileIterator;
 import Model.Visitor.TileDrawingVisitor;
+import Views.Utility.ImageLoader;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 
 public class CurrentSelectionView extends JPanel {
 
-    private BufferedImage currSelectionImage = null;
+    private static BufferedImage currSelectionImage = null;
     private TileIterator terrainIterator = new TerrainIterator();
     private TileIterator riverIterator = terrainIterator.getRiverIterator();
     private RiverSelectionView riverSelectionView = null;
@@ -55,5 +56,11 @@ public class CurrentSelectionView extends JPanel {
         int width = (int)( getWidth() * 0.90 );
         g.drawImage(currSelectionImage, (int)(width * .05), (int)(width * .05), width, width, null);
 
+    }
+
+    //Gives global access to currently selected image without breaking encapsulation
+    /** Note: It spits out a copy of the currently selected image */
+    public static BufferedImage getSelectedTile(){
+        return ImageLoader.getDeepCopy(currSelectionImage);
     }
 }
