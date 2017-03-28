@@ -28,6 +28,12 @@ public class RiverSelectionView extends JPanel {
 
     public void update(int index) {
 
+
+//        if(index == riverImages.size() - 1) {
+//            riverImages.clear();
+//            drawRiverTiles();
+//        }
+
         riverImages.clear();
 
         terrainIterator.first();

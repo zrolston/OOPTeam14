@@ -31,13 +31,17 @@ public class CurrentSelectionView extends JPanel {
 
         this.riverIterator = riverSelectionView.getIterator();
 
-
         ( (RiverIterator)(riverIterator) ).setSelectedTile( tileIndex );
         currSelectionImage = ( (RiverIterator)(riverIterator) ) .getSelectedTileImage();
+
+
+        System.out.println("index: " + tileIndex + "\n" +   ( (RiverIterator)(riverIterator) ).getSelectedTile().toString() );
+
     }
 
     public void drawCurrentSelection() {
 
+//        System.out.println(  ( (RiverIterator)(riverIterator) ).getSelectedTile().toString() );
         currSelectionImage = ( (RiverIterator)(riverIterator) ) .getSelectedTileImage();
         repaint();
     }

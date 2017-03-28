@@ -8,7 +8,7 @@ import Views.MapEditor.TileSelection.TileSelectionView;
 import javax.swing.*;
 import java.awt.event.*;
 
-public class TileSelectionController implements MouseMotionListener{
+public class TileSelectionController implements MouseListener{
 
     private TileSelectionView tileSelectionView = null;
     private TerrainSelectionView terrainSelectionView = null;
@@ -22,17 +22,12 @@ public class TileSelectionController implements MouseMotionListener{
         this.riverSelectionView = tileSelectionView.getRiverSelectionView();
         this.currentSelectionView = tileSelectionView.getCurrentSelectionView();
 
-        tileSelectionView.addMouseMotionListener(this);
+        tileSelectionView.addMouseListener(this);
     }
 
-    @Override
-    public void mouseDragged(MouseEvent e) {
-
-    }
 
     @Override
-    public void mouseMoved(MouseEvent e) {
-
+    public void mouseClicked(MouseEvent e) {
         double x = (double)(e.getPoint().getX() / tileSelectionView.getWidth());
         double y = (double)(e.getPoint().getY() / tileSelectionView.getHeight());
 
@@ -56,5 +51,25 @@ public class TileSelectionController implements MouseMotionListener{
         else if( y > 0.75 ) { // click in current selection panel
 
         }
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
     }
 }
