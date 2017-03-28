@@ -24,8 +24,6 @@ public class Main {
     }
 
 
-
-
     static class MapRender extends Thread{
         private MapSubsectionView mapView;
 
@@ -39,12 +37,11 @@ public class Main {
 
             while (true){
                 try {
-                    Thread.sleep(15);
+                    Thread.sleep(20);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
                 mapView.repaint();
-//                System.out.println("running");
             }
         }
     }

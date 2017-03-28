@@ -34,7 +34,6 @@ public class TileSelectionMouseListener implements MouseMotionListener, MouseLis
         cursorState.setDraggedImage(currentSelectionView.getSelectedTile());
         cursorState.startDraggingTile();
         cursorState.setDraggedImage(currentSelectionView.getSelectedTile());
-
     }
 
     @Override
