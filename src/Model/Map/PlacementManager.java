@@ -146,6 +146,11 @@ public class PlacementManager {
         return true;
     }
 
+    public void clear(){
+        this.slots.clear();
+        this.buildMap.clear();
+    }
+
     public int getNumSlots(){
         return slots.size();
     }
