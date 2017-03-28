@@ -18,6 +18,4 @@ public abstract class Tile {
     }
 
     public abstract void accept(TileVisitor v);
-
-    public abstract void accept(EdgeVisitor v);
 }

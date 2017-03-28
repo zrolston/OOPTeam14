@@ -54,9 +54,4 @@ public class BuildTile extends Tile {
         getTerrain().accept(v);
         edgeMap.accept(v);
     }
-
-    @Override
-    public void accept(EdgeVisitor v) {
-        edgeMap.accept(v);
-    }
 }

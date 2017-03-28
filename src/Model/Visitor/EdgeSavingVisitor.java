@@ -1,6 +1,7 @@
 package Model.Visitor;
 
 import Model.Edge.*;
+import Model.Terrain.*;
 import Model.Utility.HexaIndex;
 
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ import java.util.Map;
 /**
  * Created by Cameron on 3/28/2017.
  */
-public class EdgeSavingVisitor implements EdgeVisitor {
+public class EdgeSavingVisitor implements TileVisitor {
     private int currentEdgeIndex;
     private ArrayList<Integer> riverIndices;
 
@@ -45,5 +46,35 @@ public class EdgeSavingVisitor implements EdgeVisitor {
     @Override
     public void visitRiverEdge(RiverEdge riverEdge) {
         riverIndices.add(currentEdgeIndex);
+    }
+
+    @Override
+    public void visitSea(SeaTerrain sea) {
+
+    }
+
+    @Override
+    public void visitRock(RockTerrain rock) {
+
+    }
+
+    @Override
+    public void visitDesert(DesertTerrain desert) {
+
+    }
+
+    @Override
+    public void visitPasture(PastureTerrain pasture) {
+
+    }
+
+    @Override
+    public void visitWoods(WoodsTerrain woods) {
+
+    }
+
+    @Override
+    public void visitMountain(MountainTerrain mountain) {
+
     }
 }
