@@ -27,6 +27,7 @@ public class MapSubsectionView extends JPanel {
 	BufferedImage background;
     BufferedImage image;
     BufferedImage[][] tileImages;
+    CursorState cursorState = CursorState.getInstance();
 
     public void updateCachedImages(IViewMap map) {
         MapDrawingVisitor drawingVisitor = new MapDrawingVisitor();
@@ -53,10 +54,14 @@ public class MapSubsectionView extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(image, 0, 0, null);
+
+//        if(cursorState.)
         TileOutlineDrawer.drawActiveTile(g, CursorState.getInstance().getActiveTile());
-        CursorState cursorState = CursorState.getInstance();
-        PixelPoint point = cursorState.getDragged();
-        g.drawImage(cursorState.getDraggedImage(),point.getX(), point.getY(), PixelMap.TILE_FULL_WIDTH, PixelMap.TILE_HEIGHT, null);
+
+        if(cursorState.isDraggingTile()) {
+            PixelPoint point = cursorState.getDragged();
+            g.drawImage(cursorState.getDraggedImage(), point.getX(), point.getY(), PixelMap.TILE_FULL_WIDTH, PixelMap.TILE_HEIGHT, null);
+        }
     }
 
     public MapSubsectionView() {
