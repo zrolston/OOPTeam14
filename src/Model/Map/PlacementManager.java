@@ -120,9 +120,7 @@ public class PlacementManager {
 
         for(Slot targetSlot: slots.values()) {
 
-            for (Edge e : targetSlot.getAllEdges()) {
-                e.accept(riverCountVisitor);
-            }
+            targetSlot.accept(riverCountVisitor);
 
             if(riverCountVisitor.getRiverCount() != 0){
                 riverCountVisitor.clearRiverCount();
