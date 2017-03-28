@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 
 public class RiverIterator implements TileIterator {
-    final int[][] riverIndexList = { { }, { 1 }, { 1, 2 }, { 1, 3 }, {3, 6}, {1, 3, 5} };
+    final int[][] riverIndexList = { { }, { 1 }, { 1, 2 }, { 1, 3 }, {1, 4}, {1, 3, 5} };
     ArrayList<BuildTile> tileList;
     private BuildTile selectedTile;
     private String terrain;
@@ -49,6 +49,7 @@ public class RiverIterator implements TileIterator {
 
     @Override
     public BufferedImage getImage() {
+        tdv = new TileDrawingVisitor();
         tileList.get(currentIndex).accept(tdv);
         return tdv.getImage();
     }

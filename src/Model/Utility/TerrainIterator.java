@@ -54,7 +54,7 @@ public class TerrainIterator implements TileIterator {
 
     @Override
     public TileIterator getRiverIterator() {
-        return null;
+        return new RiverIterator(terrainList[currentIndex]);
     }
 
     @Override
