@@ -15,7 +15,6 @@ import java.util.ArrayList;
 public class TerrainSelectionView extends JPanel {
 
     private ArrayList<BufferedImage> terrainImages = new ArrayList<>();
-    private ArrayList<Tile> tiles = new ArrayList<>();
     private TileIterator terrainIterator = new TerrainIterator();
 
     public TerrainSelectionView(Dimension size) {
@@ -36,13 +35,6 @@ public class TerrainSelectionView extends JPanel {
 
         repaint();
     }
-
-    public Tile getSelectedTile( int index ) {
-        return tiles.get(index);
-    }
-//    public String getTerrainString( int index ) {
-//        return terrainTypes[index];
-//    }
 
     @Override
     protected void paintComponent(Graphics g) {
