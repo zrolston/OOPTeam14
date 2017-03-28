@@ -59,6 +59,7 @@ public class TileOutlineDrawer extends Drawer{
         PixelPoint origin = PixelMap.getMapTileOrigin(tileLocation);
         PixelPoint center = new PixelPoint(origin.getX()+(int)(PixelMap.TILE_WIDTH*camera.getScale()), origin.getY()+(int)(PixelMap.TILE_HEIGHT/2*camera.getScale()));
         Polygon hexatile = getHexagon(center);
+        ((Graphics2D)g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         ((Graphics2D)g).setStroke(new BasicStroke(5));
         Color prev = g.getColor();
         g.setColor(color);
