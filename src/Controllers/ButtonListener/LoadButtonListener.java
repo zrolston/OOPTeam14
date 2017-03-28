@@ -1,5 +1,7 @@
 package Controllers.ButtonListener;
 
+import Model.Utility.FileIO;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,7 +15,7 @@ public class LoadButtonListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         JFileChooser chooser = new JFileChooser();
-        chooser.setCurrentDirectory(new File("./res/SavedMaps"));
+        chooser.setCurrentDirectory(new File(FileIO.mapsDir));
         chooser.setVisible(true);
         File file = null;
         if (chooser.showOpenDialog(chooser) == JFileChooser.APPROVE_OPTION) {
