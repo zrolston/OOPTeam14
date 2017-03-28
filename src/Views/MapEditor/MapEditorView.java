@@ -49,16 +49,4 @@ public class MapEditorView extends JLayeredPane {
         return miniMapView;
     }
 
-    // TODO:
-
-    @Override
-    protected void paintComponent(Graphics g) {
-//        CursorState cursorState = CursorState.getInstance();
-//        PixelPoint point = cursorState.getCursor();
-//        g.drawImage(cursorState.getDraggedImage(),point.getX(), point.getY(), PixelMap.TILE_FULL_WIDTH, PixelMap.TILE_HEIGHT, null);
-    }
-
-
-
-
 }

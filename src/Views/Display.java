@@ -36,9 +36,10 @@ public class Display extends JFrame {
         return mapEditorView.getTileSelectionView();
     }
     public void updateMap(){
-        mapEditorView.repaint();
         mapSubsectionView.repaint();
     }
 
-
+    public MapSubsectionView getMapSubsectionView() {
+        return mapSubsectionView;
+    }
 }

@@ -32,7 +32,9 @@ public class TileSelectionView extends JPanel{
         terrainSelectionView = new TerrainSelectionView(new Dimension(getWidth() / 2 + 1, getHeight() - getWidth()));
         riverSelectionView = new RiverSelectionView(new Dimension(getWidth() / 2 + 1, getHeight() - getWidth()));
         currentSelectionView = new CurrentSelectionView(new Dimension(getWidth(), getWidth()), riverSelectionView);
-        panelBackground = ImageLoader.getImage("PANEL_BACKGROUND");
+
+        //This was causing some View Bugs [Uncomment at your own risk]
+//        panelBackground = ImageLoader.getImage("PANEL_BACKGROUND");
 
         add(terrainSelectionView, BorderLayout.WEST);
         add(riverSelectionView, BorderLayout.EAST);
@@ -60,7 +62,8 @@ public class TileSelectionView extends JPanel{
     @Override
     protected void paintComponent(Graphics g) {
     	g.setColor(Color.BLACK);
-    	g.drawImage(panelBackground, 0, 0, null);
+        //This was causing some View Bugs [Uncomment at your own risk]
+//    	g.drawImage(panelBackground, 0, 0, null);
     	g.drawRect(0, 0, getWidth() - 7, getHeight() - 8);
     }
 }

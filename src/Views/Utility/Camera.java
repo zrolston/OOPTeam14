@@ -16,7 +16,7 @@ public class Camera {
     private static Camera instance = null;
     private int moveOffset = PixelMap.TILE_WIDTH/16;
     private PixelPoint press = null;
-    private boolean cameraMovement =  true;
+    private boolean cameraMovement =  false;
 
     private Camera(int x, int y){
         origin = new PixelPoint(x, y);
@@ -32,11 +32,6 @@ public class Camera {
         return instance;
     }
 
-    public static void initialize(int x, int y){
-        if(instance == null){
-            instance = new Camera(x, y);
-        }
-    }
 
     //Getters
     public PixelPoint getOrigin() { return origin.clone(); }

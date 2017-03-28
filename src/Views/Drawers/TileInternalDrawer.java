@@ -24,9 +24,4 @@ public class TileInternalDrawer extends Drawer{
 //        g.drawImage(tile, origin.getX(), origin.getY(), tile.getWidth(), tile.getHeight(), null);
     }
 
-    public static void drawInMap(Graphics g, BufferedImage tile, HexLocation location){
-
-//        g.drawImage();
-    }
-
 }
