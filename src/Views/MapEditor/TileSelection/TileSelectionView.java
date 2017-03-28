@@ -60,7 +60,7 @@ public class TileSelectionView extends JPanel{
     @Override
     protected void paintComponent(Graphics g) {
     	g.setColor(Color.BLACK);
-    	g.drawImage(panelBackground, 0, 0, null);
+    	g.drawImage(panelBackground, 0, 0, (int)(getWidth() * 1.145), (int)(getHeight() * 1.032), null);
     	g.drawRect(0, 0, getWidth() - 7, getHeight() - 8);
     }
 }
