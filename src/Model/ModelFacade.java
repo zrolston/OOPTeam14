@@ -3,9 +3,14 @@ package Model;
 import Model.Map.BuildMap;
 import Model.Map.PlacementManager;
 import Model.Tile.BuildTile;
+import Model.Utility.HexLocation;
 import Model.Utility.ILocation;
+import Model.Utility.MapParsers.DaveBuilder;
+import Model.Utility.MapParsers.TilePlacement;
 import Views.Utility.Camera;
 import Views.Utility.PixelPoint;
+
+import java.util.List;
 
 
 /**
@@ -16,6 +21,7 @@ public class ModelFacade {
     //TODO Use PlacementManager
     PlacementManager manager;
     Camera camera=Camera.getInstance();
+    DaveBuilder daveBuilder= new DaveBuilder();
     //Todo:add tileFactory to this
 
 
@@ -72,6 +78,14 @@ public class ModelFacade {
         }
     }
 
+    public void placeFromFile(List<TilePlacement> placements){
+        for (TilePlacement placement:placements) {
+            BuildTile tile= placement.getTile();
+            HexLocation location=placement.getLocation();
+            manager.placeTileAt(tile,location);
+        }
+    }
+
     public void removeTileAt(ILocation location){
         manager.removeTileAt(location);
     }
@@ -81,5 +95,12 @@ public class ModelFacade {
     }
     public int getMapLength(){
         return BuildMap.getInstance().getHEIGHT();
+    }
+
+    public void loadMap(String path){
+        daveBuilder.buildMap(path);
+    }
+    public void saveMap(BuildMap map,String path){
+        daveBuilder.saveMap(map,path);
     }
 }

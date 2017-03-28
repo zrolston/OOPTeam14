@@ -156,7 +156,13 @@ public class DaveBuilderTest {
         ModelFacade.initialize(new PlacementManager());
         DaveBuilder daveBuilder = new DaveBuilder();
 
-        daveBuilder.buildMap();
+        while (true) {
+            try {
+//                daveBuilder.buildMap();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Test
@@ -211,7 +217,7 @@ public class DaveBuilderTest {
         map.addTile(pasture, new HexLocation(11,10));
         map.addTile(rock, new HexLocation(12,10));
 
-        daveBuilder.saveMap(map);
+//        daveBuilder.saveMap(map);
 
     }
 
