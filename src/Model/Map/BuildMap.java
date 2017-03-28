@@ -60,7 +60,7 @@ public class BuildMap implements IViewMap {
     }
 
     public boolean locationInBounds(ILocation location){
-        if(location.getCol() > this.WIDTH || location.getCol() < 0 || location.getRow() > this.HEIGHT || location.getRow() < 0){
+        if(location.getCol() >= this.WIDTH || location.getCol() < 0 || location.getRow() >= this.HEIGHT || location.getRow() < 0){
             return false;
         }
         return true;
