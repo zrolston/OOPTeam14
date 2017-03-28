@@ -14,7 +14,7 @@ public class CursorState {
     private PixelPoint dragged;
     private HexLocation activeTile;
     private boolean draggingTile = false;
-//    private String cursorStae
+    private boolean markerActive = true;
     private BufferedImage draggedImage = null;
 
     public static CursorState getInstance() {
@@ -32,6 +32,7 @@ public class CursorState {
     public PixelPoint getDragged() { return dragged.clone(); }
     public boolean isDraggingTile() { return draggingTile; }
     public BufferedImage getDraggedImage() { return draggedImage; }
+    public boolean isMarkerActive(){ return markerActive; }
 
 
     public void setCursor(PixelPoint cursor) { this.cursor = cursor; }
@@ -46,8 +47,14 @@ public class CursorState {
         dragged.setY(y);
     }
 
-    public void startDraggingTile(){ draggingTile = true; }
-    public void stopDraggingTile(){ draggingTile = false; }
+    public void startDraggingTile(){
+        markerActive = false;
+        draggingTile = true;
+    }
+    public void stopDraggingTile(){
+//        draggingTile = false;
+        markerActive = true;
+    }
 
     public HexLocation getActiveTile() {
         return activeTile;
@@ -55,4 +62,5 @@ public class CursorState {
 
     public void setActiveTile(HexLocation activeTile) { this.activeTile = activeTile; }
     public void setDraggedImage(BufferedImage draggedImage) { this.draggedImage = draggedImage; }
+    public void setMarkerActive(boolean markerActive) { this.markerActive = markerActive; }
 }

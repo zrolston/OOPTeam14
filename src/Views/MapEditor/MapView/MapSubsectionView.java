@@ -40,24 +40,37 @@ public class MapSubsectionView extends JPanel {
         Graphics2D g2 = (Graphics2D) image.getGraphics();
         g2.drawImage(background, 0, 0, getWidth(), getHeight(), null);
         g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
-        for (int i = 0; i < tileImages.length; i++) {
-            for (int j = 0; j < tileImages[i].length; j++) {
-                PixelPoint origin = PixelMap.getMapTileOrigin(new HexLocation(i, j));
-                TileInternalDrawer.drawInMap(g2, tileImages[i][j], origin);
-            }
-        }
+//        for (int i = 0; i < tileImages.length; i++) {
+//            for (int j = 0; j < tileImages[i].length; j++) {
+//                PixelPoint origin = PixelMap.getMapTileOrigin(new HexLocation(i, j));
+//                TileInternalDrawer.drawInMap(g2, tileImages[i][j], origin);
+//            }
+//        }
 
         g2.dispose();
     }
+
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(image, 0, 0, null);
 
-//        if(cursorState.)
-        TileOutlineDrawer.drawActiveTile(g, CursorState.getInstance().getActiveTile());
+        //Update the Map in Real Time with the Loop
+        //Note: Updating the background on Tick will make the game extremely laggy
+        for (int i = 0; i < tileImages.length; i++) {
+            for (int j = 0; j < tileImages[i].length; j++) {
+                PixelPoint origin = PixelMap.getMapTileOrigin(new HexLocation(i, j));
+                TileInternalDrawer.drawInMap(g, tileImages[i][j], origin);
+            }
+        }
 
+        //Update the Marker
+        if(cursorState.isMarkerActive()) {
+            TileOutlineDrawer.drawActiveTile(g, CursorState.getInstance().getActiveTile());
+        }
+
+        //Update the Dragging of the Tile
         if(cursorState.isDraggingTile()) {
             PixelPoint point = cursorState.getDragged();
             g.drawImage(cursorState.getDraggedImage(), point.getX(), point.getY(), PixelMap.TILE_FULL_WIDTH, PixelMap.TILE_HEIGHT, null);
@@ -73,14 +86,11 @@ public class MapSubsectionView extends JPanel {
 
         setBounds(0, 0, PixelMap.SCREEN_WIDTH, PixelMap.SCREEN_HEIGHT);
 
-        //TODO: MAKE SURE THAT THE FACADE AND THIS ARE USING THE SAME MAP
-
         BuildMap map = BuildMap.getInstance();
         updateCachedImages(map);
         image = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
 
         updateImage();
-
         setVisible(true);
     }
 

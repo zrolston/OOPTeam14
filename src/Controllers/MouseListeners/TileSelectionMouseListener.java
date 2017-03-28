@@ -1,9 +1,11 @@
 package Controllers.MouseListeners;
 
+import Model.Utility.HexLocation;
 import Views.MapEditor.MapView.MapSubsectionView;
 import Views.MapEditor.TileSelection.CurrentSelectionView;
 import Views.MapEditor.TileSelection.TileSelectionView;
 import Views.Utility.CursorState;
+import Views.Utility.PixelMap;
 import Views.Utility.PixelPoint;
 
 import java.awt.event.MouseEvent;
@@ -29,7 +31,6 @@ public class TileSelectionMouseListener implements MouseMotionListener, MouseLis
     @Override
     public void mousePressed(MouseEvent e) {
         cursorState.setDragged(e.getX(), e.getY());
-        System.out.println("Selected"+new PixelPoint(e.getX(), e.getY()));
         cursorState.setDraggedImage(currentSelectionView.getSelectedTile());
         cursorState.startDraggingTile();
         cursorState.setDraggedImage(currentSelectionView.getSelectedTile());
@@ -38,6 +39,7 @@ public class TileSelectionMouseListener implements MouseMotionListener, MouseLis
 
     @Override
     public void mouseReleased(MouseEvent e) {
+        updateActiveTile(e);
         cursorState.setDragged(e.getX(), e.getY());
         cursorState.stopDraggingTile();
         cursorState.setDraggedImage(null);
@@ -64,5 +66,10 @@ public class TileSelectionMouseListener implements MouseMotionListener, MouseLis
     @Override
     public void mouseMoved(MouseEvent e) {
 
+    }
+
+    public void updateActiveTile(MouseEvent e){
+        HexLocation location = PixelMap.getHexLocationAtPixelPoint(new PixelPoint(e.getX(), e.getY()));
+        cursorState.setActiveTile(location);
     }
 }
