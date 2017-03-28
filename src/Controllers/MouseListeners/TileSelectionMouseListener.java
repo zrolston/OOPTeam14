@@ -36,7 +36,8 @@ public class TileSelectionMouseListener implements MouseMotionListener, MouseLis
 
     @Override
     public void mousePressed(MouseEvent e) {
-        mousePressed = true;
+        if (e.getY() > (view.getBounds().getHeight() - view.getBounds().getWidth()))
+            mousePressed = true;
     }
 
     @Override
