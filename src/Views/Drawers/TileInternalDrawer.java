@@ -20,7 +20,7 @@ public class TileInternalDrawer extends Drawer{
     private static Camera camera = Camera.getInstance();
 
     public static void drawInMap(Graphics g, BufferedImage tile, PixelPoint origin){
-        g.drawImage(tile, origin.getX(), origin.getY(), (int)(PixelMap.TILE_FULL_WIDTH*camera.getScale()), (int)(PixelMap.TILE_HEIGHT*camera.getScale()), null);
+        g.drawImage(tile, origin.getX(), origin.getY(), (int)(PixelMap.TILE_FULL_WIDTH*camera.getScale()*1.0225), (int)(PixelMap.TILE_HEIGHT*camera.getScale()*1.0225), null);
 //        g.drawImage(tile, origin.getX(), origin.getY(), tile.getWidth(), tile.getHeight(), null);
     }
 

@@ -53,17 +53,17 @@ public class PixelMap {
         Camera camera = Camera.getInstance();
         //If odd Column
         if(location.getCol()%2 == 1)
-            return new PixelPoint(location.getCol()*width_offset - camera.getOrigin().getX(), location.getRow()*TILE_HEIGHT - camera.getOrigin().getY());
+            return new PixelPoint((int) (location.getCol()*width_offset*camera.getScale()) - camera.getOrigin().getX(), (int) (location.getRow()*TILE_HEIGHT*camera.getScale()) - camera.getOrigin().getY());
             //If even Column
         else
-            return new PixelPoint(location.getCol()*width_offset - camera.getOrigin().getX(), location.getRow()*TILE_HEIGHT + height_offset - camera.getOrigin().getY());
+            return new PixelPoint((int) (location.getCol()*width_offset*camera.getScale()) - camera.getOrigin().getX(), (int) ((location.getRow()*TILE_HEIGHT + height_offset)*camera.getScale()) - camera.getOrigin().getY());
     }
 
     public static HexLocation getHexLocationAtPixelPoint(PixelPoint point) {
         Camera camera = Camera.getInstance();
 
-        int xPosition = point.getX() + camera.getOrigin().getX();
-        int yPosition = point.getY() + camera.getOrigin().getY();
+        double xPosition = point.getX()*camera.getScale() + camera.getOrigin().getX();
+        double yPosition = point.getY()*camera.getScale() + camera.getOrigin().getY();
 
         HexLocation location = null;
 
@@ -72,8 +72,8 @@ public class PixelMap {
             int row = (int) ((yPosition - height_offset) / TILE_HEIGHT);
             if (yPosition - height_offset < 0)
                 row -= 1;
-            int xPositionInTile = xPosition - column*width_offset;
-            int yPositionInTile = yPosition - height_offset - row*TILE_HEIGHT;
+            double xPositionInTile = xPosition - column*width_offset;
+            double yPositionInTile = yPosition - height_offset - row*TILE_HEIGHT;
             location = new HexLocation(row, column);
             if (xPositionInTile < (TILE_WIDTH / 2)) {
                 if (yPositionInTile < (TILE_HEIGHT / 2)) {
@@ -90,8 +90,8 @@ public class PixelMap {
             int row = (int) (yPosition / TILE_HEIGHT);
             if (yPosition < 0)
                 row -= 1;
-            int xPositionInTile = xPosition - column*width_offset;
-            int yPositionInTile = yPosition - row*TILE_HEIGHT;
+            double xPositionInTile = xPosition - column*width_offset;
+            double yPositionInTile = yPosition - row*TILE_HEIGHT;
             location = new HexLocation(row, column);
             if (xPositionInTile < (TILE_WIDTH / 2)) {
                 if (yPositionInTile < (TILE_HEIGHT / 2)) {
@@ -111,7 +111,7 @@ public class PixelMap {
     public static boolean isTileVisible(ILocation tileLocation) {
         Camera camera = Camera.getInstance();
         PixelPoint topLeft = getMapTileOrigin(tileLocation);
-        PixelPoint bottomRight = new PixelPoint(topLeft.getX() + TILE_FULL_WIDTH, topLeft.getY() + TILE_HEIGHT);
+        PixelPoint bottomRight = new PixelPoint(topLeft.getX() + (int) (TILE_FULL_WIDTH*camera.getScale()), topLeft.getY() + (int) (TILE_HEIGHT*camera.getScale()));
         if (((topLeft.getX() > 0) && (topLeft.getX() < SCREEN_WIDTH)) && ((topLeft.getY() > 0) && (topLeft.getY() < SCREEN_HEIGHT)))
             return true;
         else if (((bottomRight.getX() > 0) && (bottomRight.getX() < SCREEN_WIDTH)) && ((bottomRight.getY() > 0)) && (bottomRight.getY() < SCREEN_HEIGHT))
