@@ -176,6 +176,20 @@ public class PlacementManagerTest {
     }
 
     @Test
+    public void placeRiverTest(){
+        BuildMap.reset();
+        buildMap = BuildMap.getInstance();
+        placementManager = new PlacementManager();
+
+        BuildTile tile = btf.createTile("ROCK",  new int[]{2, 4, 6});
+        BuildTile tile2 = btf.createTile("ROCK",  new int[]{3, 5});
+
+        placementManager.placeTileAt(tile, new HexLocation(2, 2));
+
+        assertTrue(placementManager.validate(tile2, new HexLocation(1, 3)));
+    }
+
+    @Test
     public void placeTileAt() {
         BuildMap.reset();
         buildMap = BuildMap.getInstance();
