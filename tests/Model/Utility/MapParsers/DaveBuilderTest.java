@@ -2,6 +2,9 @@ package Model.Utility.MapParsers;
 
 import Model.Map.BuildMap;
 import Model.ModelFacade;
+import Model.Terrain.TerrainType;
+import Model.Tile.BuildTile;
+import Model.Tile.BuildTileFactory;
 import Model.Utility.HexLocation;
 import org.junit.Test;
 
@@ -171,15 +174,16 @@ public class DaveBuilderTest {
 
 
         Class[] methodParameters = new Class[]{DaveBuilderTile[].class};
-        List<Integer> l1= new ArrayList<>();
+        List<Integer> l1 = new ArrayList<>();
         l1.add(0);
         l1.add(0);
         l1.add(0);
 
-        List<Integer> l2= new ArrayList<>();
+        List<Integer> l2 = new ArrayList<>();
         l2.add(1);
-
-        Object[] params = new Object[]{new DaveBuilderTile[]{new DaveBuilderTile(0, 0, 0, "pasture", l1), new DaveBuilderTile(0, 3, 2, "mountain", l2)}};
+        CubeLocation cubeLocation = new CubeLocation(0, 0, 0);
+        CubeLocation cubeLocation1 = new CubeLocation(0, 3, 2);
+        Object[] params = new Object[]{new DaveBuilderTile[]{new DaveBuilderTile(cubeLocation, "pasture", l1), new DaveBuilderTile(cubeLocation1, "mountain", l2)}};
 
         Method m = r.getDeclaredMethod("formatTiles", methodParameters);
 
@@ -187,11 +191,11 @@ public class DaveBuilderTest {
 
         String output = (String) m.invoke(daveBuilder, params);
 
-        String expectedResult="2\n" +
+        String expectedResult = "2\n" +
                 "(0 0 0) pasture (0 0 0 )\n" +
                 "(0 3 2) mountain (1 )\n";
 
-        assertEquals(expectedResult,output);
+        assertEquals(expectedResult, output);
         //TODO: fix this make rivers an arraylist
     }
 
@@ -200,6 +204,16 @@ public class DaveBuilderTest {
         map = BuildMap.getInstance();
         ModelFacade.initialize(map);
         daveBuilder = new DaveBuilder();
+        BuildTileFactory tileFactory= new BuildTileFactory();
+        BuildTile desert= tileFactory.createTile(TerrainType.DESERT.toString(), new int[] {2,3,5});
+        BuildTile mountain= tileFactory.createTile(TerrainType.MOUNTAIN.toString(), new int[] {});
+        BuildTile pasture= tileFactory.createTile(TerrainType.PASTURE.toString(), new int[] {2,3});
+        BuildTile rock= tileFactory.createTile(TerrainType.ROCK.toString(), new int[] {2});
+
+        map.addTile(desert, new HexLocation(0,0));
+        map.addTile(rock, new HexLocation(10,10));
+        map.addTile(pasture, new HexLocation(11,10));
+        map.addTile(rock, new HexLocation(12,10));
 
         daveBuilder.saveMap(map);
 

@@ -1,47 +1,63 @@
 package Model.Utility.MapParsers;
 
-import Model.Edge.LandEdge;
-import Model.Edge.RiverEdge;
-import Model.Edge.SeaEdge;
+import Model.Edge.*;
 import Model.Terrain.*;
-import Model.Visitor.TerrainVisitor;
+import Model.Utility.HexaIndex;
 import Model.Visitor.TileVisitor;
+
+import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * Created by jordi on 3/28/2017.
  */
 public class MapSavingVisitor implements TileVisitor {
-
-    TerrainType terain;
+    private int currentEdgeIndex;
+    private ArrayList<Integer> riverIndices;
+    private TerrainType terrain;
 
     @Override
     public void visitSea(SeaTerrain sea) {
-        terain=TerrainType.SEA;
+        terrain = TerrainType.SEA;
     }
 
     @Override
     public void visitRock(RockTerrain rock) {
-        terain=TerrainType.ROCK;
+        terrain = TerrainType.ROCK;
     }
 
     @Override
     public void visitDesert(DesertTerrain desert) {
-        terain=TerrainType.DESERT;
+        terrain = TerrainType.DESERT;
     }
 
     @Override
     public void visitPasture(PastureTerrain pasture) {
-        terain=TerrainType.PASTURE;
+        terrain = TerrainType.PASTURE;
     }
 
     @Override
     public void visitWoods(WoodsTerrain woods) {
-        terain=TerrainType.WOODS;
+        terrain = TerrainType.WOODS;
     }
 
     @Override
     public void visitMountain(MountainTerrain mountain) {
-        terain=TerrainType.MOUNTAIN;
+        terrain = TerrainType.MOUNTAIN;
+    }
+
+    @Override
+    public void visitEdgeMap(EdgeMap edgeMap) {
+        currentEdgeIndex = 0;
+        riverIndices = new ArrayList<>();
+        //Take care of the traversal
+        Map<HexaIndex, Edge> edges = edgeMap.getEdges();
+        edges.forEach(
+                (index, edge) -> {
+                    currentEdgeIndex = index.getValue();
+                    edge.accept(this);
+                }
+        );
     }
 
     @Override
@@ -56,6 +72,14 @@ public class MapSavingVisitor implements TileVisitor {
 
     @Override
     public void visitRiverEdge(RiverEdge riverEdge) {
+        riverIndices.add(currentEdgeIndex);
+    }
 
+    public ArrayList<Integer> getRiverIndices() {
+        return riverIndices;
+    }
+
+    public TerrainType getTerrain() {
+        return terrain;
     }
 }

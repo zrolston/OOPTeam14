@@ -26,8 +26,8 @@ public class DaveBuilderTile {
         setRivers(tile);
     }
 
-    public DaveBuilderTile(int x, int y, int z, String terrain, List<Integer> rivers) {
-        this.cubeLocation = new CubeLocation(x, y, z);
+    public DaveBuilderTile(CubeLocation cubeLocation, String terrain, List<Integer> rivers) {
+        this.cubeLocation = cubeLocation;
         this.terrain = terrain;
 
         initializeRivers(rivers);

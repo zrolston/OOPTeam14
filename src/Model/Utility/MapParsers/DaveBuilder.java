@@ -198,8 +198,9 @@ public class DaveBuilder implements MapParser {
         if (!path.equals("")) {
 
 //          TODO: getTiles, get list of DaveBuilderTiles and then call format
-//            String output=formatTiles();
-//            saveFile(path,output);
+            List<DaveBuilderTile> tiles=getFormattedTiles(map);
+            String output=formatTiles(tiles);
+            saveFile(path,output);
         }
     }
 
@@ -224,7 +225,16 @@ public class DaveBuilder implements MapParser {
         return path;
     }
 
-    private void getTiles(BuildMap map) {
+    /**
+     * gets a two dimensional array of tiles
+     * visits every tile to extract the necessary information
+     * uses that information to create formatted tiles
+     * returns an array of formatted tiles in DaveBuilderTile format
+     * @param map
+     * @return
+     */
+    private List<DaveBuilderTile> getFormattedTiles(BuildMap map) {
+        List<DaveBuilderTile> formattedTiles= new ArrayList<>();
         int lastRow = map.getHEIGHT() - 1;
         int lastCol = map.getWIDTH() - 1;
 
@@ -232,22 +242,53 @@ public class DaveBuilder implements MapParser {
         HexLocation bottomRight = new HexLocation(lastRow, lastCol);
 
         BuildTile[][] tiles = map.getTiles(topLeft, bottomRight);
+
+        for (int row = 0; row < tiles.length; row++) {
+            for (int col = 0; col < tiles[0].length; col++) {
+                BuildTile tempTile=tiles[row][col];
+                if (isValidTile(tempTile)) {
+                    MapSavingVisitor visitor= new MapSavingVisitor();
+                    tempTile.accept(visitor);
+                    DaveBuilderTile tempFormattedTile=convertToTileFormat(row,col,visitor);
+                    formattedTiles.add(tempFormattedTile);
+                }
+            }
+        }
+        return formattedTiles;
+    }
+
+    /**
+     * checks that a tile is not null
+     * @param tile
+     * @return
+     */
+    private boolean isValidTile(BuildTile tile) {
+        return tile != null;
     }
 
 
+    private DaveBuilderTile convertToTileFormat(int row, int col, MapSavingVisitor visitor){
+        CubeLocation cubeLocation=convertToCube(row,col);
+        ArrayList<Integer> riverIndices=visitor.getRiverIndices();
+        String terrain= visitor.getTerrain().toString();
+
+        return  new DaveBuilderTile(cubeLocation,terrain,riverIndices);
+    }
+
     /**
      * creates the output string
-     *
+     * <p>
      * this class might seem to break LoD but in reality all this information is located in this class
      * the reason for using classes such as CubeLocation and DaveBuilderTile is so that the code is more organized
      * and so that there are less bugs
+     *
      * @param tiles
      * @return
      */
-    private String formatTiles(DaveBuilderTile[] tiles) {
-        String output = tiles.length + "\n";
+    private String formatTiles(List<DaveBuilderTile> tiles) {
+        String output = tiles.size() + "\n";
 
-        for (DaveBuilderTile tile :tiles) {
+        for (DaveBuilderTile tile : tiles) {
             String location = formatLocation(tile);
             String terrain = formatTerrain(tile);
             String riverEdges = formatRiverEdges(tile);
