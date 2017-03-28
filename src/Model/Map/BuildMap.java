@@ -6,13 +6,24 @@ import Model.Utility.ILocation;
 import Model.Visitor.MapVisitor;
 
 public class BuildMap implements IViewMap {
+
+    private static BuildMap buildMap;
+
     private BuildTile[][] map;
     private int HEIGHT, WIDTH;
 
-    public BuildMap(int length, int width){
+    private BuildMap(int length, int width){
         this.HEIGHT = length;
         this.WIDTH = width;
         map = new BuildTile[HEIGHT][WIDTH];
+    }
+
+    public static BuildMap getInstance(){
+        if(buildMap == null){
+            buildMap = new BuildMap(21, 21);
+        }
+
+        return buildMap;
     }
 
     @Override
