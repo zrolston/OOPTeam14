@@ -18,11 +18,13 @@ public class SaveLoadView extends JPanel {
 
         JButton saveButton = new JButton("Save");
         saveButton.setBackground(Color.blue);
+        saveButton.setOpaque(true);
         saveButton.setFocusable(false);
         saveButton.addActionListener(new SaveButtonListener());
 
         JButton loadButton = new JButton("load");
         loadButton.setBackground(Color.green);
+        loadButton.setOpaque(true);
         loadButton.setFocusable(false);
         loadButton.addActionListener(new LoadButtonListener());
 
