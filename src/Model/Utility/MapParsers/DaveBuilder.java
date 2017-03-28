@@ -198,9 +198,9 @@ public class DaveBuilder implements MapParser {
         if (!path.equals("")) {
 
 //          TODO: getTiles, get list of DaveBuilderTiles and then call format
-            List<DaveBuilderTile> tiles=getFormattedTiles(map);
-            String output=formatTiles(tiles);
-            saveFile(path,output);
+            List<DaveBuilderTile> tiles = getFormattedTiles(map);
+            String output = formatTiles(tiles);
+            saveFile(path, output);
         }
     }
 
@@ -230,11 +230,12 @@ public class DaveBuilder implements MapParser {
      * visits every tile to extract the necessary information
      * uses that information to create formatted tiles
      * returns an array of formatted tiles in DaveBuilderTile format
+     *
      * @param map
      * @return
      */
     private List<DaveBuilderTile> getFormattedTiles(BuildMap map) {
-        List<DaveBuilderTile> formattedTiles= new ArrayList<>();
+        List<DaveBuilderTile> formattedTiles = new ArrayList<>();
         int lastRow = map.getHEIGHT() - 1;
         int lastCol = map.getWIDTH() - 1;
 
@@ -245,11 +246,11 @@ public class DaveBuilder implements MapParser {
 
         for (int row = 0; row < tiles.length; row++) {
             for (int col = 0; col < tiles[0].length; col++) {
-                BuildTile tempTile=tiles[row][col];
+                BuildTile tempTile = tiles[row][col];
                 if (isValidTile(tempTile)) {
-                    MapSavingVisitor visitor= new MapSavingVisitor();
+                    MapSavingVisitor visitor = new MapSavingVisitor();
                     tempTile.accept(visitor);
-                    DaveBuilderTile tempFormattedTile=convertToTileFormat(row,col,visitor);
+                    DaveBuilderTile tempFormattedTile = convertToTileFormat(row, col, visitor);
                     formattedTiles.add(tempFormattedTile);
                 }
             }
@@ -259,6 +260,7 @@ public class DaveBuilder implements MapParser {
 
     /**
      * checks that a tile is not null
+     *
      * @param tile
      * @return
      */
@@ -267,12 +269,12 @@ public class DaveBuilder implements MapParser {
     }
 
 
-    private DaveBuilderTile convertToTileFormat(int row, int col, MapSavingVisitor visitor){
-        CubeLocation cubeLocation=convertToCube(row,col);
-        ArrayList<Integer> riverIndices=visitor.getRiverIndices();
-        String terrain= visitor.getTerrain().toString();
+    private DaveBuilderTile convertToTileFormat(int row, int col, MapSavingVisitor visitor) {
+        CubeLocation cubeLocation = convertToCube(row, col);
+        ArrayList<Integer> riverIndices = visitor.getRiverIndices();
+        String terrain = visitor.getTerrain().toString();
 
-        return  new DaveBuilderTile(cubeLocation,terrain,riverIndices);
+        return new DaveBuilderTile(cubeLocation, terrain, riverIndices);
     }
 
     /**
@@ -309,14 +311,21 @@ public class DaveBuilder implements MapParser {
 
     private String formatRiverEdges(DaveBuilderTile tile) {
         int[] rivers = tile.getRivers();
-        String riverEdges = " (";
+        String riverEdges = "";
 
-        for (int i = 0; i < rivers.length; i++) {
-            riverEdges += rivers[i] + " ";
+        if (areValidRivers(rivers)) {
+            riverEdges = " (";
+            for (int i = 0; i < rivers.length; i++) {
+                riverEdges += rivers[i] + " ";
+            }
+            riverEdges += ")";
         }
-        riverEdges += ")";
 
         return riverEdges;
+    }
+
+    private boolean areValidRivers(int[] rivers) {
+        return rivers!=null;
     }
 
     private void saveFile(String path, String output) {

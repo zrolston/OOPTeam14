@@ -212,6 +212,7 @@ public class DaveBuilderTest {
 
         map.addTile(desert, new HexLocation(0,0));
         map.addTile(rock, new HexLocation(10,10));
+        map.addTile(mountain, new HexLocation(10,15));
         map.addTile(pasture, new HexLocation(11,10));
         map.addTile(rock, new HexLocation(12,10));
 
