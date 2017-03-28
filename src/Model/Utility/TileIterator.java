@@ -1,7 +1,6 @@
 package Model.Utility;
 
 import Model.Tile.Tile;
-
 import java.awt.image.BufferedImage;
 
 /**
@@ -16,6 +15,7 @@ public interface TileIterator {
     void rotate();
     TileIterator getRiverIterator();
     int getSize();
-
-
+    void setSelectedTile(int index);
+    Tile getSelectedTile();
+    BufferedImage getSelectedTileImage();
 }

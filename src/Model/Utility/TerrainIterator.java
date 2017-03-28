@@ -62,4 +62,19 @@ public class TerrainIterator implements TileIterator {
     public int getSize() {
         return terrainList.length;
     }
+
+    @Override
+    public void setSelectedTile(int index) {
+
+    }
+
+    @Override
+    public Tile getSelectedTile() {
+        return null;
+    }
+
+    @Override
+    public BufferedImage getSelectedTileImage() {
+        return null;
+    }
 }
