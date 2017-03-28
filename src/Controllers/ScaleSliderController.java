@@ -13,13 +13,17 @@ import javax.swing.event.ChangeListener;
  */
 public class ScaleSliderController implements ChangeListener {
 
+    private MapSubsectionView mapSubsectionView;
+
+    public ScaleSliderController(MapSubsectionView view) {
+        mapSubsectionView = view;
+    }
+
     public void stateChanged(ChangeEvent e) {
         ScaleSliderView view = (ScaleSliderView) e.getSource();
-        if (!view.getValueIsAdjusting()) {
-            Camera camera = Camera.getInstance();
-            int scale = view.getValue();
-            camera.setScale((double) scale / 10);
-            MapSubsectionView.updateCachedImages(BuildMap.getInstance());
-        }
+        Camera camera = Camera.getInstance();
+        int scale = view.getValue();
+        camera.setScale((double) scale / 10);
+        mapSubsectionView.updateImage();
     }
 }

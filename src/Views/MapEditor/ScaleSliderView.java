@@ -1,6 +1,7 @@
 package Views.MapEditor;
 
 import Controllers.ScaleSliderController;
+import Views.MapEditor.MapView.MapSubsectionView;
 import Views.Utility.PixelMap;
 
 import javax.swing.*;
@@ -12,7 +13,7 @@ import java.util.Hashtable;
  */
 public class ScaleSliderView extends JSlider {
 
-    public ScaleSliderView() {
+    public ScaleSliderView(MapSubsectionView mapSubsectionView) {
         super(JSlider.VERTICAL, 5, 20, 10);
         setBounds(PixelMap.SCREEN_WIDTH *37/40, PixelMap.SCREEN_HEIGHT *5/20, PixelMap.SCREEN_WIDTH /20, PixelMap.SCREEN_HEIGHT *4/10);
 
@@ -28,7 +29,7 @@ public class ScaleSliderView extends JSlider {
         setLabelTable(labelTable);
 
         //Add controller
-        addChangeListener(new ScaleSliderController());
+        addChangeListener(new ScaleSliderController(mapSubsectionView));
 
         setFocusable(false);
         setVisible(true);

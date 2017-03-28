@@ -3,10 +3,9 @@ package Model.Map;
 import Model.Edge.Edge;
 import Model.Edge.EdgeMap;
 import Model.Utility.HexaIndex;
+import Model.Visitor.EdgeVisitor;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Map;
 
 public class Slot {
@@ -47,5 +46,8 @@ public class Slot {
 
     public int edgeSize(){
         return edges.size();
+    }
+    public void accept(EdgeVisitor v){
+        edges.accept(v);
     }
 }
