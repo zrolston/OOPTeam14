@@ -15,7 +15,7 @@ import java.io.IOException;
 public class TestRotateImage {
     @Test
     public void testRotate(){
-        BufferedImage bufferedImage = ImageLoader.getImage("RIVER0");
+        BufferedImage bufferedImage = ImageLoader.getImage("RIVER1");
         BufferedImage reference = ImageLoader.getImage("DESERT");
 
         AffineTransform tx = new AffineTransform();

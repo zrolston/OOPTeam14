@@ -3,6 +3,8 @@ package Views.Utility;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.awt.image.ColorModel;
+import java.awt.image.WritableRaster;
 import java.util.HashMap;
 
 public class ImageLoader {
@@ -48,5 +50,13 @@ public class ImageLoader {
 
     public static void main(String[] args) {
         System.out.println(ImageLoader.getImage("Mountain"));
+    }
+
+
+    public static BufferedImage getDeepCopy(BufferedImage image) {
+        ColorModel cm = image.getColorModel();
+        boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
+        WritableRaster raster = image.copyData(null);
+        return new BufferedImage(cm, raster, isAlphaPremultiplied, null);
     }
 }

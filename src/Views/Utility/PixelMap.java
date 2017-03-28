@@ -110,7 +110,8 @@ public class PixelMap {
 
     //Provides validation to coordinates when overlapping tiles.
     public static boolean tileContains(ILocation tileLocation, PixelPoint point){
-        PixelPoint center = getTileCenter(tileLocation);
+        Camera camera = Camera.getInstance();
+        PixelPoint center = getTileCenter(tileLocation, camera);
         Polygon hexagon = TileOutlineDrawer.getHexagon(center);
         return hexagon.contains(new Point(point.getX(), point.getY()));
     }

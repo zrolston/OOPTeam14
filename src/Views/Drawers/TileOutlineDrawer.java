@@ -32,6 +32,7 @@ public class TileOutlineDrawer extends Drawer{
         //Set Stroke
         Graphics2D g2 = (Graphics2D) g;
         g2.setStroke(new BasicStroke(2));
+        g.setColor(new Color(0,0,0));
         Camera camera = Camera.getInstance();
 
         //Draw Hexatile Outline
@@ -48,13 +49,16 @@ public class TileOutlineDrawer extends Drawer{
         drawEdge(g, tileLocation, new Color(255, 0, 0));
     }
 
+    public static void drawActiveTile(Graphics g, HexLocation tileLocation){
+        drawEdge(g, tileLocation, new Color(0, 255, 255));
+    }
+
 
     private static void drawEdge(Graphics g, HexLocation tileLocation, Color color){
-        Camera camera = Camera.getInstance();
-        PixelPoint center = PixelMap.getTileCenter(tileLocation, camera);
+        PixelPoint origin = PixelMap.getMapTileOrigin(tileLocation);
+        PixelPoint center = new PixelPoint(origin.getX()+PixelMap.TILE_WIDTH, origin.getY()+PixelMap.TILE_HEIGHT/2);
         Polygon hexatile = getHexagon(center);
         ((Graphics2D)g).setStroke(new BasicStroke(5));
-
         Color prev = g.getColor();
         g.setColor(color);
         g.drawPolygon(hexatile);
