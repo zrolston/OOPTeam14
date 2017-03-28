@@ -10,6 +10,8 @@ public abstract class Tile {
         this.terrain = terrain;
     }
 
+    public abstract Tile clone();
+
     public Terrain getTerrain(){
         return this.terrain;
     }
