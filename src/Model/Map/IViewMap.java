@@ -8,5 +8,4 @@ public interface IViewMap {
     void accept(MapVisitor v);
     Tile[][] getTiles();
     Tile[][] getTiles(ILocation topLeft, ILocation bottomRight);
-    Tile getTileAt(ILocation location);
 }
