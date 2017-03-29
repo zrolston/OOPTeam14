@@ -7,6 +7,7 @@ import java.awt.event.MouseListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.border.LineBorder;
 
 import Controllers.ButtonListener.ValidateButtonListener;
 import Views.Utility.ImageLoader;
@@ -27,13 +28,15 @@ public class ValidateAndMenuView extends JPanel {
         validateButton.setOpaque(true);
         validateButton.setFocusable(false);
         validateButton.addActionListener(new ValidateButtonListener(validateButton));
-
+        validateButton.setBorder(new LineBorder(Color.BLACK));
+        
         JButton hamburgerButton = new JButton(new ImageIcon(ImageLoader.getImage("HAMBURGER")));
         hamburgerButton.setOpaque(true);
         hamburgerButton.setFocusable(false);
         hamburgerButton.addActionListener(e -> {
 			buttonPanel.toggle();
 		});
+        hamburgerButton.setBorder(new LineBorder(Color.BLACK));
         
         this.add(validateButton);
         this.add(hamburgerButton);
