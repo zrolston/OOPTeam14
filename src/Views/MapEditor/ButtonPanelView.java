@@ -20,13 +20,16 @@ public class ButtonPanelView extends JPanel {
 
     public ButtonPanelView() {
         setLayout(new GridLayout(0,2));
-        setBounds(PixelMap.SCREEN_WIDTH*15/20, PixelMap.SCREEN_HEIGHT/40, PixelMap.SCREEN_WIDTH*2/10, PixelMap.SCREEN_HEIGHT/20);
+        setBounds(PixelMap.SCREEN_WIDTH*15/20, PixelMap.SCREEN_HEIGHT/40, PixelMap.SCREEN_WIDTH*2/10, PixelMap.SCREEN_HEIGHT/18);
 
         panelBackground = ImageLoader.getImage("PANEL_BACKGROUND");
 
+        JPanel temp = new JPanel( new GridLayout(0, 1) );
+
         JButton saveButton = new JButton("Save");
+        saveButton.setFont(new Font("Serif", Font.BOLD, 8));
         saveButton.setBackground( new Color( 0xffCABD80 ) );
-        saveButton.setOpaque(true);
+        saveButton.setOpaque(false);
         saveButton.setFocusable(false);
         saveButton.addActionListener(new SaveButtonListener());
         saveButton.setOpaque( true );
@@ -34,27 +37,33 @@ public class ButtonPanelView extends JPanel {
 
         JButton loadButton = new JButton("Load");
         loadButton.setBackground( new Color( 0xffCABD80 )  );
-        loadButton.setOpaque(true);
+        loadButton.setOpaque(false);
         loadButton.setFocusable(false);
         loadButton.addActionListener(new LoadButtonListener());
+        loadButton.setFont(new Font("Serif", Font.BOLD, 8));
 
 
         JButton validateButton = new JButton(new ImageIcon(ImageLoader.getImage("SAD_CAT")));
-        validateButton.setBackground(Color.red);
-        validateButton.setOpaque(true);
+//        validateButton.setBackground(new Color( 0xffCABD80 ) );
+        validateButton.setOpaque(false);
         validateButton.setFocusable(false);
         validateButton.addActionListener(new ValidateButtonListener(validateButton));
 
         JButton clearButton = new JButton("Clear");
         clearButton.setBackground(new Color( 0xffCABD80 )  );
-        clearButton.setOpaque(true);
+        clearButton.setOpaque(false);
         clearButton.setFocusable(false);
         clearButton.addActionListener(  new clearButtonListener(clearButton));
+        clearButton.setFont(new Font("Serif", Font.BOLD, 8));
 
-        add(saveButton);
-        add(loadButton);
-        add(validateButton);
-        add(clearButton);
+
+        temp.add(saveButton);
+        temp.add(loadButton);
+        temp.add(clearButton);
+
+        this.add(temp);
+        this.add(validateButton);
+
 
         this.setBackground( new Color( 0xffCABD80 )   );
 
@@ -64,10 +73,7 @@ public class ButtonPanelView extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         g.setColor(Color.BLACK);
-        g.drawImage(panelBackground, 0, 0, (int)(getWidth() * 1.145), (int)(getHeight() * 1.032), null);
-        int recWidth = (int)(getWidth() * 0.97);
-        int recHeight = (int)(getHeight() * 0.71);
-        g.drawRect(0, 0, recWidth, (int)(getHeight() * 0.99));
+        g.drawImage(panelBackground, 0, 0, (int)(getWidth() * 2), (int)(getHeight() * 2), null);
     }
 
 }
