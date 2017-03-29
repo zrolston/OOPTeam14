@@ -14,7 +14,12 @@ import java.io.File;
  * Created by Willie on 3/28/2017.
  */
 public class LoadButtonListener implements ActionListener {
-    ModelFacade modelFacade=ModelFacade.getInstance();
+    private ModelFacade modelFacade = ModelFacade.getInstance();
+    private MapSubsectionView mapSubsectionView;
+
+    public LoadButtonListener(MapSubsectionView view) {
+        mapSubsectionView = view;
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -26,7 +31,7 @@ public class LoadButtonListener implements ActionListener {
         if (chooser.showOpenDialog(chooser) == JFileChooser.APPROVE_OPTION) {
             path= chooser.getSelectedFile().getAbsolutePath();
             modelFacade.loadMap(path);
-            MapSubsectionView.updateCachedImages(BuildMap.getInstance());
+            mapSubsectionView.updateCachedImages(BuildMap.getInstance());
         }
     }
 }

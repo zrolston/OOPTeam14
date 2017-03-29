@@ -16,21 +16,22 @@ import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.Map;
 
 public class TileSelectionMouseListener implements MouseMotionListener, MouseListener {
 
     TileSelectionView view;
     CursorState cursorState = CursorState.getInstance();
     CurrentSelectionView currentSelectionView;
+    MapSubsectionView mapSubsectionView;
     ModelFacade modelFacade;
 
     private boolean mousePressed;
 
-
-
-    public TileSelectionMouseListener(TileSelectionView tileSelectionView, CurrentSelectionView currentSelectionView) {
+    public TileSelectionMouseListener(TileSelectionView tileSelectionView, CurrentSelectionView currentSelectionView, MapSubsectionView mapSubsectionView) {
         this.view = tileSelectionView;
         this.currentSelectionView = currentSelectionView;
+        this.mapSubsectionView = mapSubsectionView;
         modelFacade = ModelFacade.getInstance();
     }
 
@@ -57,7 +58,7 @@ public class TileSelectionMouseListener implements MouseMotionListener, MouseLis
                             getRealMousePosition(new PixelPoint(e.getX(), e.getY()))
                     )
             );
-            MapSubsectionView.updateCachedImages(BuildMap.getInstance());
+            mapSubsectionView.updateCachedImages(BuildMap.getInstance());
             currentSelectionView.update(0);
             cursorState.setMarkerType(CursorState.NORMAL);
         }

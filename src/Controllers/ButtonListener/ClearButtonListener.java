@@ -13,16 +13,16 @@ import java.io.File;
 
 
 public class ClearButtonListener implements ActionListener {
-    ModelFacade modelFacade=ModelFacade.getInstance();
-    JButton button;
+    private ModelFacade modelFacade = ModelFacade.getInstance();
+    private MapSubsectionView mapSubsectionView;
 
-    public ClearButtonListener(JButton button) {
-        this.button = button;
+    public ClearButtonListener(MapSubsectionView view) {
+        this.mapSubsectionView = view;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         modelFacade.clearMap();
-        MapSubsectionView.updateCachedImages(BuildMap.getInstance());
+        mapSubsectionView.updateCachedImages(BuildMap.getInstance());
     }
 }

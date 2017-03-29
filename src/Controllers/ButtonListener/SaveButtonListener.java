@@ -3,6 +3,7 @@ package Controllers.ButtonListener;
 import Model.Map.BuildMap;
 import Model.ModelFacade;
 import Model.Utility.FileIO;
+import Views.MapEditor.MapView.MapSubsectionView;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -23,7 +24,7 @@ public class SaveButtonListener implements ActionListener {
         chooser.setVisible(true);
         String path = null;
         if (chooser.showOpenDialog(chooser) == JFileChooser.APPROVE_OPTION) {
-            path= chooser.getSelectedFile().getAbsolutePath();
+            path = chooser.getSelectedFile().getAbsolutePath();
             modelFacade.saveMap (BuildMap.getInstance(),path);
         }
     }
