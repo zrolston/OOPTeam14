@@ -95,6 +95,7 @@ public class BuildMap implements IViewMap {
                 map[i][j] = null;
             }
         }
+        tileCount = 0;
     }
 
     public int getHEIGHT() {

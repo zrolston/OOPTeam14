@@ -30,7 +30,7 @@ public class PlacementManager {
             return false;
         }
 
-        ILocation startingLoc = this.getStartingLoc();
+       ILocation startingLoc = this.getStartingLoc();
 
         return this.contiguousValidation(startingLoc);
     }

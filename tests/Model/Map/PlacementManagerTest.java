@@ -203,7 +203,7 @@ public class PlacementManagerTest {
 
         placementManager.placeTileAt(tile, new HexLocation(2, 2));
 
-        assertTrue(placementManager.validate(tile2, new HexLocation(1, 3)));
+        assertTrue(placementManager.validate(tile2, new HexLocation(2, 3)));
     }
 
     @Test
