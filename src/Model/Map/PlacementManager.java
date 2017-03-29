@@ -1,12 +1,12 @@
 package Model.Map;
 
-import Model.Tile.BuildTile;
-import Model.Utility.HexaIndex;
-import Model.Utility.ILocation;
-
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
+
+import Model.Tile.BuildTile;
+import Model.Utility.HexaIndex;
+import Model.Utility.ILocation;
 
 public class PlacementManager {
     private HashMap<ILocation, Slot> slots;
@@ -30,7 +30,7 @@ public class PlacementManager {
             return false;
         }
 
-        ILocation startingLoc = this.getStartingLoc();
+       ILocation startingLoc = this.getStartingLoc();
 
         return this.contiguousValidation(startingLoc);
     }

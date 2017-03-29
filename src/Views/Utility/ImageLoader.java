@@ -1,11 +1,12 @@
 package Views.Utility;
 
-import javax.imageio.ImageIO;
-import java.awt.*;
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
 import java.awt.image.WritableRaster;
 import java.util.HashMap;
+
+import javax.imageio.ImageIO;
 
 public class ImageLoader {
 

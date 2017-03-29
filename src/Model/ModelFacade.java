@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.List;
+
 import Model.Map.BuildMap;
 import Model.Map.PlacementManager;
 import Model.Tile.BuildTile;
@@ -9,8 +11,6 @@ import Model.Utility.MapParsers.DaveBuilder;
 import Model.Utility.MapParsers.TilePlacement;
 import Views.Utility.Camera;
 import Views.Utility.PixelPoint;
-
-import java.util.List;
 
 
 /**

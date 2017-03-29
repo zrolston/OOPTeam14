@@ -8,12 +8,18 @@ package Views.Drawers;
 ---------------------------------------------------------------------------------------*/
 
 
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Polygon;
+import java.awt.RenderingHints;
+import java.util.ArrayList;
+
 import Model.Utility.HexLocation;
+import Views.Utility.Camera;
 import Views.Utility.PixelMap;
 import Views.Utility.PixelPoint;
-import Views.Utility.Camera;
-import java.awt.*;
-import java.util.*;
 
 
 public class TileOutlineDrawer extends Drawer{

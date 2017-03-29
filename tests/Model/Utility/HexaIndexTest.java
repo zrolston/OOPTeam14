@@ -1,10 +1,11 @@
 package Model.Utility;
 
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.*;
+import org.junit.Test;
 
 /**
  * Created by jordi on 3/26/2017.

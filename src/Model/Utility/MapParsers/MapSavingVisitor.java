@@ -1,12 +1,22 @@
 package Model.Utility.MapParsers;
 
-import Model.Edge.*;
-import Model.Terrain.*;
-import Model.Utility.HexaIndex;
-import Model.Visitor.TileVisitor;
-
 import java.util.ArrayList;
 import java.util.Map;
+
+import Model.Edge.Edge;
+import Model.Edge.EdgeMap;
+import Model.Edge.LandEdge;
+import Model.Edge.RiverEdge;
+import Model.Edge.SeaEdge;
+import Model.Terrain.DesertTerrain;
+import Model.Terrain.MountainTerrain;
+import Model.Terrain.PastureTerrain;
+import Model.Terrain.RockTerrain;
+import Model.Terrain.SeaTerrain;
+import Model.Terrain.TerrainType;
+import Model.Terrain.WoodsTerrain;
+import Model.Utility.HexaIndex;
+import Model.Visitor.TileVisitor;
 
 /**
  * Created by jordi on 3/28/2017.

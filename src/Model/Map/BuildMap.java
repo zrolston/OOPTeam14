@@ -1,7 +1,6 @@
 package Model.Map;
 
 import Model.Tile.BuildTile;
-import Model.Tile.Tile;
 import Model.Utility.ILocation;
 import Model.Visitor.MapVisitor;
 
@@ -95,6 +94,7 @@ public class BuildMap implements IViewMap {
                 map[i][j] = null;
             }
         }
+        tileCount = 0;
     }
 
     public int getHEIGHT() {

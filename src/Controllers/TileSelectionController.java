@@ -1,12 +1,12 @@
 package Controllers;
 
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
 import Views.MapEditor.TileSelection.CurrentSelectionView;
 import Views.MapEditor.TileSelection.RiverSelectionView;
 import Views.MapEditor.TileSelection.TerrainSelectionView;
 import Views.MapEditor.TileSelection.TileSelectionView;
-
-import javax.swing.*;
-import java.awt.event.*;
 
 public class TileSelectionController implements MouseListener{
 

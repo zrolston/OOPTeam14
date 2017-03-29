@@ -1,15 +1,18 @@
 package Model.Visitor;
 
-import Model.Tile.BuildTileFactory;
-import Model.Tile.Tile;
-import Views.Utility.ImageLoader;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
 
-import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
 import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
+import org.junit.Test;
+
+import Model.Tile.BuildTileFactory;
+import Model.Tile.Tile;
+import Views.Utility.ImageLoader;
 
 /**
  * Created by Cameron on 3/26/2017.
