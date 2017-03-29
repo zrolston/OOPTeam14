@@ -6,19 +6,27 @@
 ---------------------------------------------------------------------------------------*/
 package Views.MapEditor.MapView;
 
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
+
+import javax.swing.JPanel;
+
 import Controllers.MouseListeners.MapSubsectionMouseListener;
+import Model.ModelFacade;
 import Model.Map.BuildMap;
 import Model.Map.IViewMap;
-import Model.ModelFacade;
 import Model.Utility.HexLocation;
 import Model.Visitor.MapDrawingVisitor;
 import Views.Drawers.TileInternalDrawer;
 import Views.Drawers.TileOutlineDrawer;
-import Views.Utility.*;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.image.BufferedImage;
+import Views.MapEditor.MapEditorView;
+import Views.Utility.Camera;
+import Views.Utility.CursorState;
+import Views.Utility.ImageLoader;
+import Views.Utility.PixelMap;
+import Views.Utility.PixelPoint;
 
 public class MapSubsectionView extends JPanel {
 	private BufferedImage background;
@@ -75,10 +83,10 @@ public class MapSubsectionView extends JPanel {
         }
     }
 
-    public MapSubsectionView() {
+    public MapSubsectionView(MapEditorView editor) {
         //Adding some Listeners to test
         ModelFacade modelFacade = ModelFacade.getInstance();
-        MapSubsectionMouseListener listener = new MapSubsectionMouseListener(modelFacade, this);
+        MapSubsectionMouseListener listener = new MapSubsectionMouseListener(modelFacade, this, editor);
         addMouseListener(listener);
         addMouseMotionListener(listener);
 

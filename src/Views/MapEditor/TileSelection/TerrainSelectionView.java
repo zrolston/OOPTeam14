@@ -1,16 +1,17 @@
 package Views.MapEditor.TileSelection;
 
-import Model.Tile.BuildTileFactory;
-import Model.Tile.Tile;
-import Model.Utility.TerrainIterator;
-import Model.Utility.TileIterator;
-import Model.Visitor.TileDrawingVisitor;
-import Views.Utility.ImageLoader;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+
+import javax.swing.JPanel;
+
+import Model.Utility.TerrainIterator;
+import Model.Utility.TileIterator;
+import Views.Utility.ImageLoader;
 
 public class TerrainSelectionView extends JPanel {
 

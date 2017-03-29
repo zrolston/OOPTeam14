@@ -1,13 +1,22 @@
 package Model.Tile;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import Model.Edge.Edge;
 import Model.Edge.LandEdge;
 import Model.Edge.RiverEdge;
 import Model.Edge.SeaEdge;
-import Model.Terrain.*;
+import Model.Terrain.DesertTerrain;
+import Model.Terrain.MountainTerrain;
+import Model.Terrain.PastureTerrain;
+import Model.Terrain.RockTerrain;
+import Model.Terrain.SeaTerrain;
+import Model.Terrain.Terrain;
+import Model.Terrain.WoodsTerrain;
 import Model.Utility.HexaIndex;
-
-import java.util.*;
 
 public class BuildTileFactory {
     private TileState state;

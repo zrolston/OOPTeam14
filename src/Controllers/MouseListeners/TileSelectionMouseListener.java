@@ -1,10 +1,14 @@
 package Controllers.MouseListeners;
 
-import Model.Map.BuildMap;
-import Model.Map.PlacementManager;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+
 import Model.ModelFacade;
+import Model.Map.BuildMap;
 import Model.Tile.BuildTile;
 import Model.Utility.HexLocation;
+import Views.MapEditor.MapEditorView;
 import Views.MapEditor.MapView.MapSubsectionView;
 import Views.MapEditor.TileSelection.CurrentSelectionView;
 import Views.MapEditor.TileSelection.TileSelectionView;
@@ -12,26 +16,23 @@ import Views.Utility.CursorState;
 import Views.Utility.PixelMap;
 import Views.Utility.PixelPoint;
 
-import javax.swing.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-import java.util.Map;
-
 public class TileSelectionMouseListener implements MouseMotionListener, MouseListener {
 
     TileSelectionView view;
     CursorState cursorState = CursorState.getInstance();
     CurrentSelectionView currentSelectionView;
     MapSubsectionView mapSubsectionView;
+    MapEditorView mapEditorView;
     ModelFacade modelFacade;
 
     private boolean mousePressed;
 
-    public TileSelectionMouseListener(TileSelectionView tileSelectionView, CurrentSelectionView currentSelectionView, MapSubsectionView mapSubsectionView) {
+    public TileSelectionMouseListener(TileSelectionView tileSelectionView, CurrentSelectionView currentSelectionView, 
+    		MapSubsectionView mapSubsectionView, MapEditorView mapEditorView) {
         this.view = tileSelectionView;
         this.currentSelectionView = currentSelectionView;
         this.mapSubsectionView = mapSubsectionView;
+        this.mapEditorView = mapEditorView;
         modelFacade = ModelFacade.getInstance();
     }
 
@@ -42,7 +43,6 @@ public class TileSelectionMouseListener implements MouseMotionListener, MouseLis
 
     @Override
     public void mousePressed(MouseEvent e) {
-
         if (e.getY() > (view.getBounds().getHeight() - view.getBounds().getWidth()))
             mousePressed = true;
     }
@@ -60,6 +60,7 @@ public class TileSelectionMouseListener implements MouseMotionListener, MouseLis
             );
             mapSubsectionView.updateCachedImages(BuildMap.getInstance());
             currentSelectionView.update(0);
+            mapEditorView.updateImages();
             cursorState.setMarkerType(CursorState.NORMAL);
         }
         updateActiveTile(e);

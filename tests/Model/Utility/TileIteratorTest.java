@@ -1,16 +1,12 @@
 package Model.Utility;
 
+import java.awt.image.BufferedImage;
+
 /**
  * Created by Cameron on 3/27/2017.
  */
 
 import org.junit.Test;
-
-import java.awt.image.BufferedImage;
-import java.util.HashMap;
-import java.util.Map;
-
-import static org.junit.Assert.*;
 
 public class TileIteratorTest {
     @Test

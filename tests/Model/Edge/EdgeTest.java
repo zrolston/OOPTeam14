@@ -1,8 +1,10 @@
 package Model.Edge;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  * Created by zrgam_000 on 3/26/2017.

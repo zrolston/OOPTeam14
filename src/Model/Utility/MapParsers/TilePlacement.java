@@ -1,7 +1,6 @@
 package Model.Utility.MapParsers;
 
 import Model.Tile.BuildTile;
-import Model.Tile.Tile;
 import Model.Utility.HexLocation;
 
 /**

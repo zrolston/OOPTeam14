@@ -7,13 +7,12 @@
 package Views.Drawers;
 
 
-import Model.Utility.HexLocation;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+
 import Views.Utility.Camera;
 import Views.Utility.PixelMap;
 import Views.Utility.PixelPoint;
-
-import java.awt.*;
-import java.awt.image.BufferedImage;
 
 public class TileInternalDrawer extends Drawer{
 

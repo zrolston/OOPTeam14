@@ -6,8 +6,9 @@
 ---------------------------------------------------------------------------------------*/
 package TestSetup;
 
-import Views.MapEditor.MapEditorView;
 import org.junit.Test;
+
+import Views.MapEditor.MapEditorView;
 
 public class SetupTwo {
 

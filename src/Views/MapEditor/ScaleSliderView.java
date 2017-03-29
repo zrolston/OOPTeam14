@@ -1,14 +1,18 @@
 package Views.MapEditor;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.util.Hashtable;
+
+import javax.swing.JLabel;
+import javax.swing.JSlider;
+
 import Controllers.ScaleSliderController;
 import Views.MapEditor.MapView.MapSubsectionView;
 import Views.Utility.ImageLoader;
 import Views.Utility.PixelMap;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.util.Hashtable;
 
 /**
  * Created by Willie on 3/28/2017.

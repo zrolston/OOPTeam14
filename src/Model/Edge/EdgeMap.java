@@ -1,10 +1,10 @@
 package Model.Edge;
 
-import Model.Utility.HexaIndex;
-import Model.Visitor.EdgeVisitor;
-
 import java.util.HashMap;
 import java.util.Map;
+
+import Model.Utility.HexaIndex;
+import Model.Visitor.EdgeVisitor;
 
 /**
  * Created by Cameron on 3/28/2017.

@@ -1,19 +1,14 @@
 package Controllers.KeyboardListeners;
 
-import Model.ModelFacade;
-import Model.Utility.HexLocation;
-import Views.MapEditor.MapEditorView;
-import Views.Utility.PixelMap;
-import Views.Utility.PixelPoint;
-import javafx.scene.input.KeyCode;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.security.Key;
 import java.util.HashSet;
 import java.util.Set;
+
+import Model.ModelFacade;
+import Views.MapEditor.MapEditorView;
 
 /**
  * Created by jordi on 3/26/2017.
