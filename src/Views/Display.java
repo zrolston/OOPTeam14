@@ -12,8 +12,8 @@ import Views.MapEditor.TileSelection.TileSelectionView;
 import Views.Utility.PixelMap;
 
 public class Display extends JFrame {
-    MapEditorView mapEditorView;
-    MapSubsectionView  mapSubsectionView;
+    private MapEditorView mapEditorView;
+    private MapSubsectionView  mapSubsectionView;
 
     public Display() {
         setupFrame();
