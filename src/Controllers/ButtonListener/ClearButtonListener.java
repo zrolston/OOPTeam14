@@ -12,11 +12,11 @@ import java.awt.event.ActionListener;
 import java.io.File;
 
 
-public class clearButtonListener implements ActionListener {
+public class ClearButtonListener implements ActionListener {
     ModelFacade modelFacade=ModelFacade.getInstance();
     JButton button;
 
-    public clearButtonListener(JButton button) {
+    public ClearButtonListener(JButton button) {
         this.button = button;
     }
 

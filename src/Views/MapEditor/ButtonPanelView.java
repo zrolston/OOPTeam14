@@ -3,7 +3,7 @@ package Views.MapEditor;
 import Controllers.ButtonListener.LoadButtonListener;
 import Controllers.ButtonListener.SaveButtonListener;
 import Controllers.ButtonListener.ValidateButtonListener;
-import Controllers.ButtonListener.clearButtonListener;
+import Controllers.ButtonListener.ClearButtonListener;
 import Views.Utility.ImageLoader;
 import Views.Utility.PixelMap;
 
@@ -19,12 +19,9 @@ public class ButtonPanelView extends JPanel {
     BufferedImage panelBackground = null;
 
     public ButtonPanelView() {
-        setLayout(new GridLayout(0,2));
-        setBounds(PixelMap.SCREEN_WIDTH*15/20, PixelMap.SCREEN_HEIGHT/40, PixelMap.SCREEN_WIDTH*2/10, PixelMap.SCREEN_HEIGHT/18);
-
+        setLayout(new GridLayout(3, 0));
+        setBounds((int)(PixelMap.SCREEN_WIDTH*18.69/20), (int)(PixelMap.SCREEN_HEIGHT/10.8), PixelMap.SCREEN_WIDTH/20, PixelMap.SCREEN_HEIGHT / 4);
         panelBackground = ImageLoader.getImage("PANEL_BACKGROUND");
-
-        JPanel temp = new JPanel( new GridLayout(0, 1) );
 
         JButton saveButton = new JButton("Save");
         saveButton.setFont(new Font("Serif", Font.BOLD, 8));
@@ -42,32 +39,21 @@ public class ButtonPanelView extends JPanel {
         loadButton.addActionListener(new LoadButtonListener());
         loadButton.setFont(new Font("Serif", Font.BOLD, 8));
 
-
-        JButton validateButton = new JButton(new ImageIcon(ImageLoader.getImage("SAD_CAT")));
-//        validateButton.setBackground(new Color( 0xffCABD80 ) );
-        validateButton.setOpaque(false);
-        validateButton.setFocusable(false);
-        validateButton.addActionListener(new ValidateButtonListener(validateButton));
-
         JButton clearButton = new JButton("Clear");
         clearButton.setBackground(new Color( 0xffCABD80 )  );
         clearButton.setOpaque(false);
         clearButton.setFocusable(false);
-        clearButton.addActionListener(  new clearButtonListener(clearButton));
+        clearButton.addActionListener(  new ClearButtonListener(clearButton));
         clearButton.setFont(new Font("Serif", Font.BOLD, 8));
 
 
-        temp.add(saveButton);
-        temp.add(loadButton);
-        temp.add(clearButton);
-
-        this.add(temp);
-        this.add(validateButton);
-
+        this.add(saveButton);
+        this.add(loadButton);
+        this.add(clearButton);
 
         this.setBackground( new Color( 0xffCABD80 )   );
 
-        setVisible(true);
+        setVisible(false);
     }
 
     @Override
@@ -75,5 +61,13 @@ public class ButtonPanelView extends JPanel {
         g.setColor(Color.BLACK);
         g.drawImage(panelBackground, 0, 0, (int)(getWidth() * 2), (int)(getHeight() * 2), null);
     }
+
+	public void toggle() {
+		if (isVisible()) {
+			setVisible(false);
+		} else {
+			setVisible(true);
+		}
+	}
 
 }
