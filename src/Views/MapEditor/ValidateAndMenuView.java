@@ -18,7 +18,8 @@ public class ValidateAndMenuView extends JPanel {
 	public ValidateAndMenuView(ButtonPanelView buttonPanel) {
 		this.buttonPanel = buttonPanel;
 		setLayout(new GridLayout(0,2));
-        setBounds((int)(PixelMap.SCREEN_WIDTH*17.7/20), PixelMap.SCREEN_HEIGHT/40, PixelMap.SCREEN_WIDTH/10, PixelMap.SCREEN_HEIGHT/15);
+		
+        setBounds((int)(PixelMap.SCREEN_WIDTH*17.7/20), PixelMap.SCREEN_HEIGHT/40, PixelMap.SCREEN_WIDTH/10, (int)(buttonPanel.getBounds().getY() - PixelMap.SCREEN_HEIGHT/40));
         setOpaque(false);
         
         JButton validateButton = new JButton(new ImageIcon(ImageLoader.getImage("SAD_CAT")));
