@@ -5,6 +5,8 @@ import Model.Utility.HexaIndex;
 import Model.Utility.ILocation;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class PlacementManager {
     private HashMap<ILocation, Slot> slots;
@@ -20,11 +22,17 @@ public class PlacementManager {
     }
 
     public boolean validateMap(){
-        if(validateRivers()){
-            return true;
+        if(this.slots.isEmpty()){
+            return false;
         }
 
-        return false;
+        if(!validateRivers()){
+            return false;
+        }
+
+        ILocation startingLoc = this.getStartingLoc();
+
+        return this.contiguousValidation(startingLoc);
     }
 
     public boolean validate(BuildTile target, ILocation loc){
@@ -138,6 +146,35 @@ public class PlacementManager {
         return true;
     }
 
+    private boolean contiguousValidation(ILocation startingLoc) {
+        int count = 0;
+
+        Queue<ILocation> locationQueue = new LinkedList<>();
+
+        ILocation currentLoc;
+
+        locationQueue.add(startingLoc);
+
+        boolean[][] visited = new boolean[buildMap.getHEIGHT()][buildMap.getWIDTH()];
+
+        visited[startingLoc.getRow()][startingLoc.getCol()] = true;
+
+        while(!locationQueue.isEmpty()){
+            count++;
+
+            currentLoc = locationQueue.poll();
+
+            for(ILocation newLoc : currentLoc.getAdjacent()){
+                if(buildMap.tileExistsAt(newLoc) && !visited[newLoc.getRow()][newLoc.getCol()]){
+                    locationQueue.add(newLoc);
+                    visited[newLoc.getRow()][newLoc.getCol()] = true;
+                }
+            }
+        }
+
+        return count == buildMap.getTileCount();
+    }
+
     private boolean slotExistsAt(ILocation location){
         if(slots.get(location) == null){
             return false;
@@ -152,5 +189,23 @@ public class PlacementManager {
 
     public int getNumSlots(){
         return slots.size();
+    }
+
+    private ILocation getStartingLoc() {
+
+        ILocation slotLoc = null;
+
+        for(ILocation loc : slots.keySet()){
+            slotLoc = loc;
+            break;
+        }
+
+        for(ILocation loc : slotLoc.getAdjacent()){
+            if(buildMap.tileExistsAt(loc)){
+                return loc;
+            }
+        }
+
+        return null;
     }
 }

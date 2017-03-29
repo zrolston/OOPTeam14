@@ -311,4 +311,86 @@ public class PlacementManagerTest {
         assertFalse(placementManager.validateRivers());
     }
 
+    @Test
+    public void validateContiguous() {
+        BuildMap.reset();
+        buildMap = BuildMap.getInstance();
+        placementManager = new PlacementManager();
+
+        BuildTile tile = btf.createTile("ROCK", new int[]{});
+        assertTrue(placementManager.validate(tile, new HexLocation(5, 5)));
+        placementManager.placeTileAt(tile, new HexLocation(5, 5));
+        tile = btf.createTile("SEA", new int[]{});
+        assertTrue(placementManager.validate(tile, new HexLocation(4, 5)));
+        placementManager.placeTileAt(tile, new HexLocation(4, 5));
+        tile = btf.createTile("WOODS", new int[]{});
+        assertTrue(placementManager.validate(tile, new HexLocation(5, 4)));
+        placementManager.placeTileAt(tile, new HexLocation(5, 4));
+
+        assertTrue(placementManager.validateMap());
+
+        tile = btf.createTile("SEA", new int[]{});
+        placementManager.placeTileAt(tile, new HexLocation(10, 5));
+
+        assertFalse(placementManager.validateMap());
+
+        placementManager.removeTileAt(new HexLocation(10, 5));
+
+        assertTrue(placementManager.validateMap());
+
+        placementManager.removeTileAt(new HexLocation(5,5));
+
+        assertFalse(placementManager.validateMap());
+    }
+
+    @Test
+    public void validateContiguousWithRivers() {
+        BuildMap.reset();
+        buildMap = BuildMap.getInstance();
+        placementManager = new PlacementManager();
+
+        BuildTile tile = btf.createTile("ROCK", new int[]{1, 3, 5});
+        placementManager.placeTileAt(tile, new HexLocation(5,5));
+
+        assertFalse(placementManager.validateMap());
+
+        tile = btf.createTile("ROCK", new int[]{4});
+        placementManager.placeTileAt(tile, new HexLocation(4,5));
+
+        assertFalse(placementManager.validateMap());
+
+        tile = btf.createTile("ROCK", new int[]{2});
+        placementManager.placeTileAt(tile, new HexLocation(5,4));
+
+        assertFalse(placementManager.validateMap());
+
+        tile = btf.createTile("ROCK", new int[]{6});
+        placementManager.placeTileAt(tile, new HexLocation(5,6));
+
+        assertTrue(placementManager.validateMap());
+
+        tile = btf.createTile("ROCK", new int[]{});
+        placementManager.placeTileAt(tile, new HexLocation(3,5));
+
+        assertTrue(placementManager.validateMap());
+
+        tile = btf.createTile("ROCK", new int[]{});
+        placementManager.placeTileAt(tile, new HexLocation(2,5));
+
+        assertTrue(placementManager.validateMap());
+
+        placementManager.removeTileAt(new HexLocation(3, 5));
+
+        assertFalse(placementManager.validateMap());
+
+        placementManager.removeTileAt(new HexLocation(2, 5));
+
+        assertTrue(placementManager.validateMap());
+
+        tile = btf.createTile("ROCK", new int[]{});
+        placementManager.placeTileAt(tile, new HexLocation(4,6));
+
+        assertTrue(placementManager.validateMap());
+    }
+
 }

@@ -10,11 +10,12 @@ public class BuildMap implements IViewMap {
     private static BuildMap buildMap;
 
     private BuildTile[][] map;
-    private int HEIGHT, WIDTH;
+    private int HEIGHT, WIDTH, tileCount;
 
     private BuildMap(int length, int width){
         this.HEIGHT = length;
         this.WIDTH = width;
+        this.tileCount = 0;
         map = new BuildTile[HEIGHT][WIDTH];
     }
 
@@ -78,16 +79,14 @@ public class BuildMap implements IViewMap {
         return true;
     }
 
-    public boolean validateMap(){
-        return true;
-    }
-
     public void addTile(BuildTile tile, ILocation location){
         map[location.getRow()][location.getCol()] = tile;
+        tileCount++;
     }
 
     public void removeTile(ILocation location){
         map[location.getRow()][location.getCol()] = null;
+        tileCount--;
     }
 
     public void clear(){
@@ -108,5 +107,9 @@ public class BuildMap implements IViewMap {
 
     public static void reset(){
         buildMap = null;
+    }
+
+    public int getTileCount() {
+        return tileCount;
     }
 }
