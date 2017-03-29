@@ -18,7 +18,7 @@ import Views.Utility.PixelMap;
  * Created by Willie on 3/28/2017.
  */
 public class ScaleSliderView extends JSlider {
-	BufferedImage background;
+	private BufferedImage background;
 	
     public ScaleSliderView(MapSubsectionView mapSubsectionView) {
         super(JSlider.VERTICAL, 3, 30, 10);

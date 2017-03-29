@@ -21,11 +21,10 @@ import Views.Utility.ImageLoader;
 import Views.Utility.PixelMap;
 
 public class TileSelectionView extends JPanel{
-
-    TerrainSelectionView terrainSelectionView;
-    RiverSelectionView riverSelectionView;
-    CurrentSelectionView currentSelectionView;
-    BufferedImage panelBackground;
+    private TerrainSelectionView terrainSelectionView;
+    private RiverSelectionView riverSelectionView;
+    private CurrentSelectionView currentSelectionView;
+    private BufferedImage panelBackground;
     
     public TileSelectionView(MapSubsectionView mapSubsectionView, MapEditorView editorView){
         setLayout(new BorderLayout());
