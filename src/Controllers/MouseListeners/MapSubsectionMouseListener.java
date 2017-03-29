@@ -72,7 +72,7 @@ public class MapSubsectionMouseListener implements MouseMotionListener, MouseLis
             modelFacade.removeTileAt( loc );
 
             view.updateCachedImages(BuildMap.getInstance());
-            
+
         }
 
 
