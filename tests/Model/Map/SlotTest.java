@@ -1,13 +1,22 @@
 package Model.Map;
 
-import Model.Edge.*;
-import Model.Utility.HexaIndex;
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.HashMap;
 
-import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.Test;
+
+import Model.Edge.Edge;
+import Model.Edge.EdgeMap;
+import Model.Edge.LandEdge;
+import Model.Edge.RiverEdge;
+import Model.Edge.SeaEdge;
+import Model.Utility.HexaIndex;
 
 /**
  * Created by zrgam_000 on 3/26/2017.

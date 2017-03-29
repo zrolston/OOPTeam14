@@ -1,16 +1,17 @@
 package Model.Utility.MapParsers;
 
-import Model.Map.BuildMap;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 import Model.ModelFacade;
+import Model.Map.BuildMap;
 import Model.Tile.BuildTile;
 import Model.Tile.BuildTileFactory;
 import Model.Utility.FileIO;
 import Model.Utility.HexLocation;
-
-import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by jordi on 3/27/2017.

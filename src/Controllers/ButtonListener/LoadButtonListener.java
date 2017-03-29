@@ -1,16 +1,17 @@
 package Controllers.ButtonListener;
 
-import Model.Map.BuildMap;
-import Model.ModelFacade;
-import Views.MapEditor.MapView.MapSubsectionView;
-import Model.Utility.FileIO;
-
-import javax.swing.*;
-import javax.swing.filechooser.FileFilter;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileFilter;
+
+import Model.ModelFacade;
+import Model.Map.BuildMap;
+import Model.Utility.FileIO;
+import Views.MapEditor.MapEditorView;
+import Views.MapEditor.MapView.MapSubsectionView;
 
 /**
  * Created by Willie on 3/28/2017.
@@ -18,9 +19,11 @@ import java.io.File;
 public class LoadButtonListener implements ActionListener {
     private ModelFacade modelFacade = ModelFacade.getInstance();
     private MapSubsectionView mapSubsectionView;
-
-    public LoadButtonListener(MapSubsectionView view) {
+    private MapEditorView mapEditorView;
+    
+    public LoadButtonListener(MapSubsectionView view, MapEditorView mapEditorView) {
         mapSubsectionView = view;
+        this.mapEditorView = mapEditorView;
     }
 
     @Override
@@ -50,6 +53,7 @@ public class LoadButtonListener implements ActionListener {
             path= chooser.getSelectedFile().getAbsolutePath();
             modelFacade.loadMap(path);
             mapSubsectionView.updateCachedImages(BuildMap.getInstance());
+            mapEditorView.updateImages();
         }
     }
 }

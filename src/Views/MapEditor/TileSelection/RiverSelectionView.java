@@ -1,13 +1,17 @@
 package Views.MapEditor.TileSelection;
 
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+
+import javax.swing.JPanel;
+
 import Model.Utility.TerrainIterator;
 import Model.Utility.TileIterator;
 import Views.Utility.ImageLoader;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 
 public class RiverSelectionView extends JPanel {
 

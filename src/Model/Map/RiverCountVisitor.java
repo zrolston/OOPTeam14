@@ -1,10 +1,14 @@
 package Model.Map;
 
-import Model.Edge.*;
+import java.util.Map;
+
+import Model.Edge.Edge;
+import Model.Edge.EdgeMap;
+import Model.Edge.LandEdge;
+import Model.Edge.RiverEdge;
+import Model.Edge.SeaEdge;
 import Model.Utility.HexaIndex;
 import Model.Visitor.EdgeVisitor;
-
-import java.util.Map;
 
 public class RiverCountVisitor implements EdgeVisitor{
 

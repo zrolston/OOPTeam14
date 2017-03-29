@@ -8,16 +8,22 @@
 package TestSetup;
 
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+import org.junit.Test;
+
 import Controllers.KeyboardListeners.EditorKeyboardListener;
 import Controllers.MouseListeners.MapSubsectionMouseListener;
 import Model.ModelFacade;
 import Model.Utility.HexLocation;
+import Views.Drawers.TileOutlineDrawer;
 import Views.Utility.PixelMap;
 import Views.Utility.PixelPoint;
-import Views.Drawers.TileOutlineDrawer;
-import org.junit.Test;
-import javax.swing.*;
-import java.awt.*;
 
 
 public class SetupOne {

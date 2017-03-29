@@ -1,6 +1,11 @@
 package Model.Visitor;
 
-import Model.Terrain.*;
+import Model.Terrain.DesertTerrain;
+import Model.Terrain.MountainTerrain;
+import Model.Terrain.PastureTerrain;
+import Model.Terrain.RockTerrain;
+import Model.Terrain.SeaTerrain;
+import Model.Terrain.WoodsTerrain;
 
 public interface TerrainVisitor {
     void visitSea(SeaTerrain sea);

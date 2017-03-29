@@ -1,13 +1,13 @@
 package Model.Tile;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import Model.Edge.Edge;
 import Model.Edge.EdgeMap;
 import Model.Terrain.Terrain;
 import Model.Utility.HexaIndex;
 import Model.Visitor.TileVisitor;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class BuildTile extends Tile {
     private EdgeMap edgeMap;
