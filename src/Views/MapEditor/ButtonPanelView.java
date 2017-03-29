@@ -20,7 +20,7 @@ public class ButtonPanelView extends JPanel {
 
     public ButtonPanelView() {
         setLayout(new GridLayout(3, 0));
-        setBounds((int)(PixelMap.SCREEN_WIDTH*18.69/20), (int)(PixelMap.SCREEN_HEIGHT/10.8), PixelMap.SCREEN_WIDTH/20, PixelMap.SCREEN_HEIGHT / 4);
+        setBounds((int)(PixelMap.SCREEN_WIDTH*18.6981/20), (int)(PixelMap.SCREEN_HEIGHT/10.8), PixelMap.SCREEN_WIDTH/20, PixelMap.SCREEN_HEIGHT / 4);
         panelBackground = ImageLoader.getImage("PANEL_BACKGROUND");
 
         JButton saveButton = new JButton("Save");
