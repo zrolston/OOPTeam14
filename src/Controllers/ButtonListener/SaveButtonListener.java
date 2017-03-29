@@ -40,7 +40,7 @@ public class SaveButtonListener implements ActionListener {
         chooser.setCurrentDirectory(new File(FileIO.mapsDir));
         chooser.setVisible(true);
         String path = null;
-        if (chooser.showOpenDialog(chooser) == JFileChooser.APPROVE_OPTION) {
+        if (chooser.showSaveDialog(chooser) == JFileChooser.APPROVE_OPTION) {
             path = chooser.getSelectedFile().getAbsolutePath();
             modelFacade.saveMap (BuildMap.getInstance(),path);
         }
