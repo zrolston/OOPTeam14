@@ -1,12 +1,12 @@
 package Model.Utility;
 
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+
 import Model.Tile.BuildTile;
 import Model.Tile.BuildTileFactory;
 import Model.Tile.Tile;
 import Model.Visitor.TileDrawingVisitor;
-
-import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 
 public class RiverIterator implements TileIterator {
     final int[][] riverIndexList = { { }, { 1 }, { 1, 2 }, { 1, 3 }, {1, 4}, {1, 3, 5} };

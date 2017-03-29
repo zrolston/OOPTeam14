@@ -1,11 +1,12 @@
 package Model.Utility;
 
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+
 import Model.Tile.BuildTile;
 import Model.Tile.BuildTileFactory;
 import Model.Tile.Tile;
 import Model.Visitor.TileDrawingVisitor;
-import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 
 public class TerrainIterator implements TileIterator {
     final String[] terrainList = {"WOODS", "DESERT", "MOUNTAIN", "PASTURE", "ROCK", "SEA"};

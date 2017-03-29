@@ -1,18 +1,19 @@
 package Model.Visitor;
 
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferByte;
+import java.io.IOException;
+
+import org.junit.Test;
+
 import Model.Map.BuildMap;
 import Model.Tile.BuildTile;
 import Model.Tile.BuildTileFactory;
 import Model.Utility.HexLocation;
 import Views.Utility.ImageLoader;
-import org.junit.Test;
-
-import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferByte;
-import java.io.IOException;
-import static org.junit.Assert.*;
-
-import static org.junit.Assert.assertArrayEquals;
 
 /**
  * Created by Cameron on 3/26/2017.

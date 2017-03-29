@@ -1,24 +1,20 @@
 package Model.Utility.MapParsers;
 
+import static org.junit.Assert.assertEquals;
+
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Test;
+
+import Model.ModelFacade;
 import Model.Map.BuildMap;
 import Model.Map.PlacementManager;
-import Model.ModelFacade;
 import Model.Terrain.TerrainType;
 import Model.Tile.BuildTile;
 import Model.Tile.BuildTileFactory;
 import Model.Utility.HexLocation;
-import org.junit.Test;
-
-import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.plaf.FileChooserUI;
-
-import java.awt.*;
-import java.lang.reflect.Method;
-import java.util.*;
-import java.util.List;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by jordi on 3/27/2017.

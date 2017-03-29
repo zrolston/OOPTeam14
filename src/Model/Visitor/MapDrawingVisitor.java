@@ -1,11 +1,11 @@
 package Model.Visitor;
 
+import java.awt.image.BufferedImage;
+
 import Model.Map.IViewMap;
 import Model.Tile.Tile;
 import Model.Utility.ILocation;
 import Views.Utility.ImageLoader;
-
-import java.awt.image.BufferedImage;
 
 public class MapDrawingVisitor implements MapVisitor {
     private BufferedImage[][] imageArray;

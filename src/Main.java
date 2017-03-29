@@ -1,11 +1,9 @@
 import Controllers.TileSelectionController;
+import Model.ModelFacade;
 import Model.Map.BuildMap;
 import Model.Map.PlacementManager;
-import Model.ModelFacade;
 import Views.Display;
 import Views.MapEditor.MapView.MapSubsectionView;
-
-import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {

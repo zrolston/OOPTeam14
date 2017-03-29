@@ -1,16 +1,27 @@
 package Model.Visitor;
 
-import Model.Edge.*;
-import Model.Terrain.*;
-import Model.Utility.HexaIndex;
-import Views.Utility.ImageLoader;
-import javax.management.BadAttributeValueExpException;
-import java.awt.*;
+import java.awt.Graphics;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Map;
+
+import javax.management.BadAttributeValueExpException;
+
+import Model.Edge.Edge;
+import Model.Edge.EdgeMap;
+import Model.Edge.LandEdge;
+import Model.Edge.RiverEdge;
+import Model.Edge.SeaEdge;
+import Model.Terrain.DesertTerrain;
+import Model.Terrain.MountainTerrain;
+import Model.Terrain.PastureTerrain;
+import Model.Terrain.RockTerrain;
+import Model.Terrain.SeaTerrain;
+import Model.Terrain.WoodsTerrain;
+import Model.Utility.HexaIndex;
+import Views.Utility.ImageLoader;
 
 public class TileDrawingVisitor implements TileVisitor {
     private BufferedImage terrainImage;

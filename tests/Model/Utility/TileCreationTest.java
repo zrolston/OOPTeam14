@@ -1,19 +1,19 @@
 package Model.Utility;
 
-import Model.Edge.Edge;
-import Model.Edge.LandEdge;
-import Model.Edge.RiverEdge;
-import Model.Edge.SeaEdge;
-import Model.Terrain.*;
-import Model.Tile.BuildTile;
-import Model.Tile.BuildTileFactory;
-import Model.Tile.Tile;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+
 import org.junit.Test;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import static org.junit.Assert.*;
+import Model.Terrain.DesertTerrain;
+import Model.Terrain.MountainTerrain;
+import Model.Terrain.PastureTerrain;
+import Model.Terrain.RockTerrain;
+import Model.Terrain.SeaTerrain;
+import Model.Terrain.Terrain;
+import Model.Terrain.WoodsTerrain;
+import Model.Tile.BuildTileFactory;
+import Model.Tile.Tile;
 
 /**
  * Created by Cameron on 3/26/2017.

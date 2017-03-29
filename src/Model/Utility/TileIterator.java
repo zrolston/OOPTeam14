@@ -1,7 +1,8 @@
 package Model.Utility;
 
-import Model.Tile.Tile;
 import java.awt.image.BufferedImage;
+
+import Model.Tile.Tile;
 
 /**
  * Created by Cameron on 3/27/2017.

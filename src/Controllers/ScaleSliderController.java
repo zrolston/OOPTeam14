@@ -1,13 +1,11 @@
 package Controllers;
 
-import Model.Map.BuildMap;
-import Views.MapEditor.MapView.MapSubsectionView;
-import Views.MapEditor.ScaleSliderView;
-import Views.Utility.Camera;
-
-import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
+import Views.MapEditor.ScaleSliderView;
+import Views.MapEditor.MapView.MapSubsectionView;
+import Views.Utility.Camera;
 
 /**
  * Created by Willie on 3/28/2017.

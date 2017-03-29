@@ -1,8 +1,9 @@
 package Model.Utility;
 
+import org.junit.Test;
+
 import Views.Utility.PixelMap;
 import Views.Utility.PixelPoint;
-import org.junit.Test;
 
 /**
  * Created by Ale on 3/25/2017.

@@ -1,8 +1,11 @@
 package Controllers.MouseListeners;
 
-import Model.Map.BuildMap;
-import Model.Map.PlacementManager;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+
 import Model.ModelFacade;
+import Model.Map.BuildMap;
 import Model.Tile.BuildTile;
 import Model.Utility.HexLocation;
 import Views.MapEditor.MapEditorView;
@@ -12,12 +15,6 @@ import Views.MapEditor.TileSelection.TileSelectionView;
 import Views.Utility.CursorState;
 import Views.Utility.PixelMap;
 import Views.Utility.PixelPoint;
-
-import javax.swing.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-import java.util.Map;
 
 public class TileSelectionMouseListener implements MouseMotionListener, MouseListener {
 
@@ -48,7 +45,6 @@ public class TileSelectionMouseListener implements MouseMotionListener, MouseLis
     public void mousePressed(MouseEvent e) {
         if (e.getY() > (view.getBounds().getHeight() - view.getBounds().getWidth()))
             mousePressed = true;
-        System.out.println(SwingUtilities.isRightMouseButton(e));
     }
 
     @Override

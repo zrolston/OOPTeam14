@@ -1,8 +1,9 @@
 package Views.Utility;
 
 
-import Model.Utility.HexLocation;
 import java.awt.image.BufferedImage;
+
+import Model.Utility.HexLocation;
 
 /**
  * Created by Ale on 3/27/2017.

@@ -1,18 +1,22 @@
 package Views.MapEditor;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.GridLayout;
+import java.awt.image.BufferedImage;
+
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
+import Controllers.ButtonListener.ClearButtonListener;
 import Controllers.ButtonListener.LoadButtonListener;
 import Controllers.ButtonListener.SaveButtonListener;
-import Controllers.ButtonListener.ValidateButtonListener;
-import Controllers.ButtonListener.ClearButtonListener;
 import Views.MapEditor.MapView.MapSubsectionView;
 import Views.Utility.ImageLoader;
 import Views.Utility.PixelMap;
-
-import javax.swing.*;
-import javax.swing.border.LineBorder;
-
-import java.awt.*;
-import java.awt.image.BufferedImage;
 
 /**
  * Created by Willie on 3/28/2017.

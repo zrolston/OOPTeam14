@@ -6,11 +6,11 @@
 ---------------------------------------------------------------------------------------*/
 package Views.MapEditor;
 
-import Views.MapEditor.MapView.MapSubsectionView;
-import Views.Utility.PixelMap;
-import Views.MapEditor.TileSelection.TileSelectionView;
+import javax.swing.JLayeredPane;
 
-import javax.swing.*;
+import Views.MapEditor.MapView.MapSubsectionView;
+import Views.MapEditor.TileSelection.TileSelectionView;
+import Views.Utility.PixelMap;
 
 public class MapEditorView extends JLayeredPane {
 

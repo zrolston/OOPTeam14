@@ -1,17 +1,12 @@
 package Controllers.ButtonListener;
 
-import Model.Map.BuildMap;
-import Model.ModelFacade;
-import Views.MapEditor.MapEditorView;
-import Views.MapEditor.ValidateAndMenuView;
-import Views.MapEditor.MapView.MapSubsectionView;
-import Model.Utility.FileIO;
-import com.sun.org.apache.xpath.internal.operations.Mod;
-
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
+
+import Model.ModelFacade;
+import Model.Map.BuildMap;
+import Views.MapEditor.MapEditorView;
+import Views.MapEditor.MapView.MapSubsectionView;
 
 
 public class ClearButtonListener implements ActionListener {

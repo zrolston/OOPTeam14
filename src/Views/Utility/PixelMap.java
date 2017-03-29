@@ -7,10 +7,14 @@ package Views.Utility;
 ---------------------------------------------------------------------------------------*/
 
 
+import java.awt.Dimension;
+import java.awt.Point;
+import java.awt.Polygon;
+import java.awt.Toolkit;
+
 import Model.Utility.HexLocation;
-import Views.Drawers.TileOutlineDrawer;
 import Model.Utility.ILocation;
-import java.awt.*;
+import Views.Drawers.TileOutlineDrawer;
 
 public class PixelMap {
 

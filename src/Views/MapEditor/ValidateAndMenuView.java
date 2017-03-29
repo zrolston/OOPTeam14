@@ -2,21 +2,20 @@ package Views.MapEditor;
 
 import java.awt.Color;
 import java.awt.GridLayout;
-import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
-import Controllers.ButtonListener.ValidateButtonListener;
 import Model.ModelFacade;
 import Views.Utility.ImageLoader;
 import Views.Utility.PixelMap;
 
 public class ValidateAndMenuView extends JPanel {
 	ButtonPanelView buttonPanel;
-	JButton validateButton;
+	JLabel validateLabel;
 	
 	public ValidateAndMenuView(ButtonPanelView buttonPanel) {
 		this.buttonPanel = buttonPanel;
@@ -25,12 +24,11 @@ public class ValidateAndMenuView extends JPanel {
         setBounds((int)(PixelMap.SCREEN_WIDTH*17.7/20), PixelMap.SCREEN_HEIGHT/40, PixelMap.SCREEN_WIDTH/10, (int)(buttonPanel.getBounds().getY() - PixelMap.SCREEN_HEIGHT/40));
         setOpaque(false);
         
-        validateButton = new JButton(new ImageIcon(ImageLoader.getImage("SAD_CAT")));
-        validateButton.setBackground(Color.red);
-        validateButton.setOpaque(true);
-        validateButton.setFocusable(false);
-        validateButton.addActionListener(new ValidateButtonListener(validateButton));
-        validateButton.setBorder(new LineBorder(Color.BLACK));
+        validateLabel = new JLabel(new ImageIcon(ImageLoader.getImage("SAD_CAT")));
+        validateLabel.setBackground(Color.red);
+        validateLabel.setOpaque(true);
+        validateLabel.setFocusable(false);
+        validateLabel.setBorder(new LineBorder(Color.BLACK));
         
         JButton hamburgerButton = new JButton(new ImageIcon(ImageLoader.getImage("HAMBURGER")));
         hamburgerButton.setOpaque(true);
@@ -40,18 +38,18 @@ public class ValidateAndMenuView extends JPanel {
 		});
         hamburgerButton.setBorder(new LineBorder(Color.BLACK));
         
-        this.add(validateButton);
+        this.add(validateLabel);
         this.add(hamburgerButton);
 	}
 
 	public void checkValidation() {
 		ModelFacade model = ModelFacade.getInstance();
         if (model.validateMap()) {
-        	validateButton.setIcon(new ImageIcon(ImageLoader.getImage("HAPPY_CAT")));
-            validateButton.setBackground(Color.green);
+        	validateLabel.setIcon(new ImageIcon(ImageLoader.getImage("HAPPY_CAT")));
+        	validateLabel.setBackground(Color.green);
         } else {
-        	validateButton.setIcon(new ImageIcon(ImageLoader.getImage("SAD_CAT")));
-        	validateButton.setBackground(Color.red);
+        	validateLabel.setIcon(new ImageIcon(ImageLoader.getImage("SAD_CAT")));
+        	validateLabel.setBackground(Color.red);
         }
 	}
 }
