@@ -1,6 +1,5 @@
 package Model.Map;
 
-import Model.Edge.Edge;
 import Model.Tile.BuildTile;
 import Model.Utility.HexaIndex;
 import Model.Utility.ILocation;
@@ -20,13 +19,21 @@ public class PlacementManager {
         riverCountVisitor = new RiverCountVisitor();
     }
 
-    public boolean validate(BuildTile target, ILocation loc){
-
-        if(slots.isEmpty()){
+    public boolean validateMap(){
+        if(validateRivers()){
             return true;
         }
 
-        if(buildMap.tileExistsAt(loc) || !this.slotExistsAt(loc)){
+        return false;
+    }
+
+    public boolean validate(BuildTile target, ILocation loc){
+
+        if(slots.isEmpty() && buildMap.locationInBounds(loc)){
+            return true;
+        }
+
+        if(buildMap.tileExistsAt(loc) || !this.slotExistsAt(loc) || !buildMap.locationInBounds(loc)){
             return false;
         }
 
@@ -136,6 +143,11 @@ public class PlacementManager {
             return false;
         }
         return true;
+    }
+
+    public void clear(){
+        this.slots.clear();
+        this.buildMap.clear();
     }
 
     public int getNumSlots(){

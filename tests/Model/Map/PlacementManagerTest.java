@@ -58,7 +58,7 @@ public class PlacementManagerTest {
 
         BuildTile RiverTile;
 
-        RiverTile = btf.createTile("MOUNTAIN",  new int[]{3, 4});
+        RiverTile = btf.createTile("WOODS",  new int[]{3, 4});
 
         assertTrue(placementManager.validate(RiverTile, new HexLocation(3, 5)));
         assertTrue(placementManager.validate(RiverTile, new HexLocation(3, 6)));
@@ -71,7 +71,7 @@ public class PlacementManagerTest {
         assertFalse(placementManager.validate(RiverTile, new HexLocation(4, 4)));
         assertTrue(placementManager.validate(RiverTile, new HexLocation(3, 4)));
 
-        RiverTile = btf.createTile("MOUNTAIN",  new int[]{1, 3, 5});
+        RiverTile = btf.createTile("WOODS",  new int[]{1, 3, 5});
 
         assertTrue(placementManager.validate(RiverTile, new HexLocation(3, 5)));
         assertTrue(placementManager.validate(RiverTile, new HexLocation(3, 6)));
@@ -171,7 +171,7 @@ public class PlacementManagerTest {
         tile = btf.createTile("WOODS", new int[]{});
         placementManager.placeTileAt(tile, new HexLocation(5, 4));
 
-        BuildTile RiverTile = btf.createTile("MOUNTAIN", new int[]{1, 3});
+        BuildTile RiverTile = btf.createTile("ROCK", new int[]{1, 3});
 
         assertTrue(placementManager.validate(RiverTile, new HexLocation(3, 5)));
         assertTrue(placementManager.validate(RiverTile, new HexLocation(3, 6)));
@@ -289,7 +289,7 @@ public class PlacementManagerTest {
         tile = btf.createTile("WOODS",  new int[]{});
         placementManager.placeTileAt(tile, new HexLocation(5, 4));
 
-        BuildTile RiverTile = btf.createTile("MOUNTAIN",  new int[]{1});
+        BuildTile RiverTile = btf.createTile("DESERT",  new int[]{1});
 
         assertFalse(placementManager.validateRivers());
 

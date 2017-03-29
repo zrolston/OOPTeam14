@@ -41,18 +41,18 @@ public class LocationTest {
         evenSameLoc = new HexLocation(3, 4);
 
         oddNorth = new HexLocation(1, 3);
-        oddNorthEast = new HexLocation(2, 4);
-        oddNorthWest = new HexLocation(2, 2);
+        oddNorthEast = new HexLocation(1, 4);
+        oddNorthWest = new HexLocation(1, 2);
         oddSouth = new HexLocation(3, 3);
-        oddSouthEast = new HexLocation(3, 4);
-        oddSouthWest = new HexLocation(3, 2);
+        oddSouthEast = new HexLocation(2, 4);
+        oddSouthWest = new HexLocation(2, 2);
 
         evenNorth = new HexLocation(2, 4);
-        evenNorthEast = new HexLocation(2, 5);
-        evenNorthWest = new HexLocation(2, 3);
+        evenNorthEast = new HexLocation(3, 5);
+        evenNorthWest = new HexLocation(3, 3);
         evenSouth = new HexLocation(4, 4);
-        evenSouthEast = new HexLocation(3, 5);
-        evenSouthWest = new HexLocation(3, 3);
+        evenSouthEast = new HexLocation(4, 5);
+        evenSouthWest = new HexLocation(4, 3);
     }
 
     @Test

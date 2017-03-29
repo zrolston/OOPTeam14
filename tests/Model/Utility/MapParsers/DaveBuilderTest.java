@@ -156,7 +156,13 @@ public class DaveBuilderTest {
         ModelFacade.initialize(new PlacementManager());
         DaveBuilder daveBuilder = new DaveBuilder();
 
-        daveBuilder.buildMap();
+        while (true) {
+            try {
+//                daveBuilder.buildMap();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Test
@@ -164,7 +170,8 @@ public class DaveBuilderTest {
         ModelFacade.initialize(new PlacementManager());
         daveBuilder = new DaveBuilder();
 
-        Class[] methodParameters = new Class[]{DaveBuilderTile[].class};
+        List<DaveBuilder> d= new ArrayList<>();
+        Class[] methodParameters = new Class[]{ List.class};
         List<Integer> l1 = new ArrayList<>();
         l1.add(0);
         l1.add(0);
@@ -174,7 +181,12 @@ public class DaveBuilderTest {
         l2.add(1);
         CubeLocation cubeLocation = new CubeLocation(0, 0, 0);
         CubeLocation cubeLocation1 = new CubeLocation(0, 3, 2);
-        Object[] params = new Object[]{new DaveBuilderTile[]{new DaveBuilderTile(cubeLocation, "pasture", l1), new DaveBuilderTile(cubeLocation1, "mountain", l2)}};
+        List<DaveBuilderTile> list= new ArrayList<>();
+        list.add(new DaveBuilderTile(cubeLocation, "pasture", l1));
+        list.add(new DaveBuilderTile(cubeLocation1, "mountain", l2));
+
+
+        Object[] params = new Object[]{list};
 
         Method m = r.getDeclaredMethod("formatTiles", methodParameters);
 
@@ -187,7 +199,6 @@ public class DaveBuilderTest {
                 "(0 3 2) mountain (1 )\n";
 
         assertEquals(expectedResult, output);
-        //TODO: fix this make rivers an arraylist
     }
 
     @Test
@@ -206,7 +217,7 @@ public class DaveBuilderTest {
         map.addTile(pasture, new HexLocation(11,10));
         map.addTile(rock, new HexLocation(12,10));
 
-        daveBuilder.saveMap(map);
+//        daveBuilder.saveMap(map);
 
     }
 

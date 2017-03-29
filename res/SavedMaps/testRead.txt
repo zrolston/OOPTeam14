@@ -1,7 +1,7 @@
 6
-(0 0 0) pasture (0 1 2)
-(1 1 0) woods (0 1 2)
-(2 2 0) rock (0 1 2 )
-(0 3 3) mountain (0 1 2)
-(0 4 0) desert (0 1)
-(0 5 0) sea (0)
+(0 0 0) pasture
+(1 1 0) woods
+(2 2 0) rock
+(0 3 3) mountain
+(0 4 0) desert
+(0 5 0) sea

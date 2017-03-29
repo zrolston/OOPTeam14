@@ -31,7 +31,6 @@ public class MapSubsectionView extends JPanel {
         MapDrawingVisitor drawingVisitor = new MapDrawingVisitor();
         map.accept(drawingVisitor);
         tileImages = drawingVisitor.getImageArray();
-        background = ImageLoader.getImage("BACKGROUND");
         cachedImagesUpdated = true;
     }
 
@@ -96,6 +95,8 @@ public class MapSubsectionView extends JPanel {
 
         updateImage();
         setVisible(true);
+
+        background = ImageLoader.getImage("BACKGROUND");
     }
 
     public BufferedImage getImage() {

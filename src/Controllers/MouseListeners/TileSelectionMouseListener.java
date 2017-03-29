@@ -1,6 +1,7 @@
 package Controllers.MouseListeners;
 
 import Model.Map.BuildMap;
+import Model.Map.PlacementManager;
 import Model.ModelFacade;
 import Model.Tile.BuildTile;
 import Model.Utility.HexLocation;
@@ -11,6 +12,7 @@ import Views.Utility.CursorState;
 import Views.Utility.PixelMap;
 import Views.Utility.PixelPoint;
 
+import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -21,7 +23,10 @@ public class TileSelectionMouseListener implements MouseMotionListener, MouseLis
     CursorState cursorState = CursorState.getInstance();
     CurrentSelectionView currentSelectionView;
     ModelFacade modelFacade;
+
     private boolean mousePressed;
+
+
 
     public TileSelectionMouseListener(TileSelectionView tileSelectionView, CurrentSelectionView currentSelectionView) {
         this.view = tileSelectionView;
@@ -36,7 +41,9 @@ public class TileSelectionMouseListener implements MouseMotionListener, MouseLis
 
     @Override
     public void mousePressed(MouseEvent e) {
-        mousePressed = true;
+
+        if (e.getY() > (view.getBounds().getHeight() - view.getBounds().getWidth()))
+            mousePressed = true;
     }
 
     @Override
@@ -47,7 +54,7 @@ public class TileSelectionMouseListener implements MouseMotionListener, MouseLis
             modelFacade.placeTile(
                     tile,
                     PixelMap.getHexLocationAtPixelPoint(
-                            new PixelPoint(e.getX(), e.getY())
+                            getRealMousePosition(new PixelPoint(e.getX(), e.getY()))
                     )
             );
             MapSubsectionView.updateCachedImages(BuildMap.getInstance());
@@ -79,9 +86,9 @@ public class TileSelectionMouseListener implements MouseMotionListener, MouseLis
     public void mouseDragged(MouseEvent e) {
         updateActiveTile(e);
         if(cursorState.isDraggingTile()){
-            cursorState.setDragged(e.getX(), e.getY());
+            cursorState.setDragged(e.getX() + (int) view.getBounds().getX(), e.getY() + (int) view.getBounds().getY());
             BuildTile tile = (BuildTile)currentSelectionView.getSelectedTile();
-            HexLocation location = PixelMap.getHexLocationAtPixelPoint(new PixelPoint(e.getX(), e.getY()));
+            HexLocation location = PixelMap.getHexLocationAtPixelPoint(getRealMousePosition(new PixelPoint(e.getX(), e.getY())));
             if(modelFacade.validateLocation(tile, location)){
                 cursorState.setMarkerType(CursorState.VALID);
             }else{
@@ -96,7 +103,11 @@ public class TileSelectionMouseListener implements MouseMotionListener, MouseLis
     }
 
     public void updateActiveTile(MouseEvent e){
-        HexLocation location = PixelMap.getHexLocationAtPixelPoint(new PixelPoint(e.getX(), e.getY()));
+        HexLocation location = PixelMap.getHexLocationAtPixelPoint(getRealMousePosition(new PixelPoint(e.getX(), e.getY())));
         cursorState.setActiveTile(location);
+    }
+
+    private PixelPoint getRealMousePosition(PixelPoint p) {
+        return new PixelPoint(p.getX() + (int) view.getBounds().getX(), p.getY() + (int) view.getBounds().getY());
     }
 }
