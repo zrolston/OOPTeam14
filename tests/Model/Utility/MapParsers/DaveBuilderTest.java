@@ -77,7 +77,7 @@ public class DaveBuilderTest {
         Class r = DaveBuilder.class;
 
         Class[] methodParameters = new Class[]{CubeLocation.class};
-        Object[] params = new Object[]{new CubeLocation(-0, 0, 0)};
+        Object[] params = new Object[]{new CubeLocation(-9, 11, -2)};
 
         Method m = r.getDeclaredMethod("convertToOddQOffset", methodParameters);
 

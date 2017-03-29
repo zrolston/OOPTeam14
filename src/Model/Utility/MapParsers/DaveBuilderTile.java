@@ -95,4 +95,8 @@ public class DaveBuilderTile {
                 ", rivers=" + Arrays.toString(rivers) +
                 '}';
     }
+
+    public void addCenterofMass(CubeLocation centerOfMass){
+        cubeLocation.substractEquals(centerOfMass);
+    }
 }
