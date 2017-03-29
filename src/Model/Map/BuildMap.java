@@ -79,13 +79,22 @@ public class BuildMap implements IViewMap {
     }
 
     public void addTile(BuildTile tile, ILocation location){
+
+        if(map[location.getRow()][location.getCol()] == null){
+            tileCount++;
+        }
+
         map[location.getRow()][location.getCol()] = tile;
-        tileCount++;
+
     }
 
     public void removeTile(ILocation location){
+
+        if(map[location.getRow()][location.getCol()] != null){
+            tileCount--;
+        }
+
         map[location.getRow()][location.getCol()] = null;
-        tileCount--;
     }
 
     public void clear(){
