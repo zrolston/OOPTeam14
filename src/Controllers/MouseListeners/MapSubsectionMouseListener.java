@@ -92,6 +92,7 @@ public class MapSubsectionMouseListener implements MouseMotionListener, MouseLis
 
     @Override
     public void mouseExited(MouseEvent e) {
+        cursorState.setMarkerActive(false);
     }
 
     public void updateActiveTile(MouseEvent e){

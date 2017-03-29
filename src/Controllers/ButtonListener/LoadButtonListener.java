@@ -19,6 +19,7 @@ public class LoadButtonListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         JFileChooser chooser = new JFileChooser();
+        chooser.setDialogTitle("Load Map");
         chooser.setCurrentDirectory(new File(FileIO.mapsDir));
         chooser.setVisible(true);
         String path= null;

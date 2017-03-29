@@ -18,13 +18,13 @@ public class SaveButtonListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         ModelFacade modelFacade= ModelFacade.getInstance();
         JFileChooser chooser = new JFileChooser();
+        chooser.setDialogTitle("Save Map");
         chooser.setCurrentDirectory(new File(FileIO.mapsDir));
         chooser.setVisible(true);
         String path = null;
         if (chooser.showOpenDialog(chooser) == JFileChooser.APPROVE_OPTION) {
             path= chooser.getSelectedFile().getAbsolutePath();
             modelFacade.saveMap (BuildMap.getInstance(),path);
-            //TODO: save map
         }
     }
 }
