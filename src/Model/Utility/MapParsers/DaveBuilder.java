@@ -221,7 +221,7 @@ public class DaveBuilder implements MapParser {
         HexLocation topLeft = new HexLocation(0, 0);
         HexLocation bottomRight = new HexLocation(lastRow, lastCol);
 
-        BuildTile[][] tiles = map.getTiles(topLeft, bottomRight);
+        BuildTile[][] tiles = map.getTiles();
 
         for (int row = 0; row < tiles.length; row++) {
             for (int col = 0; col < tiles[0].length; col++) {
