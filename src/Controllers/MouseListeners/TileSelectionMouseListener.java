@@ -5,6 +5,7 @@ import Model.Map.PlacementManager;
 import Model.ModelFacade;
 import Model.Tile.BuildTile;
 import Model.Utility.HexLocation;
+import Views.MapEditor.MapEditorView;
 import Views.MapEditor.MapView.MapSubsectionView;
 import Views.MapEditor.TileSelection.CurrentSelectionView;
 import Views.MapEditor.TileSelection.TileSelectionView;
@@ -24,14 +25,17 @@ public class TileSelectionMouseListener implements MouseMotionListener, MouseLis
     CursorState cursorState = CursorState.getInstance();
     CurrentSelectionView currentSelectionView;
     MapSubsectionView mapSubsectionView;
+    MapEditorView mapEditorView;
     ModelFacade modelFacade;
 
     private boolean mousePressed;
 
-    public TileSelectionMouseListener(TileSelectionView tileSelectionView, CurrentSelectionView currentSelectionView, MapSubsectionView mapSubsectionView) {
+    public TileSelectionMouseListener(TileSelectionView tileSelectionView, CurrentSelectionView currentSelectionView, 
+    		MapSubsectionView mapSubsectionView, MapEditorView mapEditorView) {
         this.view = tileSelectionView;
         this.currentSelectionView = currentSelectionView;
         this.mapSubsectionView = mapSubsectionView;
+        this.mapEditorView = mapEditorView;
         modelFacade = ModelFacade.getInstance();
     }
 
@@ -42,9 +46,9 @@ public class TileSelectionMouseListener implements MouseMotionListener, MouseLis
 
     @Override
     public void mousePressed(MouseEvent e) {
-
         if (e.getY() > (view.getBounds().getHeight() - view.getBounds().getWidth()))
             mousePressed = true;
+        System.out.println(SwingUtilities.isRightMouseButton(e));
     }
 
     @Override
@@ -60,6 +64,7 @@ public class TileSelectionMouseListener implements MouseMotionListener, MouseLis
             );
             mapSubsectionView.updateCachedImages(BuildMap.getInstance());
             currentSelectionView.update(0);
+            mapEditorView.updateImages();
             cursorState.setMarkerType(CursorState.NORMAL);
         }
         updateActiveTile(e);

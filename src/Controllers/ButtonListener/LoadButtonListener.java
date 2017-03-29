@@ -2,6 +2,8 @@ package Controllers.ButtonListener;
 
 import Model.Map.BuildMap;
 import Model.ModelFacade;
+import Views.MapEditor.MapEditorView;
+import Views.MapEditor.ValidateAndMenuView;
 import Views.MapEditor.MapView.MapSubsectionView;
 import Model.Utility.FileIO;
 
@@ -18,9 +20,11 @@ import java.io.File;
 public class LoadButtonListener implements ActionListener {
     private ModelFacade modelFacade = ModelFacade.getInstance();
     private MapSubsectionView mapSubsectionView;
-
-    public LoadButtonListener(MapSubsectionView view) {
+    private MapEditorView mapEditorView;
+    
+    public LoadButtonListener(MapSubsectionView view, MapEditorView mapEditorView) {
         mapSubsectionView = view;
+        this.mapEditorView = mapEditorView;
     }
 
     @Override
@@ -50,6 +54,7 @@ public class LoadButtonListener implements ActionListener {
             path= chooser.getSelectedFile().getAbsolutePath();
             modelFacade.loadMap(path);
             mapSubsectionView.updateCachedImages(BuildMap.getInstance());
+            mapEditorView.updateImages();
         }
     }
 }

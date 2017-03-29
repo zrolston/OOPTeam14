@@ -14,6 +14,7 @@ import Model.Utility.HexLocation;
 import Model.Visitor.MapDrawingVisitor;
 import Views.Drawers.TileInternalDrawer;
 import Views.Drawers.TileOutlineDrawer;
+import Views.MapEditor.MapEditorView;
 import Views.Utility.*;
 
 import javax.swing.*;
@@ -75,10 +76,10 @@ public class MapSubsectionView extends JPanel {
         }
     }
 
-    public MapSubsectionView() {
+    public MapSubsectionView(MapEditorView editor) {
         //Adding some Listeners to test
         ModelFacade modelFacade = ModelFacade.getInstance();
-        MapSubsectionMouseListener listener = new MapSubsectionMouseListener(modelFacade, this);
+        MapSubsectionMouseListener listener = new MapSubsectionMouseListener(modelFacade, this, editor);
         addMouseListener(listener);
         addMouseMotionListener(listener);
 

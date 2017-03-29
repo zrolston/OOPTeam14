@@ -24,10 +24,10 @@ public class MapEditorView extends JLayeredPane {
         setBounds(0, 0, PixelMap.SCREEN_WIDTH, PixelMap.SCREEN_HEIGHT);
 
         // Initialize SubViews
-        mapSubsectionView = new MapSubsectionView();
-        tileSelectionView = new TileSelectionView(mapSubsectionView);
+        mapSubsectionView = new MapSubsectionView(this);
+        tileSelectionView = new TileSelectionView(mapSubsectionView, this);
         scaleSliderView   = new ScaleSliderView(mapSubsectionView);
-        buttonPanelView = new ButtonPanelView(mapSubsectionView);
+        buttonPanelView = new ButtonPanelView(mapSubsectionView, this);
         validateAndMenuView = new ValidateAndMenuView(buttonPanelView);
 
         // Add SubViews to Layered Pane
@@ -38,6 +38,10 @@ public class MapEditorView extends JLayeredPane {
         add(validateAndMenuView, new Integer(2));
     }
 
+    public void updateImages() {
+    	validateAndMenuView.checkValidation();
+    }
+    
     public TileSelectionView getTileSelectionView() {
         return tileSelectionView;
     }

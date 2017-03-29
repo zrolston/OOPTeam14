@@ -7,6 +7,7 @@
 package Views.MapEditor.TileSelection;
 
 import Controllers.MouseListeners.TileSelectionMouseListener;
+import Views.MapEditor.MapEditorView;
 import Views.MapEditor.MapView.MapSubsectionView;
 import Views.Utility.ImageLoader;
 import Views.Utility.PixelMap;
@@ -22,7 +23,7 @@ public class TileSelectionView extends JPanel{
     CurrentSelectionView currentSelectionView;
     BufferedImage panelBackground;
     
-    public TileSelectionView(MapSubsectionView mapSubsectionView){
+    public TileSelectionView(MapSubsectionView mapSubsectionView, MapEditorView editorView){
         setLayout(new BorderLayout());
         setBounds((int)(PixelMap.SCREEN_WIDTH * 0.0125), (int)(PixelMap.SCREEN_HEIGHT * 0.025), (int)(PixelMap.SCREEN_WIDTH * (0.0125 + 0.155)), (int)(PixelMap.SCREEN_HEIGHT * 0.95));
         setOpaque(false);
@@ -36,7 +37,7 @@ public class TileSelectionView extends JPanel{
         add(riverSelectionView, BorderLayout.EAST);
         add(currentSelectionView, BorderLayout.SOUTH);
 
-        TileSelectionMouseListener listener = new TileSelectionMouseListener(this, currentSelectionView, mapSubsectionView);
+        TileSelectionMouseListener listener = new TileSelectionMouseListener(this, currentSelectionView, mapSubsectionView, editorView);
 
         addMouseListener(listener);
         addMouseMotionListener(listener);

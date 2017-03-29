@@ -10,11 +10,13 @@ import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
 import Controllers.ButtonListener.ValidateButtonListener;
+import Model.ModelFacade;
 import Views.Utility.ImageLoader;
 import Views.Utility.PixelMap;
 
 public class ValidateAndMenuView extends JPanel {
 	ButtonPanelView buttonPanel;
+	JButton validateButton;
 	
 	public ValidateAndMenuView(ButtonPanelView buttonPanel) {
 		this.buttonPanel = buttonPanel;
@@ -23,7 +25,7 @@ public class ValidateAndMenuView extends JPanel {
         setBounds((int)(PixelMap.SCREEN_WIDTH*17.7/20), PixelMap.SCREEN_HEIGHT/40, PixelMap.SCREEN_WIDTH/10, (int)(buttonPanel.getBounds().getY() - PixelMap.SCREEN_HEIGHT/40));
         setOpaque(false);
         
-        JButton validateButton = new JButton(new ImageIcon(ImageLoader.getImage("SAD_CAT")));
+        validateButton = new JButton(new ImageIcon(ImageLoader.getImage("SAD_CAT")));
         validateButton.setBackground(Color.red);
         validateButton.setOpaque(true);
         validateButton.setFocusable(false);
@@ -40,5 +42,16 @@ public class ValidateAndMenuView extends JPanel {
         
         this.add(validateButton);
         this.add(hamburgerButton);
+	}
+
+	public void checkValidation() {
+		ModelFacade model = ModelFacade.getInstance();
+        if (model.validateMap()) {
+        	validateButton.setIcon(new ImageIcon(ImageLoader.getImage("HAPPY_CAT")));
+            validateButton.setBackground(Color.green);
+        } else {
+        	validateButton.setIcon(new ImageIcon(ImageLoader.getImage("SAD_CAT")));
+        	validateButton.setBackground(Color.red);
+        }
 	}
 }
