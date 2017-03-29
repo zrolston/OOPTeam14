@@ -21,17 +21,17 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class MapSubsectionView extends JPanel {
-	private static BufferedImage background;
+	private BufferedImage background;
     private BufferedImage image;
-    private static BufferedImage[][] tileImages;
+    private BufferedImage[][] tileImages;
     private CursorState cursorState = CursorState.getInstance();
     private static boolean cachedImagesUpdated = false;
 
-    public static void updateCachedImages(IViewMap map) {
+    public void updateCachedImages(IViewMap map) {
         MapDrawingVisitor drawingVisitor = new MapDrawingVisitor();
         map.accept(drawingVisitor);
         tileImages = drawingVisitor.getImageArray();
-        cachedImagesUpdated = true;
+        updateImage();
     }
 
     public void updateImage() {
@@ -53,11 +53,6 @@ public class MapSubsectionView extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-
-        if (cachedImagesUpdated){
-            updateImage();
-            cachedImagesUpdated = false;
-        }
 
         g.drawImage(image, 0, 0, null);
 
@@ -89,14 +84,13 @@ public class MapSubsectionView extends JPanel {
 
         setBounds(0, 0, PixelMap.SCREEN_WIDTH, PixelMap.SCREEN_HEIGHT);
 
+        image = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
+        background = ImageLoader.getImage("BACKGROUND");
+
         BuildMap map = BuildMap.getInstance();
         updateCachedImages(map);
-        image = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
 
-        updateImage();
         setVisible(true);
-
-        background = ImageLoader.getImage("BACKGROUND");
     }
 
     public BufferedImage getImage() {

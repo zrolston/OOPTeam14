@@ -4,6 +4,7 @@ import Controllers.ButtonListener.LoadButtonListener;
 import Controllers.ButtonListener.SaveButtonListener;
 import Controllers.ButtonListener.ValidateButtonListener;
 import Controllers.ButtonListener.ClearButtonListener;
+import Views.MapEditor.MapView.MapSubsectionView;
 import Views.Utility.ImageLoader;
 import Views.Utility.PixelMap;
 
@@ -18,7 +19,7 @@ public class ButtonPanelView extends JPanel {
 
     BufferedImage panelBackground = null;
 
-    public ButtonPanelView() {
+    public ButtonPanelView(MapSubsectionView mapSubsectionView) {
         setLayout(new GridLayout(3, 0));
         setBounds((int)(PixelMap.SCREEN_WIDTH*18.6981/20), (int)(PixelMap.SCREEN_HEIGHT/10.8), PixelMap.SCREEN_WIDTH/20, PixelMap.SCREEN_HEIGHT / 4);
         panelBackground = ImageLoader.getImage("PANEL_BACKGROUND");
@@ -33,17 +34,17 @@ public class ButtonPanelView extends JPanel {
         this.setOpaque( true );
 
         JButton loadButton = new JButton("Load");
-        loadButton.setBackground( new Color( 0xffCABD80 )  );
+        loadButton.setBackground(new Color( 0xffCABD80 ));
         loadButton.setOpaque(false);
         loadButton.setFocusable(false);
-        loadButton.addActionListener(new LoadButtonListener());
+        loadButton.addActionListener(new LoadButtonListener(mapSubsectionView));
         loadButton.setFont(new Font("Serif", Font.BOLD, 8));
 
         JButton clearButton = new JButton("Clear");
-        clearButton.setBackground(new Color( 0xffCABD80 )  );
+        clearButton.setBackground(new Color( 0xffCABD80 ));
         clearButton.setOpaque(false);
         clearButton.setFocusable(false);
-        clearButton.addActionListener(  new ClearButtonListener(clearButton));
+        clearButton.addActionListener(new ClearButtonListener(mapSubsectionView));
         clearButton.setFont(new Font("Serif", Font.BOLD, 8));
 
 
