@@ -70,6 +70,9 @@ public class PlacementManager {
     }
 
     public void removeTileAt(ILocation targetLocation){
+        if (!buildMap.tileExistsAt(targetLocation)) {
+            return;
+        }
         buildMap.removeTile(targetLocation);
 
         //UPDATE SURROUNDING SLOTS
