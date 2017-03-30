@@ -56,7 +56,7 @@ public class PlacementManager {
 
         for(ILocation loc : location.getAdjacent()){
             if(slotExistsAt(loc)){
-                //UPDATE CURRENT SLOT
+                //UPDATE CURRENT SLOT TDA FIXED
                 this.updateSlot(loc);
             }
 
