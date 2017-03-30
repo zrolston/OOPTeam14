@@ -1,7 +1,7 @@
 # OOPTeam14
 Dr. StrangeOOP or: How I stopped worrying and learned to love the objects.
 
-# Running the source code
+<!-- # Running the source code -->
 
 ## Download a JAR file containing the packaged Java app
 Click [here](MapEditor.jar) or use the UNIX/Linux command *wget* to download the JAR file:
