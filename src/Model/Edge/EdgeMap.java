@@ -80,4 +80,8 @@ public class EdgeMap {
     public int size(){
         return edgeMap.size();
     }
+
+    public void clear() {
+        edgeMap.clear();
+    }
 }

@@ -40,6 +40,10 @@ public class Slot {
         return edges.size();
     }
 
+    public void clearEdges(){
+        edges.clear();
+    }
+
     public void accept(EdgeVisitor v){
         edges.accept(v);
     }
