@@ -6,7 +6,10 @@ out
 *.settings
 *.classpath
 *.project
+
 *.gif
+*.pdf
+
 
 
 # Compiled source #
