@@ -6,6 +6,8 @@ out
 *.settings
 *.classpath
 *.project
+*.gif
+
 
 # Compiled source #
 *.iml
