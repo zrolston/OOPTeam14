@@ -23,6 +23,7 @@ public class MapDrawingVisitor implements MapVisitor {
         Tile[][] tiles = map.getTiles();
         int height = tiles.length;
         int width = tiles[0].length;
+
         imageArray = new BufferedImage[width][height];
         /*
         Will return array of tiles in the camera window. There will

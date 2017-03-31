@@ -34,9 +34,10 @@ public class MapSubsectionView extends JPanel {
     private BufferedImage[][] tileImages;
     private CursorState cursorState = CursorState.getInstance();
     private static boolean cachedImagesUpdated = false;
+    private MapDrawingVisitor drawingVisitor = null;
 
     public void updateCachedImages(IViewMap map) {
-        MapDrawingVisitor drawingVisitor = new MapDrawingVisitor();
+        drawingVisitor = new MapDrawingVisitor();
         map.accept(drawingVisitor);
         tileImages = drawingVisitor.getImageArray();
         updateImage();
