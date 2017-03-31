@@ -20,8 +20,9 @@ java -jar MapEditor.jar
 
 ***
 
-![alt tag](demo/mapDemo.gif)
+<!-- ![alt tag](demo/mapDemo.gif) -->
 
+![alt tag](demo/mapBigDemo.gif)
 
 
 
