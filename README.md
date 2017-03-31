@@ -17,6 +17,8 @@ java -jar MapEditor.jar
 
 ***
 
+![alt tag](demo/mapDemo.gif)
+
 
 
 
