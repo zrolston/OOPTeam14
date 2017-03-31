@@ -7,15 +7,11 @@ out
 *.classpath
 *.project
 
-*.gif
-
-
 # Compiled source #
 *.iml
 *.class
 *.dll
 *.exe
 *.o
-*.jar
 /bin/
 /META-INF/
