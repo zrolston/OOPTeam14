@@ -42,7 +42,7 @@ public class ScaleSliderController implements ChangeListener {
         ScaleSliderView view = (ScaleSliderView) e.getSource();
         Camera camera = Camera.getInstance();
         int scale = view.getValue();
-        camera.setScale((double) scale / 10);
+        camera.setScale((double) scale / 1000);
         mapSubsectionView.updateImage();
 
     }

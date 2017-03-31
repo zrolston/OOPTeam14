@@ -48,6 +48,9 @@ public class Camera {
     }
     public void setScale(double scale) {
         this.scale = scale;
+
+
+        System.out.println("scale = " + scale);
     }
 
     //NumKey Camera movement (uses a set offset)

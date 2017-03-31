@@ -21,7 +21,7 @@ public class ScaleSliderView extends JSlider {
 	private BufferedImage background;
 	
     public ScaleSliderView(MapSubsectionView mapSubsectionView) {
-        super(JSlider.VERTICAL, 3, 30, 10);
+        super(JSlider.VERTICAL, 300, 1400, 900);
         setBounds((int)(PixelMap.SCREEN_WIDTH *37.5/40), (int)(PixelMap.SCREEN_HEIGHT * 11.4/20), PixelMap.SCREEN_WIDTH /20, PixelMap.SCREEN_HEIGHT *4/10);
 
         //Setup labels and display them
