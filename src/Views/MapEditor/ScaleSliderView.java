@@ -29,7 +29,7 @@ public class ScaleSliderView extends JSlider {
         setPaintLabels(true);
         setMinorTickSpacing(1);
         setOpaque(false);
-        Hashtable labelTable = new Hashtable();
+        Hashtable<Integer, JLabel> labelTable = new Hashtable<Integer, JLabel>();
         JLabel plus = new JLabel("+");
         plus.setForeground(Color.BLACK);
         plus.setFont(new Font("Serif", Font.BOLD, 30));
