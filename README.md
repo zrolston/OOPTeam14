@@ -1,6 +1,6 @@
 # OOPTeam14
 
----
+***
 
 # Map editor for [Roads & Boats](https://github.com/zrolston/OOPTeam14/blob/mapEditor/demo/RB3Erules.pdf)
 Allows users to create new maps, load and edit previously created maps, and export map files.
@@ -23,5 +23,4 @@ java -jar MapEditor.jar
 ![map demo](https://github.com/zrolston/OOPTeam14/raw/mapEditor/demo/mapDemo.gif)
 
 
----
 ***
