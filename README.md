@@ -1,13 +1,13 @@
 # OOPTeam14
 
-# Map editor for [Roads & Boats](demo/RB3Erules.pdf)
+# Map editor for [Roads & Boats](https://raw.githubusercontent.com/zrolston/OOPTeam14/mapEditor/demo/RB3Erules.pdf)
 Allows users to create new maps, load and edit previously created maps, and export map files.
 
 
 <!-- # Running the source code -->
 
 ## Download a JAR file containing the packaged Java app
-Click [here](demo/MapEditor.jar) or use the UNIX/Linux command *wget* to download the JAR file:
+Click [here](https://raw.githubusercontent.com/zrolston/OOPTeam14/mapEditor/demo/MapEditor.jar) or use the UNIX/Linux command *wget* to download the JAR file:
  
 ```javascript
 wget "https://raw.githubusercontent.com/zrolston/OOPTeam14/mapEditor/demo/MapEditor.jar" -O MapEditor.jar 
@@ -19,7 +19,7 @@ java -jar MapEditor.jar
 ```
 
 ***
-![alt tag](demo/mapDemo.gif)
+![alt tag](https://raw.githubusercontent.com/zrolston/OOPTeam14/mapEditor/demo/MapDemo.gif)
 
 <!-- ![alt tag](demo/mapBigDemo.gif)  -->
 
