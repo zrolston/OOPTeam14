@@ -49,7 +49,6 @@ public class MapSubsectionView extends JPanel {
         for (int i = 0; i < tileImages.length; i++) {
             for (int j = 0; j < tileImages[i].length; j++) {
                 tileImages[i][j].flush();
-                //dtileImages[i][j] = null;
             }
         }
         tileImages = null;
