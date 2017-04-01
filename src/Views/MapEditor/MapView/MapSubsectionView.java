@@ -10,6 +10,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
+import java.lang.instrument.Instrumentation;
 
 import javax.swing.JPanel;
 
@@ -33,14 +34,26 @@ public class MapSubsectionView extends JPanel {
     private BufferedImage image;
     private BufferedImage[][] tileImages;
     private CursorState cursorState = CursorState.getInstance();
-    private static boolean cachedImagesUpdated = false;
-    private MapDrawingVisitor drawingVisitor = null;
 
     public void updateCachedImages(IViewMap map) {
-        drawingVisitor = new MapDrawingVisitor();
+        flushTileImages();
+        MapDrawingVisitor drawingVisitor = new MapDrawingVisitor();
         map.accept(drawingVisitor);
         tileImages = drawingVisitor.getImageArray();
         updateImage();
+    }
+
+    private void flushTileImages() {
+        if (tileImages == null)
+            return;
+        for (int i = 0; i < tileImages.length; i++) {
+            for (int j = 0; j < tileImages[i].length; j++) {
+                tileImages[i][j].flush();
+                //dtileImages[i][j] = null;
+            }
+        }
+        tileImages = null;
+        System.gc();
     }
 
     public void updateImage() {
