@@ -16,13 +16,12 @@ mv res/Images/ src
 java -cp src Main
 ```
 
-## Download a JAR file containing the packaged Java app
+## Download and run a JAR file containing the packaged Java app
 Click [here](https://raw.githubusercontent.com/zrolston/OOPTeam14/mapEditor/demo/MapEditor.jar) or use the UNIX/Linux command *wget* to download the JAR file:
  
 ```javascript
 wget "https://raw.githubusercontent.com/zrolston/OOPTeam14/mapEditor/demo/MapEditor.jar" -O MapEditor.jar 
 ```
-## Run the JAR file (JRE required)
 Run from the command line or double-click the executable JAR file:
 ```javascript
 java -jar MapEditor.jar 
