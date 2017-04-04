@@ -48,10 +48,8 @@ public class PixelMap {
 
     //Plain Pixel Mapping based on position
     public static PixelPoint getTileCenter(ILocation hexLocation){
-        //If odd Column
-        if((hexLocation.getCol()%2 == 1) || (hexLocation.getCol()%2 == -1)) return new PixelPoint(hexLocation.getCol()*width_offset, hexLocation.getRow()*TILE_HEIGHT);
-        //If even Column
-        else return new PixelPoint(hexLocation.getCol()*width_offset, hexLocation.getRow()*TILE_HEIGHT-height_offset);
+        PixelPoint origin = getMapTileOrigin(hexLocation);
+        return new PixelPoint(origin.getX() + (int)getActualWidth(), origin.getY() + (int)getActualHeight());
     }
 
     //Plain Pixel Mapping based on position

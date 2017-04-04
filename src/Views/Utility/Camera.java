@@ -7,6 +7,8 @@
 ---------------------------------------------------------------------------------------*/
 package Views.Utility;
 
+import Model.Utility.HexLocation;
+
 public class Camera {
 
     private PixelPoint origin;
@@ -27,7 +29,8 @@ public class Camera {
 
     public static Camera getInstance(){
         if(instance == null){
-            instance = new Camera(-PixelMap.SCREEN_WIDTH / 4, -PixelMap.SCREEN_HEIGHT / 15);
+            instance = new Camera(15*PixelMap.TILE_WIDTH - PixelMap.SCREEN_WIDTH / 2,
+                                  10*PixelMap.TILE_HEIGHT - PixelMap.SCREEN_HEIGHT / 2);
         }
         return instance;
     }
@@ -40,13 +43,18 @@ public class Camera {
 
     //Mutators
     public void zoomIn(){
-        scale += 0.1;
+        setScale(scale + .1);
     }
     public void zoomOut(){
         if(scale > 0.1)
-            scale -= 0.1;
+            setScale(scale - .1);
     }
     public void setScale(double scale) {
+        double newOriginX = this.origin.getX() * scale / this.scale;
+        double newOriginY = this.origin.getY() * scale / this.scale;
+
+        this.origin = new PixelPoint((int) newOriginX, (int) newOriginY);
+
         this.scale = scale;
     }
 
