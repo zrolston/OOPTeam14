@@ -7,6 +7,11 @@ out
 *.classpath
 *.project
 
+*.gif
+*.pdf
+
+
+
 # Compiled source #
 *.iml
 *.class
