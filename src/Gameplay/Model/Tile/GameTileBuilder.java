@@ -1,6 +1,7 @@
 package Gameplay.Model.Tile;
 
 import Gameplay.Model.Utility.HexaVertex;
+import MapBuilder.Model.Terrain.*;
 
 import javax.management.BadAttributeValueExpException;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ public class GameTileBuilder {
     }
 
     public GameTile createTile(String terrainType, ArrayList<Integer> riverIndices) throws RuntimeException {
+        regionHashMap.clear();
         if (riverIndices.isEmpty()) { //No rivers
             ArrayList<HexaVertex> list = new ArrayList<>();
             for (int i = 1; i < 7; i++) {
@@ -35,10 +37,33 @@ public class GameTileBuilder {
             }
             regionHashMap.put(list, new Region());  //TODO RiverRegion?
             try {
-                addRegions();
+                addRegions(riverIndices);
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+        return new GameTile(
+                getTerrain(terrainType),
+                new RegionMap(regionHashMap)
+        );
+    }
+
+    private Terrain getTerrain(String terrain){
+        terrain=terrain.toUpperCase();
+        switch (terrain) {
+            case "DESERT":
+                return new DesertTerrain();
+            case "MOUNTAIN":
+                return new MountainTerrain();
+            case "PASTURE":
+                return new PastureTerrain();
+            case "ROCK":
+                return new RockTerrain();
+            case "WOODS":
+                return new WoodsTerrain();
+            case "SEA":
+                return new SeaTerrain();
+            default: throw new RuntimeException("Invalid Terrain Type in constructor");
         }
     }
 
