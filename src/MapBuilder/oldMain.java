@@ -4,14 +4,14 @@ import MapBuilder.Controllers.TileSelectionController;
 import MapBuilder.Model.ModelFacade;
 import MapBuilder.Model.Map.BuildMap;
 import MapBuilder.Model.Map.PlacementManager;
-import MapBuilder.Views.Display;
+import MapBuilder.Views.MapEditorDisplay;
 import MapBuilder.Views.MapEditor.MapView.MapSubsectionView;
 
-public class Main {
+public class oldMain {
     public static void main(String[] args) {
         BuildMap.getInstance();
         ModelFacade.initialize(new PlacementManager());
-        Display display = new Display();
+        MapEditorDisplay display = new MapEditorDisplay();
 
         // TODO:  initialize somewhere else
         TileSelectionController tileSelectionController = new TileSelectionController(display.getTileSelectionView());

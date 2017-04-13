@@ -11,11 +11,11 @@ import MapBuilder.Views.MapEditor.MapView.MapSubsectionView;
 import MapBuilder.Views.MapEditor.TileSelection.TileSelectionView;
 import MapBuilder.Views.Utility.PixelMap;
 
-public class Display extends JFrame {
+public class MapEditorDisplay extends JFrame {
     private MapEditorView mapEditorView;
     private MapSubsectionView  mapSubsectionView;
 
-    public Display() {
+    public MapEditorDisplay() {
         setupFrame();
         mapEditorView = new MapEditorView();
         addKeyListener(new EditorKeyboardListener(ModelFacade.getInstance()));
