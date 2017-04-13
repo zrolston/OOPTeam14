@@ -56,7 +56,7 @@ public class PlacementManager {
 
         for(ILocation loc : location.getAdjacent()){
             if(slotExistsAt(loc)){
-                //UPDATE CURRENT SLOT
+                //UPDATE CURRENT SLOT TDA FIXED
                 this.updateSlot(loc);
             }
 
@@ -70,9 +70,7 @@ public class PlacementManager {
     }
 
     public void removeTileAt(ILocation targetLocation){
-        if (!buildMap.tileExistsAt(targetLocation)) {
-            return;
-        }
+
         buildMap.removeTile(targetLocation);
 
         //UPDATE SURROUNDING SLOTS
@@ -92,17 +90,15 @@ public class PlacementManager {
         Slot target = slots.get(loc);
         BuildTile targetTile;
 
+        target.clearEdges();
+
         for(HexaIndex index : HexaIndex.getAllPossible()){
 
             location = loc.getLocationAtIndex(index);
 
-            if(buildMap.tileExistsAt(location) && !target.hasEdge(index)){
+            if(buildMap.tileExistsAt(location)){
                 targetTile = buildMap.getTileAt(location);
                 target.addEdge(index, targetTile.getEdgeAt(index.getOppositeSide()));
-            }
-
-            else if(!buildMap.tileExistsAt(location) && target.hasEdge(index)){
-                target.removeEdge(index);
             }
         }
 
@@ -140,8 +136,7 @@ public class PlacementManager {
 
             targetSlot.accept(riverCountVisitor);
 
-            if(riverCountVisitor.getRiverCount() != 0){
-                riverCountVisitor.clearRiverCount();
+            if(riverCountVisitor.hasRiver()){
                 return false;
             }
         }

@@ -50,4 +50,8 @@ public class RiverCountVisitor implements EdgeVisitor{
         //If Slot has a river edge, it is not closed... BAD!
         riverCount++;
     }
+
+    public boolean hasRiver() {
+        return riverCount != 0;
+    }
 }
