@@ -8,7 +8,7 @@ package TestSetup;
 
 import org.junit.Test;
 
-import Views.MapEditor.MapEditorView;
+import MapBuilder.Views.MapEditor.MapEditorView;
 
 public class SetupTwo {
 

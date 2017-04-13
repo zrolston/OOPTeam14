@@ -17,13 +17,13 @@ import javax.swing.JPanel;
 
 import org.junit.Test;
 
-import Controllers.KeyboardListeners.EditorKeyboardListener;
-import Controllers.MouseListeners.MapSubsectionMouseListener;
-import Model.ModelFacade;
-import Model.Utility.HexLocation;
-import Views.Drawers.TileOutlineDrawer;
-import Views.Utility.PixelMap;
-import Views.Utility.PixelPoint;
+import MapBuilder.Controllers.KeyboardListeners.EditorKeyboardListener;
+import MapBuilder.Controllers.MouseListeners.MapSubsectionMouseListener;
+import MapBuilder.Model.ModelFacade;
+import MapBuilder.Model.Utility.HexLocation;
+import MapBuilder.Views.Drawers.TileOutlineDrawer;
+import MapBuilder.Views.Utility.PixelMap;
+import MapBuilder.Views.Utility.PixelPoint;
 
 
 public class SetupOne {

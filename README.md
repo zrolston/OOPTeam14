@@ -13,7 +13,7 @@ git clone https://github.com/zrolston/OOPTeam14 -b master --single-branch
 cd OOPTeam14
 mv res/Images/ src
 (find ./src/* | grep .java > argfile) && javac @argfile
-java -cp src Main
+java -cp src MapBuilder.Main
 ```
 
 ## Download and run a JAR file containing the packaged Java app
