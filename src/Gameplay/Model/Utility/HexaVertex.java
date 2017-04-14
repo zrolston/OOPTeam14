@@ -1,5 +1,6 @@
 package Gameplay.Model.Utility;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 /**
@@ -30,6 +31,16 @@ public class HexaVertex {
     public HexaVertex nextVertex(){
         int nextValue = (value % upperboundary) + 1;
         return new HexaVertex(nextValue);
+    }
+
+    public static ArrayList<HexaVertex> getAllPossible(){
+        ArrayList<HexaVertex> hexaIndices = new ArrayList<>();
+
+        for(int i = lowerboundary; i<upperboundary; i++){
+            hexaIndices.add(new HexaVertex(i));
+        }
+
+        return hexaIndices;
     }
 
     public int getValue() {

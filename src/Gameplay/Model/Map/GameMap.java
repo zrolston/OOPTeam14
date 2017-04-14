@@ -1,10 +1,15 @@
 package Gameplay.Model.Map;
 
 import Gameplay.Model.Tile.GameTile;
+import Gameplay.Model.Utility.HexaVertex;
 import MapBuilder.Model.Map.IViewMap;
 import MapBuilder.Model.Tile.Tile;
+import MapBuilder.Model.Utility.HexLocation;
+import MapBuilder.Model.Utility.HexaIndex;
 import MapBuilder.Model.Utility.ILocation;
 import MapBuilder.Model.Visitor.MapVisitor;
+
+import java.util.ArrayList;
 
 /**
  * Created by zrgam_000 on 4/13/2017.
@@ -52,6 +57,20 @@ public class GameMap implements IViewMap{
     }
 
     private void generateConnections() {
-        
+        ILocation start = this.getFirstValidLocation();
+
+        ArrayList<HexaVertex> vertices = HexaVertex.getAllPossible();
+    }
+
+    private ILocation getFirstValidLocation(){
+        for(int i = 0; i < map.length; i++){
+            for(int j = 0; j < map[0].length; j++){
+                if(map[i][j] != null){
+                    return new HexLocation(i, j);
+                }
+            }
+        }
+
+        return null;
     }
 }
