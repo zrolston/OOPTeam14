@@ -1,6 +1,5 @@
-package Gameplay.Controller.MainControllerStates;
+package Gameplay.Controller.ControllerStates.NativeStates;
 
-import Gameplay.Controller.ControllerState;
 import Gameplay.Controller.MainController;
 
 import java.awt.event.KeyEvent;
@@ -9,11 +8,19 @@ import java.awt.event.MouseEvent;
 /**
  * Created by jordi on 4/13/2017.
  */
-public class RegionMappingState extends ControllerState{
-
-
-    public RegionMappingState(MainController mainController) {
+public class TileMappingState extends NativeState{
+    public TileMappingState(MainController mainController) {
         super(mainController);
+    }
+
+    @Override
+    protected void rightClicked() {
+
+    }
+
+    @Override
+    protected void leftClicked() {
+
     }
 
     @Override
@@ -33,11 +40,6 @@ public class RegionMappingState extends ControllerState{
 
     @Override
     public void mouseClicked(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
 
     }
 
