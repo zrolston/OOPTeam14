@@ -14,12 +14,17 @@ import java.util.ArrayList;
 /**
  * Created by zrgam_000 on 4/13/2017.
  */
-public class GameMap implements IViewMap{
 
+
+public class GameMap implements IViewMap{
+    private int tileCount, length, width;
     private GameTile[][] map;
 
-    public GameMap(GameTile[][] tiles){
-        map = tiles;
+    public GameMap(int length, int width){
+        this.length = length;
+        this.width = width;
+        this.tileCount = 0;
+        map = new GameTile[length][width];
         this.generateConnections();
     }
 
@@ -54,6 +59,24 @@ public class GameMap implements IViewMap{
             }
         }
         return window;
+    }
+
+    public void addTile(GameTile tile, ILocation location){
+
+        if(map[location.getRow()][location.getCol()] == null){
+            tileCount++;
+        }
+
+        map[location.getRow()][location.getCol()] = tile;
+
+    }
+
+    public int getLength(){
+        return length;
+    }
+
+    public int getWidth(){
+        return width;
     }
 
     private void generateConnections() {

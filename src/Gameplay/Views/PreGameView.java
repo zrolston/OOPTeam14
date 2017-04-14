@@ -74,10 +74,10 @@ public class PreGameView extends JPanel {
             g.setFont(new Font("phosphate",Font.BOLD, 28));
             g.setColor(new Color(0xff000000));
             g.drawString(" Roads & Boats", 10, 60);
-            g.drawString(" cop 4331", 10, 90);
+            g.drawString(" COP 4331", 10, 90);
 
             g.setFont(new Font("phosphate",Font.BOLD, 26));
-            g.drawString("  team # 1:", 10, 165);
+            g.drawString("  Team # 1:", 10, 165);
             g.drawString("  Randy Brooks,", 10, 200);
             g.drawString("  Alejandro Chavez,", 10, 230);
             g.drawString("  Jordi Hernandez,", 10, 260);
