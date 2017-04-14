@@ -1,5 +1,8 @@
 package Gameplay.Model.Tile;
 
+import Gameplay.Model.Region.LandRegion;
+import Gameplay.Model.Region.Region;
+import Gameplay.Model.Region.RiverRegion;
 import Gameplay.Model.Utility.HexaVertex;
 import MapBuilder.Model.Terrain.*;
 
@@ -27,7 +30,7 @@ public class GameTileBuilder {
                     e.printStackTrace();
                 }
             }
-            regionHashMap.put(list, new Region());  //TODO LandRegion?
+            regionHashMap.put(list, new LandRegion());  //TODO LandRegion?
         } else {
             ArrayList<HexaVertex> list = new ArrayList<>();
             try {
@@ -35,7 +38,7 @@ public class GameTileBuilder {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            regionHashMap.put(list, new Region());  //TODO RiverRegion?
+            regionHashMap.put(list, new RiverRegion());  //TODO RiverRegion?
             try {
                 addRegions(riverIndices);
             } catch (Exception e) {
@@ -78,7 +81,7 @@ public class GameTileBuilder {
                     list.add(temp);
                     temp = temp.nextVertex();
                 }
-                regionHashMap.put(list, new Region());  //TODO
+                regionHashMap.put(list, new LandRegion());  //TODO
                 break;
             }
             case 2: {
@@ -90,14 +93,14 @@ public class GameTileBuilder {
                     list.add(temp);
                     temp = temp.nextVertex();
                 }
-                regionHashMap.put(list, new Region());  //TODO
+                regionHashMap.put(list, new LandRegion());  //TODO
                 //new list
                 list = new ArrayList<>();
                 while (!temp.equals(start)) {
                     list.add(temp);
                     temp = temp.nextVertex();
                 }
-                regionHashMap.put(list, new Region());  //TODO
+                regionHashMap.put(list, new LandRegion());  //TODO
                 break;
             }
             case 3: {
@@ -110,21 +113,21 @@ public class GameTileBuilder {
                     list.add(temp);
                     temp = temp.nextVertex();
                 }
-                regionHashMap.put(list, new Region());  //TODO
+                regionHashMap.put(list, new LandRegion());  //TODO
                 //new list
                 list = new ArrayList<>();
                 while (!temp.equals(start3)) {
                     list.add(temp);
                     temp = temp.nextVertex();
                 }
-                regionHashMap.put(list, new Region());  //TODO
+                regionHashMap.put(list, new LandRegion());  //TODO
                 //new list
                 list = new ArrayList<>();
                 while (!temp.equals(start)) {
                     list.add(temp);
                     temp = temp.nextVertex();
                 }
-                regionHashMap.put(list, new Region());  //TODO
+                regionHashMap.put(list, new LandRegion());  //TODO
                 break;
             }
             default:
