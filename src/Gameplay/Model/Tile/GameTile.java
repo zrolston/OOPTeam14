@@ -6,7 +6,6 @@ import MapBuilder.Model.Visitor.TileVisitor;
 
 public class GameTile extends Tile {
     private RegionMap regionMap;
-    private Terrain terrain;
 
     public GameTile(Terrain terrain, RegionMap regionMap){
         super(terrain);
@@ -15,7 +14,7 @@ public class GameTile extends Tile {
 
     @Override
     public Tile clone() {
-        return new GameTile(terrain, regionMap);
+        return new GameTile(getTerrain(), regionMap);
     }
 
     @Override
