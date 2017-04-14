@@ -28,7 +28,6 @@ public class TransporterView extends JPanel {
                 display.setCurrScreen("MAIN_SCREEN");
             }
         } );
-
         screenSelectBtns.addListnerToWonderScreenButton( new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -47,6 +46,7 @@ public class TransporterView extends JPanel {
                 display.setCurrScreen("TRANSPORTER_SCREEN");
             }
         } );
+
     }
 
 }

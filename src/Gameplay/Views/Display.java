@@ -4,9 +4,7 @@ import MapBuilder.Views.Utility.PixelMap;
 
 import javax.swing.*;
 import java.awt.*;
-
 import static MapBuilder.Views.Utility.PixelMap.*;
-
 
 public class Display extends JFrame{
 
