@@ -10,9 +10,6 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-/**
- * Created by Thomas on 4/13/17.
- */
 public class PreGameView extends JPanel {
 
     private HomeImage homeBackground = null;

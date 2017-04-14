@@ -45,8 +45,6 @@ public class MainView extends JPanel {
                 display.setCurrScreen("TRANSPORTER_SCREEN");
             }
         } );
-
-
     }
 
 }
