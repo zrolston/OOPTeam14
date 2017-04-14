@@ -1,5 +1,6 @@
 package Gameplay.Model.Transporters;
 
+import Gameplay.Model.Goods.GoodsBag;
 import Gameplay.Model.Tile.Region;
 
 import java.util.List;
@@ -10,7 +11,7 @@ abstract public class Transporter {
     private int movement;
     private GoodsBag carriedGoods;
     private List<Region> movementList;
-    private TransporterMovementObserver transporterMovementObserver;
+    //private TransporterMovementObserver transporterMovementObserver;
 
     public Transporter(Permit ... permits){
         for (Permit permit : permits) {
