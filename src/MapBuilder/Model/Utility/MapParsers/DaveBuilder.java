@@ -8,6 +8,7 @@ import javax.swing.JFileChooser;
 import MapBuilder.Model.ModelFacade;
 import MapBuilder.Model.Map.BuildMap;
 import MapBuilder.Model.Tile.BuildTile;
+import MapBuilder.Model.Tile.Tile;
 import MapBuilder.Model.Utility.FileIO;
 import MapBuilder.Model.Utility.HexLocation;
 
@@ -121,7 +122,7 @@ abstract public class DaveBuilder implements MapParser {
      * @param tile
      * @return
      */
-    abstract protected BuildTile createTile(DaveBuilderTile tile);
+    abstract protected Tile createTile(DaveBuilderTile tile);
 
     /**
      * converts the tiles received into BuildTiles calling the createTile function
@@ -131,8 +132,8 @@ abstract public class DaveBuilder implements MapParser {
      * @param tiles
      */
     private void createMap(List<DaveBuilderTile> tiles){
-        placeTiles();
         doCreateMap(tiles);
+        placeTiles();
     }
 
     abstract protected void doCreateMap(List<DaveBuilderTile> tiles);
@@ -140,7 +141,6 @@ abstract public class DaveBuilder implements MapParser {
     abstract protected void placeTiles();
 
     protected HexLocation convertToEvenQOffset(CubeLocation cubeLocation) {
-        ModelFacade modelFacade = ModelFacade.getInstance();
         int x = cubeLocation.getX();
         int y = cubeLocation.getY();
         int z = cubeLocation.getZ();
@@ -149,24 +149,27 @@ abstract public class DaveBuilder implements MapParser {
         int col = x;
         int row = z + (x + (x&1)) / 2;
 
-        row += modelFacade.getMapLength() / 2;
-        col += modelFacade.getMapWidth() / 2;
+        row += getMapLength() / 2;
+        col += getMapWidth() / 2;
 
 
         return new HexLocation(row, col);
     }
 
     private CubeLocation convertToCube(int row, int col) {
-        ModelFacade modelFacade = ModelFacade.getInstance();
         int x, y, z;
-        row -= modelFacade.getMapLength() / 2;
-        col -= modelFacade.getMapWidth() / 2;
+        row -= getMapLength() / 2;
+        col -= getMapWidth() / 2;
 
         x = col;
         z = row - (col + (col&1)) / 2;
         y = -x-z;
         return new CubeLocation(x, y, z);
     }
+
+    abstract protected int getMapLength();
+    abstract protected int getMapWidth();
+
 
     @Override
     public void saveMap(BuildMap map, String path) {

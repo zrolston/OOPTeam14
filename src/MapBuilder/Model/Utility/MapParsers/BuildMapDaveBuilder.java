@@ -12,6 +12,7 @@ public class BuildMapDaveBuilder extends DaveBuilder {
     private BuildTileFactory tileFactory = new BuildTileFactory();
     private List<BuildTilePlacement> tilePlacements;
 
+
     @Override
     protected BuildTile createTile(DaveBuilderTile tile) {
         //TODO:ask if this should go through the facade
@@ -35,8 +36,20 @@ public class BuildMapDaveBuilder extends DaveBuilder {
 
     @Override
     protected void placeTiles() {
-        ModelFacade modelFacade = ModelFacade.getInstance();
-        modelFacade.placeFromFile(tilePlacements);
+        ModelFacade facade = ModelFacade.getInstance();
+        facade.placeFromFile(tilePlacements);
+    }
+
+    @Override
+    protected int getMapLength() {
+        ModelFacade facade = ModelFacade.getInstance();
+        return facade.getMapLength();
+    }
+
+    @Override
+    protected int getMapWidth() {
+        ModelFacade facade = ModelFacade.getInstance();
+        return facade.getMapWidth();
     }
 
     private BuildTilePlacement buildTilePlacement(BuildTile tile, HexLocation location) {
