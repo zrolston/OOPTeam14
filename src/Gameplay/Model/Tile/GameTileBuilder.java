@@ -17,7 +17,7 @@ public class GameTileBuilder {
     }
 
     public GameTile createTile(String terrainType, ArrayList<Integer> riverIndices) throws RuntimeException {
-        regionHashMap.clear();
+        regionHashMap = new HashMap<>();
         if (riverIndices.isEmpty()) { //No rivers
             ArrayList<HexaVertex> list = new ArrayList<>();
             for (int i = 1; i < 7; i++) {

@@ -3,17 +3,15 @@ package MapBuilder.Model.Utility.MapParsers;
 import MapBuilder.Model.Tile.BuildTile;
 import MapBuilder.Model.Utility.HexLocation;
 
-/**
- * Created by jordi on 3/28/2017.
- */
-public class TilePlacement {
-    private BuildTile tile;
+public class BuildTilePlacement {
     private HexLocation location;
+    private BuildTile tile;
 
-    public TilePlacement(BuildTile tile, HexLocation location) {
+    public BuildTilePlacement(BuildTile tile, HexLocation location) {
         this.tile = tile;
         this.location = location;
     }
+
 
     public BuildTile getTile() {
         return tile;
@@ -22,4 +20,5 @@ public class TilePlacement {
     public HexLocation getLocation() {
         return location;
     }
+
 }

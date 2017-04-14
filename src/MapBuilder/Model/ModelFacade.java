@@ -7,8 +7,9 @@ import MapBuilder.Model.Map.PlacementManager;
 import MapBuilder.Model.Tile.BuildTile;
 import MapBuilder.Model.Utility.HexLocation;
 import MapBuilder.Model.Utility.ILocation;
+import MapBuilder.Model.Utility.MapParsers.BuildMapDaveBuilder;
 import MapBuilder.Model.Utility.MapParsers.DaveBuilder;
-import MapBuilder.Model.Utility.MapParsers.TilePlacement;
+import MapBuilder.Model.Utility.MapParsers.BuildTilePlacement;
 import MapBuilder.Views.Utility.Camera;
 import MapBuilder.Views.Utility.PixelPoint;
 
@@ -21,7 +22,7 @@ public class ModelFacade {
     //TODO Use PlacementManager
     PlacementManager manager;
     Camera camera=Camera.getInstance();
-    DaveBuilder daveBuilder= new DaveBuilder();
+    DaveBuilder daveBuilder= new BuildMapDaveBuilder();
     //Todo:add tileFactory to this
 
 
@@ -78,8 +79,8 @@ public class ModelFacade {
         }
     }
 
-    public void placeFromFile(List<TilePlacement> placements){
-        for (TilePlacement placement:placements) {
+    public void placeFromFile(List<BuildTilePlacement> placements){
+        for (BuildTilePlacement placement:placements) {
             BuildTile tile= placement.getTile();
             HexLocation location=placement.getLocation();
             manager.placeTileAt(tile,location);

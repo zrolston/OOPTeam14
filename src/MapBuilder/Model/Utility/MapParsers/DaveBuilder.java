@@ -8,7 +8,7 @@ import javax.swing.JFileChooser;
 import MapBuilder.Model.ModelFacade;
 import MapBuilder.Model.Map.BuildMap;
 import MapBuilder.Model.Tile.BuildTile;
-import MapBuilder.Model.Tile.BuildTileFactory;
+import MapBuilder.Model.Tile.Tile;
 import MapBuilder.Model.Utility.FileIO;
 import MapBuilder.Model.Utility.HexLocation;
 
@@ -17,9 +17,9 @@ import MapBuilder.Model.Utility.HexLocation;
 /**
  * Created by jordi on 3/27/2017.
  */
-public class DaveBuilder implements MapParser {
+abstract public class DaveBuilder implements MapParser {
     private FileIO fileIO = new FileIO();
-    private BuildTileFactory tileFactory = new BuildTileFactory();
+
     final JFileChooser fc = new JFileChooser();
     final static String pathname = "./res/SavedMaps/";
 
@@ -122,12 +122,7 @@ public class DaveBuilder implements MapParser {
      * @param tile
      * @return
      */
-    private BuildTile createTile(DaveBuilderTile tile) {
-        //TODO:ask if this should go through the facade
-        String terrain = tile.getTerrain();
-        int[] riverIndices = tile.getRivers();
-        return tileFactory.createTile(terrain, riverIndices);
-    }
+    abstract protected Tile createTile(DaveBuilderTile tile);
 
     /**
      * converts the tiles received into BuildTiles calling the createTile function
@@ -136,31 +131,16 @@ public class DaveBuilder implements MapParser {
      *
      * @param tiles
      */
-    private void createMap(List<DaveBuilderTile> tiles) {
-        List<TilePlacement> placements = new ArrayList<>();
-        for (int i = 0; i < tiles.size(); i++) {
-            DaveBuilderTile tempDaveTile = tiles.get(i);
-
-            HexLocation location = convertToEvenQOffset(tempDaveTile.getCubeLocation());
-            BuildTile buildTile = createTile(tempDaveTile);
-            TilePlacement tempPlacement = buildTilePlacement(buildTile, location);
-            placements.add(tempPlacement);
-        }
-        placeTiles(placements);
+    private void createMap(List<DaveBuilderTile> tiles){
+        doCreateMap(tiles);
+        placeTiles();
     }
 
-    private void placeTiles(List<TilePlacement> placements) {
-        ModelFacade modelFacade = ModelFacade.getInstance();
-        modelFacade.placeFromFile(placements);
-    }
+    abstract protected void doCreateMap(List<DaveBuilderTile> tiles);
 
-    private TilePlacement buildTilePlacement(BuildTile tile, HexLocation location) {
-        return new TilePlacement(tile, location);
-    }
+    abstract protected void placeTiles();
 
-
-    private HexLocation convertToEvenQOffset(CubeLocation cubeLocation) {
-        ModelFacade modelFacade = ModelFacade.getInstance();
+    protected HexLocation convertToEvenQOffset(CubeLocation cubeLocation) {
         int x = cubeLocation.getX();
         int y = cubeLocation.getY();
         int z = cubeLocation.getZ();
@@ -169,24 +149,27 @@ public class DaveBuilder implements MapParser {
         int col = x;
         int row = z + (x + (x&1)) / 2;
 
-        row += modelFacade.getMapLength() / 2;
-        col += modelFacade.getMapWidth() / 2;
+        row += getMapLength() / 2;
+        col += getMapWidth() / 2;
 
 
         return new HexLocation(row, col);
     }
 
     private CubeLocation convertToCube(int row, int col) {
-        ModelFacade modelFacade = ModelFacade.getInstance();
         int x, y, z;
-        row -= modelFacade.getMapLength() / 2;
-        col -= modelFacade.getMapWidth() / 2;
+        row -= getMapLength() / 2;
+        col -= getMapWidth() / 2;
 
         x = col;
         z = row - (col + (col&1)) / 2;
         y = -x-z;
         return new CubeLocation(x, y, z);
     }
+
+    abstract protected int getMapLength();
+    abstract protected int getMapWidth();
+
 
     @Override
     public void saveMap(BuildMap map, String path) {
