@@ -11,7 +11,7 @@ public class oldMain {
     public static void main(String[] args) {
         BuildMap.getInstance();
         ModelFacade.initialize(new PlacementManager());
-        MapEditorDisplay display = new MapEditorDisplay();
+        MapEditorDisplay display = new MapEditorDisplay( null );
 
         // TODO:  initialize somewhere else
         TileSelectionController tileSelectionController = new TileSelectionController(display.getTileSelectionView());

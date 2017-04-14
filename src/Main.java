@@ -5,7 +5,5 @@ public class Main {
 
         Display display = new Display();
 
-
-
     }
 }

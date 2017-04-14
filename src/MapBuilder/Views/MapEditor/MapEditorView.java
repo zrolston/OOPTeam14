@@ -8,8 +8,10 @@ package MapBuilder.Views.MapEditor;
 
 import javax.swing.JLayeredPane;
 
+import Gameplay.Views.Display;
 import MapBuilder.Views.MapEditor.MapView.MapSubsectionView;
 import MapBuilder.Views.MapEditor.TileSelection.TileSelectionView;
+import MapBuilder.Views.MapEditorDisplay;
 import MapBuilder.Views.Utility.PixelMap;
 
 public class MapEditorView extends JLayeredPane {
@@ -19,8 +21,11 @@ public class MapEditorView extends JLayeredPane {
     private ScaleSliderView scaleSliderView;
     private ButtonPanelView buttonPanelView;
     private ValidateAndMenuView validateAndMenuView;
+    private SwapFrameButton swapFrameButton;
+    private Display displayFrame;
 
-    public MapEditorView()  {
+    public MapEditorView(Display displayFrame, MapEditorDisplay frame)  {
+        this.displayFrame = displayFrame;
         setBounds(0, 0, PixelMap.SCREEN_WIDTH, PixelMap.SCREEN_HEIGHT);
 
         // Initialize SubViews
@@ -29,6 +34,7 @@ public class MapEditorView extends JLayeredPane {
         scaleSliderView   = new ScaleSliderView(mapSubsectionView);
         buttonPanelView = new ButtonPanelView(mapSubsectionView, this);
         validateAndMenuView = new ValidateAndMenuView(buttonPanelView);
+        swapFrameButton = new SwapFrameButton( displayFrame, frame );
 
         // Add SubViews to Layered Pane
         add(tileSelectionView, new Integer(3));
@@ -36,6 +42,8 @@ public class MapEditorView extends JLayeredPane {
         add(scaleSliderView, new Integer(2));
         add(buttonPanelView, new Integer(2));
         add(validateAndMenuView, new Integer(2));
+        add(swapFrameButton, new Integer(2));
+
     }
 
     public void updateImages() {

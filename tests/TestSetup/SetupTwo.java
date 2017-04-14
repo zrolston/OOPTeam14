@@ -15,7 +15,7 @@ public class SetupTwo {
     @Test
     public static void main(String[] args) {
 
-            MapEditorView mapView = new MapEditorView();
+            MapEditorView mapView = new MapEditorView(null, null);
 
 
     }

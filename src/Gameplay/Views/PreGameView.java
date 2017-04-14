@@ -1,8 +1,12 @@
 package Gameplay.Views;
 
+import MapBuilder.MapEditorSystem;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -13,9 +17,11 @@ public class PreGameView extends JPanel {
 
     private HomeImage homeBackground = null;
     private HomeButtons homeButtons = null;
+    private Display displayFrame = null;
 
-    public PreGameView() {
+    public PreGameView( Display displayFrame ) {
 
+        this.displayFrame = displayFrame;
         this.setLayout(new BorderLayout());
 
         homeBackground = new HomeImage();
@@ -55,8 +61,6 @@ public class PreGameView extends JPanel {
             catch (IOException e) {
             }
 
-            // Dimension size = new Dimension( image.getWidth(), image.getHeight());
-            //  setPreferredSize( size );
         }
 
         public void paintComponent( Graphics g )
@@ -73,7 +77,7 @@ public class PreGameView extends JPanel {
             g.drawString(" cop 4331", 10, 90);
 
             g.setFont(new Font("phosphate",Font.BOLD, 26));
-            g.drawString("  team # 1:,", 10, 165);
+            g.drawString("  team # 1:", 10, 165);
             g.drawString("  Randy Brooks,", 10, 200);
             g.drawString("  Alejandro Chavez,", 10, 230);
             g.drawString("  Jordi Hernandez,", 10, 260);
@@ -104,7 +108,7 @@ public class PreGameView extends JPanel {
 
             playButton = new JButton("START GAME");
             playButton.setPreferredSize(new Dimension(300, 40));
-            options = new JButton("OPTIONS");
+            options = new JButton("MAP EDITOR");
             options.setPreferredSize(new Dimension(300, 40));
             quitButton = new JButton("QUIT");
             quitButton.setPreferredSize(new Dimension(300, 40));
@@ -113,6 +117,14 @@ public class PreGameView extends JPanel {
             options.setBackground( new Color(0xffCABD80) );
             options.setForeground(Color.black);
             options.setOpaque(true);
+            options.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    MapEditorSystem mapEditor = new MapEditorSystem( displayFrame );
+                    mapEditor.start();
+                    displayFrame.setVisible( false );
+                }
+            });
 
             playButton.setFont(new Font("plain", Font.BOLD, 20));
             playButton.setBackground( new Color(0xffCABD80) );
@@ -123,6 +135,12 @@ public class PreGameView extends JPanel {
             quitButton.setBackground( new Color(0xffCABD80) );
             quitButton.setForeground(Color.black);
             quitButton.setOpaque(true);
+            quitButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    System.exit( 0 );
+                }
+            });
 
             panel.setLayout(new GridLayout(0, 3));
 

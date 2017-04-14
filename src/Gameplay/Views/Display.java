@@ -24,7 +24,7 @@ public class Display extends JFrame{
         setSize( PixelMap.SCREEN_WIDTH, PixelMap.SCREEN_HEIGHT );
 
         mainScreen = new MainView();
-        homeScreen = new PreGameView();
+        homeScreen = new PreGameView( this );
         wonderScreen = new WonderView();
         researchScreen = new ResearchView();
         transporterScreen = new TransporterView();

@@ -11,8 +11,6 @@ public class MainView extends JPanel {
 
 
 
-
-
         setVisible(true);
     }
 

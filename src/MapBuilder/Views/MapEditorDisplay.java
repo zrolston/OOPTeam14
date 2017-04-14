@@ -4,6 +4,7 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
+import Gameplay.Views.Display;
 import MapBuilder.Controllers.KeyboardListeners.EditorKeyboardListener;
 import MapBuilder.Model.ModelFacade;
 import MapBuilder.Views.MapEditor.MapEditorView;
@@ -14,10 +15,13 @@ import MapBuilder.Views.Utility.PixelMap;
 public class MapEditorDisplay extends JFrame {
     private MapEditorView mapEditorView;
     private MapSubsectionView  mapSubsectionView;
+    private Display displayFrame;
 
-    public MapEditorDisplay() {
+    public MapEditorDisplay(Display displayFrame) {
+
+        this.displayFrame = displayFrame;
         setupFrame();
-        mapEditorView = new MapEditorView();
+        mapEditorView = new MapEditorView( displayFrame, this );
         addKeyListener(new EditorKeyboardListener(ModelFacade.getInstance()));
         add(mapEditorView);
         mapSubsectionView = mapEditorView.getMapSubsectionView();
