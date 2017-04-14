@@ -17,11 +17,11 @@ public class PreGameView extends JPanel {
 
     private HomeImage homeBackground = null;
     private HomeButtons homeButtons = null;
-    private Display displayFrame = null;
+    private Display display = null;
 
-    public PreGameView( Display displayFrame ) {
+    public PreGameView( Display display) {
 
-        this.displayFrame = displayFrame;
+        this.display = display;
         this.setLayout(new BorderLayout());
 
         homeBackground = new HomeImage();
@@ -120,9 +120,10 @@ public class PreGameView extends JPanel {
             options.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    MapEditorSystem mapEditor = new MapEditorSystem( displayFrame );
+                    MapEditorSystem mapEditor = new MapEditorSystem(display);
                     mapEditor.start();
-                    displayFrame.setVisible( false );
+                    mapEditor.setVisible( true );
+                    display.setVisible( false );
                 }
             });
 
@@ -130,6 +131,14 @@ public class PreGameView extends JPanel {
             playButton.setBackground( new Color(0xffCABD80) );
             playButton.setForeground(Color.black);
             playButton.setOpaque(true);
+            playButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    display.setCurrScreen( "MAIN_SCREEN" );
+                }
+            });
+
+
 
             quitButton.setFont(new Font("plain", Font.BOLD, 20));
             quitButton.setBackground( new Color(0xffCABD80) );

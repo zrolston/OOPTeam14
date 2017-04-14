@@ -23,7 +23,7 @@ public class Display extends JFrame{
         setTitle("Roads & Boats");
         setSize( PixelMap.SCREEN_WIDTH, PixelMap.SCREEN_HEIGHT );
 
-        mainScreen = new MainView();
+        mainScreen = new MainView(this);
         homeScreen = new PreGameView( this );
         wonderScreen = new WonderView();
         researchScreen = new ResearchView();
