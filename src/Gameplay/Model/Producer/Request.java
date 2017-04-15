@@ -7,7 +7,7 @@ abstract public class Request {
     public boolean contains(Request r) {
         if (this.getTransporter() == null)
             return this.getGoodsBag().contains(r.getGoodsBag());
-        else if (this.getTransporter().getClass() == r.getTransporter().getClass())
+        else if (this.getTransporter().getClass().equals(r.getTransporter().getClass()))
             return this.getGoodsBag().contains(r.getGoodsBag());
         else
             return false;
