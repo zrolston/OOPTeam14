@@ -1,5 +1,8 @@
 package Gameplay.Model.Producer.PrimaryProducer;
 
+import Gameplay.Model.Goods.GoodsBag;
+import Gameplay.Model.Goods.Stone;
+import Gameplay.Model.Producer.ProducerRequest;
 import Gameplay.Model.Visitors.ProducerVisitor;
 
 /**
@@ -13,7 +16,9 @@ public class StoneQuarry extends PrimaryProducer {
     }
 
     @Override
-    public void produce() {
-
+    public ProducerRequest produce() {
+        GoodsBag goods = new GoodsBag();
+        goods.addStone(new Stone());
+        return new ProducerRequest(goods, null);
     }
 }
