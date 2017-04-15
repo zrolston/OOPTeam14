@@ -51,10 +51,12 @@ public class EditorKeyboardListener implements KeyListener {
     }
 
     public void unlockCamera(){
+
         if (pressedKeys.contains(KeyEvent.VK_CONTROL)){
             modelFacade.unlockCamera();
             if(component != null)component.setCursor(new Cursor(Cursor.HAND_CURSOR));
         }
+
     }
     public void lockCamera(){
         if (!pressedKeys.contains(KeyEvent.VK_CONTROL)) {

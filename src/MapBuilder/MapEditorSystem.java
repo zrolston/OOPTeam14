@@ -47,6 +47,9 @@ public class MapEditorSystem {
 
     }
 
+    public void setVisible(boolean visible) {
+        display.setVisible( true );
+    }
     public void start() {
         timer.start();
     }

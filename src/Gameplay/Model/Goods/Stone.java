@@ -6,6 +6,6 @@ public class Stone implements Good{
 
     @Override
     public void accept(GoodsVisitor goodsVisitor) {
-
+        goodsVisitor.visitStone(this);
     }
 }

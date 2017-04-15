@@ -1,19 +1,15 @@
 package Gameplay.Views;
 
+import Gameplay.Views.HomeView.HomeView;
+import Gameplay.Views.MainView.MainView;
 import MapBuilder.Views.Utility.PixelMap;
 
 import javax.swing.*;
-import java.awt.*;
 
-import static MapBuilder.Views.Utility.PixelMap.*;
-
-/**
- * Created by Thomas on 4/13/17.
- */
 public class Display extends JFrame{
 
     private MainView mainScreen;
-    private PreGameView homeScreen;
+    private HomeView homeScreen;
     private WonderView wonderScreen;
     private ResearchView researchScreen;
     private TransporterView transporterScreen;
@@ -23,11 +19,11 @@ public class Display extends JFrame{
         setTitle("Roads & Boats");
         setSize( PixelMap.SCREEN_WIDTH, PixelMap.SCREEN_HEIGHT );
 
-        mainScreen = new MainView();
-        homeScreen = new PreGameView( this );
-        wonderScreen = new WonderView();
-        researchScreen = new ResearchView();
-        transporterScreen = new TransporterView();
+        mainScreen = new MainView( this );
+        homeScreen = new HomeView( this );
+        wonderScreen = new WonderView( this );
+        researchScreen = new ResearchView( this );
+        transporterScreen = new TransporterView( this );
 
         setCurrScreen( "HOME_SCREEN" );
 

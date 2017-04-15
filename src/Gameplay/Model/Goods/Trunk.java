@@ -6,6 +6,6 @@ public class Trunk implements Good{
 
     @Override
     public void accept(GoodsVisitor goodsVisitor) {
-
+        goodsVisitor.visitTrunk(this);
     }
 }
