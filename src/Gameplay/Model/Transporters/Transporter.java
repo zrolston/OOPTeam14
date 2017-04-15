@@ -1,18 +1,20 @@
 package Gameplay.Model.Transporters;
 
-import Gameplay.Model.Goods.GoodsBag;
 import Gameplay.Model.Region.Region;
 import Gameplay.Model.Region.RegionSet;
 import Gameplay.Model.TransporterFactory.Permit;
+import Gameplay.Model.Goods.LimitedGoodsBag;
+import Gameplay.Model.Visitors.Carriable;
+import Gameplay.Model.Visitors.TransporterVisitor;
 
 import java.util.ArrayList;
 import java.util.List;
 
-abstract public class Transporter {
+abstract public class Transporter implements Carriable {
     private List<Permit> permitList;
     private int capacity;
     private int movement;
-    private GoodsBag carriedGoods;
+    private LimitedGoodsBag goods;
     private List<Region> movementList;
     //private TransporterMovementObserver transporterMovementObserver;
 
@@ -39,4 +41,5 @@ abstract public class Transporter {
         }
     }
 
+    public abstract void accept(TransporterVisitor tv);
 }
