@@ -31,6 +31,7 @@ public class RegionSet {
         roadRegions = new ArrayList<>();
         waterRegions = new ArrayList<>();
         dockRegions = new ArrayList<>();
+        portRegions = new ArrayList<>();
     }
 
     ///////MUTATORS////////
