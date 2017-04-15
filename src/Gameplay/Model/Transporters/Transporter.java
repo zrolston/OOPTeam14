@@ -16,10 +16,11 @@ abstract public class Transporter implements Carriable {
     private int movement;
     private LimitedGoodsBag goods;
     private List<Region> movementList;
-    private Region currentRegion;
+    private Region[] cache; //Current = cache[0], cached = cache[1]
     //private TransporterMovementObserver transporterMovementObserver;
 
     public Transporter(Permit ... permits){
+        cache = new Region[2];
         permitList = new ArrayList<>();
         movementList = new ArrayList<>();
         for (Permit permit : permits) {
@@ -44,10 +45,12 @@ abstract public class Transporter implements Carriable {
     public abstract void accept(TransporterVisitor tv);
 
     public void setCurrentRegion(Region region){
-        this.currentRegion = region;
+        cache[1] = cache[0];
+        cache[0] = region;
     }
 
-    public Region getCurrentRegion(){
-        return currentRegion;
+    public Region getCachedRegion(){
+        return cache[1];
     }
+
 }
