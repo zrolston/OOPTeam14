@@ -73,25 +73,25 @@ public class LimitedGoodsBag extends GoodsBag {
         while ((notAdded.numBoard() > 0) && (numTotal() < maxSize))
             addBoard(notAdded.removeBoard());
         while ((notAdded.numClay() > 0) && (numTotal() < maxSize))
-            addBoard(notAdded.removeBoard());
-        while ((notAdded.numBoard() > 0) && (numTotal() < maxSize))
-            addBoard(notAdded.removeBoard());
-        while ((notAdded.numBoard() > 0) && (numTotal() < maxSize))
-            addBoard(notAdded.removeBoard());
-        while ((notAdded.numBoard() > 0) && (numTotal() < maxSize))
-            addBoard(notAdded.removeBoard());
-        while ((notAdded.numBoard() > 0) && (numTotal() < maxSize))
-            addBoard(notAdded.removeBoard());
-        while ((notAdded.numBoard() > 0) && (numTotal() < maxSize))
-            addBoard(notAdded.removeBoard());
-        while ((notAdded.numBoard() > 0) && (numTotal() < maxSize))
-            addBoard(notAdded.removeBoard());
-        while ((notAdded.numBoard() > 0) && (numTotal() < maxSize))
-            addBoard(notAdded.removeBoard());
-        while ((notAdded.numBoard() > 0) && (numTotal() < maxSize))
-            addBoard(notAdded.removeBoard());
-        while ((notAdded.numBoard() > 0) && (numTotal() < maxSize))
-            addBoard(notAdded.removeBoard());
+            addClay(notAdded.removeClay());
+        while ((notAdded.numCoins() > 0) && (numTotal() < maxSize))
+            addCoins(notAdded.removeCoins());
+        while ((notAdded.numFuel() > 0) && (numTotal() < maxSize))
+            addFuel(notAdded.removeFuel());
+        while ((notAdded.numGold() > 0) && (numTotal() < maxSize))
+            addGold(notAdded.removeGold());
+        while ((notAdded.numGoose() > 0) && (numTotal() < maxSize))
+            addGoose(notAdded.removeGoose());
+        while ((notAdded.numIron() > 0) && (numTotal() < maxSize))
+            addIron(notAdded.removeIron());
+        while ((notAdded.numPaper() > 0) && (numTotal() < maxSize))
+            addPaper(notAdded.removePaper());
+        while ((notAdded.numStock() > 0) && (numTotal() < maxSize))
+            addStock(notAdded.removeStock());
+        while ((notAdded.numStone() > 0) && (numTotal() < maxSize))
+            addStone(notAdded.removeStone());
+        while ((notAdded.numTrunk() > 0) && (numTotal() < maxSize))
+            addTrunk(notAdded.removeTrunk());
         return notAdded;
     }
 }
