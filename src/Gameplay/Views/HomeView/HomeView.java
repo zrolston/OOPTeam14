@@ -11,9 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-/**
- * Created by Thomas on 4/13/17.
- */
+
 public class HomeView extends JPanel {
 
     private HomeImage homeBackground = null;
@@ -65,14 +63,14 @@ public class HomeView extends JPanel {
             g.drawString(" Roads & Boats", 10, 60);
             g.drawString(" COP 4331", 10, 90);
 
-            g.setFont(new Font("phosphate", Font.BOLD, 26));
-            g.drawString("  Teeam # 1:", 10, 165);
-            g.drawString("  Randy Brooks,", 10, 200);
-            g.drawString("  Alejandro Chavez,", 10, 230);
-            g.drawString("  Jordi Hernandez,", 10, 260);
-            g.drawString("  Thomas Palmer,", 10, 290);
-            g.drawString("  Zachary Rolston,", 10, 320);
-            g.drawString("  William Wickerson", 10, 350);
+//            g.setFont(new Font("phosphate", Font.BOLD, 26));
+//            g.drawString("  Team # 14:", 10, 165);
+//            g.drawString("  Randy Brooks,", 10, 200);
+//            g.drawString("  Alejandro Chavez,", 10, 230);
+//            g.drawString("  Jordi Hernandez,", 10, 260);
+//            g.drawString("  Thomas Palmer,", 10, 290);
+//            g.drawString("  Zachary Rolston,", 10, 320);
+//            g.drawString("  William Wickerson", 10, 350);
         }
 
     }
