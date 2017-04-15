@@ -1,11 +1,12 @@
-package MapBuilder.Model.Utility;
+package Gameplay.Model.Utility;
 
 import Gameplay.Model.Region.Region;
-import Gameplay.Model.Region.RegionSet;
 import Gameplay.Model.Tile.GameTile;
 import Gameplay.Model.Tile.RegionMap;
 import Gameplay.Model.Utility.GameTilePlacement;
 import Gameplay.Model.Utility.HexaVertex;
+import MapBuilder.Model.Utility.HexaIndex;
+import MapBuilder.Model.Utility.ILocation;
 
 import java.util.LinkedList;
 import java.util.List;
