@@ -68,9 +68,30 @@ public class LimitedGoodsBag extends GoodsBag {
 
     @Override
     public GoodsBag add(GoodsBag gb) {
-        GoodsBag unused = new GoodsBag();
-        unused.add(gb);
-        //Finish this
-        return unused;
+        GoodsBag notAdded = new GoodsBag();
+        notAdded.add(gb);
+        while ((notAdded.numBoard() > 0) && (numTotal() < maxSize))
+            addBoard(notAdded.removeBoard());
+        while ((notAdded.numClay() > 0) && (numTotal() < maxSize))
+            addBoard(notAdded.removeBoard());
+        while ((notAdded.numBoard() > 0) && (numTotal() < maxSize))
+            addBoard(notAdded.removeBoard());
+        while ((notAdded.numBoard() > 0) && (numTotal() < maxSize))
+            addBoard(notAdded.removeBoard());
+        while ((notAdded.numBoard() > 0) && (numTotal() < maxSize))
+            addBoard(notAdded.removeBoard());
+        while ((notAdded.numBoard() > 0) && (numTotal() < maxSize))
+            addBoard(notAdded.removeBoard());
+        while ((notAdded.numBoard() > 0) && (numTotal() < maxSize))
+            addBoard(notAdded.removeBoard());
+        while ((notAdded.numBoard() > 0) && (numTotal() < maxSize))
+            addBoard(notAdded.removeBoard());
+        while ((notAdded.numBoard() > 0) && (numTotal() < maxSize))
+            addBoard(notAdded.removeBoard());
+        while ((notAdded.numBoard() > 0) && (numTotal() < maxSize))
+            addBoard(notAdded.removeBoard());
+        while ((notAdded.numBoard() > 0) && (numTotal() < maxSize))
+            addBoard(notAdded.removeBoard());
+        return notAdded;
     }
 }
