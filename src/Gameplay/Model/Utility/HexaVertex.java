@@ -7,8 +7,10 @@ import java.util.Objects;
  * Created by jordi on 3/26/2017.
  */
 public class HexaVertex {
-    private static int upperboundary = 6;
-    private static int lowerboundary = 0;
+    private static int vertexLowerBoundary = 0;
+    private static int vertexUpperBoundary = 6;
+    private static int edgeLowerBoundary = 7;
+    private static int edgeUpperBoundary = 12;
 
     private int value;
 
@@ -17,31 +19,33 @@ public class HexaVertex {
     }
 
     public static HexaVertex createVertex(int value) throws Exception {
-        if (value >= lowerboundary && value <= upperboundary) {
+
+        if (value >= vertexLowerBoundary && value <= edgeUpperBoundary) {
             return new HexaVertex(value);
         }
         throw (new RuntimeException("wrong tile boundary"));
     }
 
-    public HexaVertex getOppositeVertex(){
-        int futureValue = (value + 2) % (upperboundary) + 1;
-        return new HexaVertex(futureValue);
-    }
-
     public HexaVertex nextVertex(){
-        int nextValue = (value % upperboundary) + 1;
-        return new HexaVertex(nextValue);
-    }
-
-    public static ArrayList<HexaVertex> getAllPossible(){
-        ArrayList<HexaVertex> hexaIndices = new ArrayList<>();
-
-        for(int i = lowerboundary; i<upperboundary; i++){
-            hexaIndices.add(new HexaVertex(i));
+        if (value >= vertexLowerBoundary && value <= vertexUpperBoundary){
+            int nextValue = (value % vertexUpperBoundary) + 1;
+            return new HexaVertex(nextValue);
         }
-
-        return hexaIndices;
+        else{
+            int nextValue = (value % edgeUpperBoundary) + 1;
+            return new HexaVertex(nextValue);
+        }
     }
+//      NEVER USED
+//    public static ArrayList<HexaVertex> getAllPossible(){
+//        ArrayList<HexaVertex> hexaIndices = new ArrayList<>();
+//
+//        for(int i = lowerboundary; i<upperboundary; i++){
+//            hexaIndices.add(new HexaVertex(i));
+//        }
+//
+//        return hexaIndices;
+//    }
 
     public int getValue() {
         return value;

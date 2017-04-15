@@ -3,6 +3,7 @@ package Gameplay.Model.Tile;
 import Gameplay.Model.Region.Region;
 import Gameplay.Model.Region.LandRegion;
 import Gameplay.Model.Region.RiverRegion;
+import Gameplay.Model.Region.SeaRegion;
 import Gameplay.Model.Utility.HexaVertex;
 import MapBuilder.Model.Terrain.*;
 
@@ -23,22 +24,30 @@ public class GameTileBuilder {
         regionHashMap = new HashMap<>();
         if (riverIndices.isEmpty()) { //No rivers
             ArrayList<HexaVertex> list = new ArrayList<>();
-            for (int i = 1; i < 7; i++) {
+            for (int i = 1; i <= 12; i++) {
                 try {
                     list.add(HexaVertex.createVertex(i));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
-            regionHashMap.put(list, new LandRegion());
-        } else {
-            ArrayList<HexaVertex> list = new ArrayList<>();
-            try {
-                list.add(HexaVertex.createVertex(0));
-            } catch (Exception e) {
-                e.printStackTrace();
+            if (terrainType.equals("SEA")){
+                regionHashMap.put(list, new SeaRegion());
             }
-            regionHashMap.put(list, new RiverRegion());
+            else{
+                regionHashMap.put(list, new LandRegion());
+            }
+        } else //RIVERS!
+            {
+            ArrayList<HexaVertex> riverList = new ArrayList<>();
+            for (Integer index : riverIndices) {
+                try {
+                    riverList.add(HexaVertex.createVertex(index + 6));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            regionHashMap.put(riverList, new RiverRegion());
             try {
                 addRegions(riverIndices);
             } catch (Exception e) {
@@ -71,7 +80,7 @@ public class GameTileBuilder {
     }
 
     private void addRegions(ArrayList<Integer> riverIndices) throws Exception {
-        HexaVertex start = HexaVertex.createVertex(riverIndices.get(0));
+        HexaVertex start = HexaVertex.createVertex(riverIndices.get(0) + 1);
         switch (riverIndices.size()) {
             case 1: {
                 ArrayList<HexaVertex> list = new ArrayList<>();
@@ -85,7 +94,7 @@ public class GameTileBuilder {
                 break;
             }
             case 2: {
-                HexaVertex start2 = HexaVertex.createVertex(riverIndices.get(1));
+                HexaVertex start2 = HexaVertex.createVertex(riverIndices.get(1) + 1);
                 ArrayList<HexaVertex> list = new ArrayList<>();
                 list.add(start);
                 HexaVertex temp = start.nextVertex();
@@ -104,8 +113,8 @@ public class GameTileBuilder {
                 break;
             }
             case 3: {
-                HexaVertex start2 = HexaVertex.createVertex(riverIndices.get(1));
-                HexaVertex start3 = HexaVertex.createVertex(riverIndices.get(2));
+                HexaVertex start2 = HexaVertex.createVertex(riverIndices.get(1) + 1);
+                HexaVertex start3 = HexaVertex.createVertex(riverIndices.get(2) + 1);
                 ArrayList<HexaVertex> list = new ArrayList<>();
                 list.add(start);
                 HexaVertex temp = start.nextVertex();

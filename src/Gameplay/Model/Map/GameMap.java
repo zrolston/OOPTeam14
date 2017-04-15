@@ -3,13 +3,8 @@ package Gameplay.Model.Map;
 import Gameplay.Model.Tile.GameTile;
 import MapBuilder.Model.Map.IViewMap;
 import MapBuilder.Model.Tile.Tile;
-import MapBuilder.Model.Utility.HexLocation;
 import MapBuilder.Model.Utility.ILocation;
 import MapBuilder.Model.Visitor.MapVisitor;
-
-import Gameplay.Model.Utility.HexaVertex;
-
-import java.util.ArrayList;
 
 public class GameMap implements IViewMap{
     private int tileCount, length, width;
@@ -27,7 +22,7 @@ public class GameMap implements IViewMap{
     }
 
     @Override
-    public Tile getTileAt(ILocation location) {
+    public GameTile getTileAt(ILocation location) {
         return map[location.getRow()][location.getCol()];
     }
 
@@ -59,39 +54,11 @@ public class GameMap implements IViewMap{
         return window;
     }
 
-    private void addTile(GameTile tile, ILocation location){
-
-        if(map[location.getRow()][location.getCol()] == null){
-            tileCount++;
-        }
-
-        map[location.getRow()][location.getCol()] = tile;
-
-    }
-
     public int getLength(){
         return length;
     }
 
     public int getWidth(){
         return width;
-    }
-
-    private void generateConnections() {
-        ILocation start = this.getFirstValidLocation();
-
-        ArrayList<HexaVertex> vertices = HexaVertex.getAllPossible();
-    }
-
-    private ILocation getFirstValidLocation(){
-        for(int i = 0; i < map.length; i++){
-            for(int j = 0; j < map[0].length; j++){
-                if(map[i][j] != null){
-                    return new HexLocation(i, j);
-                }
-            }
-        }
-
-        return null;
     }
 }
