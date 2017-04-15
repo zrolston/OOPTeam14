@@ -1,4 +1,3 @@
-package Gameplay.Views.Drawers;
 /**-------------------------------------------------------------------------------------
 |	PolygonDrawer Class: Created by Alejandro Chavez on 4/15/2017.
 |---------------------------------------------------------------------------------------
@@ -6,6 +5,7 @@ package Gameplay.Views.Drawers;
 |
 ---------------------------------------------------------------------------------------*/
 
+package Gameplay.Views.Drawers;
 
 import Gameplay.Views.Utility.Camera;
 import Gameplay.Views.Utility.PixelMap;
