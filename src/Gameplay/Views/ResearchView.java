@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 
 public class ResearchView extends JPanel {
 	BufferedImage research = ImageLoader.getImage("RESEARCH_TABLE");
+	BufferedImage researchMarker = ImageLoader.getImage("RESEARCH_MARKER");
 	BufferedImage researchBackground = ImageLoader.getImage("RESEARCH_BACKGROUND");
     ScreenSelectButtons screenSelectBtns;
     Display display;
@@ -32,6 +33,21 @@ public class ResearchView extends JPanel {
     	int y = (int)(getHeight() * 0.3);
     	g.drawImage(researchBackground, 0 , 0, getWidth(), getHeight(), null);
     	g.drawImage(research, x, y, width, height, null);
+    	
+    	//This is a test of the first three researches researched.
+    	drawMarker(g, 0, x, y, width, height);
+    	drawMarker(g, 1, x, y, width, height);
+    	drawMarker(g, 2, x, y, width, height);
+    }
+    
+    private void drawMarker(Graphics g, int position, int x, int y, int width, int height) {
+    	BufferedImage marker = ImageLoader.getImage("RESEARCH_MARKER");
+    	double scale = (double)width/(double)1048;
+    	int xPosition = (x + (int)(width/45) + (int)(width/8.5 * position));
+    	int yPosition = (y + (int)(height * (0.09)));
+    	int markerWidth = (int)(marker.getWidth() * scale);
+    	int markerHeight = (int)(marker.getHeight() * scale);
+    	g.drawImage(marker, xPosition, yPosition, markerWidth, markerHeight, null);
     }
     
     public void addCustomListenersToScreenSelectBtns() {
