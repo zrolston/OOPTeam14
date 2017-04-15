@@ -1,4 +1,3 @@
-package Gameplay.Views.Utility;
 /**--------------------------------------------------------------------------------------
 |	PixelMap Class: Created by Alejandro Chavez on 3/26/2017.
 |---------------------------------------------------------------------------------------
@@ -6,7 +5,7 @@ package Gameplay.Views.Utility;
 |   proportions to automatically adjust to screen size. (Adjusted for the GamePlay Map)
 ---------------------------------------------------------------------------------------*/
 
-
+package Gameplay.Views.Utility;
 import MapBuilder.Model.Utility.HexLocation;
 import MapBuilder.Model.Utility.ILocation;
 import MapBuilder.Views.Drawers.TileOutlineDrawer;
