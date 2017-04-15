@@ -43,7 +43,7 @@ public class GameMapDaveBuilder extends DaveBuilder {
     @Override
     protected void placeTiles() {
         GameModelFacade facade = GameModelFacade.getInstance();
-        facade.placeFromFile(tilePlacements);
+        facade.generateMap(tilePlacements);
     }
 
     private GameTilePlacement gameTilePlacement(GameTile tile, HexLocation location) {

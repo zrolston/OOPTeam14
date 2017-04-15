@@ -1,15 +1,15 @@
 package Gameplay.Model.Map;
 
 import Gameplay.Model.Tile.GameTile;
-import Gameplay.Model.Utility.GameTilePlacement;
 import MapBuilder.Model.Map.IViewMap;
 import MapBuilder.Model.Tile.Tile;
 import MapBuilder.Model.Utility.HexLocation;
 import MapBuilder.Model.Utility.ILocation;
 import MapBuilder.Model.Visitor.MapVisitor;
 
-import java.util.List;
+import Gameplay.Model.Utility.HexaVertex;
 
+import java.util.ArrayList;
 
 public class GameMap implements IViewMap{
     private int tileCount, length, width;
@@ -22,12 +22,8 @@ public class GameMap implements IViewMap{
         map = new GameTile[length][width];
     }
 
-    public void initialize(List<GameTilePlacement> placements){
-        for (GameTilePlacement p : placements) {
-            HexLocation loc = p.getLocation();
-            GameTile tile = p.getTile();
-            this.addTile(tile, loc);
-        }
+    public void initialize(GameTile[][] tiles){
+        map = tiles;
     }
 
     @Override
@@ -82,6 +78,20 @@ public class GameMap implements IViewMap{
     }
 
     private void generateConnections() {
-        
+        ILocation start = this.getFirstValidLocation();
+
+        ArrayList<HexaVertex> vertices = HexaVertex.getAllPossible();
+    }
+
+    private ILocation getFirstValidLocation(){
+        for(int i = 0; i < map.length; i++){
+            for(int j = 0; j < map[0].length; j++){
+                if(map[i][j] != null){
+                    return new HexLocation(i, j);
+                }
+            }
+        }
+
+        return null;
     }
 }

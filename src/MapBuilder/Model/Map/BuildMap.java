@@ -80,6 +80,10 @@ public class BuildMap implements IViewMap {
 
     public void addTile(BuildTile tile, ILocation location){
 
+        if(!locationInBounds(location)){
+            return;
+        }
+
         if(map[location.getRow()][location.getCol()] == null){
             tileCount++;
         }
@@ -89,6 +93,10 @@ public class BuildMap implements IViewMap {
     }
 
     public void removeTile(ILocation location){
+
+        if(!locationInBounds(location)){
+            return;
+        }
 
         if(map[location.getRow()][location.getCol()] != null){
             tileCount--;

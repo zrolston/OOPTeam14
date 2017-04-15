@@ -46,7 +46,8 @@ public class PreGameView extends JPanel {
         public void paintComponent( Graphics g )
         {
             super.paintComponent( g );
-
+            ((Graphics2D)(g)).setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+            ((Graphics2D)(g)).setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
             g.drawImage(image, 0, 0, this.getWidth(), this.getHeight(), 0, 0, image.getWidth(),
                     image.getHeight(), null);
 

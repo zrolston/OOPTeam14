@@ -1,6 +1,6 @@
 package Gameplay.Model.Transporters;
 
-import Gameplay.Model.Tile.RegionSet;
+import Gameplay.Model.Region.RegionSet;
 
 public class LandPermit implements Permit {
 

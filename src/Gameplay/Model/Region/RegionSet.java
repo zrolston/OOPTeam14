@@ -1,4 +1,4 @@
-package Gameplay.Model.Tile;
+package Gameplay.Model.Region;
 
 import Gameplay.Model.Region.Region;
 
@@ -26,28 +26,44 @@ public class RegionSet {
     ///////MUTATORS////////
 
     public void addLandRegion(Region landRegion) {
-        this.landRegions.add(landRegion);
+
+        if(!this.landRegions.contains(landRegion)) {
+            this.landRegions.add(landRegion);
+        }
+
     }
     public void removeLandRegion(Region landRegion) {
         this.landRegions.remove(landRegion);
     }
 
     public void addRoadRegion(Region landRegion) {
-        this.roadRegions.add(landRegion);
+
+        if (!this.roadRegions.contains(landRegion)){
+            this.roadRegions.add(landRegion);
+        }
+
     }
     public void removeRoadRegion(Region landRegion) {
         this.roadRegions.remove(landRegion);
     }
 
     public void addWaterRegion(Region landRegion) {
-        this.waterRegions.add(landRegion);
+
+        if(this.waterRegions.contains(landRegion)) {
+            this.waterRegions.add(landRegion);
+        }
+
     }
     public void removeWaterRegion(Region landRegion) {
         this.waterRegions.remove(landRegion);
     }
 
     public void addDockRegion(Region landRegion) {
-        this.dockRegions.add(landRegion);
+
+        if(this.dockRegions.contains(landRegion)) {
+            this.dockRegions.add(landRegion);
+        }
+
     }
     public void removeDockRegion(Region landRegion) {
         this.dockRegions.remove(landRegion);

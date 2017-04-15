@@ -1,8 +1,7 @@
 package Gameplay.Model.Utility;
 
 import Gameplay.Model.Map.GameMap;
-import Gameplay.Model.Tile.GameTile;
-import MapBuilder.Model.Utility.HexLocation;
+import MapBuilder.Model.Utility.MapGenerator;
 import MapBuilder.Model.Utility.MapParsers.DaveBuilder;
 
 import java.util.List;
@@ -44,8 +43,11 @@ public class GameModelFacade { //TODO make an abstract facade
         builder.buildMap(path);
     }
 
-    public void placeFromFile(List<GameTilePlacement> placements){
-        gameMap.initialize(placements);
+    public void generateMap(List<GameTilePlacement> placements){
+        MapGenerator gen = new MapGenerator();
+        gameMap.initialize(
+                gen.generateRegionSets(placements)
+        );
     }
 
     public GameMap debugGetMap(){
