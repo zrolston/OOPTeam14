@@ -26,6 +26,6 @@ public class LandConnectionGenerator extends ConnectionGenerator{
 
     @Override
     public void visitSeaRegion(SeaRegion seaRegion) {
-        getRegionSet().addDockRegion(seaRegion);
+        getRegionSet().addPortRegion(seaRegion);
     }
 }
