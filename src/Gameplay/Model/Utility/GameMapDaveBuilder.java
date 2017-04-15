@@ -52,13 +52,11 @@ public class GameMapDaveBuilder extends DaveBuilder {
 
     @Override
     protected int getMapLength(){
-        GameModelFacade facade = GameModelFacade.getInstance();
-        return facade.getMapLength();
+        return GameModelFacade.getMaxMapLength();
     }
 
     @Override
     protected int getMapWidth(){
-        GameModelFacade facade = GameModelFacade.getInstance();
-        return facade.getMapWidth();
+        return GameModelFacade.getMaxMapWidth();
     }
 }

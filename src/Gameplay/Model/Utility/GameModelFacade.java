@@ -32,25 +32,20 @@ public class GameModelFacade { //TODO make an abstract facade
         return gameModelFacade != null;
     }
 
+    public static int getMaxMapLength(){
+        return 21;
+    }
+    public static int getMaxMapWidth(){
+        return 21;
+    }
+
     public void loadMap(String path){
         DaveBuilder builder = new GameMapDaveBuilder();
         builder.buildMap(path);
     }
 
     public void placeFromFile(List<GameTilePlacement> placements){
-        for (GameTilePlacement placement:placements) {
-            GameTile tile= placement.getTile();
-            HexLocation location=placement.getLocation();
-            gameMap.addTile(tile, location);
-        }
-    }
-
-    public int getMapLength(){
-        return gameMap.getLength();
-    }
-
-    public int getMapWidth(){
-        return gameMap.getWidth();
+        gameMap.initialize(placements);
     }
 
     public GameMap debugGetMap(){

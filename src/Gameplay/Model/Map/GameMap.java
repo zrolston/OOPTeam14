@@ -1,22 +1,33 @@
 package Gameplay.Model.Map;
 
 import Gameplay.Model.Tile.GameTile;
+import Gameplay.Model.Utility.GameTilePlacement;
 import MapBuilder.Model.Map.IViewMap;
 import MapBuilder.Model.Tile.Tile;
+import MapBuilder.Model.Utility.HexLocation;
 import MapBuilder.Model.Utility.ILocation;
 import MapBuilder.Model.Visitor.MapVisitor;
+
+import java.util.List;
 
 
 public class GameMap implements IViewMap{
     private int tileCount, length, width;
     private GameTile[][] map;
 
-    public GameMap(int length, int width){
-        this.length = length;
-        this.width = width;
+    public GameMap(int maxLength, int maxWidth){
+        this.length = maxLength;
+        this.width = maxWidth;
         this.tileCount = 0;
         map = new GameTile[length][width];
-        this.generateConnections();
+    }
+
+    public void initialize(List<GameTilePlacement> placements){
+        for (GameTilePlacement p : placements) {
+            HexLocation loc = p.getLocation();
+            GameTile tile = p.getTile();
+            this.addTile(tile, loc);
+        }
     }
 
     @Override
@@ -52,7 +63,7 @@ public class GameMap implements IViewMap{
         return window;
     }
 
-    public void addTile(GameTile tile, ILocation location){
+    private void addTile(GameTile tile, ILocation location){
 
         if(map[location.getRow()][location.getCol()] == null){
             tileCount++;

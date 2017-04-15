@@ -1,7 +1,7 @@
 package Gameplay.Model.Transporters;
 
 import Gameplay.Model.Goods.GoodsBag;
-import Gameplay.Model.Tile.Region;
+import Gameplay.Model.Region.Region;
 import Gameplay.Model.Tile.RegionSet;
 
 import java.util.List;

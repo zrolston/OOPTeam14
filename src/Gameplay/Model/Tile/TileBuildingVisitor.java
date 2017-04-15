@@ -1,5 +1,6 @@
 package Gameplay.Model.Tile;
 
+import Gameplay.Model.Region.Region;
 import Gameplay.Model.Utility.HexaVertex;
 import MapBuilder.Model.Edge.*;
 import MapBuilder.Model.Terrain.*;

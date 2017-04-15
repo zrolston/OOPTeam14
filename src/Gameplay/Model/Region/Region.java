@@ -1,8 +1,9 @@
-package Gameplay.Model.Tile;
+package Gameplay.Model.Region;
 
+import Gameplay.Model.Tile.RegionSet;
 import Gameplay.Model.Transporters.Transporter;
 
-public class Region {
+abstract public class Region {
     private RegionSet regionSet;
 
     public void enterRegion(Transporter transporter){
