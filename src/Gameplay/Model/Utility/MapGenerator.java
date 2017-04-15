@@ -11,9 +11,6 @@ import MapBuilder.Model.Utility.ILocation;
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- * Created by zrgam_000 on 4/14/2017.
- */
 public class MapGenerator {
     GameTile[][] map;
 
@@ -50,7 +47,7 @@ public class MapGenerator {
     }
 
 
-    public void generateRegionSets(List<GameTilePlacement> placements){
+    public GameTile[][] generateRegionSets(List<GameTilePlacement> placements){
         map = new GameTile[21][21];
 
         ILocation loc;
@@ -62,8 +59,7 @@ public class MapGenerator {
             tile = g.getTile();
             placeTileAt(loc, tile);
         }
-
-
+        return map;
     }
 
     private void updateSets(ILocation location, GameTile tile){

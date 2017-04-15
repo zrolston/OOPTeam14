@@ -1,7 +1,7 @@
 package Gameplay.Model.Tile;
 
-import Gameplay.Model.Region.LandRegion;
 import Gameplay.Model.Region.Region;
+import Gameplay.Model.Region.LandRegion;
 import Gameplay.Model.Region.RiverRegion;
 import Gameplay.Model.Region.SeaRegion;
 import Gameplay.Model.Utility.HexaVertex;
@@ -31,7 +31,6 @@ public class GameTileBuilder {
                     e.printStackTrace();
                 }
             }
-
             if(terrainType.equals("SEA")){
                 regionHashMap.put(list, new SeaRegion());  //TODO LandRegion?
             }
@@ -45,7 +44,7 @@ public class GameTileBuilder {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            regionHashMap.put(list, new RiverRegion());  //TODO RiverRegion?
+            regionHashMap.put(list, new RiverRegion());
             try {
                 addRegions(riverIndices);
             } catch (Exception e) {
@@ -88,7 +87,7 @@ public class GameTileBuilder {
                     list.add(temp);
                     temp = temp.nextVertex();
                 }
-                regionHashMap.put(list, new LandRegion());  //TODO
+                regionHashMap.put(list, new LandRegion());
                 break;
             }
             case 2: {
@@ -100,14 +99,14 @@ public class GameTileBuilder {
                     list.add(temp);
                     temp = temp.nextVertex();
                 }
-                regionHashMap.put(list, new LandRegion());  //TODO
+                regionHashMap.put(list, new LandRegion());
                 //new list
                 list = new ArrayList<>();
                 while (!temp.equals(start)) {
                     list.add(temp);
                     temp = temp.nextVertex();
                 }
-                regionHashMap.put(list, new LandRegion());  //TODO
+                regionHashMap.put(list, new LandRegion());
                 break;
             }
             case 3: {
@@ -120,21 +119,21 @@ public class GameTileBuilder {
                     list.add(temp);
                     temp = temp.nextVertex();
                 }
-                regionHashMap.put(list, new LandRegion());  //TODO
+                regionHashMap.put(list, new LandRegion());
                 //new list
                 list = new ArrayList<>();
                 while (!temp.equals(start3)) {
                     list.add(temp);
                     temp = temp.nextVertex();
                 }
-                regionHashMap.put(list, new LandRegion());  //TODO
+                regionHashMap.put(list, new LandRegion());
                 //new list
                 list = new ArrayList<>();
                 while (!temp.equals(start)) {
                     list.add(temp);
                     temp = temp.nextVertex();
                 }
-                regionHashMap.put(list, new LandRegion());  //TODO
+                regionHashMap.put(list, new LandRegion());
                 break;
             }
             default:
@@ -144,6 +143,29 @@ public class GameTileBuilder {
                     e.printStackTrace();
                 }
         }
+    }
+
+    private interface TileState{
+
+    }
+
+    private class DesertState{
+
+    }
+    private class MountainState{
+
+    }
+    private class PastureState{
+
+    }
+    private class RockState{
+
+    }
+    private class WoodsState{
+
+    }
+    private class seaState{
+
     }
 
 }

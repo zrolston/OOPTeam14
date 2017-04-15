@@ -1,8 +1,6 @@
 package Gameplay.Model.Utility;
 
 import Gameplay.Model.Map.GameMap;
-import Gameplay.Model.Tile.GameTile;
-import MapBuilder.Model.Utility.HexLocation;
 import MapBuilder.Model.Utility.MapParsers.DaveBuilder;
 
 import java.util.List;
@@ -32,25 +30,23 @@ public class GameModelFacade { //TODO make an abstract facade
         return gameModelFacade != null;
     }
 
+    public static int getMaxMapLength(){
+        return 21;
+    }
+    public static int getMaxMapWidth(){
+        return 21;
+    }
+
     public void loadMap(String path){
         DaveBuilder builder = new GameMapDaveBuilder();
         builder.buildMap(path);
     }
 
-    public void placeFromFile(List<GameTilePlacement> placements){
-        for (GameTilePlacement placement:placements) {
-            GameTile tile= placement.getTile();
-            HexLocation location=placement.getLocation();
-            gameMap.addTile(tile, location);
-        }
-    }
-
-    public int getMapLength(){
-        return gameMap.getLength();
-    }
-
-    public int getMapWidth(){
-        return gameMap.getWidth();
+    public void generateMap(List<GameTilePlacement> placements){
+        MapGenerator gen = new MapGenerator();
+        gameMap.initialize(
+                gen.generateRegionSets(placements)
+        );
     }
 
     public GameMap debugGetMap(){

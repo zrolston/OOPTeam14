@@ -1,5 +1,7 @@
 package Gameplay.Model.Region;
 
+import Gameplay.Model.Region.Region;
+
 import java.util.List;
 
 public class RegionSet {
