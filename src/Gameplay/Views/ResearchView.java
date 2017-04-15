@@ -1,12 +1,17 @@
 package Gameplay.Views;
 
 import javax.swing.*;
+
+import MapBuilder.Views.Utility.ImageLoader;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 
 public class ResearchView extends JPanel {
-
+	BufferedImage research = ImageLoader.getImage("RESEARCH_TABLE");
+	BufferedImage researchBackground = ImageLoader.getImage("RESEARCH_BACKGROUND");
     ScreenSelectButtons screenSelectBtns;
     Display display;
 
@@ -19,6 +24,18 @@ public class ResearchView extends JPanel {
         setVisible(true);
     }
 
+    
+    @Override
+    public void paintComponent(Graphics g) {
+    	((Graphics2D)(g)).setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+    	int height = (int)(getHeight() * 0.4);
+    	int width = (1048 * height)/254;
+    	int x = getWidth()/2 - width/2;
+    	int y = (int)(getHeight() * 0.3);
+    	g.drawImage(researchBackground, 0 , 0, getWidth(), getHeight(), null);
+    	g.drawImage(research, x, y, width, height, null);
+    }
+    
     public void addCustomListenersToScreenSelectBtns() {
 
         screenSelectBtns.addListnerToMainScreenButton( new ActionListener() {
