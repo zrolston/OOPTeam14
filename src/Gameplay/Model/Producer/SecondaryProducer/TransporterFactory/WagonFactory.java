@@ -6,6 +6,7 @@ import Gameplay.Model.Producer.ProducerRequest;
 import Gameplay.Model.Producer.SecondaryProducer.SecondaryProducer;
 import Gameplay.Model.Producer.UserRequest;
 import Gameplay.Model.Transporters.LandTransporters.Donkey;
+import Gameplay.Model.Transporters.LandTransporters.Wagon;
 import Gameplay.Model.Visitors.ProducerVisitor;
 
 /**
@@ -26,6 +27,11 @@ public class WagonFactory extends SecondaryProducer {
         input = new ProducerRequest(goods, new Donkey());
     }
 
+    private ProducerRequest generateOutputs() {
+        GoodsBag goods = new GoodsBag();
+        return new ProducerRequest(goods, new Wagon());
+    }
+
     @Override
     public void accept(ProducerVisitor pv) {
         pv.visitWagonFactory(this);
@@ -33,6 +39,12 @@ public class WagonFactory extends SecondaryProducer {
 
     @Override
     public ProducerRequest produce(UserRequest ur) {
-        return null;
+        if (!ur.contains(input))
+            return null;
+        else {
+            ur.removeUsed(input);
+            ur.reset();
+            return generateOutputs();
+        }
     }
 }

@@ -3,6 +3,7 @@ package Gameplay.Model.Producer.SecondaryProducer.GoodProducer;
 import Gameplay.Model.Goods.Coins;
 import Gameplay.Model.Goods.GoodsBag;
 import Gameplay.Model.Goods.Paper;
+import Gameplay.Model.Goods.Stock;
 import Gameplay.Model.Producer.ProducerRequest;
 import Gameplay.Model.Producer.SecondaryProducer.SecondaryProducer;
 import Gameplay.Model.Producer.UserRequest;
@@ -27,6 +28,12 @@ public class StockMarket extends SecondaryProducer {
         input = new ProducerRequest(goods, null);
     }
 
+    private ProducerRequest generateOutputs() {
+        GoodsBag goods = new GoodsBag();
+        goods.addStock(new Stock());
+        return new ProducerRequest(goods, null);
+    }
+
     @Override
     public void accept(ProducerVisitor pv) {
         pv.visitStockMarket(this);
@@ -34,6 +41,12 @@ public class StockMarket extends SecondaryProducer {
 
     @Override
     public ProducerRequest produce(UserRequest ur) {
-        return null;
+        if (!ur.contains(input))
+            return null;
+        else {
+            ur.removeUsed(input);
+            ur.reset();
+            return generateOutputs();
+        }
     }
 }

@@ -6,6 +6,7 @@ import Gameplay.Model.Goods.Iron;
 import Gameplay.Model.Producer.ProducerRequest;
 import Gameplay.Model.Producer.SecondaryProducer.SecondaryProducer;
 import Gameplay.Model.Producer.UserRequest;
+import Gameplay.Model.Transporters.WaterTransporter.Steamer;
 import Gameplay.Model.Visitors.ProducerVisitor;
 
 /**
@@ -27,6 +28,11 @@ public class SteamerFactory extends SecondaryProducer {
         input = new ProducerRequest(goods, null);
     }
 
+    private ProducerRequest generateOutputs() {
+        GoodsBag goods = new GoodsBag();
+        return new ProducerRequest(goods, new Steamer());
+    }
+
     @Override
     public void accept(ProducerVisitor pv) {
         pv.visitSteamerFactory(this);
@@ -34,6 +40,12 @@ public class SteamerFactory extends SecondaryProducer {
 
     @Override
     public ProducerRequest produce(UserRequest ur) {
-        return null;
+        if (!ur.contains(input))
+            return null;
+        else {
+            ur.removeUsed(input);
+            ur.reset();
+            return generateOutputs();
+        }
     }
 }

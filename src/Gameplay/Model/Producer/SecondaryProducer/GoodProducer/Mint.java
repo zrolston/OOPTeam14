@@ -1,5 +1,6 @@
 package Gameplay.Model.Producer.SecondaryProducer.GoodProducer;
 
+import Gameplay.Model.Goods.Coins;
 import Gameplay.Model.Goods.Fuel;
 import Gameplay.Model.Goods.Gold;
 import Gameplay.Model.Goods.GoodsBag;
@@ -29,6 +30,12 @@ public class Mint extends SecondaryProducer {
         input = new ProducerRequest(goods, null);
     }
 
+    private ProducerRequest generateOutputs() {
+        GoodsBag goods = new GoodsBag();
+        goods.addCoins(new Coins());
+        return new ProducerRequest(goods, null);
+    }
+
     @Override
     public void accept(ProducerVisitor pv) {
         pv.visitMint(this);
@@ -36,6 +43,12 @@ public class Mint extends SecondaryProducer {
 
     @Override
     public ProducerRequest produce(UserRequest ur) {
-        return null;
+        if (!ur.contains(input))
+            return null;
+        else {
+            ur.removeUsed(input);
+            ur.reset();
+            return generateOutputs();
+        }
     }
 }

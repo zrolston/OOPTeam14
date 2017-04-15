@@ -1,6 +1,7 @@
 package Gameplay.Model.Producer.SecondaryProducer.GoodProducer;
 
 import Gameplay.Model.Goods.Board;
+import Gameplay.Model.Goods.Fuel;
 import Gameplay.Model.Goods.GoodsBag;
 import Gameplay.Model.Goods.Trunk;
 import Gameplay.Model.Producer.ProducerRequest;
@@ -38,6 +39,12 @@ public class CoalBurner extends SecondaryProducer {
         inputs.add(new ProducerRequest(goods3, null));
     }
 
+    private ProducerRequest generateOutputs() {
+        GoodsBag goods = new GoodsBag();
+        goods.addFuel(new Fuel());
+        return new ProducerRequest(goods, null);
+    }
+
     @Override
     public void accept(ProducerVisitor pv) {
         pv.visitCoalBurner(this);
@@ -45,6 +52,15 @@ public class CoalBurner extends SecondaryProducer {
 
     @Override
     public ProducerRequest produce(UserRequest ur) {
+        for (ProducerRequest input : inputs) {
+            if (!ur.contains(input))
+                continue;
+            else {
+                ur.removeUsed(input);
+                ur.reset();
+                return generateOutputs();
+            }
+        }
         return null;
     }
 }
