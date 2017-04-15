@@ -1,6 +1,11 @@
 package Gameplay.Model.Visitors;
 
-import Gameplay.Model.Transporters.*;
+import Gameplay.Model.Transporters.LandTransporters.Donkey;
+import Gameplay.Model.Transporters.LandTransporters.Truck;
+import Gameplay.Model.Transporters.LandTransporters.Wagon;
+import Gameplay.Model.Transporters.WaterTransporter.Raft;
+import Gameplay.Model.Transporters.WaterTransporter.Rowboat;
+import Gameplay.Model.Transporters.WaterTransporter.Steamer;
 
 /**
  * Created by Willie on 4/14/2017.

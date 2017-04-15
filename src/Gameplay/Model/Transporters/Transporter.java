@@ -4,10 +4,12 @@ import Gameplay.Model.Goods.GoodsBag;
 import Gameplay.Model.Goods.LimitedGoodsBag;
 import Gameplay.Model.Tile.Region;
 import Gameplay.Model.Tile.RegionSet;
+import Gameplay.Model.Visitors.Carriable;
+import Gameplay.Model.Visitors.TransporterVisitor;
 
 import java.util.List;
 
-abstract public class Transporter {
+abstract public class Transporter implements Carriable {
     private List<Permit> permitList;
     private int capacity;
     private int movement;
@@ -36,4 +38,5 @@ abstract public class Transporter {
         }
     }
 
+    public abstract void accept(TransporterVisitor tv);
 }
