@@ -6,6 +6,6 @@ public class Stock implements Good{
 
     @Override
     public void accept(GoodsVisitor goodsVisitor) {
-
+        goodsVisitor.visitStock(this);
     }
 }

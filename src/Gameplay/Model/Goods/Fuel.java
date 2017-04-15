@@ -6,6 +6,6 @@ public class Fuel implements Good{
 
     @Override
     public void accept(GoodsVisitor goodsVisitor) {
-
+        goodsVisitor.visitFuel(this);
     }
 }
