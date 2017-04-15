@@ -5,8 +5,6 @@ import javax.swing.*;
 import MapBuilder.Views.Utility.ImageLoader;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
@@ -60,32 +58,10 @@ public class WonderView extends JPanel {
 	}
 
 	public void addCustomListenersToScreenSelectBtns() {
-
-        screenSelectBtns.addListnerToMainScreenButton( new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                display.setCurrScreen("MAIN_SCREEN");
-            }
-        } );
-        screenSelectBtns.addListnerToWonderScreenButton( new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                display.setCurrScreen("WONDER_SCREEN");
-            }
-        } );
-        screenSelectBtns.addListnerToResearchScreenButton( new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                display.setCurrScreen("RESEARCH_SCREEN");
-            }
-        } );
-        screenSelectBtns.addListnerToTransporterScreenButton( new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                display.setCurrScreen("TRANSPORTER_SCREEN");
-            }
-        } );
-
+        screenSelectBtns.addListnerToMainScreenButton( e -> display.setCurrScreen("MAIN_SCREEN") );
+        screenSelectBtns.addListnerToWonderScreenButton( e -> display.setCurrScreen("WONDER_SCREEN") );
+        screenSelectBtns.addListnerToResearchScreenButton( e -> display.setCurrScreen("RESEARCH_SCREEN") );
+        screenSelectBtns.addListnerToTransporterScreenButton( e -> display.setCurrScreen("TRANSPORTER_SCREEN") );
     }
 
 }
