@@ -28,8 +28,7 @@ public class ScreenSelectButtons extends JPanel {
         this.add(researchScreenSelectButton) ;
 
         this.setForeground( new Color(0xAAffccf8) );
-        this.setBackground(new Color(0xffCABD80));
-        this.setOpaque(true);
+        this.setOpaque(false);
     }
 
     public void addListnerToMainScreenButton(ActionListener a) {
