@@ -1,4 +1,4 @@
-package Gameplay.Model.Transporters;
+package Gameplay.Model.Transporters.WaterTransporter;
 
 import Gameplay.Model.Visitors.CarriableVisitor;
 import Gameplay.Model.Visitors.TransporterVisitor;
@@ -6,14 +6,14 @@ import Gameplay.Model.Visitors.TransporterVisitor;
 /**
  * Created by Willie on 4/14/2017.
  */
-public class Donkey extends LandTransporter {
+public class Raft extends WaterTransporter {
     @Override
     public void accept(CarriableVisitor cv) {
-        cv.visitDonkey(this);
+        cv.visitRaft(this);
     }
 
     @Override
     public void accept(TransporterVisitor tv) {
-        tv.visitDonkey(this);
+        tv.visitRaft(this);
     }
 }
