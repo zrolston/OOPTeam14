@@ -1,11 +1,9 @@
 package Gameplay.Views;
 
+import Gameplay.Views.MainView.MainView;
 import MapBuilder.Views.Utility.PixelMap;
 
 import javax.swing.*;
-import java.awt.*;
-
-import static MapBuilder.Views.Utility.PixelMap.*;
 
 /**
  * Created by Thomas on 4/13/17.

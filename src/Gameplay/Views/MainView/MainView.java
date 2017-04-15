@@ -1,4 +1,4 @@
-package Gameplay.Views;
+package Gameplay.Views.MainView;
 
 import javax.swing.*;
 
