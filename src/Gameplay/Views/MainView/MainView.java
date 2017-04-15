@@ -22,12 +22,13 @@ public class MainView extends JPanel {
     WallSelectionView wallSelectionView;
 
     public MainView(Display display) {
-
+        setLayout(null);
          actionSelectionView = new ActionSelectionView();
          endPhaseButton = new EndPhaseButton();
          geeseFollowButton = new GeeseFollowButton();
          inputSelectionView = new InputSelectionView();
          mapView = new MapView();
+         add(mapView);
          producerSelectionView = new ProducerSelectionView();
          regionCarriableView = new RegionCarriableView();
          researchSelectionView = new ResearchSelectionView();
