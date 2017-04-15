@@ -26,8 +26,8 @@ public class OwnedTest {
 
     @Before
     public void TestSetup(){
-        p1 = new PlayerID();
-        p2 = new PlayerID();
+        p1 = PlayerID.getNewPlayerID();
+        p2 = PlayerID.getNewPlayerID();
 
         DonkeyFactory df = new DonkeyFactory();
 
