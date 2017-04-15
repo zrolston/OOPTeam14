@@ -35,7 +35,6 @@ public class MapEditorDisplay extends JFrame {
         getContentPane().setPreferredSize(new Dimension(PixelMap.SCREEN_WIDTH, PixelMap.SCREEN_HEIGHT));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
-        setVisible(true);
     }
 
     public TileSelectionView getTileSelectionView() {

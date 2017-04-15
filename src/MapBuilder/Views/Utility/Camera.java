@@ -77,6 +77,7 @@ public class Camera {
         }
     }
     public void move(PixelPoint current){
+        cameraMovement = true;
 
         if(cameraMovement) {
             try {
