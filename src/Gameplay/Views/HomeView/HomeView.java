@@ -35,16 +35,6 @@ public class HomeView extends JPanel {
         this.setBorder(BorderFactory.createLineBorder(new Color(0xffCABD80), 3));
     }
 
-    public JButton getQuitButton() {
-        return homeButtonsView.getQuitButton();
-    }
-    public JButton getPlayButton() {
-        return homeButtonsView.getPlayButton();
-    }
-    public JButton getOptionButton() {
-        return homeButtonsView.getOptionButton();
-    }
-
     public HomeButtonsView getHomeButtons() {
         return homeButtonsView;
     }
@@ -75,21 +65,13 @@ public class HomeView extends JPanel {
             g.drawString(" COP 4331", 10, 90);
 
             g.setFont(new Font("phosphate", Font.BOLD, 26));
-            g.drawString("  Team # 1:", 10, 165);
+            g.drawString("  Teeam # 1:", 10, 165);
             g.drawString("  Randy Brooks,", 10, 200);
             g.drawString("  Alejandro Chavez,", 10, 230);
             g.drawString("  Jordi Hernandez,", 10, 260);
             g.drawString("  Thomas Palmer,", 10, 290);
             g.drawString("  Zachary Rolston,", 10, 320);
             g.drawString("  William Wickerson", 10, 350);
-        }
-
-        public JButton getQuitButton() {
-            return homeButtonsView.getQuitButton();
-        }
-
-        public JButton getPlayButton() {
-            return homeButtonsView.getPlayButton();
         }
 
     }
