@@ -6,21 +6,23 @@ import MapBuilder.Model.Tile.Tile;
 import MapBuilder.Model.Utility.ILocation;
 import MapBuilder.Model.Visitor.MapVisitor;
 
-
 public class GameMap implements IViewMap{
     private int tileCount, length, width;
     private GameTile[][] map;
 
-    public GameMap(int length, int width){
-        this.length = length;
-        this.width = width;
+    public GameMap(int maxLength, int maxWidth){
+        this.length = maxLength;
+        this.width = maxWidth;
         this.tileCount = 0;
         map = new GameTile[length][width];
-        this.generateConnections();
+    }
+
+    public void initialize(GameTile[][] tiles){
+        map = tiles;
     }
 
     @Override
-    public Tile getTileAt(ILocation location) {
+    public GameTile getTileAt(ILocation location) {
         return map[location.getRow()][location.getCol()];
     }
 
@@ -52,25 +54,11 @@ public class GameMap implements IViewMap{
         return window;
     }
 
-    public void addTile(GameTile tile, ILocation location){
-
-        if(map[location.getRow()][location.getCol()] == null){
-            tileCount++;
-        }
-
-        map[location.getRow()][location.getCol()] = tile;
-
-    }
-
     public int getLength(){
         return length;
     }
 
     public int getWidth(){
         return width;
-    }
-
-    private void generateConnections() {
-        
     }
 }
