@@ -13,4 +13,9 @@ public class BuildPhaseStateController extends PhaseStateController {
     protected List<MainViewController> getControllers() {
         return null;
     }
+
+    @Override
+    public String toString() {
+        return "BuildPhase";
+    }
 }

@@ -17,5 +17,9 @@ public class TradePhaseStateController extends PhaseStateController {
         return null;
     }
 
+    @Override
+    public String toString() {
+        return "TradePhase";
+    }
 
 }
