@@ -48,6 +48,8 @@ public class MainView extends JLayeredPane {
         this.add(endPhaseButton, new Integer(2));
         this.add(transporterCarriableView, new Integer(2));
         this.add(regionCarriableView, new Integer(2));
+        this.add(actionSelectionView, new Integer(2));
+        this.add(inputSelectionView, new Integer(2));
         this.add(screenSelectBtns, new Integer(2));
 
         addCustomListenersToScreenSelectBtns();
@@ -56,7 +58,6 @@ public class MainView extends JLayeredPane {
 
         //Start Map Rendering Thread
         mapView.startRendering(30);
-        System.out.println("here");
     }
 
     public void addCustomListenersToNextPhaseBtn() {

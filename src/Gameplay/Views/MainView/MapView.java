@@ -37,6 +37,7 @@ public class MapView extends JPanel {
 
     @Override
     public void paintComponent(Graphics g){
+
         super.paintComponent(g);
         for(int i=0; i<size; i++){
             for(int j=0; j<size; j++){
