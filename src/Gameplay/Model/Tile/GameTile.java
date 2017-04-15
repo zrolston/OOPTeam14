@@ -12,6 +12,10 @@ public class GameTile extends Tile {
         this.regionMap = regionMap;
     }
 
+    public RegionMap getRegionMap(){
+        return regionMap;
+    }
+
     @Override
     public Tile clone() {
         return new GameTile(getTerrain(), regionMap);

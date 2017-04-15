@@ -1,5 +1,6 @@
 package Gameplay.Model.Tile;
 
+import Gameplay.Model.Region.LandRegion;
 import Gameplay.Model.Region.Region;
 import Gameplay.Model.Utility.HexaVertex;
 import MapBuilder.Model.Edge.*;
@@ -34,7 +35,7 @@ public class TileBuildingVisitor implements TileVisitor {
                     list.add(temp);
                     temp = temp.nextVertex();
                 }
-                regionHashMap.put(list, new Region());  //TODO
+                regionHashMap.put(list, new LandRegion());  //TODO
                 break;
             }
             case 2: {
@@ -46,14 +47,14 @@ public class TileBuildingVisitor implements TileVisitor {
                     list.add(temp);
                     temp = temp.nextVertex();
                 }
-                regionHashMap.put(list, new Region());  //TODO
+                regionHashMap.put(list, new LandRegion());  //TODO
                 //new list
                 list = new ArrayList<>();
                 while(!temp.equals(start)){
                     list.add(temp);
                     temp = temp.nextVertex();
                 }
-                regionHashMap.put(list, new Region());  //TODO
+                regionHashMap.put(list, new LandRegion());  //TODO
                 break;
             }
             case 3:{
@@ -66,21 +67,21 @@ public class TileBuildingVisitor implements TileVisitor {
                     list.add(temp);
                     temp = temp.nextVertex();
                 }
-                regionHashMap.put(list, new Region());  //TODO
+                regionHashMap.put(list, new LandRegion());  //TODO
                 //new list
                 list = new ArrayList<>();
                 while(!temp.equals(start3)){
                     list.add(temp);
                     temp = temp.nextVertex();
                 }
-                regionHashMap.put(list, new Region());  //TODO
+                regionHashMap.put(list, new LandRegion());  //TODO
                 //new list
                 list = new ArrayList<>();
                 while(!temp.equals(start)){
                     list.add(temp);
                     temp = temp.nextVertex();
                 }
-                regionHashMap.put(list, new Region());  //TODO
+                regionHashMap.put(list, new LandRegion());  //TODO
                 break;
             }
             default:
@@ -113,7 +114,7 @@ public class TileBuildingVisitor implements TileVisitor {
                     e.printStackTrace();
                 }
             }
-            regionHashMap.put(list, new Region());  //TODO LandRegion?
+            regionHashMap.put(list, new LandRegion());  //TODO LandRegion?
         }
         else{
             ArrayList<HexaVertex> list = new ArrayList<>();
@@ -122,7 +123,7 @@ public class TileBuildingVisitor implements TileVisitor {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            regionHashMap.put(list, new Region());  //TODO RiverRegion?
+            regionHashMap.put(list, new LandRegion());  //TODO RiverRegion?
             try {
                 addRegions();
             } catch (Exception e) {
