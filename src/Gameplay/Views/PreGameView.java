@@ -5,8 +5,6 @@ import MapBuilder.MapEditorSystem;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -101,29 +99,16 @@ public class PreGameView extends JPanel {
             quitButton.setForeground(Color.black);
             quitButton.setOpaque(true);
 
-            playButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    display.setCurrScreen( "MAIN_SCREEN" );
-                }
-            });
+            playButton.addActionListener(e -> display.setCurrScreen( "MAIN_SCREEN" ));
 
-            options.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    MapEditorSystem mapEditor = new MapEditorSystem(display);
-                    mapEditor.start();
-                    mapEditor.setVisible( true );
-                    display.setVisible( false );
-                }
-            });
+            options.addActionListener(e -> {
+			    MapEditorSystem mapEditor = new MapEditorSystem(display);
+			    mapEditor.start();
+			    mapEditor.setVisible( true );
+			    display.setVisible( false );
+			});
 
-            quitButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    System.exit( 0 );
-                }
-            });
+            quitButton.addActionListener(e -> System.exit( 0 ));
 
             panel.setLayout(new GridLayout(0, 3));
             panel.add( playButton  );

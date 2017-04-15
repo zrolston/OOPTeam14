@@ -5,8 +5,6 @@ import MapBuilder.MapEditorSystem;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * Created by Willie on 4/14/2017.
@@ -37,14 +35,11 @@ class HomeButtonsView extends JPanel {
         options.setBackground( new Color(0xffCABD80) );
         options.setForeground(Color.black);
         options.setOpaque(true);
-        options.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                MapEditorSystem mapEditor = new MapEditorSystem( displayFrame );
-                mapEditor.start();
-                displayFrame.setVisible( false );
-            }
-        });
+        options.addActionListener(e -> {
+		    MapEditorSystem mapEditor = new MapEditorSystem( displayFrame );
+		    mapEditor.start();
+		    displayFrame.setVisible( false );
+		});
 
         playButton.setFont(new Font("plain", Font.BOLD, 20));
         playButton.setBackground( new Color(0xffCABD80) );
@@ -55,12 +50,7 @@ class HomeButtonsView extends JPanel {
         quitButton.setBackground( new Color(0xffCABD80) );
         quitButton.setForeground(Color.black);
         quitButton.setOpaque(true);
-        quitButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.exit( 0 );
-            }
-        });
+        quitButton.addActionListener(e -> System.exit( 0 ));
 
         panel.setLayout(new GridLayout(0, 3));
 
