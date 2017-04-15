@@ -1,6 +1,7 @@
 package Gameplay.Model.Transporters;
 
 import Gameplay.Model.Goods.GoodsBag;
+import Gameplay.Model.Goods.LimitedGoodsBag;
 import Gameplay.Model.Tile.Region;
 import Gameplay.Model.Tile.RegionSet;
 
@@ -10,7 +11,7 @@ abstract public class Transporter {
     private List<Permit> permitList;
     private int capacity;
     private int movement;
-    private GoodsBag carriedGoods;
+    private LimitedGoodsBag goods;
     private List<Region> movementList;
     //private TransporterMovementObserver transporterMovementObserver;
 
