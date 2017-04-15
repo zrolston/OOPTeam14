@@ -12,6 +12,9 @@ import java.awt.image.BufferedImage;
 public class WonderView extends JPanel {
 	BufferedImage wonder = ImageLoader.getImage("WONDER");
 	BufferedImage wonderBackground = ImageLoader.getImage("WONDER_BACKGROUND");
+	BufferedImage blueBrick = ImageLoader.getImage("BLUE_BRICK");
+	BufferedImage orangeBrick = ImageLoader.getImage("ORANGE_BRICK");
+	BufferedImage neutralBrick = ImageLoader.getImage("NEUTRAL_BRICK");
     ScreenSelectButtons screenSelectBtns;
     Display display;
 
@@ -20,20 +23,30 @@ public class WonderView extends JPanel {
         screenSelectBtns = new ScreenSelectButtons();
         this.add(screenSelectBtns);
         addCustomListenersToScreenSelectBtns();
-        setBackground( new Color( 0xffa7e163 ) );
         setVisible(true);
     }
     
     @Override
     public void paintComponent(Graphics g) {
     	((Graphics2D)(g)).setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+    	
     	int height = (int)(getHeight() * 0.85);
-    	int width = (834 * height)/906;
+    	int width = (819 * height)/901;
+    	int x = getWidth()/2 - width/2;
+    	int y = (int)(getHeight() * 0.1);
     	g.drawImage(wonderBackground, 0 , 0, getWidth(), getHeight(), null);
-    	g.drawImage(wonder, this.getWidth()/2 - width/2 , (int)(getHeight() * 0.1), width, height, null);
+    	g.drawImage(wonder, x, y, width, height, null);
+    	drawBrick(g, 1, (double)width/(double)819);
     }
 
-    public void addCustomListenersToScreenSelectBtns() {
+    private void drawBrick(Graphics g, int position, double scale) {
+    	int x = 500;
+    	int y = 500;
+    	
+    	g.drawImage(blueBrick, x, y, (int)(blueBrick.getWidth() * scale), (int)(blueBrick.getHeight() * scale), null);
+	}
+
+	public void addCustomListenersToScreenSelectBtns() {
 
         screenSelectBtns.addListnerToMainScreenButton( new ActionListener() {
             @Override
