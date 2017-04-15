@@ -9,20 +9,20 @@ import MapBuilder.Views.Utility.PixelPoint;
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * Created by Willie on 4/14/2017.
- */
+
 public class MapView extends JPanel {
 
     ILocation[][] map;
+    int size = 50;
 
     public MapView(){
-        map = new HexLocation[10][10];
-        for(int i=0; i<10; i++) {
-            for (int j = 0; j < 10; j++) {
+        map = new HexLocation[size][size];
+        for(int i=0; i<size; i++) {
+            for (int j = 0; j < size; j++) {
                 map[i][j] = new HexLocation(i, j);
             }
         }
+        setLayout(null);
         setBounds(0,0,PixelMap.SCREEN_WIDTH, PixelMap.SCREEN_HEIGHT);
         setVisible(true);
     }
@@ -30,11 +30,11 @@ public class MapView extends JPanel {
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-        for(int i=0; i<10; i++){
-            for(int j=0; j<10; j++){
-                System.out.println(i+"-"+j);
+        for(int i=0; i<size; i++){
+            for(int j=0; j<size; j++){
                 PixelPoint center = PixelMap.getMapTileOrigin(map[i][j]);
-                PolygonDrawer.drawInMap(g, center);
+                Polygon hexaTile = PolygonDrawer.getHexagon(center);
+                g.drawPolygon(hexaTile);
             }
         }
     }

@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Map;
 
-public class MainView extends JPanel {
+public class MainView extends JLayeredPane {
     ScreenSelectButtons screenSelectBtns;
     Display display;
     ActionSelectionView actionSelectionView;
@@ -22,25 +22,27 @@ public class MainView extends JPanel {
     WallSelectionView wallSelectionView;
 
     public MainView(Display display) {
-        setLayout(null);
+
          actionSelectionView = new ActionSelectionView();
          endPhaseButton = new EndPhaseButton();
          geeseFollowButton = new GeeseFollowButton();
          inputSelectionView = new InputSelectionView();
          mapView = new MapView();
-         add(mapView);
          producerSelectionView = new ProducerSelectionView();
          regionCarriableView = new RegionCarriableView();
          researchSelectionView = new ResearchSelectionView();
          transporterCarriableView = new TransporterCarriableView();
          wallSelectionView = new WallSelectionView();
 
-
         this.display = display;
         screenSelectBtns = new ScreenSelectButtons();
-        this.add(screenSelectBtns);
+        endPhaseButton = new EndPhaseButton();
+
+        this.add(mapView, new Integer(1));
+        this.add(endPhaseButton, new Integer(2));
+        this.add(screenSelectBtns, new Integer(2));
+
         addCustomListenersToScreenSelectBtns();
-        setBackground( new Color( 0xff9de7d7 ) );
         setVisible(true);
     }
 
