@@ -4,13 +4,15 @@ import Gameplay.Model.Region.Region;
 import Gameplay.Model.Region.RegionSet;
 import Gameplay.Model.TransporterFactory.Permit;
 import Gameplay.Model.Goods.LimitedGoodsBag;
+import Gameplay.Model.Utility.Owned;
+import Gameplay.Model.Utility.PlayerID;
 import Gameplay.Model.Visitors.Carriable;
 import Gameplay.Model.Visitors.TransporterVisitor;
 
 import java.util.ArrayList;
 import java.util.List;
 
-abstract public class Transporter implements Carriable {
+abstract public class Transporter extends Owned implements Carriable{
     private List<Permit> permitList;
     private int capacity;
     private int movement;
