@@ -3,6 +3,7 @@ package Gameplay.Model.Tile;
 import Gameplay.Model.Region.LandRegion;
 import Gameplay.Model.Region.Region;
 import Gameplay.Model.Region.RiverRegion;
+import Gameplay.Model.Region.SeaRegion;
 import Gameplay.Model.Utility.HexaVertex;
 import MapBuilder.Model.Terrain.*;
 
@@ -30,7 +31,13 @@ public class GameTileBuilder {
                     e.printStackTrace();
                 }
             }
-            regionHashMap.put(list, new LandRegion());  //TODO LandRegion?
+
+            if(terrainType.equals("SEA")){
+                regionHashMap.put(list, new SeaRegion());  //TODO LandRegion?
+            }
+            else {
+                regionHashMap.put(list, new LandRegion());  //TODO LandRegion?
+            }
         } else {
             ArrayList<HexaVertex> list = new ArrayList<>();
             try {
