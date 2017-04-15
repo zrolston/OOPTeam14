@@ -6,9 +6,6 @@ import MapBuilder.Views.Utility.PixelMap;
 
 import javax.swing.*;
 
-/**
- * Created by Thomas on 4/13/17.
- */
 public class Display extends JFrame{
 
     private MainView mainScreen;
@@ -22,11 +19,11 @@ public class Display extends JFrame{
         setTitle("Roads & Boats");
         setSize( PixelMap.SCREEN_WIDTH, PixelMap.SCREEN_HEIGHT );
 
-        mainScreen = new MainView();
+        mainScreen = new MainView( this );
         homeScreen = new HomeView( this );
-        wonderScreen = new WonderView();
-        researchScreen = new ResearchView();
-        transporterScreen = new TransporterView();
+        wonderScreen = new WonderView( this );
+        researchScreen = new ResearchView( this );
+        transporterScreen = new TransporterView( this );
 
         setCurrScreen( "HOME_SCREEN" );
 
