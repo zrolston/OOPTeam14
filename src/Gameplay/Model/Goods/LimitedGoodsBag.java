@@ -65,4 +65,12 @@ public class LimitedGoodsBag extends GoodsBag {
         if (numTotal() < maxSize)
             super.addTrunk(trunk);
     }
+
+    @Override
+    public GoodsBag add(GoodsBag gb) {
+        GoodsBag unused = new GoodsBag();
+        unused.add(gb);
+        //Finish this
+        return unused;
+    }
 }
