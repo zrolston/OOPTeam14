@@ -1,7 +1,6 @@
 package Gameplay.Model.Region;
 
-import Gameplay.Model.Region.Region;
-
+import java.util.ArrayList;
 import java.util.List;
 
 public class RegionSet {
@@ -23,6 +22,13 @@ public class RegionSet {
         return dockRegions;
     }
 
+    public RegionSet(){
+        landRegions = new ArrayList<>();
+        roadRegions = new ArrayList<>();
+        waterRegions = new ArrayList<>();
+        dockRegions = new ArrayList<>();
+    }
+
     ///////MUTATORS////////
 
     public void addLandRegion(Region landRegion) {
@@ -36,37 +42,37 @@ public class RegionSet {
         this.landRegions.remove(landRegion);
     }
 
-    public void addRoadRegion(Region landRegion) {
+    public void addRoadRegion(Region roadRegion) {
 
-        if (!this.roadRegions.contains(landRegion)){
-            this.roadRegions.add(landRegion);
+        if (!this.roadRegions.contains(roadRegion)){
+            this.roadRegions.add(roadRegion);
         }
 
     }
-    public void removeRoadRegion(Region landRegion) {
-        this.roadRegions.remove(landRegion);
+    public void removeRoadRegion(Region roadRegion) {
+        this.roadRegions.remove(roadRegion);
     }
 
-    public void addWaterRegion(Region landRegion) {
+    public void addWaterRegion(Region waterRegion) {
 
-        if(this.waterRegions.contains(landRegion)) {
-            this.waterRegions.add(landRegion);
+        if(!this.waterRegions.contains(waterRegion)) {
+            this.waterRegions.add(waterRegion);
         }
 
     }
-    public void removeWaterRegion(Region landRegion) {
-        this.waterRegions.remove(landRegion);
+    public void removeWaterRegion(Region waterRegion) {
+        this.waterRegions.remove(waterRegion);
     }
 
-    public void addDockRegion(Region landRegion) {
+    public void addDockRegion(Region dockRegion) {
 
-        if(this.dockRegions.contains(landRegion)) {
-            this.dockRegions.add(landRegion);
+        if(!this.dockRegions.contains(dockRegion)) {
+            this.dockRegions.add(dockRegion);
         }
 
     }
-    public void removeDockRegion(Region landRegion) {
-        this.dockRegions.remove(landRegion);
+    public void removeDockRegion(Region dockRegion) {
+        this.dockRegions.remove(dockRegion);
     }
 
 

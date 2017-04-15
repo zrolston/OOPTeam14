@@ -14,6 +14,11 @@ public class RegionMap {
     }
 
     public Region getRegionAt(HexaVertex vertex){
-        return regionMap.get(vertex);
+        for (List<HexaVertex> hexaVertices : regionMap.keySet()) {
+            if (hexaVertices.contains(vertex)){
+                return regionMap.get(hexaVertices);
+            }
+        }
+        return null;
     }
 }

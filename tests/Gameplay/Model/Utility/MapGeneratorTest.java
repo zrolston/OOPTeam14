@@ -18,7 +18,7 @@ public class MapGeneratorTest {
 
     @Before
     public void TestSetup(){
-        gen = new MapGenerator();
+        
     }
 
     @Test

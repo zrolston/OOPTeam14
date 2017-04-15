@@ -12,6 +12,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class MapGenerator {
+    private int height, width;
     GameTile[][] map;
 
     HexaVertex v1;
@@ -20,9 +21,14 @@ public class MapGenerator {
     HexaVertex v4;
     HexaVertex v5;
     HexaVertex v6;
-    HexaVertex center;
+    HexaVertex v7;
+    HexaVertex v8;
+    HexaVertex v9;
+    HexaVertex v10;
+    HexaVertex v11;
+    HexaVertex v12;
 
-    public MapGenerator(){
+    public MapGenerator(int height, int width){
         try {
             v1 = HexaVertex.createVertex(1);
             v2 = HexaVertex.createVertex(2);
@@ -30,10 +36,17 @@ public class MapGenerator {
             v4 = HexaVertex.createVertex(4);
             v5 = HexaVertex.createVertex(5);
             v6 = HexaVertex.createVertex(6);
-            center = HexaVertex.createVertex(0);
+            v7 = HexaVertex.createVertex(7);
+            v8 = HexaVertex.createVertex(8);
+            v9 = HexaVertex.createVertex(9);
+            v10 = HexaVertex.createVertex(10);
+            v11 = HexaVertex.createVertex(11);
+            v12 = HexaVertex.createVertex(12);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        this.height = height;
+        this.width = width;
     }
 
     private class VertexPair{
@@ -48,7 +61,7 @@ public class MapGenerator {
 
 
     public GameTile[][] generateRegionSets(List<GameTilePlacement> placements){
-        map = new GameTile[21][21];
+        map = new GameTile[this.width][this.height];
 
         ILocation loc;
         GameTile tile;
@@ -63,7 +76,6 @@ public class MapGenerator {
     }
 
     private void updateSets(ILocation location, GameTile tile){
-        GameTile targetTile = tile;
         GameTile adjacentTile;
 
         RegionMap myRegionMap = tile.getRegionMap();
@@ -72,8 +84,11 @@ public class MapGenerator {
         List<VertexPair> pairs;
 
         for(HexaIndex index : HexaIndex.getAllPossible()){
-
-            adjacentTile = getTileAt(location.getLocationAtIndex(index));
+            ILocation loc = location.getLocationAtIndex(index);
+            if(!locationInBounds(loc)){
+                continue;
+            }
+            adjacentTile = getTileAt(loc);
 
             if(adjacentTile == null){
                 continue;
@@ -125,26 +140,42 @@ public class MapGenerator {
         switch (index.getValue()){
             case 1: myVerticies.add(new VertexPair(v1, v5));
                     myVerticies.add(new VertexPair(v2, v4));
+                    myVerticies.add(new VertexPair(v7, v10));
+                    myVerticies.add(new VertexPair(v10, v7));
                 break;
             case 2: myVerticies.add(new VertexPair(v2, v6));
                     myVerticies.add(new VertexPair(v3, v5));
+                    myVerticies.add(new VertexPair(v8, v11));
+                    myVerticies.add(new VertexPair(v11, v8));
                 break;
             case 3: myVerticies.add(new VertexPair(v3, v1));
                     myVerticies.add(new VertexPair(v4, v6));
+                    myVerticies.add(new VertexPair(v9, v12));
+                    myVerticies.add(new VertexPair(v12, v9));
                 break;
             case 4: myVerticies.add(new VertexPair(v4, v2));
                     myVerticies.add(new VertexPair(v5, v1));
+                    myVerticies.add(new VertexPair(v10, v7));
+                    myVerticies.add(new VertexPair(v7, v10));
                 break;
             case 5: myVerticies.add(new VertexPair(v5, v3));
                     myVerticies.add(new VertexPair(v6, v2));
+                    myVerticies.add(new VertexPair(v11, v8));
+                    myVerticies.add(new VertexPair(v8, v11));
                 break;
             case 6: myVerticies.add(new VertexPair(v6, v4));
                     myVerticies.add(new VertexPair(v1, v3));
+                    myVerticies.add(new VertexPair(v12, v9));
+                    myVerticies.add(new VertexPair(v9, v12));
                 break;
-        }
-
-        myVerticies.add(new VertexPair(center, center));
-
+            }
         return myVerticies;
+    }
+
+    private boolean locationInBounds(ILocation location){
+        if(location.getCol() >= this.width || location.getCol() < 0 || location.getRow() >= this.height || location.getRow() < 0){
+            return false;
+        }
+        return true;
     }
 }

@@ -43,7 +43,7 @@ public class GameModelFacade { //TODO make an abstract facade
     }
 
     public void generateMap(List<GameTilePlacement> placements){
-        MapGenerator gen = new MapGenerator();
+        MapGenerator gen = new MapGenerator(gameMap.getWidth(), gameMap.getLength());
         gameMap.initialize(
                 gen.generateRegionSets(placements)
         );
