@@ -7,6 +7,6 @@ public class Goose implements Good, Livestock{
 
     @Override
     public void accept(GoodsVisitor goodsVisitor) {
-
+        goodsVisitor.visitGoose(this);
     }
 }
