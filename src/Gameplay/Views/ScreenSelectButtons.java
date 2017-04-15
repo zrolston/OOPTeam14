@@ -1,5 +1,7 @@
 package Gameplay.Views;
 
+import MapBuilder.Views.Utility.PixelMap;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -12,6 +14,8 @@ public class ScreenSelectButtons extends JPanel {
     private JButton researchScreenSelectButton;
 
     public ScreenSelectButtons() {
+        setBounds((int)(PixelMap.SCREEN_WIDTH *.225), (int)(PixelMap.SCREEN_HEIGHT * .007), (int)(PixelMap.SCREEN_WIDTH * .55), (int)(PixelMap.SCREEN_HEIGHT * .1));
+
         mainScreenSelectButton      = new JButton("MAIN VIEW");
         wonderScreenSelectButton = new JButton("WONDER VIEW");
         transporterScreenSelectButton = new JButton("TRANSPORTER VIEW");

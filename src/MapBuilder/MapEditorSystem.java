@@ -28,7 +28,6 @@ public class MapEditorSystem {
         ModelFacade.initialize(new PlacementManager());
         display = new MapEditorDisplay( displayFrame );
 
-        // TODO:  initialize somewhere else
         TileSelectionController tileSelectionController = new TileSelectionController(display.getTileSelectionView());
 
         mapView = display.getMapSubsectionView();

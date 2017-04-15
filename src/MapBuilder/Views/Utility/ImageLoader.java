@@ -57,6 +57,8 @@ public class ImageLoader {
             cachedImages.put("BLUE_BRICK", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/blueBrick.png")));
             cachedImages.put("RESEARCH_TABLE", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/researchTable.png")));
             cachedImages.put("RESEARCH_BACKGROUND", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/researchBackground.png")));
+            cachedImages.put("HOME_IMAGE", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/homeScreenImage.png")));
+            cachedImages.put("COVER", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/cover.png")));
         }
         catch (Exception e) {
             e.printStackTrace();

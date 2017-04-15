@@ -1,5 +1,6 @@
 package Gameplay.Model.Tile;
 
+import Gameplay.Model.Region.Region;
 import Gameplay.Model.Utility.HexaVertex;
 
 import java.util.List;
@@ -13,6 +14,11 @@ public class RegionMap {
     }
 
     public Region getRegionAt(HexaVertex vertex){
-        return regionMap.get(vertex);
+        for (List<HexaVertex> hexaVertices : regionMap.keySet()) {
+            if (hexaVertices.contains(vertex)){
+                return regionMap.get(hexaVertices);
+            }
+        }
+        return null;
     }
 }
