@@ -9,7 +9,7 @@ public class WoodCutter extends PrimaryProducer {
 
     @Override
     public void accept(ProducerVisitor pv) {
-
+        pv.visitWoodCutter(this);
     }
 
     @Override

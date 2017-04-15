@@ -9,7 +9,7 @@ public class Mine extends PrimaryProducer {
 
     @Override
     public void accept(ProducerVisitor pv) {
-
+        pv.visitMine(this);
     }
 
     @Override

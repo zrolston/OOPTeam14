@@ -9,7 +9,7 @@ public class OilRig extends PrimaryProducer {
 
     @Override
     public void accept(ProducerVisitor pv) {
-
+        pv.visitOilRig(this);
     }
 
     @Override

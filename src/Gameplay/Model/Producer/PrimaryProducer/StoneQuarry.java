@@ -9,7 +9,7 @@ public class StoneQuarry extends PrimaryProducer {
 
     @Override
     public void accept(ProducerVisitor pv) {
-
+        pv.visitStoneQuarry(this);
     }
 
     @Override
