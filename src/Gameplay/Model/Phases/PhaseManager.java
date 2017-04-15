@@ -19,13 +19,16 @@ public class PhaseManager {
 
     public PhaseManager(MainController mainController) {
         this.mainController = mainController;
+        currentState = tradingPhase;
+        updateController();
     }
 
-    public void advancePhase(){
+    public void advancePhase() {
         currentState.advance();
+        updateController();
     }
 
-    private void updateController(){
+    private void updateController() {
         mainController.setState(currentState.getPhaseController());
     }
 
@@ -34,7 +37,7 @@ public class PhaseManager {
 
         @Override
         public void advance() {
-            currentState = new ProductionPhase();
+            currentState = productionPhase;
         }
 
         @Override
@@ -45,9 +48,10 @@ public class PhaseManager {
 
     private class ProductionPhase implements PhaseState {
         ProductionPhaseStateController productionController = new ProductionPhaseStateController();
+
         @Override
         public void advance() {
-            currentState = new BuildingPhase();
+            currentState = buildingPhase;
         }
 
         @Override
@@ -56,11 +60,13 @@ public class PhaseManager {
         }
 
     }
+
     private class BuildingPhase implements PhaseState {
         BuildPhaseStateController buildController = new BuildPhaseStateController();
+
         @Override
         public void advance() {
-            currentState = new MovementPhase();
+            currentState = movementPhase;
         }
 
         @Override
@@ -69,12 +75,13 @@ public class PhaseManager {
         }
 
     }
+
     private class MovementPhase implements PhaseState {
         MovementPhaseStateController movementController = new MovementPhaseStateController();
 
         @Override
         public void advance() {
-            currentState = new WonderPhase();
+            currentState = wonderPhase;
         }
 
         @Override
@@ -84,12 +91,13 @@ public class PhaseManager {
 
 
     }
+
     private class WonderPhase implements PhaseState {
         WonderPhaseStateController wonderController = new WonderPhaseStateController();
 
         @Override
         public void advance() {
-            currentState = new TradingPhase();
+            currentState = tradingPhase;
         }
 
         @Override
