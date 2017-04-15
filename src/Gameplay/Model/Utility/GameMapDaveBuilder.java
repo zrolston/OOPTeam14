@@ -43,7 +43,7 @@ public class GameMapDaveBuilder extends DaveBuilder {
     @Override
     protected void placeTiles() {
         GameModelFacade facade = GameModelFacade.getInstance();
-        facade.placeFromFile(tilePlacements);
+        facade.generateMap(tilePlacements);
     }
 
     private GameTilePlacement gameTilePlacement(GameTile tile, HexLocation location) {
@@ -52,13 +52,11 @@ public class GameMapDaveBuilder extends DaveBuilder {
 
     @Override
     protected int getMapLength(){
-        GameModelFacade facade = GameModelFacade.getInstance();
-        return facade.getMapLength();
+        return GameModelFacade.getMaxMapLength();
     }
 
     @Override
     protected int getMapWidth(){
-        GameModelFacade facade = GameModelFacade.getInstance();
-        return facade.getMapWidth();
+        return GameModelFacade.getMaxMapWidth();
     }
 }

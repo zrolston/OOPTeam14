@@ -1,6 +1,7 @@
-package Gameplay.Model.Transporters;
+package Gameplay.Model.TransporterFactory;
 
-import Gameplay.Model.Tile.RegionSet;
+import Gameplay.Model.Region.RegionSet;
+import Gameplay.Model.Transporters.Transporter;
 
 public class LandPermit implements Permit {
 
