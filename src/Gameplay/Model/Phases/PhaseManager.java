@@ -1,5 +1,9 @@
 package Gameplay.Model.Phases;
 
+import Gameplay.Model.Utility.Actions.Action;
+
+import java.util.List;
+
 public class PhaseManager {
     private PhaseState currentState;
 
@@ -7,39 +11,64 @@ public class PhaseManager {
         currentState.advance();
     }
 
-    private class TradingPhase implements PhaseState{
+    private class TradingPhase extends PhaseState{
 
         @Override
         public void advance() {
             currentState = new ProductionPhase();
         }
+
+        @Override
+        protected List<Action> getActions() {
+            return null;
+        }
     }
-    private class ProductionPhase implements PhaseState{
+    private class ProductionPhase extends PhaseState {
 
         @Override
         public void advance() {
             currentState = new BuildingPhase();
         }
+
+        @Override
+        protected List<Action> getActions() {
+            return null;
+        }
     }
-    private class BuildingPhase implements PhaseState{
+    private class BuildingPhase extends PhaseState {
 
         @Override
         public void advance() {
             currentState = new MovementPhase();
         }
+
+        @Override
+        protected List<Action> getActions() {
+            return null;
+        }
     }
-    private class MovementPhase implements PhaseState{
+    private class MovementPhase extends PhaseState {
 
         @Override
         public void advance() {
             currentState = new WonderPhase();
         }
+
+        @Override
+        protected List<Action> getActions() {
+            return null;
+        }
     }
-    private class WonderPhase implements PhaseState{
+    private class WonderPhase extends PhaseState {
 
         @Override
         public void advance() {
             currentState = new TradingPhase();
+        }
+
+        @Override
+        protected List<Action> getActions() {
+            return null;
         }
     }
 }
