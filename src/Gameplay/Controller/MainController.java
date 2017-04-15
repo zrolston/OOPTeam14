@@ -1,6 +1,7 @@
 package Gameplay.Controller;
 
-import Gameplay.Controller.ControllerStates.NativeStates.NativeState;
+
+import Gameplay.Views.MainView.MainView;
 
 import java.util.Stack;
 
@@ -8,35 +9,17 @@ import java.util.Stack;
  * Created by jordi on 4/13/2017.
  */
 public class MainController {
-    private Stack<ControllerState> stateManager = new Stack<>();
+    private Stack<PhaseStateController> stateManager = new Stack<>();
+    private MainView view;
+    PhaseStateController currentState;
 
 
-    public void setNativeState(NativeState nativeState) {
-        if (!stateManager.empty()) {
-            stateManager.clear();
-        }
-        stateManager.add(nativeState);
-        addToView();
+    public MainController(MainView view) {
+        this.view = view;
     }
 
-    /**
-     * used to set the state from the phase manager
-     *
-     * @param controllerState
-     */
-    public void setState(ControllerState controllerState) {
-        stateManager.add(controllerState);
-    }
-
-    /**
-     * used to go to the previous state
-     * checks if there are more than one states on the state manager
-     */
-    public void advanceToPreviousState() {
-        if (stateManager.size() > 1) {
-            stateManager.pop();
-            addToView();
-        }
+    public void setState(PhaseStateController controller) {
+        currentState = controller;
     }
 
     private void addToView() {
