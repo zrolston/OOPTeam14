@@ -186,27 +186,38 @@ public class GoodsBag {
     public GoodsBag remove(GoodsBag gb) {
         GoodsBag ret = new GoodsBag();
         for (int i = 0; i < gb.numBoard(); i++)
-            ret.addBoard(gb.removeBoard());
+            if (this.numBoard() > 0)
+                ret.addBoard(this.removeBoard());
         for (int i = 0; i < gb.numClay(); i++)
-            ret.addClay(gb.removeClay());
+            if (this.numClay() > 0)
+                ret.addClay(this.removeClay());
         for (int i = 0; i < gb.numCoins(); i++)
-            ret.addCoins(gb.removeCoins());
+            if (this.numCoins() > 0)
+                ret.addCoins(this.removeCoins());
         for (int i = 0; i < gb.numFuel(); i++)
-            ret.addFuel(gb.removeFuel());
+            if (this.numFuel() > 0)
+                ret.addFuel(this.removeFuel());
         for (int i = 0; i < gb.numGold(); i++)
-            ret.addGold(gb.removeGold());
+            if (this.numGold() > 0)
+                ret.addGold(this.removeGold());
         for (int i = 0; i < gb.numGoose(); i++)
-            ret.addGoose(gb.removeGoose());
+            if (this.numGoose() > 0)
+                ret.addGoose(this.removeGoose());
         for (int i = 0; i < gb.numIron(); i++)
-            ret.addIron(gb.removeIron());
+            if (this.numIron() > 0)
+                ret.addIron(this.removeIron());
         for (int i = 0; i < gb.numPaper(); i++)
-            ret.addPaper(gb.removePaper());
+            if (this.numPaper() > 0)
+                ret.addPaper(this.removePaper());
         for (int i = 0; i < gb.numStock(); i++)
-            ret.addStock(gb.removeStock());
+            if (this.numStock() > 0)
+                ret.addStock(this.removeStock());
         for (int i = 0; i < gb.numStone(); i++)
-            ret.addStone(gb.removeStone());
+            if (this.numStone() > 0)
+                ret.addStone(this.removeStone());
         for (int i = 0; i < gb.numTrunk(); i++)
-            ret.addTrunk(gb.removeTrunk());
+            if (this.numTrunk() > 0)
+                ret.addTrunk(this.removeTrunk());
         return ret;
     }
     public boolean contains(GoodsBag gb) {

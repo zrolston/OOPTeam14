@@ -53,6 +53,10 @@ public class MainView extends JLayeredPane {
         addCustomListenersToScreenSelectBtns();
         addCustomListenersToNextPhaseBtn();
         setVisible(true);
+
+        //Start Map Rendering Thread
+        mapView.startRendering(30);
+        System.out.println("here");
     }
 
     public void addCustomListenersToNextPhaseBtn() {

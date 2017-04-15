@@ -14,7 +14,9 @@ public class ProducerRequest extends Request {
     }
 
     public GoodsBag getGoodsBag() {
-        return goods;
+        GoodsBag ret = new GoodsBag();
+        ret.add(goods);
+        return ret;
     }
 
     public Transporter getTransporter() {

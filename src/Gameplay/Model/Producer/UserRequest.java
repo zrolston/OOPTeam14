@@ -33,6 +33,15 @@ public class UserRequest extends Request {
         inputtedTransporter = null;
     }
 
+    public void removeUsed(Request r) {
+        for (GoodsBag source : goods.keySet()) {
+            //Removes all necessary goods possible from request
+            GoodsBag temp = r.getGoodsBag().remove(goods.get(source));
+            //Remove the goods used from the mapped GoodsBag's
+            goods.get(source).remove(temp);
+        }
+    }
+
     public GoodsBag getGoodsBag() {
         GoodsBag allGoods = new GoodsBag();
         for (GoodsBag source : goods.keySet()) {

@@ -4,8 +4,8 @@
 |   Description: Controls the position of the Viewport. The mapping will
 |   take into consideration Camera to to adjust the things being drawn. (Adjusted for the GamePlay Map)s
 ---------------------------------------------------------------------------------------*/
-package Gameplay.Views.Utility;
 
+package Gameplay.Views.Utility;
 import MapBuilder.Views.Utility.PixelPoint;
 
 public class Camera {
@@ -15,7 +15,7 @@ public class Camera {
     private Integer height;
     private static Camera instance = null;
     private PixelPoint press = null;
-    private boolean cameraMovement =  false;
+    private boolean cameraMovement =  true;
 
     private Camera(int x, int y){
         origin = new PixelPoint(x, y);
