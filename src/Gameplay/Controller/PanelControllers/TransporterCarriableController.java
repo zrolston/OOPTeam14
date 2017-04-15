@@ -4,6 +4,7 @@ import Gameplay.Controller.MainViewController;
 import Gameplay.Model.Utility.GameModelFacade;
 import Gameplay.Views.MainView.MainView;
 import Gameplay.Views.MainView.TransporterCarriableView;
+import MapBuilder.Views.Utility.PixelPoint;
 
 import javax.swing.*;
 import java.awt.event.MouseEvent;
@@ -24,28 +25,27 @@ public class TransporterCarriableController implements MainViewController, Mouse
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) {
-
+    public void mousePressed(MouseEvent e) {
+        System.out.println("hello world");
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {
-
+    public void mouseClicked(MouseEvent e) {
+        PixelPoint point = new PixelPoint(e.getX(), e.getY());
+        int index = view.getCarriableIndex(point);
+        System.out.println(index);
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-
     }
 
     @Override
@@ -53,11 +53,8 @@ public class TransporterCarriableController implements MainViewController, Mouse
 
         if (viewIsNull(view)) {
             view = getView(mainView);
-            resume();
         }
-        else {
-            resume();
-        }
+        resume();
     }
 
     private boolean viewIsNull(JPanel view) {
@@ -67,12 +64,13 @@ public class TransporterCarriableController implements MainViewController, Mouse
     private void attachView(JPanel view) throws Exception {
 
         if (viewIsNull(view)) {
-            view.addMouseListener(this);
+            throw new Exception("The view that was tried to be attached was null");
         }
-        throw new Exception("The view that was tried to be attached was null");
+        view.addMouseListener(this);
     }
 
-    private void resume(){
+    private void resume() {
+        view.setVisible(true);
         try {
             attachView(view);
         } catch (Exception e) {
@@ -80,7 +78,6 @@ public class TransporterCarriableController implements MainViewController, Mouse
         }
 
     }
-
 
 
 }
