@@ -1,6 +1,7 @@
 package Gameplay.Model.Utility;
 
 import Gameplay.Model.Map.GameMap;
+import Gameplay.Model.Visitors.Carriable;
 import MapBuilder.Model.Utility.MapParsers.DaveBuilder;
 
 import java.util.List;
@@ -51,5 +52,15 @@ public class GameModelFacade { //TODO make an abstract facade
 
     public GameMap debugGetMap(){
         return gameMap;
+    }
+
+
+    /**
+     * TODO: this is to be implemented differently on different phases so that the view
+     * can display different carriables
+     * @return
+     */
+    public List<Carriable> getCarriables(){
+        return null;
     }
 }

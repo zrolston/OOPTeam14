@@ -84,7 +84,7 @@ public class MainView extends JLayeredPane {
                 hideAllPhaseSubViews();
 
                 switch (currPhase) {        // DO NOT BE ALARMED!!! FOR TESTING PURPOSES ONLY!
-                    case 0:
+                    case 0:                                         // aka until Jordi fixes his controllers
                         showTradingPhaseViews();
                         break;
                     case 1:
@@ -112,6 +112,7 @@ public class MainView extends JLayeredPane {
     public void showTradingPhaseViews() {
         transporterCarriableView.setVisible( true );
         regionCarriableView.setVisible( true );
+        endPhaseButton.setPhaseLabel( "  TRADING" );
     }
     public void showProductionPhaseViews() {
         transporterCarriableView.setVisible( true );
@@ -119,12 +120,14 @@ public class MainView extends JLayeredPane {
         producerSelectionView.setVisible( true );
         inputSelectionView.setVisible( true );
         actionSelectionView.setVisible( true );
+        endPhaseButton.setPhaseLabel( "  PRODUCTION" );
     }
     public void showMovementPhaseViews() {
         transporterCarriableView.setVisible( true );
         regionCarriableView.setVisible( true );
         geeseFollowButton.setVisible( true );
         actionSelectionView.setVisible( true );
+        endPhaseButton.setPhaseLabel( "  MOVEMENT" );
     }
     public void showBuildingPhaseViews() {
         transporterCarriableView.setVisible( true );
@@ -133,11 +136,13 @@ public class MainView extends JLayeredPane {
         inputSelectionView.setVisible( true );
         wallSelectionView.setVisible( true );
         actionSelectionView.setVisible( true );
+        endPhaseButton.setPhaseLabel( "  BUILDING" );
     }
     public void showWonderPhaseViews() {
         transporterCarriableView.setVisible( true );
         regionCarriableView.setVisible( true );
         inputSelectionView.setVisible( true );
+        endPhaseButton.setPhaseLabel( "  WONDER" );
     }
 
     public void addCustomListenersToScreenSelectBtns() {

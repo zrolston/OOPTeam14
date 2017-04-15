@@ -30,10 +30,30 @@ public class WonderView extends JPanel {
     	int x = getWidth()/2 - width/2;
     	int y = (int)(getHeight() * 0.1);
     	g.drawImage(wonderBackground, 0 , 0, getWidth(), getHeight(), null);
+    	//These below are tests of the circle on top of wonder
+    	drawCircle(g, 4, "ORANGE", x, y, width, height);
+    	drawCircle(g, 5, "BLUE", x, y, width, height);
+    	
     	g.drawImage(wonder, x, y, width, height, null);
+    	
+    	//These are tests of wonder bricks
     	//drawBrick(g, position (0-61), "BLUE", x, y, width, height);
     	//drawBrick(g, position (0-61), "ORANGE", x, y, width, height);
     	//drawBrick(g, position (0-61), "NEUTRAL", x, y, width, height);
+    	drawBrick(g, 0, "BLUE", x, y, width, height);
+    	drawBrick(g, 1, "NEUTRAL", x, y, width, height);
+    	drawBrick(g, 2, "ORANGE", x, y, width, height);
+    	drawBrick(g, 3, "NEUTRAL", x, y, width, height);
+    }
+    
+    private void drawCircle(Graphics g, int position, String color, int x, int y, int width, int height) {
+    	BufferedImage marker = ImageLoader.getImage(color + "_MARKER");
+    	double scale = (double)width/(double)819;
+    	int xPosition = (x + (int)(width/9.42) + (int)(width/9.4 * position));
+    	int yPosition = (y + (int)(height * (0.017)));
+    	int markerWidth = (int)(marker.getWidth() * scale);
+    	int markerHeight = (int)(marker.getHeight() * scale);
+    	g.drawImage(marker, xPosition, yPosition, markerWidth, markerHeight, null);
     }
 
     private void drawBrick(Graphics g, int position, String color, int x, int y, int width, int height) {
