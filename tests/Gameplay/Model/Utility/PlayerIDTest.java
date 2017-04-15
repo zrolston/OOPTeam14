@@ -11,11 +11,13 @@ import static org.junit.Assert.*;
 public class PlayerIDTest {
     public PlayerID p1;
     public PlayerID p2;
+    public PlayerID p3;
 
     @Before
     public void TestSetup(){
-        p1 = new PlayerID();
-        p2 = new PlayerID();
+        p1 = PlayerID.getNewPlayerID();
+        p2 = PlayerID.getNewPlayerID();
+        p3 = PlayerID.getNeutralPlayerID();
     }
 
     @Test
@@ -24,5 +26,13 @@ public class PlayerIDTest {
         assertTrue(p2.matches(p2));
         assertFalse(p1.matches(p2));
         assertFalse(p2.matches(p1));
+
+        assertTrue(p3.matches(p3));
+        assertTrue(p3.matches(p1));
+        assertTrue(p3.matches(p2));
+
+        assertTrue(p1.matches(p3));
+
+        assertTrue(p2.matches(p3));
     }
 }

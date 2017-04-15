@@ -1,11 +1,11 @@
 /**-------------------------------------------------------------------------------------
-|	PolygonDrawer Class: Created by Alejandro Chavez on 4/15/2017.
+|	PolygonUtility Class: Created by Alejandro Chavez on 4/15/2017.
 |---------------------------------------------------------------------------------------
 |   Description: 
 |
 ---------------------------------------------------------------------------------------*/
 
-package Gameplay.Views.Drawers;
+package Gameplay.Views.Utility;
 
 import Gameplay.Views.Utility.Camera;
 import Gameplay.Views.Utility.PixelMap;
@@ -14,7 +14,7 @@ import java.awt.*;
 import java.util.*;
 import java.util.List;
 
-public class PolygonDrawer {
+public class PolygonUtility {
 
     public static void drawInMap(Graphics g, PixelPoint center){
 
@@ -68,5 +68,19 @@ public class PolygonDrawer {
         return points;
     }
 
+    //generates Squares based on set center
+    public static Rectangle generateSquare(PixelPoint origin, Integer side){
+        Rectangle square = new Rectangle();
+        square.setBounds(origin.getX(), origin.getY(), side, side);
+        return square;
+    }
+
+
+    //Generates a Polygon from a Rectangle
+    public static Polygon rectangleToPolygon(Rectangle rect) {
+        int[] xpoints = {rect.x, rect.x + rect.width, rect.x + rect.width, rect.x};
+        int[] ypoints = {rect.y, rect.y, rect.y + rect.height, rect.y + rect.height};
+        return new Polygon(xpoints, ypoints, 4);
+    }
 
 }
