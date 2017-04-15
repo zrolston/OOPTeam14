@@ -10,20 +10,17 @@ import java.util.Stack;
  */
 public class MainController {
     private Stack<PhaseStateController> stateManager = new Stack<>();
-    private MainView view;
+    private MainView mainView;
     PhaseStateController currentState;
 
 
     public MainController(MainView view) {
-        this.view = view;
+        this.mainView = view;
     }
 
     public void setState(PhaseStateController controller) {
         currentState = controller;
-    }
-
-    private void addToView() {
-        //        TODO add the state to the view = stateManager.peek()
+        currentState.activateController(mainView);
     }
 
 

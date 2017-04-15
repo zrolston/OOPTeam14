@@ -3,24 +3,20 @@ package Gameplay.Controller;
 import Gameplay.Model.Utility.Actions.Action;
 import Gameplay.Views.MainView.MainView;
 
-import javax.swing.*;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by jordi on 4/13/2017.
  */
-public abstract class ControllerState {
-    private MainController mainController;
+public abstract class PhaseStateController implements MainViewController {
+
+    List<MainViewController> controllers = new ArrayList<>();
+
     private HashMap<MouseActions, Action> mouseActions = new HashMap<>();
     private HashMap<Character, Action> keyboardActions = new HashMap<>();
-    ControllerState previous;
 
-    public ControllerState(MainController mainController) {
-        this.mainController = mainController;
-    }
 
     public void addAction(MouseActions mouseAction, Action action) {
         mouseActions.put(mouseAction, action);
@@ -30,9 +26,18 @@ public abstract class ControllerState {
         keyboardActions.put(character, action);
     }
 
+    protected abstract List<MainViewController> getControllers();
 
-    public abstract void activateController(MainView mainView);
+    protected void setControllers() {
+        controllers.addAll(getControllers());
+    }
 
+    @Override
+    public void activateController(MainView mainView) {
+        for (MainViewController mvc : controllers) {
+            mvc.activateController(mainView);
+        }
+    }
 
     protected HashMap<Character, Action> getKeyboardActions() {
         return keyboardActions;
