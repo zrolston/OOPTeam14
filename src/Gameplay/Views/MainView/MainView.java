@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Map;
 
 public class MainView extends JLayeredPane {
@@ -23,6 +24,8 @@ public class MainView extends JLayeredPane {
     TransporterCarriableView transporterCarriableView;
     WallSelectionView wallSelectionView;
 
+    ArrayList<JComponent> subViews = new ArrayList<>();
+
     int currPhase = 0;
 
     public MainView(Display display) {
@@ -30,7 +33,6 @@ public class MainView extends JLayeredPane {
         this.display = display;
 
          actionSelectionView = new ActionSelectionView();
-         endPhaseButton = new EndPhaseButton();
          geeseFollowButton = new GeeseFollowButton();
          inputSelectionView = new InputSelectionView();
          mapView = new MapView();
@@ -41,16 +43,28 @@ public class MainView extends JLayeredPane {
          wallSelectionView = new WallSelectionView();
          screenSelectBtns = new ScreenSelectButtons();
          endPhaseButton = new EndPhaseButton();
-         transporterCarriableView = new TransporterCarriableView();
-         regionCarriableView = new RegionCarriableView();
+
+        subViews.add( actionSelectionView );
+        subViews.add( geeseFollowButton );
+        subViews.add( inputSelectionView );
+        subViews.add( producerSelectionView );
+        subViews.add( regionCarriableView );
+        subViews.add( researchSelectionView );
+        subViews.add( transporterCarriableView );
+        subViews.add( wallSelectionView );
+        hideAllPhaseSubViews();
 
         this.add(mapView, new Integer(1));
         this.add(endPhaseButton, new Integer(2));
         this.add(transporterCarriableView, new Integer(2));
         this.add(regionCarriableView, new Integer(2));
         this.add(actionSelectionView, new Integer(2));
+        this.add(producerSelectionView, new Integer(2));
+        this.add(wallSelectionView, new Integer(2));
         this.add(inputSelectionView, new Integer(2));
+        this.add(geeseFollowButton, new Integer(3));
         this.add(screenSelectBtns, new Integer(2));
+
 
         addCustomListenersToScreenSelectBtns();
         addCustomListenersToNextPhaseBtn();
@@ -64,17 +78,67 @@ public class MainView extends JLayeredPane {
         endPhaseButton.addActionListenerToEndPhaseButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                currPhase = ++currPhase % 4;
-                System.out.println(currPhase + " ");
+
+                currPhase = ++currPhase % 5;
+
+                hideAllPhaseSubViews();
+
+                switch (currPhase) {        // DO NOT BE ALARMED!!! FOR TESTING PURPOSES ONLY!
+                    case 0:
+                        showTradingPhaseViews();
+                        break;
+                    case 1:
+                        showProductionPhaseViews();
+                        break;
+                    case 2:
+                        showMovementPhaseViews();
+                        break;
+                    case 3:
+                        showBuildingPhaseViews();
+                        break;
+                    case 4:
+                        showWonderPhaseViews();
+                        break;
+                }
+
             }
         } );
     }
 
-    public void showTradingPhaseViews() {
-        transporterCarriableView.setVisible(true);
-        regionCarriableView.setVisible(true);
+    public void hideAllPhaseSubViews() {
+        for(JComponent v : subViews)
+            v.setVisible( false );
     }
-
+    public void showTradingPhaseViews() {
+        transporterCarriableView.setVisible( true );
+        regionCarriableView.setVisible( true );
+    }
+    public void showProductionPhaseViews() {
+        transporterCarriableView.setVisible( true );
+        regionCarriableView.setVisible( true );
+        producerSelectionView.setVisible( true );
+        inputSelectionView.setVisible( true );
+        actionSelectionView.setVisible( true );
+    }
+    public void showMovementPhaseViews() {
+        transporterCarriableView.setVisible( true );
+        regionCarriableView.setVisible( true );
+        geeseFollowButton.setVisible( true );
+        actionSelectionView.setVisible( true );
+    }
+    public void showBuildingPhaseViews() {
+        transporterCarriableView.setVisible( true );
+        regionCarriableView.setVisible( true );
+        producerSelectionView.setVisible( true );
+        inputSelectionView.setVisible( true );
+        wallSelectionView.setVisible( true );
+        actionSelectionView.setVisible( true );
+    }
+    public void showWonderPhaseViews() {
+        transporterCarriableView.setVisible( true );
+        regionCarriableView.setVisible( true );
+        inputSelectionView.setVisible( true );
+    }
 
     public void addCustomListenersToScreenSelectBtns() {
         screenSelectBtns.addListnerToMainScreenButton( e -> display.setCurrScreen("MAIN_SCREEN") );

@@ -21,6 +21,9 @@ public class ActionSelectionView extends JPanel {
 
     protected void paintComponent(Graphics g) {
         g.drawImage(background, 0, 0, (int)(getWidth() * 1.145), (int)(getHeight()), null);
+//
+//        g.setColor( new Color( 0xfffcaebb ) );
+//        g.fillRect(0, 0, getWidth(), getHeight());
         super.paintComponent(g);
     }
 }

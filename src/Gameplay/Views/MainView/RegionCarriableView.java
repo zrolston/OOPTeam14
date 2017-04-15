@@ -15,7 +15,7 @@ public class RegionCarriableView extends JPanel {
 
     public RegionCarriableView() {
         setLayout(new BorderLayout());
-        setBounds((int)(PixelMap.SCREEN_WIDTH *32.0/40), (int)(PixelMap.SCREEN_HEIGHT * .15), PixelMap.SCREEN_WIDTH /7, (int)(PixelMap.SCREEN_HEIGHT * (0.45)));
+        setBounds((int)(PixelMap.SCREEN_WIDTH *34.0/40), (int)(PixelMap.SCREEN_HEIGHT * .15), PixelMap.SCREEN_WIDTH /7, (int)(PixelMap.SCREEN_HEIGHT * (0.45)));
         setOpaque(false);
         setVisible( true );
         background = ImageLoader.getImage("SCROLL_BACKGROUND");

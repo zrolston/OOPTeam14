@@ -13,7 +13,7 @@ public class TransporterCarriableView extends JPanel {
 
     public TransporterCarriableView() {
         setLayout(new BorderLayout());
-        setBounds((int)(PixelMap.SCREEN_WIDTH * (1 - 32.0/40 - 1.0/7)), (int)(PixelMap.SCREEN_HEIGHT * .05), PixelMap.SCREEN_WIDTH /7, (int)(PixelMap.SCREEN_HEIGHT * (17.0/20 + 1.0/12 - .05)));
+        setBounds((int)(PixelMap.SCREEN_WIDTH * (1 - 34.0/40 - 1.0/7)), (int)(PixelMap.SCREEN_HEIGHT * .05), PixelMap.SCREEN_WIDTH /7, (int)(PixelMap.SCREEN_HEIGHT * (17.0/20 + 1.0/12 - .05)));
 
 
         setOpaque(false);
