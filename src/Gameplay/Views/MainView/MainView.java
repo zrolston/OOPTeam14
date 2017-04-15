@@ -5,6 +5,8 @@ import Gameplay.Views.ScreenSelectButtons;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Map;
 
 public class MainView extends JLayeredPane {
@@ -21,7 +23,11 @@ public class MainView extends JLayeredPane {
     TransporterCarriableView transporterCarriableView;
     WallSelectionView wallSelectionView;
 
+    int currPhase = 0;
+
     public MainView(Display display) {
+
+        this.display = display;
 
          actionSelectionView = new ActionSelectionView();
          endPhaseButton = new EndPhaseButton();
@@ -33,18 +39,37 @@ public class MainView extends JLayeredPane {
          researchSelectionView = new ResearchSelectionView();
          transporterCarriableView = new TransporterCarriableView();
          wallSelectionView = new WallSelectionView();
-
-        this.display = display;
-        screenSelectBtns = new ScreenSelectButtons();
-        endPhaseButton = new EndPhaseButton();
+         screenSelectBtns = new ScreenSelectButtons();
+         endPhaseButton = new EndPhaseButton();
+         transporterCarriableView = new TransporterCarriableView();
+         regionCarriableView = new RegionCarriableView();
 
         this.add(mapView, new Integer(1));
         this.add(endPhaseButton, new Integer(2));
+        this.add(transporterCarriableView, new Integer(2));
+        this.add(regionCarriableView, new Integer(2));
         this.add(screenSelectBtns, new Integer(2));
 
         addCustomListenersToScreenSelectBtns();
+        addCustomListenersToNextPhaseBtn();
         setVisible(true);
     }
+
+    public void addCustomListenersToNextPhaseBtn() {
+        endPhaseButton.addActionListenerToEndPhaseButton(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                currPhase = ++currPhase % 4;
+                System.out.println(currPhase + " ");
+            }
+        } );
+    }
+
+    public void showTradingPhaseViews() {
+        transporterCarriableView.setVisible(true);
+        regionCarriableView.setVisible(true);
+    }
+
 
     public void addCustomListenersToScreenSelectBtns() {
         screenSelectBtns.addListnerToMainScreenButton( e -> display.setCurrScreen("MAIN_SCREEN") );

@@ -5,6 +5,7 @@ import MapBuilder.Views.Utility.PixelMap;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
 public class EndPhaseButton extends JPanel {
@@ -17,6 +18,7 @@ public class EndPhaseButton extends JPanel {
 
         nextPhase = new JButton();
         nextPhase.setText("PHASE ADVANCE");
+        nextPhase.setFont(new Font("plain", Font.BOLD, 13));
         nextPhase.setOpaque(false);
         nextPhase.setVisible( true );
 
@@ -29,6 +31,10 @@ public class EndPhaseButton extends JPanel {
     protected void paintComponent(Graphics g) {
         g.drawImage(background, 0, 0, (int)(getWidth() * 1.145), (int)(getHeight()), null);
         super.paintComponent(g);
+    }
+
+    public void addActionListenerToEndPhaseButton(ActionListener a) {
+        nextPhase.addActionListener( a );
     }
 
 }
