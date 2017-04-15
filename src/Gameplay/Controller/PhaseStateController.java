@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by jordi on 4/13/2017.
  */
-public abstract class PhaseStateController implements MainViewController {
+public abstract class PhaseStateController  {
 
     List<MainViewController> controllers = new ArrayList<>();
 
@@ -32,7 +32,6 @@ public abstract class PhaseStateController implements MainViewController {
         controllers.addAll(getControllers());
     }
 
-    @Override
     public void activateController(MainView mainView) {
         for (MainViewController mvc : controllers) {
             mvc.activateController(mainView);

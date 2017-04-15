@@ -17,8 +17,5 @@ public class TradePhaseStateController extends PhaseStateController {
         return null;
     }
 
-    @Override
-    public void deactivateController() {
 
-    }
 }
