@@ -71,6 +71,7 @@ public class MovementTest {
             repetitions--;
         }
         System.out.println("Size of visited list: " + visitedList.size());
+        assertEquals(visitedList.size(), 5);
 
     }
 
@@ -106,6 +107,7 @@ public class MovementTest {
             repetitions--;
         }
         System.out.println("Size of visited list: " + visitedList.size());
+        assertEquals(visitedList.size(), 8);
     }
 }
 

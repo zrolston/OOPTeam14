@@ -15,74 +15,66 @@ import java.util.Map;
 
 public class GameTileBuilder {
     private Map<List<HexaVertex>, Region> regionHashMap;
+    private TileState state;
 
     public GameTileBuilder() {
         this.regionHashMap = new HashMap<>();
     }
 
     public GameTile createTile(String terrainType, ArrayList<Integer> riverIndices) throws RuntimeException {
+        setState(terrainType);
         regionHashMap = new HashMap<>();
-        if (riverIndices.isEmpty()) { //No rivers
-            ArrayList<HexaVertex> list = new ArrayList<>();
-            for (int i = 1; i <= 12; i++) {
-                try {
-                    list.add(HexaVertex.createVertex(i));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-            if (terrainType.equals("SEA")){
-                regionHashMap.put(list, new SeaRegion());
-            }
-            else{
-                regionHashMap.put(list, new LandRegion());
-            }
-        } else //RIVERS!
-            {
-            ArrayList<HexaVertex> riverList = new ArrayList<>();
-            for (Integer index : riverIndices) {
-                try {
-                    riverList.add(HexaVertex.createVertex(index + 6));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-            regionHashMap.put(riverList, new RiverRegion());
-            try {
-                addRegions(riverIndices);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        try {
+            addRegions(riverIndices);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
+
         return new GameTile(
-                getTerrain(terrainType),
+                state.getTerrain(),
                 new RegionMap(regionHashMap)
         );
     }
 
-    private Terrain getTerrain(String terrain){
+    private void setState(String terrain){
         terrain=terrain.toUpperCase();
         switch (terrain) {
             case "DESERT":
-                return new DesertTerrain();
+                state = new DesertState();
+                break;
             case "MOUNTAIN":
-                return new MountainTerrain();
+                state = new MountainState();
+                break;
             case "PASTURE":
-                return new PastureTerrain();
+                state = new PastureState();
+                break;
             case "ROCK":
-                return new RockTerrain();
+                state = new RockState();
+                break;
             case "WOODS":
-                return new WoodsTerrain();
+                state = new WoodsState();
+                break;
             case "SEA":
-                return new SeaTerrain();
+                state = new SeaState();
+                break;
             default: throw new RuntimeException("Invalid Terrain Type in constructor");
         }
     }
 
     private void addRegions(ArrayList<Integer> riverIndices) throws Exception {
-        HexaVertex start = HexaVertex.createVertex(riverIndices.get(0) + 1);
         switch (riverIndices.size()) {
+            case 0: {
+                ArrayList<HexaVertex> list = new ArrayList<>();
+                for (int i = 1; i <= 12; i++) {
+                    list.add(HexaVertex.createVertex(i));
+                }
+                regionHashMap.put(list, state.getRegion());
+                break;
+            }
             case 1: {
+                addRivers(riverIndices);
+                HexaVertex start = HexaVertex.createVertex(riverIndices.get(0) + 1);
                 ArrayList<HexaVertex> list = new ArrayList<>();
                 list.add(start);
                 HexaVertex temp = start.nextVertex();
@@ -90,10 +82,12 @@ public class GameTileBuilder {
                     list.add(temp);
                     temp = temp.nextVertex();
                 }
-                regionHashMap.put(list, new LandRegion());
+                regionHashMap.put(list, state.getRegion());
                 break;
             }
             case 2: {
+                addRivers(riverIndices);
+                HexaVertex start = HexaVertex.createVertex(riverIndices.get(0) + 1);
                 HexaVertex start2 = HexaVertex.createVertex(riverIndices.get(1) + 1);
                 ArrayList<HexaVertex> list = new ArrayList<>();
                 list.add(start);
@@ -113,6 +107,8 @@ public class GameTileBuilder {
                 break;
             }
             case 3: {
+                addRivers(riverIndices);
+                HexaVertex start = HexaVertex.createVertex(riverIndices.get(0) + 1);
                 HexaVertex start2 = HexaVertex.createVertex(riverIndices.get(1) + 1);
                 HexaVertex start3 = HexaVertex.createVertex(riverIndices.get(2) + 1);
                 ArrayList<HexaVertex> list = new ArrayList<>();
@@ -148,27 +144,121 @@ public class GameTileBuilder {
         }
     }
 
-    private interface TileState{
-
+    private void addRivers(ArrayList<Integer> riverIndices) throws Exception {
+        ArrayList<HexaVertex> riverList = new ArrayList<>();
+        for (Integer index : riverIndices) {
+            riverList.add(HexaVertex.createVertex(index + 6));
+        }
+        regionHashMap.put(riverList, new RiverRegion());
     }
 
-    private class DesertState{
-
+    abstract private class TileState{
+        abstract void addAbilities();
+        abstract Region getRegion();
+        abstract Terrain getTerrain();
     }
-    private class MountainState{
 
+    private class DesertState extends TileState{
+
+        @Override
+        void addAbilities() {
+
+        }
+
+        @Override
+        Region getRegion() {
+            return new LandRegion();
+        }
+
+        @Override
+        Terrain getTerrain() {
+            return new DesertTerrain();
+        }
     }
-    private class PastureState{
+    private class MountainState extends TileState{
 
+        @Override
+        void addAbilities() {
+
+        }
+
+        @Override
+        Region getRegion() {
+            return new LandRegion();
+        }
+
+        @Override
+        Terrain getTerrain() {
+            return new MountainTerrain();
+        }
     }
-    private class RockState{
+    private class PastureState extends TileState{
 
+        @Override
+        void addAbilities() {
+
+        }
+
+        @Override
+        Region getRegion() {
+            return new LandRegion();
+        }
+
+        @Override
+        Terrain getTerrain() {
+            return new PastureTerrain();
+        }
     }
-    private class WoodsState{
+    private class RockState extends TileState{
 
+        @Override
+        void addAbilities() {
+
+        }
+
+        @Override
+        Region getRegion() {
+            return new LandRegion();
+        }
+
+        @Override
+        Terrain getTerrain() {
+            return new RockTerrain();
+        }
     }
-    private class seaState{
+    private class WoodsState extends TileState{
 
+        @Override
+        void addAbilities() {
+
+        }
+
+        @Override
+        Region getRegion() {
+            return new LandRegion();
+        }
+
+        @Override
+        Terrain getTerrain() {
+            return new WoodsTerrain();
+        }
+    }
+    private class SeaState extends TileState{
+
+        @Override
+        void addAbilities() {
+
+        }
+
+        @Override
+        Region getRegion() {
+            return new SeaRegion();
+        }
+
+        @Override
+        Terrain getTerrain() {
+            return new SeaTerrain();
+        }
     }
 
 }
