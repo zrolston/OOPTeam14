@@ -7,7 +7,6 @@ import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Model.Utility.PlayerID;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeAll;
 
 import static org.junit.Assert.*;
 
