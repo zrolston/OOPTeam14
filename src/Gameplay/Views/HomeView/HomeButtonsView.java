@@ -33,6 +33,11 @@ class HomeButtonsView extends JPanel {
         options.setBackground( new Color(0xffCABD80) );
         options.setForeground(Color.black);
         options.setOpaque(true);
+        options.addActionListener(e -> {
+		    MapEditorSystem mapEditor = new MapEditorSystem( display );
+		    mapEditor.start();
+            display.setVisible( false );
+		});
 
         playButton.setFont(new Font("plain", Font.BOLD, 20));
         playButton.setBackground( new Color(0xffCABD80) );
@@ -67,6 +72,8 @@ class HomeButtonsView extends JPanel {
                 System.exit( 0 );
             }
         });
+
+        quitButton.addActionListener(e -> System.exit( 0 ));
 
         panel.setLayout(new GridLayout(0, 3));
         panel.add( playButton  );
