@@ -8,6 +8,7 @@ import Gameplay.Views.Utility.*;
 import MapBuilder.Model.Map.IViewMap;
 import MapBuilder.Model.Utility.HexLocation;
 import Gameplay.Views.Drawers.TileInternalDrawer;
+import MapBuilder.Views.Utility.ImageLoader;
 import MapBuilder.Views.Utility.PixelPoint;
 
 import javax.swing.*;
@@ -48,7 +49,7 @@ public class MapView extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        
+        g.drawImage(ImageLoader.getImage("GAME_BACKGROUND"), 0, 0, getWidth(), getHeight(), null);
         if (tileImages == null)
             return;
         for (int i = 0; i < tileImages.length; i++) {
