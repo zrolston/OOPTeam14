@@ -1,21 +1,23 @@
-package Gameplay.Model.Producer.SecondaryProducer.TransporterFactory;
+package Gameplay.Model.Producer.SecondaryProducer.TransporterProducer;
 
 import Gameplay.Model.Goods.GoodsBag;
 import Gameplay.Model.Goods.Trunk;
 import Gameplay.Model.Producer.ProducerRequest;
-import Gameplay.Model.Producer.SecondaryProducer.SecondaryProducer;
 import Gameplay.Model.Producer.UserRequest;
+import Gameplay.Model.TransporterFactory.RaftFactory;
+import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Model.Transporters.WaterTransporter.Raft;
 import Gameplay.Model.Visitors.ProducerVisitor;
 
 /**
  * Created by Willie on 4/15/2017.
  */
-public class RaftFactory extends SecondaryProducer {
+public class RaftProducer extends SecondaryTransporterProducer {
 
     private ProducerRequest input;
 
-    public RaftFactory() {
+    public RaftProducer() {
+        super(new RaftFactory());
         generateInput();
     }
 
@@ -26,10 +28,6 @@ public class RaftFactory extends SecondaryProducer {
         input = new ProducerRequest(goods, null);
     }
 
-    private ProducerRequest generateOutputs() {
-        GoodsBag goods = new GoodsBag();
-        return new ProducerRequest(goods, new Raft());
-    }
 
     @Override
     public void accept(ProducerVisitor pv) {
@@ -37,7 +35,7 @@ public class RaftFactory extends SecondaryProducer {
     }
 
     @Override
-    public ProducerRequest produce(UserRequest ur) {
+    public Transporter produce(UserRequest ur) {
         if (!ur.contains(input))
             return null;
         else {

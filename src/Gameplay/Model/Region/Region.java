@@ -12,6 +12,7 @@ abstract public class Region {
     }
 
     public abstract void accept(RegionVisitor rv);
+
     public abstract ConnectionGenerator getConnectionGenerator();
 
     public RegionSet getRegionSet(){
@@ -19,6 +20,7 @@ abstract public class Region {
     }
 
     public void enterRegion(Transporter transporter){
-        transporter.updateMovementSet(regionSet);
+        transporter.setCurrentRegion(this);
+        transporter.updateMovementSet(getRegionSet());
     }
 }

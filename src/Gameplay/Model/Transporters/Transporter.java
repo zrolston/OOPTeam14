@@ -18,9 +18,11 @@ abstract public class Transporter extends Owned implements Carriable{
     private int movement;
     private LimitedGoodsBag goods;
     private List<Region> movementList;
+    private Region[] cache; //Current = cache[0], cached = cache[1]
     //private TransporterMovementObserver transporterMovementObserver;
 
     public Transporter(Permit ... permits){
+        cache = new Region[2];
         permitList = new ArrayList<>();
         movementList = new ArrayList<>();
         for (Permit permit : permits) {
@@ -37,11 +39,20 @@ abstract public class Transporter extends Owned implements Carriable{
     }
 
     public void updateMovementSet(RegionSet regionSet){
-        movementList.clear();
         for (Permit permit : permitList) {
             permit.findRegions(regionSet, this);
         }
     }
 
     public abstract void accept(TransporterVisitor tv);
+
+    public void setCurrentRegion(Region region){
+        cache[1] = cache[0];
+        cache[0] = region;
+    }
+
+    public Region getCachedRegion(){
+        return cache[1];
+    }
+
 }

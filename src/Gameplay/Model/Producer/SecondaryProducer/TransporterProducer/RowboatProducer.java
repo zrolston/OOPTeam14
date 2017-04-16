@@ -1,22 +1,23 @@
-package Gameplay.Model.Producer.SecondaryProducer.TransporterFactory;
+package Gameplay.Model.Producer.SecondaryProducer.TransporterProducer;
 
 import Gameplay.Model.Goods.Board;
 import Gameplay.Model.Goods.GoodsBag;
 import Gameplay.Model.Producer.ProducerRequest;
-import Gameplay.Model.Producer.SecondaryProducer.SecondaryProducer;
 import Gameplay.Model.Producer.UserRequest;
-import Gameplay.Model.Transporters.LandTransporters.Donkey;
-import Gameplay.Model.Transporters.LandTransporters.Wagon;
+import Gameplay.Model.TransporterFactory.RowboatFactory;
+import Gameplay.Model.Transporters.Transporter;
+import Gameplay.Model.Transporters.WaterTransporter.Rowboat;
 import Gameplay.Model.Visitors.ProducerVisitor;
 
 /**
  * Created by Willie on 4/15/2017.
  */
-public class WagonFactory extends SecondaryProducer {
+public class RowboatProducer extends SecondaryTransporterProducer {
 
     private ProducerRequest input;
 
-    public WagonFactory() {
+    public RowboatProducer() {
+        super(new RowboatFactory());
         generateInput();
     }
 
@@ -24,21 +25,19 @@ public class WagonFactory extends SecondaryProducer {
         GoodsBag goods = new GoodsBag();
         goods.addBoard(new Board());
         goods.addBoard(new Board());
-        input = new ProducerRequest(goods, new Donkey());
-    }
-
-    private ProducerRequest generateOutputs() {
-        GoodsBag goods = new GoodsBag();
-        return new ProducerRequest(goods, new Wagon());
+        goods.addBoard(new Board());
+        goods.addBoard(new Board());
+        goods.addBoard(new Board());
+        input = new ProducerRequest(goods, null);
     }
 
     @Override
     public void accept(ProducerVisitor pv) {
-        pv.visitWagonFactory(this);
+        pv.visitRowboatFactory(this);
     }
 
     @Override
-    public ProducerRequest produce(UserRequest ur) {
+    public Transporter produce(UserRequest ur) {
         if (!ur.contains(input))
             return null;
         else {

@@ -5,16 +5,13 @@ import Gameplay.Model.Goods.Fuel;
 import Gameplay.Model.Goods.Gold;
 import Gameplay.Model.Goods.GoodsBag;
 import Gameplay.Model.Producer.ProducerRequest;
-import Gameplay.Model.Producer.SecondaryProducer.SecondaryProducer;
 import Gameplay.Model.Producer.UserRequest;
 import Gameplay.Model.Visitors.ProducerVisitor;
-
-import java.util.ArrayList;
 
 /**
  * Created by Willie on 4/15/2017.
  */
-public class Mint extends SecondaryProducer {
+public class Mint extends SecondaryGoodProducer {
 
     private ProducerRequest input;
 
@@ -30,10 +27,10 @@ public class Mint extends SecondaryProducer {
         input = new ProducerRequest(goods, null);
     }
 
-    private ProducerRequest generateOutputs() {
+    private GoodsBag generateOutputs() {
         GoodsBag goods = new GoodsBag();
         goods.addCoins(new Coins());
-        return new ProducerRequest(goods, null);
+        return goods;
     }
 
     @Override
@@ -42,9 +39,9 @@ public class Mint extends SecondaryProducer {
     }
 
     @Override
-    public ProducerRequest produce(UserRequest ur) {
+    public GoodsBag produce(UserRequest ur) {
         if (!ur.contains(input))
-            return null;
+            return new GoodsBag();
         else {
             ur.removeUsed(input);
             ur.reset();
