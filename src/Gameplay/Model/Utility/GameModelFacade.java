@@ -26,6 +26,7 @@ import java.util.List;
 public class GameModelFacade { //TODO make an abstract facade
     static GameModelFacade gameModelFacade;
     private GameMap gameMap;
+    private static int maxMapLength, maxMapWidth;
     private TransporterHandler transporterHandler;
     private GoodsHandler goodsHandler;
     private PrimaryProducerHandler primaryProducerHandler;
@@ -33,6 +34,8 @@ public class GameModelFacade { //TODO make an abstract facade
 
     private GameModelFacade(GameMap map) {
         this.gameMap = map;
+        maxMapLength = map.getLength();
+        maxMapWidth = map.getWidth();
     }
 
     public static GameModelFacade getInstance(){
@@ -42,9 +45,8 @@ public class GameModelFacade { //TODO make an abstract facade
         return null;
     }
 
-    public static void initialize(  ){
+    public static void initialize( GameMap map ){
         if (!isInitialized()){
-            GameMap map = new GameMap( getMaxMapLength(), getMaxMapWidth() );
             gameModelFacade = new GameModelFacade(map);
         }
     }
@@ -54,22 +56,10 @@ public class GameModelFacade { //TODO make an abstract facade
     }
 
     public static int getMaxMapLength(){
-        return 21;
+        return maxMapLength;
     }
     public static int getMaxMapWidth(){
-        return 21;
-    }
-
-    public void loadMap(String path){
-        DaveBuilder builder = new GameMapDaveBuilder();
-        builder.buildMap(path);
-    }
-
-    public void generateMap(List<GameTilePlacement> placements){
-        MapGenerator gen = new MapGenerator(gameMap.getWidth(), gameMap.getLength());
-        gameMap.initialize(
-                gen.generateRegionSets(placements)
-        );
+        return maxMapWidth;
     }
 
     public GameMap debugGetMap(){

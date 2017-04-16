@@ -13,10 +13,6 @@ import MapBuilder.Model.Utility.FileIO;
 import MapBuilder.Model.Utility.HexLocation;
 
 
-
-/**
- * Created by jordi on 3/27/2017.
- */
 abstract public class DaveBuilder implements MapParser {
     private FileIO fileIO = new FileIO();
 
