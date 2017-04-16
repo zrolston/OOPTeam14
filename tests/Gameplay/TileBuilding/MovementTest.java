@@ -9,9 +9,12 @@ import Gameplay.Model.TransporterFactory.DonkeyFactory;
 import Gameplay.Model.TransporterFactory.RowboatFactory;
 import Gameplay.Model.TransporterFactory.TransporterFactory;
 import Gameplay.Model.Transporters.Transporter;
+import Gameplay.Model.Utility.GameMapBuilder;
+import Gameplay.Model.Utility.GameMapDaveBuilder;
 import Gameplay.Model.Utility.GameModelFacade;
 import Gameplay.Model.Utility.HexaVertex;
 import MapBuilder.Model.Utility.HexLocation;
+import MapBuilder.Model.Utility.MapParsers.DaveBuilder;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -27,10 +30,9 @@ public class MovementTest {
 
     @Before
     public void init(){
-        GameMap map = new GameMap(21, 21);
-        GameModelFacade.initialize( );
+        DaveBuilder builder = new GameMapDaveBuilder();
+        builder.buildMap("C:\\Users\\Cameron\\IdeaProjects\\OOPTeam14\\res\\SavedMaps\\mapTest.dave");
         GameModelFacade facade = GameModelFacade.getInstance();
-        facade.loadMap("C:\\Users\\Cameron\\IdeaProjects\\OOPTeam14\\res\\SavedMaps\\mapTest.dave");
         this.map = facade.debugGetMap();
     }
 
