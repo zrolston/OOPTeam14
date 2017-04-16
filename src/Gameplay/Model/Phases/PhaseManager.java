@@ -3,9 +3,7 @@ package Gameplay.Model.Phases;
 import Gameplay.Controller.MainController;
 import Gameplay.Controller.PhaseStateController;
 import Gameplay.Controller.PhaseStateControllers.*;
-import Gameplay.Model.Utility.Actions.Action;
-
-import java.util.List;
+import Gameplay.Controller.PhaseStateControllers.MovementStateControllers.MovementPhaseStateController;
 
 public class PhaseManager {
     private PhaseState currentState;

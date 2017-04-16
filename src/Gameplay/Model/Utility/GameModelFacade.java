@@ -1,6 +1,9 @@
 package Gameplay.Model.Utility;
 
+import Gameplay.Model.Goods.Good;
 import Gameplay.Model.Map.GameMap;
+import Gameplay.Model.Region.Region;
+import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Model.Visitors.Carriable;
 import MapBuilder.Model.Utility.MapParsers.DaveBuilder;
 
@@ -60,7 +63,39 @@ public class GameModelFacade { //TODO make an abstract facade
      * can display different carriables
      * @return
      */
-    public List<Carriable> getCarriables(){
+    public List<Carriable> getCarriables(Region region){
         return null;
     }
+
+    public void move(Region region){
+
+    }
+
+
+    /**
+     * TODO: to be implemented, made for when a transporter needs to drop a carriable on a certain tile
+     * @param region
+     */
+    public void dropCarriable(Region region, Good good){
+
+    }
+
+    /**
+     * TODO: to be implemented, pass a list of transporters or ITERATOR owned by the player given a region
+     * @param region
+     * @return
+     */
+    public List<Transporter> getTransporters(Region region){
+        return null;
+    }
+
+    /**
+     * TODO: to be implemented, given a tile and a list of vertices return a region
+     * @return
+     */
+    public Region getRegion(/*put the tile and the set of vertices*/){
+        return  null;
+    }
+
+
 }
