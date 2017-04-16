@@ -7,6 +7,7 @@ import Gameplay.Model.Map.GameMap;
 import Gameplay.Model.Tile.GameTileBuilder;
 import Gameplay.Model.Tile.GameTile;
 import Gameplay.Model.Utility.GameModelFacade;
+import Gameplay.Model.Utility.HexConventionAle;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ public class BuildTileTest {
         ArrayList<Integer> riverList = new ArrayList<>();
         riverList.add(1);
         riverList.add(3);
-        tileBuilder = new GameTileBuilder();
+        tileBuilder = new GameTileBuilder(new HexConventionAle());
         gameTile = tileBuilder.createTile("ROCK", riverList);
     }
 

@@ -1,6 +1,7 @@
 package Gameplay.Model.Goods;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class GoodsBag {
@@ -245,5 +246,23 @@ public class GoodsBag {
             return false;
         else
             return true;
+    }
+
+    public List<Good> getGoods(){
+        List<Good> allGood = new LinkedList<>();
+
+        allGood.addAll(this.boardList);
+        allGood.addAll(this.clayList);
+        allGood.addAll(this.coinsList);
+        allGood.addAll(this.fuelList);
+        allGood.addAll(this.goldList);
+        allGood.addAll(this.gooseList);
+        allGood.addAll(this.ironList);
+        allGood.addAll(this.paperList);
+        allGood.addAll(this.stoneList);
+        allGood.addAll(this.stockList);
+        allGood.addAll(this.trunkList);
+
+        return allGood;
     }
 }

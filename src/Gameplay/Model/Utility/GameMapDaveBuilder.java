@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameMapDaveBuilder extends DaveBuilder {
-    private GameTileBuilder gameTileBuilder = new GameTileBuilder();
+    private GameTileBuilder gameTileBuilder = new GameTileBuilder(new HexConventionAle());
     private List<GameTilePlacement> tilePlacements;
 
     @Override

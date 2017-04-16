@@ -43,8 +43,7 @@ public class CarriableIterator implements StuffIterator {
     public BufferedImage getImage() {
         CarriableDrawingVisitor t = new CarriableDrawingVisitor();
         getCurrent().accept(t);
-        BufferedImage transporterImage = t.getBufferedImage();
-        return transporterImage;
+        return  t.getImage();
     }
 
     public Carriable getCarriableAt(int number) {

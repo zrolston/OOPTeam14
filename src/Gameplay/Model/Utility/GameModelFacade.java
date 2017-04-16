@@ -1,7 +1,7 @@
 package Gameplay.Model.Utility;
 
-import Gameplay.Model.Goods.Good;
 import Gameplay.Model.Map.GameMap;
+import Gameplay.Model.Producer.Producer;
 import Gameplay.Model.Region.Region;
 
 import Gameplay.Model.Goods.*;
@@ -9,14 +9,18 @@ import Gameplay.Model.Iterators.CarriableIterator;
 import Gameplay.Model.Iterators.StuffIterator;
 import Gameplay.Model.Iterators.TransporterIterator;
 import Gameplay.Model.Map.*;
+import Gameplay.Model.Tile.GameTile;
+import Gameplay.Model.Tile.RegionMap;
 import Gameplay.Model.TransporterFactory.DonkeyFactory;
 import Gameplay.Model.TransporterFactory.TransporterFactory;
 import Gameplay.Model.TransporterFactory.TruckFactory;
 import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Model.Visitors.Carriable;
+import Gameplay.Model.Visitors.RegionPlacableVisitor;
 import MapBuilder.Model.Utility.MapParsers.DaveBuilder;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class GameModelFacade { //TODO make an abstract facade
@@ -72,6 +76,34 @@ public class GameModelFacade { //TODO make an abstract facade
         return gameMap;
     }
 
+    public void startGame() {
+        setUpGoodsHandler();
+        transporterHandler = new TransporterHandler();
+        primaryProducerHandler = new PrimaryProducerHandler();
+        secondaryProducerHandler = new SecondaryProducerHandler();
+    }
+
+    private void setUpGoodsHandler() {
+        goodsHandler = new GoodsHandler();
+        GameTile[][] tiles = gameMap.getTiles();
+        RegionPlacableVisitor pcv = new RegionPlacableVisitor();
+        for (int i = 0; i < tiles.length; i++) {
+            for (int j = 0; j < tiles.length; j++) {
+                if (tiles[i][j] == null)
+                    continue;
+                RegionMap rm = tiles[i][j].getRegionMap();
+                Iterator<Region> regionIterator = rm.getMyRegions();
+                while (regionIterator.hasNext()) {
+                    Region r = regionIterator.next();
+                    r.accept(pcv);
+                    if (pcv.getPlacable()) {
+                        goodsHandler.place(new GoodsBag(), r);
+                    }
+                }
+            }
+        }
+    }
+
 
     /**
      * TODO: this is to be implemented differently on different phases so that the view
@@ -117,7 +149,7 @@ public class GameModelFacade { //TODO make an abstract facade
      * TODO: to be implemented, made for when a transporter needs to drop a carriable on a certain tile
      * @param region
      */
-    public void dropCarriable(Region region, Good good){
+    public void dropCarriable(Region region, Transporter target, Carriable good){
 
     }
 
@@ -127,15 +159,32 @@ public class GameModelFacade { //TODO make an abstract facade
      * @return
      */
     public List<Transporter> getTransporters(Region region){
+        return transporterHandler.getTransportersAt(region);
+    }
+
+    public Producer getProducer(Region region) {
+        Producer producer = primaryProducerHandler.getPrimaryProducerAt(region);
+        if (producer != null)
+            return producer;
+        producer = secondaryProducerHandler.getSecondaryProducerAt(region);
+        if (producer != null)
+            return producer;
+        producer = secondaryProducerHandler.getTransporterProducerAt(region);
+        if (producer != null)
+            return producer;
         return null;
+    }
+
+    public GoodsBag getGoodsBag(Region region) {
+        return goodsHandler.getGoodsBagAt(region);
     }
 
     /**
      * TODO: to be implemented, given a tile and a list of vertices return a region
      * @return
      */
-    public Region getRegion(/*put the tile and the set of vertices*/){
-        return  null;
+    public Region getRegion(GameTile tile, HexaVertex vertex){
+        return  tile.getRegionMap().getRegionAt(vertex);
     }
 
     /**
@@ -144,7 +193,9 @@ public class GameModelFacade { //TODO make an abstract facade
      * @return
      */
     public CarriableIterator getTransporterCarriable(Transporter transporter){
-        return null;
+        ArrayList<Carriable> myShit = transporter.getCarriables();
+
+        return new CarriableIterator(myShit);
     }
 
     /**
@@ -153,7 +204,12 @@ public class GameModelFacade { //TODO make an abstract facade
      * @return
      */
     public CarriableIterator getRegionCarriable(Region region){
-        return null;
+        ArrayList<Carriable> myShit = new ArrayList<>();
+
+        myShit.addAll(transporterHandler.getTransportersAt(region));
+        myShit.addAll(goodsHandler.getGoodsBagAt(region).getGoods());
+
+        return new CarriableIterator(myShit);
     }
 
 }

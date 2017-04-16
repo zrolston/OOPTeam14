@@ -102,7 +102,7 @@ public abstract class TransporterCarriableController implements MainViewControll
 
         TransporterDrawingVisitor t = new TransporterDrawingVisitor();
         donky.accept(t);
-        BufferedImage transporterImage = t.getBufferedImage();
+        BufferedImage transporterImage = t.getImage();
 
         Goose g = new Goose();
         CarriableDrawingVisitor gv = new CarriableDrawingVisitor();

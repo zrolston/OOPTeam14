@@ -72,4 +72,15 @@ public class PolygonPointSet{
         newPoint.y = center.y + (int) (dx*sinAngle+dy*cosAngle);
         return newPoint;
     }
+
+//    public Point centroid()  {
+//        List<Point> sets =
+//        double centroidX = 0, centroidY = 0;
+//
+//        for(Point knot : knots) {
+//            centroidX += knot.getX();
+//            centroidY += knot.getY();
+//        }
+//        return new Point(centroidX / knots.size(), centroidY / knots.size());
+//    }
 }
