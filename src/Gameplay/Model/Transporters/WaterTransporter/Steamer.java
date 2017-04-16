@@ -10,6 +10,7 @@ public class Steamer extends Transporter {
 
     public Steamer(Permit...permits){
         super(permits);
+        setMaxMovement(6);
     }
     @Override
     public void accept(CarriableVisitor cv) {

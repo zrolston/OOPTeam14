@@ -9,6 +9,7 @@ public class Truck extends Transporter {
 
     public Truck(Permit...permits){
         super(permits);
+        setMaxMovement(4);
     }
     @Override
     public void accept(CarriableVisitor cv) {

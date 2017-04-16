@@ -6,6 +6,6 @@ import Gameplay.Model.Transporters.Transporter;
 public class TruckFactory extends TransporterFactory{
     @Override
     public Transporter create() {
-        return new Truck(new LandPermit());
+        return new Truck(new RoadPermit());
     }
 }
