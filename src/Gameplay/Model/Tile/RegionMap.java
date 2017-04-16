@@ -21,4 +21,13 @@ public class RegionMap {
         }
         return null;
     }
+
+    public boolean hasRegionAt(HexaVertex vertex){
+        for(List<HexaVertex> vertices : regionMap.keySet()){
+            if (vertices.contains(vertex)){
+                return true;
+            }
+        }
+        return false;
+    }
 }
