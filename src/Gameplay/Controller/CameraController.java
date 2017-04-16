@@ -6,19 +6,26 @@
 ---------------------------------------------------------------------------------------*/
 
 package Gameplay.Controller;
-import Gameplay.Views.Utility.Camera;
-import Gameplay.Views.Utility.CursorState;
-import Gameplay.Views.Utility.PixelMap;
+import Gameplay.Model.Map.GameMap;
+import Gameplay.Model.Region.Region;
+import Gameplay.Model.Utility.GameModelFacade;
+import Gameplay.Views.Utility.*;
+import MapBuilder.Model.Tile.Tile;
 import MapBuilder.Model.Utility.HexLocation;
+import MapBuilder.Model.Utility.ILocation;
 import MapBuilder.Views.Utility.PixelPoint;
+
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.List;
 
 public class CameraController implements MouseMotionListener, MouseListener{
 
     private Camera camera = Camera.getInstance();
     private CursorState cursorState = CursorState.getInstance();
+    private GameMap map = null;
 
     @Override
     public void mouseDragged(MouseEvent e) {
@@ -55,5 +62,35 @@ public class CameraController implements MouseMotionListener, MouseListener{
     public void updateActiveTile(MouseEvent e){
         HexLocation location = PixelMap.getHexLocationAtPixelPoint(new PixelPoint(e.getX(), e.getY()));
         cursorState.setActiveTile(location);
+    }
+
+
+    public void updateRegion(MouseEvent e){
+        //Set up Map if needed
+        if(map == null){
+            map = GameModelFacade.getInstance().debugGetMap();
+        }
+
+        //Get locations of current Tile
+        ILocation location = cursorState.getActiveTile();
+        Tile active = map.getTileAt(location);
+
+        //River Type and Rotations from tile
+//        Integer riverType = active.getRiverIndex();
+//        Integer rotation = active.getRiverRotatino();
+        List<PolygonPointSet> polygonPoints = PolygonUtility.getRegionsByType(new Integer(0));
+
+    }
+
+
+    public Polygon getActiveRegion(List<PolygonPointSet> polygonPoints, MouseEvent e){
+        PixelPoint origin = PixelMap.getMapTileOrigin(cursorState.getActiveTile());
+        Point current = new Point(e.getX(), e.getY());
+        for(PolygonPointSet pointSet: polygonPoints){
+            Polygon polygon = pointSet.getPolygon(origin);
+            if(polygon.contains(current))
+                return polygon;
+        }
+        return null;
     }
 }

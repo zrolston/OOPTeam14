@@ -59,15 +59,15 @@ public class MapView extends JPanel {
                 }
             }
         }
-        
+
         //Tile Marker
         GridDrawer.drawActiveTile(g, CursorState.getInstance().getActiveTile());
 
         //Region Marker Test
-//        PixelPoint origin = PixelMap.getMapTileOrigin(CursorState.getInstance().getActiveTile());
-//        PolygonPointSet polygonPointSet = PolygonUtility.type3Regions.get(2);
-//        polygonPointSet.setCurrRotation(0);
-//        GridDrawer.drawActiveRegion(g, polygonPointSet.getPolygon(origin.getX(), origin.getY()));
+        PixelPoint origin = PixelMap.getMapTileOrigin(CursorState.getInstance().getActiveTile());
+        PolygonPointSet polygonPointSet = PolygonUtility.type2Regions.get(2);
+        polygonPointSet.setCurrRotation(1);
+        GridDrawer.drawActiveRegion(g, polygonPointSet.getPolygon(origin.getX(), origin.getY()));
 
         if (transporterImages != null) {
             for (ImageWithLocation image : transporterImages)
