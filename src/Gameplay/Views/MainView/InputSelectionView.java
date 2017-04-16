@@ -43,10 +43,10 @@ public class InputSelectionView extends JPanel {
         }
 
         //Calculate the offsets
-        horizontalOffset = (int)(0.15*(getWidth()/numCols));
-        buttonSide = (int)(0.75*(getWidth()/numCols));
+        horizontalOffset = (int)(0.15*(getWidth()/numCols)) + 5;
+        buttonSide = (int)(0.75*(getWidth()/numCols)) - 10;
 //        verticalOffset = ((getHeight()-horizontalOffset-5-numRows*buttonSide)/numRows);
-        verticalOffset = horizontalOffset;
+        verticalOffset = 5 ;
 
 
         //Initialize the left and right buttons
@@ -56,7 +56,7 @@ public class InputSelectionView extends JPanel {
             for (int j = 0; j < numCols; j++) {
                 if( ( i * numCols + j)  >= numElements)
                     break;
-                PixelPoint origin = new PixelPoint(horizontalOffset+getWidth()/numCols * j , horizontalOffset+((buttonSide+verticalOffset)*i));
+                PixelPoint origin = new PixelPoint(horizontalOffset+getWidth()/numCols * j , verticalOffset);
                 buttons.add(PolygonUtility.generateSquare(origin, buttonSide));
             }
 
