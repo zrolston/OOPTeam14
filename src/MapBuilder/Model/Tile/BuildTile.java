@@ -3,6 +3,7 @@ package MapBuilder.Model.Tile;
 import java.util.HashMap;
 import java.util.Map;
 
+import Gameplay.Model.Visitors.GameTileVisitor;
 import MapBuilder.Model.Edge.Edge;
 import MapBuilder.Model.Edge.EdgeMap;
 import MapBuilder.Model.Terrain.Terrain;
@@ -36,6 +37,10 @@ public class BuildTile extends Tile {
     public void accept(TileVisitor v) {
         getTerrain().accept(v);
         edgeMap.accept(v);
+    }
+
+    @Override
+    public void accept(GameTileVisitor v) {
     }
 
     public Edge getEdgeAt(HexaIndex index) {
