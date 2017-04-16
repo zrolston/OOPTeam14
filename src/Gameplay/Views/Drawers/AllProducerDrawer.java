@@ -26,11 +26,15 @@ public class AllProducerDrawer {
         ProducerDrawingVisitor pdv = new ProducerDrawingVisitor();
         for (int i = 0; i < tiles.length; i++) {
             for (int j = 0; j < tiles[0].length; j++) {
+                if (tiles[i][j] == null)
+                    continue;
                 PixelPoint origin = PixelMap.getMapTileOrigin(new HexLocation(i,j));
                 RegionMap regionMap = tiles[i][j].getRegionMap();
                 for (List<HexaVertex> vertices : regionMap.getRegionMap().keySet()) {
                     pdv.setOrigin(new PixelPoint(origin.getX() + 20, origin.getY() + 20));
                     Producer producer = gmf.getProducer(regionMap.getRegionAt(vertices.get(0)));
+                    if (producer == null)
+                        continue;
                     producer.accept(pdv);
                     images.add(pdv.getImageWithLocation());
                 }
