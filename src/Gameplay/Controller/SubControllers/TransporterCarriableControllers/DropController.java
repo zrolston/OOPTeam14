@@ -25,6 +25,7 @@ public class DropController extends TransporterCarriableController {
         //TODO: view check if the region is a river, if it isn't drop it on the tile
         dropRegionController.activateController(getMainView());
         dropRegionController.receiveCarriable(getCurrentCarriable());
+        dropRegionController.receiveTransporter(getCurrentTransporter());
         hidePanel();
     }
 
