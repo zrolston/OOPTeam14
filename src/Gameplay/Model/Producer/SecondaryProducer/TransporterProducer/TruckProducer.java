@@ -5,6 +5,7 @@ import Gameplay.Model.Goods.GoodsBag;
 import Gameplay.Model.Goods.Iron;
 import Gameplay.Model.Producer.ProducerRequest;
 import Gameplay.Model.Producer.UserRequest;
+import Gameplay.Model.TransporterFactory.TruckFactory;
 import Gameplay.Model.Transporters.LandTransporters.Truck;
 import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Model.Visitors.ProducerVisitor;
@@ -17,6 +18,7 @@ public class TruckProducer extends SecondaryTransporterProducer {
     private ProducerRequest input;
 
     public TruckProducer() {
+        super(new TruckFactory());
         generateInput();
     }
 
@@ -25,10 +27,6 @@ public class TruckProducer extends SecondaryTransporterProducer {
         goods.addFuel(new Fuel());
         goods.addIron(new Iron());
         input = new ProducerRequest(goods, null);
-    }
-
-    private Transporter generateOutputs() {
-        return new Truck();
     }
 
     @Override

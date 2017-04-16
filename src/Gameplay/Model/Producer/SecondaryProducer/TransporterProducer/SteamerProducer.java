@@ -5,6 +5,7 @@ import Gameplay.Model.Goods.GoodsBag;
 import Gameplay.Model.Goods.Iron;
 import Gameplay.Model.Producer.ProducerRequest;
 import Gameplay.Model.Producer.UserRequest;
+import Gameplay.Model.TransporterFactory.SteamerFactory;
 import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Model.Transporters.WaterTransporter.Steamer;
 import Gameplay.Model.Visitors.ProducerVisitor;
@@ -17,6 +18,7 @@ public class SteamerProducer extends SecondaryTransporterProducer {
     private ProducerRequest input;
 
     public SteamerProducer() {
+        super(new SteamerFactory());
         generateInput();
     }
 
@@ -26,10 +28,6 @@ public class SteamerProducer extends SecondaryTransporterProducer {
         goods.addFuel(new Fuel());
         goods.addIron(new Iron());
         input = new ProducerRequest(goods, null);
-    }
-
-    private Transporter generateOutputs() {
-        return new Steamer();
     }
 
     @Override
