@@ -9,8 +9,11 @@ package Gameplay.Controller;
 import Gameplay.Model.Map.GameMap;
 import Gameplay.Model.Region.Region;
 import Gameplay.Model.Tile.GameTile;
+import Gameplay.Model.Tile.RegionMap;
 import Gameplay.Model.Utility.GameModelFacade;
+import Gameplay.Model.Utility.HexaVertex;
 import Gameplay.Views.Utility.*;
+import Gameplay.Views.Utility.PolygonProportions.RegionVertexUtility;
 import MapBuilder.Model.Tile.Tile;
 import MapBuilder.Model.Utility.HexLocation;
 import MapBuilder.Model.Utility.ILocation;
@@ -61,7 +64,7 @@ public class CameraController implements MouseMotionListener, MouseListener{
     public void mouseExited(MouseEvent e) {}
 
     @Override
-    public void mouseClicked(MouseEvent e) {}
+    public void mouseClicked(MouseEvent e) { }
 
     public void updateActiveTile(MouseEvent e){
         HexLocation location = PixelMap.getHexLocationAtPixelPoint(new PixelPoint(e.getX(), e.getY()));
@@ -87,19 +90,33 @@ public class CameraController implements MouseMotionListener, MouseListener{
                 rotation = active.getRotationNumber();
             }catch (Exception exe){ return; }
             List<PolygonPointSet> polygonPoints = PolygonUtility.getRegionsByType(new Integer(riverType));
-            updateCursorRegion(polygonPoints, e, rotation);
+            updateCursorRegion(polygonPoints, e, riverType, rotation, active);
         }
     }
 
 
-    public void updateCursorRegion(List<PolygonPointSet> polygonPoints, MouseEvent e, Integer rotation){
+    public void updateCursorRegion(List<PolygonPointSet> polygonPoints, MouseEvent e, Integer riverType, Integer rotation, GameTile active){
         PixelPoint origin = PixelMap.getMapTileOrigin(cursorState.getActiveTile());
         Point current = new Point(e.getX(), e.getY());
+        int regionIndex = 0;
         for(PolygonPointSet pointSet: polygonPoints){
             pointSet.setCurrRotation(rotation);
             Polygon polygon = pointSet.getPolygon(origin);
-            if(polygon.contains(current))
+            if(polygon.contains(current)) {
                 cursorState.setRegionArea(polygon);
+                HexaVertex vertex = null;
+                try {
+                    vertex = RegionVertexUtility.getVertexAt(riverType, rotation, regionIndex);
+                }catch(Exception ex){ex.printStackTrace();}
+                RegionMap rm = active.getRegionMap();
+                cursorState.setActiveRegion(rm.getRegionAt(vertex));
+            }
         }
+        regionIndex++;
+    }
+
+
+    public void updateRegionObject(){
+
     }
 }
