@@ -18,7 +18,7 @@ public class GeeseFollowButton extends JPanel {
         setBounds((int)(PixelMap.SCREEN_WIDTH * 6.5/40), (int)(PixelMap.SCREEN_HEIGHT * 17/20), PixelMap.SCREEN_WIDTH /7, PixelMap.SCREEN_HEIGHT /12);
 
         geeseButton = new JButton();
-        geeseButton.setText("GEESE ALERT");
+        geeseButton.setText("ALERT GEESE");
         geeseButton.setFont(new Font("plain", Font.BOLD, 13));
         geeseButton.setOpaque(false);
         geeseButton.setVisible( true );

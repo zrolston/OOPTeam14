@@ -23,7 +23,7 @@ public class EndPhaseButton extends JPanel {
 
 
         nextPhase = new JButton();
-        nextPhase.setText("PHASE ADVANCE");
+        nextPhase.setText("ADVANCE PHASE");
         nextPhase.setForeground(  new Color( 0x11111111 )  );
         nextPhase.setFont(new Font("plain", Font.BOLD, 13));
         nextPhase.setOpaque(false);

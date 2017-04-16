@@ -8,10 +8,14 @@ import Gameplay.Model.Utility.PlayerID;
  */
 public class Wall extends Owned {
 
-    int strength;
+    private int strength;
 
     public Wall(){
         strength = 1;
+    }
+
+    public int getStrength(){
+        return strength;
     }
 
     public void strengthen(){
