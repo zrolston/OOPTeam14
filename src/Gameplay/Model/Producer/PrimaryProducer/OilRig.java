@@ -16,9 +16,9 @@ public class OilRig extends PrimaryProducer {
     }
 
     @Override
-    public ProducerRequest produce() {
+    public GoodsBag produce() {
         GoodsBag goods = new GoodsBag();
         goods.addFuel(new Fuel());
-        return new ProducerRequest(goods, null);
+        return goods;
     }
 }

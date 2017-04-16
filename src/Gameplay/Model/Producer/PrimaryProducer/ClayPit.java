@@ -12,13 +12,15 @@ public class ClayPit extends PrimaryProducer {
 
     @Override
     public void accept(ProducerVisitor pv) {
-
+        pv.visitClayPit(this);
     }
 
+
+
     @Override
-    public ProducerRequest produce() {
+    public GoodsBag produce() {
         GoodsBag goods = new GoodsBag();
         goods.addClay(new Clay());
-        return new ProducerRequest(goods, null);
+        return goods;
     }
 }

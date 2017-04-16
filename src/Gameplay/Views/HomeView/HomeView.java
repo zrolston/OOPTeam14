@@ -58,7 +58,7 @@ public class HomeView extends JPanel {
             g.drawImage(cover, x, y, width, height, null);
             
             
-            g.setFont(new Font("phosphate", Font.BOLD, 28));
+            g.setFont(new Font("phosphate", Font.BOLD, 35));
             g.setColor(new Color(0xff000000));
             g.drawString(" Roads & Boats", 10, 60);
             g.drawString(" COP 4331", 10, 90);

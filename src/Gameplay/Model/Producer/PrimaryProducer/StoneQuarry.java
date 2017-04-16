@@ -16,9 +16,9 @@ public class StoneQuarry extends PrimaryProducer {
     }
 
     @Override
-    public ProducerRequest produce() {
+    public GoodsBag produce() {
         GoodsBag goods = new GoodsBag();
         goods.addStone(new Stone());
-        return new ProducerRequest(goods, null);
+        return goods;
     }
 }

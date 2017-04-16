@@ -7,8 +7,10 @@
 
 package Gameplay.Controller;
 import Gameplay.Views.Utility.Camera;
+import Gameplay.Views.Utility.CursorState;
+import Gameplay.Views.Utility.PixelMap;
+import MapBuilder.Model.Utility.HexLocation;
 import MapBuilder.Views.Utility.PixelPoint;
-
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -16,6 +18,7 @@ import java.awt.event.MouseMotionListener;
 public class CameraController implements MouseMotionListener, MouseListener{
 
     private Camera camera = Camera.getInstance();
+    private CursorState cursorState = CursorState.getInstance();
 
     @Override
     public void mouseDragged(MouseEvent e) {
@@ -26,6 +29,7 @@ public class CameraController implements MouseMotionListener, MouseListener{
     @Override
     public void mouseMoved(MouseEvent e) {
         //Hovering goes here
+        updateActiveTile(e);
     }
 
 
@@ -47,4 +51,9 @@ public class CameraController implements MouseMotionListener, MouseListener{
 
     @Override
     public void mouseClicked(MouseEvent e) {}
+
+    public void updateActiveTile(MouseEvent e){
+        HexLocation location = PixelMap.getHexLocationAtPixelPoint(new PixelPoint(e.getX(), e.getY()));
+        cursorState.setActiveTile(location);
+    }
 }

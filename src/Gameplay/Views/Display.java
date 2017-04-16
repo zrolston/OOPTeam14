@@ -25,53 +25,41 @@ public class Display extends JFrame{
         researchScreen = new ResearchView( this );
         transporterScreen = new TransporterView( this );
 
-        setCurrScreen( "HOME_SCREEN" );
+        displayHomeScreen();
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
 
-    public void setCurrScreen(String selected_screen) {
-
+    public void displayHomeScreen() {
         getContentPane().removeAll();   // clear screen
-
-        switch (selected_screen) {
-            case "HOME_SCREEN":
-                displayHomeScreen();
-                break;
-            case "MAIN_SCREEN":
-                displayMainScreen();
-                break;
-            case "WONDER_SCREEN":
-                displayWonderScreen();
-                break;
-            case "RESEARCH_SCREEN":
-                displayResearchScreen();
-                break;
-            case "TRANSPORTER_SCREEN":
-                displayTransporterScreen();
-                break;
-        }
-
+        this.getContentPane().add( homeScreen );
         revalidate();
         repaint();
     }
-
-
-    private void displayHomeScreen() {
-        this.getContentPane().add( homeScreen );
-    }
-    private void displayMainScreen() {
+    public void displayMainScreen() {
+        getContentPane().removeAll();   // clear screen
         this.getContentPane().add( mainScreen );
+        revalidate();
+        repaint();
     }
-    private void displayWonderScreen() {
+    public void displayWonderScreen() {
+        getContentPane().removeAll();   // clear screen
         this.getContentPane().add( wonderScreen );
+        revalidate();
+        repaint();
     }
-    private void displayResearchScreen() {
+    public void displayResearchScreen() {
+        getContentPane().removeAll();   // clear screen
         this.getContentPane().add( researchScreen );
+        revalidate();
+        repaint();
     }
-    private void displayTransporterScreen() {
+    public void displayTransporterScreen() {
+        getContentPane().removeAll();   // clear screen
         this.getContentPane().add( transporterScreen );
+        revalidate();
+        repaint();
     }
 
     public MainView getMainView(){

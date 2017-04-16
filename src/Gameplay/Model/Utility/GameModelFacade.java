@@ -1,17 +1,33 @@
 package Gameplay.Model.Utility;
 
+<<<<<<< HEAD
 import Gameplay.Model.Goods.Good;
 import Gameplay.Model.Map.GameMap;
 import Gameplay.Model.Region.Region;
+=======
+import Gameplay.Model.Goods.*;
+import Gameplay.Model.Iterators.CarriableIterator;
+import Gameplay.Model.Iterators.StuffIterator;
+import Gameplay.Model.Iterators.TransporterIterator;
+import Gameplay.Model.Map.*;
+import Gameplay.Model.TransporterFactory.DonkeyFactory;
+import Gameplay.Model.TransporterFactory.TransporterFactory;
+import Gameplay.Model.TransporterFactory.TruckFactory;
+>>>>>>> aa9379b018fdf6db01c391310c620794d4284c5b
 import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Model.Visitors.Carriable;
 import MapBuilder.Model.Utility.MapParsers.DaveBuilder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GameModelFacade { //TODO make an abstract facade
     static GameModelFacade gameModelFacade;
     private GameMap gameMap;
+    private TransporterHandler transporterHandler;
+    private GoodsHandler goodsHandler;
+    private PrimaryProducerHandler primaryProducerHandler;
+    private SecondaryProducerHandler secondaryProducerHandler;
 
     private GameModelFacade(GameMap map) {
         this.gameMap = map;
@@ -24,8 +40,9 @@ public class GameModelFacade { //TODO make an abstract facade
         return null;
     }
 
-    public static void initialize(GameMap map){
+    public static void initialize(  ){
         if (!isInitialized()){
+            GameMap map = new GameMap( getMaxMapLength(), getMaxMapWidth() );
             gameModelFacade = new GameModelFacade(map);
         }
     }
@@ -63,8 +80,39 @@ public class GameModelFacade { //TODO make an abstract facade
      * can display different carriables
      * @return
      */
+<<<<<<< HEAD
     public List<Carriable> getCarriables(Region region){
         return null;
+=======
+    public CarriableIterator testGetCarriablesThisShouldBeDeleted(){
+        ArrayList<Carriable> transporters = new ArrayList<>();
+        TransporterFactory tf = new DonkeyFactory();
+        transporters.add(tf.create());
+        transporters.add(tf.create());
+        transporters.add(tf.create());
+        tf = new TruckFactory();
+        transporters.add(tf.create());
+        transporters.add(tf.create());
+        transporters.add(new Paper());
+        transporters.add(new Gold());
+        transporters.add(new Coins());
+        transporters.add(new Stock());
+
+        return new CarriableIterator(transporters);
+
+    }
+
+    public StuffIterator testGetTransporterIteratorDELETETHIS(){
+        ArrayList<Transporter> transporters = new ArrayList<>();
+        TransporterFactory tf = new DonkeyFactory();
+        transporters.add(tf.create());
+        transporters.add(tf.create());
+        transporters.add(tf.create());
+        tf = new TruckFactory();
+        transporters.add(tf.create());
+        transporters.add(tf.create());
+        return new TransporterIterator(transporters);
+>>>>>>> aa9379b018fdf6db01c391310c620794d4284c5b
     }
 
     public void move(Region region){
