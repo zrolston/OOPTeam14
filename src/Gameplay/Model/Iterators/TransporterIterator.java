@@ -3,12 +3,13 @@ package Gameplay.Model.Iterators;
 import Gameplay.Model.Transporters.Transporter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class TransporterIterator implements StuffIterator {
-    private ArrayList<Transporter> transporters;
+    private List<Transporter> transporters;
     int cur, size;
 
-    public TransporterIterator(ArrayList<Transporter> transporters){
+    public TransporterIterator(List<Transporter> transporters){
         this.transporters = transporters;
         size = transporters.size();
         cur = 0;
