@@ -30,7 +30,7 @@ public class HexaVertex {
         if (value >= vertexLowerBoundary && value <= edgeUpperBoundary) {
             return new HexaVertex(value);
         }
-        throw (new RuntimeException("wrong tile boundary"));
+        throw (new RuntimeException("wrong tile boundary "+value));
     }
 
     public HexaVertex nextVertex(){
