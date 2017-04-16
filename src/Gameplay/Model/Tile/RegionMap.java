@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 public class RegionMap {
-    Map<List<HexaVertex>, Region> regionMap;
+    private Map<List<HexaVertex>, Region> regionMap;
 
     public RegionMap(Map<List<HexaVertex>, Region> regionMap){
         this.regionMap = regionMap;
@@ -34,6 +34,10 @@ public class RegionMap {
             }
         }
         return false;
+    }
+
+    public Map<List<HexaVertex>, Region> getRegionMap(){
+        return regionMap;
     }
 
     public Iterator<Region> getMyRegions(){

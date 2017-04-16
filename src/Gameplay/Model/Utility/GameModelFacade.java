@@ -17,6 +17,7 @@ import Gameplay.Model.Visitors.Carriable;
 import MapBuilder.Model.Utility.MapParsers.DaveBuilder;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class GameModelFacade { //TODO make an abstract facade
@@ -117,7 +118,7 @@ public class GameModelFacade { //TODO make an abstract facade
      * TODO: to be implemented, made for when a transporter needs to drop a carriable on a certain tile
      * @param region
      */
-    public void dropCarriable(Region region, Good good){
+    public void dropCarriable(Region region, Carriable good){
 
     }
 
@@ -127,7 +128,7 @@ public class GameModelFacade { //TODO make an abstract facade
      * @return
      */
     public List<Transporter> getTransporters(Region region){
-        return null;
+        return transporterHandler.getTransportersAt(region);
     }
 
     /**
@@ -144,7 +145,9 @@ public class GameModelFacade { //TODO make an abstract facade
      * @return
      */
     public CarriableIterator getTransporterCarriable(Transporter transporter){
-        return null;
+        ArrayList<Carriable> myShit = transporter.getCarriables();
+
+        return new CarriableIterator(myShit);
     }
 
     /**
@@ -153,7 +156,12 @@ public class GameModelFacade { //TODO make an abstract facade
      * @return
      */
     public CarriableIterator getRegionCarriable(Region region){
-        return null;
+        ArrayList<Carriable> myShit = new ArrayList<>();
+
+        myShit.addAll(transporterHandler.getTransportersAt(region));
+        myShit.addAll(goodsHandler.getGoodsBagAt(region).getGoods());
+
+        return new CarriableIterator(myShit);
     }
 
 }
