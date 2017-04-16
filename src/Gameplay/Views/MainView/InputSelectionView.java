@@ -20,7 +20,8 @@ public class InputSelectionView extends JPanel {
         setBounds((int)(PixelMap.SCREEN_WIDTH *.225), (int)(PixelMap.SCREEN_HEIGHT * 17/20), (int)(PixelMap.SCREEN_WIDTH * .55), (int)(PixelMap.SCREEN_HEIGHT * .08));
         setOpaque(false);
         setVisible( true );
-        background = ImageLoader.getImage("SCROLL_BACKGROUND");
+        background = ImageLoader.getImage("RESEARCH_BACKGROUND");
+        this.setBorder(BorderFactory.createLineBorder(new Color(0x11111111), 1));
     }
 
     protected void paintComponent(Graphics g) {

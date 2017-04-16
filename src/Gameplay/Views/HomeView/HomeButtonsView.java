@@ -47,7 +47,7 @@ class HomeButtonsView extends JPanel {
         quitButton.setForeground(Color.black);
         quitButton.setOpaque(true);
 
-        playButton.addActionListener(e -> display.setCurrScreen( "MAIN_SCREEN" ));
+        playButton.addActionListener(e -> display.displayMainScreen());
 
         options.addActionListener(e -> {
 		    MapEditorSystem mapEditor = new MapEditorSystem(display);

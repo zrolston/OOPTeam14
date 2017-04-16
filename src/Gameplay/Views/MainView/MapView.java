@@ -55,6 +55,6 @@ public class MapView extends JPanel {
     }
 
     public void stopRendering(){
-        renderingThread.stop();
+        renderingThread.interrupt();
     }
 }

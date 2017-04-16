@@ -8,6 +8,7 @@ public class RegionSet {
     private List<Region> roadRegions;
     private List<Region> waterRegions;
     private List<Region> dockRegions;
+    private List<Region> portRegions;
 
     public List<Region> getLandRegions() {
         return landRegions;
@@ -21,12 +22,16 @@ public class RegionSet {
     public List<Region> getDockRegions() {
         return dockRegions;
     }
+    public List<Region> getPortRegions() {
+        return portRegions;
+    }
 
     public RegionSet(){
         landRegions = new ArrayList<>();
         roadRegions = new ArrayList<>();
         waterRegions = new ArrayList<>();
         dockRegions = new ArrayList<>();
+        portRegions = new ArrayList<>();
     }
 
     ///////MUTATORS////////
@@ -73,6 +78,17 @@ public class RegionSet {
     }
     public void removeDockRegion(Region dockRegion) {
         this.dockRegions.remove(dockRegion);
+    }
+
+    public void addPortRegion(Region portRegion) {
+
+        if(!this.portRegions.contains(portRegion)) {
+            this.portRegions.add(portRegion);
+        }
+
+    }
+    public void removePortRegion(Region portRegion) {
+        this.portRegions.remove(portRegion);
     }
 
 
