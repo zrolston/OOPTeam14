@@ -80,20 +80,17 @@ public class MapView extends JPanel {
 //        polygonPointSet.setCurrRotation(0);
 //        GridDrawer.drawActiveRegion(g, polygonPointSet.getPolygon(origin.getX(), origin.getY()));
 
-        if (transporterImages != null) {
-            for (ImageWithLocation image : transporterImages)
-                image.draw(g);
-        }
+        updateTransporterImages();
+        for (ImageWithLocation image : transporterImages)
+            image.draw(g);
 
-        if (goodsImages != null) {
-            for (ImageWithLocation image : goodsImages)
-                image.draw(g);   
-        }
+        updateGoodsImages();
+        for (ImageWithLocation image : goodsImages)
+            image.draw(g);
 
-        if (producerImages != null) {
-            for (ImageWithLocation image : producerImages)
-                image.draw(g);
-        }
+        updateProducerImages();
+        for (ImageWithLocation image : producerImages)
+            image.draw(g);
 
     }
 

@@ -21,6 +21,11 @@ public class GoodsHandler {
         occupancyMap.put(region, goodsBag);
     }
 
+    public void add(GoodsBag goodsBag, Region region) {
+        GoodsBag gb = getGoodsBagAt(region);
+        gb.add(goodsBag);
+    }
+
     public GoodsBag getGoodsBagAt(Region r){
 
         GoodsBag goodsBag = occupancyMap.get(r);

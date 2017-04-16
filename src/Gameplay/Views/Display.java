@@ -18,6 +18,7 @@ public class Display extends JFrame{
 
         setTitle("Roads & Boats");
         setSize( PixelMap.SCREEN_WIDTH, PixelMap.SCREEN_HEIGHT );
+        setResizable(false);
 
         mainScreen = new MainView( this );
         homeScreen = new HomeView( this );

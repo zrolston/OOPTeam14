@@ -30,6 +30,8 @@ public class AllTransporterDrawer {
         TransporterDrawingVisitor tdv = new TransporterDrawingVisitor();
         for (int i = 0; i < tiles.length; i++) {
             for (int j = 0; j < tiles[0].length; j++) {
+                if (tiles[i][j] == null)
+                    continue;
                 PixelPoint origin = PixelMap.getMapTileOrigin(new HexLocation(i,j));
                 RegionMap regionMap = tiles[i][j].getRegionMap();
                 for (List<HexaVertex> vertices : regionMap.getRegionMap().keySet()) {
