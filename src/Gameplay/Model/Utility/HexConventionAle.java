@@ -1,43 +1,36 @@
-package Gameplay.Model.Visitors;
-
-import Gameplay.Model.Tile.RegionMap;
-import Gameplay.Model.Utility.HexaVertex;
+package Gameplay.Model.Utility;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class RiverVisitor implements RegionMapVisitor {
+public class HexConventionAle extends RiverConvention{
     private int riverType, rotationNumber;
+    private ArrayList<Integer> riverIndices;
 
 
     @Override
-    public void visitRegionMap(RegionMap regionMap) {
-        List<Integer> riverIndices = new ArrayList<>();
-        for (int i = 1; i <= 6; i++) {
-            try {
-                if(regionMap.hasRegionAt(HexaVertex.createVertex(i+6))){
-                    riverIndices.add(i-1);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (riverIndices.isEmpty()){
-            riverType = 0;
-            rotationNumber = 0;
-        }
-        else{
-            setRivers(riverIndices);
-        }
-    }
-    public int getRiverType(){
-        return riverType;
-    }
-    public int getRotationNumber(){
-        return rotationNumber;
+    public void setRivers(ArrayList<Integer> riverIndices){
+        this.riverIndices = riverIndices;
+        setRivers();
     }
 
-    private void setRivers(List<Integer> riverIndices){
+    @Override
+    public int getRiverType() {
+        return riverType;
+
+    }
+
+    @Override
+    public int getRiverRotation() {
+        return rotationNumber - 1; //zero index the rotations
+    }
+
+    private void setRivers(){
+        if(riverIndices.isEmpty()){
+            riverType = 0;
+            rotationNumber = 0;
+            return;
+        }
+
         int numSides = riverIndices.size();
         int startingIndex = riverIndices.get(0);
 

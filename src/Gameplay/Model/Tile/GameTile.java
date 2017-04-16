@@ -2,8 +2,6 @@ package Gameplay.Model.Tile;
 
 import Gameplay.Model.Region.Region;
 import Gameplay.Model.Visitors.GameTileVisitor;
-import Gameplay.Model.Visitors.RegionMapVisitor;
-import Gameplay.Model.Visitors.RiverVisitor;
 import MapBuilder.Model.Terrain.Terrain;
 import MapBuilder.Model.Tile.Tile;
 import MapBuilder.Model.Visitor.TileVisitor;
@@ -12,10 +10,13 @@ import java.util.Iterator;
 
 public class GameTile extends Tile {
     private RegionMap regionMap;
+    private final int riverType, rotationNumber;
 
-    public GameTile(Terrain terrain, RegionMap regionMap){
+    public GameTile(Terrain terrain, RegionMap regionMap, int riverType, int rotationNumber){
         super(terrain);
         this.regionMap = regionMap;
+        this.riverType = riverType;
+        this.rotationNumber = rotationNumber;
     }
 
     public RegionMap getRegionMap(){
@@ -28,7 +29,7 @@ public class GameTile extends Tile {
 
     @Override
     public Tile clone() {
-        return new GameTile(getTerrain(), regionMap);
+        return new GameTile(getTerrain(), regionMap, riverType, rotationNumber);
     }
 
     @Override
@@ -42,13 +43,9 @@ public class GameTile extends Tile {
     }
 
     public int getRiverType(){
-        RiverVisitor v = new RiverVisitor();
-        v.visitRegionMap(regionMap);
-        return v.getRiverType();
+        return riverType;
     }
     public int getRotationNumber(){
-        RiverVisitor v = new RiverVisitor();
-        v.visitRegionMap(regionMap);
-        return v.getRotationNumber();
+        return rotationNumber;
     }
 }

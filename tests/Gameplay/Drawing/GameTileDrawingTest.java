@@ -13,6 +13,7 @@ import javax.imageio.ImageIO;
 
 import Gameplay.Model.Tile.GameTile;
 import Gameplay.Model.Tile.GameTileBuilder;
+import Gameplay.Model.Utility.HexConventionAle;
 import Gameplay.Model.Visitors.GameTileDrawingVisitor;
 import org.junit.Test;
 
@@ -38,7 +39,7 @@ public class GameTileDrawingTest {
     }
     @Test
     public void testFunctionality(){
-        GameTileBuilder factory = new GameTileBuilder();
+        GameTileBuilder factory = new GameTileBuilder(new HexConventionAle());
         ArrayList<Integer> rivers = new ArrayList<>();
         rivers.add(1);
         rivers.add(4);
@@ -59,7 +60,7 @@ public class GameTileDrawingTest {
 
     @Test
     public void testGetRivers(){
-        GameTileBuilder builder = new GameTileBuilder();
+        GameTileBuilder builder = new GameTileBuilder(new HexConventionAle());
         ArrayList<Integer> rivers = new ArrayList<>();
         for(int i = 1; i < 6; i++){
             rivers.add(i);
