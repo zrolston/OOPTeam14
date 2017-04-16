@@ -6,9 +6,6 @@ import Gameplay.Model.Transporters.Transporter;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by zrgam_000 on 4/15/2017.
- */
 public class TransporterOccupancy {
     Region region;
     List<Transporter> transporters;
