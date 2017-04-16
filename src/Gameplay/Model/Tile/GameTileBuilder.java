@@ -74,7 +74,7 @@ public class GameTileBuilder {
             }
             case 1: {
                 addRivers(riverIndices);
-                HexaVertex start = HexaVertex.createVertex(riverIndices.get(0) + 1);
+                HexaVertex start = HexaVertex.createVertex(riverIndices.get(0)).nextVertex();
                 ArrayList<HexaVertex> list = new ArrayList<>();
                 list.add(start);
                 HexaVertex temp = start.nextVertex();
@@ -87,8 +87,8 @@ public class GameTileBuilder {
             }
             case 2: {
                 addRivers(riverIndices);
-                HexaVertex start = HexaVertex.createVertex(riverIndices.get(0) + 1);
-                HexaVertex start2 = HexaVertex.createVertex(riverIndices.get(1) + 1);
+                HexaVertex start = HexaVertex.createVertex(riverIndices.get(0)).nextVertex();
+                HexaVertex start2 = HexaVertex.createVertex(riverIndices.get(1)).nextVertex();
                 ArrayList<HexaVertex> list = new ArrayList<>();
                 list.add(start);
                 HexaVertex temp = start.nextVertex();
@@ -108,9 +108,9 @@ public class GameTileBuilder {
             }
             case 3: {
                 addRivers(riverIndices);
-                HexaVertex start = HexaVertex.createVertex(riverIndices.get(0) + 1);
-                HexaVertex start2 = HexaVertex.createVertex(riverIndices.get(1) + 1);
-                HexaVertex start3 = HexaVertex.createVertex(riverIndices.get(2) + 1);
+                HexaVertex start = HexaVertex.createVertex(riverIndices.get(0)).nextVertex();
+                HexaVertex start2 = HexaVertex.createVertex(riverIndices.get(1)).nextVertex();
+                HexaVertex start3 = HexaVertex.createVertex(riverIndices.get(2)).nextVertex();
                 ArrayList<HexaVertex> list = new ArrayList<>();
                 list.add(start);
                 HexaVertex temp = start.nextVertex();
