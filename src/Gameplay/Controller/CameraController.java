@@ -80,8 +80,12 @@ public class CameraController implements MouseMotionListener, MouseListener{
             //Get locations of current Tile
             GameTile active = map.getTileAt(location);
             //River Type and Rotations from tile
-            Integer riverType = active.getRiverType();
-            Integer rotation = active.getRotationNumber();
+            Integer riverType;
+            Integer rotation;
+            try {
+                riverType = active.getRiverType();
+                rotation = active.getRotationNumber();
+            }catch (Exception exe){ return; }
             List<PolygonPointSet> polygonPoints = PolygonUtility.getRegionsByType(new Integer(riverType));
             updateCursorRegion(polygonPoints, e, rotation);
         }
