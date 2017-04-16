@@ -36,7 +36,7 @@ public class InputSelectionView extends JPanel {
         Board b = new Board();
         CarriableDrawingVisitor gv = new CarriableDrawingVisitor();
         b.accept(gv);
-        goodsImages.add( gv.getBufferedImage() );
+        goodsImages.add( gv.getImage() );
         /////////////////////////////////////////////////////
 
         setLayout(new BorderLayout());
@@ -102,6 +102,7 @@ public class InputSelectionView extends JPanel {
     public void setRightCarriables(java.util.List<Carriable> rightCarriables) { this.rightCarriables = rightCarriables; }
 
     protected void paintComponent(Graphics g) {
+    	((Graphics2D)(g)).setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
         g.drawImage(background, 0, 0, (int)(getWidth() * 1.145), (int)(getHeight()), null);
         super.paintComponent(g);
         drawButtons(g);

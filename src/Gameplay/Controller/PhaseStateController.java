@@ -12,37 +12,8 @@ import java.util.List;
  */
 public abstract class PhaseStateController  {
 
-    List<MainViewController> controllers = new ArrayList<>();
-
-    private HashMap<MouseActions, Action> mouseActions = new HashMap<>();
-    private HashMap<Character, Action> keyboardActions = new HashMap<>();
 
 
-    public void addAction(MouseActions mouseAction, Action action) {
-        mouseActions.put(mouseAction, action);
-    }
+    public abstract void activateController(MainView mainView);
 
-    public void addAction(char character, Action action) {
-        keyboardActions.put(character, action);
-    }
-
-    protected abstract List<MainViewController> getControllers();
-
-    protected void setControllers() {
-        controllers.addAll(getControllers());
-    }
-
-    public void activateController(MainView mainView) {
-        for (MainViewController mvc : controllers) {
-            mvc.activateController(mainView);
-        }
-    }
-
-    protected HashMap<Character, Action> getKeyboardActions() {
-        return keyboardActions;
-    }
-
-    protected HashMap<MouseActions, Action> getMouseActions() {
-        return mouseActions;
-    }
 }

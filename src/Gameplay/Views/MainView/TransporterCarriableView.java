@@ -50,13 +50,13 @@ public class TransporterCarriableView extends JPanel {
 
         TransporterDrawingVisitor t = new TransporterDrawingVisitor();
         donky.accept(t);
-        BufferedImage transporterImage = t.getBufferedImage();
+        BufferedImage transporterImage = t.getImage();
         transporterImages.add(transporterImage);
 
         Goose g = new Goose();
         CarriableDrawingVisitor gv = new CarriableDrawingVisitor();
         g.accept(gv);
-        goodsImages.add( gv.getBufferedImage() );
+        goodsImages.add( gv.getImage() );
         /////////////////////////////////////////////////////
 
         setLayout(new BorderLayout());
@@ -93,25 +93,6 @@ public class TransporterCarriableView extends JPanel {
 
         }
 
-
-        //Test Action Listener
-        addMouseListener(new MouseListener() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                PixelPoint point = new PixelPoint(e.getX(), e.getY());
-                int index = getCarriableIndex(point);
-                System.out.println(index);
-            }
-
-            @Override
-            public void mouseClicked(MouseEvent e) {}
-            @Override
-            public void mouseReleased(MouseEvent e) {}
-            @Override
-            public void mouseEntered(MouseEvent e) {}
-            @Override
-            public void mouseExited(MouseEvent e) {}
-        });
     }
 
     //Set the different Carriables Dynamically
@@ -119,6 +100,7 @@ public class TransporterCarriableView extends JPanel {
     public void setRightCarriables(List<Carriable> rightCarriables) { this.rightCarriables = rightCarriables; }
 
     protected void paintComponent(Graphics g) {
+    	((Graphics2D)(g)).setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
         g.drawImage(background, 0, 0, (int)(getWidth() * 1.145), (int)(getHeight()), null);
         super.paintComponent(g);
         drawButtons(g);

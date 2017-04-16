@@ -30,7 +30,7 @@ class HomeButtonsView extends JPanel {
         panel.setLayout(new GridLayout(0,1));
 
         playButton = new JButton("START GAME");
-        options = new JButton("MAP SELECT");
+        options = new JButton("MAP EDITOR");
         quitButton = new JButton("QUIT");
 
         playButton.setPreferredSize(new Dimension(300, 40));

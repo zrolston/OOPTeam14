@@ -9,7 +9,7 @@ public class CarriableIterator implements StuffIterator {
     private ArrayList<Carriable> carriables;
     int cur, size;
 
-    public CarriableIterator(ArrayList<Carriable> carriables){
+    public CarriableIterator(ArrayList<Carriable> carriables) {
         this.carriables = carriables;
         size = carriables.size();
         cur = 0;
@@ -22,7 +22,7 @@ public class CarriableIterator implements StuffIterator {
 
     @Override
     public void next() {
-        if(cur == size){
+        if (cur == size) {
             return;
         }
         cur++;
@@ -36,5 +36,16 @@ public class CarriableIterator implements StuffIterator {
     @Override
     public int size() {
         return size;
+    }
+
+    public Carriable getCarriableAt(int number) {
+        if (isInBounds(number)) {
+            return carriables.get(number);
+        }
+        return null;
+    }
+
+    private boolean isInBounds(int number) {
+        return number >= 0 && number < carriables.size();
     }
 }

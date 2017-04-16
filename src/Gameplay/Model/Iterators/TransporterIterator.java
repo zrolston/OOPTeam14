@@ -36,4 +36,15 @@ public class TransporterIterator implements StuffIterator {
     public int size() {
         return size;
     }
+
+    public Transporter getTransporterAt(int number) {
+        if (isInBounds(number)) {
+            return transporters.get(number);
+        }
+        return null;
+    }
+
+    private boolean isInBounds(int number) {
+        return number >= 0 && number < transporters.size();
+    }
 }

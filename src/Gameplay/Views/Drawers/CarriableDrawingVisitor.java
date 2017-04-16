@@ -19,12 +19,7 @@ import java.awt.image.BufferedImage;
 public class CarriableDrawingVisitor implements CarriableVisitor {
 
     private BufferedImage image;
-    private PixelPoint origin;
 
-    public CarriableDrawingVisitor(PixelPoint origin) {
-        this.origin = origin;
-    }
-    public CarriableDrawingVisitor() {}
     @Override
     public void visitBoard(Board b) {
         image = ImageLoader.getImage("BOARD");
@@ -152,10 +147,7 @@ public class CarriableDrawingVisitor implements CarriableVisitor {
         }
     }
 
-    public ImageWithLocation getImage() {
-        return new ImageWithLocation(image, origin);
-    }
-    public BufferedImage getBufferedImage() {
+    public BufferedImage getImage() {
         return image;
     }
 

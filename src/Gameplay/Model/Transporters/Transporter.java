@@ -1,5 +1,6 @@
 package Gameplay.Model.Transporters;
 
+import Gameplay.Model.Goods.GoodsBag;
 import Gameplay.Model.Region.Region;
 import Gameplay.Model.Region.RegionSet;
 import Gameplay.Model.TransporterFactory.Permit;
@@ -20,6 +21,7 @@ abstract public class Transporter extends Owned implements Carriable{
     private int maxMovement;
     private int remainingMovement;
     private LimitedGoodsBag goods;
+    private Transporter carriedTransporter;
     private Map<Region, Integer> movementList;
     private Region[] cache; //Current = cache[0], cached = cache[1]
     //private TransporterMovementObserver transporterMovementObserver;
@@ -76,4 +78,17 @@ abstract public class Transporter extends Owned implements Carriable{
         remainingMovement = maxMovement;
     }
 
+    public ArrayList<Carriable> getCarriables() {
+        ArrayList<Carriable> myShit = new ArrayList<>();
+
+        if(carriedTransporter != null) {
+            myShit.add(carriedTransporter);
+        }
+
+        else{
+            myShit.addAll(goods.getGoods());
+        }
+
+        return myShit;
+    }
 }
