@@ -4,6 +4,7 @@ import Gameplay.Model.Goods.GoodsBag;
 import Gameplay.Model.Goods.Trunk;
 import Gameplay.Model.Producer.ProducerRequest;
 import Gameplay.Model.Producer.UserRequest;
+import Gameplay.Model.TransporterFactory.RaftFactory;
 import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Model.Transporters.WaterTransporter.Raft;
 import Gameplay.Model.Visitors.ProducerVisitor;
@@ -16,6 +17,7 @@ public class RaftProducer extends SecondaryTransporterProducer {
     private ProducerRequest input;
 
     public RaftProducer() {
+        super(new RaftFactory());
         generateInput();
     }
 
@@ -26,9 +28,6 @@ public class RaftProducer extends SecondaryTransporterProducer {
         input = new ProducerRequest(goods, null);
     }
 
-    private Transporter generateOutputs() {
-        return new Raft();
-    }
 
     @Override
     public void accept(ProducerVisitor pv) {

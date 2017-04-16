@@ -4,6 +4,7 @@ import Gameplay.Model.Goods.Board;
 import Gameplay.Model.Goods.GoodsBag;
 import Gameplay.Model.Producer.ProducerRequest;
 import Gameplay.Model.Producer.UserRequest;
+import Gameplay.Model.TransporterFactory.WagonFactory;
 import Gameplay.Model.Transporters.LandTransporters.Donkey;
 import Gameplay.Model.Transporters.LandTransporters.Wagon;
 import Gameplay.Model.Transporters.Transporter;
@@ -17,6 +18,7 @@ public class WagonProducer extends SecondaryTransporterProducer {
     private ProducerRequest input;
 
     public WagonProducer() {
+        super(new WagonFactory());
         generateInput();
     }
 
@@ -25,10 +27,6 @@ public class WagonProducer extends SecondaryTransporterProducer {
         goods.addBoard(new Board());
         goods.addBoard(new Board());
         input = new ProducerRequest(goods, new Donkey());
-    }
-
-    private Transporter generateOutputs() {
-        return new Wagon();
     }
 
     @Override
