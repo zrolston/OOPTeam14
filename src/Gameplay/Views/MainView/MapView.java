@@ -1,21 +1,33 @@
 package Gameplay.Views.MainView;
 
 import Gameplay.Controller.CameraController;
+import Gameplay.Model.Visitors.GameMapDrawingVisitor;
+import Gameplay.Model.Visitors.GameTileDrawingVisitor;
 import Gameplay.Views.Utility.PolygonUtility;
 import Gameplay.Views.Utility.PixelMap;
 import Gameplay.Views.Utility.RenderingThread;
+import MapBuilder.Model.Map.IViewMap;
 import MapBuilder.Model.Utility.HexLocation;
 import MapBuilder.Model.Utility.ILocation;
+import MapBuilder.Views.Drawers.TileInternalDrawer;
 import MapBuilder.Views.Utility.PixelPoint;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 
 public class MapView extends JPanel {
 
-    RenderingThread renderingThread;
-    ILocation[][] map;
-    int size = 50;
+    private RenderingThread renderingThread;
+    private ILocation[][] map;
+    private BufferedImage[][] tileImages;
+    private int size = 50;
+
+    public void updateTileImages(IViewMap map) {
+        GameMapDrawingVisitor drawingVisitor = new GameMapDrawingVisitor();
+        map.accept(drawingVisitor);
+        tileImages = drawingVisitor.getImageArray();
+    }
 
     public MapView(){
         map = new HexLocation[size][size];
@@ -45,6 +57,17 @@ public class MapView extends JPanel {
                 PixelPoint center = PixelMap.getMapTileOrigin(map[i][j]);
                 Polygon hexaTile = PolygonUtility.getHexagon(center);
                 g.drawPolygon(hexaTile);
+            }
+        }
+
+        if (tileImages == null)
+            return;
+        for (int i = 0; i < tileImages.length; i++) {
+            for (int j = 0; j < tileImages[i].length; j++) {
+                if (MapBuilder.Views.Utility.PixelMap.isTileVisible(new HexLocation(i, j))) {
+                    PixelPoint origin = MapBuilder.Views.Utility.PixelMap.getMapTileOrigin(new HexLocation(i, j));
+                    TileInternalDrawer.drawInMap(g, tileImages[i][j], origin);
+                }
             }
         }
     }

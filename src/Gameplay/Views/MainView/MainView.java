@@ -17,7 +17,7 @@ public class MainView extends JLayeredPane {
     EndPhaseButton endPhaseButton;
     GeeseFollowButton geeseFollowButton;
     InputSelectionView inputSelectionView;
-    MapView mapView;
+    public MapView mapView;
     ProducerSelectionView producerSelectionView;
     RegionCarriableView regionCarriableView;
     ResearchSelectionView researchSelectionView;

@@ -1,14 +1,15 @@
-package MapBuilder.Model.Visitor;
+package Gameplay.Model.Visitors;
 
 import Gameplay.Model.Visitors.GameTileDrawingVisitor;
 import MapBuilder.Model.Map.IViewMap;
 import MapBuilder.Model.Tile.Tile;
 import MapBuilder.Model.Utility.ILocation;
+import MapBuilder.Model.Visitor.MapVisitor;
 import MapBuilder.Views.Utility.ImageLoader;
 
 import java.awt.image.BufferedImage;
 
-public class GameMapDrawingVisitor implements MapVisitor{
+public class GameMapDrawingVisitor implements MapVisitor {
 
     private BufferedImage[][] imageArray;
 
