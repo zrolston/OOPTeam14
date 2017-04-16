@@ -25,7 +25,7 @@ public class SwapFrameButton extends JButton {
         this.frame = frame;
         setBounds((int)(PixelMap.SCREEN_WIDTH * 3/4), PixelMap.SCREEN_HEIGHT/40, PixelMap.SCREEN_WIDTH /10, (int)(PixelMap.SCREEN_HEIGHT * .075) );
 
-        JLabel label = new JLabel( "take me back!" );
+        JLabel label = new JLabel( "MAIN MENU" );
         label.setFont(new Font("Serif", Font.BOLD, 15));
         this.add( label, BorderLayout.CENTER );
 

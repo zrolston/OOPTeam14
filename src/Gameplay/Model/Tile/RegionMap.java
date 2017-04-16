@@ -3,6 +3,7 @@ package Gameplay.Model.Tile;
 import Gameplay.Model.Region.Region;
 import Gameplay.Model.Utility.HexaVertex;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -33,5 +34,9 @@ public class RegionMap {
             }
         }
         return false;
+    }
+
+    public Iterator<Region> getMyRegions(){
+        return regionMap.values().iterator();
     }
 }

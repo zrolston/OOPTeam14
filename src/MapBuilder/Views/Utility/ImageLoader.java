@@ -49,7 +49,9 @@ public class ImageLoader {
             cachedImages.put("HAMBURGER", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/hamburger.png")));
             cachedImages.put("BOMB", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/bomb.png")));
             cachedImages.put("SAVE", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/save.png")));  
-            cachedImages.put("LOAD", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/load.png")));   
+            cachedImages.put("LOAD", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/load.png")));  
+
+            cachedImages.put("GAME_BACKGROUND", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/gameBackground.png")));
             cachedImages.put("WONDER", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/wonder.png")));  
             cachedImages.put("WONDER_BACKGROUND", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/wonderBackground.png"))); 
             cachedImages.put("NEUTRAL_BRICK", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/neutralBrick.png"))); 
@@ -62,7 +64,6 @@ public class ImageLoader {
             cachedImages.put("BLUE_MARKER", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/blueMarker.png")));
             cachedImages.put("ORANGE_MARKER", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/orangeMarker.png")));
             cachedImages.put("RESEARCH_MARKER", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/researchMarker.png")));
-            cachedImages.put("BLANK_HEX", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/testhexatile.png")));
             cachedImages.put("BLANK_HEX", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/testhexatile.png")));
             cachedImages.put("ORANGE_WALL", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/orangeWall.png")));
             cachedImages.put("BLUE_WALL", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/blueWall.png")));
@@ -78,10 +79,8 @@ public class ImageLoader {
             cachedImages.put("ORANGE_TRUCK", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Transporters/truckOrange.png")));
             cachedImages.put("BLUE_WAGON", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Transporters/wagonBlue.png")));
             cachedImages.put("ORANGE_WAGON", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Transporters/wagonOrange.png")));
-
-
+            
             cachedImages.put("GOOSE", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Goods/goose.png")));
-
             cachedImages.put("BOARD", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Goods/boards.png")));
             cachedImages.put("CLAY", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Goods/clay.png")));
             cachedImages.put("FUEL", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Goods/fuel.png")));
@@ -108,7 +107,7 @@ public class ImageLoader {
             cachedImages.put("ROWBOAT_FACTORY", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Factories/rowboatFactory.png")));
             cachedImages.put("TRUCK_FACTORY", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Factories/truckFactory.png")));
             cachedImages.put("WAGON_FACTORY", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Factories/wagonFactory.png")));
-            //cachedImages.put("STEAMER_FACTORY", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Factories/steamerFactory.png")));
+            cachedImages.put("STEAMER_FACTORY", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Factories/steamerFactory.png")));
         }
         catch (Exception e) {
             e.printStackTrace();

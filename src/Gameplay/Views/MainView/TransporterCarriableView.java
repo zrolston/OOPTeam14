@@ -100,6 +100,7 @@ public class TransporterCarriableView extends JPanel {
     public void setRightCarriables(List<Carriable> rightCarriables) { this.rightCarriables = rightCarriables; }
 
     protected void paintComponent(Graphics g) {
+    	((Graphics2D)(g)).setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
         g.drawImage(background, 0, 0, (int)(getWidth() * 1.145), (int)(getHeight()), null);
         super.paintComponent(g);
         drawButtons(g);
