@@ -1,6 +1,7 @@
 package Gameplay.Model.Utility;
 
 import Gameplay.Model.Map.GameMap;
+import MapBuilder.Model.Utility.MapParsers.DaveBuilder;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -23,11 +24,10 @@ public class MapGeneratorTest {
 
     @Test
     public void generateRegionSets() {
-        GameMap map = new GameMap(21, 21);
-        GameModelFacade.initialize( );
+        DaveBuilder _builder = new GameMapDaveBuilder();
+        _builder.buildMap("C:\\Users\\Cameron\\IdeaProjects\\OOPTeam14\\res\\SavedMaps\\mapTest.dave");
         GameModelFacade facade = GameModelFacade.getInstance();
-        facade.loadMap("C:\\Users\\Cameron\\IdeaProjects\\OOPTeam14\\res\\SavedMaps\\full board map.dave");
-        map = facade.debugGetMap();
+        GameMap map = facade.debugGetMap();
     }
 
 }
