@@ -50,13 +50,13 @@ public class TransporterCarriableView extends JPanel {
 
         TransporterDrawingVisitor t = new TransporterDrawingVisitor();
         donky.accept(t);
-        BufferedImage transporterImage = t.getBufferedImage();
+        BufferedImage transporterImage = t.getImage();
         transporterImages.add(transporterImage);
 
         Goose g = new Goose();
         CarriableDrawingVisitor gv = new CarriableDrawingVisitor();
         g.accept(gv);
-        goodsImages.add( gv.getBufferedImage() );
+        goodsImages.add( gv.getImage() );
         /////////////////////////////////////////////////////
 
         setLayout(new BorderLayout());

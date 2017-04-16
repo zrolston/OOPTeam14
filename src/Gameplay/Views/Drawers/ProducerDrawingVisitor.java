@@ -17,11 +17,10 @@ public class ProducerDrawingVisitor implements ProducerVisitor {
     private BufferedImage image;
     private PixelPoint origin;
 
-    public ProducerDrawingVisitor(PixelPoint origin) {
+    public void setOrigin(PixelPoint origin) {
         this.origin = origin;
     }
 
-    public ProducerDrawingVisitor() {}
     @Override
     public void visitWoodCutter(WoodCutter wc) {
         image = ImageLoader.getImage("WOODCUTTER");
@@ -104,6 +103,10 @@ public class ProducerDrawingVisitor implements ProducerVisitor {
 
     public BufferedImage getImage() {
         return image;
+    }
+
+    public ImageWithLocation getImageWithLocation() {
+        return new ImageWithLocation(image, origin);
     }
 
 }
