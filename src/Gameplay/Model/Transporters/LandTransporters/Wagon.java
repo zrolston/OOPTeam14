@@ -1,12 +1,17 @@
 package Gameplay.Model.Transporters.LandTransporters;
 
+import Gameplay.Model.TransporterFactory.Permit;
+import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Model.Visitors.CarriableVisitor;
 import Gameplay.Model.Visitors.TransporterVisitor;
 
-/**
- * Created by Willie on 4/14/2017.
- */
-public class Wagon extends LandTransporter {
+public class Wagon extends Transporter {
+
+    public Wagon(Permit...permits){
+        super(permits);
+        setMaxMovement(3);
+    }
+
     @Override
     public void accept(CarriableVisitor cv) {
         cv.visitWagon(this);

@@ -1,5 +1,6 @@
 package MapBuilder.Model.Tile;
 
+import Gameplay.Model.Visitors.GameTileVisitor;
 import MapBuilder.Model.Terrain.Terrain;
 import MapBuilder.Model.Visitor.TileVisitor;
 
@@ -17,4 +18,6 @@ public abstract class Tile {
     }
 
     public abstract void accept(TileVisitor v);
+
+    public abstract void accept(GameTileVisitor v);
 }

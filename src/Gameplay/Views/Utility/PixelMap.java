@@ -6,6 +6,7 @@
 ---------------------------------------------------------------------------------------*/
 
 package Gameplay.Views.Utility;
+
 import MapBuilder.Model.Utility.HexLocation;
 import MapBuilder.Model.Utility.ILocation;
 import MapBuilder.Views.Drawers.TileOutlineDrawer;
@@ -110,10 +111,15 @@ public class PixelMap {
     }
 
     public static boolean isTileVisible(ILocation tileLocation) {
-        Camera camera = Camera.getInstance();
         PixelPoint topLeft = getMapTileOrigin(tileLocation);
+        PixelPoint topRight = new PixelPoint(topLeft.getX() + TILE_FULL_WIDTH, topLeft.getY());
+        PixelPoint bottomLeft = new PixelPoint(topLeft.getX(), topLeft.getY() + TILE_HEIGHT);
         PixelPoint bottomRight = new PixelPoint(topLeft.getX() + (TILE_FULL_WIDTH), topLeft.getY() + (TILE_HEIGHT));
         if (((topLeft.getX() > 0) && (topLeft.getX() < SCREEN_WIDTH)) && ((topLeft.getY() > 0) && (topLeft.getY() < SCREEN_HEIGHT)))
+            return true;
+        else if (((bottomLeft.getX() > 0) && (bottomLeft.getX() < SCREEN_WIDTH)) && ((bottomLeft.getY() > 0)) && (bottomLeft.getY() < SCREEN_HEIGHT))
+            return true;
+        else if (((topRight.getX() > 0) && (topRight.getX() < SCREEN_WIDTH)) && ((topRight.getY() > 0) && (topRight.getY() < SCREEN_HEIGHT)))
             return true;
         else if (((bottomRight.getX() > 0) && (bottomRight.getX() < SCREEN_WIDTH)) && ((bottomRight.getY() > 0)) && (bottomRight.getY() < SCREEN_HEIGHT))
             return true;

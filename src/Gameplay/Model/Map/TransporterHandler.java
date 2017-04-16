@@ -10,9 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by zrgam_000 on 4/15/2017.
- */
+
 public class TransporterHandler {
     Map<Region, TransporterOccupancy> occupancyMap;
 
@@ -21,8 +19,10 @@ public class TransporterHandler {
     }
 
     public void move(Transporter t, Region start, Region end){
-        this.remove(t, start);
-        this.place(t, end);
+        if (t.moveTo(end)){
+            this.remove(t, start);
+            this.place(t, end);
+        }
     }
 
     public void place(Transporter t, Region region){

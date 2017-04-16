@@ -78,10 +78,10 @@ public class WonderView extends JPanel {
 	}
 
 	public void addCustomListenersToScreenSelectBtns() {
-        screenSelectBtns.addListnerToMainScreenButton( e -> display.setCurrScreen("MAIN_SCREEN") );
-        screenSelectBtns.addListnerToWonderScreenButton( e -> display.setCurrScreen("WONDER_SCREEN") );
-        screenSelectBtns.addListnerToResearchScreenButton( e -> display.setCurrScreen("RESEARCH_SCREEN") );
-        screenSelectBtns.addListnerToTransporterScreenButton( e -> display.setCurrScreen("TRANSPORTER_SCREEN") );
+		screenSelectBtns.addListnerToMainScreenButton( e -> display.displayMainScreen() );
+		screenSelectBtns.addListnerToWonderScreenButton( e -> display.displayWonderScreen() );
+		screenSelectBtns.addListnerToResearchScreenButton( e -> display.displayResearchScreen() );
+		screenSelectBtns.addListnerToTransporterScreenButton( e -> display.displayTransporterScreen() );
     }
 
 }

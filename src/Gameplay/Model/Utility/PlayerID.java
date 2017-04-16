@@ -4,7 +4,7 @@ package Gameplay.Model.Utility;
  */
 public class PlayerID {
 
-    private static final int NEUTRAL = 1;
+    private static final int NEUTRAL = -1;
 
     private static int  numPlayers = 0;
     int id;

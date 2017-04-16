@@ -18,6 +18,7 @@ public class GameMapDaveBuilder extends DaveBuilder {
         String terrain = tile.getTerrain();
         int[] riverIndices = tile.getRivers();
         ArrayList<Integer> riverIndicesList = new ArrayList<>();
+
         for (int i : riverIndices) {
             riverIndicesList.add(i);
         }
