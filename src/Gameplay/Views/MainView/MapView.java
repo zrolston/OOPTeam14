@@ -21,6 +21,7 @@ public class MapView extends JPanel {
     private List<ImageWithLocation> transporterImages;
     private List<ImageWithLocation> producerImages;
     private List<ImageWithLocation> goodsImages;
+    private CursorState cursorState = CursorState.getInstance();
 
     public void updateTileImages(IViewMap map) {
         GameMapDrawingVisitor drawingVisitor = new GameMapDrawingVisitor();
@@ -72,13 +73,12 @@ public class MapView extends JPanel {
         }
 
         //Tile Marker
-        GridDrawer.drawActiveTile(g, CursorState.getInstance().getActiveTile());
+//        GridDrawer.drawActiveTile(g, CursorState.getInstance().getActiveTile());
 
         //Region Marker Test
-        PixelPoint origin = PixelMap.getMapTileOrigin(CursorState.getInstance().getActiveTile());
-        PolygonPointSet polygonPointSet = PolygonUtility.type2Regions.get(2);
-        polygonPointSet.setCurrRotation(1);
-        GridDrawer.drawActiveRegion(g, polygonPointSet.getPolygon(origin.getX(), origin.getY()));
+        Polygon region = cursorState.getRegionArea();
+        if(region != null && cursorState.isMarkerActive())
+            GridDrawer.drawActiveRegion(g, region);
 
         if (transporterImages != null) {
             for (ImageWithLocation image : transporterImages)

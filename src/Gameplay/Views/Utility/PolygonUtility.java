@@ -33,6 +33,21 @@ public class PolygonUtility {
     private static Map<Integer,List<PolygonPointSet>> typeMap = new HashMap<>();
 
     static {
+
+        //TYPE #0
+        //-------------------------------------------------------------
+        //Region
+        List<Point> pointSet = new ArrayList<>();
+        pointSet.add(PixelMap.TOP_LEFT);
+        pointSet.add(PixelMap.TOP_RIGHT);
+        pointSet.add(PixelMap.RIGHT);
+        pointSet.add(PixelMap.BOTTOM_RIGHT);
+        pointSet.add(PixelMap.BOTTOM_LEFT);
+        pointSet.add(PixelMap.LEFT);
+        PolygonPointSet type0region = new PolygonPointSet(pointSet);
+        type0Regions.add(type0region);
+
+
         //TYPE #1
         //-------------------------------------------------------------
         //River
