@@ -52,22 +52,12 @@ public class RegionCarriableView extends JPanel {
         buttons = new ArrayList<>();
         for(int i = 0; i <  numElements / numCols + 1; i++) {
 
-            PixelPoint origin = new PixelPoint(horizontalOffset, horizontalOffset+((buttonSide+verticalOffset)*i));
-            buttons.add(PolygonUtility.generateSquare(origin, buttonSide));
-
-            if( ( i * numCols + 1)  >= numElements)
-                break;
-
-            origin = new PixelPoint(horizontalOffset+getWidth()/numCols-4, horizontalOffset+((buttonSide+verticalOffset)*i));
-            buttons.add(PolygonUtility.generateSquare(origin, buttonSide));
-
-            if( ( i * numCols + 2)  >= numElements)
-                break;
-
-            origin = new PixelPoint(horizontalOffset+(getWidth()/numCols) * (numCols - 1 )-4, horizontalOffset+((buttonSide+verticalOffset)*i));
-            buttons.add(PolygonUtility.generateSquare(origin, buttonSide));
-
-
+            for (int j = 0; j < numCols; j++) {
+                if( ( i * numCols + j)  >= numElements)
+                    break;
+                PixelPoint origin = new PixelPoint(horizontalOffset+getWidth()/numCols * j - 4, horizontalOffset+((buttonSide+verticalOffset)*i));
+                buttons.add(PolygonUtility.generateSquare(origin, buttonSide));
+            }
 
         }
 
