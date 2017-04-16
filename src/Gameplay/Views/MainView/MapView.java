@@ -1,8 +1,9 @@
 package Gameplay.Views.MainView;
 
 import Gameplay.Controller.CameraController;
-import Gameplay.Views.Drawers.PolygonDrawer;
+import Gameplay.Views.Utility.PolygonUtility;
 import Gameplay.Views.Utility.PixelMap;
+import Gameplay.Views.Utility.RenderingThread;
 import MapBuilder.Model.Utility.HexLocation;
 import MapBuilder.Model.Utility.ILocation;
 import MapBuilder.Views.Utility.PixelPoint;
@@ -42,7 +43,7 @@ public class MapView extends JPanel {
         for(int i=0; i<size; i++){
             for(int j=0; j<size; j++){
                 PixelPoint center = PixelMap.getMapTileOrigin(map[i][j]);
-                Polygon hexaTile = PolygonDrawer.getHexagon(center);
+                Polygon hexaTile = PolygonUtility.getHexagon(center);
                 g.drawPolygon(hexaTile);
             }
         }
@@ -54,31 +55,6 @@ public class MapView extends JPanel {
     }
 
     public void stopRendering(){
-        renderingThread.stop();
-    }
-
-
-    class RenderingThread extends Thread{
-        private Component view;
-        private int frameRate;
-
-        public RenderingThread(Component view, int frameRate){
-            this.view = view;
-            this.frameRate = frameRate;
-        }
-
-        public void setFrameRate(int frameRate) { this.frameRate = frameRate; }
-        public int getFrameRate() { return frameRate; }
-
-        public void run(){
-            while(true){
-                try {
-                    Thread.sleep(1000/frameRate);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                view.repaint();
-            }
-        }
+        renderingThread.interrupt();
     }
 }

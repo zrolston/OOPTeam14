@@ -1,11 +1,11 @@
 package Gameplay.Model.Transporters.LandTransporters;
 
-import Gameplay.Model.Region.RegionSet;
 import Gameplay.Model.TransporterFactory.Permit;
+import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Model.Visitors.CarriableVisitor;
 import Gameplay.Model.Visitors.TransporterVisitor;
 
-public class Wagon extends LandTransporter {
+public class Wagon extends Transporter {
 
     public Wagon(Permit...permits){
         super(permits);

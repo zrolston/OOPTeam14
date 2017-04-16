@@ -5,7 +5,6 @@ import Gameplay.Model.Goods.GoodsBag;
 import Gameplay.Model.Goods.Paper;
 import Gameplay.Model.Goods.Trunk;
 import Gameplay.Model.Producer.ProducerRequest;
-import Gameplay.Model.Producer.SecondaryProducer.SecondaryProducer;
 import Gameplay.Model.Producer.UserRequest;
 import Gameplay.Model.Visitors.ProducerVisitor;
 
@@ -15,7 +14,7 @@ import java.util.List;
 /**
  * Created by Willie on 4/15/2017.
  */
-public class Papermill extends SecondaryProducer {
+public class Papermill extends SecondaryGoodFactory {
 
     private List<ProducerRequest> inputs;
 
@@ -39,10 +38,10 @@ public class Papermill extends SecondaryProducer {
         inputs.add(new ProducerRequest(goods3, null));
     }
 
-    private ProducerRequest generateOutputs() {
+    private GoodsBag generateOutputs() {
         GoodsBag goods = new GoodsBag();
         goods.addPaper(new Paper());
-        return new ProducerRequest(goods, null);
+        return goods;
     }
 
     @Override
@@ -51,7 +50,7 @@ public class Papermill extends SecondaryProducer {
     }
 
     @Override
-    public ProducerRequest produce(UserRequest ur) {
+    public GoodsBag produce(UserRequest ur) {
         for (ProducerRequest input : inputs) {
             if (!ur.contains(input))
                 continue;
@@ -61,6 +60,6 @@ public class Papermill extends SecondaryProducer {
                 return generateOutputs();
             }
         }
-        return null;
+        return new GoodsBag();
     }
 }

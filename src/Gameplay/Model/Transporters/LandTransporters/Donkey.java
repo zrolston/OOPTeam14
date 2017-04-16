@@ -1,10 +1,11 @@
 package Gameplay.Model.Transporters.LandTransporters;
 
 import Gameplay.Model.TransporterFactory.Permit;
+import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Model.Visitors.CarriableVisitor;
 import Gameplay.Model.Visitors.TransporterVisitor;
 
-public class Donkey extends LandTransporter {
+public class Donkey extends Transporter {
 
     public Donkey(Permit...permits){
         super(permits);

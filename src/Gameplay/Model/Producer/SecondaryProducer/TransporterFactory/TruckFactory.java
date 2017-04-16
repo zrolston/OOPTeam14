@@ -4,15 +4,16 @@ import Gameplay.Model.Goods.Fuel;
 import Gameplay.Model.Goods.GoodsBag;
 import Gameplay.Model.Goods.Iron;
 import Gameplay.Model.Producer.ProducerRequest;
-import Gameplay.Model.Producer.SecondaryProducer.SecondaryProducer;
+import Gameplay.Model.Producer.SecondaryProducer.GoodProducer.SecondaryGoodFactory;
 import Gameplay.Model.Producer.UserRequest;
 import Gameplay.Model.Transporters.LandTransporters.Truck;
+import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Model.Visitors.ProducerVisitor;
 
 /**
  * Created by Willie on 4/15/2017.
  */
-public class TruckFactory extends SecondaryProducer {
+public class TruckFactory extends SecondaryTransporterFactory {
 
     private ProducerRequest input;
 
@@ -27,9 +28,8 @@ public class TruckFactory extends SecondaryProducer {
         input = new ProducerRequest(goods, null);
     }
 
-    private ProducerRequest generateOutputs() {
-        GoodsBag goods = new GoodsBag();
-        return new ProducerRequest(goods, new Truck());
+    private Transporter generateOutputs() {
+        return new Truck();
     }
 
     @Override
@@ -38,7 +38,7 @@ public class TruckFactory extends SecondaryProducer {
     }
 
     @Override
-    public ProducerRequest produce(UserRequest ur) {
+    public Transporter produce(UserRequest ur) {
         if (!ur.contains(input))
             return null;
         else {

@@ -16,7 +16,8 @@ public class ProducerSelectionView extends JPanel {
         setBounds((int)(PixelMap.SCREEN_WIDTH *27.0/40), (int)(PixelMap.SCREEN_HEIGHT * .25), PixelMap.SCREEN_WIDTH /7, (int)(PixelMap.SCREEN_HEIGHT * (0.25)));
         setOpaque(false);
         setVisible( true );
-        background = ImageLoader.getImage("SCROLL_BACKGROUND");
+        background = ImageLoader.getImage("WONDER_BACKGROUND");
+        this.setBorder(BorderFactory.createLineBorder(new Color(0x11111111), 1));
     }
 
     protected void paintComponent(Graphics g) {

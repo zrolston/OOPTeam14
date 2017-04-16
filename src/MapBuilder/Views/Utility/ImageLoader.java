@@ -62,6 +62,11 @@ public class ImageLoader {
             cachedImages.put("BLUE_MARKER", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/blueMarker.png")));
             cachedImages.put("ORANGE_MARKER", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/orangeMarker.png")));
             cachedImages.put("RESEARCH_MARKER", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/researchMarker.png")));
+            cachedImages.put("BLANK_HEX", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/testhexatile.png")));
+            cachedImages.put("BLANK_HEX", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/testhexatile.png")));
+            cachedImages.put("ORANGE_WALL", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/orangeWall.png")));
+            cachedImages.put("BLUE_WALL", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/blueWall.png")));
+
         }
         catch (Exception e) {
             e.printStackTrace();

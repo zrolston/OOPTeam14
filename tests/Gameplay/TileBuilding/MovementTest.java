@@ -60,7 +60,7 @@ public class MovementTest {
         // nextInt is normally exclusive of the top value,
         // so add 1 to make it inclusive
         Set<Region> visitedList = new HashSet<>();
-        int repetitions = 20;
+        int repetitions = 100;
         while (repetitions > 0){
             int size = movementList.size();
             int randomRegion = rand.nextInt(size); // 0 <= randomRegion < size
@@ -71,6 +71,7 @@ public class MovementTest {
             repetitions--;
         }
         System.out.println("Size of visited list: " + visitedList.size());
+        assertEquals(visitedList.size(), 5);
 
     }
 
@@ -106,6 +107,7 @@ public class MovementTest {
             repetitions--;
         }
         System.out.println("Size of visited list: " + visitedList.size());
+        assertEquals(visitedList.size(), 8);
     }
 }
 

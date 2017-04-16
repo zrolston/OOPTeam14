@@ -7,7 +7,6 @@ import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Model.Utility.PlayerID;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeAll;
 
 import static org.junit.Assert.*;
 
@@ -37,8 +36,8 @@ public class TransporterHandlerTest {
 
         DonkeyFactory df = new DonkeyFactory();
 
-        p1 = new PlayerID();
-        p2 = new PlayerID();
+        p1 = PlayerID.getNewPlayerID();
+        p2 = PlayerID.getNewPlayerID();
 
         t11 = df.create();
         t11.setPlayerID(p1);

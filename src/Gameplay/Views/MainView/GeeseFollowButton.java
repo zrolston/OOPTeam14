@@ -18,7 +18,7 @@ public class GeeseFollowButton extends JPanel {
         setBounds((int)(PixelMap.SCREEN_WIDTH * 6.5/40), (int)(PixelMap.SCREEN_HEIGHT * 17/20), PixelMap.SCREEN_WIDTH /7, PixelMap.SCREEN_HEIGHT /12);
 
         geeseButton = new JButton();
-        geeseButton.setText("GEESE ALERT");
+        geeseButton.setText("ALERT GEESE");
         geeseButton.setFont(new Font("plain", Font.BOLD, 13));
         geeseButton.setOpaque(false);
         geeseButton.setVisible( true );
@@ -26,7 +26,8 @@ public class GeeseFollowButton extends JPanel {
         add(geeseButton, BorderLayout.CENTER);
         setOpaque(false);
         setVisible( true );
-        background = ImageLoader.getImage("SCROLL_BACKGROUND");
+        background = ImageLoader.getImage("RESEARCH_BACKGROUND");
+        this.setBorder(BorderFactory.createLineBorder(new Color(0x11111111), 1));
     }
 
     protected void paintComponent(Graphics g) {

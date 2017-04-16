@@ -1,11 +1,12 @@
 package Gameplay.Model.Transporters.WaterTransporter;
 
 import Gameplay.Model.TransporterFactory.Permit;
+import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Model.Visitors.CarriableVisitor;
 import Gameplay.Model.Visitors.TransporterVisitor;
 
 
-public class Rowboat extends WaterTransporter {
+public class Rowboat extends Transporter {
 
     public Rowboat(Permit...permits){
         super(permits);

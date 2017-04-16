@@ -1,8 +1,6 @@
 package Gameplay.Model.Region;
 
-import Gameplay.Model.Transporters.LandTransporters.LandTransporter;
 import Gameplay.Model.Transporters.Transporter;
-import Gameplay.Model.Transporters.WaterTransporter.WaterTransporter;
 import Gameplay.Model.Visitors.ConnectionGenerator;
 import Gameplay.Model.Visitors.RegionVisitor;
 
@@ -21,17 +19,8 @@ abstract public class Region {
         return regionSet;
     }
 
-    public void enterRegion(LandTransporter transporter){
+    public void enterRegion(Transporter transporter){
         transporter.setCurrentRegion(this);
-        doEnterRegion(transporter);
+        transporter.updateMovementSet(getRegionSet());
     }
-
-    public void enterRegion(WaterTransporter transporter){
-        transporter.setCurrentRegion(this);
-        doEnterRegion(transporter);
-    }
-
-    abstract public void doEnterRegion(LandTransporter landTransporter);
-
-    abstract public void doEnterRegion(WaterTransporter waterTransporter);
 }

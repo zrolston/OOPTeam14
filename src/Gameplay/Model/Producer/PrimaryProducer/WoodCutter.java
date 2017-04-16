@@ -16,9 +16,9 @@ public class WoodCutter extends PrimaryProducer {
     }
 
     @Override
-    public ProducerRequest produce() {
+    public GoodsBag produce() {
         GoodsBag goods = new GoodsBag();
         goods.addTrunk(new Trunk());
-        return new ProducerRequest(goods, null);
+        return goods;
     }
 }
