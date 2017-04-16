@@ -1,6 +1,7 @@
 package Gameplay.Views.MainView;
 
 import Gameplay.Controller.PanelControllers.TransporterCarriableController;
+import Gameplay.Controller.SubControllers.TransporterCarriableControllers.DropController;
 import Gameplay.Controller.SubControllers.TransporterCarriableControllers.TransporterAddToProducerController;
 import Gameplay.Model.Goods.Goose;
 import Gameplay.Model.Iterators.CarriableIterator;
@@ -28,7 +29,7 @@ import java.util.List;
 public class TransporterCarriableView extends JPanel {
 
     private BufferedImage background;
-    private ArrayList<Rectangle> buttons;
+    private ArrayList<Rectangle> buttons = new ArrayList<>();
     private CarriableIterator iter;
 
     int numCols = 2;
@@ -36,13 +37,14 @@ public class TransporterCarriableView extends JPanel {
     private int horizontalOffset, verticalOffset, buttonSide;
 
     public TransporterCarriableView() {
+
         setLayout(new BorderLayout());
         setBounds((int)(PixelMap.SCREEN_WIDTH * (1 - 34.0/40 - 1.0/7)), (int)(PixelMap.SCREEN_HEIGHT * .05), PixelMap.SCREEN_WIDTH /7, (int)(PixelMap.SCREEN_HEIGHT * (17.0/20 + 1.0/12 - .05)));
         setOpaque(false);
         setVisible( true );
         background = ImageLoader.getImage("SCROLL_BACKGROUND");
 
-        TransporterCarriableController controller = new TransporterAddToProducerController();
+        TransporterCarriableController controller = new DropController();
         controller.attachView( this );
     }
 
@@ -58,6 +60,7 @@ public class TransporterCarriableView extends JPanel {
         if(iter == null)
             return;
 
+        iter.first();
         int i = 0;
         while( i < iter.size() ) {
 
@@ -70,10 +73,12 @@ public class TransporterCarriableView extends JPanel {
             else
                 g.drawImage(img, (int)r.getX(), (int)r.getY(), (int)r.getWidth(), (int)r.getHeight(), null);
 
+            iter.next();
         }
     }
 
     public ArrayList<Rectangle> getButtons() {
+        generateButtons();
         return buttons;
     }
 
@@ -85,7 +90,10 @@ public class TransporterCarriableView extends JPanel {
 
     public void generateButtons() {
 
-        buttons = new ArrayList<>();
+        if(iter == null)
+            return;
+
+        buttons.clear();
         int numElements = iter.size();
 
         int widthOffset = getWidth() / numCols;

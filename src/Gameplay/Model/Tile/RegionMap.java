@@ -16,9 +16,9 @@ public class RegionMap {
 
     public Region getRegionAt(HexaVertex vertex){
         for (List<HexaVertex> hexaVertices : regionMap.keySet()) {
-            if (hexaVertices.contains(vertex)){
-                return regionMap.get(hexaVertices);
-            }
+            for (HexaVertex vert : hexaVertices)
+                if (vert.getValue() == vertex.getValue())
+                    return regionMap.get(hexaVertices);
         }
         return null;
     }
@@ -29,9 +29,9 @@ public class RegionMap {
 
     public boolean hasRegionAt(HexaVertex vertex){
         for(List<HexaVertex> vertices : regionMap.keySet()){
-            if (vertices.contains(vertex)){
-                return true;
-            }
+            for (HexaVertex vert : vertices)
+                if (vert.getValue() == vertex.getValue())
+                    return true;
         }
         return false;
     }

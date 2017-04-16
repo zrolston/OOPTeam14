@@ -83,53 +83,17 @@ public abstract class TransporterCarriableController implements MainViewControll
         }
 
         this.view = view;
+        view.setIter(carrIt);
         view.addMouseListener(this);
-        this.mousePressed(new MouseEvent(view, 0, 0, 0, 0, 0, 0, false));
+
     }
+
+
 
     @Override
     public void mousePressed(MouseEvent e) {
 
         PixelPoint point = new PixelPoint(e.getX(), e.getY());
-
-        //////////
-        PlayerID p1 = new PlayerID(0);
-        PlayerID p2 = new PlayerID(1);
-
-        DonkeyFactory df = new DonkeyFactory();
-        Transporter donky = df.create();
-        donky.setPlayerID(p2);
-
-        TransporterDrawingVisitor t = new TransporterDrawingVisitor();
-        donky.accept(t);
-        BufferedImage transporterImage = t.getImage();
-
-        Goose g = new Goose();
-        CarriableDrawingVisitor gv = new CarriableDrawingVisitor();
-        g.accept(gv);
-
-        ArrayList<Carriable> cariables = new ArrayList<>();
-        cariables.add( g );
-        cariables.add( donky );
-
-        carrIt = new CarriableIterator( cariables );
-        view.setIter(carrIt);
-
-        ArrayList<Rectangle> buttons = view.getButtons();
-
-        int index = 0; // get index of click
-        for(Rectangle button: buttons){
-            if(button.contains(point.getX(), point.getY()))
-                System.out.println(index);
-            index++;
-        }
-
-//        int index = view.getCarriableIndex(point);
-//        System.out.println(index);
-//
-//        if (!isOutOfBounds(index)) {
-//            determineClick(index);
-//        }
 
     }
 
@@ -248,7 +212,7 @@ public abstract class TransporterCarriableController implements MainViewControll
         return currentCarriable;
     }
 
-    protected Carriable getCurrentTransporter() {
+    protected Transporter getCurrentTransporter() {
         return currentTransporter;
     }
 
