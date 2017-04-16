@@ -23,4 +23,8 @@ abstract public class Region {
         transporter.setCurrentRegion(this);
         transporter.updateMovementSet(getRegionSet());
     }
+
+    public boolean connectsToByLand(Region r2) {
+        return regionSet.connectsByLand(r2);
+    }
 }

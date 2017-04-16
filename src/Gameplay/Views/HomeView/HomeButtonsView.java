@@ -83,18 +83,15 @@ class HomeButtonsView extends JPanel {
                 chooser.setCurrentDirectory(new File(FileIO.mapsDir));
                 chooser.setVisible(true);
                 String path= null;
-//                if (chooser.showOpenDialog(chooser) == JFileChooser.APPROVE_OPTION) {
-//
-////                     path = chooser.getSelectedFile().getAbsolutePath();
-////                     GameModelFacade.initialize();
-////                     GameModelFacade.getInstance().loadMap(path);
-////                     mapSubsectionView.updateCachedImages(GameMapDaveBuilder.);
-////                     mapEditorView.updateImages();
-//                       display.displayMainScreen();
-//
-//                }
-                       display.displayMainScreen();
+                if (chooser.showOpenDialog(chooser) == JFileChooser.APPROVE_OPTION) {
 
+                     path = chooser.getSelectedFile().getAbsolutePath();
+                     GameModelFacade.initialize();
+                     GameModelFacade.getInstance().loadMap(path);
+                     display.getMainView().mapView.updateTileImages(GameModelFacade.getInstance().debugGetMap());
+                     display.displayMainScreen();
+
+                }
             }
         });
 
