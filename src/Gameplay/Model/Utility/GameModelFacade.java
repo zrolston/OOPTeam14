@@ -15,6 +15,7 @@ import Gameplay.Model.TransporterFactory.TransporterFactory;
 import Gameplay.Model.TransporterFactory.TruckFactory;
 import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Model.Visitors.Carriable;
+import Gameplay.Model.Visitors.DropOffExchangeHandler;
 import MapBuilder.Model.Utility.MapParsers.DaveBuilder;
 
 import java.util.ArrayList;
@@ -120,7 +121,10 @@ public class GameModelFacade { //TODO make an abstract facade
      * @param region
      */
     public void dropCarriable(Region region, Transporter target, Carriable good){
+        TransporterOccupancy transporterOccupancy = transporterHandler.getOccupancyAt(region);
+        GoodsBag goodsBag = goodsHandler.getGoodsBagAt(region);
 
+        good.accept(new DropOffExchangeHandler(transporterOccupancy, goodsBag, target));
     }
 
     /**

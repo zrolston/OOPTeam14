@@ -1,5 +1,6 @@
 package Gameplay.Model.Transporters;
 
+import Gameplay.Model.Goods.Good;
 import Gameplay.Model.Goods.GoodsBag;
 import Gameplay.Model.Region.Region;
 import Gameplay.Model.Region.RegionSet;
@@ -7,8 +8,7 @@ import Gameplay.Model.TransporterFactory.Permit;
 import Gameplay.Model.Goods.LimitedGoodsBag;
 import Gameplay.Model.Utility.Owned;
 import Gameplay.Model.Utility.PlayerID;
-import Gameplay.Model.Visitors.Carriable;
-import Gameplay.Model.Visitors.TransporterVisitor;
+import Gameplay.Model.Visitors.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -47,6 +47,10 @@ abstract public class Transporter extends Owned implements Carriable{
         for (Permit permit : permitList) {
             permit.findRegions(regionSet, this);
         }
+    }
+
+    public void accept(GenericCarriableVisitor gnv){
+        gnv.visitTransporter(this);
     }
 
     public abstract void accept(TransporterVisitor tv);
@@ -90,5 +94,25 @@ abstract public class Transporter extends Owned implements Carriable{
         }
 
         return myShit;
+    }
+
+    public GoodsBag getGoodsBag() {
+        return goods;
+    }
+
+    public void dropTransporter() {
+        this.carriedTransporter = null;
+    }
+
+    public void pickUpGood(Good good) {
+        goods.addGood(good);
+    }
+
+    public void dropGood(Good good) {
+        goods.removeGood(good);
+    }
+
+    public void pickUpTransporter(Transporter transporter) {
+        this.carriedTransporter = transporter;
     }
 }

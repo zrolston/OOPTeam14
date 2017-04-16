@@ -46,4 +46,8 @@ public class TransporterOccupancy {
     public int getSize(){
         return transporters.size();
     }
+
+    public Region getRegion() {
+        return region;
+    }
 }
