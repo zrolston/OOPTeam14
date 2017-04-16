@@ -60,10 +60,11 @@ abstract public class Transporter extends Owned implements Carriable{
 
     protected void setMaxMovement(int n){
         this.maxMovement = n;
+        this.remainingMovement = n;
     }
 
     public boolean moveTo(Region region){
-        if (movementList.containsValue(region) && movementList.get(region) <= remainingMovement){
+        if (movementList.containsKey(region) && movementList.get(region) <= remainingMovement){
             region.enterRegion(this);
             remainingMovement -= movementList.get(region);
             return true;
