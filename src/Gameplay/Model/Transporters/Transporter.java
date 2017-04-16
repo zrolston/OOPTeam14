@@ -18,6 +18,7 @@ abstract public class Transporter extends Owned implements Carriable{
     private int movement;
     private LimitedGoodsBag goods;
     private List<Region> movementList;
+    private Region currentRegion;
     //private TransporterMovementObserver transporterMovementObserver;
 
     public Transporter(Permit ... permits){
@@ -37,11 +38,18 @@ abstract public class Transporter extends Owned implements Carriable{
     }
 
     public void updateMovementSet(RegionSet regionSet){
-        movementList.clear();
         for (Permit permit : permitList) {
             permit.findRegions(regionSet, this);
         }
     }
 
     public abstract void accept(TransporterVisitor tv);
+
+    public void setCurrentRegion(Region region){
+        this.currentRegion = region;
+    }
+
+    public Region getCurrentRegion(){
+        return currentRegion;
+    }
 }

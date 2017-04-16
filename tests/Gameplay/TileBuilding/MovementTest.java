@@ -6,43 +6,48 @@ import Gameplay.Model.Region.Region;
 import Gameplay.Model.Tile.GameTile;
 import Gameplay.Model.Tile.RegionMap;
 import Gameplay.Model.TransporterFactory.DonkeyFactory;
+import Gameplay.Model.TransporterFactory.RowboatFactory;
 import Gameplay.Model.TransporterFactory.TransporterFactory;
 import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Model.Utility.GameModelFacade;
 import Gameplay.Model.Utility.HexaVertex;
 import MapBuilder.Model.Utility.HexLocation;
-import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.*;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.*;
 
 
 public class MovementTest {
-    TransporterFactory factory = new DonkeyFactory();
+    TransporterFactory donkeyFactory = new DonkeyFactory();
+    TransporterFactory rowboatFactory = new RowboatFactory();
+    private GameMap map;
 
-    @Test
-    public void testMapBuilding() throws Exception {
+    @Before
+    public void init(){
         GameMap map = new GameMap(21, 21);
         GameModelFacade.initialize(map);
         GameModelFacade facade = GameModelFacade.getInstance();
         facade.loadMap("C:\\Users\\Cameron\\IdeaProjects\\OOPTeam14\\res\\SavedMaps\\mapTest.dave");
-        map = facade.debugGetMap();
+        this.map = facade.debugGetMap();
+    }
 
+    @Test
+    public void testDonkeyMovement() throws Exception {
         GameTile tile = map.getTileAt(new HexLocation(10,10));
         RegionMap regionMap = tile.getRegionMap();
 
         HexaVertex v = HexaVertex.createVertex(2);
         Region region = regionMap.getRegionAt(v);
 
-        Transporter donkey = factory.create();
+        Transporter donkey = donkeyFactory.create();
 
         region.enterRegion(donkey);
 
         List<Region> movementList = donkey.getMovementList();
-        assertNotEquals(movementList.size(), 0);
+        assertEquals(movementList.size(), 2);
 
         for (Region r : movementList) {
             assertEquals(r.getClass(), LandRegion.class);
@@ -61,11 +66,46 @@ public class MovementTest {
             int randomRegion = rand.nextInt(size); // 0 <= randomRegion < size
             Region nextRegion = movementList.get(randomRegion);
             nextRegion.enterRegion(donkey);
+            assertEquals(nextRegion.getClass(), LandRegion.class);
             visitedList.add(nextRegion);
             repetitions--;
         }
         System.out.println("Size of visited list: " + visitedList.size());
 
+    }
+
+    @Test
+    public void testBoatMovement() throws Exception{
+        GameTile tile = map.getTileAt(new HexLocation(11,10));
+        RegionMap regionMap = tile.getRegionMap();
+
+        HexaVertex v = HexaVertex.createVertex(2);
+        Region region = regionMap.getRegionAt(v);
+
+        Transporter boat = rowboatFactory.create();
+
+        region.enterRegion(boat);
+
+        List<Region> movementList = boat.getMovementList();
+        assertEquals(movementList.size(), 5);
+
+        //Simulate Movement
+
+        Random rand = new Random();
+
+        // nextInt is normally exclusive of the top value,
+        // so add 1 to make it inclusive
+        Set<Region> visitedList = new HashSet<>();
+        int repetitions = 100;
+        while (repetitions > 0){
+            int size = movementList.size();
+            int randomRegion = rand.nextInt(size); // 0 <= randomRegion < size
+            Region nextRegion = movementList.get(randomRegion);
+            nextRegion.enterRegion(boat);
+            visitedList.add(nextRegion);
+            repetitions--;
+        }
+        System.out.println("Size of visited list: " + visitedList.size());
     }
 }
 

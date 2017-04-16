@@ -1,12 +1,12 @@
 package Gameplay.Model.Region;
 
+import Gameplay.Model.Transporters.LandTransporters.LandTransporter;
+import Gameplay.Model.Transporters.WaterTransporter.WaterTransporter;
 import Gameplay.Model.Visitors.ConnectionGenerator;
 import Gameplay.Model.Visitors.LandConnectionGenerator;
 import Gameplay.Model.Visitors.RegionVisitor;
 
-/**
- * Created by zrgam_000 on 4/14/2017.
- */
+
 public class LandRegion extends Region{
     @Override
     public void accept(RegionVisitor rv) {
@@ -16,5 +16,15 @@ public class LandRegion extends Region{
     @Override
     public ConnectionGenerator getConnectionGenerator() {
         return new LandConnectionGenerator(getRegionSet());
+    }
+
+    @Override
+    public void doEnterRegion(LandTransporter landTransporter) {
+        landTransporter.updateMovementSet(getRegionSet());
+    }
+
+    @Override
+    public void doEnterRegion(WaterTransporter waterTransporter) {
+        waterTransporter.setDocked();
     }
 }

@@ -1,12 +1,11 @@
 package Gameplay.Model.Region;
 
+import Gameplay.Model.Transporters.LandTransporters.LandTransporter;
+import Gameplay.Model.Transporters.WaterTransporter.WaterTransporter;
 import Gameplay.Model.Visitors.ConnectionGenerator;
 import Gameplay.Model.Visitors.RegionVisitor;
 import Gameplay.Model.Visitors.SeaConnectionGenerator;
 
-/**
- * Created by zrgam_000 on 4/14/2017.
- */
 public class SeaRegion extends Region {
 
     @Override
@@ -17,5 +16,15 @@ public class SeaRegion extends Region {
     @Override
     public ConnectionGenerator getConnectionGenerator() {
         return new SeaConnectionGenerator(getRegionSet());
+    }
+
+    @Override
+    public void doEnterRegion(LandTransporter landTransporter) {
+        throw new IllegalStateException("Land transporter can't enter Sea Region!");
+    }
+
+    @Override
+    public void doEnterRegion(WaterTransporter waterTransporter) {
+        waterTransporter.updateMovementSet(getRegionSet());
     }
 }
