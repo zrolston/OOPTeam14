@@ -2,6 +2,7 @@ package Gameplay.Model.Map;
 
 import Gameplay.Model.Tile.GameTile;
 import MapBuilder.Model.Map.IViewMap;
+import MapBuilder.Model.Utility.HexLocation;
 import MapBuilder.Model.Utility.ILocation;
 import MapBuilder.Model.Visitor.MapVisitor;
 
@@ -19,6 +20,18 @@ public class GameMap implements IViewMap{
 
     public void initialize(GameTile[][] tiles){
         map = tiles;
+    }
+
+    public HexLocation getHexLocationOf(GameTile tile){
+        for (int i = 0; i < map.length; i++){
+            for (int j = 0; j < map[0].length; j++){
+                if (map[i][j] == null)
+                    continue;
+                if (map[i][j] == tile)
+                    return new HexLocation(i, j);
+            }
+        }
+        return null;
     }
 
     @Override
