@@ -1,6 +1,7 @@
 package Gameplay.Model.Utility;
 
-import Gameplay.Model.Map.GameMap;
+import Gameplay.Model.Goods.GoodsBag;
+import Gameplay.Model.Map.*;
 import Gameplay.Model.Visitors.Carriable;
 import MapBuilder.Model.Utility.MapParsers.DaveBuilder;
 
@@ -9,6 +10,10 @@ import java.util.List;
 public class GameModelFacade { //TODO make an abstract facade
     static GameModelFacade gameModelFacade;
     private GameMap gameMap;
+    private TransporterHandler transporterHandler;
+    private GoodsHandler goodsHandler;
+    private PrimaryProducerHandler primaryProducerHandler;
+    private SecondaryProducerHandler secondaryProducerHandler;
 
     private GameModelFacade(GameMap map) {
         this.gameMap = map;
