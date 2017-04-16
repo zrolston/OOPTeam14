@@ -1,4 +1,3 @@
-package Gameplay.Views.Utility;
 /**--------------------------------------------------------------------------------------
 |   CursorState Class: Created by Alejandro Chavez on 4/15/2017.
 |---------------------------------------------------------------------------------------
@@ -7,6 +6,7 @@ package Gameplay.Views.Utility;
 ---------------------------------------------------------------------------------------*/
 
 
+package Gameplay.Views.Utility;
 import MapBuilder.Model.Utility.HexLocation;
 import MapBuilder.Views.Utility.PixelPoint;
 

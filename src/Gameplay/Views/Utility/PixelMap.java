@@ -1,4 +1,3 @@
-package Gameplay.Views.Utility;
 /**--------------------------------------------------------------------------------------
 |	PixelMap Class: Created by Alejandro Chavez on 3/26/2017.
 |---------------------------------------------------------------------------------------
@@ -6,7 +5,7 @@ package Gameplay.Views.Utility;
 |   proportions to automatically adjust to screen size. (Adjusted for the GamePlay Map)
 ---------------------------------------------------------------------------------------*/
 
-
+package Gameplay.Views.Utility;
 import MapBuilder.Model.Utility.HexLocation;
 import MapBuilder.Model.Utility.ILocation;
 import MapBuilder.Views.Drawers.TileOutlineDrawer;
@@ -18,7 +17,7 @@ public class PixelMap {
 
     //Initial Screen Size and Ration (percentage to fullScreen [0.0 - 1.0])
     private static final double SCREEN_RATIO = 0.9;
-    private static final int HORIZONTAL_MULTIPLIER = 20;
+    private static final int HORIZONTAL_MULTIPLIER = 15;
     private static final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
     //Dynamic Pixel Constants dependent on Screen Dimensions

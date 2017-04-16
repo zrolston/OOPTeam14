@@ -57,6 +57,7 @@ public class Display extends JFrame{
         repaint();
     }
 
+
     private void displayHomeScreen() {
         this.getContentPane().add( homeScreen );
     }
@@ -73,4 +74,7 @@ public class Display extends JFrame{
         this.getContentPane().add( transporterScreen );
     }
 
+    public MainView getMainView(){
+        return mainScreen;
+    }
 }

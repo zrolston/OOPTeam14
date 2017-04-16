@@ -1,7 +1,6 @@
 package Gameplay.Model.Utility;
 
 import Gameplay.Model.Region.Region;
-import Gameplay.Model.Region.RegionSet;
 import Gameplay.Model.Tile.GameTile;
 import Gameplay.Model.Tile.RegionMap;
 import Gameplay.Model.Utility.GameTilePlacement;
