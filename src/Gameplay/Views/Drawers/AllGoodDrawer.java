@@ -28,11 +28,15 @@ public class AllGoodDrawer {
         GoodDrawingVisitor gdv = new GoodDrawingVisitor();
         for (int i = 0; i < tiles.length; i++) {
             for (int j = 0; j < tiles[0].length; j++) {
+                if (tiles[i][j] == null)
+                    continue;
                 PixelPoint origin = PixelMap.getMapTileOrigin(new HexLocation(i,j));
                 RegionMap regionMap = tiles[i][j].getRegionMap();
                 for (List<HexaVertex> vertices : regionMap.getRegionMap().keySet()) {
                     gdv.setOrigin(new PixelPoint(origin.getX() + 20, origin.getY() + 20));
                     GoodsBag gb = gmf.getGoodsBag(regionMap.getRegionAt(vertices.get(0)));
+                    if (gb == null)
+                        continue;
                     List<Good> goods = gb.getGoods();
                     for (Good good : goods) {
                         good.accept(gdv);
