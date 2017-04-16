@@ -84,39 +84,13 @@ public abstract class TransporterCarriableController implements MainViewControll
 
         this.view = view;
 
-        generateCarriableIter();
         view.setIter(carrIt);
-
         view.addMouseListener(this);
         this.mousePressed(new MouseEvent(view, 0, 0, 0, 0, 0, 0, false));
 
     }
 
-    public void generateCarriableIter() {
 
-        //////////
-        PlayerID p1 = new PlayerID(0);
-        PlayerID p2 = new PlayerID(1);
-
-        DonkeyFactory df = new DonkeyFactory();
-        Transporter donky = df.create();
-        donky.setPlayerID(p2);
-
-        TransporterDrawingVisitor t = new TransporterDrawingVisitor();
-        donky.accept(t);
-        BufferedImage transporterImage = t.getBufferedImage();
-
-        Goose g = new Goose();
-        CarriableDrawingVisitor gv = new CarriableDrawingVisitor();
-        g.accept(gv);
-
-        ArrayList<Carriable> cariables = new ArrayList<>();
-        cariables.add( g );
-        cariables.add( donky );
-        //////
-
-        carrIt = new CarriableIterator( cariables );
-    }
 
     @Override
     public void mousePressed(MouseEvent e) {
@@ -134,22 +108,6 @@ public abstract class TransporterCarriableController implements MainViewControll
             }
             index++;
         }
-
-        if(SwingUtilities.isRightMouseButton( e )) {
-            System.out.println("right click");
-            carrIt.deleteAt( index );
-        }
-
-        view.setIter( carrIt );
-
-
-
-//        int index = view.getCarriableIndex(point);
-//        System.out.println(index);
-//
-//        if (!isOutOfBounds(index)) {
-//            determineClick(index);
-//        }
 
     }
 

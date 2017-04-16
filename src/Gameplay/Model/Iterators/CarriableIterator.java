@@ -59,9 +59,6 @@ public class CarriableIterator implements StuffIterator {
     }
 
     public void deleteAt(int index){
-        System.out.println( "size = " +  carriables.size());
-        System.out.println( "del index = " +   index );
-
         carriables.remove(index);
         size--;
     }

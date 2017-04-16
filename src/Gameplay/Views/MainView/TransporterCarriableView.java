@@ -1,6 +1,7 @@
 package Gameplay.Views.MainView;
 
 import Gameplay.Controller.PanelControllers.TransporterCarriableController;
+import Gameplay.Controller.SubControllers.TransporterCarriableControllers.DropController;
 import Gameplay.Controller.SubControllers.TransporterCarriableControllers.TransporterAddToProducerController;
 import Gameplay.Model.Goods.Goose;
 import Gameplay.Model.Iterators.CarriableIterator;
@@ -43,7 +44,7 @@ public class TransporterCarriableView extends JPanel {
         setVisible( true );
         background = ImageLoader.getImage("SCROLL_BACKGROUND");
 
-        TransporterCarriableController controller = new TransporterAddToProducerController();
+        TransporterCarriableController controller = new DropController();
         controller.attachView( this );
     }
 
@@ -88,6 +89,9 @@ public class TransporterCarriableView extends JPanel {
     }
 
     public void generateButtons() {
+
+        if(iter == null)
+            return;
 
         buttons.clear();
         int numElements = iter.size();
