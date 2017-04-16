@@ -108,7 +108,7 @@ public class ImageLoader {
             cachedImages.put("ROWBOAT_FACTORY", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Factories/rowboatFactory.png")));
             cachedImages.put("TRUCK_FACTORY", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Factories/truckFactory.png")));
             cachedImages.put("WAGON_FACTORY", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Factories/wagonFactory.png")));
-            //cachedImages.put("STEAMER_FACTORY", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Factories/steamerFactory.png")));
+            cachedImages.put("STEAMER_FACTORY", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Factories/steamerFactory.png")));
         }
         catch (Exception e) {
             e.printStackTrace();
