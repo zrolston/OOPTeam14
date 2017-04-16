@@ -36,7 +36,7 @@ public class InputSelectionView extends JPanel {
         Board b = new Board();
         CarriableDrawingVisitor gv = new CarriableDrawingVisitor();
         b.accept(gv);
-        goodsImages.add( gv.getBufferedImage() );
+        goodsImages.add( gv.getImage() );
         /////////////////////////////////////////////////////
 
         setLayout(new BorderLayout());

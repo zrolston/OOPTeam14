@@ -1,6 +1,10 @@
 package Gameplay.Views.MainView;
 
+import Gameplay.Controller.PanelControllers.TransporterCarriableController;
+import Gameplay.Controller.SubControllers.TransporterCarriableControllers.DropController;
+import Gameplay.Controller.SubControllers.TransporterCarriableControllers.TransporterAddToProducerController;
 import Gameplay.Model.Goods.Goose;
+import Gameplay.Model.Iterators.CarriableIterator;
 import Gameplay.Model.TransporterFactory.DonkeyFactory;
 import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Model.Utility.PlayerID;
@@ -11,6 +15,7 @@ import Gameplay.Views.Utility.PolygonUtility;
 import MapBuilder.Views.Utility.ImageLoader;
 import MapBuilder.Views.Utility.PixelMap;
 import MapBuilder.Views.Utility.PixelPoint;
+import org.w3c.dom.css.Rect;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,40 +29,14 @@ import java.util.List;
 public class TransporterCarriableView extends JPanel {
 
     private BufferedImage background;
-    private ArrayList<Polygon> columns;
-    private List<Rectangle> buttons;
-    private List<Carriable> leftCarriables;
-    private List<Carriable> rightCarriables;
+    private ArrayList<Rectangle> buttons = new ArrayList<>();
+    private CarriableIterator iter;
 
-    private ArrayList<BufferedImage> transporterImages;
-    private ArrayList<BufferedImage> goodsImages;
-
+    int numCols = 2;
 
     private int horizontalOffset, verticalOffset, buttonSide;
 
     public TransporterCarriableView() {
-
-        transporterImages = new ArrayList<>();
-        goodsImages = new ArrayList<>();
-
-        // GET BELOW IMAGES FROM CONTROLLER OR ITERATOR
-        PlayerID p1 = new PlayerID(0);
-        PlayerID p2 = new PlayerID(1);
-
-        DonkeyFactory df = new DonkeyFactory();
-        Transporter donky = df.create();
-        donky.setPlayerID(p2);
-
-        TransporterDrawingVisitor t = new TransporterDrawingVisitor();
-        donky.accept(t);
-        BufferedImage transporterImage = t.getBufferedImage();
-        transporterImages.add(transporterImage);
-
-        Goose g = new Goose();
-        CarriableDrawingVisitor gv = new CarriableDrawingVisitor();
-        g.accept(gv);
-        goodsImages.add( gv.getBufferedImage() );
-        /////////////////////////////////////////////////////
 
         setLayout(new BorderLayout());
         setBounds((int)(PixelMap.SCREEN_WIDTH * (1 - 34.0/40 - 1.0/7)), (int)(PixelMap.SCREEN_HEIGHT * .05), PixelMap.SCREEN_WIDTH /7, (int)(PixelMap.SCREEN_HEIGHT * (17.0/20 + 1.0/12 - .05)));
@@ -65,14 +44,61 @@ public class TransporterCarriableView extends JPanel {
         setVisible( true );
         background = ImageLoader.getImage("SCROLL_BACKGROUND");
 
-        int numElements = 13;
-        int numCols = 2;
+        TransporterCarriableController controller = new DropController();
+        controller.attachView( this );
+    }
 
-        columns = new ArrayList<>();
+    protected void paintComponent(Graphics g) {
+    	((Graphics2D)(g)).setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+        g.drawImage(background, 0, 0, (int)(getWidth() * 1.145), (int)(getHeight()), null);
+        super.paintComponent(g);
+        drawButtons(g);
+    }
+
+    private void drawButtons(Graphics g){
+
+        if(iter == null)
+            return;
+
+        iter.first();
+        int i = 0;
+        while( i < iter.size() ) {
+
+            Rectangle r = buttons.get(i);
+            g.drawRoundRect((int)r.getX(), (int)r.getY(), (int)r.getWidth(), (int)r.getHeight(), 5, 5);
+            BufferedImage img = iter.getImage();
+
+            if(++i % 2 != 0)
+                g.drawImage(img, (int)r.getX(), (int)r.getY(), (int)r.getWidth(), (int)r.getHeight(), null);
+            else
+                g.drawImage(img, (int)r.getX(), (int)r.getY(), (int)r.getWidth(), (int)r.getHeight(), null);
+
+            iter.next();
+        }
+    }
+
+    public ArrayList<Rectangle> getButtons() {
+        generateButtons();
+        return buttons;
+    }
+
+    public void setIter(CarriableIterator iter) {
+        this.iter = iter;
+        generateButtons();
+        repaint();
+    }
+
+    public void generateButtons() {
+
+        if(iter == null)
+            return;
+
+        buttons.clear();
+        int numElements = iter.size();
+
         int widthOffset = getWidth() / numCols;
         for (int i = 0; i < numCols; i++) {
             Polygon col = PolygonUtility.rectangleToPolygon(new Rectangle(i*widthOffset, 0, widthOffset, getHeight()));
-            columns.add( col );
         }
 
         //Calculate the offsets
@@ -87,54 +113,12 @@ public class TransporterCarriableView extends JPanel {
             for (int j = 0; j < numCols; j++) {
                 if( ( i * numCols + j)  >= numElements)
                     break;
+
                 PixelPoint origin = new PixelPoint(horizontalOffset+getWidth()/numCols * j , horizontalOffset+((buttonSide+verticalOffset)*i));
                 buttons.add(PolygonUtility.generateSquare(origin, buttonSide));
             }
-
         }
 
-    }
-
-    //Set the different Carriables Dynamically
-    public void setLeftCarriables(List<Carriable> leftCarriables) { this.leftCarriables = leftCarriables; }
-    public void setRightCarriables(List<Carriable> rightCarriables) { this.rightCarriables = rightCarriables; }
-
-    protected void paintComponent(Graphics g) {
-    	((Graphics2D)(g)).setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
-        g.drawImage(background, 0, 0, (int)(getWidth() * 1.145), (int)(getHeight()), null);
-        super.paintComponent(g);
-        drawButtons(g);
-    }
-
-    private void drawColumns(Graphics g){
-        for (Polygon p :
-                columns) {
-            g.drawPolygon( p );
-        }
-    }
-
-    private void drawButtons(Graphics g){
-        int  i = 0;
-        for(Rectangle r: buttons) {
-
-            g.drawRoundRect((int)r.getX(), (int)r.getY(), (int)r.getWidth(), (int)r.getHeight(), 5, 5);
-            // draw transporters in left column
-            if(++i % 2 != 0)
-                g.drawImage(transporterImages.get(0), (int)r.getX(), (int)r.getY(), (int)r.getWidth(), (int)r.getHeight(), null);
-            else
-                g.drawImage(goodsImages.get(0), (int)r.getX(), (int)r.getY(), (int)r.getWidth(), (int)r.getHeight(), null);
-        }
-    }
-
-    public Integer getCarriableIndex(PixelPoint point){
-        int index = 0;
-        for(Rectangle button: buttons){
-            //Checking right button list
-            if(button.contains(point.getX(), point.getY()))
-                return index;
-            index++;
-        }
-        return -1;
     }
 
 

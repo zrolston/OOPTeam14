@@ -18,6 +18,7 @@ public abstract class RegionCarriableController implements MainViewController, M
     private MainView mainView;
     private RegionCarriableView view;
     private Carriable currentCarriable;
+    private int index = -1;
     CarriableIterator carrIt;
 
     protected abstract void attachView(JPanel view) throws Exception;
@@ -88,10 +89,8 @@ public abstract class RegionCarriableController implements MainViewController, M
     public void mouseExited(MouseEvent e) {
 
     }
-
     /**
      * gets the current currentCarriable index inside of the iterator
-     *
      * @param e
      * @return
      */
@@ -110,14 +109,21 @@ public abstract class RegionCarriableController implements MainViewController, M
         this.carrIt = carrIt;
     }
 
+    private void setIndex(int index) {
+        this.index = index;
+    }
+
+
     public void assignCarriables(CarriableIterator carrIt){
         setCarrIt(carrIt);
-
+        displayCarriables();
     }
 
     protected void displayCarriables(){
-        //TODO: function to add
-
+        if (carrIt != null) {
+            //TODO: function to add carriables to  view
+        }
+        showPanel();
     }
 
 
@@ -130,5 +136,12 @@ public abstract class RegionCarriableController implements MainViewController, M
         view.setVisible(false);
     }
 
+    protected  RegionCarriableView getView(){
+        return view;
+    }
+
+    protected void removeCarriable(){
+        carrIt.deleteAt(index);
+    }
 
 }

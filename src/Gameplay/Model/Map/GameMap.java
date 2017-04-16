@@ -15,7 +15,6 @@ public class GameMap implements IViewMap{
         this.tileCount = 0;
         map = new GameTile[length][width];
 
-
     }
 
     public void initialize(GameTile[][] tiles){

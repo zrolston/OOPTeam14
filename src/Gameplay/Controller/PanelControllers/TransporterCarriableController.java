@@ -1,19 +1,27 @@
 package Gameplay.Controller.PanelControllers;
 
 import Gameplay.Controller.MainViewController;
+import Gameplay.Model.Goods.Goose;
 import Gameplay.Model.Iterators.CarriableIterator;
 import Gameplay.Model.Iterators.TransporterIterator;
 import Gameplay.Model.Region.Region;
+import Gameplay.Model.TransporterFactory.DonkeyFactory;
 import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Model.Utility.GameModelFacade;
+import Gameplay.Model.Utility.PlayerID;
 import Gameplay.Model.Visitors.Carriable;
+import Gameplay.Views.Drawers.CarriableDrawingVisitor;
+import Gameplay.Views.Drawers.TransporterDrawingVisitor;
 import Gameplay.Views.MainView.MainView;
 import Gameplay.Views.MainView.TransporterCarriableView;
 import MapBuilder.Views.Utility.PixelPoint;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 /**
  * Created by jordi on 4/15/2017.
@@ -68,23 +76,24 @@ public abstract class TransporterCarriableController implements MainViewControll
         return view == null;
     }
 
-    private void attachView(JPanel view) throws Exception {
+    public void attachView(TransporterCarriableView view){
 
-        if (viewIsNull(view)) {
-            throw new Exception("The view that was tried to be attached was null");
+        if (view == null) {
+                return;
         }
+
+        this.view = view;
+        view.setIter(carrIt);
         view.addMouseListener(this);
+
     }
+
+
 
     @Override
     public void mousePressed(MouseEvent e) {
-        PixelPoint point = new PixelPoint(e.getX(), e.getY());
-        int index = view.getCarriableIndex(point);
-        System.out.println(index);
 
-        if (!isOutOfBounds(index)) {
-            determineClick(index);
-        }
+        PixelPoint point = new PixelPoint(e.getX(), e.getY());
 
     }
 
@@ -203,7 +212,7 @@ public abstract class TransporterCarriableController implements MainViewControll
         return currentCarriable;
     }
 
-    protected Carriable getCurrentTransporter() {
+    protected Transporter getCurrentTransporter() {
         return currentTransporter;
     }
 

@@ -10,7 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameMapDaveBuilder extends DaveBuilder {
-    private GameTileBuilder gameTileBuilder = new GameTileBuilder();
+    private GameTileBuilder gameTileBuilder = new GameTileBuilder(new HexConventionAle());
+    private final int maxMapLength = 21, maxMapWidth = 21;
+    private GameMapBuilder gameMapBuilder = new GameMapBuilder(maxMapLength, maxMapWidth);
     private List<GameTilePlacement> tilePlacements;
 
     @Override
@@ -43,8 +45,7 @@ public class GameMapDaveBuilder extends DaveBuilder {
 
     @Override
     protected void placeTiles() {
-        GameModelFacade facade = GameModelFacade.getInstance();
-        facade.generateMap(tilePlacements);
+        gameMapBuilder.generateMap(tilePlacements);
     }
 
     private GameTilePlacement gameTilePlacement(GameTile tile, HexLocation location) {
@@ -53,11 +54,11 @@ public class GameMapDaveBuilder extends DaveBuilder {
 
     @Override
     protected int getMapLength(){
-        return GameModelFacade.getMaxMapLength();
+        return maxMapLength;
     }
 
     @Override
     protected int getMapWidth(){
-        return GameModelFacade.getMaxMapWidth();
+        return maxMapWidth;
     }
 }

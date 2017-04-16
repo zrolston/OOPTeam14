@@ -10,10 +10,13 @@ import java.util.Iterator;
 
 public class GameTile extends Tile {
     private RegionMap regionMap;
+    private final int riverType, rotationNumber;
 
-    public GameTile(Terrain terrain, RegionMap regionMap){
+    public GameTile(Terrain terrain, RegionMap regionMap, int riverType, int rotationNumber){
         super(terrain);
         this.regionMap = regionMap;
+        this.riverType = riverType;
+        this.rotationNumber = rotationNumber;
     }
 
     public RegionMap getRegionMap(){
@@ -26,7 +29,7 @@ public class GameTile extends Tile {
 
     @Override
     public Tile clone() {
-        return new GameTile(getTerrain(), regionMap);
+        return new GameTile(getTerrain(), regionMap, riverType, rotationNumber);
     }
 
     @Override
@@ -37,5 +40,12 @@ public class GameTile extends Tile {
     public void accept(GameTileVisitor v) {
         getTerrain().accept(v);
         v.visitRegionMap(regionMap);
+    }
+
+    public int getRiverType(){
+        return riverType;
+    }
+    public int getRotationNumber(){
+        return rotationNumber;
     }
 }

@@ -6,7 +6,10 @@ import static org.junit.Assert.assertTrue;
 import Gameplay.Model.Map.GameMap;
 import Gameplay.Model.Tile.GameTileBuilder;
 import Gameplay.Model.Tile.GameTile;
+import Gameplay.Model.Utility.GameMapDaveBuilder;
 import Gameplay.Model.Utility.GameModelFacade;
+import Gameplay.Model.Utility.HexConventionAle;
+import MapBuilder.Model.Utility.MapParsers.DaveBuilder;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -20,17 +23,15 @@ public class BuildTileTest {
         ArrayList<Integer> riverList = new ArrayList<>();
         riverList.add(1);
         riverList.add(3);
-        tileBuilder = new GameTileBuilder();
+        tileBuilder = new GameTileBuilder(new HexConventionAle());
         gameTile = tileBuilder.createTile("ROCK", riverList);
     }
 
     @Test
     public void testMapBuilding(){
-        GameMap map = new GameMap(21, 21);
-        GameModelFacade.initialize( );
+        DaveBuilder builder = new GameMapDaveBuilder();
+        builder.buildMap("C:\\Users\\Cameron\\IdeaProjects\\OOPTeam14\\res\\SavedMaps\\mapTest.dave");
         GameModelFacade facade = GameModelFacade.getInstance();
-        //facade.loadMap("C:\\Users\\Cameron\\IdeaProjects\\OOPTeam14\\res\\SavedMaps\\mapTest.dave");
-        facade.loadMap("C:\\Users\\Cameron\\IdeaProjects\\OOPTeam14\\res\\SavedMaps\\full board map.dave");
-        map = facade.debugGetMap();
+        GameMap map = facade.debugGetMap();
     }
 }
