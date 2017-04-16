@@ -26,7 +26,8 @@ public class GeeseFollowButton extends JPanel {
         add(geeseButton, BorderLayout.CENTER);
         setOpaque(false);
         setVisible( true );
-        background = ImageLoader.getImage("SCROLL_BACKGROUND");
+        background = ImageLoader.getImage("RESEARCH_BACKGROUND");
+        this.setBorder(BorderFactory.createLineBorder(new Color(0x11111111), 1));
     }
 
     protected void paintComponent(Graphics g) {

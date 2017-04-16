@@ -17,14 +17,14 @@ public class EndPhaseButton extends JPanel {
         setLayout(new BorderLayout());
         setBounds((int)(PixelMap.SCREEN_WIDTH *32.0/40), (int)(PixelMap.SCREEN_HEIGHT * 17/20), PixelMap.SCREEN_WIDTH /7, PixelMap.SCREEN_HEIGHT /12);
 
-        phaseLabel = new JLabel("   ༼ つ ◕_◕ ༽つ\n" +
-                "\n");
+        phaseLabel = new JLabel("");
         phaseLabel.setFont(new Font("plain", Font.BOLD, 15));
         add(phaseLabel, BorderLayout.CENTER);
 
 
         nextPhase = new JButton();
         nextPhase.setText("PHASE ADVANCE");
+        nextPhase.setForeground(  new Color( 0x11111111 )  );
         nextPhase.setFont(new Font("plain", Font.BOLD, 13));
         nextPhase.setOpaque(false);
         nextPhase.setVisible( true );
@@ -32,7 +32,8 @@ public class EndPhaseButton extends JPanel {
         add( nextPhase, BorderLayout.SOUTH);
         setOpaque(false);
         setVisible( true );
-        background = ImageLoader.getImage("SCROLL_BACKGROUND");
+        background = ImageLoader.getImage("RESEARCH_BACKGROUND");
+        this.setBorder(BorderFactory.createLineBorder(new Color(0x11111111), 1));
     }
 
     protected void paintComponent(Graphics g) {
