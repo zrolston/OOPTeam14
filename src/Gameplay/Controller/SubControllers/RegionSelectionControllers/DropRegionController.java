@@ -1,34 +1,36 @@
 package Gameplay.Controller.SubControllers.RegionSelectionControllers;
 
 import Gameplay.Controller.PanelControllers.MapSelectionControllers.RegionSelectionController;
-import Gameplay.Controller.SubControllers.TransporterCarriableControllers.DropController;
+import Gameplay.Controller.SubControllers.TransporterCarriableControllers.MoveController;
+import Gameplay.Model.Region.Region;
 import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Model.Visitors.Carriable;
+import MapBuilder.Model.ModelFacade;
 
 /**
  * Created by jordi on 4/16/2017.
  */
 public class DropRegionController extends RegionSelectionController  {
 
-    private Carriable carriable;
-    private Transporter transporter;
-    private DropController dropController;
+    private MoveController moveController;
+    private Region currentRegion;
+    private Transporter currentTransporter;
+    private Carriable currentCarriable;
+    private ModelFacade modelFacade = ModelFacade.getInstance();
 
-    public DropRegionController(DropController dropController) {
-        this.dropController = dropController;
+    public DropRegionController(MoveController moveController) {
+        this.moveController = moveController;
     }
 
     @Override
     protected void rightClick() {
-
+        moveController.changeToDefaultController();
     }
 
     @Override
     protected void leftClick() {
-        //Todo:get Region from view and translate it using facade to an actual Region
-        //TODO:gameModelFacade.dropCarriable(,carriable);
-        dropController.dropGood();
-        dropController.changeToDefaultController();
+        moveController.dropCarriable(currentRegion);
+        moveController.changeToDefaultController();
         suspend();
     }
 
@@ -42,11 +44,13 @@ public class DropRegionController extends RegionSelectionController  {
         getMapView().removeMouseListener(this);
     }
 
-
     public void receiveCarriable(Carriable carriable) {
-        this.carriable = carriable;
+        this.currentCarriable = carriable;
     }
-    public void receiveTransporter(Transporter transporter){this.transporter = transporter;}
+    public void receiveTransporter(Transporter transporter) {
+        this.currentTransporter = transporter;
+    }
+
 
 }
 

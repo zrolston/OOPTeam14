@@ -1,32 +1,40 @@
 package Gameplay.Controller.SubControllers.TransporterCarriableControllers;
 
 import Gameplay.Controller.PanelControllers.TransporterCarriableController;
+import Gameplay.Controller.SubControllers.RegionCarriableControllers.PickUpController;
 import Gameplay.Controller.SubControllers.RegionSelectionControllers.DropRegionController;
 import Gameplay.Controller.SubControllers.RegionSelectionControllers.MoveRegionController;
-import Gameplay.Model.Iterators.CarriableIterator;
+import Gameplay.Model.Region.Region;
 import Gameplay.Model.Utility.GameModelFacade;
-import Gameplay.Views.MainView.MainView;
 
 /**
  * Created by jordi on 4/16/2017.
  */
-public class DropController extends TransporterCarriableController {
+public class MoveController extends TransporterCarriableController {
 
     private DropRegionController dropRegionController = new DropRegionController(this);
     private MoveRegionController moveRegionController = new MoveRegionController(this);
+    private PickUpController pickUpController = new PickUpController(this);
+    Region selectedRegion;
+    GameModelFacade gameModelFacade = GameModelFacade.getInstance();
 
-    public DropController() {
+    public MoveController() {
         changeToDefaultController();
         hidePanel();
     }
 
     @Override
     protected void carriableClick() {
-        //Todo:get the good and pass it to drop region controller
-        //TODO: view check if the region is a river, if it isn't drop it on the tile
-
+        //TODO: view check if the region is a river, if it isn't drop it on the tile and gameModelFacade.canDropCarriable()
         activateDropRegionController();
         hidePanel();
+    }
+
+    @Override
+    protected void transporterClick() {
+        moveRegionController.allowMovement();
+        moveRegionController.receiveTransporter(getCurrentTransporter());
+        pickUpController.receiveTransporter(getCurrentTransporter());
     }
 
     @Override
@@ -34,11 +42,6 @@ public class DropController extends TransporterCarriableController {
         changeToDefaultController();
         clearCurrentCarriable();
 
-    }
-
-    @Override
-    protected void transporterClick() {
-        moveRegionController.allowMovement();
     }
 
     public void changeToDefaultController() {
@@ -54,8 +57,17 @@ public class DropController extends TransporterCarriableController {
         showPanel();
     }
 
-    public void dropGood(){
+    public void dropCarriable(Region region){
+        gameModelFacade.dropCarriable(region, getCurrentTransporter(),getCurrentCarriable());
         removeCarriable();
+
+    }
+    public Region getPickUpRegion(){
+        return selectedRegion;
+    }
+    public void setRegion(Region region){
+        selectedRegion = region;
+        pickUpController.receiveRegion(region);
     }
 
     private void activateDropRegionController(){
@@ -63,5 +75,6 @@ public class DropController extends TransporterCarriableController {
         dropRegionController.receiveCarriable(getCurrentCarriable());
         dropRegionController.receiveTransporter(getCurrentTransporter());
     }
+
 }
 

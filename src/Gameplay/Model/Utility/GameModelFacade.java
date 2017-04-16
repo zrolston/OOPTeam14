@@ -140,7 +140,7 @@ public class GameModelFacade { //TODO make an abstract facade
         return new TransporterIterator(transporters);
     }
 
-    public void move(Region region){
+    public void move(Region region, Transporter transporter){
 
     }
 

@@ -1,6 +1,7 @@
 package Gameplay.Controller.SubControllers.RegionCarriableControllers;
 
 import Gameplay.Controller.PanelControllers.RegionCarriableController;
+import Gameplay.Controller.SubControllers.TransporterCarriableControllers.MoveController;
 import Gameplay.Model.Region.Region;
 import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Model.Utility.GameModelFacade;
@@ -15,6 +16,12 @@ public class PickUpController extends RegionCarriableController {
 
     private Transporter currentTransporter;
     private Region currentRegion;
+
+    public PickUpController(MoveController moveController) {
+        this.moveController = moveController;
+    }
+
+    MoveController moveController;
 
     @Override
     protected void attachView(JPanel view) throws Exception {
@@ -53,11 +60,4 @@ public class PickUpController extends RegionCarriableController {
         this.currentRegion = region;
     }
 
-//    private Transporter getCurrentTransporter() {
-//        return currentTransporter;
-//    }
-//
-//    private Region getCurrentRegion() {
-//        return currentRegion;
-//    }
 }

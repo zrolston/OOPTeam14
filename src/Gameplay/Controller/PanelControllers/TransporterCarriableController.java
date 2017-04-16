@@ -3,7 +3,6 @@ package Gameplay.Controller.PanelControllers;
 import Gameplay.Controller.MainViewController;
 import Gameplay.Model.Iterators.CarriableIterator;
 import Gameplay.Model.Iterators.TransporterIterator;
-import Gameplay.Model.Region.Region;
 import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Model.Utility.GameModelFacade;
 import Gameplay.Model.Visitors.Carriable;
@@ -41,6 +40,7 @@ public abstract class TransporterCarriableController implements MainViewControll
 
     //    protected abstract void suspend();
     protected abstract void carriableClick();
+    protected abstract void transporterClick();
 
     private TransporterCarriableView getView(MainView mainView) {
         if (viewIsNull(view)) {
@@ -87,7 +87,6 @@ public abstract class TransporterCarriableController implements MainViewControll
         PixelPoint point = new PixelPoint(e.getX(), e.getY());
         setIndex(view.getCarriableIndex(point));
         System.out.println(index);
-
         if (!isOutOfBounds(index)) {
             determineClick(index);
         }
@@ -105,7 +104,7 @@ public abstract class TransporterCarriableController implements MainViewControll
             removeCarriable();//implemented now it might change
         } else {
             setCurrentTransporter(index);
-            transporterClick();
+            leftColumnClick();
         }
     }
 
@@ -159,10 +158,10 @@ public abstract class TransporterCarriableController implements MainViewControll
      * adds the goods to the right column
      * when a transporter is clicked
      */
-    protected void transporterClick() {
+    protected void leftColumnClick() {
         setCarrItFromFacade();
         addToPanelRightColumn(carrIt);
-        //TODO: beware of overriding the function of a subclass
+        transporterClick();
     }
 
     /**
