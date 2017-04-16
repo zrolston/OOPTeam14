@@ -7,7 +7,7 @@
 ---------------------------------------------------------------------------------------*/
 
 package Gameplay.Views.Utility;
-import Gameplay.Views.Utility.PolygonProportions.River1Proportions;
+import Gameplay.Views.Utility.PolygonProportions.*;
 import MapBuilder.Views.Utility.PixelPoint;
 import java.awt.*;
 import java.util.*;
@@ -15,50 +15,70 @@ import java.util.List;
 
 public class PolygonUtility {
 
-
-    //Maintains the DataSet of a Polygon without compromising any shifts
-    public static class PolygonPointSet{
-        private List<Point> points;
-        public PolygonPointSet(List<Point> points){
-            this.points = points;
-        }
-
-        public Polygon getPolygon(PixelPoint origin){
-            Polygon p = new Polygon();
-            for (Point point: points){
-                p.addPoint((int)point.getX()+origin.getY(), (int)point.getY()+origin.getY());
-            }
-            return p;
-        }
-        public Polygon getPolygon(){
-            return getPolygon(new PixelPoint(0,0));
-        }
-        public Polygon getPolygon(int xOffset, int yOffset){
-            return getPolygon(new PixelPoint(xOffset,yOffset));
-        }
-    }
-
-
-
     static class RegionCode{
+        public RegionCode(String code, PolygonPointSet polygon) {
+            this.code = code;
+            this.polygon = polygon;
+        }
         public String code;
         public PolygonPointSet polygon;
     }
 
-    private static Map<String, Map<Integer, RegionCode>> riverTypeToRegions = new HashMap<>();
+    public static List<PolygonPointSet> type1Regions = new ArrayList<>();
+    public static List<PolygonPointSet> type2Regions = new ArrayList<>();
+    public static List<PolygonPointSet> type3Regions = new ArrayList<>();
+    public static List<PolygonPointSet> type4Regions = new ArrayList<>();
 
-    public static PolygonPointSet testPolygon, test2;
-    public static Polygon getTest(){
-        //Initialize Regions
-        //River 1
-        //---------------------------
-        if(testPolygon == null) {
-            List<Point> riverPoints = River1Proportions.river;
-            testPolygon = new PolygonPointSet(rotatePolygon(riverPoints, new Point(PixelMap.TILE_FULL_WIDTH/2, PixelMap.TILE_HEIGHT/2), 0));
-            test2 = new PolygonPointSet(rotatePolygon(River1Proportions.region, new Point(PixelMap.TILE_FULL_WIDTH/2, PixelMap.TILE_HEIGHT/2), 0));
-        }
+    static {
+        //TYPE #1
+        //-------------------------------------------------------------
+        //River
+        PolygonPointSet type1river = new PolygonPointSet(River1Proportions.river);
+        type1Regions.add(type1river);
 
-        return testPolygon.getPolygon(150, 150);
+        //Region
+        PolygonPointSet type1region = new PolygonPointSet(River1Proportions.region);
+        type1Regions.add(type1region);
+
+
+        //TYPE #2
+        //-------------------------------------------------------------
+        //River
+        PolygonPointSet type2river = new PolygonPointSet(River2Proportions.river);
+        type2Regions.add(type2river);
+
+        //Regions
+        PolygonPointSet type2region1 = new PolygonPointSet(River2Proportions.region1);
+        PolygonPointSet type2region2 = new PolygonPointSet(River2Proportions.region2);
+        type2Regions.add(type2region1);
+        type2Regions.add(type2region2);
+
+
+        //TYPE #3
+        //-------------------------------------------------------------
+        //River
+        PolygonPointSet type3river = new PolygonPointSet(River3Proportions.river);
+        type3Regions.add(type3river);
+
+        //Regions
+        PolygonPointSet type3region1 = new PolygonPointSet(River3Proportions.region1);
+        PolygonPointSet type3region2 = new PolygonPointSet(River3Proportions.region2);
+        type3Regions.add(type3region1);
+        type3Regions.add(type3region2);
+
+
+        //TYPE #4
+        //-------------------------------------------------------------
+        //River
+        PolygonPointSet type4river = new PolygonPointSet(River4Proportions.river);
+        type4Regions.add(type4river);
+
+        //Regions
+        PolygonPointSet type4region1 = new PolygonPointSet(River4Proportions.region1);
+        PolygonPointSet type4region2 = new PolygonPointSet(River4Proportions.region2);
+        type4Regions.add(type4region1);
+        type4Regions.add(type4region2);
+
     }
 
     //Returns the Hexagon formed by the joining the corner points and a ZERO offset
@@ -114,36 +134,11 @@ public class PolygonUtility {
 
 
     public static Polygon getRegion(PixelPoint point, Polygon region){
-
         return null;
-
     }
 
     public static List<Polygon> getTileRegions(String riverType, Integer rotation){
         return null;
     }
-
-
-    private static List<Point> rotatePolygon(List<Point> regionPts, Point center, double angle){
-        List<Point> pointSet = new ArrayList<>();
-        for(Point point: regionPts){
-            Point rotatedPoint = rotatePoint(point, center, angle);
-            pointSet.add(new Point((int)rotatedPoint.getX(), (int)rotatedPoint.getY()));
-        }
-        return pointSet;
-    }
-
-    private static Point rotatePoint(Point pt, Point center, double angleDeg) {
-        double angleRad = (angleDeg/180)*(Math.PI);
-        double cosAngle = Math.cos(angleRad );
-        double sinAngle = Math.sin(angleRad );
-        double dx = (pt.x-center.x);
-        double dy = (pt.y-center.y);
-
-        pt.x = center.x + (int) (dx*cosAngle-dy*sinAngle);
-        pt.y = center.y + (int) (dx*sinAngle+dy*cosAngle);
-        return pt;
-    }
-
 
 }
