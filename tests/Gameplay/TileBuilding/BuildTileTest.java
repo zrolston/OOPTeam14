@@ -29,7 +29,8 @@ public class BuildTileTest {
         GameMap map = new GameMap(21, 21);
         GameModelFacade.initialize( );
         GameModelFacade facade = GameModelFacade.getInstance();
-        facade.loadMap("C:\\Users\\Cameron\\IdeaProjects\\OOPTeam14\\res\\SavedMaps\\mapTest.dave");
+        //facade.loadMap("C:\\Users\\Cameron\\IdeaProjects\\OOPTeam14\\res\\SavedMaps\\mapTest.dave");
+        facade.loadMap("C:\\Users\\Cameron\\IdeaProjects\\OOPTeam14\\res\\SavedMaps\\full board map.dave");
         map = facade.debugGetMap();
     }
 }
