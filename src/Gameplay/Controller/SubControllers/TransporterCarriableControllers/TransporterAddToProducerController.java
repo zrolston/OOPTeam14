@@ -11,6 +11,8 @@ public class TransporterAddToProducerController extends TransporterCarriableCont
 
   }
 
+
+
     @Override
     protected void resume() {
 
@@ -18,8 +20,6 @@ public class TransporterAddToProducerController extends TransporterCarriableCont
 
     @Override
     protected void carriableClick() {
-
-        System.out.println("adasda");
 
     }
 }

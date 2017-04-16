@@ -28,7 +28,7 @@ import java.util.List;
 public class TransporterCarriableView extends JPanel {
 
     private BufferedImage background;
-    private ArrayList<Rectangle> buttons;
+    private ArrayList<Rectangle> buttons = new ArrayList<>();
     private CarriableIterator iter;
 
     int numCols = 2;
@@ -59,6 +59,7 @@ public class TransporterCarriableView extends JPanel {
         if(iter == null)
             return;
 
+        iter.first();
         int i = 0;
         while( i < iter.size() ) {
 
@@ -71,10 +72,12 @@ public class TransporterCarriableView extends JPanel {
             else
                 g.drawImage(img, (int)r.getX(), (int)r.getY(), (int)r.getWidth(), (int)r.getHeight(), null);
 
+            iter.next();
         }
     }
 
     public ArrayList<Rectangle> getButtons() {
+        generateButtons();
         return buttons;
     }
 
@@ -86,7 +89,7 @@ public class TransporterCarriableView extends JPanel {
 
     public void generateButtons() {
 
-        buttons = new ArrayList<>();
+        buttons.clear();
         int numElements = iter.size();
 
         int widthOffset = getWidth() / numCols;
