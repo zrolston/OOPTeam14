@@ -164,6 +164,10 @@ public abstract class TransporterCarriableController implements MainViewControll
         view.setVisible(false);
     }
 
+    protected void showPanel(){
+        view.setVisible(true);
+    }
+
     protected void setCurrentCarriable(int number) {
         if (carrIt != null) {
             currentCarriable = carrIt.getCarriableAt(number);
@@ -211,7 +215,7 @@ public abstract class TransporterCarriableController implements MainViewControll
      * to empty the whole controller and view
      */
     public void emptyPanel() {
-
+        //TODO: Implement function
     }
 
     protected void clearCurrentCarriable() {

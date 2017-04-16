@@ -148,7 +148,7 @@ public class GameModelFacade { //TODO make an abstract facade
     }
 
     /**
-     * given a transporter return its carriable depending on the phase
+     * given a region return its carriable depending on the phase
      * @param region
      * @return
      */
