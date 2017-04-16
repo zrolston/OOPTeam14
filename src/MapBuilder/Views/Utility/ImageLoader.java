@@ -66,7 +66,18 @@ public class ImageLoader {
             cachedImages.put("BLANK_HEX", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/testhexatile.png")));
             cachedImages.put("ORANGE_WALL", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/orangeWall.png")));
             cachedImages.put("BLUE_WALL", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/blueWall.png")));
-
+            cachedImages.put("BLUE_DONKEY", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Transporters/donkeyBlue.png")));
+            cachedImages.put("ORANGE_DONKEY", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Transporters/donkeyOrange.png")));
+            cachedImages.put("BLUE_RAFT", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Transporters/raftBlu.png")));
+            cachedImages.put("ORANGE_RAFT", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Transporters/raftOrange.png")));
+            cachedImages.put("ORANGE_ROWBOAT", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Transporters/rowboatOrange.png")));
+            cachedImages.put("BLUE_ROWBOAT", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Transporters/rowboatBlue.png")));
+            cachedImages.put("BLUE_STEAMSHIP", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Transporters/steamShipBlue.png")));
+            cachedImages.put("ORANGE_STEAMSHIP", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Transporters/steamShipOrange.png")));
+            cachedImages.put("BLUE_TRUCK", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Transporters/truckBlue.png")));
+            cachedImages.put("ORANGE_TRUCK", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Transporters/truckOrange.png")));
+            cachedImages.put("BLUE_WAGON", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Transporters/wagonBlue.png")));
+            cachedImages.put("ORANGE_WAGON", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Transporters/wagonOrange.png")));
         }
         catch (Exception e) {
             e.printStackTrace();
