@@ -10,31 +10,34 @@ import Gameplay.Model.Visitors.Carriable;
 import Gameplay.Model.Visitors.TransporterVisitor;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 abstract public class Transporter extends Owned implements Carriable{
     private List<Permit> permitList;
     private int capacity;
-    private int movement;
+    private int maxMovement;
+    private int remainingMovement;
     private LimitedGoodsBag goods;
-    private List<Region> movementList;
+    private Map<Region, Integer> movementList;
     private Region[] cache; //Current = cache[0], cached = cache[1]
     //private TransporterMovementObserver transporterMovementObserver;
 
     public Transporter(Permit ... permits){
         cache = new Region[2];
         permitList = new ArrayList<>();
-        movementList = new ArrayList<>();
+        movementList = new HashMap<>();
         for (Permit permit : permits) {
             permitList.add(permit);
         }
     }
 
-    public void addRegion(Region region){
-        movementList.add(region);
+    public void addRegion(Region region, int cost){
+        movementList.put(region, cost);
     }
 
-    public List<Region> getMovementList(){
+    public Map<Region, Integer> getMovementList(){
         return movementList;
     }
 
@@ -53,6 +56,24 @@ abstract public class Transporter extends Owned implements Carriable{
 
     public Region getCachedRegion(){
         return cache[1];
+    }
+
+    protected void setMaxMovement(int n){
+        this.maxMovement = n;
+        this.remainingMovement = n;
+    }
+
+    public boolean moveTo(Region region){
+        if (movementList.containsKey(region) && movementList.get(region) <= remainingMovement){
+            region.enterRegion(this);
+            remainingMovement -= movementList.get(region);
+            return true;
+        }
+        return false;
+    }
+
+    public void resetMovement(){
+        remainingMovement = maxMovement;
     }
 
 }

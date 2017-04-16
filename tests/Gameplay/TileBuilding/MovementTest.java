@@ -46,10 +46,10 @@ public class MovementTest {
 
         region.enterRegion(donkey);
 
-        List<Region> movementList = donkey.getMovementList();
+        Map<Region, Integer> movementList = donkey.getMovementList();
         assertEquals(movementList.size(), 2);
 
-        for (Region r : movementList) {
+        for (Region r : movementList.keySet()) {
             assertEquals(r.getClass(), LandRegion.class);
         }
 
@@ -60,18 +60,31 @@ public class MovementTest {
         // nextInt is normally exclusive of the top value,
         // so add 1 to make it inclusive
         Set<Region> visitedList = new HashSet<>();
-        int repetitions = 100;
+        int repetitions = 5;
         while (repetitions > 0){
             int size = movementList.size();
             int randomRegion = rand.nextInt(size); // 0 <= randomRegion < size
-            Region nextRegion = movementList.get(randomRegion);
-            nextRegion.enterRegion(donkey);
+            Region nextRegion = null;
+            for (Region r : movementList.keySet()) {
+                if (randomRegion > 0){
+                    randomRegion--;
+                    continue;
+                }
+                nextRegion = r;
+                break;
+            }
+            if(repetitions > 4){
+                assertEquals(donkey.moveTo(nextRegion), true);
+            }
+            else{
+                assertEquals(donkey.moveTo(nextRegion), false);
+            }
             assertEquals(nextRegion.getClass(), LandRegion.class);
             visitedList.add(nextRegion);
             repetitions--;
         }
         System.out.println("Size of visited list: " + visitedList.size());
-        assertEquals(visitedList.size(), 5);
+        assertTrue(visitedList.size() < 5 && visitedList.size() > 1);
 
     }
 
@@ -87,7 +100,7 @@ public class MovementTest {
 
         region.enterRegion(boat);
 
-        List<Region> movementList = boat.getMovementList();
+        Map<Region, Integer> movementList = boat.getMovementList();
         assertEquals(movementList.size(), 5);
 
         //Simulate Movement
@@ -97,12 +110,20 @@ public class MovementTest {
         // nextInt is normally exclusive of the top value,
         // so add 1 to make it inclusive
         Set<Region> visitedList = new HashSet<>();
-        int repetitions = 100;
+        int repetitions = 5;
         while (repetitions > 0){
             int size = movementList.size();
             int randomRegion = rand.nextInt(size); // 0 <= randomRegion < size
-            Region nextRegion = movementList.get(randomRegion);
-            nextRegion.enterRegion(boat);
+            Region nextRegion = null;
+            for (Region r : movementList.keySet()) {
+                if (randomRegion > 0){
+                    randomRegion--;
+                    continue;
+                }
+                nextRegion = r;
+                break;
+            }
+            boat.moveTo(nextRegion);
             visitedList.add(nextRegion);
             repetitions--;
         }

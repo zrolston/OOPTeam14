@@ -10,6 +10,7 @@ public class Rowboat extends Transporter {
 
     public Rowboat(Permit...permits){
         super(permits);
+        setMaxMovement(4);
     }
     @Override
     public void accept(CarriableVisitor cv) {

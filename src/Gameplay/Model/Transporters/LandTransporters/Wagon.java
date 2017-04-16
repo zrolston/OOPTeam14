@@ -9,6 +9,7 @@ public class Wagon extends Transporter {
 
     public Wagon(Permit...permits){
         super(permits);
+        setMaxMovement(3);
     }
 
     @Override

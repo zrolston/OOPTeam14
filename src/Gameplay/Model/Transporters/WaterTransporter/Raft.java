@@ -10,6 +10,7 @@ public class Raft extends Transporter {
 
     public Raft(Permit...permits){
         super(permits);
+        setMaxMovement(3);
     }
     @Override
     public void accept(CarriableVisitor cv) {
