@@ -3,6 +3,7 @@ package Gameplay.Views.Drawers;
 import Gameplay.Model.Utility.GameModelFacade;
 import MapBuilder.Model.Map.IViewMap;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,7 +11,13 @@ import java.util.List;
  */
 public class AllTransporterDrawer {
 
-    private List<ImageWithLocation> images;
+    private ArrayList<ImageWithLocation> images;
+
+    public AllTransporterDrawer() {
+        images = new ArrayList<>();
+    }
+
+
 
 
 }

@@ -1,5 +1,7 @@
 package Gameplay.Model.Visitors;
 
+import Gameplay.Views.Drawers.AllTransporterDrawer;
+import Gameplay.Views.Drawers.TransporterDrawingVisitor;
 import MapBuilder.Model.Map.IViewMap;
 import MapBuilder.Model.Tile.Tile;
 import MapBuilder.Model.Visitor.MapVisitor;
@@ -9,6 +11,7 @@ import java.awt.image.BufferedImage;
 public class GameMapDrawingVisitor implements MapVisitor {
 
     private BufferedImage[][] imageArray;
+
 
     public GameMapDrawingVisitor(){
     }

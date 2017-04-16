@@ -3,15 +3,16 @@ package Gameplay.Views.Drawers;
 import MapBuilder.Views.Utility.PixelPoint;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 /**
  * Created by Willie on 4/16/2017.
  */
 public class ImageWithLocation {
-    Image image;
+    BufferedImage image;
     PixelPoint location;
 
-    public ImageWithLocation(Image image, PixelPoint location) {
+    public ImageWithLocation(BufferedImage image, PixelPoint location) {
         this.image = image;
         this.location = location;
     }

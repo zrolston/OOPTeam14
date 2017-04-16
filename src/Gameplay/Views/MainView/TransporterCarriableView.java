@@ -1,6 +1,15 @@
 package Gameplay.Views.MainView;
 
+import Gameplay.Model.Goods.GoodsBag;
+import Gameplay.Model.Goods.Goose;
+import Gameplay.Model.TransporterFactory.DonkeyFactory;
+import Gameplay.Model.Transporters.LandTransporters.Donkey;
+import Gameplay.Model.Transporters.Transporter;
+import Gameplay.Model.Utility.PlayerID;
 import Gameplay.Model.Visitors.Carriable;
+import Gameplay.Model.Visitors.GoodsVisitor;
+import Gameplay.Views.Drawers.GoodDrawingVisitor;
+import Gameplay.Views.Drawers.TransporterDrawingVisitor;
 import Gameplay.Views.Utility.PolygonUtility;
 import MapBuilder.Views.Utility.ImageLoader;
 import MapBuilder.Views.Utility.PixelMap;
@@ -23,9 +32,36 @@ public class TransporterCarriableView extends JPanel {
     private List<Carriable> leftCarriables;
     private List<Carriable> rightCarriables;
 
+    private ArrayList<BufferedImage> transporterImages;
+    private ArrayList<BufferedImage> goodsImages;
+
+
     private int horizontalOffset, verticalOffset, buttonSide;
 
     public TransporterCarriableView() {
+
+        transporterImages = new ArrayList<>();
+        goodsImages = new ArrayList<>();
+
+        /////////////////////////////////////////////////////
+        PlayerID p1 = new PlayerID(0);
+        PlayerID p2 = new PlayerID(1);
+
+        DonkeyFactory df = new DonkeyFactory();
+        Transporter donky = df.create();
+        donky.setPlayerID(p2);
+
+        TransporterDrawingVisitor t = new TransporterDrawingVisitor();
+        donky.accept(t);
+        BufferedImage transporterImage = t.getBufferedImage();
+        transporterImages.add(transporterImage);
+
+        Goose g = new Goose();
+        GoodDrawingVisitor gv = new GoodDrawingVisitor();
+        g.accept(gv);
+        goodsImages.add( gv.getBufferedImage() );
+        /////////////////////////////////////////////////////
+
         setLayout(new BorderLayout());
         setBounds((int)(PixelMap.SCREEN_WIDTH * (1 - 34.0/40 - 1.0/7)), (int)(PixelMap.SCREEN_HEIGHT * .05), PixelMap.SCREEN_WIDTH /7, (int)(PixelMap.SCREEN_HEIGHT * (17.0/20 + 1.0/12 - .05)));
         setOpaque(false);
@@ -45,9 +81,7 @@ public class TransporterCarriableView extends JPanel {
         //Calculate the offsets
         horizontalOffset = (int)(0.15*(getWidth()/numCols));
         buttonSide = (int)(0.75*(getWidth()/numCols));
-//        verticalOffset = ((getHeight()-horizontalOffset-5-numRows*buttonSide)/numRows);
         verticalOffset = horizontalOffset;
-
 
         //Initialize the left and right buttons
         buttons = new ArrayList<>();
@@ -102,7 +136,16 @@ public class TransporterCarriableView extends JPanel {
     }
 
     private void drawButtons(Graphics g){
-        for(Rectangle r: buttons) g.drawRoundRect((int)r.getX(), (int)r.getY(), (int)r.getWidth(), (int)r.getHeight(), 5, 5);
+        int  i = 0;
+        for(Rectangle r: buttons) {
+
+            g.drawRoundRect((int)r.getX(), (int)r.getY(), (int)r.getWidth(), (int)r.getHeight(), 5, 5);
+            // draw transporters in left column
+            if(++i % 2 != 0)
+                g.drawImage(transporterImages.get(0), (int)r.getX(), (int)r.getY(), (int)r.getWidth(), (int)r.getHeight(), null);
+            else
+                g.drawImage(goodsImages.get(0), (int)r.getX(), (int)r.getY(), (int)r.getWidth(), (int)r.getHeight(), null);
+        }
     }
 
     public Integer getCarriableIndex(PixelPoint point){
