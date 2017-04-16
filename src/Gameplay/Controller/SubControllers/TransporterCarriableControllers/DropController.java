@@ -13,8 +13,6 @@ public class DropController extends TransporterCarriableController {
     private DropRegionController dropRegionController = new DropRegionController(this);
     private MoveRegionController moveRegionController = new MoveRegionController(this);
 
-    //iterator of goods
-    //iterator of transporters
 
     public DropController() {
         changeToDefaultController();

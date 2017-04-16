@@ -1,19 +1,27 @@
 package Gameplay.Controller.PanelControllers;
 
 import Gameplay.Controller.MainViewController;
+import Gameplay.Model.Goods.Goose;
 import Gameplay.Model.Iterators.CarriableIterator;
 import Gameplay.Model.Iterators.TransporterIterator;
 import Gameplay.Model.Region.Region;
+import Gameplay.Model.TransporterFactory.DonkeyFactory;
 import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Model.Utility.GameModelFacade;
+import Gameplay.Model.Utility.PlayerID;
 import Gameplay.Model.Visitors.Carriable;
+import Gameplay.Views.Drawers.CarriableDrawingVisitor;
+import Gameplay.Views.Drawers.TransporterDrawingVisitor;
 import Gameplay.Views.MainView.MainView;
 import Gameplay.Views.MainView.TransporterCarriableView;
 import MapBuilder.Views.Utility.PixelPoint;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 /**
  * Created by jordi on 4/15/2017.
@@ -68,23 +76,60 @@ public abstract class TransporterCarriableController implements MainViewControll
         return view == null;
     }
 
-    private void attachView(JPanel view) throws Exception {
+    public void attachView(TransporterCarriableView view){
 
-        if (viewIsNull(view)) {
-            throw new Exception("The view that was tried to be attached was null");
+        if (view == null) {
+                return;
         }
+
+        this.view = view;
         view.addMouseListener(this);
+        this.mousePressed(new MouseEvent(view, 0, 0, 0, 0, 0, 0, false));
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        PixelPoint point = new PixelPoint(e.getX(), e.getY());
-        int index = view.getCarriableIndex(point);
-        System.out.println(index);
 
-        if (!isOutOfBounds(index)) {
-            determineClick(index);
+        PixelPoint point = new PixelPoint(e.getX(), e.getY());
+
+        //////////
+        PlayerID p1 = new PlayerID(0);
+        PlayerID p2 = new PlayerID(1);
+
+        DonkeyFactory df = new DonkeyFactory();
+        Transporter donky = df.create();
+        donky.setPlayerID(p2);
+
+        TransporterDrawingVisitor t = new TransporterDrawingVisitor();
+        donky.accept(t);
+        BufferedImage transporterImage = t.getBufferedImage();
+
+        Goose g = new Goose();
+        CarriableDrawingVisitor gv = new CarriableDrawingVisitor();
+        g.accept(gv);
+
+        ArrayList<Carriable> cariables = new ArrayList<>();
+        cariables.add( g );
+        cariables.add( donky );
+
+        carrIt = new CarriableIterator( cariables );
+        view.setIter(carrIt);
+
+        ArrayList<Rectangle> buttons = view.getButtons();
+
+        int index = 0; // get index of click
+        for(Rectangle button: buttons){
+            if(button.contains(point.getX(), point.getY()))
+                System.out.println(index);
+            index++;
         }
+
+//        int index = view.getCarriableIndex(point);
+//        System.out.println(index);
+//
+//        if (!isOutOfBounds(index)) {
+//            determineClick(index);
+//        }
 
     }
 

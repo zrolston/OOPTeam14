@@ -65,9 +65,7 @@ public class TerrainIterator implements TileIterator {
     }
 
     @Override
-    public void setSelectedTile(int index) {
-
-    }
+    public void setSelectedTile(int index) {}
 
     @Override
     public Tile getSelectedTile() {

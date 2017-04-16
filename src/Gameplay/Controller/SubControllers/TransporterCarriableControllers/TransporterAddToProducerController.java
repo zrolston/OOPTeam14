@@ -6,6 +6,11 @@ import Gameplay.Controller.PanelControllers.TransporterCarriableController;
  * Created by jordi on 4/15/2017.
  */
 public class TransporterAddToProducerController extends TransporterCarriableController {
+
+  public  TransporterAddToProducerController() {
+
+  }
+
     @Override
     protected void resume() {
 
@@ -13,6 +18,8 @@ public class TransporterAddToProducerController extends TransporterCarriableCont
 
     @Override
     protected void carriableClick() {
+
+        System.out.println("adasda");
 
     }
 }
