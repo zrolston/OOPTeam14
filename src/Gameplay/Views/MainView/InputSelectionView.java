@@ -32,7 +32,7 @@ public class InputSelectionView extends JPanel {
         background = ImageLoader.getImage("RESEARCH_BACKGROUND");
         this.setBorder(BorderFactory.createLineBorder(new Color(0x11111111), 1));
 
-        int numElements = 8;
+        int numElements = 5;
         int numCols = 8;
 
         columns = new ArrayList<>();
