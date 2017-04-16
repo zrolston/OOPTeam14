@@ -11,7 +11,7 @@ import Gameplay.Model.Visitors.ProducerVisitor;
 /**
  * Created by Willie on 4/15/2017.
  */
-public class Mint extends SecondaryGoodFactory {
+public class Mint extends SecondaryGoodProducer {
 
     private ProducerRequest input;
 

@@ -8,6 +8,6 @@ import Gameplay.Model.Producer.UserRequest;
 /**
  * Created by Willie on 4/15/2017.
  */
-public abstract class SecondaryGoodFactory extends Producer {
+public abstract class SecondaryGoodProducer extends Producer {
     public abstract GoodsBag produce(UserRequest ur);
 }

@@ -1,10 +1,9 @@
-package Gameplay.Model.Producer.SecondaryProducer.TransporterFactory;
+package Gameplay.Model.Producer.SecondaryProducer.TransporterProducer;
 
 import Gameplay.Model.Goods.Fuel;
 import Gameplay.Model.Goods.GoodsBag;
 import Gameplay.Model.Goods.Iron;
 import Gameplay.Model.Producer.ProducerRequest;
-import Gameplay.Model.Producer.SecondaryProducer.GoodProducer.SecondaryGoodFactory;
 import Gameplay.Model.Producer.UserRequest;
 import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Model.Transporters.WaterTransporter.Steamer;
@@ -13,11 +12,11 @@ import Gameplay.Model.Visitors.ProducerVisitor;
 /**
  * Created by Willie on 4/15/2017.
  */
-public class SteamerFactory extends SecondaryTransporterFactory {
+public class SteamerProducer extends SecondaryTransporterProducer {
 
     private ProducerRequest input;
 
-    public SteamerFactory() {
+    public SteamerProducer() {
         generateInput();
     }
 

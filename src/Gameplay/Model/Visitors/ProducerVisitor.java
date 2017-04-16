@@ -2,7 +2,7 @@ package Gameplay.Model.Visitors;
 
 import Gameplay.Model.Producer.PrimaryProducer.*;
 import Gameplay.Model.Producer.SecondaryProducer.GoodProducer.*;
-import Gameplay.Model.Producer.SecondaryProducer.TransporterFactory.*;
+import Gameplay.Model.Producer.SecondaryProducer.TransporterProducer.*;
 
 /**
  * Created by Willie on 4/15/2017.
@@ -19,9 +19,9 @@ public interface ProducerVisitor {
     void visitStoneFactory(StoneFactory sf);
     void visitMint(Mint m);
     void visitStockMarket(StockMarket sm);
-    void visitWagonFactory(WagonFactory wf);
-    void visitTruckFactory(TruckFactory tf);
-    void visitRaftFactory(RaftFactory rf);;
-    void visitRowboatFactory(RowboatFactory rf);
-    void visitSteamerFactory(SteamerFactory sf);
+    void visitWagonFactory(WagonProducer wf);
+    void visitTruckFactory(TruckProducer tf);
+    void visitRaftFactory(RaftProducer rf);;
+    void visitRowboatFactory(RowboatProducer rf);
+    void visitSteamerFactory(SteamerProducer sf);
 }

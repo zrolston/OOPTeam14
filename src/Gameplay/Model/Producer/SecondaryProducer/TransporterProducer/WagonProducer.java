@@ -1,40 +1,39 @@
-package Gameplay.Model.Producer.SecondaryProducer.TransporterFactory;
+package Gameplay.Model.Producer.SecondaryProducer.TransporterProducer;
 
-import Gameplay.Model.Goods.Fuel;
+import Gameplay.Model.Goods.Board;
 import Gameplay.Model.Goods.GoodsBag;
-import Gameplay.Model.Goods.Iron;
 import Gameplay.Model.Producer.ProducerRequest;
-import Gameplay.Model.Producer.SecondaryProducer.GoodProducer.SecondaryGoodFactory;
 import Gameplay.Model.Producer.UserRequest;
-import Gameplay.Model.Transporters.LandTransporters.Truck;
+import Gameplay.Model.Transporters.LandTransporters.Donkey;
+import Gameplay.Model.Transporters.LandTransporters.Wagon;
 import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Model.Visitors.ProducerVisitor;
 
 /**
  * Created by Willie on 4/15/2017.
  */
-public class TruckFactory extends SecondaryTransporterFactory {
+public class WagonProducer extends SecondaryTransporterProducer {
 
     private ProducerRequest input;
 
-    public TruckFactory() {
+    public WagonProducer() {
         generateInput();
     }
 
     private void generateInput() {
         GoodsBag goods = new GoodsBag();
-        goods.addFuel(new Fuel());
-        goods.addIron(new Iron());
-        input = new ProducerRequest(goods, null);
+        goods.addBoard(new Board());
+        goods.addBoard(new Board());
+        input = new ProducerRequest(goods, new Donkey());
     }
 
     private Transporter generateOutputs() {
-        return new Truck();
+        return new Wagon();
     }
 
     @Override
     public void accept(ProducerVisitor pv) {
-        pv.visitTruckFactory(this);
+        pv.visitWagonFactory(this);
     }
 
     @Override

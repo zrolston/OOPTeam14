@@ -1,39 +1,39 @@
-package Gameplay.Model.Producer.SecondaryProducer.TransporterFactory;
+package Gameplay.Model.Producer.SecondaryProducer.TransporterProducer;
 
+import Gameplay.Model.Goods.Fuel;
 import Gameplay.Model.Goods.GoodsBag;
-import Gameplay.Model.Goods.Trunk;
+import Gameplay.Model.Goods.Iron;
 import Gameplay.Model.Producer.ProducerRequest;
-import Gameplay.Model.Producer.SecondaryProducer.GoodProducer.SecondaryGoodFactory;
 import Gameplay.Model.Producer.UserRequest;
+import Gameplay.Model.Transporters.LandTransporters.Truck;
 import Gameplay.Model.Transporters.Transporter;
-import Gameplay.Model.Transporters.WaterTransporter.Raft;
 import Gameplay.Model.Visitors.ProducerVisitor;
 
 /**
  * Created by Willie on 4/15/2017.
  */
-public class RaftFactory extends SecondaryTransporterFactory {
+public class TruckProducer extends SecondaryTransporterProducer {
 
     private ProducerRequest input;
 
-    public RaftFactory() {
+    public TruckProducer() {
         generateInput();
     }
 
     private void generateInput() {
         GoodsBag goods = new GoodsBag();
-        goods.addTrunk(new Trunk());
-        goods.addTrunk(new Trunk());
+        goods.addFuel(new Fuel());
+        goods.addIron(new Iron());
         input = new ProducerRequest(goods, null);
     }
 
     private Transporter generateOutputs() {
-        return new Raft();
+        return new Truck();
     }
 
     @Override
     public void accept(ProducerVisitor pv) {
-        pv.visitRaftFactory(this);
+        pv.visitTruckFactory(this);
     }
 
     @Override

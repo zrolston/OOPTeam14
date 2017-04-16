@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Created by Willie on 4/15/2017.
  */
-public class CoalBurner extends SecondaryGoodFactory {
+public class CoalBurner extends SecondaryGoodProducer {
 
     private List<ProducerRequest> inputs;
 
