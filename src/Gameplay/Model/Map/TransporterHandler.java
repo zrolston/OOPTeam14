@@ -74,4 +74,8 @@ public class TransporterHandler {
 
         return transporters;
     }
+
+    public TransporterOccupancy getOccupancyAt(Region r){
+        return occupancyMap.get(r);
+    }
 }

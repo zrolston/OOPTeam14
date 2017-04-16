@@ -16,6 +16,8 @@ import Gameplay.Model.TransporterFactory.TransporterFactory;
 import Gameplay.Model.TransporterFactory.TruckFactory;
 import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Model.Visitors.Carriable;
+import Gameplay.Model.Visitors.DropOffExchangeHandler;
+import Gameplay.Model.Visitors.PickUpExchangeHandler;
 import Gameplay.Model.Visitors.RegionPlacableVisitor;
 import MapBuilder.Model.Utility.MapParsers.DaveBuilder;
 
@@ -141,8 +143,10 @@ public class GameModelFacade { //TODO make an abstract facade
      * TODO: to be implemented, made for when a transporter needs to drop a carriable on a certain tile
      * @param region
      */
-    public void dropCarriable(Region region, Transporter target, Carriable carriable){
-
+    public void dropCarriable(Region region, Transporter target, Carriable carriable) {
+        TransporterOccupancy transporterOccupancy = transporterHandler.getOccupancyAt(region);
+        GoodsBag goodsBag = goodsHandler.getGoodsBagAt(region);
+        carriable.accept(new DropOffExchangeHandler(transporterOccupancy, goodsBag, target));
     }
 
     /**
@@ -153,7 +157,9 @@ public class GameModelFacade { //TODO make an abstract facade
      * @param carriable
      */
     public void pickUpCarriable(Region region, Transporter transporter, Carriable carriable){
-
+        TransporterOccupancy transporterOccupancy = transporterHandler.getOccupancyAt(region);
+        GoodsBag goodsBag = goodsHandler.getGoodsBagAt(region);
+        carriable.accept(new PickUpExchangeHandler(transporterOccupancy, goodsBag, transporter));
     }
 
     /**

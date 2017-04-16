@@ -5,4 +5,5 @@ package Gameplay.Model.Visitors;
  */
 public interface Carriable {
     void accept(CarriableVisitor cv);
+    void accept(GenericCarriableVisitor gcv);
 }

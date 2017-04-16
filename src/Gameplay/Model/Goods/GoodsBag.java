@@ -1,5 +1,8 @@
 package Gameplay.Model.Goods;
 
+import Gameplay.Model.Visitors.GoodDropHandler;
+import Gameplay.Model.Visitors.GoodPickupHandler;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -136,37 +139,37 @@ public class GoodsBag {
         return numBoard() + numClay() + numCoins() + numFuel() + numGold() + numGoose() + numIron() + numPaper() + numStock() + numStone() + numTrunk();
     }
 
-    protected Board removeBoard() {
+    public Board removeBoard() {
         return boardList.remove(0);
     }
-    protected Clay removeClay() {
+    public Clay removeClay() {
         return clayList.remove(0);
     }
-    protected Coins removeCoins() {
+    public Coins removeCoins() {
         return coinsList.remove(0);
     }
-    protected Fuel removeFuel() {
+    public Fuel removeFuel() {
         return fuelList.remove(0);
     }
-    protected Gold removeGold() {
+    public Gold removeGold() {
         return goldList.remove(0);
     }
-    protected Goose removeGoose() {
+    public Goose removeGoose() {
         return gooseList.remove(0);
     }
-    protected Iron removeIron() {
+    public Iron removeIron() {
         return ironList.remove(0);
     }
-    protected Paper removePaper() {
+    public Paper removePaper() {
         return paperList.remove(0);
     }
-    protected Stock removeStock() {
+    public Stock removeStock() {
         return stockList.remove(0);
     }
-    protected Stone removeStone() {
+    public Stone removeStone() {
         return stoneList.remove(0);
     }
-    protected Trunk removeTrunk() {
+    public Trunk removeTrunk() {
         return trunkList.remove(0);
     }
 
@@ -264,5 +267,13 @@ public class GoodsBag {
         allGood.addAll(this.trunkList);
 
         return allGood;
+    }
+
+    public void addGood(Good good) {
+        good.accept(new GoodPickupHandler(this));
+    }
+
+    public void removeGood(Good good) {
+        good.accept(new GoodDropHandler(this));
     }
 }
