@@ -4,6 +4,7 @@ import Gameplay.Model.Goods.Good;
 import Gameplay.Model.Goods.GoodsBag;
 import Gameplay.Model.Map.GameMap;
 import Gameplay.Model.Producer.Producer;
+import Gameplay.Model.Region.Region;
 import Gameplay.Model.Tile.GameTile;
 import Gameplay.Model.Tile.RegionMap;
 import Gameplay.Model.Utility.GameModelFacade;
@@ -24,27 +25,33 @@ public class AllGoodDrawer {
         List<ImageWithLocation> images = new ArrayList<ImageWithLocation>();
         GameModelFacade gmf = GameModelFacade.getInstance();
         GameMap gm = gmf.debugGetMap();
-        GameTile[][] tiles = gm.getTiles();
-        GoodDrawingVisitor gdv = new GoodDrawingVisitor();
-        for (int i = 0; i < tiles.length; i++) {
-            for (int j = 0; j < tiles[0].length; j++) {
-                if (tiles[i][j] == null)
-                    continue;
-                PixelPoint origin = PixelMap.getMapTileOrigin(new HexLocation(i,j));
-                RegionMap regionMap = tiles[i][j].getRegionMap();
-                for (List<HexaVertex> vertices : regionMap.getRegionMap().keySet()) {
-                    gdv.setOrigin(new PixelPoint(origin.getX() + 20, origin.getY() + 20));
-                    GoodsBag gb = gmf.getGoodsBag(regionMap.getRegionAt(vertices.get(0)));
-                    if (gb == null)
-                        continue;
-                    List<Good> goods = gb.getGoods();
-                    for (Good good : goods) {
-                        good.accept(gdv);
-                        images.add(gdv.getImageWithLocation());
-                    }
-                }
-            }
-        }
+//        GameTile[][] tiles = gm.getTiles();
+//        GoodDrawingVisitor gdv = new GoodDrawingVisitor();
+//        for (int i = 0; i < tiles.length; i++) {
+//            for (int j = 0; j < tiles[0].length; j++) {
+//                if (tiles[i][j] == null)
+//                    continue;
+//                PixelPoint origin = PixelMap.getMapTileOrigin(new HexLocation(i,j));
+//                RegionMap regionMap = tiles[i][j].getRegionMap();
+//                for (List<HexaVertex> vertices : regionMap.getRegionMap().keySet()) {
+//                    gdv.setOrigin(new PixelPoint(origin.getX() + 20, origin.getY() + 20));
+//                    GoodsBag gb = gmf.getGoodsBag(regionMap.getRegionAt(vertices.get(0)));
+//                    if (gb == null)
+//                        continue;
+//                    List<Good> goods = gb.getGoods();
+//                    for (Good good : goods) {
+//                        good.accept(gdv);
+//                        images.add(gdv.getImageWithLocation());
+//                    }
+//                }
+//            }
+//        }
+//        List<Region> regions = gmf.getAllRegionsWithGoodsBag();
+//        for (Region region : regions) {
+//            GameTile tile = region.getTile();
+//            HexLocation location = gm.getHexLocation(tile);
+//            List<HexaVertex> tile.getListHexaIndexRegion(region);
+//        }
         return images;
     }
 

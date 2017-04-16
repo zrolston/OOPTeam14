@@ -71,6 +71,11 @@ public class GameModelFacade { //TODO make an abstract facade
         transporterHandler = new TransporterHandler();
         primaryProducerHandler = new PrimaryProducerHandler();
         secondaryProducerHandler = new SecondaryProducerHandler();
+        try {
+            gameMap.getTiles()[0][0].getRegionMap().getRegionAt(HexaVertex.createVertex(1)).getRegionSet().addRoadRegion(
+                    gameMap.getTiles()[0][1].getRegionMap().getRegionAt(HexaVertex.createVertex(5))
+            );
+        } catch(Exception e) {}
     }
 
     private void setUpGoodsHandler() {
@@ -165,6 +170,10 @@ public class GameModelFacade { //TODO make an abstract facade
         return transporterHandler.getTransportersAt(region);
     }
 
+    public List<Region> getAllRegionsWithTransporter() {
+        return transporterHandler.getAllRegions();
+    }
+
     public Producer getProducer(Region region) {
         Producer producer = primaryProducerHandler.getPrimaryProducerAt(region);
         if (producer != null)
@@ -178,8 +187,16 @@ public class GameModelFacade { //TODO make an abstract facade
         return null;
     }
 
+    public List<Region> getAllRegionsWithProducer() {
+        return transporterHandler.getAllRegions();
+    }
+
     public GoodsBag getGoodsBag(Region region) {
         return goodsHandler.getGoodsBagAt(region);
+    }
+
+    public List<Region> getAllRegionsWithGoodsBag() {
+        return goodsHandler.getAllRegions();
     }
 
     /**
