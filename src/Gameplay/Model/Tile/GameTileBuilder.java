@@ -5,6 +5,7 @@ import Gameplay.Model.Region.LandRegion;
 import Gameplay.Model.Region.RiverRegion;
 import Gameplay.Model.Region.SeaRegion;
 import Gameplay.Model.Utility.HexaVertex;
+import Gameplay.Model.Utility.RiverConvention;
 import MapBuilder.Model.Terrain.*;
 
 import javax.management.BadAttributeValueExpException;
@@ -16,8 +17,11 @@ import java.util.Map;
 public class GameTileBuilder {
     private Map<List<HexaVertex>, Region> regionHashMap;
     private TileState state;
+    private int riverType, rotationNumber;
+    private RiverConvention riverConvention;
 
-    public GameTileBuilder() {
+    public GameTileBuilder(RiverConvention riverConvention) {
+        this.riverConvention = riverConvention;
         this.regionHashMap = new HashMap<>();
     }
 
@@ -30,11 +34,10 @@ public class GameTileBuilder {
             e.printStackTrace();
             return null;
         }
-
-        return new GameTile(
-                state.getTerrain(),
-                new RegionMap(regionHashMap)
-        );
+        riverConvention.setRivers(riverIndices);
+        riverType = riverConvention.getRiverType();
+        rotationNumber = riverConvention.getRiverRotation();
+        return new GameTile(state.getTerrain(), new RegionMap(regionHashMap), riverType, rotationNumber);
     }
 
     private void setState(String terrain){
