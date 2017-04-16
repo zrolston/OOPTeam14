@@ -34,12 +34,14 @@ public class WallSelectionView extends JPanel {
         ArrayList<JButton> btns = new ArrayList<>();
         ArrayList<String> strings = new ArrayList<>();
 
+        strings.add("NE");
         strings.add("N");
         strings.add("W");
-        strings.add("E");
+        strings.add("SE");
         strings.add("S");
+        strings.add("SW");
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < strings.size(); i++) {
             JButton button = new JButton( strings.get(i) );
             button.setOpaque(false);
             button.setContentAreaFilled(false);
@@ -47,14 +49,8 @@ public class WallSelectionView extends JPanel {
             btns.add(button);
         }
 
-        int index = 0;
-        for (int i = 0; i < 9; i++) {
-            if(i == 0 || i == 2 || i == 4 || i == 6 || i == 8) {
-                add(new JLabel());
-            }
-            else {
-                add(btns.get(index++));
-            }
+        for (int i = 0; i < strings.size(); i++) {
+           add( btns.get(i) );
         }
 
         this.setBorder(BorderFactory.createLineBorder(new Color(0x11111111), 1));
