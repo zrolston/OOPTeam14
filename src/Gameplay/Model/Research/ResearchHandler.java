@@ -26,6 +26,10 @@ public class ResearchHandler {
         research.add(new TruckFactoryResearch());
         research.add(new SteamerFactoryResearch());
         research.add(new OilRigResearch());
-        research.add(new )
+        research.add(new MineShaftSpecializationResearch());
+        research.add(new MineShaftEnlargementResearch());
+        research.add(new AdditionalShaftsResearch());
+        research.add(new BrightIdeaResearch());
+        return research;
     }
 }
