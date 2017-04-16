@@ -1,10 +1,8 @@
 package Gameplay.Controller.SubControllers.RegionSelectionControllers;
 
 import Gameplay.Controller.PanelControllers.MapSelectionControllers.RegionSelectionController;
-import Gameplay.Controller.PhaseStateControllers.MovementStateControllers.MovementState;
 import Gameplay.Controller.SubControllers.TransporterCarriableControllers.DropController;
 import Gameplay.Model.Visitors.Carriable;
-import Gameplay.Views.MainView.MainView;
 
 /**
  * Created by jordi on 4/16/2017.
@@ -39,6 +37,7 @@ public class DropRegionController extends RegionSelectionController  {
     public void receiveCarriable(Carriable carriable) {
         this.carriable = carriable;
     }
+
 }
 
 

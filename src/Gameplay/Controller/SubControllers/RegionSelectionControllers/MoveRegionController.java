@@ -1,11 +1,9 @@
 package Gameplay.Controller.SubControllers.RegionSelectionControllers;
 
 import Gameplay.Controller.PanelControllers.MapSelectionControllers.RegionSelectionController;
-import Gameplay.Controller.PhaseStateControllers.MovementStateControllers.MovementState;
 import Gameplay.Controller.SubControllers.TransporterCarriableControllers.DropController;
 import Gameplay.Model.Region.Region;
 import Gameplay.Model.Transporters.Transporter;
-import Gameplay.Views.MainView.MainView;
 
 import java.util.List;
 

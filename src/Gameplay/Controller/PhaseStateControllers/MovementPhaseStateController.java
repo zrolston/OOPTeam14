@@ -1,4 +1,4 @@
-package Gameplay.Controller.PhaseStateControllers.MovementStateControllers;
+package Gameplay.Controller.PhaseStateControllers;
 
 import Gameplay.Controller.MainViewController;
 import Gameplay.Controller.PanelControllers.MapSelectionControllers.RegionSelectionController;

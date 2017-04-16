@@ -11,7 +11,6 @@ import java.awt.event.MouseEvent;
  */
 public abstract class RegionSelectionController extends MapViewController {
 
-
     protected abstract void rightClick();
     protected abstract void leftClick();
 

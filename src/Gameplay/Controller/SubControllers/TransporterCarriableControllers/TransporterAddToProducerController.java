@@ -7,6 +7,11 @@ import Gameplay.Controller.PanelControllers.TransporterCarriableController;
  */
 public class TransporterAddToProducerController extends TransporterCarriableController {
     @Override
+    protected void resume() {
+
+    }
+
+    @Override
     protected void carriableClick() {
 
     }

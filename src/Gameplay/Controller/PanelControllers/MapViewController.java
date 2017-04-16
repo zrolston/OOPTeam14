@@ -16,6 +16,7 @@ public abstract class MapViewController implements MainViewController, MouseList
     private MainView mainView;
     protected abstract void attachView(JPanel view) throws Exception;
     protected abstract void resume();
+//    protected abstract void suspend();
 
     @Override
     public void activateController(MainView mainView) {
@@ -30,6 +31,11 @@ public abstract class MapViewController implements MainViewController, MouseList
             e.printStackTrace();
         }
         resume();
+    }
+
+    @Override
+    public void deactivateController() {
+
     }
 
     protected MapView setMapView(MainView mainView) {

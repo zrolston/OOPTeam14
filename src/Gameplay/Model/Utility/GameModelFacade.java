@@ -1,10 +1,9 @@
 package Gameplay.Model.Utility;
 
-<<<<<<< HEAD
 import Gameplay.Model.Goods.Good;
 import Gameplay.Model.Map.GameMap;
 import Gameplay.Model.Region.Region;
-=======
+
 import Gameplay.Model.Goods.*;
 import Gameplay.Model.Iterators.CarriableIterator;
 import Gameplay.Model.Iterators.StuffIterator;
@@ -13,7 +12,6 @@ import Gameplay.Model.Map.*;
 import Gameplay.Model.TransporterFactory.DonkeyFactory;
 import Gameplay.Model.TransporterFactory.TransporterFactory;
 import Gameplay.Model.TransporterFactory.TruckFactory;
->>>>>>> aa9379b018fdf6db01c391310c620794d4284c5b
 import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Model.Visitors.Carriable;
 import MapBuilder.Model.Utility.MapParsers.DaveBuilder;
@@ -80,10 +78,6 @@ public class GameModelFacade { //TODO make an abstract facade
      * can display different carriables
      * @return
      */
-<<<<<<< HEAD
-    public List<Carriable> getCarriables(Region region){
-        return null;
-=======
     public CarriableIterator testGetCarriablesThisShouldBeDeleted(){
         ArrayList<Carriable> transporters = new ArrayList<>();
         TransporterFactory tf = new DonkeyFactory();
@@ -112,7 +106,6 @@ public class GameModelFacade { //TODO make an abstract facade
         transporters.add(tf.create());
         transporters.add(tf.create());
         return new TransporterIterator(transporters);
->>>>>>> aa9379b018fdf6db01c391310c620794d4284c5b
     }
 
     public void move(Region region){
@@ -145,5 +138,22 @@ public class GameModelFacade { //TODO make an abstract facade
         return  null;
     }
 
+    /**
+     * given a transporter return its carriable depending on the phase it is in
+     * @param transporter
+     * @return
+     */
+    public CarriableIterator getTransporterCarriable(Transporter transporter){
+        return null;
+    }
+
+    /**
+     * given a transporter return its carriable depending on the phase
+     * @param region
+     * @return
+     */
+    public CarriableIterator getRegionCarriable(Region region){
+        return null;
+    }
 
 }

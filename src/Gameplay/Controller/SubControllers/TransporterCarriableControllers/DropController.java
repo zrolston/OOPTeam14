@@ -1,7 +1,6 @@
 package Gameplay.Controller.SubControllers.TransporterCarriableControllers;
 
 import Gameplay.Controller.PanelControllers.TransporterCarriableController;
-import Gameplay.Controller.PhaseStateControllers.MovementStateControllers.MovementState;
 import Gameplay.Controller.SubControllers.RegionSelectionControllers.DropRegionController;
 import Gameplay.Controller.SubControllers.RegionSelectionControllers.MoveRegionController;
 import Gameplay.Views.MainView.MainView;
@@ -9,7 +8,7 @@ import Gameplay.Views.MainView.MainView;
 /**
  * Created by jordi on 4/16/2017.
  */
-public class DropController extends TransporterCarriableController implements MovementState {
+public class DropController extends TransporterCarriableController {
 
     private DropRegionController dropRegionController = new DropRegionController(this);
     private MoveRegionController moveRegionController = new MoveRegionController(this);
@@ -43,16 +42,6 @@ public class DropController extends TransporterCarriableController implements Mo
         //todo: get goods associated with the transporter
         //TODO: addRightColumn();
         moveRegionController.allowMovement();
-    }
-
-    @Override
-    public void advance() {
-        dropRegionController.receiveCarriable(getCurrentCarriable());
-    }
-
-    @Override
-    public void update(MainView mainView) {
-        activateController(mainView);
     }
 
     public void changeToDefaultController() {

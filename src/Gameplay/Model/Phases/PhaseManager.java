@@ -3,7 +3,7 @@ package Gameplay.Model.Phases;
 import Gameplay.Controller.MainController;
 import Gameplay.Controller.PhaseStateController;
 import Gameplay.Controller.PhaseStateControllers.*;
-import Gameplay.Controller.PhaseStateControllers.MovementStateControllers.MovementPhaseStateController;
+import Gameplay.Controller.PhaseStateControllers.MovementPhaseStateController;
 
 
 public class PhaseManager {
