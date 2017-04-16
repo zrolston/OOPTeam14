@@ -21,4 +21,8 @@ public class RegionMap {
         }
         return null;
     }
+
+    public boolean contains(Region r1) {
+        return regionMap.values().contains(r1);
+    }
 }
