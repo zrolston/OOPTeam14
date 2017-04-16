@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Created by Willie on 4/15/2017.
  */
-public class Papermill extends SecondaryGoodFactory {
+public class Papermill extends SecondaryGoodProducer {
 
     private List<ProducerRequest> inputs;
 

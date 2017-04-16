@@ -1,10 +1,10 @@
-package Gameplay.Model.Producer.SecondaryProducer.TransporterFactory;
+package Gameplay.Model.Producer.SecondaryProducer.TransporterProducer;
 
 import Gameplay.Model.Goods.Board;
 import Gameplay.Model.Goods.GoodsBag;
 import Gameplay.Model.Producer.ProducerRequest;
-import Gameplay.Model.Producer.SecondaryProducer.GoodProducer.SecondaryGoodFactory;
 import Gameplay.Model.Producer.UserRequest;
+import Gameplay.Model.TransporterFactory.RowboatFactory;
 import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Model.Transporters.WaterTransporter.Rowboat;
 import Gameplay.Model.Visitors.ProducerVisitor;
@@ -12,11 +12,12 @@ import Gameplay.Model.Visitors.ProducerVisitor;
 /**
  * Created by Willie on 4/15/2017.
  */
-public class RowboatFactory extends SecondaryTransporterFactory {
+public class RowboatProducer extends SecondaryTransporterProducer {
 
     private ProducerRequest input;
 
-    public RowboatFactory() {
+    public RowboatProducer() {
+        super(new RowboatFactory());
         generateInput();
     }
 
@@ -28,10 +29,6 @@ public class RowboatFactory extends SecondaryTransporterFactory {
         goods.addBoard(new Board());
         goods.addBoard(new Board());
         input = new ProducerRequest(goods, null);
-    }
-
-    private Transporter generateOutputs() {
-        return new Rowboat();
     }
 
     @Override

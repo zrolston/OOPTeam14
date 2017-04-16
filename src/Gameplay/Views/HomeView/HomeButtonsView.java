@@ -1,10 +1,20 @@
 package Gameplay.Views.HomeView;
 
+import Gameplay.Model.Map.GameMap;
+import Gameplay.Model.Utility.GameMapDaveBuilder;
+import Gameplay.Model.Utility.GameModelFacade;
 import Gameplay.Views.Display;
 import MapBuilder.MapEditorSystem;
+import MapBuilder.Model.Map.BuildMap;
+import MapBuilder.Model.ModelFacade;
+import MapBuilder.Model.Utility.FileIO;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileFilter;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
 
 class HomeButtonsView extends JPanel {
 
@@ -47,7 +57,46 @@ class HomeButtonsView extends JPanel {
         quitButton.setForeground(Color.black);
         quitButton.setOpaque(true);
 
-        playButton.addActionListener(e -> display.displayMainScreen());
+        // START GAME
+        playButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                JFileChooser chooser = new JFileChooser();
+                chooser.setDialogTitle("Load Map");
+                chooser.setFileFilter(new FileFilter() {
+                    @Override
+                    public boolean accept(File file) {
+                        if (file.isDirectory()) {
+                            return true;
+                        } else {
+                            String filename = file.getName().toLowerCase();
+                            return filename.endsWith(".dave");
+                        }
+                    }
+
+                    @Override
+                    public String getDescription() {
+                        return "Dave Map File (*.dave)";
+                    }
+                });
+                chooser.setCurrentDirectory(new File(FileIO.mapsDir));
+                chooser.setVisible(true);
+                String path= null;
+//                if (chooser.showOpenDialog(chooser) == JFileChooser.APPROVE_OPTION) {
+//
+////                     path = chooser.getSelectedFile().getAbsolutePath();
+////                     GameModelFacade.initialize();
+////                     GameModelFacade.getInstance().loadMap(path);
+////                     mapSubsectionView.updateCachedImages(GameMapDaveBuilder.);
+////                     mapEditorView.updateImages();
+//                       display.displayMainScreen();
+//
+//                }
+                       display.displayMainScreen();
+
+            }
+        });
 
         options.addActionListener(e -> {
 		    MapEditorSystem mapEditor = new MapEditorSystem(display);

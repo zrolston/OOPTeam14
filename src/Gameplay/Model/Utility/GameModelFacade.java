@@ -21,8 +21,9 @@ public class GameModelFacade { //TODO make an abstract facade
         return null;
     }
 
-    public static void initialize(GameMap map){
+    public static void initialize(  ){
         if (!isInitialized()){
+            GameMap map = new GameMap( getMaxMapLength(), getMaxMapWidth() );
             gameModelFacade = new GameModelFacade(map);
         }
     }
