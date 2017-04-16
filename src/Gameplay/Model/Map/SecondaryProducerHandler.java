@@ -1,45 +1,42 @@
 package Gameplay.Model.Map;
 
-import Gameplay.Model.Producer.PrimaryProducer.PrimaryProducer;
-import Gameplay.Model.Producer.SecondaryProducer.GoodProducer.SecondaryGoodFactory;
-import Gameplay.Model.Producer.SecondaryProducer.TransporterFactory.SecondaryTransporterFactory;
+import Gameplay.Model.Producer.SecondaryProducer.GoodProducer.SecondaryGoodProducer;
+import Gameplay.Model.Producer.SecondaryProducer.TransporterProducer.SecondaryTransporterProducer;
 import Gameplay.Model.Region.Region;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
  * Created by zrgam_000 on 4/15/2017.
  */
 public class SecondaryProducerHandler {
-    Map<Region, SecondaryGoodFactory> goodOccupancyMap;
-    Map<Region, SecondaryTransporterFactory> factoryOccupancyMap;
+    Map<Region, SecondaryGoodProducer> goodOccupancyMap;
+    Map<Region, SecondaryTransporterProducer> factoryOccupancyMap;
 
     public SecondaryProducerHandler(){
         goodOccupancyMap = new HashMap<>();
         factoryOccupancyMap = new HashMap<>();
     }
 
-    public void placeGoodsProducer(SecondaryGoodFactory producer, Region region){
+    public void placeGoodsProducer(SecondaryGoodProducer producer, Region region){
         goodOccupancyMap.put(region, producer);
     }
 
-    public void placeTransporterProducer(SecondaryTransporterFactory producer, Region region){
+    public void placeTransporterProducer(SecondaryTransporterProducer producer, Region region){
         factoryOccupancyMap.put(region, producer);
     }
 
-    public SecondaryGoodFactory getSecondaryProducerAt(Region r){
+    public SecondaryGoodProducer getSecondaryProducerAt(Region r){
 
-        SecondaryGoodFactory producer = goodOccupancyMap.get(r);
+        SecondaryGoodProducer producer = goodOccupancyMap.get(r);
 
         return producer;
     }
 
-    public SecondaryTransporterFactory getTransporterProducerAt(Region r){
+    public SecondaryTransporterProducer getTransporterProducerAt(Region r){
 
-        SecondaryTransporterFactory producer = factoryOccupancyMap.get(r);
+        SecondaryTransporterProducer producer = factoryOccupancyMap.get(r);
 
         return producer;
     }
