@@ -18,7 +18,7 @@ public class RegionCarriableView extends JPanel {
         setBounds((int)(PixelMap.SCREEN_WIDTH *34.0/40), (int)(PixelMap.SCREEN_HEIGHT * .15), PixelMap.SCREEN_WIDTH /7, (int)(PixelMap.SCREEN_HEIGHT * (0.45)));
         setOpaque(false);
         setVisible( true );
-        background = ImageLoader.getImage("WONDER_BACKGROUND");
+        background = ImageLoader.getImage("RESEARCH_BACKGROUND");
     }
 
     protected void paintComponent(Graphics g) {

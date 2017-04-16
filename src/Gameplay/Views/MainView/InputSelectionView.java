@@ -7,11 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-/**
- * Created by Willie on 4/14/2017.
- */
 public class InputSelectionView extends JPanel {
-
 
     private BufferedImage background;
 
