@@ -25,7 +25,7 @@ public class MapGeneratorTest {
     @Test
     public void generateRegionSets() {
         DaveBuilder _builder = new GameMapDaveBuilder();
-        _builder.buildMap("C:\\Users\\Cameron\\IdeaProjects\\OOPTeam14\\res\\SavedMaps\\full board map.dave");
+        _builder.buildMap("C:\\Users\\Cameron\\IdeaProjects\\OOPTeam14\\res\\SavedMaps\\mapTest.dave");
         GameModelFacade facade = GameModelFacade.getInstance();
         GameMap map = facade.debugGetMap();
     }
