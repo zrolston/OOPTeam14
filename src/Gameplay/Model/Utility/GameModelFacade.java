@@ -119,7 +119,7 @@ public class GameModelFacade { //TODO make an abstract facade
      * TODO: to be implemented, made for when a transporter needs to drop a carriable on a certain tile
      * @param region
      */
-    public void dropCarriable(Region region, Carriable good){
+    public void dropCarriable(Region region, Transporter target, Carriable good){
 
     }
 
