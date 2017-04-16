@@ -8,7 +8,7 @@ import java.awt.*;
  * Created by Willie on 4/16/2017.
  */
 public class ImageWithLocation {
-    Image image;
+    public Image image;
     PixelPoint location;
 
     public ImageWithLocation(Image image, PixelPoint location) {

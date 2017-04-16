@@ -27,10 +27,10 @@ public class TransporterDrawingVisitor implements TransporterVisitor {
     @Override
     public void visitDonkey(Donkey d) {
         switch (d.getPlayerID().getID()) {
-            case 0:
+            case 1:
                 image = ImageLoader.getImage("BLUE_DONKEY");
                 break;
-            case 1:
+            case 2:
                 image = ImageLoader.getImage("ORANGE_DONKEY");
                 break;
         }
@@ -39,10 +39,10 @@ public class TransporterDrawingVisitor implements TransporterVisitor {
     @Override
     public void visitWagon(Wagon w) {
         switch (w.getPlayerID().getID()) {
-            case 0:
+            case 1:
                 image = ImageLoader.getImage("BLUE_WAGON");
                 break;
-            case 1:
+            case 2:
                 image = ImageLoader.getImage("ORANGE_WAGON");
                 break;
         }
@@ -51,10 +51,10 @@ public class TransporterDrawingVisitor implements TransporterVisitor {
     @Override
     public void visitTruck(Truck t) {
         switch (t.getPlayerID().getID()) {
-            case 0:
+            case 1:
                 image = ImageLoader.getImage("BLUE_TRUNK");
                 break;
-            case 1:
+            case 2:
                 image = ImageLoader.getImage("ORANGE_TRUNK");
                 break;
         }
@@ -63,10 +63,10 @@ public class TransporterDrawingVisitor implements TransporterVisitor {
     @Override
     public void visitRaft(Raft r) {
         switch (r.getPlayerID().getID()) {
-            case 0:
+            case 1:
                 image = ImageLoader.getImage("BLUE_RAFT");
                 break;
-            case 1:
+            case 2:
                 image = ImageLoader.getImage("ORANGE_RAFT");
                 break;
         }
@@ -75,10 +75,10 @@ public class TransporterDrawingVisitor implements TransporterVisitor {
     @Override
     public void visitRowboat(Rowboat r) {
         switch (r.getPlayerID().getID()) {
-            case 0:
+            case 1:
                 image = ImageLoader.getImage("BLUE_ROWBOAT");
                 break;
-            case 1:
+            case 2:
                 image = ImageLoader.getImage("ORANGE_ROWBOAT");
                 break;
         }
@@ -87,10 +87,10 @@ public class TransporterDrawingVisitor implements TransporterVisitor {
     @Override
     public void visitSteamer(Steamer s) {
         switch (s.getPlayerID().getID()) {
-            case 0:
+            case 1:
                 image = ImageLoader.getImage("BLUE_STEAMER");
                 break;
-            case 1:
+            case 2:
                 image = ImageLoader.getImage("ORANGE_STEAMER");
                 break;
         }

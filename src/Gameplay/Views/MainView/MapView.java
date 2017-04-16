@@ -2,6 +2,8 @@ package Gameplay.Views.MainView;
 
 import Gameplay.Controller.CameraController;
 import Gameplay.Model.Visitors.GameMapDrawingVisitor;
+import Gameplay.Views.Drawers.AllTransporterDrawer;
+import Gameplay.Views.Drawers.ImageWithLocation;
 import Gameplay.Views.Utility.PixelMap;
 import Gameplay.Views.Utility.RenderingThread;
 import MapBuilder.Model.Map.IViewMap;
@@ -12,16 +14,23 @@ import MapBuilder.Views.Utility.PixelPoint;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.List;
 
 public class MapView extends JPanel {
 
     private RenderingThread renderingThread;
     private BufferedImage[][] tileImages;
+    private List<ImageWithLocation> transporterImages;
 
     public void updateTileImages(IViewMap map) {
         GameMapDrawingVisitor drawingVisitor = new GameMapDrawingVisitor();
         map.accept(drawingVisitor);
         tileImages = drawingVisitor.getImageArray();
+    }
+
+    public void updateTransporterImages() {
+        AllTransporterDrawer atd = new AllTransporterDrawer();
+        transporterImages = atd.getAllTransporterImages();
     }
 
     public MapView(){
@@ -51,6 +60,9 @@ public class MapView extends JPanel {
                 }
             }
         }
+
+        for (ImageWithLocation image : transporterImages)
+            image.draw(g);
     }
 
     public void startRendering(int frameRate){
