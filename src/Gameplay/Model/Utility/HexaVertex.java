@@ -7,12 +7,19 @@ import java.util.Objects;
  * Created by jordi on 3/26/2017.
  */
 public class HexaVertex {
-    private static int vertexLowerBoundary = 0;
+    private static int vertexLowerBoundary = 1;
     private static int vertexUpperBoundary = 6;
     private static int edgeLowerBoundary = 7;
     private static int edgeUpperBoundary = 12;
 
     private int value;
+
+    public static int getVertexUpperBoundary() {
+        return vertexUpperBoundary;
+    }
+    public static int getEdgeUpperBoundary() {
+        return edgeUpperBoundary;
+    }
 
     private HexaVertex(int value) {
         this.value = value;

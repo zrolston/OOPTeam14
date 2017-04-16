@@ -20,11 +20,7 @@ public class TransporterDrawingVisitor implements TransporterVisitor {
     BufferedImage image;
     PixelPoint origin;
 
-    public TransporterDrawingVisitor() {
-        origin = new PixelPoint(50, 50);
-    }
-
-    public TransporterDrawingVisitor(PixelPoint origin) {
+    public void setOrigin(PixelPoint origin) {
         this.origin = origin;
     }
 
@@ -100,12 +96,12 @@ public class TransporterDrawingVisitor implements TransporterVisitor {
         }
     }
 
-    public ImageWithLocation getImage() {
-        return new ImageWithLocation(image, origin);
+    public BufferedImage getImage() {
+        return image;
     }
 
-    public BufferedImage getBufferedImage() {
-        return image;
+    public ImageWithLocation getImageWithLocation() {
+        return new ImageWithLocation(image, origin);
     }
 
 }

@@ -2,12 +2,10 @@ package Gameplay.Views.MainView;
 
 import Gameplay.Controller.CameraController;
 import Gameplay.Model.Visitors.GameMapDrawingVisitor;
-import Gameplay.Views.Drawers.AllTransporterDrawer;
-import Gameplay.Views.Drawers.ImageWithLocation;
+import Gameplay.Views.Drawers.*;
 import Gameplay.Views.Utility.*;
 import MapBuilder.Model.Map.IViewMap;
 import MapBuilder.Model.Utility.HexLocation;
-import Gameplay.Views.Drawers.TileInternalDrawer;
 import MapBuilder.Views.Utility.ImageLoader;
 import MapBuilder.Views.Utility.PixelPoint;
 
@@ -21,6 +19,9 @@ public class MapView extends JPanel {
     private RenderingThread renderingThread;
     private BufferedImage[][] tileImages;
     private List<ImageWithLocation> transporterImages;
+    private List<ImageWithLocation> producerImages;
+    private List<ImageWithLocation> goodsImages;
+    private CursorState cursorState = CursorState.getInstance();
 
     public void updateTileImages(IViewMap map) {
         GameMapDrawingVisitor drawingVisitor = new GameMapDrawingVisitor();
@@ -31,6 +32,16 @@ public class MapView extends JPanel {
     public void updateTransporterImages() {
         AllTransporterDrawer atd = new AllTransporterDrawer();
         transporterImages = atd.getAllTransporterImages();
+    }
+
+    public void updateProducerImages() {
+        AllProducerDrawer apd = new AllProducerDrawer();
+        producerImages = apd.getAllProducerImages();
+    }
+
+    public void updateGoodsImages() {
+        AllGoodDrawer agd = new AllGoodDrawer();
+        goodsImages = agd.getAllGoodImages();
     }
 
     public MapView(){
@@ -60,20 +71,26 @@ public class MapView extends JPanel {
                 }
             }
         }
-        
+
         //Tile Marker
-        GridDrawer.drawActiveTile(g, CursorState.getInstance().getActiveTile());
+//        GridDrawer.drawActiveTile(g, CursorState.getInstance().getActiveTile());
 
         //Region Marker Test
-//        PixelPoint origin = PixelMap.getMapTileOrigin(CursorState.getInstance().getActiveTile());
-//        PolygonPointSet polygonPointSet = PolygonUtility.type3Regions.get(2);
-//        polygonPointSet.setCurrRotation(0);
-//        GridDrawer.drawActiveRegion(g, polygonPointSet.getPolygon(origin.getX(), origin.getY()));
+        Polygon region = cursorState.getRegionArea();
+        if(region != null && cursorState.isMarkerActive())
+            GridDrawer.drawActiveRegion(g, region);
 
-        if (transporterImages != null) {
-            for (ImageWithLocation image : transporterImages)
-                image.draw(g);
-        }
+        updateTransporterImages();
+        for (ImageWithLocation image : transporterImages)
+            image.draw(g);
+
+        updateGoodsImages();
+        for (ImageWithLocation image : goodsImages)
+            image.draw(g);
+
+        updateProducerImages();
+        for (ImageWithLocation image : producerImages)
+            image.draw(g);
 
     }
 

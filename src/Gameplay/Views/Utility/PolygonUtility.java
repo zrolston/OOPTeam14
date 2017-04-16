@@ -24,12 +24,30 @@ public class PolygonUtility {
         public PolygonPointSet polygon;
     }
 
+    public static List<PolygonPointSet> type0Regions = new ArrayList<>();
     public static List<PolygonPointSet> type1Regions = new ArrayList<>();
     public static List<PolygonPointSet> type2Regions = new ArrayList<>();
     public static List<PolygonPointSet> type3Regions = new ArrayList<>();
     public static List<PolygonPointSet> type4Regions = new ArrayList<>();
+    public static List<PolygonPointSet> type5Regions = new ArrayList<>();
+    private static Map<Integer,List<PolygonPointSet>> typeMap = new HashMap<>();
 
     static {
+
+        //TYPE #0
+        //-------------------------------------------------------------
+        //Region
+        List<Point> pointSet = new ArrayList<>();
+        pointSet.add(PixelMap.TOP_LEFT);
+        pointSet.add(PixelMap.TOP_RIGHT);
+        pointSet.add(PixelMap.RIGHT);
+        pointSet.add(PixelMap.BOTTOM_RIGHT);
+        pointSet.add(PixelMap.BOTTOM_LEFT);
+        pointSet.add(PixelMap.LEFT);
+        PolygonPointSet type0region = new PolygonPointSet(pointSet);
+        type0Regions.add(type0region);
+
+
         //TYPE #1
         //-------------------------------------------------------------
         //River
@@ -79,6 +97,14 @@ public class PolygonUtility {
         type4Regions.add(type4region1);
         type4Regions.add(type4region2);
 
+
+        //Add the maps
+        typeMap.put(new Integer(0), type0Regions);
+        typeMap.put(new Integer(1), type1Regions);
+        typeMap.put(new Integer(2), type2Regions);
+        typeMap.put(new Integer(3), type3Regions);
+        typeMap.put(new Integer(4), type4Regions);
+        typeMap.put(new Integer(5), type5Regions);
     }
 
     //Returns the Hexagon formed by the joining the corner points and a ZERO offset
@@ -133,12 +159,9 @@ public class PolygonUtility {
     }
 
 
-    public static Polygon getRegion(PixelPoint point, Polygon region){
-        return null;
+    public static List<PolygonPointSet> getRegionsByType(Integer riverIndex){
+        return typeMap.get(riverIndex);
     }
 
-    public static List<Polygon> getTileRegions(String riverType, Integer rotation){
-        return null;
-    }
 
 }

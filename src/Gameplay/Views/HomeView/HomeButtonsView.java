@@ -87,6 +87,7 @@ class HomeButtonsView extends JPanel {
                      path = chooser.getSelectedFile().getAbsolutePath( );
                      GameModelFacade.initialize();
                      GameModelFacade.getInstance().loadMap(path);
+                     GameModelFacade.getInstance().startGame();
                      display.getMainView().mapView.updateTileImages(GameModelFacade.getInstance().debugGetMap());
                      display.displayMainScreen();
                 }

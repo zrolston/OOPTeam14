@@ -1,7 +1,7 @@
 package Gameplay.Model.Utility;
 
-import Gameplay.Model.Goods.Good;
 import Gameplay.Model.Map.GameMap;
+import Gameplay.Model.Producer.Producer;
 import Gameplay.Model.Region.Region;
 
 import Gameplay.Model.Goods.*;
@@ -10,15 +10,17 @@ import Gameplay.Model.Iterators.StuffIterator;
 import Gameplay.Model.Iterators.TransporterIterator;
 import Gameplay.Model.Map.*;
 import Gameplay.Model.Tile.GameTile;
+import Gameplay.Model.Tile.RegionMap;
 import Gameplay.Model.TransporterFactory.DonkeyFactory;
 import Gameplay.Model.TransporterFactory.TransporterFactory;
 import Gameplay.Model.TransporterFactory.TruckFactory;
 import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Model.Visitors.Carriable;
+import Gameplay.Model.Visitors.RegionPlacableVisitor;
 import MapBuilder.Model.Utility.MapParsers.DaveBuilder;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.Iterator;
 import java.util.List;
 
 public class GameModelFacade { //TODO make an abstract facade
@@ -72,6 +74,34 @@ public class GameModelFacade { //TODO make an abstract facade
 
     public GameMap debugGetMap(){
         return gameMap;
+    }
+
+    public void startGame() {
+        setUpGoodsHandler();
+        transporterHandler = new TransporterHandler();
+        primaryProducerHandler = new PrimaryProducerHandler();
+        secondaryProducerHandler = new SecondaryProducerHandler();
+    }
+
+    private void setUpGoodsHandler() {
+        goodsHandler = new GoodsHandler();
+        GameTile[][] tiles = gameMap.getTiles();
+        RegionPlacableVisitor pcv = new RegionPlacableVisitor();
+        for (int i = 0; i < tiles.length; i++) {
+            for (int j = 0; j < tiles.length; j++) {
+                if (tiles[i][j] == null)
+                    continue;
+                RegionMap rm = tiles[i][j].getRegionMap();
+                Iterator<Region> regionIterator = rm.getMyRegions();
+                while (regionIterator.hasNext()) {
+                    Region r = regionIterator.next();
+                    r.accept(pcv);
+                    if (pcv.getPlacable()) {
+                        goodsHandler.place(new GoodsBag(), r);
+                    }
+                }
+            }
+        }
     }
 
 
@@ -141,6 +171,23 @@ public class GameModelFacade { //TODO make an abstract facade
      */
     public List<Transporter> getTransporters(Region region){
         return transporterHandler.getTransportersAt(region);
+    }
+
+    public Producer getProducer(Region region) {
+        Producer producer = primaryProducerHandler.getPrimaryProducerAt(region);
+        if (producer != null)
+            return producer;
+        producer = secondaryProducerHandler.getSecondaryProducerAt(region);
+        if (producer != null)
+            return producer;
+        producer = secondaryProducerHandler.getTransporterProducerAt(region);
+        if (producer != null)
+            return producer;
+        return null;
+    }
+
+    public GoodsBag getGoodsBag(Region region) {
+        return goodsHandler.getGoodsBagAt(region);
     }
 
     /**

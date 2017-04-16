@@ -38,6 +38,23 @@ public class TransporterCarriableView extends JPanel {
 
     public TransporterCarriableView() {
 
+        // GET BELOW IMAGES FROM CONTROLLER OR ITERATOR
+        PlayerID p1 = new PlayerID(0);
+        PlayerID p2 = new PlayerID(1);
+
+        DonkeyFactory df = new DonkeyFactory();
+        Transporter donky = df.create();
+        donky.setPlayerID(p2);
+
+        TransporterDrawingVisitor t = new TransporterDrawingVisitor();
+        donky.accept(t);
+        BufferedImage transporterImage = t.getImage();
+
+        Goose g = new Goose();
+        CarriableDrawingVisitor gv = new CarriableDrawingVisitor();
+        g.accept(gv);
+        /////////////////////////////////////////////////////
+
         setLayout(new BorderLayout());
         setBounds((int)(PixelMap.SCREEN_WIDTH * (1 - 34.0/40 - 1.0/7)), (int)(PixelMap.SCREEN_HEIGHT * .05), PixelMap.SCREEN_WIDTH /7, (int)(PixelMap.SCREEN_HEIGHT * (17.0/20 + 1.0/12 - .05)));
         setOpaque(false);
