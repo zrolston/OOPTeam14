@@ -1,6 +1,7 @@
 package Gameplay.Views.HomeView;
 
 import Gameplay.Model.Map.GameMap;
+import Gameplay.Model.Utility.GameMapBuilder;
 import Gameplay.Model.Utility.GameMapDaveBuilder;
 import Gameplay.Model.Utility.GameModelFacade;
 import Gameplay.Views.Display;
@@ -8,6 +9,7 @@ import MapBuilder.MapEditorSystem;
 import MapBuilder.Model.Map.BuildMap;
 import MapBuilder.Model.ModelFacade;
 import MapBuilder.Model.Utility.FileIO;
+import MapBuilder.Model.Utility.MapParsers.DaveBuilder;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
@@ -85,8 +87,8 @@ class HomeButtonsView extends JPanel {
                 String path= null;
                 if (chooser.showOpenDialog(chooser) == JFileChooser.APPROVE_OPTION) {
                      path = chooser.getSelectedFile().getAbsolutePath( );
-                     GameModelFacade.initialize();
-                     GameModelFacade.getInstance().loadMap(path);
+                     DaveBuilder mapBuilder = new GameMapDaveBuilder();
+                     mapBuilder.buildMap(path);
                      GameModelFacade.getInstance().startGame();
                      display.getMainView().mapView.updateTileImages(GameModelFacade.getInstance().debugGetMap());
                      display.displayMainScreen();
