@@ -93,25 +93,6 @@ public class TransporterCarriableView extends JPanel {
 
         }
 
-
-        //Test Action Listener
-        addMouseListener(new MouseListener() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                PixelPoint point = new PixelPoint(e.getX(), e.getY());
-                int index = getCarriableIndex(point);
-                System.out.println(index);
-            }
-
-            @Override
-            public void mouseClicked(MouseEvent e) {}
-            @Override
-            public void mouseReleased(MouseEvent e) {}
-            @Override
-            public void mouseEntered(MouseEvent e) {}
-            @Override
-            public void mouseExited(MouseEvent e) {}
-        });
     }
 
     //Set the different Carriables Dynamically

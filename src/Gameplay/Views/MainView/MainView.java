@@ -44,6 +44,9 @@ public class MainView extends JLayeredPane {
          screenSelectBtns = new ScreenSelectButtons();
          endPhaseButton = new EndPhaseButton();
 
+         transporterCarriableView.setFocusable(true);
+         transporterCarriableView.requestFocus();
+
         subViews.add( actionSelectionView );
         subViews.add( geeseFollowButton );
         subViews.add( inputSelectionView );

@@ -12,14 +12,14 @@ import java.util.List;
 public class TradePhaseStateController extends PhaseStateController {
 
 
-    @Override
-    protected List<MainViewController> getControllers() {
-        return null;
-    }
 
     @Override
     public String toString() {
         return "TradePhase";
     }
 
+    @Override
+    public void activateController(MainView mainView) {
+
+    }
 }

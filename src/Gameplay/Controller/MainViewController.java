@@ -10,7 +10,7 @@ import java.awt.event.MouseListener;
  */
 public interface MainViewController {
 
-   // void deactivateController();
+    void deactivateController();
     void activateController(MainView mainView);
 
 
