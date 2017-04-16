@@ -24,7 +24,6 @@ public class GameTile extends Tile {
 
     @Override
     public void accept(TileVisitor v) {
-        //Do nothing
     }
 
     @Override

@@ -41,7 +41,6 @@ public class BuildTile extends Tile {
 
     @Override
     public void accept(GameTileVisitor v) {
-        /* Do nothing */
     }
 
     public Edge getEdgeAt(HexaIndex index) {
