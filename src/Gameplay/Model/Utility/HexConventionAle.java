@@ -27,7 +27,7 @@ public class HexConventionAle extends RiverConvention{
     private void setRivers(){
         if(riverIndices.isEmpty()){
             riverType = 0;
-            rotationNumber = 0;
+            rotationNumber = 1;
             return;
         }
 
