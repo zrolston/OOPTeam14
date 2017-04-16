@@ -27,14 +27,13 @@ public class RegionCarriableView extends JPanel {
 
     public RegionCarriableView() {
         setLayout(new BorderLayout());
-        setBounds((int)(PixelMap.SCREEN_WIDTH *34.0/40), (int)(PixelMap.SCREEN_HEIGHT * .15), PixelMap.SCREEN_WIDTH /7, (int)(PixelMap.SCREEN_HEIGHT * (0.45)));
+        setBounds((int)(PixelMap.SCREEN_WIDTH *34.0/40), (int)(PixelMap.SCREEN_HEIGHT * .17), PixelMap.SCREEN_WIDTH /7, (int)(PixelMap.SCREEN_HEIGHT * (0.45)));
         setOpaque(false);
         setVisible( true );
         background = ImageLoader.getImage("RESEARCH_BACKGROUND");
 
         int numElements = 11;
         int numCols = 3;
-        int numRows = 4;
 
         columns = new ArrayList<>();
         int widthOffset = getWidth() / numCols;
@@ -46,7 +45,8 @@ public class RegionCarriableView extends JPanel {
         //Calculate the offsets
         horizontalOffset = (int)(0.15*(getWidth()/numCols));
         buttonSide = (int)(0.75*(getWidth()/numCols));
-        verticalOffset = ((getHeight()-horizontalOffset-5-numRows*buttonSide)/numRows);
+//        verticalOffset = ((getHeight()-horizontalOffset-5-numRows*buttonSide)/numRows);
+        verticalOffset = horizontalOffset;
 
         //Initialize the left and right buttons
         buttons = new ArrayList<>();
@@ -55,7 +55,7 @@ public class RegionCarriableView extends JPanel {
             for (int j = 0; j < numCols; j++) {
                 if( ( i * numCols + j)  >= numElements)
                     break;
-                PixelPoint origin = new PixelPoint(horizontalOffset+getWidth()/numCols * j - 4, horizontalOffset+((buttonSide+verticalOffset)*i));
+                PixelPoint origin = new PixelPoint(horizontalOffset+getWidth()/numCols * j, horizontalOffset+((buttonSide+verticalOffset)*i));
                 buttons.add(PolygonUtility.generateSquare(origin, buttonSide));
             }
 
