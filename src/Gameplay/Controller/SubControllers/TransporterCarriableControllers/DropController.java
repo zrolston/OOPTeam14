@@ -100,7 +100,12 @@ public class DropController extends TransporterCarriableController {
 
         GameTile tile = map.getTileAt( loc );
 
+        System.out.println(tile);
+
+
         RegionMap rm = tile.getRegionMap();
+
+
 
         Region r = rm.getRegionAt( new HexaVertex(2, -1) );
 
