@@ -56,18 +56,6 @@ public class GameModelFacade { //TODO make an abstract facade
         return 21;
     }
 
-    public void loadMap(String path){
-        DaveBuilder builder = new GameMapDaveBuilder();
-        builder.buildMap(path);
-    }
-
-    public void generateMap(List<GameTilePlacement> placements){
-        MapGenerator gen = new MapGenerator(gameMap.getWidth(), gameMap.getLength());
-        gameMap.initialize(
-                gen.generateRegionSets(placements)
-        );
-    }
-
     public GameMap debugGetMap(){
         return gameMap;
     }
