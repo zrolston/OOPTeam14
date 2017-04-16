@@ -4,7 +4,9 @@ import Gameplay.Model.Producer.SecondaryProducer.GoodProducer.SecondaryGoodProdu
 import Gameplay.Model.Producer.SecondaryProducer.TransporterProducer.SecondaryTransporterProducer;
 import Gameplay.Model.Region.Region;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -39,5 +41,13 @@ public class SecondaryProducerHandler {
         SecondaryTransporterProducer producer = factoryOccupancyMap.get(r);
 
         return producer;
+    }
+
+    public List<Region> getBuiltRegions(){
+        List<Region> regions = new ArrayList<>();
+
+        regions.addAll(factoryOccupancyMap.keySet());
+
+        return regions;
     }
 }

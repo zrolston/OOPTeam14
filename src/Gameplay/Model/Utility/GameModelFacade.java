@@ -194,7 +194,10 @@ public class GameModelFacade { //TODO make an abstract facade
     }
 
     public List<Region> getAllRegionsWithProducer() {
-        return transporterHandler.getAllRegions();
+        List<Region> regions = new ArrayList<Region>();
+        regions.addAll(primaryProducerHandler.getBuiltRegions());
+        regions.addAll(secondaryProducerHandler.getBuiltRegions());
+        return regions;
     }
 
     public GoodsBag getGoodsBag(Region region) {

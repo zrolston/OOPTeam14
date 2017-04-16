@@ -78,4 +78,8 @@ public class TransporterHandler {
     public TransporterOccupancy getOccupancyAt(Region r){
         return occupancyMap.get(r);
     }
+
+    public List<Region> getAllRegions() {
+        return new ArrayList<Region>(occupancyMap.keySet());
+    }
 }
