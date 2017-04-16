@@ -9,6 +9,7 @@ import Gameplay.Model.Iterators.CarriableIterator;
 import Gameplay.Model.Iterators.StuffIterator;
 import Gameplay.Model.Iterators.TransporterIterator;
 import Gameplay.Model.Map.*;
+import Gameplay.Model.Tile.GameTile;
 import Gameplay.Model.TransporterFactory.DonkeyFactory;
 import Gameplay.Model.TransporterFactory.TransporterFactory;
 import Gameplay.Model.TransporterFactory.TruckFactory;
@@ -135,8 +136,8 @@ public class GameModelFacade { //TODO make an abstract facade
      * TODO: to be implemented, given a tile and a list of vertices return a region
      * @return
      */
-    public Region getRegion(/*put the tile and the set of vertices*/){
-        return  null;
+    public Region getRegion(GameTile tile, HexaVertex vertex){
+        return  tile.getRegionMap().getRegionAt(vertex);
     }
 
     /**
