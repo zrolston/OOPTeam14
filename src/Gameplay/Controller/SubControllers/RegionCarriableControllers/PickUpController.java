@@ -2,6 +2,7 @@ package Gameplay.Controller.SubControllers.RegionCarriableControllers;
 
 import Gameplay.Controller.PanelControllers.RegionCarriableController;
 import Gameplay.Model.Transporters.Transporter;
+import Gameplay.Model.Utility.GameModelFacade;
 
 import javax.swing.*;
 
@@ -29,14 +30,19 @@ public class PickUpController extends RegionCarriableController {
 
     @Override
     protected void carriableClick() {
+        GameModelFacade gmf = GameModelFacade.getInstance();
         if (transporter != null) {
-            //TODO: facade.pickupCarriable(transporter, getCurrentCarriable);
-            //TODO: delete at the place the carriable is at
+            gmf.pickUpCarriable(getCurrentRegion(), getTransporter(), getCurrentCarriable());
+            removeCarriable();
         }
     }
 
-    public void receiveTransporter(Transporter transporter){
+    public void receiveTransporter(Transporter transporter) {
         this.transporter = transporter;
         showPanel();
+    }
+
+    private Transporter getTransporter() {
+        return transporter;
     }
 }
