@@ -1,6 +1,6 @@
 package Gameplay.Controller;
 
-import Gameplay.Model.Utility.Actions.Action;
+import Gameplay.Model.Actions.Action;
 import Gameplay.Views.MainView.MainView;
 
 import java.util.ArrayList;
