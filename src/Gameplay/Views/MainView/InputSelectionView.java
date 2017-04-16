@@ -1,6 +1,9 @@
 package Gameplay.Views.MainView;
 
+import Gameplay.Model.Goods.Board;
+import Gameplay.Model.Goods.Goose;
 import Gameplay.Model.Visitors.Carriable;
+import Gameplay.Views.Drawers.CarriableDrawingVisitor;
 import Gameplay.Views.Utility.PolygonUtility;
 import MapBuilder.Views.Utility.ImageLoader;
 import MapBuilder.Views.Utility.PixelMap;
@@ -8,7 +11,6 @@ import MapBuilder.Views.Utility.PixelPoint;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.List;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
@@ -24,7 +26,19 @@ public class InputSelectionView extends JPanel {
     private int horizontalOffset, verticalOffset, buttonSide;
     private BufferedImage background;
 
+    private ArrayList<BufferedImage> goodsImages;
+
     public InputSelectionView() {
+
+        goodsImages = new ArrayList<>();
+
+        // GET BELOW IMAGES FROM CONTROLLER OR ITERATOR
+        Board b = new Board();
+        CarriableDrawingVisitor gv = new CarriableDrawingVisitor();
+        b.accept(gv);
+        goodsImages.add( gv.getBufferedImage() );
+        /////////////////////////////////////////////////////
+
         setLayout(new BorderLayout());
         setBounds((int)(PixelMap.SCREEN_WIDTH *.225), (int)(PixelMap.SCREEN_HEIGHT * 17/20), (int)(PixelMap.SCREEN_WIDTH * .55), (int)(PixelMap.SCREEN_HEIGHT * .08));
         setOpaque(false);
@@ -90,7 +104,6 @@ public class InputSelectionView extends JPanel {
     protected void paintComponent(Graphics g) {
         g.drawImage(background, 0, 0, (int)(getWidth() * 1.145), (int)(getHeight()), null);
         super.paintComponent(g);
-        drawColumns(g);
         drawButtons(g);
     }
 
@@ -102,7 +115,12 @@ public class InputSelectionView extends JPanel {
     }
 
     private void drawButtons(Graphics g){
-        for(Rectangle r: buttons) g.drawRoundRect((int)r.getX(), (int)r.getY(), (int)r.getWidth(), (int)r.getHeight(), 5, 5);
+        for(Rectangle r: buttons) {
+            g.drawRoundRect((int) r.getX(), (int) r.getY(), (int) r.getWidth(), (int) r.getHeight(), 5, 5);
+           // draw goods
+            g.drawImage(goodsImages.get(0), (int)r.getX(), (int)r.getY(), (int)r.getWidth(), (int)r.getHeight(), null);
+        }
+
     }
 
     public Integer getCarriableIndex(PixelPoint point){

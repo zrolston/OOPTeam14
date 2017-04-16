@@ -14,6 +14,14 @@ import java.util.List;
  */
 public class AllTransporterDrawer {
 
+    private ArrayList<ImageWithLocation> images;
+
+    public AllTransporterDrawer() {
+        images = new ArrayList<>();
+    }
+
+
+
     public List<ImageWithLocation> getAllTransporterImages() {
         List<ImageWithLocation> images = new ArrayList<ImageWithLocation>();
         //TransporterHandler th = GameModelFacade.getInstance().getTransporterHandler();

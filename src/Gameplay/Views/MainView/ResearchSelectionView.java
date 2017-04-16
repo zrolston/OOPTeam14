@@ -33,12 +33,13 @@ public class ResearchSelectionView extends JPanel {
             button.setOpaque(false);
             button.setContentAreaFilled(false);
             button.setFont(new Font("plain", Font.BOLD, 17));
+            button.setForeground( new Color( 0xff786767 ) );
             btns.add(button);
         }
 
         JLabel researchLabel = new JLabel("Research");
         researchLabel.setFont(new Font("plain", Font.BOLD, 20));
-        researchLabel.setForeground( new Color( 0xff00CC00 ) );
+        researchLabel.setForeground( new Color( 0xff786767 ) );
 
         add(researchLabel);
 
@@ -48,7 +49,7 @@ public class ResearchSelectionView extends JPanel {
 
         setVisible( true );
         background = ImageLoader.getImage("RESEARCH_BACKGROUND");
-        setBackground( new Color( 0xff000000 ) );
+        setBackground( new Color( 0xffF5F5DC ) );
         setOpaque( true );
         this.setBorder(BorderFactory.createLineBorder(new Color(0x11111111), 1));
     }

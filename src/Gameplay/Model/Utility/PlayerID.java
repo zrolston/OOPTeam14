@@ -9,7 +9,7 @@ public class PlayerID {
     private static int  numPlayers = 0;
     int id;
 
-    private PlayerID(int i) {
+    public PlayerID(int i) {
         id = i;
     }
 

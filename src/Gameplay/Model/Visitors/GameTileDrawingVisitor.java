@@ -2,6 +2,8 @@ package Gameplay.Model.Visitors;
 
 import Gameplay.Model.Tile.RegionMap;
 import Gameplay.Model.Utility.HexaVertex;
+import Gameplay.Views.Drawers.AllTransporterDrawer;
+import Gameplay.Views.Drawers.TransporterDrawingVisitor;
 import MapBuilder.Model.Terrain.*;
 import MapBuilder.Views.Utility.ImageLoader;
 
@@ -15,6 +17,7 @@ import java.util.ArrayList;
 public class GameTileDrawingVisitor implements GameTileVisitor {
     private BufferedImage terrainImage;
     private ArrayList<Integer> riverIndices;
+
 
     public GameTileDrawingVisitor(){
         riverIndices = new ArrayList<>();

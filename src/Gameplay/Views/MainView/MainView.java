@@ -32,9 +32,9 @@ public class MainView extends JLayeredPane {
 
         this.display = display;
 
-         actionSelectionView = new ActionSelectionView();
          geeseFollowButton = new GeeseFollowButton();
          inputSelectionView = new InputSelectionView();
+         actionSelectionView = new ActionSelectionView( this );
          mapView = new MapView();
          producerSelectionView = new ProducerSelectionView();
          regionCarriableView = new RegionCarriableView();
@@ -151,6 +151,10 @@ public class MainView extends JLayeredPane {
         screenSelectBtns.addListnerToWonderScreenButton( e -> display.displayWonderScreen() );
         screenSelectBtns.addListnerToResearchScreenButton( e -> display.displayResearchScreen() );
         screenSelectBtns.addListnerToTransporterScreenButton( e -> display.displayTransporterScreen() );
+    }
+
+    public void setResearchSelectionViewVisible() {
+        researchSelectionView.setVisible(true);
     }
 
 

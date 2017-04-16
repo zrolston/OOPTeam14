@@ -24,7 +24,7 @@ public class CarriableDrawingVisitor implements CarriableVisitor {
     public CarriableDrawingVisitor(PixelPoint origin) {
         this.origin = origin;
     }
-
+    public CarriableDrawingVisitor() {}
     @Override
     public void visitBoard(Board b) {
         image = ImageLoader.getImage("BOARD");
@@ -155,4 +155,8 @@ public class CarriableDrawingVisitor implements CarriableVisitor {
     public ImageWithLocation getImage() {
         return new ImageWithLocation(image, origin);
     }
+    public BufferedImage getBufferedImage() {
+        return image;
+    }
+
 }

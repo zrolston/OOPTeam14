@@ -2,6 +2,7 @@ package Gameplay.Model.Map;
 
 import Gameplay.Model.Producer.PrimaryProducer.PrimaryProducer;
 import Gameplay.Model.Region.Region;
+import MapBuilder.Model.ModelFacade;
 
 import java.util.ArrayList;
 import java.util.HashMap;

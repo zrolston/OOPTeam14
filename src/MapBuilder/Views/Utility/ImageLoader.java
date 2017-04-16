@@ -78,6 +78,10 @@ public class ImageLoader {
             cachedImages.put("ORANGE_TRUCK", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Transporters/truckOrange.png")));
             cachedImages.put("BLUE_WAGON", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Transporters/wagonBlue.png")));
             cachedImages.put("ORANGE_WAGON", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Transporters/wagonOrange.png")));
+
+
+            cachedImages.put("GOOSE", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Goods/goose.png")));
+
             cachedImages.put("BOARD", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Goods/boards.png")));
             cachedImages.put("CLAY", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Goods/clay.png")));
             cachedImages.put("FUEL", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Goods/fuel.png")));

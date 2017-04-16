@@ -1,6 +1,10 @@
 package Gameplay.Views.MainView;
 
+import Gameplay.Model.Producer.PrimaryProducer.ClayPit;
+import Gameplay.Model.Producer.Producer;
+import Gameplay.Model.Producer.SecondaryProducer.TransporterProducer.WagonProducer;
 import Gameplay.Model.Visitors.Carriable;
+import Gameplay.Views.Drawers.ProducerDrawingVisitor;
 import Gameplay.Views.Utility.PolygonUtility;
 import MapBuilder.Views.Utility.ImageLoader;
 import MapBuilder.Views.Utility.PixelMap;
@@ -25,15 +29,27 @@ public class RegionCarriableView extends JPanel {
     private int horizontalOffset, verticalOffset, buttonSide;
     private BufferedImage background;
 
+    ArrayList<BufferedImage> images;
+
     public RegionCarriableView() {
+
+        images = new ArrayList<>();
+
+        // GET BELOW IMAGES FROM CONTROLLER OR ITERATOR
+        Producer p = new WagonProducer();
+        ProducerDrawingVisitor gv = new ProducerDrawingVisitor();
+        p.accept(gv);
+        images.add( gv.getImage() );
+        /////////////////////////////////////////////////////
+
         setLayout(new BorderLayout());
         setBounds((int)(PixelMap.SCREEN_WIDTH *34.0/40), (int)(PixelMap.SCREEN_HEIGHT * .17), PixelMap.SCREEN_WIDTH /7, (int)(PixelMap.SCREEN_HEIGHT * (0.45)));
         setOpaque(false);
         setVisible( true );
         background = ImageLoader.getImage("RESEARCH_BACKGROUND");
 
-        int numElements = 11;
-        int numCols = 3;
+        int numElements = 5;
+        int numCols = 2;
 
         columns = new ArrayList<>();
         int widthOffset = getWidth() / numCols;
@@ -80,6 +96,8 @@ public class RegionCarriableView extends JPanel {
             @Override
             public void mouseExited(MouseEvent e) {}
         });
+
+        this.setBorder(BorderFactory.createLineBorder(new Color(0x11111111), 1));
     }
 
     //Set the different Carriables Dynamically
@@ -89,7 +107,6 @@ public class RegionCarriableView extends JPanel {
     protected void paintComponent(Graphics g) {
         g.drawImage(background, 0, 0, (int)(getWidth() * 1.145), (int)(getHeight()), null);
         super.paintComponent(g);
-        drawColumns(g);
         drawButtons(g);
     }
 
@@ -101,7 +118,10 @@ public class RegionCarriableView extends JPanel {
     }
 
     private void drawButtons(Graphics g){
-        for(Rectangle r: buttons) g.drawRoundRect((int)r.getX(), (int)r.getY(), (int)r.getWidth(), (int)r.getHeight(), 5, 5);
+        for(Rectangle r: buttons){
+            g.drawRoundRect((int)r.getX(), (int)r.getY(), (int)r.getWidth(), (int)r.getHeight(), 5, 5);
+            g.drawImage(images.get(0), (int)r.getX(), (int)r.getY(), (int)r.getWidth(), (int)r.getHeight(), null);
+        }
     }
 
     public Integer getCarriableIndex(PixelPoint point){

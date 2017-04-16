@@ -21,6 +21,7 @@ public class ProducerDrawingVisitor implements ProducerVisitor {
         this.origin = origin;
     }
 
+    public ProducerDrawingVisitor() {}
     @Override
     public void visitWoodCutter(WoodCutter wc) {
         image = ImageLoader.getImage("WOODCUTTER");
@@ -100,4 +101,9 @@ public class ProducerDrawingVisitor implements ProducerVisitor {
     public void visitSteamerFactory(SteamerProducer sf) {
         image = ImageLoader.getImage("STEAMER_FACTORY");
     }
+
+    public BufferedImage getImage() {
+        return image;
+    }
+
 }

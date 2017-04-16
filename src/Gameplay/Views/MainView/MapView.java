@@ -59,7 +59,7 @@ public class MapView extends JPanel {
                 }
             }
         }
-
+        
         //Tile Marker
         GridDrawer.drawActiveTile(g, CursorState.getInstance().getActiveTile());
 
