@@ -21,7 +21,7 @@ public class WallSelectionView extends JPanel {
 
     public WallSelectionView() {
         setLayout(new GridLayout(0, 3));
-        setBounds((int)(PixelMap.SCREEN_WIDTH *7.0/40), (int)(PixelMap.SCREEN_HEIGHT * .55), (int)(PixelMap.SCREEN_HEIGHT * (0.20)), (int)(PixelMap.SCREEN_HEIGHT * (0.20)));
+        setBounds((int)(PixelMap.SCREEN_WIDTH *7.0/40), (int)(PixelMap.SCREEN_HEIGHT * .55), (int)(PixelMap.SCREEN_HEIGHT * (0.20)), (int)(PixelMap.SCREEN_HEIGHT * (0.10)));
         setOpaque(false);
         setVisible( true );
         background = ImageLoader.getImage("RESEARCH_BACKGROUND");

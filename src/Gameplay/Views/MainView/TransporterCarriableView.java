@@ -1,14 +1,11 @@
 package Gameplay.Views.MainView;
 
-import Gameplay.Model.Goods.GoodsBag;
 import Gameplay.Model.Goods.Goose;
 import Gameplay.Model.TransporterFactory.DonkeyFactory;
-import Gameplay.Model.Transporters.LandTransporters.Donkey;
 import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Model.Utility.PlayerID;
 import Gameplay.Model.Visitors.Carriable;
-import Gameplay.Model.Visitors.GoodsVisitor;
-import Gameplay.Views.Drawers.GoodDrawingVisitor;
+import Gameplay.Views.Drawers.CarriableDrawingVisitor;
 import Gameplay.Views.Drawers.TransporterDrawingVisitor;
 import Gameplay.Views.Utility.PolygonUtility;
 import MapBuilder.Views.Utility.ImageLoader;
@@ -43,7 +40,7 @@ public class TransporterCarriableView extends JPanel {
         transporterImages = new ArrayList<>();
         goodsImages = new ArrayList<>();
 
-        /////////////////////////////////////////////////////
+        // GET BELOW IMAGES FROM CONTROLLER OR ITERATOR
         PlayerID p1 = new PlayerID(0);
         PlayerID p2 = new PlayerID(1);
 
@@ -57,7 +54,7 @@ public class TransporterCarriableView extends JPanel {
         transporterImages.add(transporterImage);
 
         Goose g = new Goose();
-        GoodDrawingVisitor gv = new GoodDrawingVisitor();
+        CarriableDrawingVisitor gv = new CarriableDrawingVisitor();
         g.accept(gv);
         goodsImages.add( gv.getBufferedImage() );
         /////////////////////////////////////////////////////
@@ -68,7 +65,7 @@ public class TransporterCarriableView extends JPanel {
         setVisible( true );
         background = ImageLoader.getImage("SCROLL_BACKGROUND");
 
-        int numElements = 16;
+        int numElements = 13;
         int numCols = 2;
 
         columns = new ArrayList<>();
@@ -124,7 +121,6 @@ public class TransporterCarriableView extends JPanel {
     protected void paintComponent(Graphics g) {
         g.drawImage(background, 0, 0, (int)(getWidth() * 1.145), (int)(getHeight()), null);
         super.paintComponent(g);
-        drawColumns(g);
         drawButtons(g);
     }
 

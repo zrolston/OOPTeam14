@@ -12,8 +12,10 @@ public class ClayPit extends PrimaryProducer {
 
     @Override
     public void accept(ProducerVisitor pv) {
-
+        pv.visitClayPit(this);
     }
+
+
 
     @Override
     public GoodsBag produce() {

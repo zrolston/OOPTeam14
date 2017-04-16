@@ -1,6 +1,12 @@
 package Gameplay.Views.MainView;
 
+import Gameplay.Model.Goods.Board;
+import Gameplay.Model.Producer.PrimaryProducer.ClayPit;
+import Gameplay.Model.Producer.Producer;
+import Gameplay.Model.Producer.SecondaryProducer.GoodProducer.Sawmill;
 import Gameplay.Model.Visitors.Carriable;
+import Gameplay.Views.Drawers.CarriableDrawingVisitor;
+import Gameplay.Views.Drawers.ProducerDrawingVisitor;
 import Gameplay.Views.Utility.PolygonUtility;
 import MapBuilder.Views.Utility.ImageLoader;
 import MapBuilder.Views.Utility.PixelMap;
@@ -23,7 +29,20 @@ public class ProducerSelectionView extends JPanel {
     private int horizontalOffset, verticalOffset, buttonSide;
     private BufferedImage background;
 
+    private ArrayList<BufferedImage> producerImages;
+
+
     public ProducerSelectionView() {
+
+        producerImages = new ArrayList<>();
+
+        // GET BELOW IMAGES FROM CONTROLLER OR ITERATOR
+        Producer p = new ClayPit();
+        ProducerDrawingVisitor gv = new ProducerDrawingVisitor();
+        p.accept(gv);
+        producerImages.add( gv.getImage() );
+        /////////////////////////////////////////////////////
+
         setLayout(new BorderLayout());
         setBounds((int)(PixelMap.SCREEN_WIDTH *27.0/40), (int)(PixelMap.SCREEN_HEIGHT * .17), PixelMap.SCREEN_WIDTH /7, (int)(PixelMap.SCREEN_HEIGHT * (0.45)));
         setOpaque(false);
@@ -31,8 +50,8 @@ public class ProducerSelectionView extends JPanel {
         background = ImageLoader.getImage("WONDER_BACKGROUND");
         this.setBorder(BorderFactory.createLineBorder(new Color(0x11111111), 1));
 
-        int numElements = 25;
-        int numCols = 4;
+        int numElements = 17;
+        int numCols = 3;
 
         columns = new ArrayList<>();
         int widthOffset = getWidth() / numCols;
@@ -89,8 +108,7 @@ public class ProducerSelectionView extends JPanel {
     protected void paintComponent(Graphics g) {
         g.drawImage(background, 0, 0, (int)(getWidth() * 1.145), (int)(getHeight()), null);
         super.paintComponent(g);
-        drawColumns(g);
-        drawButtons(g);
+         drawButtons(g);
     }
 
     private void drawColumns(Graphics g){
@@ -101,7 +119,11 @@ public class ProducerSelectionView extends JPanel {
     }
 
     private void drawButtons(Graphics g){
-        for(Rectangle r: buttons) g.drawRoundRect((int)r.getX(), (int)r.getY(), (int)r.getWidth(), (int)r.getHeight(), 5, 5);
+        for(Rectangle r: buttons){
+            g.drawRoundRect((int)r.getX(), (int)r.getY(), (int)r.getWidth(), (int)r.getHeight(), 5, 5);
+            // draw producers
+            g.drawImage(producerImages.get(0), (int)r.getX(), (int)r.getY(), (int)r.getWidth(), (int)r.getHeight(), null);
+        }
     }
 
     public Integer getCarriableIndex(PixelPoint point){
