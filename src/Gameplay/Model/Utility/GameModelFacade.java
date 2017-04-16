@@ -1,10 +1,18 @@
 package Gameplay.Model.Utility;
 
-import Gameplay.Model.Goods.GoodsBag;
+import Gameplay.Model.Goods.*;
+import Gameplay.Model.Iterators.CarriableIterator;
+import Gameplay.Model.Iterators.StuffIterator;
+import Gameplay.Model.Iterators.TransporterIterator;
 import Gameplay.Model.Map.*;
+import Gameplay.Model.TransporterFactory.DonkeyFactory;
+import Gameplay.Model.TransporterFactory.TransporterFactory;
+import Gameplay.Model.TransporterFactory.TruckFactory;
+import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Model.Visitors.Carriable;
 import MapBuilder.Model.Utility.MapParsers.DaveBuilder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GameModelFacade { //TODO make an abstract facade
@@ -66,7 +74,33 @@ public class GameModelFacade { //TODO make an abstract facade
      * can display different carriables
      * @return
      */
-    public List<Carriable> getCarriables(){
-        return null;
+    public CarriableIterator testGetCarriablesThisShouldBeDeleted(){
+        ArrayList<Carriable> transporters = new ArrayList<>();
+        TransporterFactory tf = new DonkeyFactory();
+        transporters.add(tf.create());
+        transporters.add(tf.create());
+        transporters.add(tf.create());
+        tf = new TruckFactory();
+        transporters.add(tf.create());
+        transporters.add(tf.create());
+        transporters.add(new Paper());
+        transporters.add(new Gold());
+        transporters.add(new Coins());
+        transporters.add(new Stock());
+
+        return new CarriableIterator(transporters);
+
+    }
+
+    public StuffIterator testGetTransporterIteratorDELETETHIS(){
+        ArrayList<Transporter> transporters = new ArrayList<>();
+        TransporterFactory tf = new DonkeyFactory();
+        transporters.add(tf.create());
+        transporters.add(tf.create());
+        transporters.add(tf.create());
+        tf = new TruckFactory();
+        transporters.add(tf.create());
+        transporters.add(tf.create());
+        return new TransporterIterator(transporters);
     }
 }
