@@ -17,7 +17,7 @@ public class MainView extends JLayeredPane {
     EndPhaseButton endPhaseButton;
     GeeseFollowButton geeseFollowButton;
     InputSelectionView inputSelectionView;
-    MapView mapView;
+    public MapView mapView;
     ProducerSelectionView producerSelectionView;
     RegionCarriableView regionCarriableView;
     ResearchSelectionView researchSelectionView;
@@ -64,7 +64,7 @@ public class MainView extends JLayeredPane {
         this.add(inputSelectionView, new Integer(2));
         this.add(geeseFollowButton, new Integer(3));
         this.add(screenSelectBtns, new Integer(2));
-
+        this.add(researchSelectionView, new Integer(2));
 
         addCustomListenersToScreenSelectBtns();
         addCustomListenersToNextPhaseBtn();
@@ -117,7 +117,7 @@ public class MainView extends JLayeredPane {
     public void showProductionPhaseViews() {
         transporterCarriableView.setVisible( true );
         regionCarriableView.setVisible( true );
-        producerSelectionView.setVisible( true );
+        researchSelectionView.setVisible( true );
         inputSelectionView.setVisible( true );
         actionSelectionView.setVisible( true );
         endPhaseButton.setPhaseLabel( "  PRODUCTION" );
@@ -136,6 +136,7 @@ public class MainView extends JLayeredPane {
         inputSelectionView.setVisible( true );
         wallSelectionView.setVisible( true );
         actionSelectionView.setVisible( true );
+        producerSelectionView.setVisible( true );
         endPhaseButton.setPhaseLabel( "  BUILDING" );
     }
     public void showWonderPhaseViews() {

@@ -10,6 +10,7 @@ import MapBuilder.Model.Visitor.TileDrawingVisitor;
 
 public class TerrainIterator implements TileIterator {
     final String[] terrainList = {"WOODS", "DESERT", "MOUNTAIN", "PASTURE", "ROCK", "SEA"};
+
     BuildTileFactory factory;
     ArrayList<BuildTile> tileList;
     int currentIndex;

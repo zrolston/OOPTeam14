@@ -28,7 +28,7 @@ public class MovementTest {
     @Before
     public void init(){
         GameMap map = new GameMap(21, 21);
-        GameModelFacade.initialize(map);
+        GameModelFacade.initialize( );
         GameModelFacade facade = GameModelFacade.getInstance();
         facade.loadMap("C:\\Users\\Cameron\\IdeaProjects\\OOPTeam14\\res\\SavedMaps\\mapTest.dave");
         this.map = facade.debugGetMap();

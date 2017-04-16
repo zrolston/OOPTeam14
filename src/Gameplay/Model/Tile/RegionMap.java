@@ -25,4 +25,13 @@ public class RegionMap {
     public boolean contains(Region r1) {
         return regionMap.values().contains(r1);
     }
+
+    public boolean hasRegionAt(HexaVertex vertex){
+        for(List<HexaVertex> vertices : regionMap.keySet()){
+            if (vertices.contains(vertex)){
+                return true;
+            }
+        }
+        return false;
+    }
 }

@@ -22,7 +22,6 @@ public class ResearchView extends JPanel {
         setBackground( new Color( 0xffffd700 ) );
         setVisible(true);
     }
-
     
     @Override
     public void paintComponent(Graphics g) {
