@@ -5,6 +5,7 @@ import Gameplay.Model.Visitors.GameMapDrawingVisitor;
 import Gameplay.Views.Drawers.AllTransporterDrawer;
 import Gameplay.Views.Drawers.ImageWithLocation;
 import Gameplay.Views.Utility.PixelMap;
+import Gameplay.Views.Utility.PolygonUtility;
 import Gameplay.Views.Utility.RenderingThread;
 import MapBuilder.Model.Map.IViewMap;
 import MapBuilder.Model.Utility.HexLocation;
@@ -61,9 +62,15 @@ public class MapView extends JPanel {
             }
         }
 
-        if (transporterImages != null)
+        if (transporterImages != null) {
+            g.drawPolygon(PolygonUtility.getTest());
+            g.drawPolygon(PolygonUtility.test2.getPolygon());
+        }
+        if (transporterImages != null) {
             for (ImageWithLocation image : transporterImages)
                 image.draw(g);
+        }
+
     }
 
     public void startRendering(int frameRate){
