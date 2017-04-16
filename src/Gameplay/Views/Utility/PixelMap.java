@@ -7,6 +7,7 @@
 
 package Gameplay.Views.Utility;
 
+import Gameplay.Model.Utility.HexaVertex;
 import MapBuilder.Model.Utility.HexLocation;
 import MapBuilder.Model.Utility.ILocation;
 import MapBuilder.Views.Drawers.TileOutlineDrawer;
@@ -133,5 +134,16 @@ public class PixelMap {
         PixelPoint center = getTileCenter(tileLocation, camera);
         Polygon hexagon = TileOutlineDrawer.getHexagon(center);
         return hexagon.contains(new Point(point.getX(), point.getY()));
+    }
+
+
+    //Maps a River Type and a Rotation to
+    public static HexaVertex getVertex(Integer river, Integer rotation){
+        String code = river+"-"+rotation;
+        HexaVertex vertex = null;
+        try {
+            vertex = HexaVertex.createVertex(1);
+        }catch (Exception e){ e.printStackTrace(); }
+        return null;
     }
 }
