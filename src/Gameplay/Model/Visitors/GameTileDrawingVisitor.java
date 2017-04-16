@@ -136,6 +136,9 @@ public class GameTileDrawingVisitor implements GameTileVisitor {
                 }
                 return temp;
             }
+            case 6:{
+                return null;
+            }
             default: throw new BadAttributeValueExpException("");
         }
     }

@@ -1,11 +1,8 @@
 package Gameplay.Model.Visitors;
 
-import Gameplay.Model.Visitors.GameTileDrawingVisitor;
 import MapBuilder.Model.Map.IViewMap;
 import MapBuilder.Model.Tile.Tile;
-import MapBuilder.Model.Utility.ILocation;
 import MapBuilder.Model.Visitor.MapVisitor;
-import MapBuilder.Views.Utility.ImageLoader;
 
 import java.awt.image.BufferedImage;
 
@@ -14,10 +11,6 @@ public class GameMapDrawingVisitor implements MapVisitor {
     private BufferedImage[][] imageArray;
 
     public GameMapDrawingVisitor(){
-    }
-
-    public GameMapDrawingVisitor(ILocation location){
-        //TODO implement
     }
 
     @Override
@@ -36,7 +29,7 @@ public class GameMapDrawingVisitor implements MapVisitor {
             for (int row = 0; row < height; row++) {
                 if(tiles[row][col] == null){
 
-                    imageArray[row][col] = ImageLoader.getDefaultImage();
+                    imageArray[row][col] = null;
                 }
                 else{
                     GameTileDrawingVisitor tdv = new GameTileDrawingVisitor();
