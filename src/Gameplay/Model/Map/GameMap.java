@@ -2,7 +2,6 @@ package Gameplay.Model.Map;
 
 import Gameplay.Model.Tile.GameTile;
 import MapBuilder.Model.Map.IViewMap;
-import MapBuilder.Model.Tile.Tile;
 import MapBuilder.Model.Utility.ILocation;
 import MapBuilder.Model.Visitor.MapVisitor;
 
@@ -28,7 +27,7 @@ public class GameMap implements IViewMap{
 
     @Override
     public void accept(MapVisitor v) {
-
+        v.visitMap(this);
     }
 
     @Override
