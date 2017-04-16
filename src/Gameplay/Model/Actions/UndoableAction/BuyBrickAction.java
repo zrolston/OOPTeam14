@@ -6,7 +6,7 @@ package Gameplay.Model.Actions.UndoableAction;
 public class BuyBrickAction implements UndoableAction {
     @Override
     public void execute() {
-        
+
     }
 
     @Override

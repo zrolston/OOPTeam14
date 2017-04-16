@@ -32,6 +32,7 @@ public class TransporterCarriableView extends JPanel {
         setVisible( true );
         background = ImageLoader.getImage("SCROLL_BACKGROUND");
 
+        int numElements = 11;
         int numCols = 2;
         int numRows = 8;
 
@@ -49,11 +50,15 @@ public class TransporterCarriableView extends JPanel {
 
         //Initialize the left and right buttons
         buttons = new ArrayList<>();
-        for(int i = 0; i < numRows; i++) {
-            PixelPoint origin = new PixelPoint(horizontalOffset, horizontalOffset+((buttonSide+verticalOffset)*i));
-            buttons.add(PolygonUtility.generateSquare(origin, buttonSide));
-            origin = new PixelPoint(horizontalOffset+getWidth()/numCols-4, horizontalOffset+((buttonSide+verticalOffset)*i));
-            buttons.add(PolygonUtility.generateSquare(origin, buttonSide));
+        for(int i = 0; i <  numElements / numCols + 1; i++) {
+
+            for (int j = 0; j < numCols; j++) {
+                if( ( i * numCols + j)  >= numElements)
+                    break;
+                PixelPoint origin = new PixelPoint(horizontalOffset+getWidth()/numCols * j - 4, horizontalOffset+((buttonSide+verticalOffset)*i));
+                buttons.add(PolygonUtility.generateSquare(origin, buttonSide));
+            }
+
         }
 
 
