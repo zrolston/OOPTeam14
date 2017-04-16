@@ -203,7 +203,7 @@ public abstract class TransporterCarriableController implements MainViewControll
         return currentCarriable;
     }
 
-    protected Carriable getCurrentTransporter() {
+    protected Transporter getCurrentTransporter() {
         return currentTransporter;
     }
 

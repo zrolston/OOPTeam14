@@ -48,4 +48,10 @@ public class CarriableIterator implements StuffIterator {
     private boolean isInBounds(int number) {
         return number >= 0 && number < carriables.size();
     }
+
+    public void deleteAt(int index){
+        if (isInBounds(index)) {
+            carriables.remove(index);
+        }
+    }
 }
