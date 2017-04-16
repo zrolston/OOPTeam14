@@ -1,9 +1,12 @@
 package Gameplay.Model.Tile;
 
+import Gameplay.Model.Region.Region;
 import Gameplay.Model.Visitors.GameTileVisitor;
 import MapBuilder.Model.Terrain.Terrain;
 import MapBuilder.Model.Tile.Tile;
 import MapBuilder.Model.Visitor.TileVisitor;
+
+import java.util.Iterator;
 
 public class GameTile extends Tile {
     private RegionMap regionMap;
@@ -15,6 +18,10 @@ public class GameTile extends Tile {
 
     public RegionMap getRegionMap(){
         return regionMap;
+    }
+
+    public Iterator<Region> getMyRegions(){
+        return regionMap.getMyRegions();
     }
 
     @Override
