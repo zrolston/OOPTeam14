@@ -47,6 +47,8 @@ public class MapView extends JPanel {
                 g.drawPolygon(hexaTile);
             }
         }
+        g.drawPolygon(PolygonUtility.getTest());
+        g.drawPolygon(PolygonUtility.test2.getPolygon());
     }
 
     public void startRendering(int frameRate){

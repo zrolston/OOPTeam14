@@ -30,6 +30,14 @@ public class PixelMap {
     private static int width_offset = (int)(TILE_WIDTH * 1.5);
     private static int height_offset = (int)(0.5*TILE_HEIGHT);
 
+    //Popular points
+    public static final Point TOP_LEFT = new Point(PixelMap.TILE_FULL_WIDTH/4,0);
+    public static final Point TOP_RIGHT= new Point(PixelMap.TILE_WIDTH + PixelMap.TILE_FULL_WIDTH/4,0);
+    public static final Point RIGHT = new Point(PixelMap.TILE_FULL_WIDTH,PixelMap.TILE_HEIGHT/2);
+    public static final Point BOTTOM_RIGHT = new Point(PixelMap.TILE_WIDTH + PixelMap.TILE_FULL_WIDTH/4,PixelMap.TILE_HEIGHT);
+    public static final Point BOTTOM_LEFT = new Point(PixelMap.TILE_WIDTH + PixelMap.TILE_FULL_WIDTH/4,PixelMap.TILE_HEIGHT);
+    public static final Point LEFT = new Point(0,PixelMap.TILE_HEIGHT/2);
+
 
     //Plain Pixel Mapping based on position
     public static PixelPoint getTileCenter(ILocation hexLocation, Camera camera){
