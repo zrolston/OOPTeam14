@@ -1,12 +1,16 @@
 package Gameplay.Model.Transporters.WaterTransporter;
 
+import Gameplay.Model.TransporterFactory.Permit;
+import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Model.Visitors.CarriableVisitor;
 import Gameplay.Model.Visitors.TransporterVisitor;
 
-/**
- * Created by Willie on 4/14/2017.
- */
-public class Rowboat extends WaterTransporter {
+
+public class Rowboat extends Transporter {
+
+    public Rowboat(Permit...permits){
+        super(permits);
+    }
     @Override
     public void accept(CarriableVisitor cv) {
         cv.visitRowboat(this);

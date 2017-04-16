@@ -10,9 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by zrgam_000 on 4/15/2017.
- */
+
 public class TransporterHandler {
     Map<Region, TransporterOccupancy> occupancyMap;
 
