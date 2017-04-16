@@ -36,7 +36,7 @@ public class PixelMap {
     public static final Point TOP_RIGHT= new Point(PixelMap.TILE_WIDTH + PixelMap.TILE_FULL_WIDTH/4,0);
     public static final Point RIGHT = new Point(PixelMap.TILE_FULL_WIDTH,PixelMap.TILE_HEIGHT/2);
     public static final Point BOTTOM_RIGHT = new Point(PixelMap.TILE_WIDTH + PixelMap.TILE_FULL_WIDTH/4,PixelMap.TILE_HEIGHT);
-    public static final Point BOTTOM_LEFT = new Point(PixelMap.TILE_WIDTH + PixelMap.TILE_FULL_WIDTH/4,PixelMap.TILE_HEIGHT);
+    public static final Point BOTTOM_LEFT = new Point(PixelMap.TILE_FULL_WIDTH/4,PixelMap.TILE_HEIGHT);
     public static final Point LEFT = new Point(0,PixelMap.TILE_HEIGHT/2);
 
 

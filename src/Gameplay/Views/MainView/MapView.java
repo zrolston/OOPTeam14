@@ -4,9 +4,7 @@ import Gameplay.Controller.CameraController;
 import Gameplay.Model.Visitors.GameMapDrawingVisitor;
 import Gameplay.Views.Drawers.AllTransporterDrawer;
 import Gameplay.Views.Drawers.ImageWithLocation;
-import Gameplay.Views.Utility.PixelMap;
-import Gameplay.Views.Utility.PolygonUtility;
-import Gameplay.Views.Utility.RenderingThread;
+import Gameplay.Views.Utility.*;
 import MapBuilder.Model.Map.IViewMap;
 import MapBuilder.Model.Utility.HexLocation;
 import Gameplay.Views.Drawers.TileInternalDrawer;
@@ -61,11 +59,16 @@ public class MapView extends JPanel {
                 }
             }
         }
+        
+        //Tile Marker
+        GridDrawer.drawActiveTile(g, CursorState.getInstance().getActiveTile());
 
-        if (transporterImages != null) {
-            g.drawPolygon(PolygonUtility.getTest());
-            g.drawPolygon(PolygonUtility.test2.getPolygon());
-        }
+        //Region Marker Test
+//        PixelPoint origin = PixelMap.getMapTileOrigin(CursorState.getInstance().getActiveTile());
+//        PolygonPointSet polygonPointSet = PolygonUtility.type3Regions.get(2);
+//        polygonPointSet.setCurrRotation(0);
+//        GridDrawer.drawActiveRegion(g, polygonPointSet.getPolygon(origin.getX(), origin.getY()));
+
         if (transporterImages != null) {
             for (ImageWithLocation image : transporterImages)
                 image.draw(g);

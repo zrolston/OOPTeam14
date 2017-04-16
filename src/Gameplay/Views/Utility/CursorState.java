@@ -7,23 +7,30 @@
 
 
 package Gameplay.Views.Utility;
+import Gameplay.Model.Region.Region;
 import MapBuilder.Model.Utility.HexLocation;
 import MapBuilder.Views.Utility.PixelPoint;
 
-public class CursorState {
+import java.awt.*;
 
-    //Available marker types
-    public static final int NORMAL = 0, VALID = 1, INVALID = 2;
+public class CursorState {
 
     private static CursorState ourInstance = new CursorState();
     private PixelPoint cursor;
     private HexLocation activeTile;
     private boolean markerActive = true;
-    private int markerType = NORMAL;
+    private Region activeRegion = null;
+    private Polygon regionArea = null;
 
     public static CursorState getInstance() {
         return ourInstance;
     }
+    public Region getActiveRegion() { return activeRegion; }
+    public Polygon getRegionArea() { return regionArea; }
+
+
+    public void setActiveRegion(Region activeRegion) { this.activeRegion = activeRegion; }
+    public void setRegionArea(Polygon regionArea) { this.regionArea = regionArea; }
 
     private CursorState() {
         cursor = new PixelPoint(0,0);
@@ -32,7 +39,6 @@ public class CursorState {
 
     public PixelPoint getCursor() { return cursor.clone(); }
     public boolean isMarkerActive(){ return markerActive; }
-    public int getMarkerType() { return markerType; }
 
 
     public void setCursor(PixelPoint cursor) { this.cursor = cursor; }
@@ -47,5 +53,4 @@ public class CursorState {
 
     public void setActiveTile(HexLocation activeTile) { this.activeTile = activeTile; }
     public void setMarkerActive(boolean markerActive) { this.markerActive = markerActive; }
-    public void setMarkerType(int markerType) { this.markerType = markerType; }
 }
