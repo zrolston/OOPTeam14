@@ -61,8 +61,9 @@ public class MapView extends JPanel {
             }
         }
 
-        for (ImageWithLocation image : transporterImages)
-            image.draw(g);
+        if (transporterImages != null
+            for (ImageWithLocation image : transporterImages)
+                image.draw(g);
     }
 
     public void startRendering(int frameRate){
