@@ -7,6 +7,7 @@
 
 package Gameplay.Controller;
 import Gameplay.Views.Utility.Camera;
+import Gameplay.Views.Utility.CursorState;
 import MapBuilder.Views.Utility.PixelPoint;
 
 import java.awt.event.MouseEvent;
@@ -16,6 +17,7 @@ import java.awt.event.MouseMotionListener;
 public class CameraController implements MouseMotionListener, MouseListener{
 
     private Camera camera = Camera.getInstance();
+    private CursorState cursorState = CursorState.getInstance();
 
     @Override
     public void mouseDragged(MouseEvent e) {
@@ -26,6 +28,7 @@ public class CameraController implements MouseMotionListener, MouseListener{
     @Override
     public void mouseMoved(MouseEvent e) {
         //Hovering goes here
+//        cursorStat.s
     }
 
 
