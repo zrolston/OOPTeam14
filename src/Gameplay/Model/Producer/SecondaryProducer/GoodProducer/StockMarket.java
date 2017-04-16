@@ -11,7 +11,7 @@ import Gameplay.Model.Visitors.ProducerVisitor;
 /**
  * Created by Willie on 4/15/2017.
  */
-public class StockMarket extends SecondaryGoodFactory {
+public class StockMarket extends SecondaryGoodProducer {
 
     private ProducerRequest input;
 

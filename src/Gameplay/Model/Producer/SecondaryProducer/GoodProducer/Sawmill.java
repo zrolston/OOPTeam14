@@ -10,7 +10,7 @@ import Gameplay.Model.Visitors.ProducerVisitor;
 /**
  * Created by Willie on 4/15/2017.
  */
-public class Sawmill extends SecondaryGoodFactory {
+public class Sawmill extends SecondaryGoodProducer {
 
     private ProducerRequest input;
 

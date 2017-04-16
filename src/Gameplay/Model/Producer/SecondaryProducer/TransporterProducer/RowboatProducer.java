@@ -1,9 +1,8 @@
-package Gameplay.Model.Producer.SecondaryProducer.TransporterFactory;
+package Gameplay.Model.Producer.SecondaryProducer.TransporterProducer;
 
 import Gameplay.Model.Goods.Board;
 import Gameplay.Model.Goods.GoodsBag;
 import Gameplay.Model.Producer.ProducerRequest;
-import Gameplay.Model.Producer.SecondaryProducer.GoodProducer.SecondaryGoodFactory;
 import Gameplay.Model.Producer.UserRequest;
 import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Model.Transporters.WaterTransporter.Rowboat;
@@ -12,11 +11,11 @@ import Gameplay.Model.Visitors.ProducerVisitor;
 /**
  * Created by Willie on 4/15/2017.
  */
-public class RowboatFactory extends SecondaryTransporterFactory {
+public class RowboatProducer extends SecondaryTransporterProducer {
 
     private ProducerRequest input;
 
-    public RowboatFactory() {
+    public RowboatProducer() {
         generateInput();
     }
 
