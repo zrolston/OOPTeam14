@@ -2,6 +2,7 @@ package Gameplay.Model.Utility;
 
 import Gameplay.Model.Goods.Good;
 import Gameplay.Model.Map.GameMap;
+import Gameplay.Model.Producer.Producer;
 import Gameplay.Model.Region.Region;
 
 import Gameplay.Model.Goods.*;
@@ -129,6 +130,23 @@ public class GameModelFacade { //TODO make an abstract facade
      */
     public List<Transporter> getTransporters(Region region){
         return transporterHandler.getTransportersAt(region);
+    }
+
+    public Producer getProducer(Region region) {
+        Producer producer = primaryProducerHandler.getPrimaryProducerAt(region);
+        if (producer != null)
+            return producer;
+        producer = secondaryProducerHandler.getSecondaryProducerAt(region);
+        if (producer != null)
+            return producer;
+        producer = secondaryProducerHandler.getTransporterProducerAt(region);
+        if (producer != null)
+            return producer;
+        return null;
+    }
+
+    public GoodsBag getGoodsBag(Region region) {
+        return goodsHandler.getGoodsBagAt(region);
     }
 
     /**
