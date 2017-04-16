@@ -4,14 +4,13 @@ import Gameplay.Model.Goods.Clay;
 import Gameplay.Model.Goods.GoodsBag;
 import Gameplay.Model.Goods.Stone;
 import Gameplay.Model.Producer.ProducerRequest;
-import Gameplay.Model.Producer.SecondaryProducer.SecondaryProducer;
 import Gameplay.Model.Producer.UserRequest;
 import Gameplay.Model.Visitors.ProducerVisitor;
 
 /**
  * Created by Willie on 4/15/2017.
  */
-public class StoneFactory extends SecondaryProducer {
+public class StoneFactory extends SecondaryGoodFactory {
 
     private ProducerRequest input;
 
@@ -25,11 +24,11 @@ public class StoneFactory extends SecondaryProducer {
         input = new ProducerRequest(goods, null);
     }
 
-    private ProducerRequest generateOutputs() {
+    private GoodsBag generateOutputs() {
         GoodsBag goods = new GoodsBag();
         goods.addStone(new Stone());
         goods.addStone(new Stone());
-        return new ProducerRequest(goods, null);
+        return goods;
     }
 
     @Override
@@ -38,9 +37,9 @@ public class StoneFactory extends SecondaryProducer {
     }
 
     @Override
-    public ProducerRequest produce(UserRequest ur) {
+    public GoodsBag produce(UserRequest ur) {
         if (!ur.contains(input))
-            return null;
+            return new GoodsBag();
         else {
             ur.removeUsed(input);
             ur.reset();

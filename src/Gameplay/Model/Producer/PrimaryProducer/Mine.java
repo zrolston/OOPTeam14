@@ -27,10 +27,10 @@ public class Mine extends PrimaryProducer {
     }
 
     @Override
-    public ProducerRequest produce() {
+    public GoodsBag produce() {
         GoodsBag goods = new GoodsBag();
         if (numGold + numIron == 0)
-            return new ProducerRequest(goods, null);
+            return goods;
         else {
             int random = ThreadLocalRandom.current().nextInt(0, numGold + numIron);
             if (random < numGold) {
@@ -41,7 +41,7 @@ public class Mine extends PrimaryProducer {
                 goods.addIron(new Iron());
                 numIron--;
             }
-            return new ProducerRequest(goods, null);
+            return goods;
         }
     }
 }
