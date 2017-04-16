@@ -20,9 +20,8 @@ public abstract class RegionCarriableController implements MainViewController, M
     private MainView mainView;
     private RegionCarriableView view;
     private Carriable currentCarriable;
-    private Region currentRegion;
+
     private int index = -1;
-    private CursorState cursorState = CursorState.getInstance();
     CarriableIterator carrIt;
 
     protected abstract void attachView(JPanel view) throws Exception;
@@ -75,7 +74,6 @@ public abstract class RegionCarriableController implements MainViewController, M
     @Override
     public void mousePressed(MouseEvent e) {
         setIndex( getCarriableIndex(e));
-        setCurrentRegion(cursorState.getActiveRegion());
         //TODO: match index with the right currentCarriable
         carriableClick();
     }
@@ -120,9 +118,6 @@ public abstract class RegionCarriableController implements MainViewController, M
         this.index = index;
     }
 
-    private void setCurrentRegion(Region currentRegion){
-        this.currentRegion = currentRegion;
-    }
 
     protected int getCurrentIndex(){
         return index;
@@ -153,9 +148,6 @@ public abstract class RegionCarriableController implements MainViewController, M
         return view;
     }
 
-    protected Region getCurrentRegion(){
-        return currentRegion;
-    }
 
     protected void removeCarriable() {
         carrIt.deleteAt(index);

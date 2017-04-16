@@ -27,12 +27,19 @@ public class DropRegionController extends RegionSelectionController  {
     protected void leftClick() {
         //Todo:get Region from view and translate it using facade to an actual Region
         //TODO:gameModelFacade.dropCarriable(,carriable);
+        dropController.dropGood();
         dropController.changeToDefaultController();
+        suspend();
     }
 
     @Override
     protected void resume() {
 
+    }
+
+    @Override
+    protected void suspend() {
+        getMapView().removeMouseListener(this);
     }
 
 

@@ -9,6 +9,8 @@ import static org.junit.Assert.*;
  */
 public class DropControllerTest {
     public static void main(String[] args) {
-        Display display
+        Display display = new Display();
+        DropController dp = new DropController();
+        dp.activateController(display.getMainView());
     }
 }

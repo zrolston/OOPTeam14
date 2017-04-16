@@ -169,7 +169,7 @@ public class GameModelFacade { //TODO make an abstract facade
      * @param region
      * @return
      */
-    public List<Transporter> getTransporters(Region region){
+    public TransporterIterator getTransporters(Region region){
         return transporterHandler.getTransportersAt(region);
     }
 

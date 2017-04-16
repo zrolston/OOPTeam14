@@ -1,8 +1,10 @@
 package Gameplay.Controller.SubControllers.RegionCarriableControllers;
 
 import Gameplay.Controller.PanelControllers.RegionCarriableController;
+import Gameplay.Model.Region.Region;
 import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Model.Utility.GameModelFacade;
+import Gameplay.Model.Visitors.Carriable;
 
 import javax.swing.*;
 
@@ -11,7 +13,8 @@ import javax.swing.*;
  */
 public class PickUpController extends RegionCarriableController {
 
-    Transporter transporter;
+    private Transporter currentTransporter;
+    private Region currentRegion;
 
     @Override
     protected void attachView(JPanel view) throws Exception {
@@ -31,18 +34,30 @@ public class PickUpController extends RegionCarriableController {
     @Override
     protected void carriableClick() {
         GameModelFacade gmf = GameModelFacade.getInstance();
-        if (transporter != null) {
-            gmf.pickUpCarriable(getCurrentRegion(), getTransporter(), getCurrentCarriable());
+        if (areContributorsNull( currentRegion, currentTransporter,getCurrentCarriable())) {
+            gmf.pickUpCarriable(currentRegion, currentTransporter, getCurrentCarriable());
             removeCarriable();
         }
     }
 
+    private boolean areContributorsNull(Region region, Transporter transporter, Carriable carriable) {
+        return transporter != null && region != null && carriable != null;
+    }
+
     public void receiveTransporter(Transporter transporter) {
-        this.transporter = transporter;
+        this.currentTransporter = transporter;
         showPanel();
     }
 
-    private Transporter getTransporter() {
-        return transporter;
+    public void receiveRegion(Region region) {
+        this.currentRegion = region;
     }
+
+//    private Transporter getCurrentTransporter() {
+//        return currentTransporter;
+//    }
+//
+//    private Region getCurrentRegion() {
+//        return currentRegion;
+//    }
 }

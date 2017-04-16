@@ -28,7 +28,6 @@ public abstract class TransporterCarriableController implements MainViewControll
     //currents
     private Carriable currentCarriable;
     private Transporter currentTransporter;
-    private Region currentRegion;
     private int index = -1;
     //iterators
     private CarriableIterator carrIt;
@@ -86,7 +85,7 @@ public abstract class TransporterCarriableController implements MainViewControll
     @Override
     public void mousePressed(MouseEvent e) {
         PixelPoint point = new PixelPoint(e.getX(), e.getY());
-        int index = view.getCarriableIndex(point);
+        setIndex(view.getCarriableIndex(point));
         System.out.println(index);
 
         if (!isOutOfBounds(index)) {
@@ -103,6 +102,7 @@ public abstract class TransporterCarriableController implements MainViewControll
         if (index > buttonNumber - 1) {
             setCurrentCarriable(index % buttonNumber);
             carriableClick();
+            removeCarriable();//implemented now it might change
         } else {
             setCurrentTransporter(index);
             transporterClick();
@@ -207,12 +207,20 @@ public abstract class TransporterCarriableController implements MainViewControll
         }
     }
 
+    public void setIndex(int index) {
+        this.index = index;
+    }
+
     protected Carriable getCurrentCarriable() {
         return currentCarriable;
     }
 
     protected Transporter getCurrentTransporter() {
         return currentTransporter;
+    }
+
+    protected TransporterIterator getTransporterIterator() {
+        return transIt;
     }
 
     public MainView getMainView() {
@@ -238,5 +246,7 @@ public abstract class TransporterCarriableController implements MainViewControll
         return currentTransporter == null;
     }
 
-
+    protected void removeCarriable() {
+        carrIt.deleteAt(index);
+    }
 }

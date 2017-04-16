@@ -3,6 +3,8 @@ package Gameplay.Controller.SubControllers.TransporterCarriableControllers;
 import Gameplay.Controller.PanelControllers.TransporterCarriableController;
 import Gameplay.Controller.SubControllers.RegionSelectionControllers.DropRegionController;
 import Gameplay.Controller.SubControllers.RegionSelectionControllers.MoveRegionController;
+import Gameplay.Model.Iterators.CarriableIterator;
+import Gameplay.Model.Utility.GameModelFacade;
 import Gameplay.Views.MainView.MainView;
 
 /**
@@ -13,9 +15,6 @@ public class DropController extends TransporterCarriableController {
     private DropRegionController dropRegionController = new DropRegionController(this);
     private MoveRegionController moveRegionController = new MoveRegionController(this);
 
-    //iterator of goods
-    //iterator of transporters
-
     public DropController() {
         changeToDefaultController();
         hidePanel();
@@ -25,9 +24,8 @@ public class DropController extends TransporterCarriableController {
     protected void carriableClick() {
         //Todo:get the good and pass it to drop region controller
         //TODO: view check if the region is a river, if it isn't drop it on the tile
-        dropRegionController.activateController(getMainView());
-        dropRegionController.receiveCarriable(getCurrentCarriable());
-        dropRegionController.receiveTransporter(getCurrentTransporter());
+
+        activateDropRegionController();
         hidePanel();
     }
 
@@ -40,8 +38,6 @@ public class DropController extends TransporterCarriableController {
 
     @Override
     protected void transporterClick() {
-        //todo: get goods associated with the transporter
-        //TODO: addRightColumn();
         moveRegionController.allowMovement();
     }
 
@@ -51,12 +47,21 @@ public class DropController extends TransporterCarriableController {
     }
 
     public void checkForDisplay() {
-        //TODO: if Trasnporter iterator is not empty
-        //TODO: set view visible
-        //TODO: if transporter iterator is empty
-        //TODO: set view invisible
+        if (getTransporterIterator().size() == 0) {
+            hidePanel();
+            return;
+        }
+        showPanel();
     }
 
+    public void dropGood(){
+        removeCarriable();
+    }
 
+    private void activateDropRegionController(){
+        dropRegionController.activateController(getMainView());
+        dropRegionController.receiveCarriable(getCurrentCarriable());
+        dropRegionController.receiveTransporter(getCurrentTransporter());
+    }
 }
 
