@@ -1,11 +1,13 @@
 package Gameplay.Drawing;
 
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 
@@ -52,6 +54,28 @@ public class GameTileDrawingTest {
             ImageIO.write(tdv.getImage(), "png", new java.io.File("res/Images/Tests/testVisit.png"));
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testGetRivers(){
+        GameTileBuilder builder = new GameTileBuilder();
+        ArrayList<Integer> rivers = new ArrayList<>();
+        for(int i = 1; i < 6; i++){
+            rivers.add(i);
+            GameTile tile = builder.createTile("WOODS", rivers);
+            assertEquals(tile.getRiverType(), 1);
+            assertEquals(tile.getRotationNumber(), i-1);
+            rivers.clear();
+        }
+
+        for(int i = 1; i < 6; i++){
+            rivers.add(i);
+            rivers.add(i + 1);
+            GameTile tile = builder.createTile("WOODS", rivers);
+            assertEquals(tile.getRiverType(), 2);
+            assertEquals(tile.getRotationNumber(), i-1);
+            rivers.clear();
         }
     }
 

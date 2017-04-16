@@ -2,6 +2,8 @@ package Gameplay.Model.Tile;
 
 import Gameplay.Model.Region.Region;
 import Gameplay.Model.Visitors.GameTileVisitor;
+import Gameplay.Model.Visitors.RegionMapVisitor;
+import Gameplay.Model.Visitors.RiverVisitor;
 import MapBuilder.Model.Terrain.Terrain;
 import MapBuilder.Model.Tile.Tile;
 import MapBuilder.Model.Visitor.TileVisitor;
@@ -37,5 +39,16 @@ public class GameTile extends Tile {
     public void accept(GameTileVisitor v) {
         getTerrain().accept(v);
         v.visitRegionMap(regionMap);
+    }
+
+    public int getRiverType(){
+        RiverVisitor v = new RiverVisitor();
+        v.visitRegionMap(regionMap);
+        return v.getRiverType();
+    }
+    public int getRotationNumber(){
+        RiverVisitor v = new RiverVisitor();
+        v.visitRegionMap(regionMap);
+        return v.getRotationNumber();
     }
 }
