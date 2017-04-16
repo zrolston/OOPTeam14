@@ -1,12 +1,13 @@
 package Gameplay.Views.Drawers;
 
+import Gameplay.Model.Goods.*;
 import Gameplay.Model.Transporters.LandTransporters.Donkey;
 import Gameplay.Model.Transporters.LandTransporters.Truck;
 import Gameplay.Model.Transporters.LandTransporters.Wagon;
 import Gameplay.Model.Transporters.WaterTransporter.Raft;
 import Gameplay.Model.Transporters.WaterTransporter.Rowboat;
 import Gameplay.Model.Transporters.WaterTransporter.Steamer;
-import Gameplay.Model.Visitors.TransporterVisitor;
+import Gameplay.Model.Visitors.CarriableVisitor;
 import MapBuilder.Views.Utility.ImageLoader;
 import MapBuilder.Views.Utility.PixelPoint;
 
@@ -15,17 +16,68 @@ import java.awt.image.BufferedImage;
 /**
  * Created by Willie on 4/16/2017.
  */
-public class TransporterDrawingVisitor implements TransporterVisitor {
+public class CarriableDrawingVisitor implements CarriableVisitor {
 
-    BufferedImage image;
-    PixelPoint origin;
+    private BufferedImage image;
+    private PixelPoint origin;
 
-    public TransporterDrawingVisitor() {
-        origin = new PixelPoint(50, 50);
+    public CarriableDrawingVisitor(PixelPoint origin) {
+        this.origin = origin;
     }
 
-    public TransporterDrawingVisitor(PixelPoint origin) {
-        this.origin = origin;
+    @Override
+    public void visitBoard(Board b) {
+        image = ImageLoader.getImage("BOARD");
+    }
+
+    @Override
+    public void visitClay(Clay c) {
+        image = ImageLoader.getImage("CLAY");
+    }
+
+    @Override
+    public void visitCoins(Coins c) {
+        image = ImageLoader.getImage("COINS");
+    }
+
+    @Override
+    public void visitFuel(Fuel f) {
+        image = ImageLoader.getImage("FUEL");
+    }
+
+    @Override
+    public void visitGold(Gold g) {
+        image = ImageLoader.getImage("GOLD");
+    }
+
+    @Override
+    public void visitGoose(Goose g) {
+        image = ImageLoader.getImage("GOOSE");
+    }
+
+    @Override
+    public void visitIron(Iron i) {
+        image = ImageLoader.getImage("IRON");
+    }
+
+    @Override
+    public void visitPaper(Paper p) {
+        image = ImageLoader.getImage("PAPER");
+    }
+
+    @Override
+    public void visitStock(Stock s) {
+        image = ImageLoader.getImage("STOCK");
+    }
+
+    @Override
+    public void visitStone(Stone s) {
+        image = ImageLoader.getImage("STONE");
+    }
+
+    @Override
+    public void visitTrunk(Trunk t) {
+        image = ImageLoader.getImage("TRUNK");
     }
 
     @Override
@@ -103,9 +155,4 @@ public class TransporterDrawingVisitor implements TransporterVisitor {
     public ImageWithLocation getImage() {
         return new ImageWithLocation(image, origin);
     }
-
-    public BufferedImage getBufferedImage() {
-        return image;
-    }
-
 }

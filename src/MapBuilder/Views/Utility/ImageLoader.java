@@ -80,9 +80,35 @@ public class ImageLoader {
             cachedImages.put("ORANGE_WAGON", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Transporters/wagonOrange.png")));
 
 
-            // GOODS
             cachedImages.put("GOOSE", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Goods/goose.png")));
 
+            cachedImages.put("BOARD", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Goods/boards.png")));
+            cachedImages.put("CLAY", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Goods/clay.png")));
+            cachedImages.put("FUEL", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Goods/fuel.png")));
+            cachedImages.put("GOLD", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Goods/gold.png")));
+            cachedImages.put("COINS", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Goods/goldCoins.png")));
+            cachedImages.put("GOOSE", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Goods/goose.png")));
+            cachedImages.put("IRON", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Goods/iron.png")));
+            cachedImages.put("PAPER", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Goods/paper.png")));
+            cachedImages.put("STOCK", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Goods/stock.png")));
+            cachedImages.put("STONE", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Goods/stone.png")));
+            cachedImages.put("TRUNK", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Goods/trunks.png")));
+            cachedImages.put("CLAY_PIT", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Buildings/clayPit.png")));
+            cachedImages.put("COAL_BURNER", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Buildings/coalBurner.png")));
+            cachedImages.put("MINE", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Buildings/mine.png")));
+            cachedImages.put("MINT", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Buildings/mint.png")));
+            cachedImages.put("OIL_RIG", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Buildings/oilRig.png")));
+            cachedImages.put("PAPERMILL", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Buildings/papermill.png")));
+            cachedImages.put("STONE_QUARRY", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Buildings/quary.png")));
+            cachedImages.put("SAWMILL", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Buildings/sawmill.png")));
+            cachedImages.put("STOCK_EXCHANGE", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Buildings/stockExchange.png")));
+            cachedImages.put("STONE_FACTORY", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Buildings/stoneFactory.png")));
+            cachedImages.put("WOODCUTTER", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Buildings/woodcutter.png")));
+            cachedImages.put("RAFT_FACTORY", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Factories/raftFactory.png")));
+            cachedImages.put("ROWBOAT_FACTORY", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Factories/rowboatFactory.png")));
+            cachedImages.put("TRUCK_FACTORY", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Factories/truckFactory.png")));
+            cachedImages.put("WAGON_FACTORY", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Factories/wagonFactory.png")));
+            //cachedImages.put("STEAMER_FACTORY", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Factories/steamerFactory.png")));
         }
         catch (Exception e) {
             e.printStackTrace();
