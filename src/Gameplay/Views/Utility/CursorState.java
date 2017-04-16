@@ -21,6 +21,7 @@ public class CursorState {
     private boolean markerActive = true;
     private Region activeRegion = null;
     private Polygon regionArea = null;
+    private String regionCode = "";
 
     public static CursorState getInstance() {
         return ourInstance;
@@ -28,8 +29,17 @@ public class CursorState {
     public Region getActiveRegion() { return activeRegion; }
     public Polygon getRegionArea() { return regionArea; }
 
+    public String getRegionCode() {
+        return regionCode;
+    }
 
-    public void setActiveRegion(Region activeRegion) { this.activeRegion = activeRegion; }
+    public void setRegionCode(String regionCode) {
+        this.regionCode = regionCode;
+    }
+
+    public void setActiveRegion(Region activeRegion) {
+        this.activeRegion = activeRegion;
+    }
     public void setRegionArea(Polygon regionArea) { this.regionArea = regionArea; }
 
     private CursorState() {
