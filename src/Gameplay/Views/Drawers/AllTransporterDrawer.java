@@ -12,8 +12,5 @@ public class AllTransporterDrawer {
 
     private List<ImageWithLocation> images;
 
-    public void getAllTransporterImages() {
-        IViewMap map = GameModelFacade.getInstance().debugGetMap();
-        for (int i = 0; i < map.)
-    }
+
 }
