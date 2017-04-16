@@ -97,7 +97,9 @@ public class GameModelFacade { //TODO make an abstract facade
                     Region r = regionIterator.next();
                     r.accept(pcv);
                     if (pcv.getPlacable()) {
-                        goodsHandler.place(new GoodsBag(), r);
+                        GoodsBag gb = new GoodsBag();
+                        gb.addBoard(new Board());
+                        goodsHandler.place(gb, r);
                     }
                 }
             }

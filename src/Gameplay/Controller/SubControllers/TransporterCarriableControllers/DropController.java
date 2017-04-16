@@ -21,7 +21,7 @@ import Gameplay.Views.MainView.MainView;
 import Gameplay.Views.MainView.TransporterCarriableView;
 import MapBuilder.Model.ModelFacade;
 import MapBuilder.Model.Utility.HexLocation;
-import MapBuilder.Views.Utility.CursorState;
+import Gameplay.Views.Utility.CursorState;
 import MapBuilder.Views.Utility.PixelPoint;
 
 import java.awt.*;
@@ -88,29 +88,6 @@ public class DropController extends TransporterCarriableController {
 
     public void generateCarriableIter() {
 
-        System.out.println("gogo");
-
-        //////////
-        PlayerID p1 = new PlayerID(0);
-        PlayerID p2 = new PlayerID(1);
-
-        DonkeyFactory df = new DonkeyFactory();
-        Transporter donky = df.create();
-        donky.setPlayerID(p2);
-
-        TransporterDrawingVisitor t = new TransporterDrawingVisitor();
-        donky.accept(t);
-        BufferedImage transporterImage = t.getImage();
-
-        Goose g = new Goose();
-        CarriableDrawingVisitor gv = new CarriableDrawingVisitor();
-        g.accept(gv);
-
-        ArrayList<Carriable> cariables = new ArrayList<>();
-        cariables.add( g );
-        cariables.add( donky );
-        //////
-
         GameModelFacade modelFacade =  GameModelFacade.getInstance();
 
         if(modelFacade == null)
@@ -126,6 +103,8 @@ public class DropController extends TransporterCarriableController {
         RegionMap rm = tile.getRegionMap();
 
         Region r = rm.getRegionAt( new HexaVertex(2, -1) );
+
+        System.out.println(r);
 
         carrIt = modelFacade.getRegionCarriable( r );
     }
