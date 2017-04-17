@@ -30,6 +30,7 @@ public class Line {
 
     public void draw(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
+        ((Graphics2D)(g)).setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
         g2.setStroke(new BasicStroke(thickness));
         g.setColor(color);
         g.drawLine(start.getX(), start.getY(), end.getX(), end.getY());

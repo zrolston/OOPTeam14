@@ -47,6 +47,7 @@ public class WallDrawer {
         BufferedImage allWalls = new BufferedImage(wallImage.getWidth(), wallImage.getHeight() * wall.getStrength(), wallImage.getType());
         for (int i = 0; i < wall.getStrength(); i++) {
             Graphics g = allWalls.getGraphics();
+            ((Graphics2D)(g)).setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
             g.drawImage(wallImage, 0, i*wallImage.getHeight(), null);
         }
         return allWalls;
