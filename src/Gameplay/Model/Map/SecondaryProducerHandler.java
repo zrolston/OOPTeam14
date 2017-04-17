@@ -63,6 +63,7 @@ public class SecondaryProducerHandler {
         List<Region> regions = new ArrayList<>();
 
         regions.addAll(factoryOccupancyMap.keySet());
+        regions.addAll(goodOccupancyMap.keySet());
 
         return regions;
     }
