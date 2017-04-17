@@ -15,10 +15,11 @@ public abstract class PhaseStateController  {
     protected void clearPanels(MainView mainView){
         mainView.hideAllPhaseSubViews();
         mainView.dettachAllControllers();
-        mainView.getDisplay().setFocusable(false);
+//        mainView.getDisplay().setFocusable(false);
     }
 
     public void activateController(MainView mainView){
+        mainView.getEndPhaseButton().setPhaseLabel(toString());
         clearPanels(mainView);
         activateState(mainView);
     }

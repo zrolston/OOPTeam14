@@ -15,4 +15,8 @@ public abstract class Owned {
     public boolean matches(Owned owned){
         return playerID.matches(owned.getPlayerID());
     }
+
+    public boolean matches(PlayerID playerID){
+        return playerID.matches((getPlayerID()));
+    }
 }

@@ -3,6 +3,7 @@ package Gameplay.Model.Map;
 import Gameplay.Model.Region.Region;
 import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Model.Utility.Owned;
+import Gameplay.Model.Utility.PlayerID;
 import Gameplay.Model.Utility.TransporterOccupancy;
 
 import java.util.ArrayList;
@@ -73,6 +74,17 @@ public class TransporterHandler {
     }
 
     public List<Transporter> getMyTransportersAt(Region r, Owned player){
+        List<Transporter> transporters = new ArrayList<>();
+
+        TransporterOccupancy transporterOccupancy = occupancyMap.get(r);
+
+        if(transporterOccupancy != null){
+            transporters = transporterOccupancy.getOwnedTransporters(player);
+        }
+
+        return transporters;
+    }
+    public List<Transporter> getMyTransportersAt(Region r, PlayerID player){
         List<Transporter> transporters = new ArrayList<>();
 
         TransporterOccupancy transporterOccupancy = occupancyMap.get(r);

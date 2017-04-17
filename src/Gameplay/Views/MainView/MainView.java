@@ -106,7 +106,7 @@ public class MainView extends JLayeredPane {
 //                }
                 //Jumps to the next phase state
                 GameModelFacade.getInstance().nextTurn();
-//                System.out.println(GameModelFacade.getInstance().getCurrentPhase().toString());
+                System.out.println(GameModelFacade.getInstance().getCurrentPhase().toString());
             }
         } );
     }
