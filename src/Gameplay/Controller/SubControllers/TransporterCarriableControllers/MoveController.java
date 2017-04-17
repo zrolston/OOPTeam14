@@ -37,6 +37,7 @@ public class MoveController extends TransporterCarriableController implements Dr
 
     @Override
     protected void carriableClick() {
+        moveRegionController.stop();
         //TODO: view check if the region is a river, if it isn't drop it on the tile and gameModelFacade.canDropCarriable()
         activateDropRegionController();
         //TODO: UNCOMENT THIISSSSSSS!!!!!!!!!!!!!!!!!!!!!!

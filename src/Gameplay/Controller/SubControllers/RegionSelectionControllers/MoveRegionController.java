@@ -86,4 +86,8 @@ public class MoveRegionController extends RegionSelectionController {
     private TransporterIterator getTransporters(Region region){
         return gameModelFacade.getTransporters(region);
     }
+
+    public void stop(){
+        suspend();
+    }
 }
