@@ -38,8 +38,6 @@ public class ControllerTest {
 
     public static TransporterIterator generateCarriableIter(GameModelFacade modelFacade) {
 
-        System.out.println("gen car iter");
-
 
         if(modelFacade == null)
             return null;
@@ -56,8 +54,6 @@ public class ControllerTest {
 
         Region r = rm.getRegionAt( new HexaVertex(2, -1) );
 
-        System.out.println(r);
-        System.out.println("iter size" +  modelFacade.getTransporters(r).size());
         return modelFacade.getTransporters(r);
     }
 
