@@ -7,6 +7,20 @@ import Gameplay.Controller.SubControllers.RegionSelectionControllers.MoveRegionC
 import Gameplay.Model.Region.Region;
 import Gameplay.Model.Utility.GameModelFacade;
 
+import Gameplay.Model.Iterators.CarriableIterator;
+import Gameplay.Model.Map.GameMap;
+import Gameplay.Model.Tile.GameTile;
+import Gameplay.Model.Tile.RegionMap;
+import Gameplay.Model.Utility.HexaVertex;
+import Gameplay.Views.MainView.TransporterCarriableView;
+import MapBuilder.Model.Utility.HexLocation;
+import Gameplay.Views.Utility.CursorState;
+import MapBuilder.Views.Utility.PixelPoint;
+
+import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+
 /**
  * Created by jordi on 4/16/2017.
  */
@@ -41,6 +55,7 @@ public class MoveController extends TransporterCarriableController {
     protected void resume() {
         changeToDefaultController();
         clearCurrentCarriable();
+        clearCurrentTransporter();
 
     }
 
@@ -50,7 +65,7 @@ public class MoveController extends TransporterCarriableController {
     }
 
     public void checkForDisplay() {
-        if (getTransporterIterator().size() == 0) {
+        if ( getTransporterIterator()!= null && getTransporterIterator().size() == 0) {
             hidePanel();
             return;
         }
@@ -75,6 +90,10 @@ public class MoveController extends TransporterCarriableController {
         dropRegionController.receiveCarriable(getCurrentCarriable());
         dropRegionController.receiveTransporter(getCurrentTransporter());
     }
+
+    // --------
+
+
 
 }
 

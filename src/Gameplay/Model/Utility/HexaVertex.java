@@ -25,12 +25,16 @@ public class HexaVertex {
         this.value = value;
     }
 
+    public HexaVertex(int value, int testing) {
+        this.value = value;
+    }
+
     public static HexaVertex createVertex(int value) throws Exception {
 
         if (value >= vertexLowerBoundary && value <= edgeUpperBoundary) {
             return new HexaVertex(value);
         }
-        throw (new RuntimeException("wrong tile boundary"));
+        throw (new RuntimeException("wrong tile boundary "+value));
     }
 
     public HexaVertex nextVertex(){

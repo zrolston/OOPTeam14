@@ -3,6 +3,7 @@ package Gameplay.Controller.PanelControllers.MapSelectionControllers;
 import Gameplay.Controller.PanelControllers.MapViewController;
 import Gameplay.Controller.PanelControllers.TransporterCarriableController;
 import Gameplay.Model.Region.Region;
+import Gameplay.Views.MainView.MapView;
 import Gameplay.Views.Utility.CursorState;
 
 import javax.swing.*;
@@ -21,11 +22,12 @@ public abstract class RegionSelectionController extends MapViewController {
     protected abstract void leftClick();
 
     @Override
-    protected void attachView(JPanel view) throws Exception {
+    protected void attachView(MapView view) throws Exception {
 
         if (viewIsNull(view)) {
             throw new Exception("The view that was tried to be attached was null");
         }
+
         view.addMouseListener(this);
     }
 

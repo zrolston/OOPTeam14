@@ -48,8 +48,8 @@ public class RegionCarriableView extends JPanel {
         setVisible( true );
         background = ImageLoader.getImage("RESEARCH_BACKGROUND");
 
-        int numElements = 5;
-        int numCols = 2;
+        int numElements = 37;
+        int numCols = 5;
 
         columns = new ArrayList<>();
         int widthOffset = getWidth() / numCols;

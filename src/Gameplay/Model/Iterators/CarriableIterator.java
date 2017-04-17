@@ -2,7 +2,10 @@ package Gameplay.Model.Iterators;
 
 import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Model.Visitors.Carriable;
+import Gameplay.Views.Drawers.CarriableDrawingVisitor;
+import Gameplay.Views.Drawers.TransporterDrawingVisitor;
 
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class CarriableIterator implements StuffIterator {
@@ -22,10 +25,8 @@ public class CarriableIterator implements StuffIterator {
 
     @Override
     public void next() {
-        if (cur == size) {
-            return;
-        }
         cur++;
+        cur %= carriables.size();
     }
 
     @Override
@@ -36,6 +37,13 @@ public class CarriableIterator implements StuffIterator {
     @Override
     public int size() {
         return size;
+    }
+
+    @Override
+    public BufferedImage getImage() {
+        CarriableDrawingVisitor t = new CarriableDrawingVisitor();
+        getCurrent().accept(t);
+        return  t.getImage();
     }
 
     public Carriable getCarriableAt(int number) {
@@ -50,8 +58,7 @@ public class CarriableIterator implements StuffIterator {
     }
 
     public void deleteAt(int index){
-        if (isInBounds(index)) {
-            carriables.remove(index);
-        }
+        carriables.remove(index);
+        size--;
     }
 }

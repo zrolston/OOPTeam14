@@ -3,6 +3,7 @@ package Gameplay.Controller.PanelControllers;
 import Gameplay.Controller.MainViewController;
 import Gameplay.Model.Iterators.CarriableIterator;
 import Gameplay.Model.Iterators.TransporterIterator;
+
 import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Model.Utility.GameModelFacade;
 import Gameplay.Model.Visitors.Carriable;
@@ -40,6 +41,7 @@ public abstract class TransporterCarriableController implements MainViewControll
 
     //    protected abstract void suspend();
     protected abstract void carriableClick();
+
     protected abstract void transporterClick();
 
     private TransporterCarriableView getView(MainView mainView) {
@@ -74,13 +76,17 @@ public abstract class TransporterCarriableController implements MainViewControll
         return view == null;
     }
 
-    private void attachView(JPanel view) throws Exception {
+    public void attachView(TransporterCarriableView view) {
 
-        if (viewIsNull(view)) {
-            throw new Exception("The view that was tried to be attached was null");
+        if (view == null) {
+            return;
         }
+
+        view = view;
         view.addMouseListener(this);
+
     }
+
 
     @Override
     public void mousePressed(MouseEvent e) {
@@ -90,6 +96,7 @@ public abstract class TransporterCarriableController implements MainViewControll
         if (!isOutOfBounds(index)) {
             determineClick(index);
         }
+
 
     }
 
@@ -138,7 +145,7 @@ public abstract class TransporterCarriableController implements MainViewControll
      */
     private void addToPanelLeftColumn(TransporterIterator transporters) {
         if (transporters != null) {
-            //TODO: add transporters to left column in the view
+            setTransIt(transporters);
         }
     }
 
@@ -149,7 +156,7 @@ public abstract class TransporterCarriableController implements MainViewControll
      */
     protected void addToPanelRightColumn(CarriableIterator carriables) {
         if (carriables != null) {
-            //TODO: add currentCarriable to the right column
+            setCarrIt(carriables);
         }
     }
 

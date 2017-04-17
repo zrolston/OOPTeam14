@@ -16,6 +16,8 @@ import Gameplay.Model.TransporterFactory.TransporterFactory;
 import Gameplay.Model.TransporterFactory.TruckFactory;
 import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Model.Visitors.Carriable;
+import Gameplay.Model.Visitors.DropOffExchangeHandler;
+import Gameplay.Model.Visitors.PickUpExchangeHandler;
 import Gameplay.Model.Visitors.RegionPlacableVisitor;
 import MapBuilder.Model.Utility.MapParsers.DaveBuilder;
 
@@ -26,6 +28,7 @@ import java.util.List;
 public class GameModelFacade { //TODO make an abstract facade
     static GameModelFacade gameModelFacade;
     private GameMap gameMap;
+    private static int maxMapLength, maxMapWidth;
     private TransporterHandler transporterHandler;
     private GoodsHandler goodsHandler;
     private PrimaryProducerHandler primaryProducerHandler;
@@ -33,6 +36,8 @@ public class GameModelFacade { //TODO make an abstract facade
 
     private GameModelFacade(GameMap map) {
         this.gameMap = map;
+        maxMapLength = map.getLength();
+        maxMapWidth = map.getWidth();
     }
 
     public static GameModelFacade getInstance(){
@@ -42,9 +47,8 @@ public class GameModelFacade { //TODO make an abstract facade
         return null;
     }
 
-    public static void initialize(  ){
+    public static void initialize( GameMap map ){
         if (!isInitialized()){
-            GameMap map = new GameMap( getMaxMapLength(), getMaxMapWidth() );
             gameModelFacade = new GameModelFacade(map);
         }
     }
@@ -54,22 +58,10 @@ public class GameModelFacade { //TODO make an abstract facade
     }
 
     public static int getMaxMapLength(){
-        return 21;
+        return maxMapLength;
     }
     public static int getMaxMapWidth(){
-        return 21;
-    }
-
-    public void loadMap(String path){
-        DaveBuilder builder = new GameMapDaveBuilder();
-        builder.buildMap(path);
-    }
-
-    public void generateMap(List<GameTilePlacement> placements){
-        MapGenerator gen = new MapGenerator(gameMap.getWidth(), gameMap.getLength());
-        gameMap.initialize(
-                gen.generateRegionSets(placements)
-        );
+        return maxMapWidth;
     }
 
     public GameMap debugGetMap(){
@@ -97,7 +89,9 @@ public class GameModelFacade { //TODO make an abstract facade
                     Region r = regionIterator.next();
                     r.accept(pcv);
                     if (pcv.getPlacable()) {
-                        goodsHandler.place(new GoodsBag(), r);
+                        GoodsBag gb = new GoodsBag();
+                        gb.addBoard(new Board());
+                        goodsHandler.place(gb, r);
                     }
                 }
             }
@@ -149,8 +143,10 @@ public class GameModelFacade { //TODO make an abstract facade
      * TODO: to be implemented, made for when a transporter needs to drop a carriable on a certain tile
      * @param region
      */
-    public void dropCarriable(Region region, Transporter target, Carriable carriable){
-
+    public void dropCarriable(Region region, Transporter target, Carriable carriable) {
+        TransporterOccupancy transporterOccupancy = transporterHandler.getOccupancyAt(region);
+        GoodsBag goodsBag = goodsHandler.getGoodsBagAt(region);
+        carriable.accept(new DropOffExchangeHandler(transporterOccupancy, goodsBag, target));
     }
 
     /**
@@ -161,7 +157,9 @@ public class GameModelFacade { //TODO make an abstract facade
      * @param carriable
      */
     public void pickUpCarriable(Region region, Transporter transporter, Carriable carriable){
-
+        TransporterOccupancy transporterOccupancy = transporterHandler.getOccupancyAt(region);
+        GoodsBag goodsBag = goodsHandler.getGoodsBagAt(region);
+        carriable.accept(new PickUpExchangeHandler(transporterOccupancy, goodsBag, transporter));
     }
 
     /**

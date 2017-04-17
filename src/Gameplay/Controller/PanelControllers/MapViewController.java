@@ -14,7 +14,7 @@ public abstract class MapViewController implements MainViewController, MouseList
 
     private MapView mapView;
     private MainView mainView;
-    protected abstract void attachView(JPanel view) throws Exception;
+    protected abstract void attachView(MapView view) throws Exception;
     protected abstract void resume();
     protected abstract void suspend();
 

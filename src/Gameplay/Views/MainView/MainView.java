@@ -156,6 +156,17 @@ public class MainView extends JLayeredPane {
         screenSelectBtns.addListnerToTransporterScreenButton( e -> display.displayTransporterScreen() );
     }
 
+    public void dettachAllControllers() {
+        for(JComponent v : subViews) {
+            for (int i = 0; i < v.getMouseListeners().length; i++) {
+                v.removeMouseListener( v.getMouseListeners()[i] );
+            }
+            for (int i = 0; i < v.getKeyListeners().length; i++) {
+                v.removeKeyListener( v.getKeyListeners()[i] );
+            }
+        }
+    }
+
     public void setResearchSelectionViewVisible() {
         researchSelectionView.setVisible(true);
     }
