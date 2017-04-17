@@ -122,6 +122,10 @@ public class GameModelFacade { //TODO make an abstract facade
             goodsBag.addStone(new Stone());
             goodsHandler.place(goodsBag, r);
             transporterHandler.place(tr, r);
+            tr.pickUpGood(new Board());
+            tr.pickUpGood(new Coins());
+            t.pickUpGood(new Board());
+            t.pickUpGood(new Stock());
             r.enterRegion(tr);
             r = gameMap.getTileAt(new HexLocation(10,10)).getRegionAtHexaVertex(HexaVertex.createVertex(8));
             transporterHandler.place(t, r);
