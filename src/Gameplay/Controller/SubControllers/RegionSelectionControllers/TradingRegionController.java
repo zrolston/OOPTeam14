@@ -39,7 +39,6 @@ public class TradingRegionController extends RegionSelectionController{
     protected void leftClick() {
         addTransporters(getCurrentRegion());
         tradingController.setRegion(getCurrentRegion());
-        suspend();
 
     }
 
@@ -47,6 +46,10 @@ public class TradingRegionController extends RegionSelectionController{
     private void addTransporters(Region region) {
         TransporterIterator tr = getTransporters(region);
         tradingController.addTransporters(tr);
+    }
+
+    public void stop(){
+        suspend();
     }
 
     private TransporterIterator getTransporters(Region region){

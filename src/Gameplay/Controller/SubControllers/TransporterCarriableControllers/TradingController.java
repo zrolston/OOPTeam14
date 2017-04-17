@@ -41,6 +41,7 @@ public class TradingController extends TransporterCarriableController implements
 
     @Override
     protected void carriableClick() {
+        tradingRegionController.stop();
         activateDropRegionController();
     }
 
