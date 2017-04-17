@@ -30,6 +30,7 @@ public class GameModelFacade { //TODO make an abstract facade
     private GoodsHandler goodsHandler;
     private PrimaryProducerHandler primaryProducerHandler;
     private SecondaryProducerHandler secondaryProducerHandler;
+    private MovementManager movementManager;
 
     private GameModelFacade(GameMap map) {
         this.gameMap = map;
@@ -163,7 +164,8 @@ public class GameModelFacade { //TODO make an abstract facade
     }
 
     public void move(Region region, Transporter transporter){
-
+        System.out.println("MOVE");
+        movementManager.move(transporter, region, false);
     }
 
 

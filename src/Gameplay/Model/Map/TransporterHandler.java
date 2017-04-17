@@ -19,10 +19,10 @@ public class TransporterHandler {
     }
 
     public void move(Transporter t, Region start, Region end){
-        if (t.moveTo(end)){
+
             this.remove(t, start);
             this.place(t, end);
-        }
+
     }
 
     public void place(Transporter t, Region region){
@@ -34,7 +34,6 @@ public class TransporterHandler {
         }
 
         transporterOccupancy.add(t);
-
     }
 
     public void remove(Transporter t, Region region){
