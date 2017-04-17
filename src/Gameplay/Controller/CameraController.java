@@ -7,14 +7,12 @@
 
 package Gameplay.Controller;
 import Gameplay.Model.Map.GameMap;
-import Gameplay.Model.Region.Region;
 import Gameplay.Model.Tile.GameTile;
 import Gameplay.Model.Tile.RegionMap;
 import Gameplay.Model.Utility.GameModelFacade;
 import Gameplay.Model.Utility.HexaVertex;
 import Gameplay.Views.Utility.*;
 import Gameplay.Views.Utility.PolygonProportions.RegionVertexUtility;
-import MapBuilder.Model.Tile.Tile;
 import MapBuilder.Model.Utility.HexLocation;
 import MapBuilder.Model.Utility.ILocation;
 import MapBuilder.Views.Utility.PixelPoint;
@@ -104,6 +102,8 @@ public class CameraController implements MouseMotionListener, MouseListener{
             Polygon polygon = pointSet.getPolygon(origin);
             if(polygon.contains(current)) {
                 cursorState.setRegionArea(polygon);
+                cursorState.setPointSet(pointSet);
+                cursorState.setCursor(pointSet.getCentroid2(origin));
                 HexaVertex vertex = null;
                 try {
                     vertex = RegionVertexUtility.getVertexAt(riverType, rotation, regionIndex);
@@ -113,10 +113,5 @@ public class CameraController implements MouseMotionListener, MouseListener{
             }
         }
         regionIndex++;
-    }
-
-
-    public void updateRegionObject(){
-
     }
 }
