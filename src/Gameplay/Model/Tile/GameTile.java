@@ -30,6 +30,10 @@ public class GameTile extends Tile {
         return regionMap.getMyRegions();
     }
 
+    public Region getRegionAtHexaVertex(HexaVertex hv) {
+        return regionMap.getRegionAt(hv);
+    }
+
     public List<HexaVertex> getListHexaIndexRegion(Region r) {
         return regionMap.getVertices(r);
     }
