@@ -54,9 +54,12 @@ public class MoveControllerTest {
 //        modelFacade.setPhaseManager(phaseManager);
 
 //        Checking out user request
-        UserRequestController userRequestController= new UserRequestController();
-        userRequestController.activateController(display.getMainView());
+//        UserRequestController userRequestController= new UserRequestController();
+//        userRequestController.activateController(display.getMainView());
 
+//        Checking out production controller
+        ProductionController productionController = new ProductionController();
+        productionController.activateController(display.getMainView());
 
 
         //Starts the Game and generates Transporters
