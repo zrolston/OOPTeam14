@@ -35,6 +35,8 @@ public class TransporterHandler {
 
         transporterOccupancy.add(t);
 
+        region.enterRegion(t);
+
     }
 
     public void remove(Transporter t, Region region){

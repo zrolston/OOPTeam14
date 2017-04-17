@@ -19,7 +19,6 @@ import Gameplay.Model.Visitors.Carriable;
 import Gameplay.Model.Visitors.DropOffExchangeHandler;
 import Gameplay.Model.Visitors.PickUpExchangeHandler;
 import Gameplay.Model.Visitors.RegionPlacableVisitor;
-import MapBuilder.Model.Utility.MapParsers.DaveBuilder;
 
 import java.util.*;
 
@@ -27,7 +26,7 @@ public class GameModelFacade { //TODO make an abstract facade
     static GameModelFacade gameModelFacade;
     private GameMap gameMap;
     private static int maxMapLength, maxMapWidth;
-    private TransporterHandler transporterHandler;
+    public TransporterHandler transporterHandler;
     private GoodsHandler goodsHandler;
     private PrimaryProducerHandler primaryProducerHandler;
     private SecondaryProducerHandler secondaryProducerHandler;
@@ -58,6 +57,7 @@ public class GameModelFacade { //TODO make an abstract facade
     public static int getMaxMapLength(){
         return maxMapLength;
     }
+
     public static int getMaxMapWidth(){
         return maxMapWidth;
     }
@@ -140,8 +140,8 @@ public class GameModelFacade { //TODO make an abstract facade
         return new TransporterIterator(transporters);
     }
 
-    public void move(Region region){
-
+    public void move(Transporter t, Region region){
+        transporterHandler.move(t, t.getCachedRegion(), region);
     }
 
 
