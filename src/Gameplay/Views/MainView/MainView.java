@@ -1,5 +1,6 @@
 package Gameplay.Views.MainView;
 
+import Gameplay.Model.Utility.GameModelFacade;
 import Gameplay.Views.Display;
 import Gameplay.Views.ScreenSelectButtons;
 
@@ -103,7 +104,8 @@ public class MainView extends JLayeredPane {
                         showWonderPhaseViews();
                         break;
                 }
-
+                //Jumps to the next phase state
+                GameModelFacade.getInstance().nextPhase();
             }
         } );
     }
