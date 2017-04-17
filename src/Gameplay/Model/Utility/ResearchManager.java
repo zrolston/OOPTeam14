@@ -12,5 +12,4 @@ public class ResearchManager {
     TransporterHandler transporterHandler;
     GameMap gameMap;
 
-    public void checkResearch()
 }
