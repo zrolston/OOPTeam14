@@ -4,25 +4,47 @@ import Gameplay.Controller.MainController;
 import Gameplay.Controller.PhaseStateController;
 import Gameplay.Controller.PhaseStateControllers.*;
 import Gameplay.Controller.PhaseStateControllers.MovementPhaseStateController;
+import Gameplay.Model.Utility.GameModelFacade;
+import Gameplay.Model.Utility.PlayerID;
 
 
 public class PhaseManager {
     private PhaseState currentState;
-
     private TradingPhase tradingPhase = new TradingPhase();
     private ProductionPhase productionPhase = new ProductionPhase();
     private MovementPhase movementPhase = new MovementPhase();
     private BuildingPhase buildingPhase = new BuildingPhase();
     private WonderPhase wonderPhase = new WonderPhase();
     private MainController mainController;
+    private final int NUMPLAYERS = 2;
+    private PlayerID[] playerIDS;
+    private int currentPlayerIndex;
+    private PlayerID currentPlayerID;
 
     public PhaseManager(MainController mainController) {
+        playerIDS = new PlayerID[NUMPLAYERS];
+        playerIDS[0] = PlayerID.getPlayer1ID();
+        playerIDS[1] = PlayerID.getPlayer2ID();
+        currentPlayerIndex = 0;
+        currentPlayerID = playerIDS[currentPlayerIndex];
         this.mainController = mainController;
+        GameModelFacade.getInstance().setCurrentPlayer(currentPlayerID);
         currentState = tradingPhase;
         updateController();
     }
 
-    public void advancePhase() {
+    public void nextTurn(){
+        currentPlayerIndex++;
+        if (currentPlayerIndex == NUMPLAYERS){
+            currentPlayerIndex = 0;
+            advancePhase();
+        }
+        currentPlayerID = playerIDS[currentPlayerIndex];
+        GameModelFacade.getInstance().setCurrentPlayer(currentPlayerID);
+    }
+
+
+    private void advancePhase() {
         currentState.advance();
         updateController();
     }

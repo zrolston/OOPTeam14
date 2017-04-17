@@ -37,6 +37,7 @@ public class GameModelFacade { //TODO make an abstract facade
     private MovementManager movementManager;
     private WallHandler wallHandler;
     private PhaseManager phaseManager;
+    private PlayerID currentPlayer;
 
     private GameModelFacade(GameMap map) {
         this.gameMap = map;
@@ -44,9 +45,14 @@ public class GameModelFacade { //TODO make an abstract facade
         maxMapWidth = map.getWidth();
     }
 
+    public void setCurrentPlayer(PlayerID player){
+        currentPlayer = player;
+        System.out.println(currentPlayer.getID());
+    }
+
     //Controlling the Phase Manager
     public void setPhaseManager(PhaseManager phaseManager){ this.phaseManager = phaseManager; }
-    public void nextPhase(){ phaseManager.advancePhase(); }
+    public void nextTurn(){ phaseManager.nextTurn(); }
     public PhaseState getCurrentPhase(){ return phaseManager.getCurrentState(); }
 
     public static GameModelFacade getInstance(){
@@ -74,7 +80,7 @@ public class GameModelFacade { //TODO make an abstract facade
         return maxMapWidth;
     }
 
-    public GameMap debugGetMap(){
+    public GameMap getMap(){
         return gameMap;
     }
 

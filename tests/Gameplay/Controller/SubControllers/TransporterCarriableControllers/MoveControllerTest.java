@@ -7,20 +7,13 @@ import Gameplay.Model.Phases.PhaseManager;
 import Gameplay.Model.Region.Region;
 import Gameplay.Model.Tile.GameTile;
 import Gameplay.Model.Tile.RegionMap;
-import Gameplay.Model.TransporterFactory.DonkeyFactory;
-import Gameplay.Model.TransporterFactory.SteamerFactory;
-import Gameplay.Model.TransporterFactory.TransporterFactory;
-import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Model.Utility.GameMapDaveBuilder;
 import Gameplay.Model.Utility.GameModelFacade;
 import Gameplay.Model.Utility.HexaVertex;
 import Gameplay.Views.Display;
 import Gameplay.Views.Utility.CursorState;
 import MapBuilder.Model.Utility.HexLocation;
-import MapBuilder.Model.Utility.MapParsers.BuildMapDaveBuilder;
 import MapBuilder.Model.Utility.MapParsers.DaveBuilder;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by jordi on 4/16/2017.
@@ -33,27 +26,26 @@ public class MoveControllerTest {
     public static void main(String[] args) {
 
         Display display = new Display();
-        DaveBuilder builder = new GameMapDaveBuilder();
-        builder.buildMap(mapsDir);
-        GameModelFacade modelFacade =  GameModelFacade.getInstance();
+//        DaveBuilder builder = new GameMapDaveBuilder();
+//        builder.buildMap(mapsDir);
 
 //        TradingController tradingController = new TradingController();
 //        tradingController.activateController(display.getMainView());
 
         //Creating and linking the Move Controller
-        MoveController moveController = new MoveController();
-        moveController.activateController(display.getMainView());
+        while(GameModelFacade.getInstance() == null){
+        }
 
-        //Creating and linking the Main Controller
-        MainController mainController = new MainController(display.getMainView());
-        PhaseManager phaseManager = new PhaseManager(mainController);
-        modelFacade.setPhaseManager(phaseManager);
+//        MoveController moveController = new MoveController();
+//        moveController.activateController(display.getMainView());
 
+//        //Creating and linking the Main Controller
+//        MainController mainController = new MainController(display.getMainView());
+//        PhaseManager phaseManager = new PhaseManager(mainController);
+//        GameModelFacade modelFacade =  GameModelFacade.getInstance();
+//        modelFacade.setPhaseManager(phaseManager);
         //Starts the Game and generates Transporters
-        modelFacade.startGame();
-        moveController.addTransporters(generateCarriableIter(modelFacade));
-
-        modelFacade.startGame();
+//        modelFacade.startGame();
 //        moveController.addTransporters(generateCarriableIter(modelFacade));
     }
 
@@ -64,7 +56,7 @@ public class MoveControllerTest {
         if(modelFacade == null)
             return null;
 
-         GameMap map = modelFacade.debugGetMap();
+         GameMap map = modelFacade.getMap();
 
 
         HexLocation loc = CursorState.getInstance().getActiveTile();

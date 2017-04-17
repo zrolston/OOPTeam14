@@ -87,25 +87,25 @@ public class MainView extends JLayeredPane {
 
                 hideAllPhaseSubViews();
 
-                switch (currPhase) {        // DO NOT BE ALARMED!!! FOR TESTING PURPOSES ONLY!
-                    case 0:                                         // aka until Jordi fixes his controllers
-                        showTradingPhaseViews();
-                        break;
-                    case 1:
-                        showProductionPhaseViews();
-                        break;
-                    case 2:
-                        showMovementPhaseViews();
-                        break;
-                    case 3:
-                        showBuildingPhaseViews();
-                        break;
-                    case 4:
-                        showWonderPhaseViews();
-                        break;
-                }
+//                switch (currPhase) {        // DO NOT BE ALARMED!!! FOR TESTING PURPOSES ONLY!
+//                    case 0:                                         // aka until Jordi fixes his controllers
+//                        showTradingPhaseViews();
+//                        break;
+//                    case 1:
+//                        showProductionPhaseViews();
+//                        break;
+//                    case 2:
+//                        showMovementPhaseViews();
+//                        break;
+//                    case 3:
+//                        showBuildingPhaseViews();
+//                        break;
+//                    case 4:
+//                        showWonderPhaseViews();
+//                        break;
+//                }
                 //Jumps to the next phase state
-                GameModelFacade.getInstance().nextPhase();
+                GameModelFacade.getInstance().nextTurn();
 //                System.out.println(GameModelFacade.getInstance().getCurrentPhase().toString());
             }
         } );

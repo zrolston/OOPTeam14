@@ -1,6 +1,5 @@
 package Gameplay.Model.Map;
 
-import Gameplay.Model.Region.LandRegion;
 import Gameplay.Model.Region.Region;
 import Gameplay.Model.Tile.GameTile;
 import Gameplay.Model.Utility.GameModelFacade;
@@ -24,8 +23,8 @@ public class WallHandler {
         GameTile t1 = r1.getParentTile();
         GameTile t2 = r2.getParentTile();
 
-        List<HexaVertex> v1 = GameModelFacade.getInstance().debugGetMap().getVertices(t1, t2);
-        List<HexaVertex> v2 = GameModelFacade.getInstance().debugGetMap().getVertices(t2, t1);
+        List<HexaVertex> v1 = GameModelFacade.getInstance().getMap().getVertices(t1, t2);
+        List<HexaVertex> v2 = GameModelFacade.getInstance().getMap().getVertices(t2, t1);
 
         Set<Region> regions1 = new HashSet<Region>();
         Set<Region> regions2 = new HashSet<Region>();

@@ -7,8 +7,6 @@ import org.junit.Test;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
-
 /**
  * Created by zrgam_000 on 4/14/2017.
  */
@@ -27,7 +25,7 @@ public class MapGeneratorTest {
         DaveBuilder _builder = new GameMapDaveBuilder();
         _builder.buildMap("C:\\Users\\Cameron\\IdeaProjects\\OOPTeam14\\res\\SavedMaps\\mapTest.dave");
         GameModelFacade facade = GameModelFacade.getInstance();
-        GameMap map = facade.debugGetMap();
+        GameMap map = facade.getMap();
     }
 
 }
