@@ -1,6 +1,7 @@
 package Gameplay.Views;
 
 import Gameplay.Controller.CameraKeysController;
+import Gameplay.Model.Utility.GameModelFacade;
 import Gameplay.Views.HomeView.HomeView;
 import Gameplay.Views.MainView.MainView;
 import MapBuilder.Views.Utility.PixelMap;
@@ -23,6 +24,7 @@ public class Display extends JFrame{
         setFocusable(true);
 
         mainScreen = new MainView( this );
+        GameModelFacade.getInstance().init();
         homeScreen = new HomeView( this );
         wonderScreen = new WonderView( this );
         researchScreen = new ResearchView( this );

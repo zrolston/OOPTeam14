@@ -304,8 +304,10 @@ public class GameModelFacade { //TODO make an abstract facade
                 Iterator<Region> regions = tiles[i][j].getMyRegions();
                 while (regions.hasNext()) {
                     Region region1 = regions.next();
-                    for (Region region2 : region1.getRegionSet().getRoadRegions())
+                    for (Region region2 : region1.getRegionSet().getRoadRegions()) {
                         roads.put(region1, region2);
+                        roads.put(region2, region1);
+                    }
                 }
             }
         }
@@ -320,8 +322,10 @@ public class GameModelFacade { //TODO make an abstract facade
                 Iterator<Region> regions = tiles[i][j].getMyRegions();
                 while (regions.hasNext()) {
                     Region region1 = regions.next();
-                    for (Region region2 : region1.getRegionSet().getBridgeRegions())
+                    for (Region region2 : region1.getRegionSet().getBridgeRegions()) {
                         bridges.put(region1, region2);
+                        bridges.put(region2, region1);
+                    }
                 }
             }
         }
@@ -425,4 +429,7 @@ public class GameModelFacade { //TODO make an abstract facade
         System.out.println(r + " " + direction);
     }
 
+    public void init() {
+        startGame();
+    }
 }
