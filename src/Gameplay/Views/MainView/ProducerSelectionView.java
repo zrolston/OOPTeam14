@@ -112,6 +112,7 @@ public class ProducerSelectionView extends JPanel {
             buildAbility.accept(bav);
             producerImages.add(bav.getImage());
         }
+        repaint();
     }
 
     protected void paintComponent(Graphics g) {
