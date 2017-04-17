@@ -71,4 +71,8 @@ public class PickUpController extends RegionCarriableController {
         }
     }
 
+    protected Region getCurrentRegion(){
+        return currentRegion;
+    }
+
 }

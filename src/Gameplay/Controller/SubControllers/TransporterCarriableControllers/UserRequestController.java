@@ -10,9 +10,38 @@ import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Model.Utility.GameModelFacade;
 
 /**
+ * Created by jordi on 4/17/2017.
+ */
+
+
+
+        import Gameplay.Controller.PanelControllers.TransporterCarriableController;
+        import Gameplay.Controller.SubControllers.RegionCarriableControllers.PickUpController;
+        import Gameplay.Controller.SubControllers.RegionSelectionControllers.DropRegionController;
+        import Gameplay.Controller.SubControllers.RegionSelectionControllers.MoveRegionController;
+        import Gameplay.Model.Iterators.TransporterIterator;
+        import Gameplay.Model.Region.Region;
+        import Gameplay.Model.Transporters.Transporter;
+        import Gameplay.Model.Utility.GameModelFacade;
+
+        import Gameplay.Model.Iterators.CarriableIterator;
+        import Gameplay.Model.Map.GameMap;
+        import Gameplay.Model.Tile.GameTile;
+        import Gameplay.Model.Tile.RegionMap;
+        import Gameplay.Model.Utility.HexaVertex;
+        import Gameplay.Views.MainView.TransporterCarriableView;
+        import MapBuilder.Model.Utility.HexLocation;
+        import Gameplay.Views.Utility.CursorState;
+        import MapBuilder.Views.Utility.PixelPoint;
+
+        import java.awt.*;
+        import java.awt.event.MouseEvent;
+        import java.util.ArrayList;
+
+/**
  * Created by jordi on 4/16/2017.
  */
-public class MoveController extends TransporterCarriableController implements DropController {
+public class UserRequestController extends TransporterCarriableController implements DropController{
 
     private DropRegionController dropRegionController = new DropRegionController(this);
     private MoveRegionController moveRegionController = new MoveRegionController(this);
@@ -32,6 +61,7 @@ public class MoveController extends TransporterCarriableController implements Dr
 
     @Override
     protected void transporterClick() {
+        moveRegionController.allowMovement();
         sendCarriable();
         sendTransporter();
     }
@@ -69,7 +99,7 @@ public class MoveController extends TransporterCarriableController implements Dr
     @Override
     public void dropCarriable(Region region){
         //TODO: maybe add a check
-        //TODO: change the gameModelFacade call for the api one
+        gameModelFacade.dropCarriable(region, getCurrentTransporter(),getCurrentCarriable());
         removeCarriable();
         TransporterIterator trans = gameModelFacade.getTransporters(region);
         addTransporters(trans);

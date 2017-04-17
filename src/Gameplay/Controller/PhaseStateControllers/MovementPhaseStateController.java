@@ -10,7 +10,7 @@ import Gameplay.Views.MainView.MainView;
 public class MovementPhaseStateController extends PhaseStateController {
     MoveController moveController;
     @Override
-    public void activateController(MainView mainView) {
+    public void activateState(MainView mainView) {
         moveController = new MoveController();
         moveController.activateController(mainView);
     }
