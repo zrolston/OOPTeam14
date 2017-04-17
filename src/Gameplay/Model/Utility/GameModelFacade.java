@@ -14,16 +14,12 @@ import Gameplay.Model.Tile.RegionMap;
 import Gameplay.Model.TransporterFactory.DonkeyFactory;
 import Gameplay.Model.TransporterFactory.TransporterFactory;
 import Gameplay.Model.TransporterFactory.TruckFactory;
-import Gameplay.Model.Transporters.LandTransporters.Donkey;
 import Gameplay.Model.TransporterFactory.*;
-import Gameplay.Model.Transporters.LandTransporters.Wagon;
 import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Model.Visitors.Carriable;
 import Gameplay.Model.Visitors.DropOffExchangeHandler;
 import Gameplay.Model.Visitors.PickUpExchangeHandler;
 import Gameplay.Model.Visitors.RegionPlacableVisitor;
-import MapBuilder.Model.Tile.Tile;
-import MapBuilder.Model.Utility.MapParsers.DaveBuilder;
 
 import java.util.*;
 
@@ -31,7 +27,7 @@ public class GameModelFacade { //TODO make an abstract facade
     static GameModelFacade gameModelFacade;
     private GameMap gameMap;
     private static int maxMapLength, maxMapWidth;
-    private TransporterHandler transporterHandler;
+    public TransporterHandler transporterHandler;
     private GoodsHandler goodsHandler;
     private PrimaryProducerHandler primaryProducerHandler;
     private SecondaryProducerHandler secondaryProducerHandler;
@@ -64,6 +60,7 @@ public class GameModelFacade { //TODO make an abstract facade
     public static int getMaxMapLength(){
         return maxMapLength;
     }
+
     public static int getMaxMapWidth(){
         return maxMapWidth;
     }
@@ -74,10 +71,10 @@ public class GameModelFacade { //TODO make an abstract facade
 
     public void startGame() {
         setUpGoodsHandler();
-//        transporterHandler = new TransporterHandler();
         primaryProducerHandler = new PrimaryProducerHandler();
         secondaryProducerHandler = new SecondaryProducerHandler();
         wallHandler = new WallHandler();
+        movementManager = new MovementManager(transporterHandler, wallHandler, goodsHandler);
 
         try {
             gameMap.getTiles()[10][10].getRegionMap().getRegionAt(HexaVertex.createVertex(4)).getRegionSet().addRoadRegion(
@@ -89,11 +86,13 @@ public class GameModelFacade { //TODO make an abstract facade
         } catch(Exception e) {}
 
         GameTile tile1 = gameMap.getTiles()[10][10];
-        GameTile tile2 = gameMap.getTiles()[11][10];
+        GameTile tile2 = gameMap.getTiles()[9][10];
 
         try {
-            wallHandler.addWall(tile1.getRegionAtHexaVertex(HexaVertex.createVertex(4)), tile2.getRegionAtHexaVertex(HexaVertex.createVertex(6)), new Wall());
-            Wall wall = wallHandler.getWallAt(tile1.getRegionAtHexaVertex(HexaVertex.createVertex(1)), tile2.getRegionAtHexaVertex(HexaVertex.createVertex(1)));
+            Wall wall = new Wall();
+            wall.strengthen();
+            wall.setPlayerID(PlayerID.getNeutralPlayerID());
+            wallHandler.addWall(tile1.getRegionAtHexaVertex(HexaVertex.createVertex(4)), tile2.getRegionAtHexaVertex(HexaVertex.createVertex(6)), wall);
         } catch(Exception e) {
             System.out.println(e.getStackTrace());
         }
@@ -104,7 +103,7 @@ public class GameModelFacade { //TODO make an abstract facade
         TransporterFactory t = new DonkeyFactory();
         TransporterFactory t2 = new WagonFactory();
 
-        PlayerID p2 = new PlayerID(0);
+        PlayerID p2 = PlayerID.getPlayer1ID();
 
         goodsHandler = new GoodsHandler();
         transporterHandler = new TransporterHandler();
@@ -179,7 +178,6 @@ public class GameModelFacade { //TODO make an abstract facade
     }
 
     public void move(Region region, Transporter transporter){
-        System.out.println("MOVE");
         movementManager.move(transporter, region, false);
     }
 

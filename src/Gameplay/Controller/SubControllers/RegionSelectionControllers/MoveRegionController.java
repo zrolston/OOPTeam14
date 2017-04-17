@@ -30,7 +30,7 @@ public class MoveRegionController extends RegionSelectionController {
         if (movement) {
 
             if (currentTransporter != null) {
-                gameModelFacade.move(getCurrentRegion(),currentTransporter);
+                gameModelFacade.move(currentTransporter.getCurrentRegion(), currentTransporter);
 
             }
             disallowMovement();

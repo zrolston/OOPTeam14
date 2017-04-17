@@ -54,7 +54,7 @@ public class ImageLoader {
             cachedImages.put("GAME_BACKGROUND", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/gameBackground.png")));
             cachedImages.put("WONDER", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/wonder.png")));  
             cachedImages.put("WONDER_BACKGROUND", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/wonderBackground.png"))); 
-            cachedImages.put("NEUTRAL_BRICK", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/neutralBrick.png"))); 
+            cachedImages.put("WHITE_BRICK", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/neutralBrick.png")));
             cachedImages.put("ORANGE_BRICK", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/orangeBrick.png"))); 
             cachedImages.put("BLUE_BRICK", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/blueBrick.png")));
             cachedImages.put("RESEARCH_TABLE", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/researchTable.png")));
@@ -65,6 +65,7 @@ public class ImageLoader {
             cachedImages.put("ORANGE_MARKER", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/orangeMarker.png")));
             cachedImages.put("RESEARCH_MARKER", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/researchMarker.png")));
             cachedImages.put("BLANK_HEX", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/testhexatile.png")));
+            cachedImages.put("WHITE_WALL", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/neutralWall.png")));
             cachedImages.put("ORANGE_WALL", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/orangeWall.png")));
             cachedImages.put("BLUE_WALL", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/blueWall.png")));
             cachedImages.put("BLUE_DONKEY", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Transporters/donkeyBlue.png")));
@@ -73,8 +74,8 @@ public class ImageLoader {
             cachedImages.put("ORANGE_RAFT", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Transporters/raftOrange.png")));
             cachedImages.put("ORANGE_ROWBOAT", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Transporters/rowboatOrange.png")));
             cachedImages.put("BLUE_ROWBOAT", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Transporters/rowboatBlue.png")));
-            cachedImages.put("BLUE_STEAMSHIP", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Transporters/steamShipBlue.png")));
-            cachedImages.put("ORANGE_STEAMSHIP", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Transporters/steamShipOrange.png")));
+            cachedImages.put("BLUE_STEAMER", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Transporters/steamShipBlue.png")));
+            cachedImages.put("ORANGE_STEAMER", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Transporters/steamShipOrange.png")));
             cachedImages.put("BLUE_TRUCK", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Transporters/truckBlue.png")));
             cachedImages.put("ORANGE_TRUCK", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Transporters/truckOrange.png")));
             cachedImages.put("BLUE_WAGON", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Transporters/wagonBlue.png")));

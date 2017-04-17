@@ -29,8 +29,8 @@ public class TransporterOccupancyTest {
 
         DonkeyFactory df = new DonkeyFactory();
 
-        p1 = PlayerID.getNewPlayerID();
-        p2 = PlayerID.getNewPlayerID();
+        p1 = PlayerID.getPlayer1ID();
+        p2 = PlayerID.getPlayer2ID();
 
         t11 = df.create();
         t11.setPlayerID(p1);

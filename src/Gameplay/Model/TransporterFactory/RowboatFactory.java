@@ -6,6 +6,6 @@ import Gameplay.Model.Transporters.WaterTransporter.Rowboat;
 public class RowboatFactory extends TransporterFactory {
     @Override
     public Transporter create() {
-        return new Rowboat(new WaterPermit(), new DockPermit());
+        return new Rowboat(new WaterPermit(), new DockPermit(), new PortPermit());
     }
 }
