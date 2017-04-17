@@ -3,7 +3,9 @@ package Gameplay.Controller.SubControllers.TransporterCarriableControllers;
 import Gameplay.Controller.MainViewController;
 import Gameplay.Model.BuildAbilities.BuildAbility;
 import Gameplay.Model.Utility.GameModelFacade;
+import Gameplay.Model.Utility.HexaVertex;
 import Gameplay.Views.MainView.MainView;
+import MapBuilder.Model.Utility.HexaIndex;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -43,6 +45,7 @@ public class BuildingController implements KeyListener, MainViewController {
 
     }
 
+
     @Override
     public void keyReleased(KeyEvent e) {
 
@@ -61,5 +64,11 @@ public class BuildingController implements KeyListener, MainViewController {
         mainView.getDisplay().setFocusable(true);
         mainView.getDisplay().requestFocus();
         mainView.getDisplay().addKeyListener(this);
+    }
+
+    public void buildWall(HexaIndex hexaIndex){
+        if (userRequestController.getRegion() != null) {
+            gameModelFacade.build
+        }
     }
 }
