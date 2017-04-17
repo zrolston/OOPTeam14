@@ -6,7 +6,6 @@ import Gameplay.Model.Producer.PrimaryProducer.ClayPit;
 import Gameplay.Model.Producer.Producer;
 import Gameplay.Model.Producer.SecondaryProducer.GoodProducer.Sawmill;
 import Gameplay.Model.Utility.GameModelFacade;
-import Gameplay.Model.Visitors.BuildAbilityVisitor;
 import Gameplay.Model.Visitors.Carriable;
 import Gameplay.Views.Drawers.BuildAbilityDrawingVisitor;
 import Gameplay.Views.Drawers.CarriableDrawingVisitor;

@@ -65,7 +65,6 @@ public class MoveControllerTest {
         BuildingController buildingController = new BuildingController();
         buildingController.activateController(display.getMainView());
 
-
         //Starts the Game and generates Transporters
         modelFacade.startGame();
 //        moveController.addTransporters(generateCarriableIter(modelFacade));

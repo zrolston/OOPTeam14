@@ -16,9 +16,10 @@ import java.awt.event.MouseListener;
 public class ProductionController implements KeyListener, MainViewController {
     UserRequestController userRequestController = new UserRequestController();
     GameModelFacade gameModelFacade = GameModelFacade.getInstance();
+
     @Override
     public void keyTyped(KeyEvent e) {
-
+        System.out.println("doo something");
     }
 
     @Override
@@ -31,7 +32,7 @@ public class ProductionController implements KeyListener, MainViewController {
 
     @Override
     public void keyReleased(KeyEvent e) {
-
+        System.out.println("hello");
     }
 
     @Override
@@ -46,6 +47,5 @@ public class ProductionController implements KeyListener, MainViewController {
         mainView.getDisplay().setFocusable(true);
         mainView.getDisplay().requestFocus();
         mainView.getDisplay().addKeyListener(this);
-
     }
 }
