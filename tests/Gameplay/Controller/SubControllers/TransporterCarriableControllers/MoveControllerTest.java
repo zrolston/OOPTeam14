@@ -65,9 +65,12 @@ public class MoveControllerTest {
 //        userRequestController.activateController(display.getMainView());
 
 //        Checking out production controller
-        ProductionController productionController = new ProductionController();
-        productionController.activateController(display.getMainView());
+//        ProductionController productionController = new ProductionController();
+//        productionController.activateController(display.getMainView());
 
+//        Checking out Building controller
+        BuildingController buildingController = new BuildingController();
+        buildingController.activateController(display.getMainView());
 
         //Starts the Game and generates Transporters
         modelFacade.startGame();

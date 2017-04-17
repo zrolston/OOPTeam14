@@ -19,6 +19,8 @@ public class WallSelectionView extends JPanel {
     private BufferedImage hexImage;
     private BufferedImage tileShadow;
 
+    ArrayList<JButton> btns;
+
     public WallSelectionView() {
         setLayout(new GridLayout(0, 3));
         setBounds((int)(PixelMap.SCREEN_WIDTH *7.0/40), (int)(PixelMap.SCREEN_HEIGHT * .55), (int)(PixelMap.SCREEN_HEIGHT * (0.20)), (int)(PixelMap.SCREEN_HEIGHT * (0.10)));
@@ -31,15 +33,15 @@ public class WallSelectionView extends JPanel {
         orangeWall = ImageLoader.getImage("ORANGE_WALL");
         blueWall = ImageLoader.getImage("BLUE_WALL");
 
-        ArrayList<JButton> btns = new ArrayList<>();
+        btns = new ArrayList<>();
         ArrayList<String> strings = new ArrayList<>();
 
-        strings.add("NW");
         strings.add("N");
         strings.add("NE");
-        strings.add("SW");
-        strings.add("S");
         strings.add("SE");
+        strings.add("S");
+        strings.add("SW");
+        strings.add("NW");
 
         for (int i = 0; i < strings.size(); i++) {
             JButton button = new JButton( strings.get(i) );
@@ -54,6 +56,10 @@ public class WallSelectionView extends JPanel {
         }
 
         this.setBorder(BorderFactory.createLineBorder(new Color(0x11111111), 1));
+    }
+
+    public ArrayList<JButton> getButtons() {
+        return btns;
     }
 
     protected void paintComponent(Graphics g) {

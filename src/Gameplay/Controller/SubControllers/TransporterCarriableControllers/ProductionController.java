@@ -2,7 +2,9 @@ package Gameplay.Controller.SubControllers.TransporterCarriableControllers;
 
 import Gameplay.Controller.MainController;
 import Gameplay.Controller.MainViewController;
+import Gameplay.Model.Utility.GameModelFacade;
 import Gameplay.Views.MainView.MainView;
+import MapBuilder.Model.ModelFacade;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -13,6 +15,7 @@ import java.awt.event.MouseListener;
  */
 public class ProductionController implements KeyListener, MainViewController {
     UserRequestController userRequestController = new UserRequestController();
+    GameModelFacade gameModelFacade = GameModelFacade.getInstance();
 
     @Override
     public void keyTyped(KeyEvent e) {
@@ -21,8 +24,9 @@ public class ProductionController implements KeyListener, MainViewController {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_P){
-            System.out.println("produceeeeeeeeeeeeeeeeeee!!!!!!!!!1");
+        if (e.getKeyCode() == KeyEvent.VK_P && userRequestController.getRegion() != null){
+            gameModelFacade.produce(userRequestController.getRegion());
+            System.out.println("doo something");
         }
     }
 
@@ -39,10 +43,9 @@ public class ProductionController implements KeyListener, MainViewController {
     @Override
     public void activateController(MainView mainView) {
         userRequestController.activateController(mainView);
-
-        mainView.setFocusable(true);
-        mainView.requestFocus();
-        mainView.addKeyListener(this);
-
+        mainView.getInputSelectionView().setVisible(true);
+        mainView.getDisplay().setFocusable(true);
+        mainView.getDisplay().requestFocus();
+        mainView.getDisplay().addKeyListener(this);
     }
 }
