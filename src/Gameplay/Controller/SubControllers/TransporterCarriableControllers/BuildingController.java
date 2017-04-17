@@ -40,9 +40,9 @@ public class BuildingController implements KeyListener, MainViewController {
         }
         if (e.getKeyCode() == KeyEvent.VK_W && mainView != null) {
             isWSVOn = !isWSVOn;
-            mainView.getWallSelectionView().setVisible(isWSVOn);
             WallSelectionController wsc = new WallSelectionController(this);
             wsc.activateController(mainView);
+            mainView.getWallSelectionView().setVisible(isWSVOn);
         }
 
 

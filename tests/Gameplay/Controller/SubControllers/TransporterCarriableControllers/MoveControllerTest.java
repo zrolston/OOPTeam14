@@ -56,9 +56,9 @@ public class MoveControllerTest {
 
 
         //Creating and linking the Main Controller
-//        MainController mainController = new MainController(display.getMainView());
-//        PhaseManager phaseManager = new PhaseManager(mainController);
-//        modelFacade.setPhaseManager(phaseManager);
+        MainController mainController = new MainController(display.getMainView());
+        PhaseManager phaseManager = new PhaseManager(mainController);
+        modelFacade.setPhaseManager(phaseManager);
 
 //        Checking out user request
 //        UserRequestController userRequestController= new UserRequestController();
