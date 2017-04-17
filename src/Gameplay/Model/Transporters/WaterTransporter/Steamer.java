@@ -12,6 +12,12 @@ public class Steamer extends Transporter {
         super(permits);
         setMaxMovement(6);
     }
+
+    @Override
+    protected int getMaxCarriables() {
+        return 8;
+    }
+
     @Override
     public void accept(CarriableVisitor cv) {
         cv.visitSteamer(this);

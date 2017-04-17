@@ -13,6 +13,11 @@ public class Donkey extends Transporter {
     }
 
     @Override
+    protected int getMaxCarriables() {
+        return 2;
+    }
+
+    @Override
     public void accept(CarriableVisitor cv) {
         cv.visitDonkey(this);
     }

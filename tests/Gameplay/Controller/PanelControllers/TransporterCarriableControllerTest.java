@@ -18,7 +18,7 @@ public class TransporterCarriableControllerTest {
     public static void main(String[] args) {
 //        TransporterCarriableController tcc = new TransporterCarriableController();
         Display dp = new Display();
-//        tcc.activateController(dp.getMainView());
+//        tcc.activateState(dp.getMainView());
     }
 
 }

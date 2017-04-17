@@ -116,6 +116,15 @@ public class MapView extends JPanel {
             }
         }
 
+
+        updateRoadImages();
+        for (Line road : roads)
+            road.draw(g);
+
+        updateBridgeImages();
+        for (Line bridge : bridges)
+            bridge.draw(g);
+
         updateTransporterImages();
         for (ImageWithLocation image : transporterImages)
             image.draw(g);
@@ -127,14 +136,6 @@ public class MapView extends JPanel {
         updateProducerImages();
         for (ImageWithLocation image : producerImages)
             image.draw(g);
-
-        updateRoadImages();
-        for (Line road : roads)
-            road.draw(g);
-
-        updateBridgeImages();
-        for (Line bridge : bridges)
-            bridge.draw(g);
 
         updateWallImages();
         for (RotatedImageWithLocation image : wallImages)

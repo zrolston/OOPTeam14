@@ -12,8 +12,16 @@ import java.util.List;
  */
 public abstract class PhaseStateController  {
 
+    protected void clearPanels(MainView mainView){
+        mainView.hideAllPhaseSubViews();
+        mainView.dettachAllControllers();
+    }
 
+    public void activateController(MainView mainView){
+        clearPanels(mainView);
+        activateState(mainView);
+    }
 
-    public abstract void activateController(MainView mainView);
+    public abstract void activateState(MainView mainView);
 
 }

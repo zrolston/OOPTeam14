@@ -38,7 +38,7 @@ public class MoveControllerTest {
         GameModelFacade modelFacade =  GameModelFacade.getInstance();
 
 //        TradingController tradingController = new TradingController();
-//        tradingController.activateController(display.getMainView());
+//        tradingController.activateState(display.getMainView());
 
         //Creating and linking the Move Controller
         MoveController moveController = new MoveController();
@@ -50,9 +50,6 @@ public class MoveControllerTest {
         modelFacade.setPhaseManager(phaseManager);
 
         //Starts the Game and generates Transporters
-        modelFacade.startGame();
-        moveController.addTransporters(generateCarriableIter(modelFacade));
-
         modelFacade.startGame();
 //        moveController.addTransporters(generateCarriableIter(modelFacade));
     }

@@ -17,7 +17,7 @@ public class BuildPhaseStateController extends PhaseStateController {
     }
 
     @Override
-    public void activateController(MainView mainView) {
+    public void activateState(MainView mainView) {
 
     }
 }

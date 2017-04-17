@@ -36,7 +36,11 @@ public class GameModelFacade { //TODO make an abstract facade
     private SecondaryProducerHandler secondaryProducerHandler;
     private MovementManager movementManager;
     private WallHandler wallHandler;
+
     private PhaseManager phaseManager;
+
+    private UserRequestHandler userRequestHandler;
+
 
     private GameModelFacade(GameMap map) {
         this.gameMap = map;
@@ -84,6 +88,7 @@ public class GameModelFacade { //TODO make an abstract facade
         secondaryProducerHandler = new SecondaryProducerHandler();
         wallHandler = new WallHandler();
         movementManager = new MovementManager(transporterHandler, wallHandler, goodsHandler);
+        userRequestHandler = new UserRequestHandler();
 
         try {
             gameMap.getTiles()[10][10].getRegionMap().getRegionAt(HexaVertex.createVertex(4)).getRegionSet().addRoadRegion(
@@ -130,6 +135,9 @@ public class GameModelFacade { //TODO make an abstract facade
             goodsBag.addStone(new Stone());
             goodsHandler.place(goodsBag, r);
             transporterHandler.place(tr, r);
+            tr.pickUpGood(new Coins());
+            t.pickUpGood(new Board());
+            t.pickUpGood(new Stock());
             r.enterRegion(tr);
             r = gameMap.getTileAt(new HexLocation(10,10)).getRegionAtHexaVertex(HexaVertex.createVertex(8));
             transporterHandler.place(t, r);
@@ -150,9 +158,9 @@ public class GameModelFacade { //TODO make an abstract facade
                     r.accept(pcv);
                     if (pcv.getPlacable()) {
 //                        // TODO: DELETE THIS
-//                        GoodsBag gb = new GoodsBag();
+                        GoodsBag gb = new GoodsBag();
 //                        gb.addBoard(new Board());
-//                        goodsHandler.place(gb, r);
+                        goodsHandler.place(gb, r);
 //
 //                        // TODO: DELETE THIS
 //                        Transporter tt = t.create();
@@ -355,14 +363,25 @@ public class GameModelFacade { //TODO make an abstract facade
         return new CarriableIterator(myShit);
     }
 
+    public void addCarriableToUserRequest(Transporter t, Carriable c) {
+        userRequestHandler.addCarriable(t.getGoodsBag(), c);
+    }
 
-    public void generateRoad(Region start, Region end){
-        //Implementation goes Here
-        System.out.println("Create Road");
+    
+    public void addCarriableToUserRequest(Region r, Carriable c) {
+        userRequestHandler.addCarriable(goodsHandler.getGoodsBagAt(r), c);
+    }
+
+    public void resetUserRequest() {
+        userRequestHandler.reset();
     }
 
     public void generateBridge(Region start, Region end){
         //Implementation goes Here
         System.out.println("Create Bridge");
+    }
+    public void generateRoad(Region start, Region end) {
+        //Implementation goes Here
+        System.out.println("Create Road");
     }
 }

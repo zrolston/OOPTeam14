@@ -28,7 +28,7 @@ public class ScreenSelectButtons extends JPanel {
 
         this.add( mainScreenSelectButton );
         this.add(wonderScreenSelectButton);
-        this.add(transporterScreenSelectButton);
+//        this.add(transporterScreenSelectButton);
         this.add(researchScreenSelectButton) ;
 
         this.setForeground( new Color(0xAAffccf8) );
