@@ -115,4 +115,8 @@ abstract public class Transporter extends Owned implements Carriable{
     public void pickUpTransporter(Transporter transporter) {
         this.carriedTransporter = transporter;
     }
+
+    public Region getCurrentRegion() {
+        return cache[0];
+    }
 }
