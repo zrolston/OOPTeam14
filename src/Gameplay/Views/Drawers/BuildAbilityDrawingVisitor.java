@@ -63,6 +63,11 @@ public class BuildAbilityDrawingVisitor implements BuildAbilityVisitor {
     }
 
     @Override
+    public void visitBuildStoneFactory(BuildStoneFactory bsf) {
+        image = ImageLoader.getImage("STONE_FACTORY");
+    }
+
+    @Override
     public void visitBuildWagonFactory(BuildWagonFactory bwf) {
         image = ImageLoader.getImage("WAGON_FACTORY");
     }
