@@ -4,6 +4,7 @@ import Gameplay.Controller.MainController;
 import Gameplay.Model.Iterators.TransporterIterator;
 import Gameplay.Model.Map.GameMap;
 import Gameplay.Model.Phases.PhaseManager;
+import Gameplay.Model.Producer.UserRequest;
 import Gameplay.Model.Region.Region;
 import Gameplay.Model.Tile.GameTile;
 import Gameplay.Model.Tile.RegionMap;
@@ -19,6 +20,8 @@ import Gameplay.Views.Utility.CursorState;
 import MapBuilder.Model.Utility.HexLocation;
 import MapBuilder.Model.Utility.MapParsers.BuildMapDaveBuilder;
 import MapBuilder.Model.Utility.MapParsers.DaveBuilder;
+
+import javax.jws.soap.SOAPBinding;
 
 import static org.junit.Assert.*;
 
@@ -41,13 +44,23 @@ public class MoveControllerTest {
 //        tradingController.activateState(display.getMainView());
 
         //Creating and linking the Move Controller
-        MoveController moveController = new MoveController();
-        moveController.activateController(display.getMainView());
+//        MoveController moveController = new MoveController();
+//        moveController.activateController(display.getMainView());
+
 
         //Creating and linking the Main Controller
-        MainController mainController = new MainController(display.getMainView());
-        PhaseManager phaseManager = new PhaseManager(mainController);
-        modelFacade.setPhaseManager(phaseManager);
+//        MainController mainController = new MainController(display.getMainView());
+//        PhaseManager phaseManager = new PhaseManager(mainController);
+//        modelFacade.setPhaseManager(phaseManager);
+
+//        Checking out user request
+//        UserRequestController userRequestController= new UserRequestController();
+//        userRequestController.activateController(display.getMainView());
+
+//        Checking out production controller
+        ProductionController productionController = new ProductionController();
+        productionController.activateController(display.getMainView());
+
 
         //Starts the Game and generates Transporters
         modelFacade.startGame();
