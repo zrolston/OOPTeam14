@@ -88,11 +88,13 @@ public class GameModelFacade { //TODO make an abstract facade
         } catch(Exception e) {}
 
         GameTile tile1 = gameMap.getTiles()[10][10];
-        GameTile tile2 = gameMap.getTiles()[11][10];
+        GameTile tile2 = gameMap.getTiles()[9][10];
 
         try {
-            wallHandler.addWall(tile1.getRegionAtHexaVertex(HexaVertex.createVertex(4)), tile2.getRegionAtHexaVertex(HexaVertex.createVertex(6)), new Wall());
-            Wall wall = wallHandler.getWallAt(tile1.getRegionAtHexaVertex(HexaVertex.createVertex(1)), tile2.getRegionAtHexaVertex(HexaVertex.createVertex(1)));
+            Wall wall = new Wall();
+            wall.strengthen();
+            wall.setPlayerID(PlayerID.getNewPlayerID());
+            wallHandler.addWall(tile1.getRegionAtHexaVertex(HexaVertex.createVertex(4)), tile2.getRegionAtHexaVertex(HexaVertex.createVertex(6)), wall);
         } catch(Exception e) {
             System.out.println(e.getStackTrace());
         }

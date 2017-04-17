@@ -4,7 +4,15 @@ import Gameplay.Model.Map.GameMap;
 import Gameplay.Model.Map.Wall;
 import Gameplay.Model.Tile.GameTile;
 import Gameplay.Model.Utility.GameModelFacade;
+import Gameplay.Model.Utility.HexaVertex;
+import Gameplay.Views.Utility.PixelMap;
+import MapBuilder.Model.Utility.HexLocation;
+import MapBuilder.Model.Utility.HexaIndex;
+import MapBuilder.Views.Utility.ImageLoader;
+import MapBuilder.Views.Utility.PixelPoint;
 
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -22,13 +30,94 @@ public class WallDrawer {
         for (GameTile tile1 : wallMap.keySet()) {
             for (GameTile tile2 : wallMap.get(tile1).keySet()) {
                 Wall wall = wallMap.get(tile1).get(tile2);
+                walls.add(getWallImage(tile1, tile2, wall));
             }
         }
         return walls;
     }
 
-    private RotatedImageWithLocation getWallImage() {
-        return null;
+    private RotatedImageWithLocation getWallImage(GameTile tile1, GameTile tile2, Wall wall) {
+        int rotation = getRotation(tile1, tile2);
+        BufferedImage image = getImage(wall);
+        PixelPoint origin = getOrigin(tile1, tile2, image.getWidth(), image.getHeight());
+        return new RotatedImageWithLocation(image, origin, rotation);
+    }
+
+    private BufferedImage getImage(Wall wall) {
+        BufferedImage wallImage = null;
+        switch (wall.getPlayerID().getID()) {
+            case -1:
+                wallImage = ImageLoader.getImage("NEUTRAL_WALL");
+                break;
+            case 0:
+                wallImage = ImageLoader.getImage("BLUE_WALL");
+                break;
+            case 1:
+                wallImage = ImageLoader.getImage("ORANGE_WALL");
+                break;
+        }
+        BufferedImage allWalls = new BufferedImage(wallImage.getWidth(), wallImage.getHeight() * wall.getStrength(), wallImage.getType());
+        for (int i = 0; i < wall.getStrength(); i++) {
+            Graphics g = allWalls.getGraphics();
+            g.drawImage(wallImage, 0, i*wallImage.getHeight(), null);
+        }
+        return allWalls;
+    }
+
+    private int getRotation(GameTile tile1, GameTile tile2) {
+        HexLocation location1 = GameModelFacade.getInstance().debugGetMap().getHexLocationOf(tile1);
+        HexLocation location2 = GameModelFacade.getInstance().debugGetMap().getHexLocationOf(tile2);
+
+        switch (location1.getIndexOfLocation(location2).getValue()) {
+            case 1:
+            case 4:
+                return 0;
+            case 2:
+            case 5:
+                return 60;
+            case 3:
+            case 6:
+                return -60;
+        }
+
+        return 0;
+    }
+
+    private PixelPoint getOrigin(GameTile tile1, GameTile tile2, int width, int height) {
+        HexLocation location1 = GameModelFacade.getInstance().debugGetMap().getHexLocationOf(tile1);
+        HexLocation location2 = GameModelFacade.getInstance().debugGetMap().getHexLocationOf(tile2);
+        PixelPoint tileOrigin = PixelMap.getMapTileOrigin(GameModelFacade.getInstance().debugGetMap().getHexLocationOf(tile1));
+
+        int changeX = -width/2;
+        int changeY = -height/2;
+        switch (location1.getIndexOfLocation(location2).getValue()) {
+            case 1:
+                changeX += PixelMap.TILE_FULL_WIDTH/2;
+                changeY += 3;
+                break;
+            case 2:
+                changeX += PixelMap.TILE_FULL_WIDTH*7/8;
+                changeY += PixelMap.TILE_HEIGHT/4 + 4;
+                break;
+            case 3:
+                changeX += PixelMap.TILE_FULL_WIDTH*7/8;
+                changeY += PixelMap.TILE_HEIGHT*3/4 + 1;
+                break;
+            case 4:
+                changeX += PixelMap.TILE_FULL_WIDTH/2;
+                changeY += PixelMap.TILE_HEIGHT - 2;
+                break;
+            case 5:
+                changeX += PixelMap.TILE_FULL_WIDTH/8;
+                changeY += PixelMap.TILE_HEIGHT/4 + 1;
+                break;
+            case 6:
+                changeX += PixelMap.TILE_FULL_WIDTH/8;
+                changeY += PixelMap.TILE_HEIGHT*3/4 + 4;
+                break;
+        }
+
+        return new PixelPoint(tileOrigin.getX() + (int) (changeX * 1.0225), tileOrigin.getY() + (int) (changeY * 1.0225));
     }
 
 }

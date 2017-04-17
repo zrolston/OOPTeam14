@@ -9,8 +9,8 @@ import java.awt.image.BufferedImage;
  * Created by Willie on 4/16/2017.
  */
 public class ImageWithLocation {
-    BufferedImage image;
-    PixelPoint location;
+    protected BufferedImage image;
+    protected PixelPoint location;
 
     public ImageWithLocation(BufferedImage image, PixelPoint location) {
         this.image = image;
