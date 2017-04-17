@@ -23,6 +23,7 @@ public class MapView extends JPanel {
     private List<ImageWithLocation> goodsImages;
     private List<Line> roads;
     private List<Line> bridges;
+    private List<RotatedImageWithLocation> wallImages;
     private CursorState cursorState = CursorState.getInstance();
 
     public void updateTileImages(IViewMap map) {
@@ -54,6 +55,11 @@ public class MapView extends JPanel {
     public void updateBridgeImages() {
         BridgeDrawer bd = new BridgeDrawer();
         bridges = bd.getAllBridges();
+    }
+
+    public void updateWallImages() {
+        WallDrawer wd = new WallDrawer();
+        wallImages = wd.getAllWalls();
     }
 
     public MapView(){
@@ -115,6 +121,10 @@ public class MapView extends JPanel {
         updateBridgeImages();
         for (Line bridge : bridges)
             bridge.draw(g);
+
+        updateWallImages();
+        for (RotatedImageWithLocation image : wallImages)
+            image.draw(g);
     }
 
     public void startRendering(int frameRate){

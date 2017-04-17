@@ -54,7 +54,7 @@ public class ImageLoader {
             cachedImages.put("GAME_BACKGROUND", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/gameBackground.png")));
             cachedImages.put("WONDER", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/wonder.png")));  
             cachedImages.put("WONDER_BACKGROUND", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/wonderBackground.png"))); 
-            cachedImages.put("NEUTRAL_BRICK", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/neutralBrick.png"))); 
+            cachedImages.put("WHITE_BRICK", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/neutralBrick.png")));
             cachedImages.put("ORANGE_BRICK", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/orangeBrick.png"))); 
             cachedImages.put("BLUE_BRICK", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/blueBrick.png")));
             cachedImages.put("RESEARCH_TABLE", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/researchTable.png")));
@@ -65,6 +65,7 @@ public class ImageLoader {
             cachedImages.put("ORANGE_MARKER", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/orangeMarker.png")));
             cachedImages.put("RESEARCH_MARKER", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/researchMarker.png")));
             cachedImages.put("BLANK_HEX", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/testhexatile.png")));
+            cachedImages.put("WHITE_WALL", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/neutralWall.png")));
             cachedImages.put("ORANGE_WALL", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/orangeWall.png")));
             cachedImages.put("BLUE_WALL", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/blueWall.png")));
             cachedImages.put("BLUE_DONKEY", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Transporters/donkeyBlue.png")));

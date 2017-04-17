@@ -81,7 +81,7 @@ public class WallHandler {
             List<Wall> walls1 = regionWalls.get(region1);
             for (Wall wall1 : walls1) {
                 for (Region region2 : regionWalls.keySet()) {
-                    if (region1 != region2) {
+                    if (region1.getParentTile() != region2.getParentTile()) {
                         List<Wall> walls2 = regionWalls.get(region2);
                         for (Wall wall2 : walls2) {
                             if (wall1 == wall2) {
