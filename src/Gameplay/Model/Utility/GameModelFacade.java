@@ -338,4 +338,8 @@ public class GameModelFacade { //TODO make an abstract facade
         userRequestHandler.reset();
     }
 
+    public List<Carriable> getUserRequestCarriables() {
+        return userRequestHandler.getCarriables();
+    }
+
 }

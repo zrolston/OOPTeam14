@@ -2,9 +2,11 @@ package Gameplay.Views.MainView;
 
 import Gameplay.Model.Goods.Board;
 import Gameplay.Model.Goods.Goose;
+import Gameplay.Model.Utility.GameModelFacade;
 import Gameplay.Model.Visitors.Carriable;
 import Gameplay.Views.Drawers.CarriableDrawingVisitor;
 import Gameplay.Views.Utility.PolygonUtility;
+import MapBuilder.Model.ModelFacade;
 import MapBuilder.Views.Utility.ImageLoader;
 import MapBuilder.Views.Utility.PixelMap;
 import MapBuilder.Views.Utility.PixelPoint;
@@ -15,13 +17,12 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.util.*;
+import java.util.List;
 
 public class InputSelectionView extends JPanel {
 
     private ArrayList<Polygon> columns;
     private java.util.List<Rectangle> buttons;
-    private java.util.List<Carriable> leftCarriables;
-    private java.util.List<Carriable> rightCarriables;
 
     private int horizontalOffset, verticalOffset, buttonSide;
     private BufferedImage background;
@@ -97,14 +98,11 @@ public class InputSelectionView extends JPanel {
         });
     }
 
-    //Set the different Carriables Dynamically
-    public void setLeftCarriables(java.util.List<Carriable> leftCarriables) { this.leftCarriables = leftCarriables; }
-    public void setRightCarriables(java.util.List<Carriable> rightCarriables) { this.rightCarriables = rightCarriables; }
-
     protected void paintComponent(Graphics g) {
     	((Graphics2D)(g)).setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
         g.drawImage(background, 0, 0, (int)(getWidth() * 1.145), (int)(getHeight()), null);
         super.paintComponent(g);
+        updateGoodsImages();
         drawButtons(g);
     }
 
@@ -116,10 +114,11 @@ public class InputSelectionView extends JPanel {
     }
 
     private void drawButtons(Graphics g){
-        for(Rectangle r: buttons) {
+        for(int i = 0; i < goodsImages.size(); i++) {
+            Rectangle r = buttons.get(i);
             g.drawRoundRect((int) r.getX(), (int) r.getY(), (int) r.getWidth(), (int) r.getHeight(), 5, 5);
            // draw goods
-            g.drawImage(goodsImages.get(0), (int)r.getX(), (int)r.getY(), (int)r.getWidth(), (int)r.getHeight(), null);
+            g.drawImage(goodsImages.get(i), (int)r.getX(), (int)r.getY(), (int)r.getWidth(), (int)r.getHeight(), null);
         }
 
     }
@@ -133,6 +132,17 @@ public class InputSelectionView extends JPanel {
             index++;
         }
         return -1;
+    }
+
+    public void updateGoodsImages() {
+        List<Carriable> carriables = GameModelFacade.getInstance().getUserRequestCarriables();
+        ArrayList<BufferedImage> temp = new ArrayList<BufferedImage>();
+        CarriableDrawingVisitor cdv = new CarriableDrawingVisitor();
+        for (Carriable carriable : carriables) {
+            carriable.accept(cdv);
+            temp.add(cdv.getImage());
+        }
+        goodsImages = temp;
     }
 
 }
