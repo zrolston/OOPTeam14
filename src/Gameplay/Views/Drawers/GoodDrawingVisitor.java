@@ -13,10 +13,10 @@ import java.awt.image.BufferedImage;
 public class GoodDrawingVisitor implements GoodsVisitor {
 
     private BufferedImage image;
-    private PixelPoint origin;
+    private PixelPoint center;
 
-    public void setOrigin(PixelPoint origin) {
-        this.origin = origin;
+    public void setCenter(PixelPoint center) {
+        this.center = center;
     }
 
     @Override
@@ -79,6 +79,7 @@ public class GoodDrawingVisitor implements GoodsVisitor {
     }
 
     public ImageWithLocation getImageWithLocation() {
+        PixelPoint origin = new PixelPoint(center.getX() - image.getWidth()/2, center.getY() - image.getHeight()/2);
         return new ImageWithLocation(image, origin);
     }
 

@@ -1,12 +1,15 @@
 package Gameplay.Model.Tile;
 
 import Gameplay.Model.Region.Region;
+import Gameplay.Model.Utility.HexaVertex;
 import Gameplay.Model.Visitors.GameTileVisitor;
 import MapBuilder.Model.Terrain.Terrain;
 import MapBuilder.Model.Tile.Tile;
+import MapBuilder.Model.Utility.HexaIndex;
 import MapBuilder.Model.Visitor.TileVisitor;
 
 import java.util.Iterator;
+import java.util.List;
 
 public class GameTile extends Tile {
     private RegionMap regionMap;
@@ -25,6 +28,10 @@ public class GameTile extends Tile {
 
     public Iterator<Region> getMyRegions(){
         return regionMap.getMyRegions();
+    }
+
+    public List<HexaVertex> getListHexaIndexRegion(Region r) {
+        return regionMap.getVertices(r);
     }
 
     @Override
