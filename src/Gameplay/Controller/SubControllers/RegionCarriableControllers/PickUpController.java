@@ -58,6 +58,15 @@ public class PickUpController extends RegionCarriableController {
 
     public void receiveRegion(Region region) {
         this.currentRegion = region;
+        displayPanel();
+    }
+
+    private void displayPanel(){
+        //TODO: delete this
+        getView().setVisible(true);
+        if (getCarriableIterator()!= null && getCarriableIterator().size() >0) {
+            getView().setVisible(true);
+        }
     }
 
 }

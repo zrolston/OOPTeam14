@@ -154,7 +154,7 @@ public abstract class TransporterCarriableController implements MainViewControll
      */
     private void addToPanelLeftColumn(TransporterIterator transporters) {
         if (transporters != null) {
-            System.out.println("size = " + transporters.size());
+
             view.setTranIter(transporters);
         }
         else

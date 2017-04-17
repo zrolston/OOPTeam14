@@ -3,6 +3,7 @@ package Gameplay.Controller.PanelControllers;
 import Gameplay.Controller.MainViewController;
 import Gameplay.Model.Iterators.CarriableIterator;
 import Gameplay.Model.Region.Region;
+import Gameplay.Model.Utility.GameModelFacade;
 import Gameplay.Model.Visitors.Carriable;
 import Gameplay.Views.MainView.MainView;
 import Gameplay.Views.MainView.RegionCarriableView;
@@ -153,4 +154,13 @@ public abstract class RegionCarriableController implements MainViewController, M
         carrIt.deleteAt(index);
     }
 
+    protected CarriableIterator getCarriableIterator(){
+        return carrIt;
+    }
+
+    protected void addCarriables(Region region){
+        GameModelFacade gm = GameModelFacade.getInstance();
+        CarriableIterator iterator = gm.getRegionCarriable(region);
+        //TODO: add to view the iterator
+    }
 }

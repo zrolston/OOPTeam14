@@ -44,6 +44,7 @@ public class MoveRegionController extends RegionSelectionController {
     @Override
     protected void leftClick() {
         addTransporters(getCurrentRegion());
+        moveController.setRegion(getCurrentRegion());
         //TODO: UNCOMENT THIISSSSSSS!!!!!!!!!!!!!!!!!!!!!!
 //        moveController.checkForDisplay();
     }
