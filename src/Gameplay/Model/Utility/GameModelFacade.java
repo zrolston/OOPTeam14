@@ -163,7 +163,7 @@ public class GameModelFacade { //TODO make an abstract facade
     }
 
     public void move(Region region, Transporter transporter){
-
+        System.out.println("MOOOOOOOOOOOOOOOOOVVVVVVVVVVVVVVVVVVEEEEEEEEEEEEEEEEEEEEEEEEEEE");
     }
 
 

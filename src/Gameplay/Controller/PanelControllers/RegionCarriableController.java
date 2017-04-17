@@ -161,6 +161,6 @@ public abstract class RegionCarriableController implements MainViewController, M
     protected void addCarriables(Region region){
         GameModelFacade gm = GameModelFacade.getInstance();
         CarriableIterator iterator = gm.getRegionCarriable(region);
-        //TODO: add to view the iterator
+
     }
 }
