@@ -6,6 +6,7 @@ import Gameplay.Model.Iterators.TransporterIterator;
 import Gameplay.Model.Region.Region;
 import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Model.Utility.GameModelFacade;
+import Gameplay.Views.Utility.CursorState;
 
 /**
  * Created by jordi on 4/16/2017.
@@ -30,7 +31,7 @@ public class MoveRegionController extends RegionSelectionController {
         if (movement) {
 
             if (currentTransporter != null) {
-                gameModelFacade.move(currentTransporter.getCurrentRegion(), currentTransporter);
+                gameModelFacade.move(CursorState.getInstance().getActiveRegion(), currentTransporter);
 
             }
             disallowMovement();
@@ -84,5 +85,9 @@ public class MoveRegionController extends RegionSelectionController {
     }
     private TransporterIterator getTransporters(Region region){
         return gameModelFacade.getTransporters(region);
+    }
+
+    public void stop(){
+        suspend();
     }
 }

@@ -13,6 +13,11 @@ public class Wagon extends Transporter {
     }
 
     @Override
+    protected int getMaxCarriables() {
+        return 3;
+    }
+
+    @Override
     public void accept(CarriableVisitor cv) {
         cv.visitWagon(this);
     }

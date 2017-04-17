@@ -75,7 +75,7 @@ public abstract class RegionCarriableController implements MainViewController, M
     @Override
     public void mousePressed(MouseEvent e) {
         setIndex( getCarriableIndex(e));
-        //TODO: match index with the right currentCarriable
+        currentCarriable = carrIt.getCarriableAt(getCurrentIndex());
         carriableClick();
     }
 
@@ -132,13 +132,14 @@ public abstract class RegionCarriableController implements MainViewController, M
 
     protected void displayCarriables() {
         if (carrIt != null) {
-            //TODO: function to add carriables to  view
+            view.setTranIter(carrIt);
         }
         showPanel();
+
     }
 
     protected void showPanel() {
-//        view.setVisible(true);
+        view.setVisible(true);
     }
 
     protected void hidePanel() {
@@ -160,7 +161,6 @@ public abstract class RegionCarriableController implements MainViewController, M
 
     protected void addCarriables(Region region){
         GameModelFacade gm = GameModelFacade.getInstance();
-        CarriableIterator iterator = gm.getRegionCarriable(region);
-        //TODO: add to view the iterator
+        assignCarriables(gm.getRegionCarriable(region));
     }
 }

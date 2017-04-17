@@ -15,6 +15,7 @@ import MapBuilder.Views.Utility.PixelPoint;
 import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 /**
  * Created by jordi on 4/15/2017.
@@ -134,6 +135,8 @@ public abstract class TransporterCarriableController implements MainViewControll
     public void addTransporters(TransporterIterator transporters) {
         addToPanelLeftColumn(transporters);
         setTransIt(transporters);
+        setCarrIt(null);
+        addToPanelRightColumn(new CarriableIterator(new ArrayList<>()));
         view.setVisible(true);
     }
 
@@ -170,6 +173,7 @@ public abstract class TransporterCarriableController implements MainViewControll
     protected void leftColumnClick() {
         setCarrItFromFacade();
         addToPanelRightColumn(carrIt);
+        setCurrentTransporter(index);
         transporterClick();
     }
 

@@ -9,7 +9,12 @@ public class Donkey extends Transporter {
 
     public Donkey(Permit...permits){
         super(permits);
-        setMaxMovement(2);
+        setMaxMovement(8);  //TODO needs to be 2
+    }
+
+    @Override
+    protected int getMaxCarriables() {
+        return 2;
     }
 
     @Override

@@ -1,10 +1,13 @@
+
+
 package Gameplay.Views.MainView;
 
-import Gameplay.Model.Goods.Board;
-import Gameplay.Model.Goods.Goose;
+
+import Gameplay.Model.Iterators.CarriableIterator;
 import Gameplay.Model.Utility.GameModelFacade;
 import Gameplay.Model.Visitors.Carriable;
 import Gameplay.Views.Drawers.CarriableDrawingVisitor;
+import Gameplay.Views.Drawers.ProducerDrawingVisitor;
 import Gameplay.Views.Utility.PolygonUtility;
 import MapBuilder.Model.ModelFacade;
 import MapBuilder.Views.Utility.ImageLoader;
@@ -19,63 +22,31 @@ import java.awt.image.BufferedImage;
 import java.util.*;
 import java.util.List;
 
+
+
 public class InputSelectionView extends JPanel {
 
     private ArrayList<Polygon> columns;
     private java.util.List<Rectangle> buttons;
 
+    private CarriableIterator carrIter;
+    int numCols = 8;
+
+
     private int horizontalOffset, verticalOffset, buttonSide;
     private BufferedImage background;
 
-    private ArrayList<BufferedImage> goodsImages;
+    ArrayList<BufferedImage> images;
 
     public InputSelectionView() {
 
-        goodsImages = new ArrayList<>();
-
-        // GET BELOW IMAGES FROM CONTROLLER OR ITERATOR
-        Board b = new Board();
-        CarriableDrawingVisitor gv = new CarriableDrawingVisitor();
-        b.accept(gv);
-        goodsImages.add( gv.getImage() );
-        /////////////////////////////////////////////////////
+        images = new ArrayList<>();
 
         setLayout(new BorderLayout());
         setBounds((int)(PixelMap.SCREEN_WIDTH *.225), (int)(PixelMap.SCREEN_HEIGHT * 17/20), (int)(PixelMap.SCREEN_WIDTH * .55), (int)(PixelMap.SCREEN_HEIGHT * .08));
         setOpaque(false);
         setVisible( true );
         background = ImageLoader.getImage("RESEARCH_BACKGROUND");
-        this.setBorder(BorderFactory.createLineBorder(new Color(0x11111111), 1));
-
-        int numElements = 5;
-        int numCols = 8;
-
-        columns = new ArrayList<>();
-        int widthOffset = getWidth() / numCols;
-        for (int i = 0; i < numCols; i++) {
-            Polygon col = PolygonUtility.rectangleToPolygon(new Rectangle(i*widthOffset, 0, widthOffset, getHeight()));
-            columns.add( col );
-        }
-
-        //Calculate the offsets
-        horizontalOffset = (int)(0.15*(getWidth()/numCols)) + 5;
-        buttonSide = (int)(0.75*(getWidth()/numCols)) - 10;
-//        verticalOffset = ((getHeight()-horizontalOffset-5-numRows*buttonSide)/numRows);
-        verticalOffset = 5 ;
-
-
-        //Initialize the left and right buttons
-        buttons = new ArrayList<>();
-        for(int i = 0; i <  numElements / numCols + 1; i++) {
-
-            for (int j = 0; j < numCols; j++) {
-                if( ( i * numCols + j)  >= numElements)
-                    break;
-                PixelPoint origin = new PixelPoint(horizontalOffset+getWidth()/numCols * j , verticalOffset);
-                buttons.add(PolygonUtility.generateSquare(origin, buttonSide));
-            }
-
-        }
 
 
         //Test Action Listener
@@ -96,32 +67,88 @@ public class InputSelectionView extends JPanel {
             @Override
             public void mouseExited(MouseEvent e) {}
         });
+
+        this.setBorder(BorderFactory.createLineBorder(new Color(0x11111111), 1));
+    }
+
+    public void generateButtons() {
+
+
+        int numElements = 0;
+        if(carrIter == null)
+            return;
+
+        numElements = carrIter.size();
+
+        int widthOffset = getWidth() / numCols;
+
+        //Calculate the offsets
+        horizontalOffset = (int)(0.15*(getWidth()/numCols));
+        buttonSide = (int)(0.75*(getWidth()/numCols));
+        verticalOffset = 0;
+
+        //Initialize the left and right buttons
+        buttons = new ArrayList<>();
+        for(int i = 0; i <  numElements / numCols + 1; i++) {
+
+            for (int j = 0; j < numCols; j++) {
+                if( ( i * numCols + j)  >= numElements)
+                    break;
+                PixelPoint origin = new PixelPoint(horizontalOffset+getWidth()/numCols * j, verticalOffset);
+                buttons.add(PolygonUtility.generateSquare(origin, buttonSide));
+            }
+
+        }
+
+    }
+
+    public void setTranIter(CarriableIterator iter){
+        this.carrIter = iter;
+        generateButtons();
+        repaint();
     }
 
     protected void paintComponent(Graphics g) {
-    	((Graphics2D)(g)).setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+        ((Graphics2D)(g)).setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
         g.drawImage(background, 0, 0, (int)(getWidth() * 1.145), (int)(getHeight()), null);
         super.paintComponent(g);
         updateGoodsImages();
         drawButtons(g);
     }
 
-    private void drawColumns(Graphics g){
-        for (Polygon p :
-                columns) {
-            g.drawPolygon( p );
-        }
+//    private void drawColumns(Graphics g){
+//        for (Polygon p :
+//                columns) {
+//            g.drawPolygon( p );
+//        }
+//    }
+
+    private void drawButtons(Graphics g) {
+
+//        if (carrIter == null) {
+//            return;
+//            for (int i = 0; i < goodsImages.size(); i++) {
+//                Rectangle r = buttons.get(i);
+//                g.drawRoundRect((int) r.getX(), (int) r.getY(), (int) r.getWidth(), (int) r.getHeight(), 5, 5);
+//                // draw goods
+//                g.drawImage(goodsImages.get(i), (int) r.getX(), (int) r.getY(), (int) r.getWidth(), (int) r.getHeight(), null);
+//            }
+//
+//            carrIter.first();
+//            int i = 0;
+//            while (i < carrIter.size()) {
+//
+//                Rectangle r = buttons.get(i);
+////            g.drawRoundRect((int) r.getX(), (int) r.getY(), (int) r.getWidth(), (int) r.getHeight(), 5, 5);
+//
+//                g.drawImage(carrIter.getImage(), (int) r.getX(), (int) r.getY(), (int) r.getWidth(), (int) r.getHeight(), null);
+//
+//                carrIter.next();
+//                i++;
+//            }
+//        }
     }
 
-    private void drawButtons(Graphics g){
-        for(int i = 0; i < goodsImages.size(); i++) {
-            Rectangle r = buttons.get(i);
-            g.drawRoundRect((int) r.getX(), (int) r.getY(), (int) r.getWidth(), (int) r.getHeight(), 5, 5);
-           // draw goods
-            g.drawImage(goodsImages.get(i), (int)r.getX(), (int)r.getY(), (int)r.getWidth(), (int)r.getHeight(), null);
-        }
-
-    }
 
     public Integer getCarriableIndex(PixelPoint point){
         int index = 0;
@@ -134,15 +161,17 @@ public class InputSelectionView extends JPanel {
         return -1;
     }
 
+
     public void updateGoodsImages() {
-        List<Carriable> carriables = GameModelFacade.getInstance().getUserRequestCarriables();
-        ArrayList<BufferedImage> temp = new ArrayList<BufferedImage>();
-        CarriableDrawingVisitor cdv = new CarriableDrawingVisitor();
-        for (Carriable carriable : carriables) {
-            carriable.accept(cdv);
-            temp.add(cdv.getImage());
-        }
-        goodsImages = temp;
+//        List<Carriable> carriables = GameModelFacade.getInstance().getUserRequestCarriables();
+//        ArrayList<BufferedImage> temp = new ArrayList<BufferedImage>();
+//        CarriableDrawingVisitor cdv = new CarriableDrawingVisitor();
+//        for (Carriable carriable : carriables) {
+//            carriable.accept(cdv);
+//            temp.add(cdv.getImage());
+//        }
+//        goodsImages = temp;
     }
 
 }
+

@@ -1,6 +1,7 @@
 package Gameplay.Views.MainView;
 
 import Gameplay.Controller.CameraController;
+import Gameplay.Controller.CameraKeysController;
 import Gameplay.Model.Visitors.GameMapDrawingVisitor;
 import Gameplay.Views.Drawers.*;
 import Gameplay.Views.Utility.*;
@@ -98,9 +99,22 @@ public class MapView extends JPanel {
 //        GridDrawer.drawActiveTile(g, CursorState.getInstance().getActiveTile());
 
         //Region Marker Test
-        Polygon region = cursorState.getRegionArea();
-        if(region != null && cursorState.isMarkerActive())
-            GridDrawer.drawActiveRegion(g, region);
+        if(!cursorState.isDrawingRoad()) {
+            Polygon region = cursorState.getRegionArea();
+            if (region != null && cursorState.isMarkerActive())
+                GridDrawer.drawActiveRegion(g, region);
+        }
+        else{
+            if(!cursorState.isIsBridge()) {
+                Color color = new Color(198, 82, 45);
+                paintRoadMarker(g, color, 5);
+                GridDrawer.drawActiveDestination(g, cursorState.getRegionArea(), color, 3);
+            }else{
+                Color color = new Color(31, 44, 198);
+                paintRoadMarker(g, color, 10);
+                GridDrawer.drawActiveDestination(g, cursorState.getRegionArea(), color, 6);
+            }
+        }
 
 
         updateRoadImages();
@@ -131,6 +145,16 @@ public class MapView extends JPanel {
     public void startRendering(int frameRate){
         renderingThread.setFrameRate(frameRate);
         renderingThread.start();
+    }
+
+    public void paintRoadMarker(Graphics g, Color color, int stroke){
+        Graphics2D g2 = (Graphics2D) g;
+        g2.setStroke(new BasicStroke(stroke));
+        g2.setColor(color);
+        PixelPoint[] points = cursorState.getDrawingPoints();
+        if(points.length > 0){
+            g.drawLine(points[0].getX(), points[0].getY(), points[1].getX(), points[1].getY());
+        }
     }
 
     public void stopRendering(){

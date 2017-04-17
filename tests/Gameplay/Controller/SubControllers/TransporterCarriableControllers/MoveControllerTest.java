@@ -1,10 +1,16 @@
 package Gameplay.Controller.SubControllers.TransporterCarriableControllers;
 
+import Gameplay.Controller.MainController;
 import Gameplay.Model.Iterators.TransporterIterator;
 import Gameplay.Model.Map.GameMap;
+import Gameplay.Model.Phases.PhaseManager;
 import Gameplay.Model.Region.Region;
 import Gameplay.Model.Tile.GameTile;
 import Gameplay.Model.Tile.RegionMap;
+import Gameplay.Model.TransporterFactory.DonkeyFactory;
+import Gameplay.Model.TransporterFactory.SteamerFactory;
+import Gameplay.Model.TransporterFactory.TransporterFactory;
+import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Model.Utility.GameMapDaveBuilder;
 import Gameplay.Model.Utility.GameModelFacade;
 import Gameplay.Model.Utility.HexaVertex;
@@ -30,12 +36,22 @@ public class MoveControllerTest {
         DaveBuilder builder = new GameMapDaveBuilder();
         builder.buildMap(mapsDir);
         GameModelFacade modelFacade =  GameModelFacade.getInstance();
+
+//        TradingController tradingController = new TradingController();
+//        tradingController.activateState(display.getMainView());
+
+        //Creating and linking the Move Controller
         MoveController moveController = new MoveController();
         moveController.activateController(display.getMainView());
 
-        modelFacade.startGame();
-        moveController.addTransporters(generateCarriableIter(modelFacade));
+        //Creating and linking the Main Controller
+        MainController mainController = new MainController(display.getMainView());
+        PhaseManager phaseManager = new PhaseManager(mainController);
+        modelFacade.setPhaseManager(phaseManager);
 
+        //Starts the Game and generates Transporters
+        modelFacade.startGame();
+//        moveController.addTransporters(generateCarriableIter(modelFacade));
     }
 
 
