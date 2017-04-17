@@ -72,8 +72,8 @@ public class GameModelFacade { //TODO make an abstract facade
         primaryProducerHandler = new PrimaryProducerHandler();
         secondaryProducerHandler = new SecondaryProducerHandler();
         try {
-            gameMap.getTiles()[0][0].getRegionMap().getRegionAt(HexaVertex.createVertex(1)).getRegionSet().addRoadRegion(
-                    gameMap.getTiles()[0][1].getRegionMap().getRegionAt(HexaVertex.createVertex(5))
+            gameMap.getTiles()[10][10].getRegionMap().getRegionAt(HexaVertex.createVertex(4)).getRegionSet().addRoadRegion(
+                    gameMap.getTiles()[10][11].getRegionMap().getRegionAt(HexaVertex.createVertex(5))
             );
         } catch(Exception e) {}
     }

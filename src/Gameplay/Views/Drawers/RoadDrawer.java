@@ -14,6 +14,7 @@ import MapBuilder.Views.Utility.PixelPoint;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Willie on 4/16/2017.
@@ -23,36 +24,24 @@ public class RoadDrawer {
     public List<Line> getAllRoads() {
         List<Line> roads = new ArrayList<Line>();
         GameModelFacade gmf = GameModelFacade.getInstance();
-        GameMap gm = gmf.debugGetMap();
-//        GameTile[][] tiles = gm.getTiles();
-//        GoodDrawingVisitor gdv = new GoodDrawingVisitor();
-//        for (int i = 0; i < tiles.length; i++) {
-//            for (int j = 0; j < tiles[0].length; j++) {
-//                if (tiles[i][j] == null)
-//                    continue;
-//                RegionMap regionMap = tiles[i][j].getRegionMap();
-//                Iterator<Region> regionIterator = regionMap.getMyRegions();
-//                while (regionIterator.hasNext()) {
-//                    Region r = regionIterator.next();
-//                    List<Region> connectedRegions = r.getRegionSet().getRoadRegions();
-//                    for (Region roadEnd : connectedRegions) {
-//                        PixelPoint start = PixelMap.getMapTileOrigin(new HexLocation(i,j));
-//                        PixelPoint end = getRegionCenter(roadEnd);
-//                        roads.add(new Line(start, end));
-//                    }
-//                }
-//            }
-//        }
+        Map<Region, Region> roadMap = gmf.getAllRoads();
 
-
+        for (Region r1 : roadMap.keySet()) {
+            Region r2 = roadMap.get(r1);
+            roads.add(new Line(getRegionCenter(r1), getRegionCenter(r2)));
+        }
 
         return roads;
     }
 
     private PixelPoint getRegionCenter(Region r) {
+        GameModelFacade gmf = GameModelFacade.getInstance();
+        GameMap gm = gmf.debugGetMap();
         GameTile tile = r.getParentTile();
-        tile.getListHexaIndexRegion(r);
-        RegionVertexUtility.
+        PixelPoint origin = PixelMap.getMapTileOrigin(gm.getHexLocationOf(tile));
+        PixelPoint offset = RegionVertexUtility.getRegionCenter(tile, tile.getListHexaIndexRegion(r));
+        return offset;
+        //return new PixelPoint(origin.getX() + offset.getX(), origin.getY() + offset.getY());
     }
 
 }

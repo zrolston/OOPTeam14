@@ -10,6 +10,7 @@ import Gameplay.Model.Tile.RegionMap;
 import Gameplay.Model.Utility.GameModelFacade;
 import Gameplay.Model.Utility.HexaVertex;
 import Gameplay.Views.Utility.PixelMap;
+import Gameplay.Views.Utility.PolygonProportions.RegionVertexUtility;
 import Gameplay.Views.Utility.PolygonUtility;
 import MapBuilder.Model.Utility.HexLocation;
 import MapBuilder.Views.Utility.PixelPoint;
@@ -26,37 +27,15 @@ public class AllGoodDrawer {
         List<ImageWithLocation> images = new ArrayList<ImageWithLocation>();
         GameModelFacade gmf = GameModelFacade.getInstance();
         GameMap gm = gmf.debugGetMap();
-//        GameTile[][] tiles = gm.getTiles();
-//        GoodDrawingVisitor gdv = new GoodDrawingVisitor();
-//        for (int i = 0; i < tiles.length; i++) {
-//            for (int j = 0; j < tiles[0].length; j++) {
-//                if (tiles[i][j] == null)
-//                    continue;
-//                PixelPoint origin = PixelMap.getMapTileOrigin(new HexLocation(i,j));
-//                RegionMap regionMap = tiles[i][j].getRegionMap();
-//                for (List<HexaVertex> vertices : regionMap.getRegionMap().keySet()) {
-//                    gdv.setOrigin(new PixelPoint(origin.getX() + 20, origin.getY() + 20));
-//                    GoodsBag gb = gmf.getGoodsBag(regionMap.getRegionAt(vertices.get(0)));
-//                    if (gb == null)
-//                        continue;
-//                    List<Good> goods = gb.getGoods();
-//                    for (Good good : goods) {
-//                        good.accept(gdv);
-//                        images.add(gdv.getImageWithLocation());
-//                    }
-//                }
-//            }
-//        }
+
         List<Region> regions = gmf.getAllRegionsWithGoodsBag();
         GoodDrawingVisitor gdv = new GoodDrawingVisitor();
         for (Region region : regions) {
             GameTile tile = region.getParentTile();
-            HexLocation location = gm.getHexLocationOf(tile);
-            List<HexaVertex> verticse = tile.getListHexaIndexRegion(region);
-            PixelPoint origin = PixelMap.getMapTileOrigin(location);
+            PixelPoint center = RegionVertexUtility.getRegionCenter(tile, tile.getListHexaIndexRegion(region));
 
             GoodsBag gb = gmf.getGoodsBag(region);
-            gdv.setOrigin(origin);
+            gdv.setCenter(center);
             for (Good good : gb.getGoods()) {
                 good.accept(gdv);
                 images.add(gdv.getImageWithLocation());

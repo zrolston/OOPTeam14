@@ -12,7 +12,6 @@ public class Line {
     PixelPoint start;
     PixelPoint end;
     Color color;
-    boolean thick;
 
     Line(PixelPoint start, PixelPoint end) {
         this.start = start;
