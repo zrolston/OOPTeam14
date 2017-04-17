@@ -44,7 +44,6 @@ public class TransporterIterator implements StuffIterator {
         TransporterDrawingVisitor t = new TransporterDrawingVisitor();
         getCurrent().accept(t);
         BufferedImage transporterImage = t.getImage();
-
         return transporterImage;
     }
 

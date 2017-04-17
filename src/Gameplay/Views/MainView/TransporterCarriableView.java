@@ -55,7 +55,6 @@ public class TransporterCarriableView extends JPanel {
             return;
 
         generateButtons();
-
         tranIter.first();
         int i = 0;
         while (i < tranIter.size()) {
