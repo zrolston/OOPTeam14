@@ -84,4 +84,10 @@ public class TransporterHandler {
     public List<Region> getAllRegions() {
         return new ArrayList<Region>(occupancyMap.keySet());
     }
+
+    public void refreshTransporters() {
+        for(TransporterOccupancy to : occupancyMap.values()){
+            to.refreshMovement();
+        }
+    }
 }

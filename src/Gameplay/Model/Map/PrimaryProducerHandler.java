@@ -47,4 +47,10 @@ public class PrimaryProducerHandler {
             myRegions.next().clearAbilities();
         }
     }
+
+    public void produce() {
+        for(PrimaryProducer p : occupancyMap.values()){
+            p.produce();
+        }
+    }
 }

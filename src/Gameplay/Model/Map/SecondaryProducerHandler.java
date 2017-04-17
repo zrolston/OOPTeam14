@@ -61,4 +61,19 @@ public class SecondaryProducerHandler {
             myRegions.next().clearAbilities();
         }
     }
+
+    public void produce() {
+        for(SecondaryGoodProducer secondaryGoodProducer : goodOccupancyMap.values()){
+            secondaryGoodProducer.doUntilFull();
+        }
+    }
+
+    public void reset(){
+        for(SecondaryTransporterProducer secondaryTransporterProducer : factoryOccupancyMap.values()){
+            secondaryTransporterProducer.resetCapacity();
+        }
+        for(SecondaryGoodProducer secondaryGoodProducer : goodOccupancyMap.values()){
+            secondaryGoodProducer.resetCapacity();
+        }
+    }
 }
