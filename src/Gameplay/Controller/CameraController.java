@@ -7,7 +7,6 @@
 
 package Gameplay.Controller;
 import Gameplay.Model.Map.GameMap;
-import Gameplay.Model.Region.Region;
 import Gameplay.Model.Tile.GameTile;
 import Gameplay.Model.Tile.RegionMap;
 import Gameplay.Model.Utility.GameModelFacade;
@@ -18,12 +17,13 @@ import MapBuilder.Model.Utility.HexLocation;
 import MapBuilder.Model.Utility.ILocation;
 import MapBuilder.Views.Utility.PixelPoint;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.List;
-import java.util.Map;
+
 
 public class CameraController implements MouseMotionListener, MouseListener{
 
@@ -50,6 +50,14 @@ public class CameraController implements MouseMotionListener, MouseListener{
     public void mousePressed(MouseEvent e) {
         camera.recordPress(new PixelPoint(e.getX(), e.getY()));
         cursorState.setMarkerActive(false);
+
+        //Testing any kind of functionality
+        if(SwingUtilities.isRightMouseButton(e)){
+            Executor executor = cursorState.executor;
+            if(executor != null){
+                executor.execute();
+            }
+        }
     }
 
     @Override
@@ -114,5 +122,9 @@ public class CameraController implements MouseMotionListener, MouseListener{
             }
             regionIndex++;
         }
+    }
+
+    public void executer(){
+
     }
 }
