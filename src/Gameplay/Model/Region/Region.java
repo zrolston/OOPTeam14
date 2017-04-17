@@ -6,12 +6,13 @@ import Gameplay.Model.Utility.Owned;
 import Gameplay.Model.Visitors.ConnectionGenerator;
 import Gameplay.Model.Visitors.RegionVisitor;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 abstract public class Region {
     private RegionSet regionSet;
-    private List<BuildAbility> buildAbilities;
+    private List<BuildAbility> buildAbilities = new ArrayList<>();
 
     public Region(BuildAbility...abilities) {
         buildAbilities.addAll(Arrays.asList(abilities));
@@ -36,6 +37,12 @@ abstract public class Region {
     }
 
     public List<BuildAbility> getBuildAbilities(Owned owned){
+        List<BuildAbility> list = new ArrayList<>();
+        for (BuildAbility ability : buildAbilities) {
+            if (owned.matches(ability)){
+                list.add(ability);
+            }
+        }
         return buildAbilities;
     }
 }

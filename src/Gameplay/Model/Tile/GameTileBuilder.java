@@ -205,7 +205,6 @@ public class GameTileBuilder {
         Region getRegion() {
             return new LandRegion(
                     new BuildCoalBurner(nID),
-                    new BuildMine(nID),
                     new BuildMint(nID),
                     new BuildPaperMill(nID),
                     new BuildRaftFactory(nID),
@@ -228,7 +227,6 @@ public class GameTileBuilder {
         Region getRegion() {
             return new LandRegion(
                     new BuildCoalBurner(nID),
-                    new BuildMine(nID),
                     new BuildMint(nID),
                     new BuildPaperMill(nID),
                     new BuildRaftFactory(nID),
@@ -252,7 +250,6 @@ public class GameTileBuilder {
         Region getRegion() {
             return new LandRegion(
                     new BuildCoalBurner(nID),
-                    new BuildMine(nID),
                     new BuildMint(nID),
                     new BuildPaperMill(nID),
                     new BuildRaftFactory(nID),
