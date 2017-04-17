@@ -34,11 +34,14 @@ public class MoveControllerTest {
         DaveBuilder builder = new GameMapDaveBuilder();
         builder.buildMap(mapsDir);
         GameModelFacade modelFacade =  GameModelFacade.getInstance();
-        MoveController moveController = new MoveController();
-        moveController.activateController(display.getMainView());
+//        MoveController moveController = new MoveController();
+//        moveController.activateController(display.getMainView());
+
+        TradingController tradingController = new TradingController();
+        tradingController.activateController(display.getMainView());
 
         modelFacade.startGame();
-        moveController.addTransporters(generateCarriableIter(modelFacade));
+//        moveController.addTransporters(generateCarriableIter(modelFacade));
     }
 
 
