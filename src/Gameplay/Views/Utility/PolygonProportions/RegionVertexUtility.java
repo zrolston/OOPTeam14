@@ -6,12 +6,21 @@
 ---------------------------------------------------------------------------------------*/
 package Gameplay.Views.Utility.PolygonProportions;
 
+import Gameplay.Model.Map.GameMap;
+import Gameplay.Model.Tile.GameTile;
+import Gameplay.Model.Utility.GameModelFacade;
 import Gameplay.Model.Utility.HexaVertex;
-import java.util.HashMap;
-import java.util.Map;
+import Gameplay.Views.Utility.PixelMap;
+import Gameplay.Views.Utility.PolygonPointSet;
+import Gameplay.Views.Utility.PolygonUtility;
+import MapBuilder.Model.Utility.ILocation;
+import MapBuilder.Views.Utility.PixelPoint;
+import java.util.*;
+
 
 public class RegionVertexUtility {
     private static Map<String, Integer> vertexMap = new HashMap<>();
+    private static GameMap map = null;
 
     public static HexaVertex getVertexAt(Integer river, Integer rotation, Integer regionIndex) throws Exception{
         if(river == 0){ return HexaVertex.createVertex(6); }
@@ -62,7 +71,45 @@ public class RegionVertexUtility {
         return null;
     }
 
-    public static int customMod(int x, int y){
+
+    public static PixelPoint getRegionCenter(GameTile tile, List<HexaVertex> region){
+        for(HexaVertex v: region){
+            System.out.println(v.getValue());
+        }
+        //Set up Map if needed
+        if(map == null){
+            map = GameModelFacade.getInstance().debugGetMap();
+        }
+        ILocation location = map.getHexLocationOf(tile);
+        Integer river = tile.getRiverType();
+        Integer rotation = tile.getRotationNumber();
+
+        int regionIndex = -1;
+        HexaVertex vertex = null;
+        for(int i = 0; i < 4; i++){
+            try {
+                vertex = getVertexAt(river, rotation, i);
+            }catch (Exception e){}
+            if(vertex == null) continue;
+            for(HexaVertex v: region){
+                if(v.getValue() == vertex.getValue()){
+                    regionIndex = i;
+                }
+            }
+            if(regionIndex != -1)break;
+        }
+        //Get the right PolygonPointSet for desired Region
+        List<PolygonPointSet> points = PolygonUtility.getRegionsByType(river);
+        PolygonPointSet pointSet = points.get(regionIndex);
+        pointSet.setCurrRotation(rotation);
+
+        //Figure out the Polygon center and adjust it to camera position
+        PixelPoint origin = PixelMap.getMapTileOrigin(location);
+        PixelPoint centroid = pointSet.getCentroid(origin);
+        return centroid;
+    }
+
+    private static int customMod(int x, int y){
         if(x == y){
             return 6;
         }else{
