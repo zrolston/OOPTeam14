@@ -25,10 +25,8 @@ public class TransporterIterator implements StuffIterator {
 
     @Override
     public void next() {
-        if(cur == size){
-            return;
-        }
         cur++;
+        cur %= size();
     }
 
     @Override
@@ -47,9 +45,11 @@ public class TransporterIterator implements StuffIterator {
         getCurrent().accept(t);
         BufferedImage transporterImage = t.getImage();
 
+        System.out.println("curr = " + cur);
         System.out.println("image = " + transporterImage);
 
-        return transporterImage;    }
+        return transporterImage;
+    }
 
     public Transporter getTransporterAt(int number) {
         if (isInBounds(number)) {
