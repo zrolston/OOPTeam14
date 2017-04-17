@@ -24,8 +24,7 @@ public class UserRequest extends Request {
 
     public GoodsBag addProducedGoods(GoodsBag addedGoods) {
         for (GoodsBag goodsBag : goods.keySet()) {
-            GoodsBag used = goodsBag.add(addedGoods);
-            addedGoods.remove(used);
+            addedGoods = goodsBag.add(addedGoods);
         }
         return addedGoods;
     }
