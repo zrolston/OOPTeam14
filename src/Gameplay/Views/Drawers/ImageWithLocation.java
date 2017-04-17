@@ -18,6 +18,6 @@ public class ImageWithLocation {
     }
 
     public void draw(Graphics g) {
-        g.drawImage(image, location.getX(), location.getY(), null);
+        g.drawImage(image, location.getX() + image.getWidth()/4, location.getY() + image.getHeight()/4, image.getWidth()/2, image.getHeight()/2, null);
     }
 }

@@ -61,6 +61,9 @@ abstract public class Transporter extends Owned implements Carriable{
     public void setCurrentRegion(Region region){
         cache[1] = cache[0];
         cache[0] = region;
+        if (cache[1] == null){
+            cache[1] = cache[0];
+        }
     }
 
     public Region getCachedRegion(){
@@ -74,8 +77,9 @@ abstract public class Transporter extends Owned implements Carriable{
 
     public boolean moveTo(Region region){
         if (movementList.containsKey(region) && movementList.get(region) <= remainingMovement){
-            region.enterRegion(this);
             remainingMovement -= movementList.get(region);
+            movementList.clear();
+            region.enterRegion(this);
             return true;
         }
         return false;
@@ -119,6 +123,9 @@ abstract public class Transporter extends Owned implements Carriable{
         this.carriedTransporter = transporter;
     }
 
+    public int getRemainingMovement() {
+        return remainingMovement;
+    }
     public Region getCurrentRegion() {
         return cache[0];
     }
