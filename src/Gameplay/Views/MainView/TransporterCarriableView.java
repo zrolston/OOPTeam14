@@ -18,7 +18,9 @@ import java.util.*;
 public class TransporterCarriableView extends JPanel {
 
     private BufferedImage background;
-    private ArrayList<Rectangle> buttons = new ArrayList<>();
+    private ArrayList<Rectangle> buttonsLeft = new ArrayList<>();
+    private ArrayList<Rectangle> buttonsRight = new ArrayList<>();
+
     private CarriableIterator carrIter;
     private TransporterIterator tranIter;
 
@@ -52,11 +54,12 @@ public class TransporterCarriableView extends JPanel {
         if(tranIter == null)
             return;
 
+        generateButtons();
         tranIter.first();
         int i = 0;
         while (i < tranIter.size()) {
 
-            Rectangle r = buttons.get(i);
+            Rectangle r = buttonsLeft.get(i);
             g.drawRoundRect((int) r.getX(), (int) r.getY(), (int) r.getWidth(), (int) r.getHeight(), 5, 5);
 
             g.drawImage(tranIter.getImage(), (int) r.getX(), (int) r.getY(), (int) r.getWidth(), (int) r.getHeight(), null);
@@ -65,29 +68,30 @@ public class TransporterCarriableView extends JPanel {
             i++;
         }
 
-        if(carrIter == null)
+        if(carrIter == null) {
             return;
-
-        System.out.println("carr iter size: " + tranIter.size());
-
+        }
 
         carrIter.first();
         i = 0;
-        while (++i < carrIter.size()) {
+        while (i < carrIter.size()) {
 
-            Rectangle r = buttons.get(i);
+            Rectangle r = buttonsRight.get(i );
             g.drawRoundRect((int) r.getX(), (int) r.getY(), (int) r.getWidth(), (int) r.getHeight(), 5, 5);
 
                 g.drawImage(carrIter.getImage(), (int) r.getX(), (int) r.getY(), (int) r.getWidth(), (int) r.getHeight(), null);
 
             carrIter.next();
+            i++;
         }
     }
 
-    public ArrayList<Rectangle> getButtons() {
-        generateButtons();
-        return buttons;
-    }
+
+//
+//    public ArrayList<Rectangle> getButtons() {
+//        generateButtons();
+//        return buttonsLeft;
+//    }
 
     public void setCarrIter(CarriableIterator carrIter) {
         this.carrIter = carrIter;
@@ -103,15 +107,28 @@ public class TransporterCarriableView extends JPanel {
 
     public Integer getCarriableIndex(PixelPoint point) {
 
-
-
         int index = 0;
-        for (Rectangle button : buttons) {
+        for (Rectangle button : buttonsLeft) {
             //Checking right button list
-            if (button.contains(point.getX(), point.getY()))
+            if (button.contains(point.getX(), point.getY())) {
+//                System.out.println("carIndex = " + index);
                 return index;
+            }
             index++;
         }
+
+        index = 7 + 1;
+        for (Rectangle button : buttonsRight) {
+            if (button.contains(point.getX(), point.getY())) {
+//                System.out.println("carIndex = " + index);
+                 return index;
+        }
+            index++;
+        }
+
+
+
+
         return -1;
     }
 
@@ -126,13 +143,20 @@ public class TransporterCarriableView extends JPanel {
 
     public void generateButtons() {
 
-        if (tranIter == null)
+        buttonsLeft.clear();
+        buttonsRight.clear();
+
+        int numElements = 0;
+        if(tranIter == null)
             return;
 
-        buttons.clear();
-        int numElements = tranIter.size();
+        if (tranIter != null) {
+            numElements = tranIter.size();
+        }
 
-        System.out.println("buttons made: " + numElements);
+        if(carrIter != null) {
+            numElements = (tranIter.size() + carrIter.size());
+        }
 
         int widthOffset = getWidth() / numCols;
         for (int i = 0; i < numCols; i++) {
@@ -145,16 +169,19 @@ public class TransporterCarriableView extends JPanel {
         verticalOffset = horizontalOffset;
 
         //Initialize the left and right buttons
-        buttons = new ArrayList<>();
+        buttonsLeft = new ArrayList<>();
+        buttonsRight = new ArrayList<>();
+
         for (int i = 0; i < numElements / numCols + 1; i++) {
 
-            for (int j = 0; j < numCols; j++) {
-                if ((i * numCols + j) >= numElements)
-                    break;
+            PixelPoint origin = new PixelPoint(horizontalOffset + getWidth() / numCols * 0, horizontalOffset + ((buttonSide + verticalOffset) * i));
+            buttonsLeft.add(PolygonUtility.generateSquare(origin, buttonSide));
 
-                PixelPoint origin = new PixelPoint(horizontalOffset + getWidth() / numCols * j, horizontalOffset + ((buttonSide + verticalOffset) * i));
-                buttons.add(PolygonUtility.generateSquare(origin, buttonSide));
-            }
+            origin = new PixelPoint(horizontalOffset + getWidth() / numCols * 1, horizontalOffset + ((buttonSide + verticalOffset) * i));
+            buttonsRight.add(PolygonUtility.generateSquare(origin, buttonSide));
+
+//            if ((i * numCols + j) >= numElements)
+//                break;
         }
 
     }

@@ -7,7 +7,6 @@
 
 package Gameplay.Controller;
 import Gameplay.Model.Map.GameMap;
-import Gameplay.Model.Region.Region;
 import Gameplay.Model.Tile.GameTile;
 import Gameplay.Model.Tile.RegionMap;
 import Gameplay.Model.Utility.GameModelFacade;
@@ -18,12 +17,13 @@ import MapBuilder.Model.Utility.HexLocation;
 import MapBuilder.Model.Utility.ILocation;
 import MapBuilder.Views.Utility.PixelPoint;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.List;
-import java.util.Map;
+
 
 public class CameraController implements MouseMotionListener, MouseListener{
 
@@ -39,6 +39,7 @@ public class CameraController implements MouseMotionListener, MouseListener{
 
     @Override
     public void mouseMoved(MouseEvent e) {
+        cursorState.setMarkerActive(true);
         //Hovering goes here
         updateActiveTile(e);
         updateRegion(e);
@@ -49,13 +50,19 @@ public class CameraController implements MouseMotionListener, MouseListener{
     public void mousePressed(MouseEvent e) {
         camera.recordPress(new PixelPoint(e.getX(), e.getY()));
         cursorState.setMarkerActive(false);
-        testCenters();
+
+        //Testing any kind of functionality
+        if(SwingUtilities.isRightMouseButton(e)){
+            Executor executor = cursorState.executor;
+            if(executor != null){
+                executor.execute();
+            }
+        }
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
         camera.releasePress();
-        cursorState.setMarkerActive(true);
     }
 
     @Override
@@ -80,7 +87,7 @@ public class CameraController implements MouseMotionListener, MouseListener{
         }
 
         ILocation location = cursorState.getActiveTile();
-        if(location.getRow() >= 0 && location.getCol() >= 0) {
+        if(location.getRow() >= 0 && location.getCol() >= 0 && location.getRow() < map.getWidth() && location.getCol() < map.getWidth()) {
             //Get locations of current Tile
             GameTile active = map.getTileAt(location);
             //River Type and Rotations from tile
@@ -117,21 +124,7 @@ public class CameraController implements MouseMotionListener, MouseListener{
         }
     }
 
-    public void testCenters(){
-        //testing Centers
-        PixelPoint point;
-        Region r = cursorState.getActiveRegion();
-        GameTile t = map.getTileAt(cursorState.getActiveTile());
-        List<HexaVertex> list_ = null;
-        Map<List<HexaVertex>, Region> mapping = t.getRegionMap().getRegionMap();
-        for(Map.Entry<List<HexaVertex>, Region> entry : mapping.entrySet()){
-            if (entry.getValue() == r){
-                list_ = entry.getKey();
-                break;
-            }
-        }
-        point = RegionVertexUtility.getRegionCenter(t,list_);
-        System.out.println(point);
-        cursorState.setCursor(point);
+    public void executer(){
+
     }
 }

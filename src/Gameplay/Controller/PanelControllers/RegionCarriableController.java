@@ -138,7 +138,7 @@ public abstract class RegionCarriableController implements MainViewController, M
     }
 
     protected void showPanel() {
-        view.setVisible(true);
+//        view.setVisible(true);
     }
 
     protected void hidePanel() {

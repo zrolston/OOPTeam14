@@ -73,9 +73,6 @@ public class RegionVertexUtility {
 
 
     public static PixelPoint getRegionCenter(GameTile tile, List<HexaVertex> region){
-        for(HexaVertex v: region){
-            System.out.println(v.getValue());
-        }
         //Set up Map if needed
         if(map == null){
             map = GameModelFacade.getInstance().debugGetMap();

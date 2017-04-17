@@ -4,7 +4,9 @@ import Gameplay.Controller.PanelControllers.TransporterCarriableController;
 import Gameplay.Controller.SubControllers.RegionCarriableControllers.PickUpController;
 import Gameplay.Controller.SubControllers.RegionSelectionControllers.DropRegionController;
 import Gameplay.Controller.SubControllers.RegionSelectionControllers.MoveRegionController;
+import Gameplay.Model.Iterators.TransporterIterator;
 import Gameplay.Model.Region.Region;
+import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Model.Utility.GameModelFacade;
 
 import Gameplay.Model.Iterators.CarriableIterator;
@@ -71,7 +73,8 @@ public class MoveController extends TransporterCarriableController {
     public void dropCarriable(Region region){
         gameModelFacade.dropCarriable(region, getCurrentTransporter(),getCurrentCarriable());
         removeCarriable();
-
+        TransporterIterator trans = gameModelFacade.getTransporters(region);
+        addTransporters(trans);
     }
     public Region getPickUpRegion(){
         return selectedRegion;

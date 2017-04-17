@@ -25,10 +25,8 @@ public class TransporterIterator implements StuffIterator {
 
     @Override
     public void next() {
-        if(cur == size){
-            return;
-        }
         cur++;
+        cur %= size();
     }
 
     @Override

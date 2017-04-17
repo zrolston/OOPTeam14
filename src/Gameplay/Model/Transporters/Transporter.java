@@ -33,6 +33,9 @@ abstract public class Transporter extends Owned implements Carriable{
         for (Permit permit : permits) {
             permitList.add(permit);
         }
+
+        // TODO: DELETE THIS
+        goods = new LimitedGoodsBag(1);
     }
 
     public void addRegion(Region region, int cost){
