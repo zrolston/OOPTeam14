@@ -78,6 +78,10 @@ public class MapView extends JPanel {
             }
         }
 
+        //Region Center Test
+        PixelPoint c = cursorState.getCursor();
+        g.drawRect(c.getX(), c.getY(), 5, 5);
+
         //Tile Marker
 //        GridDrawer.drawActiveTile(g, CursorState.getInstance().getActiveTile());
 
