@@ -1,5 +1,6 @@
 package Gameplay.Model.Utility;
 
+import Gameplay.Model.BuildAbilities.BuildAbility;
 import Gameplay.Model.Map.GameMap;
 import Gameplay.Model.Phases.PhaseManager;
 import Gameplay.Model.Phases.PhaseState;
@@ -402,6 +403,15 @@ public class GameModelFacade { //TODO make an abstract facade
         else if (sgp != null) {
             sgp.produce(userRequestHandler.getUserRequest());
         }
+    }
+
+    public List<BuildAbility> getBuildAbilities(Region r) {
+        //TODO add current player
+        return r.getBuildAbilities(null);
+    }
+
+    public void activateBuildAbility(Region r, BuildAbility ba) {
+        ba.build(userRequestHandler.getUserRequest(), r);
     }
 
 }

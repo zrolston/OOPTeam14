@@ -4,6 +4,7 @@ import Gameplay.Model.Goods.Board;
 import Gameplay.Model.Producer.PrimaryProducer.ClayPit;
 import Gameplay.Model.Producer.Producer;
 import Gameplay.Model.Producer.SecondaryProducer.GoodProducer.Sawmill;
+import Gameplay.Model.Utility.GameModelFacade;
 import Gameplay.Model.Visitors.Carriable;
 import Gameplay.Views.Drawers.CarriableDrawingVisitor;
 import Gameplay.Views.Drawers.ProducerDrawingVisitor;
@@ -18,10 +19,11 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ProducerSelectionView extends JPanel {
 
-    private ArrayList<Polygon> columns;
+    private List<Polygon> columns;
     private java.util.List<Rectangle> buttons;
     private java.util.List<Carriable> leftCarriables;
     private java.util.List<Carriable> rightCarriables;
@@ -29,7 +31,7 @@ public class ProducerSelectionView extends JPanel {
     private int horizontalOffset, verticalOffset, buttonSide;
     private BufferedImage background;
 
-    private ArrayList<BufferedImage> producerImages;
+    private List<BufferedImage> producerImages;
 
 
     public ProducerSelectionView() {
@@ -101,9 +103,9 @@ public class ProducerSelectionView extends JPanel {
         });
     }
 
-    //Set the different Carriables Dynamically
-    public void setLeftCarriables(java.util.List<Carriable> leftCarriables) { this.leftCarriables = leftCarriables; }
-    public void setRightCarriables(java.util.List<Carriable> rightCarriables) { this.rightCarriables = rightCarriables; }
+    public void updateProducerImages(List<BufferedImage> images) {
+        producerImages = images;
+    }
 
     protected void paintComponent(Graphics g) {
     	((Graphics2D)(g)).setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
