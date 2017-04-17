@@ -16,7 +16,7 @@ public class PlayerID {
         this.id = i;
     }
 
-    private int getID(){
+    public int getID(){
         return id;
     }
 

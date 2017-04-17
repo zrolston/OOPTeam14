@@ -1,6 +1,7 @@
 package Gameplay.Controller.SubControllers.RegionSelectionControllers;
 
 import Gameplay.Controller.PanelControllers.MapSelectionControllers.RegionSelectionController;
+import Gameplay.Controller.SubControllers.TransporterCarriableControllers.DropController;
 import Gameplay.Controller.SubControllers.TransporterCarriableControllers.MoveController;
 import Gameplay.Model.Region.Region;
 import Gameplay.Model.Transporters.Transporter;
@@ -12,13 +13,9 @@ import MapBuilder.Model.ModelFacade;
  */
 public class DropRegionController extends RegionSelectionController  {
 
-    private MoveController moveController;
-    private Region currentRegion;
-    private Transporter currentTransporter;
-    private Carriable currentCarriable;
-    private ModelFacade modelFacade = ModelFacade.getInstance();
+    private DropController moveController;
 
-    public DropRegionController(MoveController moveController) {
+    public DropRegionController(DropController moveController) {
         this.moveController = moveController;
     }
 
@@ -29,7 +26,7 @@ public class DropRegionController extends RegionSelectionController  {
 
     @Override
     protected void leftClick() {
-        moveController.dropCarriable(currentRegion);
+        moveController.dropCarriable(getCurrentRegion());
         moveController.changeToDefaultController();
         suspend();
     }
@@ -42,13 +39,6 @@ public class DropRegionController extends RegionSelectionController  {
     @Override
     protected void suspend() {
         getMapView().removeMouseListener(this);
-    }
-
-    public void receiveCarriable(Carriable carriable) {
-        this.currentCarriable = carriable;
-    }
-    public void receiveTransporter(Transporter transporter) {
-        this.currentTransporter = transporter;
     }
 
 

@@ -41,8 +41,10 @@ public class PickUpController extends RegionCarriableController {
     @Override
     protected void carriableClick() {
         GameModelFacade gmf = GameModelFacade.getInstance();
-        if (areContributorsNull( currentRegion, currentTransporter,getCurrentCarriable())) {
-            gmf.pickUpCarriable(currentRegion, currentTransporter, getCurrentCarriable());
+
+        Transporter currentTrans = MoveController.currentTrans;
+        if (areContributorsNull( currentRegion, currentTrans, getCurrentCarriable())) {
+            gmf.pickUpCarriable(currentRegion, currentTrans, getCurrentCarriable());
             removeCarriable();
         }
     }
@@ -58,7 +60,7 @@ public class PickUpController extends RegionCarriableController {
 
     public void receiveRegion(Region region) {
         this.currentRegion = region;
-        displayPanel();
+        addCarriables(region);
     }
 
     private void displayPanel(){

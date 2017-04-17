@@ -26,13 +26,14 @@ import java.util.ArrayList;
 /**
  * Created by jordi on 4/16/2017.
  */
-public class MoveController extends TransporterCarriableController {
+public class MoveController extends TransporterCarriableController implements DropController {
 
     private DropRegionController dropRegionController = new DropRegionController(this);
     private MoveRegionController moveRegionController = new MoveRegionController(this);
     private PickUpController pickUpController = new PickUpController(this);
     Region selectedRegion;
     GameModelFacade gameModelFacade = GameModelFacade.getInstance();
+    public static Transporter currentTrans = null;
 
     @Override
     protected void carriableClick() {
@@ -45,8 +46,8 @@ public class MoveController extends TransporterCarriableController {
     @Override
     protected void transporterClick() {
         moveRegionController.allowMovement();
-        moveRegionController.receiveTransporter(getCurrentTransporter());
-        pickUpController.receiveTransporter(getCurrentTransporter());
+        sendCarriable();
+        sendTransporter();
     }
 
     @Override
@@ -56,10 +57,19 @@ public class MoveController extends TransporterCarriableController {
         clearCurrentTransporter();
 
     }
-
+    @Override
     public void changeToDefaultController() {
         checkForDisplay();
         moveRegionController.activateController(getMainView());
+    }
+
+    public void sendCarriable() {
+//        pickUpController.(getCurrentTransporter());
+    }
+
+    public void sendTransporter() {
+        currentTrans = getCurrentTransporter();
+        moveRegionController.receiveTransporter(getCurrentTransporter());
     }
 
     public void checkForDisplay() {
@@ -70,7 +80,9 @@ public class MoveController extends TransporterCarriableController {
         showPanel();
     }
 
+    @Override
     public void dropCarriable(Region region){
+        //TODO: maybe add a check
         gameModelFacade.dropCarriable(region, getCurrentTransporter(),getCurrentCarriable());
         removeCarriable();
         TransporterIterator trans = gameModelFacade.getTransporters(region);
@@ -87,8 +99,6 @@ public class MoveController extends TransporterCarriableController {
 
     private void activateDropRegionController(){
         dropRegionController.activateController(getMainView());
-        dropRegionController.receiveCarriable(getCurrentCarriable());
-        dropRegionController.receiveTransporter(getCurrentTransporter());
     }
 
     // --------
