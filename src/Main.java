@@ -1,4 +1,5 @@
 import Gameplay.Controller.MainController;
+import Gameplay.Model.Game.Game;
 import Gameplay.Model.TransporterFactory.*;
 import Gameplay.Model.Transporters.LandTransporters.Donkey;
 import Gameplay.Model.Transporters.Transporter;
@@ -10,11 +11,8 @@ import Gameplay.Views.Utility.Executor;
 
 public class Main {
     public static void main(String[] args) {
-        Display display = new Display();
-        MainController mainController = new MainController(display.getMainView());
-
-        CursorState.executor = new MyExecuter();
-
+        Game game = new Game();
+        game.runGame();
     }
 
     static class MyExecuter implements Executor{

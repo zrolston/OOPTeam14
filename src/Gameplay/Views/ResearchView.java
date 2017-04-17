@@ -34,9 +34,9 @@ public class ResearchView extends JPanel {
     	g.drawImage(research, x, y, width, height, null);
     	
     	//This is a test of the first three researches researched.
-    	drawMarker(g, 0, x, y, width, height);
-    	drawMarker(g, 1, x, y, width, height);
-    	drawMarker(g, 2, x, y, width, height);
+    	//drawMarker(g, 0, x, y, width, height);
+    	//drawMarker(g, 1, x, y, width, height);
+    	//drawMarker(g, 2, x, y, width, height);
     }
     
     private void drawMarker(Graphics g, int position, int x, int y, int width, int height) {
