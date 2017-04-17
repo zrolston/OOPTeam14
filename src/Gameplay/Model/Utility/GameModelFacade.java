@@ -130,7 +130,6 @@ public class GameModelFacade { //TODO make an abstract facade
             goodsBag.addStone(new Stone());
             goodsHandler.place(goodsBag, r);
             transporterHandler.place(tr, r);
-            tr.pickUpGood(new Board());
             tr.pickUpGood(new Coins());
             t.pickUpGood(new Board());
             t.pickUpGood(new Stock());

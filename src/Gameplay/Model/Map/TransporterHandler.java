@@ -75,6 +75,9 @@ public class TransporterHandler {
     }
 
     public TransporterOccupancy getOccupancyAt(Region r){
+        if(occupancyMap.get(r) == null){
+            return new TransporterOccupancy(r);
+        }
         return occupancyMap.get(r);
     }
 
