@@ -49,7 +49,7 @@ public class AllGoodDrawer {
         List<Region> regions = gmf.getAllRegionsWithGoodsBag();
         for (Region region : regions) {
             GameTile tile = region.getParentTile();
-            HexLocation location = gm.getHexLocation(tile);
+            HexLocation location = gm.getHexLocationOf(tile);
             List<HexaVertex> tile.getListHexaIndexRegion(region);
         }
         return images;
