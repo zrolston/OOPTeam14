@@ -10,6 +10,7 @@ import Gameplay.Model.Producer.SecondaryProducer.TransporterProducer.WaterTransp
 import Gameplay.Model.Producer.UserRequest;
 import Gameplay.Model.Region.Region;
 import Gameplay.Model.Utility.PlayerID;
+import Gameplay.Model.Visitors.BuildAbilityVisitor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,5 +54,10 @@ public class BuildRowBoatFactory extends BuildAbility{
 
 
         transporterProducerHandler.placeTransporterProducer(new RowboatProducer(region, viable), region);
+    }
+
+    @Override
+    public void accept(BuildAbilityVisitor bav) {
+        bav.visitBuildRowBoatFactory(this);
     }
 }
