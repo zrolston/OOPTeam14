@@ -30,7 +30,7 @@ public class Main {
         public void execute() {
             if(executed){
                 GameModelFacade facade = GameModelFacade.getInstance();
-                facade.move(t, CursorState.getInstance().getActiveRegion());
+                facade.move(CursorState.getInstance().getActiveRegion(), t);
 //                t.resetMovement();
             }
             else{
@@ -40,6 +40,7 @@ public class Main {
         private void execute2(){
             GameModelFacade facade = GameModelFacade.getInstance();
             facade.transporterHandler.place(t, CursorState.getInstance().getActiveRegion());
+            CursorState.getInstance().getActiveRegion().enterRegion(t);
             executed = true;
         }
     }

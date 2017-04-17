@@ -31,6 +31,7 @@ public class GameModelFacade { //TODO make an abstract facade
     private GoodsHandler goodsHandler;
     private PrimaryProducerHandler primaryProducerHandler;
     private SecondaryProducerHandler secondaryProducerHandler;
+    private MovementManager movementManager;
     private WallHandler wallHandler;
 
     private GameModelFacade(GameMap map) {
@@ -174,8 +175,8 @@ public class GameModelFacade { //TODO make an abstract facade
         return new TransporterIterator(transporters);
     }
 
-    public void move(Transporter t, Region region){
-        transporterHandler.move(t, t.getCachedRegion(), region);
+    public void move(Region region, Transporter transporter){
+        movementManager.move(transporter, region, false);
     }
 
 
