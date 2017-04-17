@@ -63,12 +63,10 @@ public class MoveController extends TransporterCarriableController implements Dr
         moveRegionController.activateController(getMainView());
     }
 
-    @Override
     public void sendCarriable() {
 //        pickUpController.(getCurrentTransporter());
     }
 
-    @Override
     public void sendTransporter() {
         currentTrans = getCurrentTransporter();
         moveRegionController.receiveTransporter(getCurrentTransporter());
@@ -84,6 +82,7 @@ public class MoveController extends TransporterCarriableController implements Dr
 
     @Override
     public void dropCarriable(Region region){
+        //TODO: maybe add a check
         gameModelFacade.dropCarriable(region, getCurrentTransporter(),getCurrentCarriable());
         removeCarriable();
         TransporterIterator trans = gameModelFacade.getTransporters(region);
@@ -100,8 +99,6 @@ public class MoveController extends TransporterCarriableController implements Dr
 
     private void activateDropRegionController(){
         dropRegionController.activateController(getMainView());
-        dropRegionController.receiveCarriable(getCurrentCarriable());
-        dropRegionController.receiveTransporter(getCurrentTransporter());
     }
 
     // --------

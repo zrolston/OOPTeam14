@@ -8,6 +8,4 @@ import Gameplay.Model.Region.Region;
 public interface DropController {
     void dropCarriable(Region region);
     void changeToDefaultController();
-    void sendCarriable();
-    void sendTransporter();
 }
