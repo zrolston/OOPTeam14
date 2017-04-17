@@ -18,8 +18,9 @@ public class BuildCoalBurner extends BuildAbility {
     SecondaryProducerHandler secondaryProducerHandler;
 
     public BuildCoalBurner(PlayerID id) {
-
         super(id);
+
+        secondaryProducerHandler = SecondaryProducerHandler.getInstance();
 
         GoodsBag goods = new GoodsBag();
         goods.addBoard(new Board());

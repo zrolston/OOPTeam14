@@ -25,6 +25,9 @@ public class BuildOilRig extends BuildAbility{
 
         super(id);
 
+        primaryProducerHandler = PrimaryProducerHandler.getInstance();
+        goodsHandler = GoodsHandler.getInstance();
+
         GoodsBag goods = new GoodsBag();
         goods.addBoard(new Board());
         goods.addBoard(new Board());
