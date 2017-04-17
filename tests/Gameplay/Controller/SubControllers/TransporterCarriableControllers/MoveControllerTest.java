@@ -26,7 +26,7 @@ import static org.junit.Assert.*;
 public class MoveControllerTest {
 
     public static final String workingDir = System.getProperty("user.dir");
-    public static final String mapsDir = workingDir + "\\res\\SavedMaps\\full board map.dave";
+//    public static final String mapsDir = workingDir + "\\res\\SavedMaps\\full board map.dave";
 
     public static void main(String[] args) {
 
@@ -47,7 +47,7 @@ public class MoveControllerTest {
 //        //Creating and linking the Main Controller
 //        MainController mainController = new MainController(display.getMainView());
 //        PhaseManager phaseManager = new PhaseManager(mainController);
-       GameModelFacade modelFacade =  GameModelFacade.getInstance();
+//       GameModelFacade modelFacade =  GameModelFacade.getInstance();
 //        modelFacade.setPhaseManager(phaseManager);
         //Starts the Game and generates Transporters
 //        modelFacade.startGame();
@@ -80,6 +80,8 @@ public class MoveControllerTest {
 //        BuildingController buildingController = new BuildingController();
 //        buildingController.activateController(display.getMainView());
 //>>>>>>> 802d6b7ba863ea672cfb613a56bbf7d7260d5460
+//        BuildingController buildingController = new BuildingController();
+//        buildingController.activateController(display.getMainView());
 
         //Starts the Game and generates Transporters
 //        modelFacade.startGame();

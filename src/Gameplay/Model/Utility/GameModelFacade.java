@@ -95,12 +95,12 @@ public class GameModelFacade { //TODO make an abstract facade
     }
 
     public void startGame() {
-        setUpGoodsHandler();
         primaryProducerHandler = PrimaryProducerHandler.getInstance();
         secondaryProducerHandler = SecondaryProducerHandler.getInstance();
         wallHandler = WallHandler.getInstance();
         movementManager = new MovementManager(transporterHandler, wallHandler, goodsHandler);
         userRequestHandler = new UserRequestHandler();
+        setUpGoodsHandler();
 
         try {
             gameMap.getTiles()[10][10].getRegionMap().getRegionAt(HexaVertex.createVertex(4)).getRegionSet().addRoadRegion(
@@ -147,6 +147,9 @@ public class GameModelFacade { //TODO make an abstract facade
             goodsBag.addStone(new Stone());
             goodsHandler.place(goodsBag, r);
             transporterHandler.place(tr, r);
+            secondaryProducerHandler.placeGoodsProducer(new Sawmill(), r);
+            tr.pickUpGood(new Trunk());
+
             tr.pickUpGood(new Trunk());
             t.pickUpGood(new Board());
             t.pickUpGood(new Stock());
