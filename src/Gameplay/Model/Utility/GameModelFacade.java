@@ -356,5 +356,13 @@ public class GameModelFacade { //TODO make an abstract facade
     }
 
 
+    public void generateRoad(Region start, Region end){
+        //Implementation goes Here
+        System.out.println("Create Road");
+    }
 
+    public void generateBridge(Region start, Region end){
+        //Implementation goes Here
+        System.out.println("Create Bridge");
+    }
 }

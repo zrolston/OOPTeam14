@@ -21,8 +21,12 @@ public class GridDrawer {
         g.drawPolygon(region);
     }
 
-    public static void drawActiveTile(Graphics g, HexLocation tileLocation){
-        drawTileGrid(g, tileLocation, new Color(1, 198, 189));
+    public static void drawActiveDestination(Graphics g, Polygon region, Color color, int stroke){
+        //Set Stroke and color
+        Graphics2D g2 = (Graphics2D) g;
+        g2.setStroke(new BasicStroke(stroke));
+        g2.setColor(color);
+        g.drawPolygon(region);
     }
 
     public static void drawTileGrid(Graphics g, HexLocation tileLocation, Color color){
