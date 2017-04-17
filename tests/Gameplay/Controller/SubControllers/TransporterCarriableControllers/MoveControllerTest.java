@@ -1,7 +1,9 @@
 package Gameplay.Controller.SubControllers.TransporterCarriableControllers;
 
+import Gameplay.Controller.MainController;
 import Gameplay.Model.Iterators.TransporterIterator;
 import Gameplay.Model.Map.GameMap;
+import Gameplay.Model.Phases.PhaseManager;
 import Gameplay.Model.Region.Region;
 import Gameplay.Model.Tile.GameTile;
 import Gameplay.Model.Tile.RegionMap;
@@ -30,9 +32,17 @@ public class MoveControllerTest {
         DaveBuilder builder = new GameMapDaveBuilder();
         builder.buildMap(mapsDir);
         GameModelFacade modelFacade =  GameModelFacade.getInstance();
+
+        //Creating and linking the Move Controller
         MoveController moveController = new MoveController();
         moveController.activateController(display.getMainView());
 
+        //Creating and linking the Main Controller
+        MainController mainController = new MainController(display.getMainView());
+        PhaseManager phaseManager = new PhaseManager(mainController);
+        modelFacade.setPhaseManager(phaseManager);
+
+        //Starts the Game and generates Transporters
         modelFacade.startGame();
         moveController.addTransporters(generateCarriableIter(modelFacade));
 
