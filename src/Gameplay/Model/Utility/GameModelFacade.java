@@ -324,6 +324,4 @@ public class GameModelFacade { //TODO make an abstract facade
         return new CarriableIterator(myShit);
     }
 
-
-
 }
