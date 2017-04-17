@@ -11,6 +11,12 @@ public class Truck extends Transporter {
         super(permits);
         setMaxMovement(4);
     }
+
+    @Override
+    protected int getMaxCarriables() {
+        return 6;
+    }
+
     @Override
     public void accept(CarriableVisitor cv) {
         cv.visitTruck(this);

@@ -35,8 +35,10 @@ abstract public class Transporter extends Owned implements Carriable{
         }
 
         // TODO: DELETE THIS
-        goods = new LimitedGoodsBag(1);
+        goods = new LimitedGoodsBag(getMaxCarriables());
     }
+
+    abstract protected int getMaxCarriables();
 
     public void addRegion(Region region, int cost){
         movementList.put(region, cost);

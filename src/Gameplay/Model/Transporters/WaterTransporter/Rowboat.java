@@ -12,6 +12,12 @@ public class Rowboat extends Transporter {
         super(permits);
         setMaxMovement(4);
     }
+
+    @Override
+    protected int getMaxCarriables() {
+        return 5;
+    }
+
     @Override
     public void accept(CarriableVisitor cv) {
         cv.visitRowboat(this);

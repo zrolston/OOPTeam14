@@ -12,6 +12,12 @@ public class Raft extends Transporter {
         super(permits);
         setMaxMovement(3);
     }
+
+    @Override
+    protected int getMaxCarriables() {
+        return 3;
+    }
+
     @Override
     public void accept(CarriableVisitor cv) {
         cv.visitRaft(this);
