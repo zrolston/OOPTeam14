@@ -22,25 +22,22 @@ import java.awt.image.BufferedImage;
 import java.util.*;
 import java.util.List;
 
-
-
 public class InputSelectionView extends JPanel {
 
     private ArrayList<Polygon> columns;
     private java.util.List<Rectangle> buttons;
-
-    private CarriableIterator carrIter;
     int numCols = 8;
 
 
     private int horizontalOffset, verticalOffset, buttonSide;
     private BufferedImage background;
 
-    ArrayList<BufferedImage> images;
+    ArrayList<BufferedImage> goodsImages;
 
     public InputSelectionView() {
 
-        images = new ArrayList<>();
+        goodsImages = new ArrayList<>();
+        buttons = new ArrayList<>();
 
         setLayout(new BorderLayout());
         setBounds((int)(PixelMap.SCREEN_WIDTH *.225), (int)(PixelMap.SCREEN_HEIGHT * 17/20), (int)(PixelMap.SCREEN_WIDTH * .55), (int)(PixelMap.SCREEN_HEIGHT * .08));
@@ -48,6 +45,7 @@ public class InputSelectionView extends JPanel {
         setVisible( true );
         background = ImageLoader.getImage("RESEARCH_BACKGROUND");
 
+        generateButtons();
 
         //Test Action Listener
         addMouseListener(new MouseListener() {
@@ -73,12 +71,7 @@ public class InputSelectionView extends JPanel {
 
     public void generateButtons() {
 
-
-        int numElements = 0;
-        if(carrIter == null)
-            return;
-
-        numElements = carrIter.size();
+        int numElements = 8;
 
         int widthOffset = getWidth() / numCols;
 
@@ -102,12 +95,6 @@ public class InputSelectionView extends JPanel {
 
     }
 
-    public void setTranIter(CarriableIterator iter){
-        this.carrIter = iter;
-        generateButtons();
-        repaint();
-    }
-
     protected void paintComponent(Graphics g) {
         ((Graphics2D)(g)).setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
         g.drawImage(background, 0, 0, (int)(getWidth() * 1.145), (int)(getHeight()), null);
@@ -125,28 +112,13 @@ public class InputSelectionView extends JPanel {
 
     private void drawButtons(Graphics g) {
 
-//        if (carrIter == null) {
-//            return;
-//            for (int i = 0; i < goodsImages.size(); i++) {
-//                Rectangle r = buttons.get(i);
-//                g.drawRoundRect((int) r.getX(), (int) r.getY(), (int) r.getWidth(), (int) r.getHeight(), 5, 5);
-//                // draw goods
-//                g.drawImage(goodsImages.get(i), (int) r.getX(), (int) r.getY(), (int) r.getWidth(), (int) r.getHeight(), null);
-//            }
-//
-//            carrIter.first();
-//            int i = 0;
-//            while (i < carrIter.size()) {
-//
-//                Rectangle r = buttons.get(i);
-////            g.drawRoundRect((int) r.getX(), (int) r.getY(), (int) r.getWidth(), (int) r.getHeight(), 5, 5);
-//
-//                g.drawImage(carrIter.getImage(), (int) r.getX(), (int) r.getY(), (int) r.getWidth(), (int) r.getHeight(), null);
-//
-//                carrIter.next();
-//                i++;
-//            }
-//        }
+        for (int i = 0; i < goodsImages.size(); i++) {
+            Rectangle r = buttons.get(i);
+            g.drawRoundRect((int) r.getX(), (int) r.getY(), (int) r.getWidth(), (int) r.getHeight(), 5, 5);
+            // draw goods
+            g.drawImage(goodsImages.get(i), (int) r.getX(), (int) r.getY(), (int) r.getWidth(), (int) r.getHeight(), null);
+        }
+
     }
 
 
@@ -163,14 +135,14 @@ public class InputSelectionView extends JPanel {
 
 
     public void updateGoodsImages() {
-//        List<Carriable> carriables = GameModelFacade.getInstance().getUserRequestCarriables();
-//        ArrayList<BufferedImage> temp = new ArrayList<BufferedImage>();
-//        CarriableDrawingVisitor cdv = new CarriableDrawingVisitor();
-//        for (Carriable carriable : carriables) {
-//            carriable.accept(cdv);
-//            temp.add(cdv.getImage());
-//        }
-//        goodsImages = temp;
+        List<Carriable> carriables = GameModelFacade.getInstance().getUserRequestCarriables();
+        ArrayList<BufferedImage> temp = new ArrayList<BufferedImage>();
+        CarriableDrawingVisitor cdv = new CarriableDrawingVisitor();
+        for (Carriable carriable : carriables) {
+            carriable.accept(cdv);
+            temp.add(cdv.getImage());
+        }
+        goodsImages = temp;
     }
 
 }

@@ -33,6 +33,7 @@ public abstract class SecondaryTransporterProducer extends SecondaryProducer {
             if(ur.contains(pr)){
                 if(addTransporter(ur)) {
                     ur.removeUsed(pr);
+                    ur.reset();
                     reduceCapacity();
                 }
                 return;

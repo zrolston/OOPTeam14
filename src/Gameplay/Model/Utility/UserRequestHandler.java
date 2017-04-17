@@ -18,6 +18,10 @@ public class UserRequestHandler {
         userRequest = new UserRequest();
     }
 
+    public UserRequest getUserRequest() {
+        return userRequest;
+    }
+
     public void reset() {
         userRequest.reset();
     }

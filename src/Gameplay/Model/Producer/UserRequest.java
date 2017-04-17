@@ -38,6 +38,7 @@ public class UserRequest extends Request {
             source.add(goods.get(source));
         }
         inputtedTransporter = null;
+        goods = new HashMap<GoodsBag, GoodsBag>();
     }
 
     public void removeUsed(Request r) {
