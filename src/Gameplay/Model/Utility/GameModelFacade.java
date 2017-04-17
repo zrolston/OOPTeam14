@@ -404,12 +404,14 @@ public class GameModelFacade { //TODO make an abstract facade
         ProducerRequest requiredInputs = new ProducerRequest(cost, null);
         UserRequest userInputs = userRequestHandler.getUserRequest();
         if (userInputs.contains(requiredInputs)) {
-            userInputs.removeUsed(requiredInputs);
-            userInputs.reset();
-            start.getRegionSet().removeLandRegion(end);
-            start.getRegionSet().addRoadRegion(end);
-            end.getRegionSet().removeLandRegion(start);
-            end.getRegionSet().addRoadRegion(start);
+            if (start.getRegionSet().getLandRegions().contains(end)) {
+                if (end.getRegionSet().getLandRegions().contains(start)) {
+                    start.getRegionSet().removeLandRegion(end);
+                    start.getRegionSet().addRoadRegion(end);
+                    end.getRegionSet().removeLandRegion(start);
+                    end.getRegionSet().addRoadRegion(start);
+                }
+            }
         }
     }
 
