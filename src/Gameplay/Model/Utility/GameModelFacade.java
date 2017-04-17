@@ -11,10 +11,7 @@ import Gameplay.Model.Iterators.TransporterIterator;
 import Gameplay.Model.Map.*;
 import Gameplay.Model.Tile.GameTile;
 import Gameplay.Model.Tile.RegionMap;
-import Gameplay.Model.TransporterFactory.DonkeyFactory;
-import Gameplay.Model.TransporterFactory.SteamerFactory;
-import Gameplay.Model.TransporterFactory.TransporterFactory;
-import Gameplay.Model.TransporterFactory.TruckFactory;
+import Gameplay.Model.TransporterFactory.*;
 import Gameplay.Model.Transporters.LandTransporters.Wagon;
 import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Model.Visitors.Carriable;
@@ -81,6 +78,8 @@ public class GameModelFacade { //TODO make an abstract facade
     private void setUpGoodsHandler() {
 
         TransporterFactory t = new DonkeyFactory();
+        TransporterFactory t2 = new WagonFactory();
+
         PlayerID p2 = new PlayerID(0);
 
         goodsHandler = new GoodsHandler();
@@ -103,7 +102,12 @@ public class GameModelFacade { //TODO make an abstract facade
 
                         Transporter tt = t.create();
                         tt.setPlayerID( p2 );
-                        transporterHandler.place(t.create(), r);
+
+                        Transporter ttt = t2.create();
+                        ttt.setPlayerID( p2 );
+                        transporterHandler.place(tt, r);
+                        transporterHandler.place(ttt, r);
+
                     }
                 }
             }
