@@ -11,12 +11,22 @@ import java.util.*;
  * Created by zrgam_000 on 4/15/2017.
  */
 public class PrimaryProducerHandler {
-    Map<Region, PrimaryProducer> occupancyMap;
 
+    private static PrimaryProducerHandler instance;
+    Map<Region, PrimaryProducer> occupancyMap;
     GoodsHandler goodsHandler;
 
-    public PrimaryProducerHandler(){
+    public static PrimaryProducerHandler getInstance(){
+        if(instance == null){
+            instance = new PrimaryProducerHandler();
+        }
+
+        return instance;
+    }
+
+    private PrimaryProducerHandler(){
         occupancyMap = new HashMap<>();
+        goodsHandler = GoodsHandler.getInstance();
     }
 
     public void place(PrimaryProducer producer, Region region){

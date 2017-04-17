@@ -94,9 +94,9 @@ public class GameModelFacade { //TODO make an abstract facade
 
     public void startGame() {
         setUpGoodsHandler();
-        primaryProducerHandler = new PrimaryProducerHandler();
-        secondaryProducerHandler = new SecondaryProducerHandler();
-        wallHandler = new WallHandler();
+        primaryProducerHandler = PrimaryProducerHandler.getInstance();
+        secondaryProducerHandler = SecondaryProducerHandler.getInstance();
+        wallHandler = WallHandler.getInstance();
         movementManager = new MovementManager(transporterHandler, wallHandler, goodsHandler);
         userRequestHandler = new UserRequestHandler();
 
@@ -126,8 +126,8 @@ public class GameModelFacade { //TODO make an abstract facade
 
         PlayerID p2 = PlayerID.getPlayer1ID();
 
-        goodsHandler = new GoodsHandler();
-        transporterHandler = new TransporterHandler();
+        goodsHandler = GoodsHandler.getInstance();
+        transporterHandler = TransporterHandler.getInstance();
         GameTile[][] tiles = gameMap.getTiles();
         RegionPlacableVisitor pcv = new RegionPlacableVisitor();
 

@@ -11,14 +11,26 @@ import java.util.*;
  * Created by zrgam_000 on 4/15/2017.
  */
 public class SecondaryProducerHandler {
+
+    private static SecondaryProducerHandler instance;
     Map<Region, SecondaryGoodProducer> goodOccupancyMap;
     Map<Region, SecondaryTransporterProducer> factoryOccupancyMap;
 
     GoodsHandler goodsHandler;
 
+    public static SecondaryProducerHandler getInstance(){
+        if(instance == null){
+            instance = new SecondaryProducerHandler();
+        }
+
+        return instance;
+    }
+
     public SecondaryProducerHandler(){
         goodOccupancyMap = new HashMap<>();
         factoryOccupancyMap = new HashMap<>();
+
+        goodsHandler = GoodsHandler.getInstance();
     }
 
     public void placeGoodsProducer(SecondaryGoodProducer producer, Region region){

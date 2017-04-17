@@ -80,8 +80,8 @@ public class PhaseManager {
     private class ProductionPhase implements PhaseState {
         ProductionPhaseStateController productionController = new ProductionPhaseStateController();
 
-        PrimaryProducerHandler primaryProducerHandler;
-        SecondaryProducerHandler secondaryProducerHandler;
+        PrimaryProducerHandler primaryProducerHandler = PrimaryProducerHandler.getInstance();
+        SecondaryProducerHandler secondaryProducerHandler = SecondaryProducerHandler.getInstance();
 
         @Override
         public void start() {
@@ -127,7 +127,7 @@ public class PhaseManager {
 
     private class MovementPhase implements PhaseState {
         MovementPhaseStateController movementController = new MovementPhaseStateController();
-        TransporterHandler transporterHandler;
+        TransporterHandler transporterHandler = TransporterHandler.getInstance();
 
         @Override
         public void start() {

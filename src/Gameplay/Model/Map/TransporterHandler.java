@@ -12,9 +12,19 @@ import java.util.Map;
 
 
 public class TransporterHandler {
+
+    private static TransporterHandler instance;
     Map<Region, TransporterOccupancy> occupancyMap;
 
-    public TransporterHandler(){
+    public static TransporterHandler getInstance(){
+        if(instance == null){
+            instance = new TransporterHandler();
+        }
+
+        return instance;
+    }
+
+    private TransporterHandler(){
         occupancyMap = new HashMap<>();
     }
 

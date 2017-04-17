@@ -12,9 +12,19 @@ import java.util.*;
  * Created by zrgam_000 on 4/15/2017.
  */
 public class WallHandler {
+
+    private static WallHandler instance;
     private Map<Region, List<Wall>> regionWalls;
 
-    public WallHandler(){
+    public static WallHandler getInstance(){
+        if(instance == null){
+            instance = new WallHandler();
+        }
+
+        return instance;
+    }
+
+    private WallHandler(){
         regionWalls = new HashMap<Region, List<Wall>>();
     }
 
