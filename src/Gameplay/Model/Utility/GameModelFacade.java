@@ -98,9 +98,9 @@ public class GameModelFacade { //TODO make an abstract facade
         primaryProducerHandler = PrimaryProducerHandler.getInstance();
         secondaryProducerHandler = SecondaryProducerHandler.getInstance();
         wallHandler = WallHandler.getInstance();
-        movementManager = new MovementManager(transporterHandler, wallHandler, goodsHandler);
         userRequestHandler = new UserRequestHandler();
         setUpGoodsHandler();
+        movementManager = new MovementManager(transporterHandler, wallHandler, goodsHandler);
 
         try {
             gameMap.getTiles()[10][10].getRegionMap().getRegionAt(HexaVertex.createVertex(4)).getRegionSet().addRoadRegion(
