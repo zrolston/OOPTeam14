@@ -83,7 +83,7 @@ public class MainView extends JLayeredPane {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                currPhase = ++currPhase % 5;
+//                currPhase = ++currPhase % 5;
 
                 hideAllPhaseSubViews();
 
