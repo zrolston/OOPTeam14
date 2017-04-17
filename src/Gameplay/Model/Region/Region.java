@@ -36,6 +36,10 @@ abstract public class Region {
         return regionSet.connectsByLand(r2);
     }
 
+    public boolean connectsByBridge(Region r2) {
+        return regionSet.hasBridgeTo(r2);
+    }
+
     public List<BuildAbility> getBuildAbilities(Owned owned){
         List<BuildAbility> list = new ArrayList<>();
         for (BuildAbility ability : buildAbilities) {
