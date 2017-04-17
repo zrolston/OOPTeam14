@@ -34,12 +34,12 @@ public class WallSelectionView extends JPanel {
         ArrayList<JButton> btns = new ArrayList<>();
         ArrayList<String> strings = new ArrayList<>();
 
-        strings.add("NE");
+        strings.add("NW");
         strings.add("N");
-        strings.add("W");
-        strings.add("SE");
-        strings.add("S");
+        strings.add("NE");
         strings.add("SW");
+        strings.add("S");
+        strings.add("SE");
 
         for (int i = 0; i < strings.size(); i++) {
             JButton button = new JButton( strings.get(i) );
