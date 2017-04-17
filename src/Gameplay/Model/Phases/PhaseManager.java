@@ -30,6 +30,7 @@ public class PhaseManager {
     private void updateController() {
         mainController.setState(currentState.getPhaseController());
     }
+
     public PhaseState getCurrentState() { return currentState; }
 
     private class TradingPhase implements PhaseState {
@@ -51,7 +52,7 @@ public class PhaseManager {
 
         @Override
         public void advance() {
-            currentState = buildingPhase;
+            currentState = movementPhase;
         }
 
         @Override
@@ -66,7 +67,7 @@ public class PhaseManager {
 
         @Override
         public void advance() {
-            currentState = movementPhase;
+            currentState = wonderPhase;
         }
 
         @Override
@@ -81,7 +82,7 @@ public class PhaseManager {
 
         @Override
         public void advance() {
-            currentState = wonderPhase;
+            currentState = buildingPhase;
         }
 
         @Override
