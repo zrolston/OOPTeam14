@@ -10,6 +10,7 @@ import Gameplay.Model.Producer.ProducerRequest;
 import Gameplay.Model.Producer.UserRequest;
 import Gameplay.Model.Region.Region;
 import Gameplay.Model.Utility.PlayerID;
+import Gameplay.Model.Visitors.BuildAbilityVisitor;
 
 /**
  * Created by zrgam_000 on 4/16/2017.
@@ -39,6 +40,11 @@ public class BuildMine extends BuildAbility{
         ur.reset();
 
         primaryProducerHandler.place(new Mine(), region);
+    }
+
+    @Override
+    public void accept(BuildAbilityVisitor bav) {
+        bav.visitBuildMine(this);
     }
 
 }

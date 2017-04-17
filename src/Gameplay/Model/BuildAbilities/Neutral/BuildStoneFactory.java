@@ -11,6 +11,7 @@ import Gameplay.Model.Producer.SecondaryProducer.GoodProducer.StoneFactory;
 import Gameplay.Model.Producer.UserRequest;
 import Gameplay.Model.Region.Region;
 import Gameplay.Model.Utility.PlayerID;
+import Gameplay.Model.Visitors.BuildAbilityVisitor;
 
 /**
  * Created by zrgam_000 on 4/16/2017.
@@ -41,5 +42,10 @@ public class BuildStoneFactory extends BuildAbility{
         ur.reset();
 
         secondaryProducerHandler.placeGoodsProducer(new StoneFactory(), region);
+    }
+
+    @Override
+    public void accept(BuildAbilityVisitor bav) {
+        bav.visitBuildStoneFactory(this);
     }
 }

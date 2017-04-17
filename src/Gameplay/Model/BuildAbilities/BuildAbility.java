@@ -6,6 +6,7 @@ import Gameplay.Model.Producer.UserRequest;
 import Gameplay.Model.Region.Region;
 import Gameplay.Model.Utility.Owned;
 import Gameplay.Model.Utility.PlayerID;
+import Gameplay.Model.Visitors.BuildAbilityVisitor;
 
 
 public abstract class BuildAbility extends Owned {
@@ -20,4 +21,6 @@ public abstract class BuildAbility extends Owned {
     public ProducerRequest getInput() {
         return input;
     }
+
+    public abstract void accept(BuildAbilityVisitor bav);
 }

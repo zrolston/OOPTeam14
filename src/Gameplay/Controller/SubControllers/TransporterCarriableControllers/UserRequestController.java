@@ -64,6 +64,13 @@ public class UserRequestController extends MoveController implements DropControl
 //        checkForDisplay();
     }
 
+    public Region getRegion(){
+
+        if (getCurrentTransporter() != null) {
+            return getCurrentTransporter().getCurrentRegion();
+        }
+        return  null;
+    }
 
 }
 

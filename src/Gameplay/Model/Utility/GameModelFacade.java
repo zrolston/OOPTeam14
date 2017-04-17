@@ -27,6 +27,7 @@ import Gameplay.Model.Visitors.DropOffExchangeHandler;
 import Gameplay.Model.Visitors.PickUpExchangeHandler;
 import Gameplay.Model.Visitors.RegionPlacableVisitor;
 import MapBuilder.Model.Utility.HexLocation;
+import MapBuilder.Model.Utility.HexaIndex;
 
 import java.util.*;
 
@@ -418,6 +419,10 @@ public class GameModelFacade { //TODO make an abstract facade
 
     public void activateBuildAbility(Region r, BuildAbility ba) {
         ba.build(userRequestHandler.getUserRequest(), r);
+    }
+
+    public void buildWall(Region r, HexaIndex direction) {
+        System.out.println(r + " " + direction);
     }
 
 }
