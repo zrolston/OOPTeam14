@@ -91,13 +91,22 @@ public abstract class TransporterCarriableController implements MainViewControll
     @Override
     public void mousePressed(MouseEvent e) {
         PixelPoint point = new PixelPoint(e.getX(), e.getY());
+
+
+
+        // pass iterator to view
+
+
+
+
+
+
+
         setIndex(view.getCarriableIndex(point));
         System.out.println(index);
         if (!isOutOfBounds(index)) {
             determineClick(index);
         }
-
-
     }
 
     private boolean isOutOfBounds(int index) {
@@ -145,8 +154,11 @@ public abstract class TransporterCarriableController implements MainViewControll
      */
     private void addToPanelLeftColumn(TransporterIterator transporters) {
         if (transporters != null) {
-            setTransIt(transporters);
+            System.out.println("size = " + transporters.size());
+            view.setTranIter(transporters);
         }
+        else
+            System.out.println("transporters null");
     }
 
     /**
@@ -156,7 +168,7 @@ public abstract class TransporterCarriableController implements MainViewControll
      */
     protected void addToPanelRightColumn(CarriableIterator carriables) {
         if (carriables != null) {
-            setCarrIt(carriables);
+            view.setCarrIter(carriables);
         }
     }
 

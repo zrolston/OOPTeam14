@@ -26,6 +26,13 @@ public class TransporterDrawingVisitor implements TransporterVisitor {
 
     @Override
     public void visitDonkey(Donkey d) {
+        int i = 0;
+
+        if(i == 0) {
+            image = ImageLoader.getImage("BLUE_DONKEY");
+            return;
+        }
+
         switch (d.getPlayerID().getID()) {
             case 1:
                 image = ImageLoader.getImage("BLUE_DONKEY");

@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
 /**
  * Created by jordi on 4/16/2017.
  */
-public class MoveControllerTest {
+public class ControllerTest {
 
 
     public static void main(String[] args) {
@@ -31,19 +31,20 @@ public class MoveControllerTest {
         moveController.activateController(display.getMainView());
 
         modelFacade.startGame();
-        moveController.addTransporters(generateCarriableIter(modelFacade));
+//        moveController.addTransporters(generateCarriableIter(modelFacade));
 
     }
 
 
     public static TransporterIterator generateCarriableIter(GameModelFacade modelFacade) {
 
+        System.out.println("gen car iter");
+
 
         if(modelFacade == null)
             return null;
 
-         GameMap map = modelFacade.debugGetMap();
-
+        GameMap map = modelFacade.debugGetMap();
 
         HexLocation loc = CursorState.getInstance().getActiveTile();
 
@@ -51,16 +52,12 @@ public class MoveControllerTest {
 
         System.out.println(tile);
 
-
         RegionMap rm = tile.getRegionMap();
-
-
 
         Region r = rm.getRegionAt( new HexaVertex(2, -1) );
 
-
-
         System.out.println(r);
+        System.out.println("iter size" +  modelFacade.getTransporters(r).size());
         return modelFacade.getTransporters(r);
     }
 
