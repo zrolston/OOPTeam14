@@ -5,6 +5,10 @@ import Gameplay.Model.Map.GameMap;
 import Gameplay.Model.Region.Region;
 import Gameplay.Model.Tile.GameTile;
 import Gameplay.Model.Tile.RegionMap;
+import Gameplay.Model.TransporterFactory.DonkeyFactory;
+import Gameplay.Model.TransporterFactory.SteamerFactory;
+import Gameplay.Model.TransporterFactory.TransporterFactory;
+import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Model.Utility.GameMapDaveBuilder;
 import Gameplay.Model.Utility.GameModelFacade;
 import Gameplay.Model.Utility.HexaVertex;
@@ -35,7 +39,6 @@ public class MoveControllerTest {
 
         modelFacade.startGame();
         moveController.addTransporters(generateCarriableIter(modelFacade));
-
     }
 
 

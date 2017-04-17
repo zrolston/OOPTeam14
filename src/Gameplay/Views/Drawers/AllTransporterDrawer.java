@@ -26,7 +26,7 @@ import java.util.List;
 public class AllTransporterDrawer {
 
     public List<ImageWithLocation> getAllTransporterImages() {
-        List<ImageWithLocation> images = new ArrayList<ImageWithLocation>();
+        List<ImageWithLocation> images = new ArrayList<>();
         GameModelFacade gmf = GameModelFacade.getInstance();
         GameMap gm = gmf.debugGetMap();
 

@@ -20,6 +20,7 @@ import Gameplay.Model.Visitors.Carriable;
 import Gameplay.Model.Visitors.DropOffExchangeHandler;
 import Gameplay.Model.Visitors.PickUpExchangeHandler;
 import Gameplay.Model.Visitors.RegionPlacableVisitor;
+import MapBuilder.Model.Utility.HexLocation;
 
 import java.util.*;
 
@@ -88,18 +89,15 @@ public class GameModelFacade { //TODO make an abstract facade
         GameTile tile1 = gameMap.getTiles()[10][10];
         GameTile tile2 = gameMap.getTiles()[11][10];
 
-        try {
-            wallHandler.addWall(tile1.getRegionAtHexaVertex(HexaVertex.createVertex(4)), tile2.getRegionAtHexaVertex(HexaVertex.createVertex(6)), new Wall());
-            Wall wall = wallHandler.getWallAt(tile1.getRegionAtHexaVertex(HexaVertex.createVertex(1)), tile2.getRegionAtHexaVertex(HexaVertex.createVertex(1)));
-        } catch(Exception e) {
-            System.out.println(e.getStackTrace());
-        }
+//        try {
+//            wallHandler.addWall(tile1.getRegionAtHexaVertex(HexaVertex.createVertex(4)), tile2.getRegionAtHexaVertex(HexaVertex.createVertex(6)), new Wall());
+//            Wall wall = wallHandler.getWallAt(tile1.getRegionAtHexaVertex(HexaVertex.createVertex(1)), tile2.getRegionAtHexaVertex(HexaVertex.createVertex(1)));
+//        } catch(Exception e) {
+//            System.out.println(e.getStackTrace());
+//        }
     }
 
     private void setUpGoodsHandler() {
-
-        TransporterFactory t = new DonkeyFactory();
-        TransporterFactory t2 = new WagonFactory();
 
         PlayerID p2 = PlayerID.getPlayer1ID();
 
@@ -107,6 +105,27 @@ public class GameModelFacade { //TODO make an abstract facade
         transporterHandler = new TransporterHandler();
         GameTile[][] tiles = gameMap.getTiles();
         RegionPlacableVisitor pcv = new RegionPlacableVisitor();
+
+        //TODO delete
+        TransporterFactory factory = new DonkeyFactory();
+        Transporter tr = factory.create();
+        factory = new SteamerFactory();
+        Transporter t = factory.create();
+        tr.setPlayerID(PlayerID.getPlayer1ID());
+        t.setPlayerID(PlayerID.getPlayer1ID());
+
+        try {
+            Region r = gameMap.getTileAt(new HexLocation(10,10)).getRegionAtHexaVertex(HexaVertex.createVertex(1));
+            transporterHandler.place(tr, r);
+            r.enterRegion(tr);
+            r = gameMap.getTileAt(new HexLocation(10,10)).getRegionAtHexaVertex(HexaVertex.createVertex(8));
+            transporterHandler.place(t, r);
+            r.enterRegion(t);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        //TODO delete
+
         for (int i = 0; i < tiles.length; i++) {
             for (int j = 0; j < tiles.length; j++) {
                 if (tiles[i][j] == null)
@@ -117,23 +136,23 @@ public class GameModelFacade { //TODO make an abstract facade
                     Region r = regionIterator.next();
                     r.accept(pcv);
                     if (pcv.getPlacable()) {
-                        // TODO: DELETE THIS
-                        GoodsBag gb = new GoodsBag();
-                        gb.addBoard(new Board());
-                        goodsHandler.place(gb, r);
-
-                        // TODO: DELETE THIS
-                        Transporter tt = t.create();
-
-                        tt.pickUpGood( new Board() );
-
-
-                        tt.setPlayerID( p2 );
-
-                        Transporter ttt = t2.create();
-                        ttt.setPlayerID( p2 );
-                        transporterHandler.place(tt, r);
-                        transporterHandler.place(ttt, r);
+//                        // TODO: DELETE THIS
+//                        GoodsBag gb = new GoodsBag();
+//                        gb.addBoard(new Board());
+//                        goodsHandler.place(gb, r);
+//
+//                        // TODO: DELETE THIS
+//                        Transporter tt = t.create();
+//
+//                        tt.pickUpGood( new Board() );
+//
+//
+//                        tt.setPlayerID( p2 );
+//
+//                        Transporter ttt = t2.create();
+//                        ttt.setPlayerID( p2 );
+//                        transporterHandler.place(tt, r);
+//                        transporterHandler.place(ttt, r);
                     }
                 }
             }
