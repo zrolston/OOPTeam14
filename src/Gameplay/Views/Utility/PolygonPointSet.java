@@ -73,18 +73,7 @@ public class PolygonPointSet{
         return newPoint;
     }
 
-    public PixelPoint getCentroid(PixelPoint offset)  {
-        List<Point> knots = points.get(currRotation);
-        double centroidX = 0, centroidY = 0;
-
-        for(Point knot : knots) {
-            centroidX += knot.getX();
-            centroidY += knot.getY();
-        }
-        return new PixelPoint((int)(centroidX/knots.size())+offset.getX(),(int)(centroidY/knots.size())+offset.getY());
-    }
-
-    public PixelPoint getCentroid2(PixelPoint offset) {
+    public PixelPoint getCentroid(PixelPoint offset) {
         List<Point> knots = points.get(currRotation);
         Point off = knots.get(0);
         double twicearea = 0;
@@ -103,24 +92,4 @@ public class PolygonPointSet{
         f = twicearea * 3;
         return new PixelPoint((int)(x/f+off.getX()+offset.getX()), (int)(y/f+off.getY()+offset.getY()));
     }
-//    const Vec2 findCentroid(Vec2* pts, size_t nPts){
-//        Vec2 off = pts[0];
-//        float twicearea = 0;
-//        float x = 0;
-//        float y = 0;
-//        Vec2 p1, p2;
-//        float f;
-//        for (int i = 0, j = nPts - 1; i < nPts; j = i++) {
-//            p1 = pts[i];
-//            p2 = pts[j];
-//            f = (p1.x - off.x) * (p2.y - off.y) - (p2.x - off.x) * (p1.y - off.y);
-//            twicearea += f;
-//            x += (p1.x + p2.x - 2 * off.x) * f;
-//            y += (p1.y + p2.y - 2 * off.y) * f;
-//        }
-//
-//        f = twicearea * 3;
-//
-//        return Vec2(x / f + off.x, y / f + off.y);
-//    }
 }

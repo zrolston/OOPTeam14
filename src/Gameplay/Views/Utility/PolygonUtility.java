@@ -98,6 +98,22 @@ public class PolygonUtility {
         type4Regions.add(type4region2);
 
 
+        //TYPE #5
+        //-------------------------------------------------------------
+        //River
+        PolygonPointSet type5river = new PolygonPointSet(River5Proportions.river);
+        type5Regions.add(type5river);
+
+        //Regions
+        PolygonPointSet type5region1 = new PolygonPointSet(River5Proportions.region1);
+        PolygonPointSet type5region2 = new PolygonPointSet(River5Proportions.region2);
+        PolygonPointSet type5region3 = new PolygonPointSet(River5Proportions.region3);
+        type5Regions.add(type5region1);
+        type5Regions.add(type5region2);
+        type5Regions.add(type5region3);
+
+
+
         //Add the maps
         typeMap.put(new Integer(0), type0Regions);
         typeMap.put(new Integer(1), type1Regions);

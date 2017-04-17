@@ -73,16 +73,22 @@ public class RegionVertexUtility {
 
 
     public static PixelPoint getRegionCenter(GameTile tile, List<HexaVertex> region){
+        for(HexaVertex v: region){
+            System.out.println(v.getValue());
+        }
         //Set up Map if needed
         if(map == null){
             map = GameModelFacade.getInstance().debugGetMap();
         }
-        ILocation location = null; Integer river = null; Integer rotation = null;
+        ILocation location = map.getHexLocationOf(tile);
+        Integer river = tile.getRiverType();
+        Integer rotation = tile.getRotationNumber();
+
         int regionIndex = -1;
         HexaVertex vertex = null;
         for(int i = 0; i < 4; i++){
             try {
-                vertex = getVertexAt(river, rotation, regionIndex);
+                vertex = getVertexAt(river, rotation, i);
             }catch (Exception e){}
             if(vertex == null) continue;
             for(HexaVertex v: region){
@@ -90,6 +96,7 @@ public class RegionVertexUtility {
                     regionIndex = i;
                 }
             }
+            if(regionIndex != -1)break;
         }
         //Get the right PolygonPointSet for desired Region
         List<PolygonPointSet> points = PolygonUtility.getRegionsByType(river);

@@ -16,7 +16,7 @@ import java.awt.*;
 public class CursorState {
 
     private static CursorState ourInstance = new CursorState();
-    private PixelPoint cursor;
+    private PixelPoint cursor = new PixelPoint(0,0);
     private HexLocation activeTile;
     private boolean markerActive = true;
     private Region activeRegion = null;

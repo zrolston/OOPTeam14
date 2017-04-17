@@ -7,6 +7,7 @@
 
 package Gameplay.Controller;
 import Gameplay.Model.Map.GameMap;
+import Gameplay.Model.Region.Region;
 import Gameplay.Model.Tile.GameTile;
 import Gameplay.Model.Tile.RegionMap;
 import Gameplay.Model.Utility.GameModelFacade;
@@ -22,6 +23,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.List;
+import java.util.Map;
 
 public class CameraController implements MouseMotionListener, MouseListener{
 
@@ -47,6 +49,7 @@ public class CameraController implements MouseMotionListener, MouseListener{
     public void mousePressed(MouseEvent e) {
         camera.recordPress(new PixelPoint(e.getX(), e.getY()));
         cursorState.setMarkerActive(false);
+        testCenters();
     }
 
     @Override
@@ -103,7 +106,6 @@ public class CameraController implements MouseMotionListener, MouseListener{
             if(polygon.contains(current)) {
                 cursorState.setRegionArea(polygon);
                 cursorState.setPointSet(pointSet);
-                cursorState.setCursor(pointSet.getCentroid2(origin));
                 HexaVertex vertex = null;
                 try {
                     vertex = RegionVertexUtility.getVertexAt(riverType, rotation, regionIndex);
@@ -111,7 +113,25 @@ public class CameraController implements MouseMotionListener, MouseListener{
                 RegionMap rm = active.getRegionMap();
                 cursorState.setActiveRegion(rm.getRegionAt(vertex));
             }
+            regionIndex++;
         }
-        regionIndex++;
+    }
+
+    public void testCenters(){
+        //testing Centers
+        PixelPoint point;
+        Region r = cursorState.getActiveRegion();
+        GameTile t = map.getTileAt(cursorState.getActiveTile());
+        List<HexaVertex> list_ = null;
+        Map<List<HexaVertex>, Region> mapping = t.getRegionMap().getRegionMap();
+        for(Map.Entry<List<HexaVertex>, Region> entry : mapping.entrySet()){
+            if (entry.getValue() == r){
+                list_ = entry.getKey();
+                break;
+            }
+        }
+        point = RegionVertexUtility.getRegionCenter(t,list_);
+        System.out.println(point);
+        cursorState.setCursor(point);
     }
 }
