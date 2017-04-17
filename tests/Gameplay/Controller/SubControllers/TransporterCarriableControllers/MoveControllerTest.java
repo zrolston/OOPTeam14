@@ -31,6 +31,7 @@ public class MoveControllerTest {
     public static void main(String[] args) {
 
         Display display = new Display();
+//        GameModelFacade.getInstance().init();
 //        DaveBuilder builder = new GameMapDaveBuilder();
 //        builder.buildMap(mapsDir);
 

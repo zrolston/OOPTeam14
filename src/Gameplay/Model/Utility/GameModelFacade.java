@@ -162,6 +162,7 @@ public class GameModelFacade { //TODO make an abstract facade
             t.pickUpGood(new Board());
             t.pickUpGood(new Stock());
             r.enterRegion(tr);
+            r.enterRegion(truck);
             transporterHandler.place(tr, r);
             transporterHandler.place(truck, r);
             r = gameMap.getTileAt(new HexLocation(10,10)).getRegionAtHexaVertex(HexaVertex.createVertex(8));

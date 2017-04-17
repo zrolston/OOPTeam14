@@ -24,7 +24,7 @@ public class Display extends JFrame{
         setFocusable(true);
 
         mainScreen = new MainView( this );
-        GameModelFacade.getInstance().init();
+
         homeScreen = new HomeView( this );
         wonderScreen = new WonderView( this );
         researchScreen = new ResearchView( this );
