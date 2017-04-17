@@ -1,6 +1,7 @@
 package Gameplay.Controller.SubControllers.TransporterCarriableControllers;
 
 import Gameplay.Controller.PanelControllers.TransporterCarriableController;
+import Gameplay.Controller.SubControllers.RegionCarriableControllers.CarriableDropUserRequest;
 import Gameplay.Controller.SubControllers.RegionCarriableControllers.PickUpController;
 import Gameplay.Controller.SubControllers.RegionSelectionControllers.DropRegionController;
 import Gameplay.Controller.SubControllers.RegionSelectionControllers.MoveRegionController;
@@ -14,111 +15,45 @@ import Gameplay.Model.Utility.GameModelFacade;
  */
 
 
-
-        import Gameplay.Controller.PanelControllers.TransporterCarriableController;
-        import Gameplay.Controller.SubControllers.RegionCarriableControllers.PickUpController;
-        import Gameplay.Controller.SubControllers.RegionSelectionControllers.DropRegionController;
-        import Gameplay.Controller.SubControllers.RegionSelectionControllers.MoveRegionController;
-        import Gameplay.Model.Iterators.TransporterIterator;
-        import Gameplay.Model.Region.Region;
-        import Gameplay.Model.Transporters.Transporter;
-        import Gameplay.Model.Utility.GameModelFacade;
-
-        import Gameplay.Model.Iterators.CarriableIterator;
-        import Gameplay.Model.Map.GameMap;
-        import Gameplay.Model.Tile.GameTile;
-        import Gameplay.Model.Tile.RegionMap;
-        import Gameplay.Model.Utility.HexaVertex;
-        import Gameplay.Views.MainView.TransporterCarriableView;
-        import MapBuilder.Model.Utility.HexLocation;
-        import Gameplay.Views.Utility.CursorState;
-        import MapBuilder.Views.Utility.PixelPoint;
-
-        import java.awt.*;
-        import java.awt.event.MouseEvent;
-        import java.util.ArrayList;
-
 /**
  * Created by jordi on 4/16/2017.
  */
-public class UserRequestController extends TransporterCarriableController implements DropController{
+public class UserRequestController extends MoveController implements DropController{
 
-    private DropRegionController dropRegionController = new DropRegionController(this);
-    private MoveRegionController moveRegionController = new MoveRegionController(this);
-    private PickUpController pickUpController = new PickUpController(this);
-    Region selectedRegion;
     GameModelFacade gameModelFacade = GameModelFacade.getInstance();
-    public static Transporter currentTrans = null;
 
-    @Override
-    protected void carriableClick() {
-        moveRegionController.stop();
-        //TODO: view check if the region is a river, if it isn't drop it on the tile and gameModelFacade.canDropCarriable()
-        activateDropRegionController();
-        //TODO: UNCOMENT THIISSSSSSS!!!!!!!!!!!!!!!!!!!!!!
-//        checkForDisplay();
+    public UserRequestController(GameModelFacade gameModelFacade) {
+        assignPickUpController(new CarriableDropUserRequest (this));
     }
 
     @Override
     protected void transporterClick() {
-        moveRegionController.allowMovement();
         sendCarriable();
         sendTransporter();
-    }
-
-    @Override
-    protected void resume() {
-        changeToDefaultController();
-        clearCurrentCarriable();
-        clearCurrentTransporter();
-
     }
     @Override
     public void changeToDefaultController() {
         checkForDisplay();
-        moveRegionController.activateController(getMainView());
-    }
-
-    public void sendCarriable() {
-//        pickUpController.(getCurrentTransporter());
-    }
-
-    public void sendTransporter() {
-        currentTrans = getCurrentTransporter();
-        moveRegionController.receiveTransporter(getCurrentTransporter());
-    }
-
-    public void checkForDisplay() {
-        if ( getTransporterIterator()!= null && getTransporterIterator().size() == 0) {
-            hidePanel();
-            return;
-        }
-        showPanel();
+        getMoveRegionController().activateController(getMainView());
     }
 
     @Override
     public void dropCarriable(Region region){
         //TODO: maybe add a check
-        gameModelFacade.dropCarriable(region, getCurrentTransporter(),getCurrentCarriable());
+        gameModelFacade.addCarriableToUserRequest(region,getCurrentCarriable());
+        //TODO: add to the bottom panel
         removeCarriable();
         TransporterIterator trans = gameModelFacade.getTransporters(region);
         addTransporters(trans);
     }
-    public Region getPickUpRegion(){
-        return selectedRegion;
-    }
+
+    @Override
     public void setRegion(Region region){
         selectedRegion = region;
-        pickUpController.activateController(getMainView());
-        pickUpController.receiveRegion(region);
+        gameModelFacade.resetUserRequest();
+        getPickupController().activateController(getMainView());
+        getPickupController().receiveRegion(region);
     }
-
-    private void activateDropRegionController(){
-        dropRegionController.activateController(getMainView());
-    }
-
-    // --------
-
 
 
 }

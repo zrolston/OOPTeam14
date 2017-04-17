@@ -32,6 +32,7 @@ public class MoveController extends TransporterCarriableController implements Dr
 
     @Override
     protected void transporterClick() {
+        moveRegionController.allowMovement();
         sendCarriable();
         sendTransporter();
     }
@@ -43,6 +44,7 @@ public class MoveController extends TransporterCarriableController implements Dr
         clearCurrentTransporter();
 
     }
+
     @Override
     public void changeToDefaultController() {
         checkForDisplay();
@@ -59,7 +61,7 @@ public class MoveController extends TransporterCarriableController implements Dr
     }
 
     public void checkForDisplay() {
-        if ( getTransporterIterator()!= null && getTransporterIterator().size() == 0) {
+        if (getTransporterIterator() != null && getTransporterIterator().size() == 0) {
             hidePanel();
             return;
         }
@@ -67,29 +69,37 @@ public class MoveController extends TransporterCarriableController implements Dr
     }
 
     @Override
-    public void dropCarriable(Region region){
+    public void dropCarriable(Region region) {
         //TODO: maybe add a check
-        //TODO: change the gameModelFacade call for the api one
+        gameModelFacade.dropCarriable(region, getCurrentTransporter(), getCurrentCarriable());
         removeCarriable();
         TransporterIterator trans = gameModelFacade.getTransporters(region);
         addTransporters(trans);
     }
-    public Region getPickUpRegion(){
+
+    public Region getPickUpRegion() {
         return selectedRegion;
     }
-    public void setRegion(Region region){
+
+    public void setRegion(Region region) {
         selectedRegion = region;
         pickUpController.activateController(getMainView());
         pickUpController.receiveRegion(region);
     }
 
-    private void activateDropRegionController(){
+    private void activateDropRegionController() {
         dropRegionController.activateController(getMainView());
     }
 
-    // --------
-
-
+    protected void assignPickUpController(PickUpController pickUpController) {
+        this.pickUpController = pickUpController;
+    }
+    protected MoveRegionController getMoveRegionController(){
+        return moveRegionController;
+    }
+    protected PickUpController getPickupController(){
+        return pickUpController;
+    }
 
 }
 

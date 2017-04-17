@@ -16,9 +16,9 @@ public class CarriableDropUserRequest extends PickUpController{
     protected void carriableClick() {
         GameModelFacade gmf = GameModelFacade.getInstance();
 
-        Transporter currentTrans = MoveController.currentTrans;
-        if (areContributorsNull( currentRegion, currentTrans, getCurrentCarriable())) {
-            gmf.pickUpCarriable(currentRegion, currentTrans, getCurrentCarriable());
+        if (getCurrentRegion()!= null && getCurrentCarriable()!= null) {
+            //TODO: add to the bottom panel
+            gmf.addCarriableToUserRequest(getCurrentRegion(), getCurrentCarriable());
             removeCarriable();
         }
     }
