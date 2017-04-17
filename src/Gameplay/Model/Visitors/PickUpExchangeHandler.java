@@ -17,12 +17,18 @@ public class PickUpExchangeHandler extends ExchangeHandler {
 
     @Override
     public void visitTransporter(Transporter transporter) {
+        if(!exchangePossible()){
+            return;
+        }
         target.pickUpTransporter(transporter);
         occupancy.remove(transporter);
     }
 
     @Override
     public void visitGood(Good good) {
+        if(!exchangePossible()){
+            return;
+        }
         regionGoodsBag.removeGood(good);
         target.pickUpGood(good);
     }

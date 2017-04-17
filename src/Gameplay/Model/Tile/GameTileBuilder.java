@@ -1,10 +1,12 @@
 package Gameplay.Model.Tile;
 
+import Gameplay.Model.BuildAbilities.Neutral.*;
 import Gameplay.Model.Region.Region;
 import Gameplay.Model.Region.LandRegion;
 import Gameplay.Model.Region.RiverRegion;
 import Gameplay.Model.Region.SeaRegion;
 import Gameplay.Model.Utility.HexaVertex;
+import Gameplay.Model.Utility.PlayerID;
 import Gameplay.Model.Utility.RiverConvention;
 import MapBuilder.Model.Terrain.*;
 
@@ -19,6 +21,7 @@ public class GameTileBuilder {
     private TileState state;
     private int riverType, rotationNumber;
     private RiverConvention riverConvention;
+    private final PlayerID nID = PlayerID.getNeutralPlayerID();
 
     public GameTileBuilder(RiverConvention riverConvention) {
         this.riverConvention = riverConvention;
@@ -158,17 +161,11 @@ public class GameTileBuilder {
     }
 
     abstract private class TileState{
-        abstract void addAbilities();
         abstract Region getRegion();
         abstract Terrain getTerrain();
     }
 
     private class DesertState extends TileState{
-
-        @Override
-        void addAbilities() {
-
-        }
 
         @Override
         Region getRegion() {
@@ -180,16 +177,22 @@ public class GameTileBuilder {
             return new DesertTerrain();
         }
     }
+
     private class MountainState extends TileState{
 
         @Override
-        void addAbilities() {
-
-        }
-
-        @Override
         Region getRegion() {
-            return new LandRegion();
+            return new LandRegion(
+                    new BuildCoalBurner(nID),
+                    new BuildMine(nID),
+                    new BuildMint(nID),
+                    new BuildPaperMill(nID),
+                    new BuildRaftFactory(nID),
+                    new BuildSawMill(nID),
+                    new BuildStockMarket(nID),
+                    new BuildStoneFactory(nID),
+                    new BuildWagonFactory(nID)
+            );
         }
 
         @Override
@@ -197,16 +200,21 @@ public class GameTileBuilder {
             return new MountainTerrain();
         }
     }
+
     private class PastureState extends TileState{
 
         @Override
-        void addAbilities() {
-
-        }
-
-        @Override
         Region getRegion() {
-            return new LandRegion();
+            return new LandRegion(
+                    new BuildCoalBurner(nID),
+                    new BuildMint(nID),
+                    new BuildPaperMill(nID),
+                    new BuildRaftFactory(nID),
+                    new BuildSawMill(nID),
+                    new BuildStockMarket(nID),
+                    new BuildStoneFactory(nID),
+                    new BuildWagonFactory(nID)
+            );
         }
 
         @Override
@@ -214,16 +222,22 @@ public class GameTileBuilder {
             return new PastureTerrain();
         }
     }
+
     private class RockState extends TileState{
 
         @Override
-        void addAbilities() {
-
-        }
-
-        @Override
         Region getRegion() {
-            return new LandRegion();
+            return new LandRegion(
+                    new BuildCoalBurner(nID),
+                    new BuildMint(nID),
+                    new BuildPaperMill(nID),
+                    new BuildRaftFactory(nID),
+                    new BuildSawMill(nID),
+                    new BuildStockMarket(nID),
+                    new BuildStoneFactory(nID),
+                    new BuildWagonFactory(nID),
+                    new BuildQuarry(nID)
+            );
         }
 
         @Override
@@ -231,16 +245,22 @@ public class GameTileBuilder {
             return new RockTerrain();
         }
     }
+
     private class WoodsState extends TileState{
 
         @Override
-        void addAbilities() {
-
-        }
-
-        @Override
         Region getRegion() {
-            return new LandRegion();
+            return new LandRegion(
+                    new BuildCoalBurner(nID),
+                    new BuildMint(nID),
+                    new BuildPaperMill(nID),
+                    new BuildRaftFactory(nID),
+                    new BuildSawMill(nID),
+                    new BuildStockMarket(nID),
+                    new BuildStoneFactory(nID),
+                    new BuildWagonFactory(nID),
+                    new BuildWoodCutter(nID)
+            );
         }
 
         @Override
@@ -248,12 +268,8 @@ public class GameTileBuilder {
             return new WoodsTerrain();
         }
     }
+
     private class SeaState extends TileState{
-
-        @Override
-        void addAbilities() {
-
-        }
 
         @Override
         Region getRegion() {

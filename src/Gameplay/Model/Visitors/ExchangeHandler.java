@@ -17,4 +17,8 @@ public abstract class ExchangeHandler implements GenericCarriableVisitor{
         this.regionGoodsBag = regionGoodsBag;
         this.target = target;
     }
+
+    protected boolean exchangePossible() {
+        return target.getCurrentRegion().connectsByBridge(occupancy.getRegion()) || target.getCurrentRegion() == occupancy.getRegion();
+    }
 }
