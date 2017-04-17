@@ -4,16 +4,15 @@ import Gameplay.Model.Goods.GoodsBag;
 import Gameplay.Model.Region.Region;
 import Gameplay.Model.Transporters.Transporter;
 
-/**
- * Created by zrgam_000 on 4/17/2017.
- */
 public class MovementManager {
     private TransporterHandler transporterHandler;
     private WallHandler wallHandler;
     private GoodsHandler goodsHandler;
 
-    public MovementManager(){
-
+    public MovementManager(TransporterHandler th, WallHandler wh, GoodsHandler gh){
+        this.transporterHandler = th;
+        this.wallHandler = wh;
+        this.goodsHandler = gh;
     }
 
     public void move(Transporter transporter, Region region, boolean geese){
@@ -33,7 +32,7 @@ public class MovementManager {
     }
 
     private boolean walledOff(Transporter transporter, Region region){
-        return wallHandler.getWallAt(transporter.getCurrentRegion(), region).matches(transporter);
+        return !wallHandler.canPass(transporter.getCurrentRegion(), region, transporter);
     }
 
     private void moveGeese(GoodsBag source, GoodsBag target){

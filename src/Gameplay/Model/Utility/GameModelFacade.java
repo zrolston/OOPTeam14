@@ -71,10 +71,10 @@ public class GameModelFacade { //TODO make an abstract facade
 
     public void startGame() {
         setUpGoodsHandler();
-//        transporterHandler = new TransporterHandler();
         primaryProducerHandler = new PrimaryProducerHandler();
         secondaryProducerHandler = new SecondaryProducerHandler();
         wallHandler = new WallHandler();
+        movementManager = new MovementManager(transporterHandler, wallHandler, goodsHandler);
 
         try {
             gameMap.getTiles()[10][10].getRegionMap().getRegionAt(HexaVertex.createVertex(4)).getRegionSet().addRoadRegion(
@@ -101,7 +101,7 @@ public class GameModelFacade { //TODO make an abstract facade
         TransporterFactory t = new DonkeyFactory();
         TransporterFactory t2 = new WagonFactory();
 
-        PlayerID p2 = new PlayerID(0);
+        PlayerID p2 = PlayerID.getPlayer1ID();
 
         goodsHandler = new GoodsHandler();
         transporterHandler = new TransporterHandler();

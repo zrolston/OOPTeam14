@@ -23,7 +23,7 @@ public class Main {
         Transporter t = factory.create();
 
         public MyExecuter(){
-            t.setPlayerID(PlayerID.getNewPlayerID());
+            t.setPlayerID(PlayerID.getPlayer2ID());
         }
 
         @Override
