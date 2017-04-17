@@ -37,12 +37,12 @@ public class MoveControllerTest {
         builder.buildMap(mapsDir);
         GameModelFacade modelFacade =  GameModelFacade.getInstance();
 
-//        TradingController tradingController = new TradingController();
-//        tradingController.activateController(display.getMainView());
+        TradingController tradingController = new TradingController();
+        tradingController.activateController(display.getMainView());
 
         //Creating and linking the Move Controller
-        MoveController moveController = new MoveController();
-        moveController.activateController(display.getMainView());
+//        MoveController moveController = new MoveController();
+//        moveController.activateController(display.getMainView());
 
         //Creating and linking the Main Controller
         MainController mainController = new MainController(display.getMainView());
@@ -51,7 +51,7 @@ public class MoveControllerTest {
 
         //Starts the Game and generates Transporters
         modelFacade.startGame();
-        moveController.addTransporters(generateCarriableIter(modelFacade));
+//        moveController.addTransporters(generateCarriableIter(modelFacade));
 
         modelFacade.startGame();
 //        moveController.addTransporters(generateCarriableIter(modelFacade));
