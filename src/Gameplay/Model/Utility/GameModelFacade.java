@@ -376,6 +376,7 @@ public class GameModelFacade { //TODO make an abstract facade
         userRequestHandler.reset();
     }
 
+
     public void generateBridge(Region start, Region end){
         //Implementation goes Here
         System.out.println("Create Bridge");
@@ -384,4 +385,9 @@ public class GameModelFacade { //TODO make an abstract facade
         //Implementation goes Here
         System.out.println("Create Road");
     }
+
+    public List<Carriable> getUserRequestCarriables() {
+        return userRequestHandler.getCarriables();
+    }
+
 }

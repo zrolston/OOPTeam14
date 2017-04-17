@@ -16,6 +16,8 @@ public class SecondaryProducerHandler {
     Map<Region, SecondaryGoodProducer> goodOccupancyMap;
     Map<Region, SecondaryTransporterProducer> factoryOccupancyMap;
 
+    GoodsHandler goodsHandler;
+
     public SecondaryProducerHandler(){
         goodOccupancyMap = new HashMap<>();
         factoryOccupancyMap = new HashMap<>();
@@ -23,10 +25,13 @@ public class SecondaryProducerHandler {
 
     public void placeGoodsProducer(SecondaryGoodProducer producer, Region region){
         goodOccupancyMap.put(region, producer);
+        producer.setGoodsBag(goodsHandler.getGoodsBagAt(region));
     }
 
     public void placeTransporterProducer(SecondaryTransporterProducer producer, Region region){
         factoryOccupancyMap.put(region, producer);
+        producer.setGoodsBag(goodsHandler.getGoodsBagAt(region));
+
     }
 
     public SecondaryGoodProducer getSecondaryProducerAt(Region r){

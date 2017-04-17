@@ -27,7 +27,7 @@ public class Mine extends PrimaryProducer {
     }
 
     @Override
-    public GoodsBag produce() {
+    public GoodsBag generateOutput() {
         GoodsBag goods = new GoodsBag();
         if (numGold + numIron == 0)
             return goods;

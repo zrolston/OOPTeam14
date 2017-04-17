@@ -19,6 +19,7 @@ public class Papermill extends SecondaryGoodProducer {
     private List<ProducerRequest> inputs;
 
     public Papermill() {
+        setMaxCapacity(1);
         generateInputs();
     }
 
@@ -38,7 +39,7 @@ public class Papermill extends SecondaryGoodProducer {
         inputs.add(new ProducerRequest(goods3, null));
     }
 
-    private GoodsBag generateOutputs() {
+    protected GoodsBag generateOutputs() {
         GoodsBag goods = new GoodsBag();
         goods.addPaper(new Paper());
         return goods;
@@ -47,19 +48,5 @@ public class Papermill extends SecondaryGoodProducer {
     @Override
     public void accept(ProducerVisitor pv) {
         pv.visitPapermill(this);
-    }
-
-    @Override
-    public GoodsBag produce(UserRequest ur) {
-        for (ProducerRequest input : inputs) {
-            if (!ur.contains(input))
-                continue;
-            else {
-                ur.removeUsed(input);
-                ur.reset();
-                return generateOutputs();
-            }
-        }
-        return new GoodsBag();
     }
 }

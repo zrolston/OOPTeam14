@@ -16,7 +16,7 @@ public class WoodCutter extends PrimaryProducer {
     }
 
     @Override
-    public GoodsBag produce() {
+    public GoodsBag generateOutput() {
         GoodsBag goods = new GoodsBag();
         goods.addTrunk(new Trunk());
         return goods;

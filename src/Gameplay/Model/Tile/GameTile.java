@@ -59,4 +59,8 @@ public class GameTile extends Tile {
     public int getRotationNumber(){
         return rotationNumber;
     }
+
+    public Region getRiver() {
+        return regionMap.getRiver();
+    }
 }
