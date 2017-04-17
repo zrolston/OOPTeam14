@@ -148,6 +148,17 @@ public class HexLocation implements ILocation {
         return myAdj;
     }
 
+    public HexaIndex getIndexOfLocation(HexLocation hl) {
+        try {
+            for (int i = 1; i <= 6; i++) {
+                HexaIndex index = HexaIndex.createIndex(i);
+                if (this.getLocationAtIndex(index).equals(hl))
+                    return index;
+            }
+        } catch(Exception e) {}
+        return null;
+    }
+
     @Override
     public boolean equals(Object location) {
         boolean equal = location instanceof HexLocation;
