@@ -1,9 +1,11 @@
-package Gameplay.Model.Producer.SecondaryProducer.TransporterProducer;
+package Gameplay.Model.Producer.SecondaryProducer.TransporterProducer.LandTransporterProducers;
 
 import Gameplay.Model.Goods.Board;
 import Gameplay.Model.Goods.GoodsBag;
 import Gameplay.Model.Producer.ProducerRequest;
+import Gameplay.Model.Producer.SecondaryProducer.TransporterProducer.SecondaryTransporterProducer;
 import Gameplay.Model.Producer.UserRequest;
+import Gameplay.Model.Region.Region;
 import Gameplay.Model.TransporterFactory.WagonFactory;
 import Gameplay.Model.Transporters.LandTransporters.Donkey;
 import Gameplay.Model.Transporters.LandTransporters.Wagon;
@@ -13,12 +15,13 @@ import Gameplay.Model.Visitors.ProducerVisitor;
 /**
  * Created by Willie on 4/15/2017.
  */
-public class WagonProducer extends SecondaryTransporterProducer {
+public class WagonProducer extends LandTransporterProducer {
 
     private ProducerRequest input;
 
-    public WagonProducer() {
-        super(new WagonFactory());
+    public WagonProducer(Region region) {
+        super(new WagonFactory(), region);
+        setMaxCapacity(1);
         generateInput();
     }
 
@@ -34,14 +37,5 @@ public class WagonProducer extends SecondaryTransporterProducer {
         pv.visitWagonFactory(this);
     }
 
-    @Override
-    public Transporter produce(UserRequest ur) {
-        if (!ur.contains(input))
-            return null;
-        else {
-            ur.removeUsed(input);
-            ur.reset();
-            return generateOutputs();
-        }
-    }
+
 }

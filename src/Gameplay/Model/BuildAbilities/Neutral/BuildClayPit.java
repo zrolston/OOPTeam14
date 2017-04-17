@@ -25,9 +25,6 @@ public class BuildClayPit extends BuildAbility {
         input = new ProducerRequest(goods, null);
     }
 
-
-
-
     @Override
     public void build(UserRequest ur, Region region) {
         if(!ur.contains(getInput())){

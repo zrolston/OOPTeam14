@@ -10,7 +10,6 @@ import Gameplay.Model.Utility.PlayerID;
 
 public abstract class BuildAbility extends Owned {
     protected ProducerRequest input;
-    private Region placement;
 
     public BuildAbility(PlayerID id){
         setPlayerID(id);
@@ -20,9 +19,5 @@ public abstract class BuildAbility extends Owned {
 
     public ProducerRequest getInput() {
         return input;
-    }
-
-    public Region getPlacement() {
-        return placement;
     }
 }

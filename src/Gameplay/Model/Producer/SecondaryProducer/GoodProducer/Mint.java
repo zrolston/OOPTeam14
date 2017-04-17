@@ -16,6 +16,7 @@ public class Mint extends SecondaryGoodProducer {
     private ProducerRequest input;
 
     public Mint() {
+        setMaxCapacity(1);
         generateInput();
     }
 
@@ -27,7 +28,7 @@ public class Mint extends SecondaryGoodProducer {
         input = new ProducerRequest(goods, null);
     }
 
-    private GoodsBag generateOutputs() {
+    protected GoodsBag generateOutputs() {
         GoodsBag goods = new GoodsBag();
         goods.addCoins(new Coins());
         return goods;
@@ -36,16 +37,5 @@ public class Mint extends SecondaryGoodProducer {
     @Override
     public void accept(ProducerVisitor pv) {
         pv.visitMint(this);
-    }
-
-    @Override
-    public GoodsBag produce(UserRequest ur) {
-        if (!ur.contains(input))
-            return new GoodsBag();
-        else {
-            ur.removeUsed(input);
-            ur.reset();
-            return generateOutputs();
-        }
     }
 }

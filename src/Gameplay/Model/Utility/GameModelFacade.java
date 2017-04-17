@@ -1,9 +1,13 @@
 package Gameplay.Model.Utility;
 
+import Gameplay.Model.BuildAbilities.BuildAbility;
 import Gameplay.Model.Map.GameMap;
 import Gameplay.Model.Phases.PhaseManager;
 import Gameplay.Model.Phases.PhaseState;
 import Gameplay.Model.Producer.Producer;
+import Gameplay.Model.Producer.SecondaryProducer.GoodProducer.SecondaryGoodProducer;
+import Gameplay.Model.Producer.SecondaryProducer.SecondaryProducer;
+import Gameplay.Model.Producer.SecondaryProducer.TransporterProducer.SecondaryTransporterProducer;
 import Gameplay.Model.Region.Region;
 
 import Gameplay.Model.Goods.*;
@@ -36,8 +40,12 @@ public class GameModelFacade { //TODO make an abstract facade
     private SecondaryProducerHandler secondaryProducerHandler;
     private MovementManager movementManager;
     private WallHandler wallHandler;
+
     private PhaseManager phaseManager;
     private PlayerID currentPlayer;
+
+    private UserRequestHandler userRequestHandler;
+
 
     private GameModelFacade(GameMap map) {
         this.gameMap = map;
@@ -90,6 +98,7 @@ public class GameModelFacade { //TODO make an abstract facade
         secondaryProducerHandler = new SecondaryProducerHandler();
         wallHandler = new WallHandler();
         movementManager = new MovementManager(transporterHandler, wallHandler, goodsHandler);
+        userRequestHandler = new UserRequestHandler();
 
         try {
             gameMap.getTiles()[10][10].getRegionMap().getRegionAt(HexaVertex.createVertex(4)).getRegionSet().addRoadRegion(
@@ -364,6 +373,51 @@ public class GameModelFacade { //TODO make an abstract facade
         return new CarriableIterator(myShit);
     }
 
+    public void addCarriableToUserRequest(Transporter t, Carriable c) {
+        userRequestHandler.addCarriable(t.getGoodsBag(), c);
+    }
 
+    
+    public void addCarriableToUserRequest(Region r, Carriable c) {
+        userRequestHandler.addCarriable(goodsHandler.getGoodsBagAt(r), c);
+    }
+
+    public void resetUserRequest() {
+        userRequestHandler.reset();
+    }
+
+
+    public void generateBridge(Region start, Region end){
+        //Implementation goes Here
+        System.out.println("Create Bridge");
+    }
+    public void generateRoad(Region start, Region end) {
+        //Implementation goes Here
+        System.out.println("Create Road");
+    }
+
+    public List<Carriable> getUserRequestCarriables() {
+        return userRequestHandler.getCarriables();
+    }
+
+    public void produce(Region r) {
+        SecondaryTransporterProducer stp = secondaryProducerHandler.getTransporterProducerAt(r);
+        SecondaryGoodProducer sgp = secondaryProducerHandler.getSecondaryProducerAt(r);
+        if (stp != null) {
+            stp.produce(userRequestHandler.getUserRequest());
+        }
+        else if (sgp != null) {
+            sgp.produce(userRequestHandler.getUserRequest());
+        }
+    }
+
+    public List<BuildAbility> getBuildAbilities(Region r) {
+        //TODO add current player
+        return r.getBuildAbilities(null);
+    }
+
+    public void activateBuildAbility(Region r, BuildAbility ba) {
+        ba.build(userRequestHandler.getUserRequest(), r);
+    }
 
 }

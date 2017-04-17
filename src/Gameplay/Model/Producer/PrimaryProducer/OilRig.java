@@ -16,7 +16,7 @@ public class OilRig extends PrimaryProducer {
     }
 
     @Override
-    public GoodsBag produce() {
+    public GoodsBag generateOutput() {
         GoodsBag goods = new GoodsBag();
         goods.addFuel(new Fuel());
         return goods;

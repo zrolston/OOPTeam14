@@ -2,6 +2,7 @@ package Gameplay.Controller.PhaseStateControllers;
 
 import Gameplay.Controller.MainViewController;
 import Gameplay.Controller.PhaseStateController;
+import Gameplay.Controller.SubControllers.TransporterCarriableControllers.TradingController;
 import Gameplay.Views.MainView.MainView;
 
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
  */
 public class TradePhaseStateController extends PhaseStateController {
 
-
+    TradingController tradingController;
 
     @Override
     public String toString() {
@@ -19,7 +20,7 @@ public class TradePhaseStateController extends PhaseStateController {
     }
 
     @Override
-    public void activateController(MainView mainView) {
-
+    public void activateState(MainView mainView) {
+        tradingController= new TradingController();
     }
 }

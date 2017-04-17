@@ -7,7 +7,6 @@ import Gameplay.Model.Goods.Stone;
 import Gameplay.Model.Map.SecondaryProducerHandler;
 import Gameplay.Model.Producer.ProducerRequest;
 import Gameplay.Model.Producer.SecondaryProducer.GoodProducer.Papermill;
-import Gameplay.Model.Producer.SecondaryProducer.TransporterProducer.RaftProducer;
 import Gameplay.Model.Producer.UserRequest;
 import Gameplay.Model.Region.Region;
 import Gameplay.Model.Utility.PlayerID;
