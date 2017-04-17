@@ -5,9 +5,12 @@ import Gameplay.Model.Iterators.CarriableIterator;
 import Gameplay.Model.Iterators.TransporterIterator;
 import Gameplay.Model.Producer.PrimaryProducer.ClayPit;
 import Gameplay.Model.Producer.Producer;
-import Gameplay.Model.Producer.SecondaryProducer.TransporterProducer.WagonProducer;
 import Gameplay.Model.TransporterFactory.TransporterFactory;
 import Gameplay.Model.Transporters.Transporter;
+
+import Gameplay.Model.Producer.Producer;
+import Gameplay.Model.Producer.SecondaryProducer.TransporterProducer.LandTransporterProducers.WagonProducer;
+import Gameplay.Model.Region.LandRegion;
 import Gameplay.Model.Visitors.Carriable;
 import Gameplay.Views.Drawers.CarriableDrawingVisitor;
 import Gameplay.Views.Drawers.ProducerDrawingVisitor;
@@ -18,7 +21,6 @@ import MapBuilder.Views.Utility.PixelPoint;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.List;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
@@ -44,6 +46,14 @@ public class RegionCarriableView extends JPanel {
     public RegionCarriableView() {
 
         images = new ArrayList<>();
+
+
+        // GET BELOW IMAGES FROM CONTROLLER OR ITERATOR
+        Producer p = new WagonProducer(new LandRegion());
+        ProducerDrawingVisitor gv = new ProducerDrawingVisitor();
+        p.accept(gv);
+        images.add( gv.getImage() );
+        /////////////////////////////////////////////////////
 
         setLayout(new BorderLayout());
         setBounds((int)(PixelMap.SCREEN_WIDTH *34.0/40), (int)(PixelMap.SCREEN_HEIGHT * .17), PixelMap.SCREEN_WIDTH /7, (int)(PixelMap.SCREEN_HEIGHT * (0.45)));

@@ -16,6 +16,7 @@ public class StockMarket extends SecondaryGoodProducer {
     private ProducerRequest input;
 
     public StockMarket() {
+        setMaxCapacity(2);
         generateInput();
     }
 
@@ -27,7 +28,7 @@ public class StockMarket extends SecondaryGoodProducer {
         input = new ProducerRequest(goods, null);
     }
 
-    private GoodsBag generateOutputs() {
+    protected GoodsBag generateOutputs() {
         GoodsBag goods = new GoodsBag();
         goods.addStock(new Stock());
         return goods;
@@ -36,16 +37,5 @@ public class StockMarket extends SecondaryGoodProducer {
     @Override
     public void accept(ProducerVisitor pv) {
         pv.visitStockMarket(this);
-    }
-
-    @Override
-    public GoodsBag produce(UserRequest ur) {
-        if (!ur.contains(input))
-            return new GoodsBag();
-        else {
-            ur.removeUsed(input);
-            ur.reset();
-            return generateOutputs();
-        }
     }
 }

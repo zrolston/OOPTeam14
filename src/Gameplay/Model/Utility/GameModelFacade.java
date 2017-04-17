@@ -367,12 +367,27 @@ public class GameModelFacade { //TODO make an abstract facade
         userRequestHandler.addCarriable(t.getGoodsBag(), c);
     }
 
+    
     public void addCarriableToUserRequest(Region r, Carriable c) {
         userRequestHandler.addCarriable(goodsHandler.getGoodsBagAt(r), c);
     }
 
     public void resetUserRequest() {
         userRequestHandler.reset();
+    }
+
+
+    public void generateBridge(Region start, Region end){
+        //Implementation goes Here
+        System.out.println("Create Bridge");
+    }
+    public void generateRoad(Region start, Region end) {
+        //Implementation goes Here
+        System.out.println("Create Road");
+    }
+
+    public List<Carriable> getUserRequestCarriables() {
+        return userRequestHandler.getCarriables();
     }
 
 }

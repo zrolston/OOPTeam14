@@ -15,12 +15,16 @@ import java.util.Map;
 public class PrimaryProducerHandler {
     Map<Region, PrimaryProducer> occupancyMap;
 
+    GoodsHandler goodsHandler;
+
     public PrimaryProducerHandler(){
         occupancyMap = new HashMap<>();
     }
 
     public void place(PrimaryProducer producer, Region region){
+
         occupancyMap.put(region, producer);
+        producer.setGoodsBag(goodsHandler.getGoodsBagAt(region));
     }
 
     public PrimaryProducer getPrimaryProducerAt(Region r){

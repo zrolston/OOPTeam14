@@ -16,7 +16,7 @@ public class StoneQuarry extends PrimaryProducer {
     }
 
     @Override
-    public GoodsBag produce() {
+    public GoodsBag generateOutput() {
         GoodsBag goods = new GoodsBag();
         goods.addStone(new Stone());
         return goods;
