@@ -6,6 +6,7 @@ import MapBuilder.Views.Utility.ImageLoader;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class WonderView extends JPanel {
@@ -13,6 +14,9 @@ public class WonderView extends JPanel {
 	BufferedImage wonderBackground = ImageLoader.getImage("WONDER_BACKGROUND");
     ScreenSelectButtons screenSelectBtns;
     Display display;
+	int orangeCount;
+	int blueCount;
+	int neutralCount;
 
     public WonderView(Display display) {
         this.display = display;
@@ -44,7 +48,21 @@ public class WonderView extends JPanel {
     	drawBrick(g, 1, "NEUTRAL", x, y, width, height);
     	drawBrick(g, 2, "ORANGE", x, y, width, height);
     	drawBrick(g, 3, "NEUTRAL", x, y, width, height);
+
     }
+
+    public void drawNeutralBrick() {
+    	neutralCount++;
+	}
+
+	public void drawBlueBrick() {
+		blueCount++;
+	}
+
+	public void drawOrangeBrick() {
+		orangeCount++;
+	}
+
     
     private void drawCircle(Graphics g, int position, String color, int x, int y, int width, int height) {
     	BufferedImage marker = ImageLoader.getImage(color + "_MARKER");
@@ -55,6 +73,7 @@ public class WonderView extends JPanel {
     	int markerHeight = (int)(marker.getHeight() * scale);
     	g.drawImage(marker, xPosition, yPosition, markerWidth, markerHeight, null);
     }
+
 
     private void drawBrick(Graphics g, int position, String color, int x, int y, int width, int height) {
     	int level = 0; //This is the level from the bottom of the wonder that the brick is on
@@ -75,7 +94,11 @@ public class WonderView extends JPanel {
     	int brickWidth = (int)(brick.getWidth() * scale);
     	int brickHeight = (int)(brick.getHeight() * scale);
     	g.drawImage(brick, brickX, brickY, brickWidth, brickHeight, null);
+    	count++;
 	}
+
+
+
 
 	public void addCustomListenersToScreenSelectBtns() {
 		screenSelectBtns.addListnerToMainScreenButton( e -> display.displayMainScreen() );
