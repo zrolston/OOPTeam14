@@ -46,10 +46,8 @@ public class TransporterIterator implements StuffIterator {
         TransporterDrawingVisitor t = new TransporterDrawingVisitor();
         getCurrent().accept(t);
         BufferedImage transporterImage = t.getImage();
-
-        System.out.println("image = " + transporterImage);
-
-        return transporterImage;    }
+        return transporterImage;
+    }
 
     public Transporter getTransporterAt(int number) {
         if (isInBounds(number)) {

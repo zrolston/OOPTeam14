@@ -14,7 +14,6 @@ import MapBuilder.Model.Utility.HexLocation;
 import MapBuilder.Model.Utility.MapParsers.BuildMapDaveBuilder;
 import MapBuilder.Model.Utility.MapParsers.DaveBuilder;
 
-import static org.junit.Assert.*;
 
 /**
  * Created by jordi on 4/16/2017.

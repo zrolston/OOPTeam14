@@ -52,9 +52,6 @@ public class TransporterCarriableView extends JPanel {
         if(tranIter == null)
             return;
 
-        System.out.println("tran iter size: " + tranIter.size());
-
-
         tranIter.first();
         int i = 0;
         while (i < tranIter.size()) {

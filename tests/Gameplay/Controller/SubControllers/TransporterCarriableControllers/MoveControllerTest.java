@@ -25,7 +25,7 @@ public class MoveControllerTest {
     public static void main(String[] args) {
         Display display = new Display();
         DaveBuilder builder = new GameMapDaveBuilder();
-        builder.buildMap("/Users/Thomas/Desktop/OOPTeam14/res/SavedMaps/full board map.dave");
+        builder.buildMap("C:\\Users\\jordi\\Desktop\\OOP Project\\Iteration3\\OOPTeam14\\res\\SavedMaps\\full board map.dave");
         GameModelFacade modelFacade =  GameModelFacade.getInstance();
         MoveController moveController = new MoveController();
         moveController.activateController(display.getMainView());
