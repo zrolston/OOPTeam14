@@ -30,6 +30,7 @@ public class PhaseManager {
     private void updateController() {
         mainController.setState(currentState.getPhaseController());
     }
+    public PhaseState getCurrentState() { return currentState; }
 
     private class TradingPhase implements PhaseState {
         TradePhaseStateController tradeController = new TradePhaseStateController();

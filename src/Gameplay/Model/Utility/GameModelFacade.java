@@ -1,6 +1,8 @@
 package Gameplay.Model.Utility;
 
 import Gameplay.Model.Map.GameMap;
+import Gameplay.Model.Phases.PhaseManager;
+import Gameplay.Model.Phases.PhaseState;
 import Gameplay.Model.Producer.Producer;
 import Gameplay.Model.Region.Region;
 
@@ -33,12 +35,18 @@ public class GameModelFacade { //TODO make an abstract facade
     private SecondaryProducerHandler secondaryProducerHandler;
     private MovementManager movementManager;
     private WallHandler wallHandler;
+    private PhaseManager phaseManager;
 
     private GameModelFacade(GameMap map) {
         this.gameMap = map;
         maxMapLength = map.getLength();
         maxMapWidth = map.getWidth();
     }
+
+    //Controlling the Phase Manager
+    public void setPhaseManager(PhaseManager phaseManager){ this.phaseManager = phaseManager; }
+    public void nextPhase(){ phaseManager.advancePhase(); }
+    public PhaseState getCurrentPhase(){ return phaseManager.getCurrentState(); }
 
     public static GameModelFacade getInstance(){
         if (isInitialized()) {
