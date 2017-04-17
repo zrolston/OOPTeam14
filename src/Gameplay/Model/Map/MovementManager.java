@@ -10,9 +10,9 @@ public class MovementManager {
     private GoodsHandler goodsHandler;
 
     public MovementManager(TransporterHandler th, WallHandler wh, GoodsHandler gh){
-        this.transporterHandler = th;
-        this.wallHandler = wh;
-        this.goodsHandler = gh;
+        this.transporterHandler = TransporterHandler.getInstance();
+        this.wallHandler = WallHandler.getInstance();
+        this.goodsHandler = GoodsHandler.getInstance();
     }
 
     public void move(Transporter transporter, Region region, boolean geese){

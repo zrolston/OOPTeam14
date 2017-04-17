@@ -9,7 +9,7 @@ import Gameplay.Views.Display;
 import Gameplay.Views.Utility.CursorState;
 import Gameplay.Views.Utility.Executor;
 
-public class Main {
+public class RunGame {
     public static void main(String[] args) {
         Game game = new Game();
         game.runGame();

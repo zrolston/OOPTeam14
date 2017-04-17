@@ -1,7 +1,11 @@
 package Gameplay.Model.Utility;
 
 import Gameplay.Model.BuildAbilities.BuildAbility;
-import Gameplay.Model.Map.GameMap;
+import Gameplay.Model.Goods.*;
+import Gameplay.Model.Iterators.CarriableIterator;
+import Gameplay.Model.Iterators.StuffIterator;
+import Gameplay.Model.Iterators.TransporterIterator;
+import Gameplay.Model.Map.*;
 import Gameplay.Model.Phases.PhaseManager;
 import Gameplay.Model.Phases.PhaseState;
 import Gameplay.Model.Producer.Producer;
@@ -9,20 +13,10 @@ import Gameplay.Model.Producer.SecondaryProducer.GoodProducer.CoalBurner;
 import Gameplay.Model.Producer.SecondaryProducer.GoodProducer.Sawmill;
 import Gameplay.Model.Producer.SecondaryProducer.GoodProducer.SecondaryGoodProducer;
 import Gameplay.Model.Producer.SecondaryProducer.GoodProducer.StockMarket;
-import Gameplay.Model.Producer.SecondaryProducer.SecondaryProducer;
 import Gameplay.Model.Producer.SecondaryProducer.TransporterProducer.SecondaryTransporterProducer;
 import Gameplay.Model.Region.Region;
-
-import Gameplay.Model.Goods.*;
-import Gameplay.Model.Iterators.CarriableIterator;
-import Gameplay.Model.Iterators.StuffIterator;
-import Gameplay.Model.Iterators.TransporterIterator;
-import Gameplay.Model.Map.*;
 import Gameplay.Model.Tile.GameTile;
 import Gameplay.Model.Tile.RegionMap;
-import Gameplay.Model.TransporterFactory.DonkeyFactory;
-import Gameplay.Model.TransporterFactory.TransporterFactory;
-import Gameplay.Model.TransporterFactory.TruckFactory;
 import Gameplay.Model.TransporterFactory.*;
 import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Model.Visitors.Carriable;
@@ -97,19 +91,23 @@ public class GameModelFacade { //TODO make an abstract facade
     }
 
     public void startGame() {
-        primaryProducerHandler = PrimaryProducerHandler.getInstance();
-        secondaryProducerHandler = SecondaryProducerHandler.getInstance();
         wallHandler = WallHandler.getInstance();
         userRequestHandler = new UserRequestHandler();
-        setUpGoodsHandler();
+
         movementManager = new MovementManager(transporterHandler, wallHandler, goodsHandler);
 
         try {
             gameMap.getTiles()[10][10].getRegionMap().getRegionAt(HexaVertex.createVertex(4)).getRegionSet().addRoadRegion(
                     gameMap.getTiles()[10][11].getRegionMap().getRegionAt(HexaVertex.createVertex(5))
             );
+            gameMap.getTiles()[10][11].getRegionMap().getRegionAt(HexaVertex.createVertex(5)).getRegionSet().addRoadRegion(
+                    gameMap.getTiles()[10][10].getRegionMap().getRegionAt(HexaVertex.createVertex(4))
+            );
             gameMap.getTiles()[10][10].getRegionMap().getRegionAt(HexaVertex.createVertex(1)).getRegionSet().addBridgeRegion(
                     gameMap.getTiles()[10][10].getRegionMap().getRegionAt(HexaVertex.createVertex(3))
+            );
+            gameMap.getTiles()[10][10].getRegionMap().getRegionAt(HexaVertex.createVertex(3)).getRegionSet().addBridgeRegion(
+                    gameMap.getTiles()[10][10].getRegionMap().getRegionAt(HexaVertex.createVertex(1))
             );
         } catch(Exception e) {}
 
@@ -124,14 +122,39 @@ public class GameModelFacade { //TODO make an abstract facade
         } catch(Exception e) {
             System.out.println(e.getStackTrace());
         }
+
+        primaryProducerHandler = PrimaryProducerHandler.getInstance();
+        secondaryProducerHandler = SecondaryProducerHandler.getInstance();
+
+        setUpGoodsHandler();
     }
 
     private void setUpGoodsHandler() {
 
         goodsHandler = GoodsHandler.getInstance();
-        transporterHandler = TransporterHandler.getInstance();
         GameTile[][] tiles = gameMap.getTiles();
         RegionPlacableVisitor pcv = new RegionPlacableVisitor();
+
+        for (int i = 0; i < tiles.length; i++) {
+            for (int j = 0; j < tiles.length; j++) {
+                if (tiles[i][j] == null)
+                    continue;
+                RegionMap rm = tiles[i][j].getRegionMap();
+                Iterator<Region> regionIterator = rm.getMyRegions();
+                while (regionIterator.hasNext()) {
+                    Region r = regionIterator.next();
+                    r.accept(pcv);
+                    if (pcv.getPlacable()) {
+                        GoodsBag gb = new GoodsBag();
+                        goodsHandler.place(gb, r);
+                    }
+                }
+            }
+        }
+
+        transporterHandler = TransporterHandler.getInstance();
+
+
 
         //TODO delete
         TransporterFactory factory = new DonkeyFactory();
@@ -155,7 +178,6 @@ public class GameModelFacade { //TODO make an abstract facade
             secondaryProducerHandler.placeGoodsProducer(new CoalBurner(), r2);
             secondaryProducerHandler.placeGoodsProducer(new StockMarket(), r3);
             tr.pickUpGood(new Trunk());
-            tr.pickUpGood(new Trunk());
             truck.pickUpGood(new Coins());
             truck.pickUpGood(new Coins());
             truck.pickUpGood(new Paper());
@@ -173,22 +195,7 @@ public class GameModelFacade { //TODO make an abstract facade
         }
         //TODO delete
 
-        for (int i = 0; i < tiles.length; i++) {
-            for (int j = 0; j < tiles.length; j++) {
-                if (tiles[i][j] == null)
-                    continue;
-                RegionMap rm = tiles[i][j].getRegionMap();
-                Iterator<Region> regionIterator = rm.getMyRegions();
-                while (regionIterator.hasNext()) {
-                    Region r = regionIterator.next();
-                    r.accept(pcv);
-                    if (pcv.getPlacable()) {
-                        GoodsBag gb = new GoodsBag();
-                        goodsHandler.place(gb, r);
-                    }
-                }
-            }
-        }
+
     }
 
     /**

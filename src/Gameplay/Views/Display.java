@@ -4,6 +4,7 @@ import Gameplay.Controller.CameraKeysController;
 import Gameplay.Model.Utility.GameModelFacade;
 import Gameplay.Views.HomeView.HomeView;
 import Gameplay.Views.MainView.MainView;
+import MapBuilder.Model.ModelFacade;
 import MapBuilder.Views.Utility.PixelMap;
 
 import javax.swing.*;
