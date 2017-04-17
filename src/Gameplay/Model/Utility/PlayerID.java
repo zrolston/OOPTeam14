@@ -1,32 +1,40 @@
 package Gameplay.Model.Utility;
-/**
- * Created by zrgam_000 on 4/15/2017.
- */
+
 public class PlayerID {
 
-    private static final int NEUTRAL = -1;
+    private static final int NEUTRAL = 0;
+    private static final int PLAYER1 = 1;
+    private static final int PLAYER2 = 2;
+    private static final String[] colors = {"WHITE", "ORANGE", "BLUE"};
+
+    private String color;
 
     private static int  numPlayers = 0;
-    int id;
+    private int id;
 
-    public PlayerID(int i) {
-        id = i;
+    private PlayerID(int i) {
+        this.id = i;
     }
 
-    public int getID(){
+    private int getID(){
         return id;
     }
 
-    public static PlayerID getNewPlayerID(){
-        return new PlayerID(++numPlayers);
+    public static PlayerID getPlayer1ID(){
+        return new PlayerID(PLAYER1);
     }
-
+    public static PlayerID getPlayer2ID(){
+        return new PlayerID(PLAYER2);
+    }
     public static PlayerID getNeutralPlayerID(){
         return new PlayerID(NEUTRAL);
     }
 
-    public boolean matches(PlayerID playerID) {
+    public String getPlayerColor(){
+        return colors[id];
+    }
 
+    public boolean matches(PlayerID playerID) {
         return this.id == playerID.getID() || this.id == NEUTRAL || playerID.getID() == NEUTRAL;
     }
 }

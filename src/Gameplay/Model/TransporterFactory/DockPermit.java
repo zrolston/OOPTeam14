@@ -10,7 +10,7 @@ public class DockPermit implements Permit {
     @Override
     public void findRegions(RegionSet regionSet, Transporter transporter) {
         for (Region region : regionSet.getDockRegions()) {
-            transporter.addRegion(region, DOCKMOVEMENTCOST);
+            transporter.addRegion(region, transporter.getRemainingMovement());
         }
     }
 }

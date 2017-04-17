@@ -7,9 +7,6 @@ import MapBuilder.Views.Utility.PixelPoint;
 
 import java.awt.image.BufferedImage;
 
-/**
- * Created by Willie on 4/16/2017.
- */
 public class GoodDrawingVisitor implements GoodsVisitor {
 
     private BufferedImage image;

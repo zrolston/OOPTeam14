@@ -74,8 +74,8 @@ public class ImageLoader {
             cachedImages.put("ORANGE_RAFT", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Transporters/raftOrange.png")));
             cachedImages.put("ORANGE_ROWBOAT", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Transporters/rowboatOrange.png")));
             cachedImages.put("BLUE_ROWBOAT", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Transporters/rowboatBlue.png")));
-            cachedImages.put("BLUE_STEAMSHIP", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Transporters/steamShipBlue.png")));
-            cachedImages.put("ORANGE_STEAMSHIP", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Transporters/steamShipOrange.png")));
+            cachedImages.put("BLUE_STEAMER", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Transporters/steamShipBlue.png")));
+            cachedImages.put("ORANGE_STEAMER", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Transporters/steamShipOrange.png")));
             cachedImages.put("BLUE_TRUCK", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Transporters/truckBlue.png")));
             cachedImages.put("ORANGE_TRUCK", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Transporters/truckOrange.png")));
             cachedImages.put("BLUE_WAGON", ImageIO.read(ImageLoader.class.getResourceAsStream("/Images/Transporters/wagonBlue.png")));
