@@ -9,6 +9,7 @@ import Gameplay.Model.Producer.ProducerRequest;
 import Gameplay.Model.Producer.UserRequest;
 import Gameplay.Model.Region.Region;
 import Gameplay.Model.Utility.PlayerID;
+import Gameplay.Model.Visitors.BuildAbilityVisitor;
 
 public class BuildClayPit extends BuildAbility {
     PrimaryProducerHandler primaryProducerHandler;
@@ -34,5 +35,10 @@ public class BuildClayPit extends BuildAbility {
         ur.reset();
 
         primaryProducerHandler.place(new ClayPit(), region);
+    }
+
+    @Override
+    public void accept(BuildAbilityVisitor bav) {
+        bav.visitBuildClayPit(this);
     }
 }

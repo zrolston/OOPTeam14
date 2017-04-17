@@ -10,6 +10,7 @@ import Gameplay.Model.Producer.SecondaryProducer.GoodProducer.Sawmill;
 import Gameplay.Model.Producer.UserRequest;
 import Gameplay.Model.Region.Region;
 import Gameplay.Model.Utility.PlayerID;
+import Gameplay.Model.Visitors.BuildAbilityVisitor;
 
 /**
  * Created by zrgam_000 on 4/16/2017.
@@ -41,5 +42,10 @@ public class BuildSawMill extends BuildAbility{
         ur.reset();
 
         secondaryProducerHandler.placeGoodsProducer(new Sawmill(), region);
+    }
+
+    @Override
+    public void accept(BuildAbilityVisitor bav) {
+        bav.visitBuildSawMill(this);
     }
 }

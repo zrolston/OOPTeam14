@@ -110,7 +110,8 @@ public class ProducerSelectionView extends JPanel {
         producerImages = new ArrayList<BufferedImage>();
         BuildAbilityDrawingVisitor bav = new BuildAbilityDrawingVisitor();
         for (BuildAbility buildAbility : buildAbilities) {
-
+            buildAbility.accept(bav);
+            producerImages.add(bav.getImage());
         }
     }
 

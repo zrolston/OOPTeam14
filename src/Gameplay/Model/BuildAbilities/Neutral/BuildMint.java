@@ -11,6 +11,7 @@ import Gameplay.Model.Producer.SecondaryProducer.GoodProducer.Mint;
 import Gameplay.Model.Producer.UserRequest;
 import Gameplay.Model.Region.Region;
 import Gameplay.Model.Utility.PlayerID;
+import Gameplay.Model.Visitors.BuildAbilityVisitor;
 
 
 public class BuildMint extends BuildAbility {
@@ -38,6 +39,11 @@ public class BuildMint extends BuildAbility {
         ur.reset();
 
         secondaryProducerHandler.placeGoodsProducer(new Mint(), region);
+    }
+
+    @Override
+    public void accept(BuildAbilityVisitor bav) {
+        bav.visitBuildMint(this);
     }
 
 }

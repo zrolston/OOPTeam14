@@ -10,6 +10,7 @@ import Gameplay.Model.Producer.SecondaryProducer.TransporterProducer.LandTranspo
 import Gameplay.Model.Producer.UserRequest;
 import Gameplay.Model.Region.Region;
 import Gameplay.Model.Utility.PlayerID;
+import Gameplay.Model.Visitors.BuildAbilityVisitor;
 
 /**
  * Created by zrgam_000 on 4/16/2017.
@@ -41,5 +42,10 @@ public class BuildWagonFactory extends BuildAbility{
         ur.reset();
 
         transporterProducerHandler.placeTransporterProducer(new WagonProducer(region), region);
+    }
+
+    @Override
+    public void accept(BuildAbilityVisitor bav) {
+        bav.visitBuildWagonFactory(this);
     }
 }

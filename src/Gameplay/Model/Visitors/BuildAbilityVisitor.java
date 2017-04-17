@@ -19,6 +19,7 @@ public interface BuildAbilityVisitor {
     void visitBuildRaftFactory(BuildRaftFactory brf);
     void visitBuildSawMill(BuildSawMill bsm);
     void visitBuildStockMarket(BuildStockMarket bsm);
+    void visitBuildStoneFactory(BuildStoneFactory bsf);
     void visitBuildWagonFactory(BuildWagonFactory bwf);
     void visitBuildWoodFactory(BuildWoodCutter bwc);
     void visitBuildOilRig(BuildOilRig bor);
