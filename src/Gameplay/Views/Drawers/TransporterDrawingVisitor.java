@@ -18,14 +18,21 @@ import java.awt.image.BufferedImage;
 public class TransporterDrawingVisitor implements TransporterVisitor {
 
     BufferedImage image;
-    PixelPoint origin;
+    PixelPoint center;
 
-    public void setOrigin(PixelPoint origin) {
-        this.origin = origin;
+    public void setCenter(PixelPoint center) {
+        this.center = center;
     }
 
     @Override
     public void visitDonkey(Donkey d) {
+        int i = 0;
+
+        if(i == 0) {
+            image = ImageLoader.getImage("BLUE_DONKEY");
+            return;
+        }
+
         switch (d.getPlayerID().getID()) {
             case 1:
                 image = ImageLoader.getImage("BLUE_DONKEY");
@@ -38,6 +45,13 @@ public class TransporterDrawingVisitor implements TransporterVisitor {
 
     @Override
     public void visitWagon(Wagon w) {
+
+        int i = 0;
+        if(i == 0) {
+            image = ImageLoader.getImage("ORANGE_WAGON");
+            return;
+        }
+
         switch (w.getPlayerID().getID()) {
             case 1:
                 image = ImageLoader.getImage("BLUE_WAGON");
@@ -101,6 +115,7 @@ public class TransporterDrawingVisitor implements TransporterVisitor {
     }
 
     public ImageWithLocation getImageWithLocation() {
+        PixelPoint origin = new PixelPoint(center.getX() - image.getWidth()/2, center.getY() - image.getHeight()/2);
         return new ImageWithLocation(image, origin);
     }
 

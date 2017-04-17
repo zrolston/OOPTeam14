@@ -16,29 +16,45 @@ import java.awt.*;
 public class CursorState {
 
     private static CursorState ourInstance = new CursorState();
-    private PixelPoint cursor;
+    private PixelPoint cursor = new PixelPoint(0,0);
     private HexLocation activeTile;
     private boolean markerActive = true;
     private Region activeRegion = null;
+    private PolygonPointSet pointSet = null;
     private Polygon regionArea = null;
+    private String regionCode = "";
 
+    //Testing executors
+    public static Executor executor = null;
+
+
+    //Getters
     public static CursorState getInstance() {
         return ourInstance;
     }
     public Region getActiveRegion() { return activeRegion; }
     public Polygon getRegionArea() { return regionArea; }
+    public PolygonPointSet getPointSet() { return pointSet; }
+    public PixelPoint getCursor() { return cursor.clone(); }
+    public boolean isMarkerActive(){ return markerActive; }
+    public String getRegionCode() { return regionCode; }
+    public HexLocation getActiveTile() {
+        return activeTile;
+    }
 
 
+    //Setters
+    public void setPointSet(PolygonPointSet pointSet) { this.pointSet = pointSet; }
+    public void setRegionCode(String regionCode) { this.regionCode = regionCode; }
     public void setActiveRegion(Region activeRegion) { this.activeRegion = activeRegion; }
     public void setRegionArea(Polygon regionArea) { this.regionArea = regionArea; }
+    public void setActiveTile(HexLocation activeTile) { this.activeTile = activeTile; }
+    public void setMarkerActive(boolean markerActive) { this.markerActive = markerActive; }
 
     private CursorState() {
         cursor = new PixelPoint(0,0);
         activeTile = new HexLocation(0,0);
     }
-
-    public PixelPoint getCursor() { return cursor.clone(); }
-    public boolean isMarkerActive(){ return markerActive; }
 
 
     public void setCursor(PixelPoint cursor) { this.cursor = cursor; }
@@ -46,11 +62,4 @@ public class CursorState {
         cursor.setY(x);
         cursor.setY(y);
     }
-
-    public HexLocation getActiveTile() {
-        return activeTile;
-    }
-
-    public void setActiveTile(HexLocation activeTile) { this.activeTile = activeTile; }
-    public void setMarkerActive(boolean markerActive) { this.markerActive = markerActive; }
 }

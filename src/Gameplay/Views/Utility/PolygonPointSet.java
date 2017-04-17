@@ -73,14 +73,23 @@ public class PolygonPointSet{
         return newPoint;
     }
 
-//    public Point centroid()  {
-//        List<Point> sets =
-//        double centroidX = 0, centroidY = 0;
-//
-//        for(Point knot : knots) {
-//            centroidX += knot.getX();
-//            centroidY += knot.getY();
-//        }
-//        return new Point(centroidX / knots.size(), centroidY / knots.size());
-//    }
+    public PixelPoint getCentroid(PixelPoint offset) {
+        List<Point> knots = points.get(currRotation);
+        Point off = knots.get(0);
+        double twicearea = 0;
+        double x = 0;
+        double y = 0;
+        Point p1, p2;
+        double f;
+        for (int i = 0, j = knots.size() - 1; i < knots.size(); j = i++) {
+            p1 = knots.get(i);
+            p2 = knots.get(j);
+            f = (p1.getX() - off.getX()) * (p2.getY() - off.getY()) - (p2.getX() - off.getX()) * (p1.getY() - off.getY());
+            twicearea += f;
+            x += (p1.getX() + p2.getX() - 2 * off.getX()) * f;
+            y += (p1.getY() + p2.getY() - 2 * off.getY()) * f;
+        }
+        f = twicearea * 3;
+        return new PixelPoint((int)(x/f+off.getX()+offset.getX()), (int)(y/f+off.getY()+offset.getY()));
+    }
 }
