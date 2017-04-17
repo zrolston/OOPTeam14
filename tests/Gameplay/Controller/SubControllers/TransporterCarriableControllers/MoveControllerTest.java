@@ -49,9 +49,9 @@ public class MoveControllerTest {
 
 
         //Creating and linking the Main Controller
-//        MainController mainController = new MainController(display.getMainView());
-//        PhaseManager phaseManager = new PhaseManager(mainController);
-//        modelFacade.setPhaseManager(phaseManager);
+        MainController mainController = new MainController(display.getMainView());
+        PhaseManager phaseManager = new PhaseManager(mainController);
+        modelFacade.setPhaseManager(phaseManager);
 
 //        Checking out user request
 //        UserRequestController userRequestController= new UserRequestController();
@@ -62,8 +62,8 @@ public class MoveControllerTest {
 //        productionController.activateController(display.getMainView());
 
 //        Checking out Building controller
-        BuildingController buildingController = new BuildingController();
-        buildingController.activateController(display.getMainView());
+//        BuildingController buildingController = new BuildingController();
+//        buildingController.activateController(display.getMainView());
 
         //Starts the Game and generates Transporters
         modelFacade.startGame();
