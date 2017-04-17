@@ -32,16 +32,12 @@ public class MoveController extends TransporterCarriableController {
     Region selectedRegion;
     GameModelFacade gameModelFacade = GameModelFacade.getInstance();
 
-    public MoveController() {
-        changeToDefaultController();
-        hidePanel();
-    }
-
     @Override
     protected void carriableClick() {
         //TODO: view check if the region is a river, if it isn't drop it on the tile and gameModelFacade.canDropCarriable()
         activateDropRegionController();
-        hidePanel();
+        //TODO: UNCOMENT THIISSSSSSS!!!!!!!!!!!!!!!!!!!!!!
+//        checkForDisplay();
     }
 
     @Override

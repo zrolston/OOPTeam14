@@ -44,7 +44,8 @@ public class MoveRegionController extends RegionSelectionController {
     @Override
     protected void leftClick() {
         addTransporters(getCurrentRegion());
-        moveController.checkForDisplay();
+        //TODO: UNCOMENT THIISSSSSSS!!!!!!!!!!!!!!!!!!!!!!
+//        moveController.checkForDisplay();
     }
 
     @Override
@@ -77,7 +78,8 @@ public class MoveRegionController extends RegionSelectionController {
     private void emptyDropController(){
         //moveController.emptyPanel();
         moveController.addTransporters(gameModelFacade.getTransporters(getCurrentRegion()));
-        moveController.checkForDisplay();
+        //TODO: UNCOMENT THIISSSSSSS!!!!!!!!!!!!!!!!!!!!!!
+//     moveController.checkForDisplay();
     }
     private TransporterIterator getTransporters(Region region){
         return gameModelFacade.getTransporters(region);

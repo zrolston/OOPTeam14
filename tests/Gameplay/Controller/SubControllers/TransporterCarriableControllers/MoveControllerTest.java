@@ -5,6 +5,7 @@ import Gameplay.Model.Map.GameMap;
 import Gameplay.Model.Region.Region;
 import Gameplay.Model.Tile.GameTile;
 import Gameplay.Model.Tile.RegionMap;
+import Gameplay.Model.Utility.GameMapDaveBuilder;
 import Gameplay.Model.Utility.GameModelFacade;
 import Gameplay.Model.Utility.HexaVertex;
 import Gameplay.Views.Display;
@@ -23,13 +24,13 @@ public class MoveControllerTest {
 
     public static void main(String[] args) {
         Display display = new Display();
-        DaveBuilder builder = new BuildMapDaveBuilder();
+        DaveBuilder builder = new GameMapDaveBuilder();
         builder.buildMap("C:\\Users\\jordi\\Desktop\\OOP Project\\Iteration3\\OOPTeam14\\res\\SavedMaps\\full board map.dave");
         GameModelFacade modelFacade =  GameModelFacade.getInstance();
         MoveController moveController = new MoveController();
         moveController.activateController(display.getMainView());
 
-
+        modelFacade.startGame();
         moveController.addTransporters(generateCarriableIter(modelFacade));
 
     }
