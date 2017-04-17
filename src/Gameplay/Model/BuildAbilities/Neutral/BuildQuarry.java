@@ -22,6 +22,8 @@ public class BuildQuarry extends BuildAbility{
 
         super(id);
 
+        primaryProducerHandler = PrimaryProducerHandler.getInstance();
+
         GoodsBag goods = new GoodsBag();
         goods.addBoard(new Board());
         goods.addBoard(new Board());
