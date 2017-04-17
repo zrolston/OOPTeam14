@@ -75,7 +75,7 @@ public class RegionVertexUtility {
     public static PixelPoint getRegionCenter(GameTile tile, List<HexaVertex> region){
         //Set up Map if needed
         if(map == null){
-            map = GameModelFacade.getInstance().debugGetMap();
+            map = GameModelFacade.getInstance().getMap();
         }
         ILocation location = map.getHexLocationOf(tile);
         Integer river = tile.getRiverType();

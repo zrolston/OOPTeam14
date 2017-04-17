@@ -12,9 +12,19 @@ import java.util.Map;
 
 
 public class TransporterHandler {
+
+    private static TransporterHandler instance;
     Map<Region, TransporterOccupancy> occupancyMap;
 
-    public TransporterHandler(){
+    public static TransporterHandler getInstance(){
+        if(instance == null){
+            instance = new TransporterHandler();
+        }
+
+        return instance;
+    }
+
+    private TransporterHandler(){
         occupancyMap = new HashMap<>();
     }
 
@@ -83,5 +93,11 @@ public class TransporterHandler {
 
     public List<Region> getAllRegions() {
         return new ArrayList<Region>(occupancyMap.keySet());
+    }
+
+    public void refreshTransporters() {
+        for(TransporterOccupancy to : occupancyMap.values()){
+            to.refreshMovement();
+        }
     }
 }

@@ -32,6 +32,6 @@ public class BuildTileTest {
         DaveBuilder builder = new GameMapDaveBuilder();
         builder.buildMap("C:\\Users\\Cameron\\IdeaProjects\\OOPTeam14\\res\\SavedMaps\\mapTest.dave");
         GameModelFacade facade = GameModelFacade.getInstance();
-        GameMap map = facade.debugGetMap();
+        GameMap map = facade.getMap();
     }
 }

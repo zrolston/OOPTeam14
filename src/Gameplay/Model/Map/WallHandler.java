@@ -1,6 +1,5 @@
 package Gameplay.Model.Map;
 
-import Gameplay.Model.Region.LandRegion;
 import Gameplay.Model.Region.Region;
 import Gameplay.Model.Tile.GameTile;
 import Gameplay.Model.Utility.GameModelFacade;
@@ -13,9 +12,19 @@ import java.util.*;
  * Created by zrgam_000 on 4/15/2017.
  */
 public class WallHandler {
+
+    private static WallHandler instance;
     private Map<Region, List<Wall>> regionWalls;
 
-    public WallHandler(){
+    public static WallHandler getInstance(){
+        if(instance == null){
+            instance = new WallHandler();
+        }
+
+        return instance;
+    }
+
+    private WallHandler(){
         regionWalls = new HashMap<Region, List<Wall>>();
     }
 
@@ -24,8 +33,8 @@ public class WallHandler {
         GameTile t1 = r1.getParentTile();
         GameTile t2 = r2.getParentTile();
 
-        List<HexaVertex> v1 = GameModelFacade.getInstance().debugGetMap().getVertices(t1, t2);
-        List<HexaVertex> v2 = GameModelFacade.getInstance().debugGetMap().getVertices(t2, t1);
+        List<HexaVertex> v1 = GameModelFacade.getInstance().getMap().getVertices(t1, t2);
+        List<HexaVertex> v2 = GameModelFacade.getInstance().getMap().getVertices(t2, t1);
 
         Set<Region> regions1 = new HashSet<Region>();
         Set<Region> regions2 = new HashSet<Region>();

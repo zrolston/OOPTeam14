@@ -49,4 +49,8 @@ public abstract class SecondaryProducer extends Producer {
     public List<ProducerRequest> getInputs() {
         return inputs;
     }
+
+    public void resetCapacity(){
+        currentCapacity = maxCapacity;
+    }
 }

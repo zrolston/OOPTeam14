@@ -37,7 +37,7 @@ public class BridgeDrawer {
 
     private PixelPoint getRegionCenter(Region r) {
         GameModelFacade gmf = GameModelFacade.getInstance();
-        GameMap gm = gmf.debugGetMap();
+        GameMap gm = gmf.getMap();
         GameTile tile = r.getParentTile();
         return RegionVertexUtility.getRegionCenter(tile, tile.getListHexaIndexRegion(r));
     }

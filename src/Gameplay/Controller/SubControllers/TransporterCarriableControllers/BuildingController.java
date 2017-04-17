@@ -43,7 +43,6 @@ public class BuildingController implements KeyListener, MainViewController {
             WallSelectionController wsc = new WallSelectionController(this);
             wsc.activateController(mainView);
             mainView.getWallSelectionView().setVisible(isWSVOn);
-
         }
 
 

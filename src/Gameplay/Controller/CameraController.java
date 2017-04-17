@@ -105,7 +105,7 @@ public class CameraController implements MouseMotionListener, MouseListener{
     public void updateRegion(MouseEvent e){
         //Set up Map if needed
         if(map == null){
-            map = GameModelFacade.getInstance().debugGetMap();
+            map = GameModelFacade.getInstance().getMap();
         }
 
         ILocation location = cursorState.getActiveTile();

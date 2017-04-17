@@ -23,6 +23,8 @@ public class BuildStoneFactory extends BuildAbility{
 
         super(id);
 
+        secondaryProducerHandler = SecondaryProducerHandler.getInstance();
+
         GoodsBag goods = new GoodsBag();
         goods.addBoard(new Board());
         goods.addBoard(new Board());

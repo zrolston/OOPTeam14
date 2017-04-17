@@ -19,6 +19,7 @@ public abstract class SecondaryTransporterProducer extends SecondaryProducer {
     public SecondaryTransporterProducer(TransporterFactory tf, Region myRegion){
         myFactory = tf;
         this.myRegion = myRegion;
+        transporterHandler = TransporterHandler.getInstance();
     }
 
     protected Transporter generateOutputs() {

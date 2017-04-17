@@ -13,9 +13,19 @@ import java.util.Map;
  * Created by zrgam_000 on 4/15/2017.
  */
 public class GoodsHandler {
-    Map<Region, GoodsBag> occupancyMap;
 
-    public GoodsHandler(){
+    private static GoodsHandler instance;
+    private Map<Region, GoodsBag> occupancyMap;
+
+    public static GoodsHandler getInstance(){
+        if(instance == null){
+            instance = new GoodsHandler();
+        }
+
+        return instance;
+    }
+
+    private GoodsHandler(){
         occupancyMap = new HashMap<>();
     }
 

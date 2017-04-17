@@ -5,7 +5,6 @@ import Gameplay.Model.Utility.HexaVertex;
 import Gameplay.Model.Visitors.GameTileVisitor;
 import MapBuilder.Model.Terrain.Terrain;
 import MapBuilder.Model.Tile.Tile;
-import MapBuilder.Model.Utility.HexaIndex;
 import MapBuilder.Model.Visitor.TileVisitor;
 
 import java.util.Iterator;

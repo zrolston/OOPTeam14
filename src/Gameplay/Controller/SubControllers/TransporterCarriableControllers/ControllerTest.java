@@ -11,7 +11,6 @@ import Gameplay.Model.Utility.HexaVertex;
 import Gameplay.Views.Display;
 import Gameplay.Views.Utility.CursorState;
 import MapBuilder.Model.Utility.HexLocation;
-import MapBuilder.Model.Utility.MapParsers.BuildMapDaveBuilder;
 import MapBuilder.Model.Utility.MapParsers.DaveBuilder;
 
 
@@ -41,7 +40,7 @@ public class ControllerTest {
         if(modelFacade == null)
             return null;
 
-        GameMap map = modelFacade.debugGetMap();
+        GameMap map = modelFacade.getMap();
 
         HexLocation loc = CursorState.getInstance().getActiveTile();
 

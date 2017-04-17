@@ -4,25 +4,50 @@ import Gameplay.Controller.MainController;
 import Gameplay.Controller.PhaseStateController;
 import Gameplay.Controller.PhaseStateControllers.*;
 import Gameplay.Controller.PhaseStateControllers.MovementPhaseStateController;
+import Gameplay.Model.Utility.GameModelFacade;
+import Gameplay.Model.Utility.PlayerID;
+import Gameplay.Model.Map.PrimaryProducerHandler;
+import Gameplay.Model.Map.SecondaryProducerHandler;
+import Gameplay.Model.Map.TransporterHandler;
 
 
 public class PhaseManager {
     private PhaseState currentState;
-
     private TradingPhase tradingPhase = new TradingPhase();
     private ProductionPhase productionPhase = new ProductionPhase();
     private MovementPhase movementPhase = new MovementPhase();
     private BuildingPhase buildingPhase = new BuildingPhase();
     private WonderPhase wonderPhase = new WonderPhase();
     private MainController mainController;
+    private final int NUMPLAYERS = 2;
+    private PlayerID[] playerIDS;
+    private int currentPlayerIndex;
+    private PlayerID currentPlayerID;
 
     public PhaseManager(MainController mainController) {
+        playerIDS = new PlayerID[NUMPLAYERS];
+        playerIDS[0] = PlayerID.getPlayer1ID();
+        playerIDS[1] = PlayerID.getPlayer2ID();
+        currentPlayerIndex = 0;
+        currentPlayerID = playerIDS[currentPlayerIndex];
         this.mainController = mainController;
-        currentState = tradingPhase;
+        GameModelFacade.getInstance().setCurrentPlayer(currentPlayerID);
+        tradingPhase.start();
         updateController();
     }
 
-    public void advancePhase() {
+    public void nextTurn(){
+        currentPlayerIndex++;
+        if (currentPlayerIndex == NUMPLAYERS){
+            currentPlayerIndex = 0;
+            advancePhase();
+        }
+        currentPlayerID = playerIDS[currentPlayerIndex];
+        GameModelFacade.getInstance().setCurrentPlayer(currentPlayerID);
+    }
+
+
+    private void advancePhase() {
         currentState.advance();
         updateController();
     }
@@ -35,6 +60,11 @@ public class PhaseManager {
 
     private class TradingPhase implements PhaseState {
         TradePhaseStateController tradeController = new TradePhaseStateController();
+
+        @Override
+        public void start() {
+
+        }
 
         @Override
         public void advance() {
@@ -50,9 +80,20 @@ public class PhaseManager {
     private class ProductionPhase implements PhaseState {
         ProductionPhaseStateController productionController = new ProductionPhaseStateController();
 
+        PrimaryProducerHandler primaryProducerHandler = PrimaryProducerHandler.getInstance();
+        SecondaryProducerHandler secondaryProducerHandler = SecondaryProducerHandler.getInstance();
+
+        @Override
+        public void start() {
+            currentState = this;
+            primaryProducerHandler.produce();
+        }
+
         @Override
         public void advance() {
-            currentState = movementPhase;
+            secondaryProducerHandler.produce();
+            secondaryProducerHandler.reset();
+            movementPhase.start();
         }
 
         @Override
@@ -66,8 +107,15 @@ public class PhaseManager {
         BuildPhaseStateController buildController = new BuildPhaseStateController();
 
         @Override
+        public void start() {
+            currentState = this;
+            //TODO FUCKING GOES HERE
+        }
+
+        @Override
         public void advance() {
-            currentState = wonderPhase;
+            //TODO RESEARCH LMAO
+            wonderPhase.start();
         }
 
         @Override
@@ -79,10 +127,17 @@ public class PhaseManager {
 
     private class MovementPhase implements PhaseState {
         MovementPhaseStateController movementController = new MovementPhaseStateController();
+        TransporterHandler transporterHandler = TransporterHandler.getInstance();
+
+        @Override
+        public void start() {
+            currentState = this;
+            transporterHandler.refreshTransporters();
+        }
 
         @Override
         public void advance() {
-            currentState = buildingPhase;
+            buildingPhase.start();
         }
 
         @Override
@@ -97,8 +152,14 @@ public class PhaseManager {
         WonderPhaseStateController wonderController = new WonderPhaseStateController();
 
         @Override
+        public void start() {
+            currentState = this;
+        }
+
+        @Override
         public void advance() {
-            currentState = tradingPhase;
+            //TODO ENDGAME???
+            tradingPhase.start();
         }
 
         @Override
