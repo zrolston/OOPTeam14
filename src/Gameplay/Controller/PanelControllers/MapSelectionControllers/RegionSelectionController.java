@@ -2,6 +2,9 @@ package Gameplay.Controller.PanelControllers.MapSelectionControllers;
 
 import Gameplay.Controller.PanelControllers.MapViewController;
 import Gameplay.Controller.PanelControllers.TransporterCarriableController;
+import Gameplay.Model.Region.Region;
+import Gameplay.Views.MainView.MapView;
+import Gameplay.Views.Utility.CursorState;
 
 import javax.swing.*;
 import java.awt.event.MouseEvent;
@@ -11,15 +14,20 @@ import java.awt.event.MouseEvent;
  */
 public abstract class RegionSelectionController extends MapViewController {
 
+    private Region currentRegion;
+    private CursorState cursorState = CursorState.getInstance();
+
+
     protected abstract void rightClick();
     protected abstract void leftClick();
 
     @Override
-    protected void attachView(JPanel view) throws Exception {
+    protected void attachView(MapView view) throws Exception {
 
         if (viewIsNull(view)) {
             throw new Exception("The view that was tried to be attached was null");
         }
+
         view.addMouseListener(this);
     }
 
@@ -30,6 +38,8 @@ public abstract class RegionSelectionController extends MapViewController {
 
     @Override
     public void mousePressed(MouseEvent e) {
+        setCurrentRegion(cursorState.getActiveRegion());
+
         if (isLeftClick(e)) {
             leftClick();
         }
@@ -61,5 +71,12 @@ public abstract class RegionSelectionController extends MapViewController {
 
     }
 
-    //TODO: view.getRegion()
+    private void setCurrentRegion(Region currentRegion){
+        this.currentRegion = currentRegion;
+    }
+
+    protected Region getCurrentRegion(){
+        return currentRegion;
+    }
+
 }

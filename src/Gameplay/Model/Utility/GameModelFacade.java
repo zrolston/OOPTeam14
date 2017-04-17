@@ -15,6 +15,8 @@ import Gameplay.Model.TransporterFactory.DonkeyFactory;
 import Gameplay.Model.TransporterFactory.TransporterFactory;
 import Gameplay.Model.TransporterFactory.TruckFactory;
 import Gameplay.Model.Transporters.LandTransporters.Donkey;
+import Gameplay.Model.TransporterFactory.*;
+import Gameplay.Model.Transporters.LandTransporters.Wagon;
 import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Model.Visitors.Carriable;
 import Gameplay.Model.Visitors.DropOffExchangeHandler;
@@ -71,10 +73,11 @@ public class GameModelFacade { //TODO make an abstract facade
 
     public void startGame() {
         setUpGoodsHandler();
-        transporterHandler = new TransporterHandler();
+//        transporterHandler = new TransporterHandler();
         primaryProducerHandler = new PrimaryProducerHandler();
         secondaryProducerHandler = new SecondaryProducerHandler();
         wallHandler = new WallHandler();
+
         try {
             gameMap.getTiles()[10][10].getRegionMap().getRegionAt(HexaVertex.createVertex(4)).getRegionSet().addRoadRegion(
                     gameMap.getTiles()[10][11].getRegionMap().getRegionAt(HexaVertex.createVertex(5))
@@ -96,7 +99,14 @@ public class GameModelFacade { //TODO make an abstract facade
     }
 
     private void setUpGoodsHandler() {
+
+        TransporterFactory t = new DonkeyFactory();
+        TransporterFactory t2 = new WagonFactory();
+
+        PlayerID p2 = new PlayerID(0);
+
         goodsHandler = new GoodsHandler();
+        transporterHandler = new TransporterHandler();
         GameTile[][] tiles = gameMap.getTiles();
         RegionPlacableVisitor pcv = new RegionPlacableVisitor();
         for (int i = 0; i < tiles.length; i++) {
@@ -109,9 +119,23 @@ public class GameModelFacade { //TODO make an abstract facade
                     Region r = regionIterator.next();
                     r.accept(pcv);
                     if (pcv.getPlacable()) {
+                        // TODO: DELETE THIS
                         GoodsBag gb = new GoodsBag();
                         gb.addBoard(new Board());
                         goodsHandler.place(gb, r);
+
+                        // TODO: DELETE THIS
+                        Transporter tt = t.create();
+
+                        tt.pickUpGood( new Board() );
+
+
+                        tt.setPlayerID( p2 );
+
+                        Transporter ttt = t2.create();
+                        ttt.setPlayerID( p2 );
+                        transporterHandler.place(tt, r);
+                        transporterHandler.place(ttt, r);
                     }
                 }
             }
@@ -153,7 +177,7 @@ public class GameModelFacade { //TODO make an abstract facade
         return new TransporterIterator(transporters);
     }
 
-    public void move(Region region){
+    public void move(Region region, Transporter transporter){
 
     }
 
@@ -186,8 +210,8 @@ public class GameModelFacade { //TODO make an abstract facade
      * @param region
      * @return
      */
-    public List<Transporter> getTransporters(Region region){
-        return transporterHandler.getTransportersAt(region);
+    public TransporterIterator getTransporters(Region region){
+        return new TransporterIterator(transporterHandler.getTransportersAt(region));
     }
 
     public List<Region> getAllRegionsWithTransporter() {

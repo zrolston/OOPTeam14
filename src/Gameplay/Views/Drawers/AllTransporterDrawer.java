@@ -1,5 +1,6 @@
 package Gameplay.Views.Drawers;
 
+import Gameplay.Model.Iterators.TransporterIterator;
 import Gameplay.Model.Map.GameMap;
 import Gameplay.Model.Region.Region;
 import Gameplay.Model.Tile.GameTile;
@@ -31,14 +32,15 @@ public class AllTransporterDrawer {
 
         List<Region> regions = gmf.getAllRegionsWithTransporter();
         TransporterDrawingVisitor tdv = new TransporterDrawingVisitor();
+
         for (Region region : regions) {
             GameTile tile = region.getParentTile();
             PixelPoint center = RegionVertexUtility.getRegionCenter(tile, tile.getListHexaIndexRegion(region));
 
-            List<Transporter> transporterIterator = gmf.getTransporters(region);
+            TransporterIterator transporterIterator = gmf.getTransporters(region);
             tdv.setCenter(center);
             for (int i = 0; i < transporterIterator.size(); i++) {
-                transporterIterator.get(0).accept(tdv);
+                transporterIterator.getTransporterAt(i).accept(tdv);
                 images.add(tdv.getImageWithLocation());
             }
         }
