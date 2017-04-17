@@ -21,11 +21,14 @@ import static org.junit.Assert.*;
  */
 public class MoveControllerTest {
 
+    public static final String workingDir = System.getProperty("user.dir");
+    public static final String mapsDir = workingDir + "\\res\\SavedMaps\\full board map.dave";
 
     public static void main(String[] args) {
+
         Display display = new Display();
         DaveBuilder builder = new GameMapDaveBuilder();
-        builder.buildMap("C:\\Users\\jordi\\Desktop\\OOP Project\\Iteration3\\OOPTeam14\\res\\SavedMaps\\full board map.dave");
+        builder.buildMap(mapsDir);
         GameModelFacade modelFacade =  GameModelFacade.getInstance();
         MoveController moveController = new MoveController();
         moveController.activateController(display.getMainView());

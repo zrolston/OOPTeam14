@@ -11,6 +11,10 @@ import Gameplay.Model.Iterators.TransporterIterator;
 import Gameplay.Model.Map.*;
 import Gameplay.Model.Tile.GameTile;
 import Gameplay.Model.Tile.RegionMap;
+import Gameplay.Model.TransporterFactory.DonkeyFactory;
+import Gameplay.Model.TransporterFactory.TransporterFactory;
+import Gameplay.Model.TransporterFactory.TruckFactory;
+import Gameplay.Model.Transporters.LandTransporters.Donkey;
 import Gameplay.Model.TransporterFactory.*;
 import Gameplay.Model.Transporters.LandTransporters.Wagon;
 import Gameplay.Model.Transporters.Transporter;
@@ -18,6 +22,7 @@ import Gameplay.Model.Visitors.Carriable;
 import Gameplay.Model.Visitors.DropOffExchangeHandler;
 import Gameplay.Model.Visitors.PickUpExchangeHandler;
 import Gameplay.Model.Visitors.RegionPlacableVisitor;
+import MapBuilder.Model.Tile.Tile;
 import MapBuilder.Model.Utility.MapParsers.DaveBuilder;
 
 import java.util.*;
@@ -30,6 +35,7 @@ public class GameModelFacade { //TODO make an abstract facade
     private GoodsHandler goodsHandler;
     private PrimaryProducerHandler primaryProducerHandler;
     private SecondaryProducerHandler secondaryProducerHandler;
+    private WallHandler wallHandler;
 
     private GameModelFacade(GameMap map) {
         this.gameMap = map;
@@ -70,6 +76,7 @@ public class GameModelFacade { //TODO make an abstract facade
 //        transporterHandler = new TransporterHandler();
         primaryProducerHandler = new PrimaryProducerHandler();
         secondaryProducerHandler = new SecondaryProducerHandler();
+        wallHandler = new WallHandler();
 
         try {
             gameMap.getTiles()[10][10].getRegionMap().getRegionAt(HexaVertex.createVertex(4)).getRegionSet().addRoadRegion(
@@ -80,6 +87,15 @@ public class GameModelFacade { //TODO make an abstract facade
             );
         } catch(Exception e) {}
 
+        GameTile tile1 = gameMap.getTiles()[10][10];
+        GameTile tile2 = gameMap.getTiles()[11][10];
+
+        try {
+            wallHandler.addWall(tile1.getRegionAtHexaVertex(HexaVertex.createVertex(4)), tile2.getRegionAtHexaVertex(HexaVertex.createVertex(6)), new Wall());
+            Wall wall = wallHandler.getWallAt(tile1.getRegionAtHexaVertex(HexaVertex.createVertex(1)), tile2.getRegionAtHexaVertex(HexaVertex.createVertex(1)));
+        } catch(Exception e) {
+            System.out.println(e.getStackTrace());
+        }
     }
 
     private void setUpGoodsHandler() {
@@ -125,7 +141,6 @@ public class GameModelFacade { //TODO make an abstract facade
             }
         }
     }
-
 
     /**
      * TODO: this is to be implemented differently on different phases so that the view
@@ -261,6 +276,19 @@ public class GameModelFacade { //TODO make an abstract facade
             }
         }
         return bridges;
+    }
+
+    public Map<GameTile, Map<GameTile, Wall>> getAllWalls() {
+        Map<GameTile, Map<GameTile, Wall>> walls = new HashMap<GameTile, Map<GameTile, Wall>>();
+        Map<Region, Map<Region, Wall>> regionWalls = wallHandler.getAllWalls();
+        for (Region region1 : regionWalls.keySet()) {
+            for (Region region2 : regionWalls.get(region1).keySet()) {
+                Map<GameTile, Wall> wallMap = new HashMap<GameTile, Wall>();
+                wallMap.put(region2.getParentTile(), regionWalls.get(region1).get(region2));
+                walls.put(region1.getParentTile(), wallMap);
+            }
+        }
+        return walls;
     }
 
     /**
