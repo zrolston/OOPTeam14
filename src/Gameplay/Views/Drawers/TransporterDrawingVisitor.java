@@ -12,9 +12,6 @@ import MapBuilder.Views.Utility.PixelPoint;
 
 import java.awt.image.BufferedImage;
 
-/**
- * Created by Willie on 4/16/2017.
- */
 public class TransporterDrawingVisitor implements TransporterVisitor {
 
     BufferedImage image;
@@ -26,88 +23,32 @@ public class TransporterDrawingVisitor implements TransporterVisitor {
 
     @Override
     public void visitDonkey(Donkey d) {
-        int i = 0;
-
-        if(i == 0) {
-            image = ImageLoader.getImage("BLUE_DONKEY");
-            return;
-        }
-
-        switch (d.getPlayerID().getID()) {
-            case 1:
-                image = ImageLoader.getImage("BLUE_DONKEY");
-                break;
-            case 2:
-                image = ImageLoader.getImage("ORANGE_DONKEY");
-                break;
-        }
+        image = ImageLoader.getImage(d.getPlayerID().getPlayerColor() + "_DONKEY");
     }
 
     @Override
     public void visitWagon(Wagon w) {
-
-        int i = 0;
-        if(i == 0) {
-            image = ImageLoader.getImage("ORANGE_WAGON");
-            return;
-        }
-
-        switch (w.getPlayerID().getID()) {
-            case 1:
-                image = ImageLoader.getImage("BLUE_WAGON");
-                break;
-            case 2:
-                image = ImageLoader.getImage("ORANGE_WAGON");
-                break;
-        }
+        image = ImageLoader.getImage(w.getPlayerID().getPlayerColor() + "_WAGON");
     }
 
     @Override
     public void visitTruck(Truck t) {
-        switch (t.getPlayerID().getID()) {
-            case 1:
-                image = ImageLoader.getImage("BLUE_TRUNK");
-                break;
-            case 2:
-                image = ImageLoader.getImage("ORANGE_TRUNK");
-                break;
-        }
+        image = ImageLoader.getImage(t.getPlayerID().getPlayerColor() + "_TRUCK");
     }
 
     @Override
     public void visitRaft(Raft r) {
-        switch (r.getPlayerID().getID()) {
-            case 1:
-                image = ImageLoader.getImage("BLUE_RAFT");
-                break;
-            case 2:
-                image = ImageLoader.getImage("ORANGE_RAFT");
-                break;
-        }
+        image = ImageLoader.getImage(r.getPlayerID().getPlayerColor() + "_RAFT");
     }
 
     @Override
     public void visitRowboat(Rowboat r) {
-        switch (r.getPlayerID().getID()) {
-            case 1:
-                image = ImageLoader.getImage("BLUE_ROWBOAT");
-                break;
-            case 2:
-                image = ImageLoader.getImage("ORANGE_ROWBOAT");
-                break;
-        }
+        image = ImageLoader.getImage(r.getPlayerID().getPlayerColor() + "_ROWBOAT");
     }
 
     @Override
     public void visitSteamer(Steamer s) {
-        switch (s.getPlayerID().getID()) {
-            case 1:
-                image = ImageLoader.getImage("BLUE_STEAMER");
-                break;
-            case 2:
-                image = ImageLoader.getImage("ORANGE_STEAMER");
-                break;
-        }
+        image = ImageLoader.getImage(s.getPlayerID().getPlayerColor() + "_STEAMER");
     }
 
     public BufferedImage getImage() {
