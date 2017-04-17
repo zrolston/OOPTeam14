@@ -27,6 +27,13 @@ public class RegionMap {
         return regionMap.values().contains(r1);
     }
 
+    public List<HexaVertex> getVertices(Region r1) {
+        for (List<HexaVertex> vertices : regionMap.keySet())
+            if (regionMap.get(vertices) == r1)
+                return vertices;
+        return null;
+    }
+
     public boolean hasRegionAt(HexaVertex vertex){
         for(List<HexaVertex> vertices : regionMap.keySet()){
             for (HexaVertex vert : vertices)

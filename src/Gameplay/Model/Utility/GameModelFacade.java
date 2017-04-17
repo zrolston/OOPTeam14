@@ -20,9 +20,7 @@ import Gameplay.Model.Visitors.PickUpExchangeHandler;
 import Gameplay.Model.Visitors.RegionPlacableVisitor;
 import MapBuilder.Model.Utility.MapParsers.DaveBuilder;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class GameModelFacade { //TODO make an abstract facade
     static GameModelFacade gameModelFacade;
@@ -72,6 +70,15 @@ public class GameModelFacade { //TODO make an abstract facade
 //        transporterHandler = new TransporterHandler();
         primaryProducerHandler = new PrimaryProducerHandler();
         secondaryProducerHandler = new SecondaryProducerHandler();
+
+        try {
+            gameMap.getTiles()[10][10].getRegionMap().getRegionAt(HexaVertex.createVertex(4)).getRegionSet().addRoadRegion(
+                    gameMap.getTiles()[10][11].getRegionMap().getRegionAt(HexaVertex.createVertex(5))
+            );
+            gameMap.getTiles()[10][10].getRegionMap().getRegionAt(HexaVertex.createVertex(1)).getRegionSet().addBridgeRegion(
+                    gameMap.getTiles()[10][10].getRegionMap().getRegionAt(HexaVertex.createVertex(3))
+            );
+        } catch(Exception e) {}
 
     }
 
@@ -192,6 +199,10 @@ public class GameModelFacade { //TODO make an abstract facade
         return new TransporterIterator(transporterHandler.getTransportersAt(region));
     }
 
+    public List<Region> getAllRegionsWithTransporter() {
+        return transporterHandler.getAllRegions();
+    }
+
     public Producer getProducer(Region region) {
         Producer producer = primaryProducerHandler.getPrimaryProducerAt(region);
         if (producer != null)
@@ -205,8 +216,51 @@ public class GameModelFacade { //TODO make an abstract facade
         return null;
     }
 
+    public List<Region> getAllRegionsWithProducer() {
+        List<Region> regions = new ArrayList<Region>();
+        regions.addAll(primaryProducerHandler.getBuiltRegions());
+        regions.addAll(secondaryProducerHandler.getBuiltRegions());
+        return regions;
+    }
+
     public GoodsBag getGoodsBag(Region region) {
         return goodsHandler.getGoodsBagAt(region);
+    }
+
+    public List<Region> getAllRegionsWithGoodsBag() {
+        return goodsHandler.getAllRegions();
+    }
+
+    public Map<Region, Region> getAllRoads() {
+        Map<Region, Region> roads = new HashMap<Region, Region>();
+        GameTile[][] tiles = gameMap.getTiles();
+        for (int i = 0; i < tiles.length; i++) {
+            for (int j = 0; j < tiles[0].length; j++) {
+                Iterator<Region> regions = tiles[i][j].getMyRegions();
+                while (regions.hasNext()) {
+                    Region region1 = regions.next();
+                    for (Region region2 : region1.getRegionSet().getRoadRegions())
+                        roads.put(region1, region2);
+                }
+            }
+        }
+        return roads;
+    }
+
+    public Map<Region, Region> getAllBridges() {
+        Map<Region, Region> bridges = new HashMap<Region, Region>();
+        GameTile[][] tiles = gameMap.getTiles();
+        for (int i = 0; i < tiles.length; i++) {
+            for (int j = 0; j < tiles[0].length; j++) {
+                Iterator<Region> regions = tiles[i][j].getMyRegions();
+                while (regions.hasNext()) {
+                    Region region1 = regions.next();
+                    for (Region region2 : region1.getRegionSet().getBridgeRegions())
+                        bridges.put(region1, region2);
+                }
+            }
+        }
+        return bridges;
     }
 
     /**

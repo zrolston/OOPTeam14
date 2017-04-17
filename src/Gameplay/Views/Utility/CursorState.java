@@ -24,6 +24,10 @@ public class CursorState {
     private Polygon regionArea = null;
     private String regionCode = "";
 
+    //Testing executors
+    public static Executor executor = null;
+
+
     //Getters
     public static CursorState getInstance() {
         return ourInstance;

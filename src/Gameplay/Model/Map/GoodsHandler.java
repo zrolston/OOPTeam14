@@ -4,7 +4,9 @@ import Gameplay.Model.Goods.GoodsBag;
 import Gameplay.Model.Goods.LimitedGoodsBag;
 import Gameplay.Model.Region.Region;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -35,5 +37,9 @@ public class GoodsHandler {
         }
 
         return goodsBag;
+    }
+
+    public List<Region> getAllRegions() {
+        return new ArrayList<Region>(occupancyMap.keySet());
     }
 }

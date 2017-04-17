@@ -2,6 +2,7 @@ package Gameplay.Views.Drawers;
 
 import Gameplay.Model.Iterators.TransporterIterator;
 import Gameplay.Model.Map.GameMap;
+import Gameplay.Model.Region.Region;
 import Gameplay.Model.Tile.GameTile;
 import Gameplay.Model.Tile.RegionMap;
 import Gameplay.Model.Transporters.LandTransporters.Donkey;
@@ -10,6 +11,7 @@ import Gameplay.Model.Utility.GameModelFacade;
 import Gameplay.Model.Utility.HexaVertex;
 import Gameplay.Model.Utility.PlayerID;
 import Gameplay.Views.Utility.PixelMap;
+import Gameplay.Views.Utility.PolygonProportions.RegionVertexUtility;
 import MapBuilder.Model.Map.IViewMap;
 import MapBuilder.Model.Tile.Tile;
 import MapBuilder.Model.Utility.HexLocation;
@@ -27,22 +29,19 @@ public class AllTransporterDrawer {
         List<ImageWithLocation> images = new ArrayList<ImageWithLocation>();
         GameModelFacade gmf = GameModelFacade.getInstance();
         GameMap gm = gmf.debugGetMap();
-        GameTile[][] tiles = gm.getTiles();
+
+        List<Region> regions = gmf.getAllRegionsWithTransporter();
         TransporterDrawingVisitor tdv = new TransporterDrawingVisitor();
-        for (int i = 0; i < tiles.length; i++) {
-            for (int j = 0; j < tiles[0].length; j++) {
-                if (tiles[i][j] == null)
-                    continue;
-                PixelPoint origin = PixelMap.getMapTileOrigin(new HexLocation(i,j));
-                RegionMap regionMap = tiles[i][j].getRegionMap();
-                for (List<HexaVertex> vertices : regionMap.getRegionMap().keySet()) {
-                    tdv.setOrigin(new PixelPoint(origin.getX() + 20, origin.getY() + 20));
-                    TransporterIterator transporters = gmf.getTransporters(regionMap.getRegionAt(vertices.get(0)));
-                    for (int k = 0; k < transporters.size(); k++) {
-                        transporters.getTransporterAt(k).accept(tdv);
-                        images.add(tdv.getImageWithLocation());
-                    }
-                }
+
+        for (Region region : regions) {
+            GameTile tile = region.getParentTile();
+            PixelPoint center = RegionVertexUtility.getRegionCenter(tile, tile.getListHexaIndexRegion(region));
+
+            TransporterIterator transporterIterator = gmf.getTransporters(region);
+            tdv.setCenter(center);
+            for (int i = 0; i < transporterIterator.size(); i++) {
+                transporterIterator.getTransporterAt(i).accept(tdv);
+                images.add(tdv.getImageWithLocation());
             }
         }
         return images;

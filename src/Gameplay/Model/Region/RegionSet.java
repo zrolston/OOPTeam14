@@ -98,8 +98,8 @@ public class RegionSet {
 
     public void addBridgeRegion(Region bridgeRegion) {
 
-        if(!this.portRegions.contains(bridgeRegion)) {
-            this.portRegions.add(bridgeRegion);
+        if(!this.bridgeRegions.contains(bridgeRegion)) {
+            this.bridgeRegions.add(bridgeRegion);
         }
 
     }
