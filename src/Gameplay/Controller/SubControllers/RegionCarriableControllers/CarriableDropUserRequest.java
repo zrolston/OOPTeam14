@@ -1,6 +1,7 @@
 package Gameplay.Controller.SubControllers.RegionCarriableControllers;
 
 import Gameplay.Controller.SubControllers.TransporterCarriableControllers.MoveController;
+import Gameplay.Model.Region.Region;
 import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Model.Utility.GameModelFacade;
 
@@ -17,7 +18,6 @@ public class CarriableDropUserRequest extends PickUpController{
         GameModelFacade gmf = GameModelFacade.getInstance();
 
         if (getCurrentRegion()!= null && getCurrentCarriable()!= null) {
-            //TODO: add to the bottom panel
             gmf.addCarriableToUserRequest(getCurrentRegion(), getCurrentCarriable());
             removeCarriable();
         }
