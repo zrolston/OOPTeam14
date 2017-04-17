@@ -407,7 +407,7 @@ public class GameModelFacade { //TODO make an abstract facade
     }
     public void generateRoad(Region start, Region end) {
         GoodsBag cost = new GoodsBag();
-        cost.addStone(new Stone());
+        //cost.addStone(new Stone());
         ProducerRequest requiredInputs = new ProducerRequest(cost, null);
         UserRequest userInputs = userRequestHandler.getUserRequest();
         if (userInputs.contains(requiredInputs)) {
