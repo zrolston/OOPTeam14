@@ -51,8 +51,8 @@ public class TransporterHandler {
         }
     }
 
-    public List<Transporter> getTransportersAt(Region r){
-        List<Transporter> transporters = new ArrayList<>();
+    public ArrayList<Transporter> getTransportersAt(Region r){
+        ArrayList<Transporter> transporters = new ArrayList<>();
 
         TransporterOccupancy transporterOccupancy = occupancyMap.get(r);
 
