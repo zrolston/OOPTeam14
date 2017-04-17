@@ -78,6 +78,7 @@ public class MoveController extends TransporterCarriableController {
     }
     public void setRegion(Region region){
         selectedRegion = region;
+        pickUpController.activateController(getMainView());
         pickUpController.receiveRegion(region);
     }
 

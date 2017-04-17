@@ -145,7 +145,7 @@ public abstract class TransporterCarriableController implements MainViewControll
      */
     private void addToPanelLeftColumn(TransporterIterator transporters) {
         if (transporters != null) {
-            setTransIt(transporters);
+            view.setTranIter(transporters);
         }
     }
 
@@ -156,7 +156,7 @@ public abstract class TransporterCarriableController implements MainViewControll
      */
     protected void addToPanelRightColumn(CarriableIterator carriables) {
         if (carriables != null) {
-            setCarrIt(carriables);
+            view.setCarrIter(carriables);
         }
     }
 
