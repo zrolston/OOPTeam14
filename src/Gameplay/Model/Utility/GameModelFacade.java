@@ -36,7 +36,11 @@ public class GameModelFacade { //TODO make an abstract facade
     private SecondaryProducerHandler secondaryProducerHandler;
     private MovementManager movementManager;
     private WallHandler wallHandler;
+
     private PhaseManager phaseManager;
+
+    private UserRequestHandler userRequestHandler;
+
 
     private GameModelFacade(GameMap map) {
         this.gameMap = map;
@@ -84,6 +88,7 @@ public class GameModelFacade { //TODO make an abstract facade
         secondaryProducerHandler = new SecondaryProducerHandler();
         wallHandler = new WallHandler();
         movementManager = new MovementManager(transporterHandler, wallHandler, goodsHandler);
+        userRequestHandler = new UserRequestHandler();
 
         try {
             gameMap.getTiles()[10][10].getRegionMap().getRegionAt(HexaVertex.createVertex(4)).getRegionSet().addRoadRegion(
@@ -356,6 +361,18 @@ public class GameModelFacade { //TODO make an abstract facade
         myShit.addAll(goodsHandler.getGoodsBagAt(region).getGoods());
 
         return new CarriableIterator(myShit);
+    }
+
+    public void addCarriableToUserRequest(Transporter t, Carriable c) {
+        userRequestHandler.addCarriable(t.getGoodsBag(), c);
+    }
+
+    public void addCarriableToUserRequest(Region r, Carriable c) {
+        userRequestHandler.addCarriable(goodsHandler.getGoodsBagAt(r), c);
+    }
+
+    public void resetUserRequest() {
+        userRequestHandler.reset();
     }
 
 }
