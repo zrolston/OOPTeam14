@@ -12,8 +12,10 @@ import Gameplay.Model.Map.*;
 import Gameplay.Model.Tile.GameTile;
 import Gameplay.Model.Tile.RegionMap;
 import Gameplay.Model.TransporterFactory.DonkeyFactory;
+import Gameplay.Model.TransporterFactory.SteamerFactory;
 import Gameplay.Model.TransporterFactory.TransporterFactory;
 import Gameplay.Model.TransporterFactory.TruckFactory;
+import Gameplay.Model.Transporters.LandTransporters.Wagon;
 import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Model.Visitors.Carriable;
 import Gameplay.Model.Visitors.DropOffExchangeHandler;
@@ -70,13 +72,19 @@ public class GameModelFacade { //TODO make an abstract facade
 
     public void startGame() {
         setUpGoodsHandler();
-        transporterHandler = new TransporterHandler();
+//        transporterHandler = new TransporterHandler();
         primaryProducerHandler = new PrimaryProducerHandler();
         secondaryProducerHandler = new SecondaryProducerHandler();
+
     }
 
     private void setUpGoodsHandler() {
+
+        TransporterFactory t = new DonkeyFactory();
+        PlayerID p2 = new PlayerID(0);
+
         goodsHandler = new GoodsHandler();
+        transporterHandler = new TransporterHandler();
         GameTile[][] tiles = gameMap.getTiles();
         RegionPlacableVisitor pcv = new RegionPlacableVisitor();
         for (int i = 0; i < tiles.length; i++) {
@@ -92,6 +100,10 @@ public class GameModelFacade { //TODO make an abstract facade
                         GoodsBag gb = new GoodsBag();
                         gb.addBoard(new Board());
                         goodsHandler.place(gb, r);
+
+                        Transporter tt = t.create();
+                        tt.setPlayerID( p2 );
+                        transporterHandler.place(t.create(), r);
                     }
                 }
             }

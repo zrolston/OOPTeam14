@@ -49,19 +49,38 @@ public class TransporterCarriableView extends JPanel {
 
     private void drawButtons(Graphics g) {
 
-        if (carrIter == null)
+        if(tranIter == null)
             return;
 
-        carrIter.first();
+        System.out.println("tran iter size: " + tranIter.size());
+
+
+        tranIter.first();
         int i = 0;
-        while (i < carrIter.size()) {
+        while (i < tranIter.size()) {
 
             Rectangle r = buttons.get(i);
             g.drawRoundRect((int) r.getX(), (int) r.getY(), (int) r.getWidth(), (int) r.getHeight(), 5, 5);
 
-            if (++i % 2 != 0)
-                g.drawImage(tranIter.getImage(), (int) r.getX(), (int) r.getY(), (int) r.getWidth(), (int) r.getHeight(), null);
-            else
+            g.drawImage(tranIter.getImage(), (int) r.getX(), (int) r.getY(), (int) r.getWidth(), (int) r.getHeight(), null);
+
+            tranIter.next();
+            i++;
+        }
+
+        if(carrIter == null)
+            return;
+
+        System.out.println("carr iter size: " + tranIter.size());
+
+
+        carrIter.first();
+        i = 0;
+        while (++i < carrIter.size()) {
+
+            Rectangle r = buttons.get(i);
+            g.drawRoundRect((int) r.getX(), (int) r.getY(), (int) r.getWidth(), (int) r.getHeight(), 5, 5);
+
                 g.drawImage(carrIter.getImage(), (int) r.getX(), (int) r.getY(), (int) r.getWidth(), (int) r.getHeight(), null);
 
             carrIter.next();
@@ -86,6 +105,9 @@ public class TransporterCarriableView extends JPanel {
     }
 
     public Integer getCarriableIndex(PixelPoint point) {
+
+
+
         int index = 0;
         for (Rectangle button : buttons) {
             //Checking right button list
@@ -107,11 +129,13 @@ public class TransporterCarriableView extends JPanel {
 
     public void generateButtons() {
 
-        if (carrIter == null)
+        if (tranIter == null)
             return;
 
         buttons.clear();
-        int numElements = carrIter.size();
+        int numElements = tranIter.size();
+
+        System.out.println("buttons made: " + numElements);
 
         int widthOffset = getWidth() / numCols;
         for (int i = 0; i < numCols; i++) {

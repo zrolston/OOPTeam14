@@ -2,6 +2,7 @@ package Gameplay.Model.Iterators;
 
 import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Views.Drawers.CarriableDrawingVisitor;
+import Gameplay.Views.Drawers.TransporterDrawingVisitor;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -42,9 +43,12 @@ public class TransporterIterator implements StuffIterator {
 
     @Override
     public BufferedImage getImage() {
-        CarriableDrawingVisitor t = new CarriableDrawingVisitor();
+        TransporterDrawingVisitor t = new TransporterDrawingVisitor();
         getCurrent().accept(t);
         BufferedImage transporterImage = t.getImage();
+
+        System.out.println("image = " + transporterImage);
+
         return transporterImage;    }
 
     public Transporter getTransporterAt(int number) {
