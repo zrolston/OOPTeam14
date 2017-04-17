@@ -8,7 +8,7 @@ abstract public class Request extends Owned {
     public boolean contains(Request r) {
         if (this.getTransporter() == null)
             return this.getGoodsBag().contains(r.getGoodsBag());
-        else if (this.getTransporter().getClass().equals(r.getTransporter().getClass()))
+        else if (r.getTransporter()!= null && this.getTransporter().getClass().equals(r.getTransporter().getClass()))
             return this.getGoodsBag().contains(r.getGoodsBag());
         else
             return false;

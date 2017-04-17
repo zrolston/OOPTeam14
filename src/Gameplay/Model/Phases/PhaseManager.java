@@ -63,7 +63,7 @@ public class PhaseManager {
 
         @Override
         public void start() {
-
+            currentState = this;
         }
 
         @Override

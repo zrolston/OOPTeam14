@@ -17,8 +17,6 @@ import Gameplay.Model.Visitors.ProducerVisitor;
  */
 public class WagonProducer extends LandTransporterProducer {
 
-    private ProducerRequest input;
-
     public WagonProducer(Region region) {
         super(new WagonFactory(), region);
         setMaxCapacity(1);
@@ -29,7 +27,7 @@ public class WagonProducer extends LandTransporterProducer {
         GoodsBag goods = new GoodsBag();
         goods.addBoard(new Board());
         goods.addBoard(new Board());
-        input = new ProducerRequest(goods, new Donkey());
+        setInputs(new ProducerRequest(goods, new Donkey()));
     }
 
     @Override

@@ -26,7 +26,7 @@ import static org.junit.Assert.*;
 public class MoveControllerTest {
 
     public static final String workingDir = System.getProperty("user.dir");
-    public static final String mapsDir = workingDir + "\\res\\SavedMaps\\full board map.dave";
+//    public static final String mapsDir = workingDir + "\\res\\SavedMaps\\full board map.dave";
 
     public static void main(String[] args) {
 
@@ -38,8 +38,8 @@ public class MoveControllerTest {
 //        tradingController.activateState(display.getMainView());
 
         //Creating and linking the Move Controller
-        while(GameModelFacade.getInstance() == null){
-        }
+//        while(GameModelFacade.getInstance() == null){
+//        }
 
 //        MoveController moveController = new MoveController();
 //        moveController.activateController(display.getMainView());
@@ -47,7 +47,7 @@ public class MoveControllerTest {
 //        //Creating and linking the Main Controller
 //        MainController mainController = new MainController(display.getMainView());
 //        PhaseManager phaseManager = new PhaseManager(mainController);
-       GameModelFacade modelFacade =  GameModelFacade.getInstance();
+//       GameModelFacade modelFacade =  GameModelFacade.getInstance();
 //        modelFacade.setPhaseManager(phaseManager);
         //Starts the Game and generates Transporters
 //        modelFacade.startGame();
@@ -56,9 +56,9 @@ public class MoveControllerTest {
 
 
         //Creating and linking the Main Controller
-        MainController mainController = new MainController(display.getMainView());
-        PhaseManager phaseManager = new PhaseManager(mainController);
-        modelFacade.setPhaseManager(phaseManager);
+//        MainController mainController = new MainController(display.getMainView());
+//        PhaseManager phaseManager = new PhaseManager(mainController);
+//        modelFacade.setPhaseManager(phaseManager);
 
 //        Checking out user request
 //        UserRequestController userRequestController= new UserRequestController();
@@ -69,11 +69,22 @@ public class MoveControllerTest {
 //        productionController.activateController(display.getMainView());
 
 //        Checking out Building controller
-        BuildingController buildingController = new BuildingController();
-        buildingController.activateController(display.getMainView());
+
+//        BuildingController buildingController = new BuildingController();
+//        buildingController.activateController(display.getMainView());
+//
+//        BuildingController buildingController = new BuildingController();
+//        buildingController.activateController(display.getMainView());
+
+//=======
+//        BuildingController buildingController = new BuildingController();
+//        buildingController.activateController(display.getMainView());
+//>>>>>>> 802d6b7ba863ea672cfb613a56bbf7d7260d5460
+//        BuildingController buildingController = new BuildingController();
+//        buildingController.activateController(display.getMainView());
 
         //Starts the Game and generates Transporters
-        modelFacade.startGame();
+//        modelFacade.startGame();
 //        moveController.addTransporters(generateCarriableIter(modelFacade));
     }
 

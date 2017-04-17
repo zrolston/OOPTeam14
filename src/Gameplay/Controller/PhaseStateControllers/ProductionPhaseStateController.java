@@ -12,6 +12,7 @@ import java.util.List;
  */
 public class ProductionPhaseStateController extends PhaseStateController {
     ProductionController productionController;
+
     @Override
     public String toString() {
         return "ProductionPhase";
