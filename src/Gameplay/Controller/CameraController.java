@@ -33,8 +33,18 @@ public class CameraController implements MouseMotionListener, MouseListener{
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        PixelPoint point = new PixelPoint(e.getX(), e.getY());
-        camera.move(point);
+        //Lock Camera in case of Drawing Road
+        if(!cursorState.isDrawingRoad()){
+            PixelPoint point = new PixelPoint(e.getX(), e.getY());
+            camera.move(point);
+        }
+        else{
+            //Hovering goes here
+            updateActiveTile(e);
+            updateRegion(e);
+            PixelPoint now = new PixelPoint(e.getX(), e.getY());
+            cursorState.setEndRoad(now);
+        }
     }
 
     @Override
@@ -48,6 +58,11 @@ public class CameraController implements MouseMotionListener, MouseListener{
 
     @Override
     public void mousePressed(MouseEvent e) {
+        if(cursorState.isControlActive() || cursorState.isIsBridge()){
+            PixelPoint point = new PixelPoint(e.getX(), e.getY());
+            cursorState.startDrawingRoad(point);
+        }
+
         camera.recordPress(new PixelPoint(e.getX(), e.getY()));
         cursorState.setMarkerActive(false);
 
@@ -62,7 +77,14 @@ public class CameraController implements MouseMotionListener, MouseListener{
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        camera.releasePress();
+        if(cursorState.isControlActive() || cursorState.isIsBridge()){
+            cursorState.stopDrawingRoad();
+        }
+
+        //Lock Camera in case of Drawing Road
+        if(!cursorState.isDrawingRoad()) {
+            camera.releasePress();
+        }
     }
 
     @Override

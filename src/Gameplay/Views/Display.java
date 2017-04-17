@@ -1,5 +1,6 @@
 package Gameplay.Views;
 
+import Gameplay.Controller.CameraKeysController;
 import Gameplay.Views.HomeView.HomeView;
 import Gameplay.Views.MainView.MainView;
 import MapBuilder.Views.Utility.PixelMap;
@@ -19,6 +20,7 @@ public class Display extends JFrame{
         setTitle("Roads & Boats");
         setSize( PixelMap.SCREEN_WIDTH, PixelMap.SCREEN_HEIGHT );
         setResizable(false);
+        setFocusable(true);
 
         mainScreen = new MainView( this );
         homeScreen = new HomeView( this );
@@ -29,6 +31,11 @@ public class Display extends JFrame{
         displayHomeScreen();
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        CameraKeysController cameraKeys = new CameraKeysController();
+        addKeyListener(cameraKeys);
+        setFocusable(true);
+
         setVisible(true);
     }
 

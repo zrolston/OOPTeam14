@@ -1,23 +1,28 @@
-package Gameplay.Model.Producer.SecondaryProducer.TransporterProducer;
+package Gameplay.Model.Producer.SecondaryProducer.TransporterProducer.WaterTransporterProducers;
 
 import Gameplay.Model.Goods.Board;
 import Gameplay.Model.Goods.GoodsBag;
 import Gameplay.Model.Producer.ProducerRequest;
+import Gameplay.Model.Producer.SecondaryProducer.TransporterProducer.SecondaryTransporterProducer;
 import Gameplay.Model.Producer.UserRequest;
+import Gameplay.Model.Region.Region;
 import Gameplay.Model.TransporterFactory.RowboatFactory;
 import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Model.Transporters.WaterTransporter.Rowboat;
 import Gameplay.Model.Visitors.ProducerVisitor;
 
+import java.util.List;
+
 /**
  * Created by Willie on 4/15/2017.
  */
-public class RowboatProducer extends SecondaryTransporterProducer {
+public class RowboatProducer extends WaterTransporterProducer {
 
     private ProducerRequest input;
 
-    public RowboatProducer() {
-        super(new RowboatFactory());
+    public RowboatProducer(Region region, List<Region> connectedRegions) {
+        super(new RowboatFactory(), region, connectedRegions);
+        setMaxCapacity(1);
         generateInput();
     }
 
@@ -36,14 +41,4 @@ public class RowboatProducer extends SecondaryTransporterProducer {
         pv.visitRowboatFactory(this);
     }
 
-    @Override
-    public Transporter produce(UserRequest ur) {
-        if (!ur.contains(input))
-            return null;
-        else {
-            ur.removeUsed(input);
-            ur.reset();
-            return generateOutputs();
-        }
-    }
 }

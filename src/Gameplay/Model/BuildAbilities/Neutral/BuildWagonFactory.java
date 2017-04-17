@@ -4,14 +4,11 @@ import Gameplay.Model.BuildAbilities.BuildAbility;
 import Gameplay.Model.Goods.Board;
 import Gameplay.Model.Goods.GoodsBag;
 import Gameplay.Model.Goods.Stone;
-import Gameplay.Model.Map.PrimaryProducerHandler;
 import Gameplay.Model.Map.SecondaryProducerHandler;
-import Gameplay.Model.Producer.PrimaryProducer.ClayPit;
 import Gameplay.Model.Producer.ProducerRequest;
-import Gameplay.Model.Producer.SecondaryProducer.TransporterProducer.WagonProducer;
+import Gameplay.Model.Producer.SecondaryProducer.TransporterProducer.LandTransporterProducers.WagonProducer;
 import Gameplay.Model.Producer.UserRequest;
 import Gameplay.Model.Region.Region;
-import Gameplay.Model.TransporterFactory.WagonFactory;
 import Gameplay.Model.Utility.PlayerID;
 
 /**
@@ -43,6 +40,6 @@ public class BuildWagonFactory extends BuildAbility{
         ur.removeUsed(input);
         ur.reset();
 
-        transporterProducerHandler.placeTransporterProducer(new WagonProducer(), region);
+        transporterProducerHandler.placeTransporterProducer(new WagonProducer(region), region);
     }
 }

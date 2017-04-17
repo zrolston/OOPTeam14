@@ -2,7 +2,11 @@ package Gameplay.Model.Visitors;
 
 import Gameplay.Model.Producer.PrimaryProducer.*;
 import Gameplay.Model.Producer.SecondaryProducer.GoodProducer.*;
-import Gameplay.Model.Producer.SecondaryProducer.TransporterProducer.*;
+import Gameplay.Model.Producer.SecondaryProducer.TransporterProducer.LandTransporterProducers.TruckProducer;
+import Gameplay.Model.Producer.SecondaryProducer.TransporterProducer.LandTransporterProducers.WagonProducer;
+import Gameplay.Model.Producer.SecondaryProducer.TransporterProducer.WaterTransporterProducers.RaftProducer;
+import Gameplay.Model.Producer.SecondaryProducer.TransporterProducer.WaterTransporterProducers.RowboatProducer;
+import Gameplay.Model.Producer.SecondaryProducer.TransporterProducer.WaterTransporterProducers.SteamerProducer;
 
 /**
  * Created by Willie on 4/15/2017.

@@ -6,8 +6,7 @@ import Gameplay.Model.Goods.GoodsBag;
 import Gameplay.Model.Goods.Stone;
 import Gameplay.Model.Map.SecondaryProducerHandler;
 import Gameplay.Model.Producer.ProducerRequest;
-import Gameplay.Model.Producer.SecondaryProducer.TransporterProducer.RaftProducer;
-import Gameplay.Model.Producer.SecondaryProducer.TransporterProducer.TruckProducer;
+import Gameplay.Model.Producer.SecondaryProducer.TransporterProducer.LandTransporterProducers.TruckProducer;
 import Gameplay.Model.Producer.UserRequest;
 import Gameplay.Model.Region.Region;
 import Gameplay.Model.Utility.PlayerID;
@@ -40,6 +39,6 @@ public class BuildTruckFactory extends BuildAbility{
         ur.removeUsed(input);
         ur.reset();
 
-        transporterProducerHandler.placeTransporterProducer(new TruckProducer(), region);
+        transporterProducerHandler.placeTransporterProducer(new TruckProducer(region), region);
     }
 }
