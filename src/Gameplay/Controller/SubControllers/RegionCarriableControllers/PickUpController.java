@@ -58,7 +58,7 @@ public class PickUpController extends RegionCarriableController {
 
     public void receiveRegion(Region region) {
         this.currentRegion = region;
-        displayPanel();
+        addCarriables(region);
     }
 
     private void displayPanel(){

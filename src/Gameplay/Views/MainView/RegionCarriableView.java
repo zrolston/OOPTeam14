@@ -142,7 +142,7 @@ public class RegionCarriableView extends JPanel {
             g.drawRoundRect((int) r.getX(), (int) r.getY(), (int) r.getWidth(), (int) r.getHeight(), 5, 5);
 
             g.drawImage(carrIter.getImage(), (int) r.getX(), (int) r.getY(), (int) r.getWidth(), (int) r.getHeight(), null);
-
+            carrIter.getImage();
             carrIter.next();
             i++;
         }
