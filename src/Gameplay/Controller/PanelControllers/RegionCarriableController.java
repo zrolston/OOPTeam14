@@ -2,9 +2,12 @@ package Gameplay.Controller.PanelControllers;
 
 import Gameplay.Controller.MainViewController;
 import Gameplay.Model.Iterators.CarriableIterator;
+import Gameplay.Model.Region.Region;
+import Gameplay.Model.Utility.GameModelFacade;
 import Gameplay.Model.Visitors.Carriable;
 import Gameplay.Views.MainView.MainView;
 import Gameplay.Views.MainView.RegionCarriableView;
+import Gameplay.Views.Utility.CursorState;
 import MapBuilder.Views.Utility.PixelPoint;
 
 import javax.swing.*;
@@ -18,6 +21,7 @@ public abstract class RegionCarriableController implements MainViewController, M
     private MainView mainView;
     private RegionCarriableView view;
     private Carriable currentCarriable;
+
     private int index = -1;
     CarriableIterator carrIt;
 
@@ -70,7 +74,7 @@ public abstract class RegionCarriableController implements MainViewController, M
 
     @Override
     public void mousePressed(MouseEvent e) {
-        int index = getCarriableIndex(e);
+        setIndex( getCarriableIndex(e));
         //TODO: match index with the right currentCarriable
         carriableClick();
     }
@@ -89,8 +93,10 @@ public abstract class RegionCarriableController implements MainViewController, M
     public void mouseExited(MouseEvent e) {
 
     }
+
     /**
      * gets the current currentCarriable index inside of the iterator
+     *
      * @param e
      * @return
      */
@@ -114,34 +120,47 @@ public abstract class RegionCarriableController implements MainViewController, M
     }
 
 
-    public void assignCarriables(CarriableIterator carrIt){
+    protected int getCurrentIndex(){
+        return index;
+    }
+
+
+    public void assignCarriables(CarriableIterator carrIt) {
         setCarrIt(carrIt);
         displayCarriables();
     }
 
-    protected void displayCarriables(){
+    protected void displayCarriables() {
         if (carrIt != null) {
             //TODO: function to add carriables to  view
         }
         showPanel();
     }
 
-
-
     protected void showPanel() {
-        view.setVisible(true);
+//        view.setVisible(true);
     }
 
     protected void hidePanel() {
         view.setVisible(false);
     }
 
-    protected  RegionCarriableView getView(){
+    protected RegionCarriableView getView() {
         return view;
     }
 
-    protected void removeCarriable(){
+
+    protected void removeCarriable() {
         carrIt.deleteAt(index);
     }
 
+    protected CarriableIterator getCarriableIterator(){
+        return carrIt;
+    }
+
+    protected void addCarriables(Region region){
+        GameModelFacade gm = GameModelFacade.getInstance();
+        CarriableIterator iterator = gm.getRegionCarriable(region);
+        //TODO: add to view the iterator
+    }
 }

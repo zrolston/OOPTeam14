@@ -22,13 +22,8 @@ public class Wall extends Owned {
         strength += 1;
     }
 
-    public void weaken(){
-        strength -= 0;
-
-        if(strength <= 0){
-            strength = 0;
-            setPlayerID(PlayerID.getNeutralPlayerID());
-        }
+    public void destroy(){
+        setPlayerID(PlayerID.getNeutralPlayerID());
     }
 
 }

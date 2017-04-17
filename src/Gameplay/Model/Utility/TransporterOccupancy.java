@@ -8,7 +8,7 @@ import java.util.List;
 
 public class TransporterOccupancy {
     Region region;
-    List<Transporter> transporters;
+    ArrayList<Transporter> transporters;
 
     public TransporterOccupancy(Region region){
         this.region = region;
@@ -27,7 +27,7 @@ public class TransporterOccupancy {
         return transporters.isEmpty();
     }
 
-    public List<Transporter> getTransporters(){
+    public ArrayList<Transporter> getTransporters(){
         return transporters;
     }
 

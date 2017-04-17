@@ -1,48 +1,48 @@
 package Gameplay.Controller.PanelControllers;
 
 import Gameplay.Controller.MainViewController;
-import Gameplay.Model.Goods.Goose;
 import Gameplay.Model.Iterators.CarriableIterator;
 import Gameplay.Model.Iterators.TransporterIterator;
-import Gameplay.Model.Region.Region;
-import Gameplay.Model.TransporterFactory.DonkeyFactory;
+
 import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Model.Utility.GameModelFacade;
-import Gameplay.Model.Utility.PlayerID;
 import Gameplay.Model.Visitors.Carriable;
-import Gameplay.Views.Drawers.CarriableDrawingVisitor;
-import Gameplay.Views.Drawers.TransporterDrawingVisitor;
 import Gameplay.Views.MainView.MainView;
 import Gameplay.Views.MainView.TransporterCarriableView;
+import Gameplay.Views.Utility.CursorState;
 import MapBuilder.Views.Utility.PixelPoint;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 
 /**
  * Created by jordi on 4/15/2017.
  */
 public abstract class TransporterCarriableController implements MainViewController, MouseListener {
+    //views
     private TransporterCarriableView view;
     private MainView mainView;
-
+    //access point to the model
     private GameModelFacade gameModelFacade = GameModelFacade.getInstance();
-
+    //currents
     private Carriable currentCarriable;
     private Transporter currentTransporter;
+    private int index = -1;
+    //iterators
     private CarriableIterator carrIt;
     private TransporterIterator transIt;
+    //buttons
     private final int buttonNumber = 8;
+    private CursorState cursorState = CursorState.getInstance();
 
 
     protected abstract void resume();
 
     //    protected abstract void suspend();
     protected abstract void carriableClick();
+
+    protected abstract void transporterClick();
 
     private TransporterCarriableView getView(MainView mainView) {
         if (viewIsNull(view)) {
@@ -76,25 +76,25 @@ public abstract class TransporterCarriableController implements MainViewControll
         return view == null;
     }
 
-    public void attachView(TransporterCarriableView view){
+    public void attachView(TransporterCarriableView view) {
 
         if (view == null) {
-                return;
+            return;
         }
 
-        this.view = view;
-        view.setIter(carrIt);
+        view = view;
         view.addMouseListener(this);
 
     }
 
 
-
     @Override
     public void mousePressed(MouseEvent e) {
-
         PixelPoint point = new PixelPoint(e.getX(), e.getY());
-
+        setIndex(view.getCarriableIndex(point));
+        if (!isOutOfBounds(index)) {
+            determineClick(index);
+        }
     }
 
     private boolean isOutOfBounds(int index) {
@@ -102,12 +102,15 @@ public abstract class TransporterCarriableController implements MainViewControll
     }
 
     private void determineClick(int index) {
-        if (index > buttonNumber - 1 ){
-            setCurrentCarriable(index % buttonNumber);
+
+        if (index > buttonNumber - 1) {
+            this.index=index%buttonNumber;
+            setCurrentCarriable(this.index);
             carriableClick();
-        } else{
+//            removeCarriable();//implemented now it might change
+        } else {
             setCurrentTransporter(index);
-            transporterClick();
+            leftColumnClick();
         }
     }
 
@@ -141,17 +144,21 @@ public abstract class TransporterCarriableController implements MainViewControll
      */
     private void addToPanelLeftColumn(TransporterIterator transporters) {
         if (transporters != null) {
-            //TODO: add transporters to left column in the view
+
+            view.setTranIter(transporters);
         }
+        else
+            System.out.println("transporters null");
     }
 
     /**
      * add carriables to the right column of the view
+     *
      * @param carriables
      */
     protected void addToPanelRightColumn(CarriableIterator carriables) {
         if (carriables != null) {
-            //TODO: add currentCarriable to the right column
+            view.setCarrIter(carriables);
         }
     }
 
@@ -160,10 +167,10 @@ public abstract class TransporterCarriableController implements MainViewControll
      * adds the goods to the right column
      * when a transporter is clicked
      */
-    protected void transporterClick() {
+    protected void leftColumnClick() {
         setCarrItFromFacade();
         addToPanelRightColumn(carrIt);
-        //TODO: beware of overriding the function of a subclass
+        transporterClick();
     }
 
     /**
@@ -173,7 +180,7 @@ public abstract class TransporterCarriableController implements MainViewControll
         view.setVisible(false);
     }
 
-    protected void showPanel(){
+    protected void showPanel() {
         view.setVisible(true);
     }
 
@@ -185,7 +192,7 @@ public abstract class TransporterCarriableController implements MainViewControll
 
     protected void setCurrentTransporter(int number) {
         if (transIt != null) {
-            currentCarriable = transIt.getTransporterAt(number);
+            currentTransporter = transIt.getTransporterAt(number);
         }
     }
 
@@ -201,11 +208,15 @@ public abstract class TransporterCarriableController implements MainViewControll
      * gets the carriable iterator from the current transporter
      * sets it to the global carrIt
      */
-    protected void setCarrItFromFacade(){
+    protected void setCarrItFromFacade() {
         if (!isCurrentTransporterNull()) {
-            CarriableIterator car= gameModelFacade.getTransporterCarriable(currentTransporter);
+            CarriableIterator car = gameModelFacade.getTransporterCarriable(currentTransporter);
             setCarrIt(car);
         }
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
     }
 
     protected Carriable getCurrentCarriable() {
@@ -214,6 +225,10 @@ public abstract class TransporterCarriableController implements MainViewControll
 
     protected Transporter getCurrentTransporter() {
         return currentTransporter;
+    }
+
+    protected TransporterIterator getTransporterIterator() {
+        return transIt;
     }
 
     public MainView getMainView() {
@@ -235,11 +250,11 @@ public abstract class TransporterCarriableController implements MainViewControll
         currentTransporter = null;
     }
 
-    private boolean isCurrentTransporterNull(){
+    private boolean isCurrentTransporterNull() {
         return currentTransporter == null;
     }
 
-
-
-
+    protected void removeCarriable() {
+        carrIt.deleteAt(index);
+    }
 }

@@ -21,6 +21,9 @@ public class DropOffExchangeHandler extends ExchangeHandler {
 
     @Override
     public void visitTransporter(Transporter transporter) {
+        if(!exchangePossible()){
+            return;
+        }
         target.dropTransporter();
         occupancy.add(transporter);
         transporter.moveTo(occupancy.getRegion());
@@ -28,6 +31,9 @@ public class DropOffExchangeHandler extends ExchangeHandler {
 
     @Override
     public void visitGood(Good good) {
+        if(!exchangePossible()){
+            return;
+        }
         target.dropGood(good);
         regionGoodsBag.addGood(good);
     }
