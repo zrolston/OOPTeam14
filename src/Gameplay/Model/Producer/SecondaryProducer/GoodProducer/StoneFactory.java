@@ -14,7 +14,8 @@ public class StoneFactory extends SecondaryGoodProducer {
 
     private ProducerRequest input;
 
-    public StoneFactory() {
+    public StoneFactory(GoodsBag goodsBag) {
+        super(goodsBag);
         generateInput();
     }
 
@@ -24,7 +25,7 @@ public class StoneFactory extends SecondaryGoodProducer {
         input = new ProducerRequest(goods, null);
     }
 
-    private GoodsBag generateOutputs() {
+    protected GoodsBag generateOutputs() {
         GoodsBag goods = new GoodsBag();
         goods.addStone(new Stone());
         goods.addStone(new Stone());
@@ -34,16 +35,5 @@ public class StoneFactory extends SecondaryGoodProducer {
     @Override
     public void accept(ProducerVisitor pv) {
         pv.visitStoneFactory(this);
-    }
-
-    @Override
-    public GoodsBag produce(UserRequest ur) {
-        if (!ur.contains(input))
-            return new GoodsBag();
-        else {
-            ur.removeUsed(input);
-            ur.reset();
-            return generateOutputs();
-        }
     }
 }

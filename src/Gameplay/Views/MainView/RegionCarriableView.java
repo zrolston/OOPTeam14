@@ -1,8 +1,7 @@
 package Gameplay.Views.MainView;
 
-import Gameplay.Model.Producer.PrimaryProducer.ClayPit;
 import Gameplay.Model.Producer.Producer;
-import Gameplay.Model.Producer.SecondaryProducer.TransporterProducer.WagonProducer;
+import Gameplay.Model.Producer.SecondaryProducer.TransporterProducer.LandTransporterProducers.WagonProducer;
 import Gameplay.Model.Visitors.Carriable;
 import Gameplay.Views.Drawers.ProducerDrawingVisitor;
 import Gameplay.Views.Utility.PolygonUtility;
@@ -12,7 +11,6 @@ import MapBuilder.Views.Utility.PixelPoint;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.List;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;

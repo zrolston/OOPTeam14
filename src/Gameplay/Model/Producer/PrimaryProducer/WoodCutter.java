@@ -10,13 +10,17 @@ import Gameplay.Model.Visitors.ProducerVisitor;
  */
 public class WoodCutter extends PrimaryProducer {
 
+    public WoodCutter(GoodsBag goodsBag) {
+        super(goodsBag);
+    }
+
     @Override
     public void accept(ProducerVisitor pv) {
         pv.visitWoodCutter(this);
     }
 
     @Override
-    public GoodsBag produce() {
+    public GoodsBag generateOutput() {
         GoodsBag goods = new GoodsBag();
         goods.addTrunk(new Trunk());
         return goods;

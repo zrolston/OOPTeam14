@@ -10,13 +10,17 @@ import Gameplay.Model.Visitors.ProducerVisitor;
  */
 public class OilRig extends PrimaryProducer {
 
+    public OilRig(GoodsBag goodsBag) {
+        super(goodsBag);
+    }
+
     @Override
     public void accept(ProducerVisitor pv) {
         pv.visitOilRig(this);
     }
 
     @Override
-    public GoodsBag produce() {
+    public GoodsBag generateOutput() {
         GoodsBag goods = new GoodsBag();
         goods.addFuel(new Fuel());
         return goods;

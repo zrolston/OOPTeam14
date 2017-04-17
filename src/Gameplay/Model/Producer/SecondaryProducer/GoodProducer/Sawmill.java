@@ -14,7 +14,8 @@ public class Sawmill extends SecondaryGoodProducer {
 
     private ProducerRequest input;
 
-    public Sawmill() {
+    public Sawmill(GoodsBag goodsBag) {
+        super(goodsBag);
         generateInput();
     }
 
@@ -24,7 +25,7 @@ public class Sawmill extends SecondaryGoodProducer {
         input = new ProducerRequest(goods, null);
     }
 
-    private GoodsBag generateOutputs() {
+    protected GoodsBag generateOutputs() {
         GoodsBag goods = new GoodsBag();
         goods.addBoard(new Board());
         goods.addBoard(new Board());
@@ -36,14 +37,4 @@ public class Sawmill extends SecondaryGoodProducer {
         pv.visitSawmill(this);
     }
 
-    @Override
-    public GoodsBag produce(UserRequest ur) {
-        if (!ur.contains(input))
-            return new GoodsBag();
-        else {
-            ur.removeUsed(input);
-            ur.reset();
-            return generateOutputs();
-        }
-    }
 }

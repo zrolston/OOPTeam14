@@ -10,6 +10,10 @@ import Gameplay.Model.Visitors.ProducerVisitor;
  */
 public class ClayPit extends PrimaryProducer {
 
+    public ClayPit(GoodsBag goodsBag) {
+        super(goodsBag);
+    }
+
     @Override
     public void accept(ProducerVisitor pv) {
         pv.visitClayPit(this);
@@ -18,7 +22,7 @@ public class ClayPit extends PrimaryProducer {
 
 
     @Override
-    public GoodsBag produce() {
+    public GoodsBag generateOutput() {
         GoodsBag goods = new GoodsBag();
         goods.addClay(new Clay());
         return goods;

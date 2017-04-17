@@ -1,24 +1,28 @@
-package Gameplay.Model.Producer.SecondaryProducer.TransporterProducer;
+package Gameplay.Model.Producer.SecondaryProducer.TransporterProducer.WaterTransporterProducers;
 
 import Gameplay.Model.Goods.Fuel;
 import Gameplay.Model.Goods.GoodsBag;
 import Gameplay.Model.Goods.Iron;
 import Gameplay.Model.Producer.ProducerRequest;
+import Gameplay.Model.Producer.SecondaryProducer.TransporterProducer.SecondaryTransporterProducer;
 import Gameplay.Model.Producer.UserRequest;
+import Gameplay.Model.Region.Region;
 import Gameplay.Model.TransporterFactory.SteamerFactory;
 import Gameplay.Model.Transporters.Transporter;
 import Gameplay.Model.Transporters.WaterTransporter.Steamer;
 import Gameplay.Model.Visitors.ProducerVisitor;
 
+import java.util.List;
+
 /**
  * Created by Willie on 4/15/2017.
  */
-public class SteamerProducer extends SecondaryTransporterProducer {
+public class SteamerProducer extends WaterTransporterProducer {
 
     private ProducerRequest input;
 
-    public SteamerProducer() {
-        super(new SteamerFactory());
+    public SteamerProducer(GoodsBag goodsBag, Region region, List<Region> connectedRegions) {
+        super(goodsBag, new SteamerFactory(), region, connectedRegions);
         generateInput();
     }
 

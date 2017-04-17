@@ -10,13 +10,17 @@ import Gameplay.Model.Visitors.ProducerVisitor;
  */
 public class StoneQuarry extends PrimaryProducer {
 
+    public StoneQuarry(GoodsBag goodsBag) {
+        super(goodsBag);
+    }
+
     @Override
     public void accept(ProducerVisitor pv) {
         pv.visitStoneQuarry(this);
     }
 
     @Override
-    public GoodsBag produce() {
+    public GoodsBag generateOutput() {
         GoodsBag goods = new GoodsBag();
         goods.addStone(new Stone());
         return goods;
