@@ -1,6 +1,7 @@
 package Gameplay.Controller.SubControllers.TransporterCarriableControllers;
 
 import Gameplay.Controller.MainViewController;
+import Gameplay.Controller.PanelControllers.WallSelectionController;
 import Gameplay.Model.BuildAbilities.BuildAbility;
 import Gameplay.Model.Utility.GameModelFacade;
 import Gameplay.Model.Utility.HexaVertex;
@@ -40,6 +41,8 @@ public class BuildingController implements KeyListener, MainViewController {
         if (e.getKeyCode() == KeyEvent.VK_W && mainView != null) {
             isWSVOn = !isWSVOn;
             mainView.getWallSelectionView().setVisible(isWSVOn);
+            WallSelectionController wsc = new WallSelectionController(this);
+            wsc.activateController(mainView);
         }
 
 
@@ -67,6 +70,7 @@ public class BuildingController implements KeyListener, MainViewController {
     }
 
     public void buildWall(HexaIndex hexaIndex){
+        System.out.println(userRequestController.getRegion());
         if (userRequestController.getRegion() != null) {
             gameModelFacade.buildWall(userRequestController.getRegion(), hexaIndex);
         }

@@ -72,6 +72,5 @@ public class UserRequestController extends MoveController implements DropControl
         return  null;
     }
 
-
 }
 
