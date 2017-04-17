@@ -33,7 +33,7 @@ import MapBuilder.Model.Utility.HexaIndex;
 import java.util.*;
 
 public class GameModelFacade { //TODO make an abstract facade
-    static GameModelFacade gameModelFacade;
+    private static GameModelFacade gameModelFacade;
     private GameMap gameMap;
     private static int maxMapLength, maxMapWidth;
     public TransporterHandler transporterHandler;
