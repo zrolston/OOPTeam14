@@ -59,7 +59,7 @@ public class BuildAbilityDrawingVisitor implements BuildAbilityVisitor {
 
     @Override
     public void visitBuildStockMarket(BuildStockMarket bsm) {
-        image = ImageLoader.getImage("STOCK_MARKET");
+        image = ImageLoader.getImage("STOCK_EXCHANGE");
     }
 
     @Override

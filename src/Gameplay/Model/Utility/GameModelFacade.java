@@ -5,8 +5,10 @@ import Gameplay.Model.Map.GameMap;
 import Gameplay.Model.Phases.PhaseManager;
 import Gameplay.Model.Phases.PhaseState;
 import Gameplay.Model.Producer.Producer;
+import Gameplay.Model.Producer.SecondaryProducer.GoodProducer.CoalBurner;
 import Gameplay.Model.Producer.SecondaryProducer.GoodProducer.Sawmill;
 import Gameplay.Model.Producer.SecondaryProducer.GoodProducer.SecondaryGoodProducer;
+import Gameplay.Model.Producer.SecondaryProducer.GoodProducer.StockMarket;
 import Gameplay.Model.Producer.SecondaryProducer.SecondaryProducer;
 import Gameplay.Model.Producer.SecondaryProducer.TransporterProducer.SecondaryTransporterProducer;
 import Gameplay.Model.Region.Region;
@@ -126,8 +128,6 @@ public class GameModelFacade { //TODO make an abstract facade
 
     private void setUpGoodsHandler() {
 
-        PlayerID p2 = PlayerID.getPlayer1ID();
-
         goodsHandler = GoodsHandler.getInstance();
         transporterHandler = TransporterHandler.getInstance();
         GameTile[][] tiles = gameMap.getTiles();
@@ -138,25 +138,34 @@ public class GameModelFacade { //TODO make an abstract facade
         Transporter tr = factory.create();
         factory = new SteamerFactory();
         Transporter t = factory.create();
+        factory = new WagonFactory();
+        Transporter truck = factory.create();
         tr.setPlayerID(PlayerID.getPlayer1ID());
         t.setPlayerID(PlayerID.getPlayer1ID());
+        truck.setPlayerID(PlayerID.getPlayer1ID());
 
         try {
             Region r = gameMap.getTileAt(new HexLocation(10,10)).getRegionAtHexaVertex(HexaVertex.createVertex(1));
+            Region r2 = gameMap.getTileAt(new HexLocation(10,9)).getRegionAtHexaVertex(HexaVertex.createVertex(1));
+            Region r3 = gameMap.getTileAt(new HexLocation(10,11)).getRegionAtHexaVertex(HexaVertex.createVertex(4));
             GoodsBag goodsBag = new GoodsBag();
             goodsBag.addStone(new Stone());
             goodsHandler.place(goodsBag, r);
-            transporterHandler.place(tr, r);
             secondaryProducerHandler.placeGoodsProducer(new Sawmill(), r);
+            secondaryProducerHandler.placeGoodsProducer(new CoalBurner(), r2);
+            secondaryProducerHandler.placeGoodsProducer(new StockMarket(), r3);
             tr.pickUpGood(new Trunk());
-
             tr.pickUpGood(new Trunk());
+            truck.pickUpGood(new Coins());
+            truck.pickUpGood(new Coins());
+            truck.pickUpGood(new Paper());
             t.pickUpGood(new Board());
             t.pickUpGood(new Stock());
-            SecondaryProducerHandler.getInstance().placeGoodsProducer(new Sawmill(), r);
             r.enterRegion(tr);
+            transporterHandler.place(tr, r);
+            transporterHandler.place(truck, r);
             r = gameMap.getTileAt(new HexLocation(10,10)).getRegionAtHexaVertex(HexaVertex.createVertex(8));
-            transporterHandler.place(t, r);
+            transporterHandler.place(t, r);//steamer
             r.enterRegion(t);
         } catch (Exception e) {
             e.printStackTrace();
@@ -173,23 +182,8 @@ public class GameModelFacade { //TODO make an abstract facade
                     Region r = regionIterator.next();
                     r.accept(pcv);
                     if (pcv.getPlacable()) {
-//                        // TODO: DELETE THIS
                         GoodsBag gb = new GoodsBag();
-//                        gb.addBoard(new Board());
                         goodsHandler.place(gb, r);
-//
-//                        // TODO: DELETE THIS
-//                        Transporter tt = t.create();
-//
-//                        tt.pickUpGood( new Board() );
-//
-//
-//                        tt.setPlayerID( p2 );
-//
-//                        Transporter ttt = t2.create();
-//                        ttt.setPlayerID( p2 );
-//                        transporterHandler.place(tt, r);
-//                        transporterHandler.place(ttt, r);
                     }
                 }
             }
@@ -287,7 +281,7 @@ public class GameModelFacade { //TODO make an abstract facade
     }
 
     public List<Region> getAllRegionsWithProducer() {
-        List<Region> regions = new ArrayList<Region>();
+        List<Region> regions = new ArrayList<>();
         regions.addAll(primaryProducerHandler.getBuiltRegions());
         regions.addAll(secondaryProducerHandler.getBuiltRegions());
         return regions;

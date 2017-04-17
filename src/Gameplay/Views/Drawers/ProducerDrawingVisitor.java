@@ -77,7 +77,7 @@ public class ProducerDrawingVisitor implements ProducerVisitor {
 
     @Override
     public void visitStockMarket(StockMarket sm) {
-        image = ImageLoader.getImage("STOCK_MARKET");
+        image = ImageLoader.getImage("STOCK_EXCHANGE");
     }
 
     @Override

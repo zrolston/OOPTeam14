@@ -19,7 +19,6 @@ public class AllProducerDrawer {
     public List<ImageWithLocation> getAllProducerImages() {
         List<ImageWithLocation> images = new ArrayList<ImageWithLocation>();
         GameModelFacade gmf = GameModelFacade.getInstance();
-        GameMap gm = gmf.getMap();
 
         List<Region> regions = gmf.getAllRegionsWithProducer();
         ProducerDrawingVisitor pdv = new ProducerDrawingVisitor();
