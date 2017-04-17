@@ -1,11 +1,14 @@
 package Gameplay.Views.MainView;
 
+import Gameplay.Model.BuildAbilities.BuildAbility;
 import Gameplay.Model.Goods.Board;
 import Gameplay.Model.Producer.PrimaryProducer.ClayPit;
 import Gameplay.Model.Producer.Producer;
 import Gameplay.Model.Producer.SecondaryProducer.GoodProducer.Sawmill;
 import Gameplay.Model.Utility.GameModelFacade;
+import Gameplay.Model.Visitors.BuildAbilityVisitor;
 import Gameplay.Model.Visitors.Carriable;
+import Gameplay.Views.Drawers.BuildAbilityDrawingVisitor;
 import Gameplay.Views.Drawers.CarriableDrawingVisitor;
 import Gameplay.Views.Drawers.ProducerDrawingVisitor;
 import Gameplay.Views.Utility.PolygonUtility;
@@ -103,8 +106,12 @@ public class ProducerSelectionView extends JPanel {
         });
     }
 
-    public void updateProducerImages(List<BufferedImage> images) {
-        producerImages = images;
+    public void updateProducerImages(List<BuildAbility> buildAbilities) {
+        producerImages = new ArrayList<BufferedImage>();
+        BuildAbilityDrawingVisitor bav = new BuildAbilityDrawingVisitor()Visitor();
+        for (BuildAbility buildAbility : buildAbilities) {
+
+        }
     }
 
     protected void paintComponent(Graphics g) {
