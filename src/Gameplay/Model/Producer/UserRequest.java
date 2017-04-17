@@ -11,9 +11,8 @@ public class UserRequest extends Request {
     private Map<GoodsBag, GoodsBag> goods;
     private Transporter inputtedTransporter;
 
-    public UserRequest(GoodsBag regionGoodsBag) {
+    public UserRequest() {
         goods = new HashMap<GoodsBag, GoodsBag>();
-        goods.put(regionGoodsBag, new GoodsBag());
     }
 
     public void addGoods(GoodsBag source, GoodsBag addedGoods) {
@@ -23,11 +22,12 @@ public class UserRequest extends Request {
             goods.put(source, addedGoods);
     }
 
-    public void addProducedGoods(GoodsBag addedGoods) {
+    public GoodsBag addProducedGoods(GoodsBag addedGoods) {
         for (GoodsBag goodsBag : goods.keySet()) {
             GoodsBag used = goodsBag.add(addedGoods);
             addedGoods.remove(used);
         }
+        return addedGoods;
     }
 
     public void addTransporter(Transporter transporter) {
