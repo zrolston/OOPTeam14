@@ -56,9 +56,9 @@ public class MoveControllerTest {
 
 
         //Creating and linking the Main Controller
-        MainController mainController = new MainController(display.getMainView());
-        PhaseManager phaseManager = new PhaseManager(mainController);
-        modelFacade.setPhaseManager(phaseManager);
+//        MainController mainController = new MainController(display.getMainView());
+//        PhaseManager phaseManager = new PhaseManager(mainController);
+//        modelFacade.setPhaseManager(phaseManager);
 
 //        Checking out user request
 //        UserRequestController userRequestController= new UserRequestController();
@@ -69,6 +69,17 @@ public class MoveControllerTest {
 //        productionController.activateController(display.getMainView());
 
 //        Checking out Building controller
+
+//        BuildingController buildingController = new BuildingController();
+//        buildingController.activateController(display.getMainView());
+//
+//        BuildingController buildingController = new BuildingController();
+//        buildingController.activateController(display.getMainView());
+
+//=======
+//        BuildingController buildingController = new BuildingController();
+//        buildingController.activateController(display.getMainView());
+//>>>>>>> 802d6b7ba863ea672cfb613a56bbf7d7260d5460
 //        BuildingController buildingController = new BuildingController();
 //        buildingController.activateController(display.getMainView());
 

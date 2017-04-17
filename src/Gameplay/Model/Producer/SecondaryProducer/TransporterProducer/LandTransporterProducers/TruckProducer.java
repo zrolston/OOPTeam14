@@ -17,8 +17,6 @@ import Gameplay.Model.Visitors.ProducerVisitor;
  */
 public class TruckProducer extends LandTransporterProducer {
 
-    private ProducerRequest input;
-
     public TruckProducer(Region region) {
         super(new TruckFactory(), region);
         setMaxCapacity(1);
@@ -29,7 +27,7 @@ public class TruckProducer extends LandTransporterProducer {
         GoodsBag goods = new GoodsBag();
         goods.addFuel(new Fuel());
         goods.addIron(new Iron());
-        input = new ProducerRequest(goods, null);
+        setInputs(new ProducerRequest(goods, null));
     }
 
     @Override

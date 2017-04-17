@@ -153,7 +153,7 @@ public class GameModelFacade { //TODO make an abstract facade
             tr.pickUpGood(new Trunk());
             t.pickUpGood(new Board());
             t.pickUpGood(new Stock());
-            secondaryProducerHandler.placeGoodsProducer(new Sawmill(), r);
+            SecondaryProducerHandler.getInstance().placeGoodsProducer(new Sawmill(), r);
             r.enterRegion(tr);
             r = gameMap.getTileAt(new HexLocation(10,10)).getRegionAtHexaVertex(HexaVertex.createVertex(8));
             transporterHandler.place(t, r);

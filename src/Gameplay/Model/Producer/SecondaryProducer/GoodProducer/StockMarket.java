@@ -13,7 +13,6 @@ import Gameplay.Model.Visitors.ProducerVisitor;
  */
 public class StockMarket extends SecondaryGoodProducer {
 
-    private ProducerRequest input;
 
     public StockMarket() {
         setMaxCapacity(2);
@@ -25,7 +24,7 @@ public class StockMarket extends SecondaryGoodProducer {
         goods.addPaper(new Paper());
         goods.addCoins(new Coins());
         goods.addCoins(new Coins());
-        input = new ProducerRequest(goods, null);
+        setInputs(new ProducerRequest(goods, null));
     }
 
     protected GoodsBag generateOutputs() {

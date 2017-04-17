@@ -16,7 +16,6 @@ import java.util.List;
  */
 public class Papermill extends SecondaryGoodProducer {
 
-    private List<ProducerRequest> inputs;
 
     public Papermill() {
         setMaxCapacity(1);
@@ -24,7 +23,7 @@ public class Papermill extends SecondaryGoodProducer {
     }
 
     private void generateInputs() {
-        inputs = new ArrayList<ProducerRequest>();
+        ArrayList<ProducerRequest> inputs = new ArrayList<ProducerRequest>();
         GoodsBag goods1 = new GoodsBag();
         goods1.addBoard(new Board());
         goods1.addBoard(new Board());
@@ -37,6 +36,8 @@ public class Papermill extends SecondaryGoodProducer {
         goods3.addTrunk(new Trunk());
         goods3.addTrunk(new Trunk());
         inputs.add(new ProducerRequest(goods3, null));
+
+        setInputs(inputs);
     }
 
     protected GoodsBag generateOutputs() {
