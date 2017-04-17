@@ -22,5 +22,6 @@ public class TradePhaseStateController extends PhaseStateController {
     @Override
     public void activateState(MainView mainView) {
         tradingController= new TradingController();
+        tradingController.activateController(mainView);
     }
 }

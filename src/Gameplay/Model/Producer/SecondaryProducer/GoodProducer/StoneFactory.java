@@ -12,7 +12,6 @@ import Gameplay.Model.Visitors.ProducerVisitor;
  */
 public class StoneFactory extends SecondaryGoodProducer {
 
-    private ProducerRequest input;
 
     public StoneFactory() {
         setMaxCapacity(3);
@@ -22,7 +21,7 @@ public class StoneFactory extends SecondaryGoodProducer {
     private void generateInput() {
         GoodsBag goods = new GoodsBag();
         goods.addClay(new Clay());
-        input = new ProducerRequest(goods, null);
+        setInputs(new ProducerRequest(goods, null));
     }
 
     protected GoodsBag generateOutputs() {

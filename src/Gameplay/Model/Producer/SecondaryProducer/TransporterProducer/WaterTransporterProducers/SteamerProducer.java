@@ -19,8 +19,6 @@ import java.util.List;
  */
 public class SteamerProducer extends WaterTransporterProducer {
 
-    private ProducerRequest input;
-
     public SteamerProducer(Region region, List<Region> connectedRegions) {
         super(new SteamerFactory(), region, connectedRegions);
         setMaxCapacity(1);
@@ -32,7 +30,7 @@ public class SteamerProducer extends WaterTransporterProducer {
         goods.addFuel(new Fuel());
         goods.addFuel(new Fuel());
         goods.addIron(new Iron());
-        input = new ProducerRequest(goods, null);
+        setInputs(new ProducerRequest(goods, null));
     }
 
     @Override

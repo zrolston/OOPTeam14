@@ -42,6 +42,17 @@ public class TransporterOccupancy {
 
         return myTransporters;
     }
+    public List<Transporter> getOwnedTransporters(PlayerID player){
+        List<Transporter> myTransporters = new ArrayList<>();
+
+        for(Transporter t : transporters){
+            if(t.matches(player)){
+                myTransporters.add(t);
+            }
+        }
+
+        return myTransporters;
+    }
 
     public int getSize(){
         return transporters.size();

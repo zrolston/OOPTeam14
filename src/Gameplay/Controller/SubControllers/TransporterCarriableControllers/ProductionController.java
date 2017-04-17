@@ -19,20 +19,19 @@ public class ProductionController implements KeyListener, MainViewController {
 
     @Override
     public void keyTyped(KeyEvent e) {
-        System.out.println("doo something");
+
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_P && userRequestController.getRegion() != null){
             gameModelFacade.produce(userRequestController.getRegion());
-            System.out.println("doo something");
         }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        System.out.println("hello");
+
     }
 
     @Override
