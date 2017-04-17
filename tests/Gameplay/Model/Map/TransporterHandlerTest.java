@@ -32,7 +32,7 @@ public class TransporterHandlerTest {
     @Before
     public void TestSetup(){
 
-        th = new TransporterHandler();
+        th = TransporterHandler.getInstance();
 
         DonkeyFactory df = new DonkeyFactory();
 

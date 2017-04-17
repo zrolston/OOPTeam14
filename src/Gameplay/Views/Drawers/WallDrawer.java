@@ -4,10 +4,8 @@ import Gameplay.Model.Map.GameMap;
 import Gameplay.Model.Map.Wall;
 import Gameplay.Model.Tile.GameTile;
 import Gameplay.Model.Utility.GameModelFacade;
-import Gameplay.Model.Utility.HexaVertex;
 import Gameplay.Views.Utility.PixelMap;
 import MapBuilder.Model.Utility.HexLocation;
-import MapBuilder.Model.Utility.HexaIndex;
 import MapBuilder.Views.Utility.ImageLoader;
 import MapBuilder.Views.Utility.PixelPoint;
 
@@ -25,7 +23,7 @@ public class WallDrawer {
     public List<RotatedImageWithLocation> getAllWalls() {
         List<RotatedImageWithLocation> walls = new ArrayList<RotatedImageWithLocation>();
         GameModelFacade gmf = GameModelFacade.getInstance();
-        GameMap gm = gmf.debugGetMap();
+        GameMap gm = gmf.getMap();
         Map<GameTile, Map<GameTile, Wall>> wallMap = gmf.getAllWalls();
         for (GameTile tile1 : wallMap.keySet()) {
             for (GameTile tile2 : wallMap.get(tile1).keySet()) {
@@ -55,8 +53,8 @@ public class WallDrawer {
     }
 
     private int getRotation(GameTile tile1, GameTile tile2) {
-        HexLocation location1 = GameModelFacade.getInstance().debugGetMap().getHexLocationOf(tile1);
-        HexLocation location2 = GameModelFacade.getInstance().debugGetMap().getHexLocationOf(tile2);
+        HexLocation location1 = GameModelFacade.getInstance().getMap().getHexLocationOf(tile1);
+        HexLocation location2 = GameModelFacade.getInstance().getMap().getHexLocationOf(tile2);
 
         switch (location1.getIndexOfLocation(location2).getValue()) {
             case 1:
@@ -74,9 +72,9 @@ public class WallDrawer {
     }
 
     private PixelPoint getOrigin(GameTile tile1, GameTile tile2, int width, int height) {
-        HexLocation location1 = GameModelFacade.getInstance().debugGetMap().getHexLocationOf(tile1);
-        HexLocation location2 = GameModelFacade.getInstance().debugGetMap().getHexLocationOf(tile2);
-        PixelPoint tileOrigin = PixelMap.getMapTileOrigin(GameModelFacade.getInstance().debugGetMap().getHexLocationOf(tile1));
+        HexLocation location1 = GameModelFacade.getInstance().getMap().getHexLocationOf(tile1);
+        HexLocation location2 = GameModelFacade.getInstance().getMap().getHexLocationOf(tile2);
+        PixelPoint tileOrigin = PixelMap.getMapTileOrigin(GameModelFacade.getInstance().getMap().getHexLocationOf(tile1));
 
         int changeX = -width/2;
         int changeY = -height/2;

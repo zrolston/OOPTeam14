@@ -9,7 +9,6 @@ import Gameplay.Model.TransporterFactory.DonkeyFactory;
 import Gameplay.Model.TransporterFactory.RowboatFactory;
 import Gameplay.Model.TransporterFactory.TransporterFactory;
 import Gameplay.Model.Transporters.Transporter;
-import Gameplay.Model.Utility.GameMapBuilder;
 import Gameplay.Model.Utility.GameMapDaveBuilder;
 import Gameplay.Model.Utility.GameModelFacade;
 import Gameplay.Model.Utility.HexaVertex;
@@ -33,7 +32,7 @@ public class MovementTest {
         DaveBuilder builder = new GameMapDaveBuilder();
         builder.buildMap("C:\\Users\\Cameron\\IdeaProjects\\OOPTeam14\\res\\SavedMaps\\mapTest.dave");
         GameModelFacade facade = GameModelFacade.getInstance();
-        this.map = facade.debugGetMap();
+        this.map = facade.getMap();
     }
 
     @Test

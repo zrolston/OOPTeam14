@@ -18,8 +18,6 @@ import java.util.List;
  */
 public class RaftProducer extends WaterTransporterProducer {
 
-    private ProducerRequest input;
-
     public RaftProducer(Region region, List<Region> connectedRegions) {
         super(new RaftFactory(), region, connectedRegions);
         setMaxCapacity(1);
@@ -30,7 +28,7 @@ public class RaftProducer extends WaterTransporterProducer {
         GoodsBag goods = new GoodsBag();
         goods.addTrunk(new Trunk());
         goods.addTrunk(new Trunk());
-        input = new ProducerRequest(goods, null);
+        setInputs(new ProducerRequest(goods, null));
     }
 
     @Override

@@ -22,6 +22,8 @@ public class BuildStockMarket extends BuildAbility{
 
         super(id);
 
+        secondaryProducerHandler = SecondaryProducerHandler.getInstance();
+
         GoodsBag goods = new GoodsBag();
         goods.addStone(new Stone());
         goods.addStone(new Stone());

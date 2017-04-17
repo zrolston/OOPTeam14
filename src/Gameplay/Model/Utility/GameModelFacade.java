@@ -44,6 +44,7 @@ public class GameModelFacade { //TODO make an abstract facade
     private WallHandler wallHandler;
 
     private PhaseManager phaseManager;
+    private PlayerID currentPlayer;
 
     private UserRequestHandler userRequestHandler;
 
@@ -54,9 +55,14 @@ public class GameModelFacade { //TODO make an abstract facade
         maxMapWidth = map.getWidth();
     }
 
+    public void setCurrentPlayer(PlayerID player){
+        currentPlayer = player;
+        System.out.println(currentPlayer.getID());
+    }
+
     //Controlling the Phase Manager
     public void setPhaseManager(PhaseManager phaseManager){ this.phaseManager = phaseManager; }
-    public void nextPhase(){ phaseManager.advancePhase(); }
+    public void nextTurn(){ phaseManager.nextTurn(); }
     public PhaseState getCurrentPhase(){ return phaseManager.getCurrentState(); }
 
     public static GameModelFacade getInstance(){
@@ -84,15 +90,15 @@ public class GameModelFacade { //TODO make an abstract facade
         return maxMapWidth;
     }
 
-    public GameMap debugGetMap(){
+    public GameMap getMap(){
         return gameMap;
     }
 
     public void startGame() {
         setUpGoodsHandler();
-        primaryProducerHandler = new PrimaryProducerHandler();
-        secondaryProducerHandler = new SecondaryProducerHandler();
-        wallHandler = new WallHandler();
+        primaryProducerHandler = PrimaryProducerHandler.getInstance();
+        secondaryProducerHandler = SecondaryProducerHandler.getInstance();
+        wallHandler = WallHandler.getInstance();
         movementManager = new MovementManager(transporterHandler, wallHandler, goodsHandler);
         userRequestHandler = new UserRequestHandler();
 
@@ -122,8 +128,8 @@ public class GameModelFacade { //TODO make an abstract facade
 
         PlayerID p2 = PlayerID.getPlayer1ID();
 
-        goodsHandler = new GoodsHandler();
-        transporterHandler = new TransporterHandler();
+        goodsHandler = GoodsHandler.getInstance();
+        transporterHandler = TransporterHandler.getInstance();
         GameTile[][] tiles = gameMap.getTiles();
         RegionPlacableVisitor pcv = new RegionPlacableVisitor();
 
@@ -144,7 +150,7 @@ public class GameModelFacade { //TODO make an abstract facade
             tr.pickUpGood(new Trunk());
             t.pickUpGood(new Board());
             t.pickUpGood(new Stock());
-            secondaryProducerHandler.placeGoodsProducer(new Sawmill(), r);
+            SecondaryProducerHandler.getInstance().placeGoodsProducer(new Sawmill(), r);
             r.enterRegion(tr);
             r = gameMap.getTileAt(new HexLocation(10,10)).getRegionAtHexaVertex(HexaVertex.createVertex(8));
             transporterHandler.place(t, r);

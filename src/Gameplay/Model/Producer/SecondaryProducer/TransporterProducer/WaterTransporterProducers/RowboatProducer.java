@@ -18,7 +18,6 @@ import java.util.List;
  */
 public class RowboatProducer extends WaterTransporterProducer {
 
-    private ProducerRequest input;
 
     public RowboatProducer(Region region, List<Region> connectedRegions) {
         super(new RowboatFactory(), region, connectedRegions);
@@ -33,7 +32,7 @@ public class RowboatProducer extends WaterTransporterProducer {
         goods.addBoard(new Board());
         goods.addBoard(new Board());
         goods.addBoard(new Board());
-        input = new ProducerRequest(goods, null);
+        setInputs(new ProducerRequest(goods, null));
     }
 
     @Override

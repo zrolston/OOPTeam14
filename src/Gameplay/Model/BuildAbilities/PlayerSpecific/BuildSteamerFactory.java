@@ -25,6 +25,8 @@ public class BuildSteamerFactory extends BuildAbility{
 
         super(id);
 
+        transporterProducerHandler = SecondaryProducerHandler.getInstance();
+
         GoodsBag goods = new GoodsBag();
         goods.addBoard(new Board());
         goods.addBoard(new Board());

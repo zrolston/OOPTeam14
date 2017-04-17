@@ -3,16 +3,11 @@ package Gameplay.Views.Drawers;
 import Gameplay.Model.Map.GameMap;
 import Gameplay.Model.Region.Region;
 import Gameplay.Model.Tile.GameTile;
-import Gameplay.Model.Tile.RegionMap;
 import Gameplay.Model.Utility.GameModelFacade;
-import Gameplay.Model.Utility.HexaVertex;
-import Gameplay.Views.Utility.PixelMap;
 import Gameplay.Views.Utility.PolygonProportions.RegionVertexUtility;
-import MapBuilder.Model.Utility.HexLocation;
 import MapBuilder.Views.Utility.PixelPoint;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -36,7 +31,7 @@ public class RoadDrawer {
 
     private PixelPoint getRegionCenter(Region r) {
         GameModelFacade gmf = GameModelFacade.getInstance();
-        GameMap gm = gmf.debugGetMap();
+        GameMap gm = gmf.getMap();
         GameTile tile = r.getParentTile();
         return RegionVertexUtility.getRegionCenter(tile, tile.getListHexaIndexRegion(r));
     }

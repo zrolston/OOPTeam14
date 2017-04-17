@@ -20,6 +20,7 @@ public abstract class WaterTransporterProducer extends SecondaryTransporterProdu
     public WaterTransporterProducer(TransporterFactory tf, Region myRegion, List<Region> regions) {
         super(tf, myRegion);
         viableRegions = regions;
+        wallHandler = WallHandler.getInstance();
     }
 
     public boolean addTransporter(Owned owned){

@@ -1,10 +1,12 @@
 package Gameplay.Model.Producer.SecondaryProducer;
 
+import Gameplay.Controller.SubControllers.TransporterCarriableControllers.ProductionController;
 import Gameplay.Model.Goods.GoodsBag;
 import Gameplay.Model.Producer.Producer;
 import Gameplay.Model.Producer.ProducerRequest;
 import Gameplay.Model.Producer.UserRequest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class SecondaryProducer extends Producer {
@@ -14,6 +16,7 @@ public abstract class SecondaryProducer extends Producer {
     private int currentCapacity;
 
     public void setMaxCapacity(int i){
+        inputs = new ArrayList<>();
         maxCapacity = i;
         currentCapacity = i;
     }
@@ -48,5 +51,19 @@ public abstract class SecondaryProducer extends Producer {
 
     public List<ProducerRequest> getInputs() {
         return inputs;
+    }
+
+    public void setInputs(ProducerRequest ... producerRequests){
+        for(ProducerRequest pr : producerRequests){
+            inputs.add(pr);
+        }
+    }
+
+    public void setInputs(ArrayList<ProducerRequest> pr){
+            inputs = pr;
+    }
+
+    public void resetCapacity(){
+        currentCapacity = maxCapacity;
     }
 }

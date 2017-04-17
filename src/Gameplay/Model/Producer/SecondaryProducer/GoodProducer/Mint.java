@@ -13,8 +13,6 @@ import Gameplay.Model.Visitors.ProducerVisitor;
  */
 public class Mint extends SecondaryGoodProducer {
 
-    private ProducerRequest input;
-
     public Mint() {
         setMaxCapacity(1);
         generateInput();
@@ -25,7 +23,7 @@ public class Mint extends SecondaryGoodProducer {
         goods.addFuel(new Fuel());
         goods.addGold(new Gold());
         goods.addGold(new Gold());
-        input = new ProducerRequest(goods, null);
+        setInputs( new ProducerRequest(goods, null));
     }
 
     protected GoodsBag generateOutputs() {

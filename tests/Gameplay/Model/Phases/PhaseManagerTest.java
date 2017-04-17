@@ -28,16 +28,16 @@ public class PhaseManagerTest {
         Object value = f.get(mc);
         assertEquals("TradePhase", value.toString());
 
-        pm.advancePhase();
+        pm.nextTurn();
         value = f.get(mc);
         assertEquals("ProductionPhase", value.toString());
-        pm.advancePhase();
+        pm.nextTurn();
         value = f.get(mc);
         assertEquals("BuildPhase", value.toString());
-        pm.advancePhase();
+        pm.nextTurn();
         value = f.get(mc);
         assertEquals("MovementPhase", value.toString());
-        pm.advancePhase();
+        pm.nextTurn();
         value = f.get(mc);
         assertEquals("WonderPhase", value.toString());
     }

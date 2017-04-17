@@ -12,8 +12,6 @@ import Gameplay.Model.Visitors.ProducerVisitor;
  */
 public class Sawmill extends SecondaryGoodProducer {
 
-    private ProducerRequest input;
-
     public Sawmill() {
         setMaxCapacity(3);
         generateInput();
@@ -22,7 +20,7 @@ public class Sawmill extends SecondaryGoodProducer {
     private void generateInput() {
         GoodsBag goods = new GoodsBag();
         goods.addTrunk(new Trunk());
-        input = new ProducerRequest(goods, null);
+        this.setInputs(new ProducerRequest(goods, null));
     }
 
     protected GoodsBag generateOutputs() {

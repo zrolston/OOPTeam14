@@ -58,6 +58,10 @@ abstract public class Region {
         return buildAbilities;
     }
 
+    public void clearAbilities(){
+        buildAbilities.clear();
+    }
+
     private boolean hasParentTile(){
         return (parentTile != null);
     }

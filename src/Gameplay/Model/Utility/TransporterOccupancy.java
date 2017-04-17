@@ -50,4 +50,10 @@ public class TransporterOccupancy {
     public Region getRegion() {
         return region;
     }
+
+    public void refreshMovement() {
+        for(Transporter t : transporters){
+            t.resetMovement();
+        }
+    }
 }

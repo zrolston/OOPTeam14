@@ -22,6 +22,8 @@ public class BuildPaperMill extends BuildAbility{
 
         super(id);
 
+        transporterProducerHandler = SecondaryProducerHandler.getInstance();
+
         GoodsBag goods = new GoodsBag();
         goods.addBoard(new Board());
         goods.addStone(new Stone());
