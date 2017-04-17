@@ -16,8 +16,7 @@ public class Mine extends PrimaryProducer {
     private int numGold;
     private int numIron;
 
-    public Mine(GoodsBag goodsBag) {
-        super(goodsBag);
+    public Mine() {
         numGold = 3;
         numIron = 3;
     }

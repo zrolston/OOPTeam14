@@ -39,6 +39,6 @@ public class BuildTruckFactory extends BuildAbility{
         ur.removeUsed(input);
         ur.reset();
 
-        transporterProducerHandler.placeTransporterProducer(new TruckProducer(), region);
+        transporterProducerHandler.placeTransporterProducer(new TruckProducer(region), region);
     }
 }

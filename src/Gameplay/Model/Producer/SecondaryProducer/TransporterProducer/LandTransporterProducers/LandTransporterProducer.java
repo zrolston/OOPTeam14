@@ -12,8 +12,8 @@ import Gameplay.Model.Utility.Owned;
  * Created by zrgam_000 on 4/17/2017.
  */
 public abstract class LandTransporterProducer extends SecondaryTransporterProducer {
-    public LandTransporterProducer(GoodsBag goodsBag, TransporterFactory tf, Region myRegion) {
-        super(goodsBag, tf, myRegion);
+    public LandTransporterProducer(TransporterFactory tf, Region myRegion) {
+        super(tf, myRegion);
     }
 
     public boolean addTransporter(Owned owned){

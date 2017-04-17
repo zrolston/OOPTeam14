@@ -12,10 +12,6 @@ import Gameplay.Model.Producer.UserRequest;
  */
 public abstract class SecondaryGoodProducer extends SecondaryProducer {
 
-    public SecondaryGoodProducer(GoodsBag goodsBag) {
-        super(goodsBag);
-    }
-
     public void produce(UserRequest ur){
         if(getCapacity() < 0){
             return;

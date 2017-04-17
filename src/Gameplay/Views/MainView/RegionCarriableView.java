@@ -2,6 +2,7 @@ package Gameplay.Views.MainView;
 
 import Gameplay.Model.Producer.Producer;
 import Gameplay.Model.Producer.SecondaryProducer.TransporterProducer.LandTransporterProducers.WagonProducer;
+import Gameplay.Model.Region.LandRegion;
 import Gameplay.Model.Visitors.Carriable;
 import Gameplay.Views.Drawers.ProducerDrawingVisitor;
 import Gameplay.Views.Utility.PolygonUtility;
@@ -34,7 +35,7 @@ public class RegionCarriableView extends JPanel {
         images = new ArrayList<>();
 
         // GET BELOW IMAGES FROM CONTROLLER OR ITERATOR
-        Producer p = new WagonProducer();
+        Producer p = new WagonProducer(new LandRegion());
         ProducerDrawingVisitor gv = new ProducerDrawingVisitor();
         p.accept(gv);
         images.add( gv.getImage() );

@@ -10,9 +10,6 @@ import Gameplay.Model.Visitors.ProducerVisitor;
  */
 public class ClayPit extends PrimaryProducer {
 
-    public ClayPit(GoodsBag goodsBag) {
-        super(goodsBag);
-    }
 
     @Override
     public void accept(ProducerVisitor pv) {

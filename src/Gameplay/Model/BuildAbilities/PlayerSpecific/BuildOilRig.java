@@ -4,6 +4,7 @@ import Gameplay.Model.BuildAbilities.BuildAbility;
 import Gameplay.Model.Goods.Board;
 import Gameplay.Model.Goods.GoodsBag;
 import Gameplay.Model.Goods.Stone;
+import Gameplay.Model.Map.GoodsHandler;
 import Gameplay.Model.Map.PrimaryProducerHandler;
 import Gameplay.Model.Producer.PrimaryProducer.OilRig;
 import Gameplay.Model.Producer.PrimaryProducer.WoodCutter;
@@ -17,6 +18,7 @@ import Gameplay.Model.Utility.PlayerID;
  */
 public class BuildOilRig extends BuildAbility{
     PrimaryProducerHandler primaryProducerHandler;
+    GoodsHandler goodsHandler;
 
     public BuildOilRig(PlayerID id) {
 
@@ -38,6 +40,8 @@ public class BuildOilRig extends BuildAbility{
         }
         ur.removeUsed(input);
         ur.reset();
+
+        goodsHandler.place(new GoodsBag(), region);
 
         primaryProducerHandler.place(new OilRig(), region);
     }

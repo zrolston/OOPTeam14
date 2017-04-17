@@ -18,8 +18,8 @@ public class Papermill extends SecondaryGoodProducer {
 
     private List<ProducerRequest> inputs;
 
-    public Papermill(GoodsBag goodsBag) {
-        super(goodsBag);
+    public Papermill() {
+        setMaxCapacity(1);
         generateInputs();
     }
 

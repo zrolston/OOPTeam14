@@ -20,8 +20,8 @@ public class RaftProducer extends WaterTransporterProducer {
 
     private ProducerRequest input;
 
-    public RaftProducer(GoodsBag goodsBag, Region region, List<Region> connectedRegions) {
-        super(goodsBag, new RaftFactory(), region, connectedRegions);
+    public RaftProducer(Region region, List<Region> connectedRegions) {
+        super(new RaftFactory(), region, connectedRegions);
         setMaxCapacity(1);
         generateInput();
     }
@@ -36,16 +36,5 @@ public class RaftProducer extends WaterTransporterProducer {
     @Override
     public void accept(ProducerVisitor pv) {
         pv.visitRaftFactory(this);
-    }
-
-    @Override
-    public Transporter produce(UserRequest ur) {
-        if (!ur.contains(input))
-            return null;
-        else {
-            ur.removeUsed(input);
-            ur.reset();
-            return generateOutputs();
-        }
     }
 }

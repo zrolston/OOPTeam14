@@ -14,8 +14,8 @@ public class Sawmill extends SecondaryGoodProducer {
 
     private ProducerRequest input;
 
-    public Sawmill(GoodsBag goodsBag) {
-        super(goodsBag);
+    public Sawmill() {
+        setMaxCapacity(3);
         generateInput();
     }
 

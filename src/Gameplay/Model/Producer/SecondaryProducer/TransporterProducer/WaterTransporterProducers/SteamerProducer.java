@@ -21,8 +21,9 @@ public class SteamerProducer extends WaterTransporterProducer {
 
     private ProducerRequest input;
 
-    public SteamerProducer(GoodsBag goodsBag, Region region, List<Region> connectedRegions) {
-        super(goodsBag, new SteamerFactory(), region, connectedRegions);
+    public SteamerProducer(Region region, List<Region> connectedRegions) {
+        super(new SteamerFactory(), region, connectedRegions);
+        setMaxCapacity(1);
         generateInput();
     }
 
@@ -37,16 +38,5 @@ public class SteamerProducer extends WaterTransporterProducer {
     @Override
     public void accept(ProducerVisitor pv) {
         pv.visitSteamerFactory(this);
-    }
-
-    @Override
-    public Transporter produce(UserRequest ur) {
-        if (!ur.contains(input))
-            return null;
-        else {
-            ur.removeUsed(input);
-            ur.reset();
-            return generateOutputs();
-        }
     }
 }

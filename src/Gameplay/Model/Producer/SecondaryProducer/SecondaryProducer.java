@@ -13,10 +13,6 @@ public abstract class SecondaryProducer extends Producer {
     private int maxCapacity;
     private int currentCapacity;
 
-    public SecondaryProducer(GoodsBag goodsBag) {
-        super(goodsBag);
-    }
-
     public void setMaxCapacity(int i){
         maxCapacity = i;
         currentCapacity = i;

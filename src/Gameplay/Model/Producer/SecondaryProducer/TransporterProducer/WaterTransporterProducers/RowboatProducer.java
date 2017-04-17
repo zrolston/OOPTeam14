@@ -20,8 +20,9 @@ public class RowboatProducer extends WaterTransporterProducer {
 
     private ProducerRequest input;
 
-    public RowboatProducer(GoodsBag goodsBag, Region region, List<Region> connectedRegions) {
-        super(goodsBag, new RowboatFactory(), region, connectedRegions);
+    public RowboatProducer(Region region, List<Region> connectedRegions) {
+        super(new RowboatFactory(), region, connectedRegions);
+        setMaxCapacity(1);
         generateInput();
     }
 
@@ -40,14 +41,4 @@ public class RowboatProducer extends WaterTransporterProducer {
         pv.visitRowboatFactory(this);
     }
 
-    @Override
-    public Transporter produce(UserRequest ur) {
-        if (!ur.contains(input))
-            return null;
-        else {
-            ur.removeUsed(input);
-            ur.reset();
-            return generateOutputs();
-        }
-    }
 }

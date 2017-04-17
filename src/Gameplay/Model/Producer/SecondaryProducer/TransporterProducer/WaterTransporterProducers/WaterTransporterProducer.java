@@ -17,8 +17,8 @@ public abstract class WaterTransporterProducer extends SecondaryTransporterProdu
     List<Region> viableRegions;
     WallHandler wallHandler;
 
-    public WaterTransporterProducer(GoodsBag goodsBag, TransporterFactory tf, Region myRegion, List<Region> regions) {
-        super(goodsBag, tf, myRegion);
+    public WaterTransporterProducer(TransporterFactory tf, Region myRegion, List<Region> regions) {
+        super(tf, myRegion);
         viableRegions = regions;
     }
 

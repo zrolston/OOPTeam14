@@ -15,8 +15,8 @@ public class StockMarket extends SecondaryGoodProducer {
 
     private ProducerRequest input;
 
-    public StockMarket(GoodsBag goodsBag) {
-        super(goodsBag);
+    public StockMarket() {
+        setMaxCapacity(2);
         generateInput();
     }
 

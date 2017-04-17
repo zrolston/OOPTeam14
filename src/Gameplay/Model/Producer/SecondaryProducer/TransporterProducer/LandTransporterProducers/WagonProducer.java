@@ -19,8 +19,9 @@ public class WagonProducer extends LandTransporterProducer {
 
     private ProducerRequest input;
 
-    public WagonProducer(GoodsBag goodsBag, Region region) {
-        super(goodsBag, new WagonFactory(), region);
+    public WagonProducer(Region region) {
+        super(new WagonFactory(), region);
+        setMaxCapacity(1);
         generateInput();
     }
 

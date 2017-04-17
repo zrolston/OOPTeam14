@@ -10,10 +10,6 @@ import Gameplay.Model.Visitors.ProducerVisitor;
  */
 public class OilRig extends PrimaryProducer {
 
-    public OilRig(GoodsBag goodsBag) {
-        super(goodsBag);
-    }
-
     @Override
     public void accept(ProducerVisitor pv) {
         pv.visitOilRig(this);

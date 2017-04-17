@@ -40,6 +40,6 @@ public class BuildWagonFactory extends BuildAbility{
         ur.removeUsed(input);
         ur.reset();
 
-        transporterProducerHandler.placeTransporterProducer(new WagonProducer(), region);
+        transporterProducerHandler.placeTransporterProducer(new WagonProducer(region), region);
     }
 }

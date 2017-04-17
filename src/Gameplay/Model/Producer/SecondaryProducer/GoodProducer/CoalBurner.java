@@ -18,8 +18,8 @@ public class CoalBurner extends SecondaryGoodProducer {
 
     private List<ProducerRequest> inputs;
 
-    public CoalBurner(GoodsBag goodsBag) {
-        super(goodsBag);
+    public CoalBurner() {
+        setMaxCapacity(2);
         generateInputs();
     }
 

@@ -14,8 +14,8 @@ public class StoneFactory extends SecondaryGoodProducer {
 
     private ProducerRequest input;
 
-    public StoneFactory(GoodsBag goodsBag) {
-        super(goodsBag);
+    public StoneFactory() {
+        setMaxCapacity(3);
         generateInput();
     }
 

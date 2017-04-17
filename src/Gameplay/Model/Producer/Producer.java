@@ -6,9 +6,7 @@ import Gameplay.Model.Visitors.ProducerVisitor;
 public abstract class Producer {
     private GoodsBag goodsBag;
 
-    public Producer(GoodsBag goodsBag){
-        this.goodsBag = goodsBag;
-    }
+    public Producer(){}
 
     public abstract void accept(ProducerVisitor pv);
 

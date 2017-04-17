@@ -19,8 +19,9 @@ public class TruckProducer extends LandTransporterProducer {
 
     private ProducerRequest input;
 
-    public TruckProducer(GoodsBag goodsBag, Region region) {
-        super(goodsBag, new TruckFactory(), region);
+    public TruckProducer(Region region) {
+        super(new TruckFactory(), region);
+        setMaxCapacity(1);
         generateInput();
     }
 

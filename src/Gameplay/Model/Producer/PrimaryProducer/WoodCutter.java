@@ -10,10 +10,6 @@ import Gameplay.Model.Visitors.ProducerVisitor;
  */
 public class WoodCutter extends PrimaryProducer {
 
-    public WoodCutter(GoodsBag goodsBag) {
-        super(goodsBag);
-    }
-
     @Override
     public void accept(ProducerVisitor pv) {
         pv.visitWoodCutter(this);

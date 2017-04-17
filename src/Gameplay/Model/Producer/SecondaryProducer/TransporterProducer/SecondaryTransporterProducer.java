@@ -16,8 +16,7 @@ public abstract class SecondaryTransporterProducer extends SecondaryProducer {
     private Region myRegion;
     private TransporterHandler transporterHandler;
 
-    public SecondaryTransporterProducer(GoodsBag goodsBag, TransporterFactory tf, Region myRegion){
-        super(goodsBag);
+    public SecondaryTransporterProducer(TransporterFactory tf, Region myRegion){
         myFactory = tf;
         this.myRegion = myRegion;
     }

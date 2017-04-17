@@ -11,6 +11,9 @@ import Gameplay.Model.Producer.UserRequest;
 import Gameplay.Model.Region.Region;
 import Gameplay.Model.Utility.PlayerID;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by zrgam_000 on 4/16/2017.
  */
@@ -38,6 +41,17 @@ public class BuildRowBoatFactory extends BuildAbility{
         ur.removeUsed(input);
         ur.reset();
 
-        transporterProducerHandler.placeTransporterProducer(new RowboatProducer(), region);
+        List<Region> viable = new ArrayList<>();
+
+        viable.addAll(region.getRegionSet().getPortRegions());
+
+        Region river = region.getParentTile().getRiver();
+
+        if(river != null){
+            viable.add(river);
+        }
+
+
+        transporterProducerHandler.placeTransporterProducer(new RowboatProducer(region, viable), region);
     }
 }

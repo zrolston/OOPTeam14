@@ -15,8 +15,8 @@ public class Mint extends SecondaryGoodProducer {
 
     private ProducerRequest input;
 
-    public Mint(GoodsBag goodsBag) {
-        super(goodsBag);
+    public Mint() {
+        setMaxCapacity(1);
         generateInput();
     }
 

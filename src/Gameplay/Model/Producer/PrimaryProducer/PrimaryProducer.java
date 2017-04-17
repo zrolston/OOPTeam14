@@ -8,9 +8,6 @@ import Gameplay.Model.Producer.ProducerRequest;
  * Created by Willie on 4/15/2017.
  */
 public abstract class PrimaryProducer extends Producer {
-    public PrimaryProducer(GoodsBag goodsBag) {
-        super(goodsBag);
-    }
 
     public void produce(){
         getGoodsBag().add(generateOutput());
