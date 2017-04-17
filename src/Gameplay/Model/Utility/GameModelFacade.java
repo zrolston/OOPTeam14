@@ -400,7 +400,7 @@ public class GameModelFacade { //TODO make an abstract facade
             stp.produce(userRequestHandler.getUserRequest());
         }
         else if (sgp != null) {
-
+            sgp.produce(userRequestHandler.getUserRequest());
         }
     }
 
