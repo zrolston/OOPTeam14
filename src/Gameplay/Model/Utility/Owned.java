@@ -1,8 +1,6 @@
 package Gameplay.Model.Utility;
 
-/**
- * Created by zrgam_000 on 4/15/2017.
- */
+
 public abstract class Owned {
     PlayerID playerID;
 

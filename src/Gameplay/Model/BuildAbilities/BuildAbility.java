@@ -1,20 +1,24 @@
 package Gameplay.Model.BuildAbilities;
 
 import Gameplay.Model.Goods.GoodsBag;
+import Gameplay.Model.Producer.ProducerRequest;
 import Gameplay.Model.Producer.UserRequest;
 import Gameplay.Model.Region.Region;
 import Gameplay.Model.Utility.Owned;
+import Gameplay.Model.Utility.PlayerID;
 
-/**
- * Created by zrgam_000 on 4/16/2017.
- */
+
 public abstract class BuildAbility extends Owned {
-    private UserRequest input;
+    protected ProducerRequest input;
     private Region placement;
 
-    public abstract void build(UserRequest ur);
+    public BuildAbility(PlayerID id){
+        setPlayerID(id);
+    }
 
-    public UserRequest getInput() {
+    public abstract void build(UserRequest ur, Region region);
+
+    public ProducerRequest getInput() {
         return input;
     }
 
