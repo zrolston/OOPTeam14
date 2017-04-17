@@ -5,6 +5,7 @@ import Gameplay.Model.Region.Region;
 import Gameplay.Model.Tile.GameTile;
 import Gameplay.Model.Utility.GameModelFacade;
 import Gameplay.Model.Utility.HexaVertex;
+import Gameplay.Model.Utility.Owned;
 
 import java.util.*;
 
@@ -94,6 +95,14 @@ public class WallHandler {
             }
         }
         return walls;
+    }
+
+    public boolean canPass(Region r1, Region r2, Owned owned) {
+        Wall wall = getWallAt(r1, r2);
+        if (wall == null)
+            return true;
+        else
+            return wall.matches(owned);
     }
 
 }
