@@ -75,7 +75,7 @@ public abstract class RegionCarriableController implements MainViewController, M
     @Override
     public void mousePressed(MouseEvent e) {
         setIndex( getCarriableIndex(e));
-        //TODO: match index with the right currentCarriable
+        currentCarriable = carrIt.getCarriableAt(getCurrentIndex());
         carriableClick();
     }
 

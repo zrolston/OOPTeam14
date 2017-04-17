@@ -84,6 +84,10 @@ public class CarriableDrawingVisitor implements CarriableVisitor {
             case 2:
                 image = ImageLoader.getImage("ORANGE_DONKEY");
                 break;
+            default:
+                image = ImageLoader.getImage("BLUE_DONKEY");
+                break;
+
         }
     }
 
@@ -95,6 +99,9 @@ public class CarriableDrawingVisitor implements CarriableVisitor {
                 break;
             case 2:
                 image = ImageLoader.getImage("ORANGE_WAGON");
+                break;
+            default:
+                image = ImageLoader.getImage("BLUE_WAGON");
                 break;
         }
     }

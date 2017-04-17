@@ -58,7 +58,9 @@ public class CarriableIterator implements StuffIterator {
     }
 
     public void deleteAt(int index){
-        carriables.remove(index);
-        size--;
+        try {
+            carriables.remove(index);
+            size--;
+        }catch(Exception e){}
     }
 }

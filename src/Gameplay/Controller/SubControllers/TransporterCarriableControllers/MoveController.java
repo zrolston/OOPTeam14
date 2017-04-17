@@ -33,6 +33,7 @@ public class MoveController extends TransporterCarriableController implements Dr
     private PickUpController pickUpController = new PickUpController(this);
     Region selectedRegion;
     GameModelFacade gameModelFacade = GameModelFacade.getInstance();
+    public static Transporter currentTrans = null;
 
     @Override
     protected void carriableClick() {
@@ -64,11 +65,12 @@ public class MoveController extends TransporterCarriableController implements Dr
 
     @Override
     public void sendCarriable() {
-        pickUpController.receiveTransporter(getCurrentTransporter());
+//        pickUpController.(getCurrentTransporter());
     }
 
     @Override
     public void sendTransporter() {
+        currentTrans = getCurrentTransporter();
         moveRegionController.receiveTransporter(getCurrentTransporter());
     }
 

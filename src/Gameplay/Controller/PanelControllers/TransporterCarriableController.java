@@ -170,6 +170,7 @@ public abstract class TransporterCarriableController implements MainViewControll
     protected void leftColumnClick() {
         setCarrItFromFacade();
         addToPanelRightColumn(carrIt);
+        setCurrentTransporter(index);
         transporterClick();
     }
 
