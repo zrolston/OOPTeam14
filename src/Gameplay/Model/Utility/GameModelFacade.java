@@ -75,6 +75,9 @@ public class GameModelFacade { //TODO make an abstract facade
             gameMap.getTiles()[10][10].getRegionMap().getRegionAt(HexaVertex.createVertex(4)).getRegionSet().addRoadRegion(
                     gameMap.getTiles()[10][11].getRegionMap().getRegionAt(HexaVertex.createVertex(5))
             );
+            gameMap.getTiles()[10][10].getRegionMap().getRegionAt(HexaVertex.createVertex(1)).getRegionSet().addBridgeRegion(
+                    gameMap.getTiles()[10][10].getRegionMap().getRegionAt(HexaVertex.createVertex(3))
+            );
         } catch(Exception e) {}
     }
 

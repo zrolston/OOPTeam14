@@ -38,10 +38,7 @@ public class RoadDrawer {
         GameModelFacade gmf = GameModelFacade.getInstance();
         GameMap gm = gmf.debugGetMap();
         GameTile tile = r.getParentTile();
-        PixelPoint origin = PixelMap.getMapTileOrigin(gm.getHexLocationOf(tile));
-        PixelPoint offset = RegionVertexUtility.getRegionCenter(tile, tile.getListHexaIndexRegion(r));
-        return offset;
-        //return new PixelPoint(origin.getX() + offset.getX(), origin.getY() + offset.getY());
+        return RegionVertexUtility.getRegionCenter(tile, tile.getListHexaIndexRegion(r));
     }
 
 }
