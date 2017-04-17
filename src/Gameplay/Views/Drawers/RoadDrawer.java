@@ -7,6 +7,7 @@ import Gameplay.Model.Tile.RegionMap;
 import Gameplay.Model.Utility.GameModelFacade;
 import Gameplay.Model.Utility.HexaVertex;
 import Gameplay.Views.Utility.PixelMap;
+import Gameplay.Views.Utility.PolygonProportions.RegionVertexUtility;
 import MapBuilder.Model.Utility.HexLocation;
 import MapBuilder.Views.Utility.PixelPoint;
 
@@ -23,43 +24,35 @@ public class RoadDrawer {
         List<Line> roads = new ArrayList<Line>();
         GameModelFacade gmf = GameModelFacade.getInstance();
         GameMap gm = gmf.debugGetMap();
-        GameTile[][] tiles = gm.getTiles();
-        GoodDrawingVisitor gdv = new GoodDrawingVisitor();
-        for (int i = 0; i < tiles.length; i++) {
-            for (int j = 0; j < tiles[0].length; j++) {
-                if (tiles[i][j] == null)
-                    continue;
-                RegionMap regionMap = tiles[i][j].getRegionMap();
-                Iterator<Region> regionIterator = regionMap.getMyRegions();
-                while (regionIterator.hasNext()) {
-                    Region r = regionIterator.next();
-                    List<Region> connectedRegions = r.getRegionSet().getRoadRegions();
-                    for (Region roadEnd : connectedRegions) {
-                        PixelPoint start = PixelMap.getMapTileOrigin(new HexLocation(i,j));
-                        PixelPoint end = getRegionCenter(roadEnd);
-                        roads.add(new Line(start, end));
-                    }
-                }
-            }
-        }
+//        GameTile[][] tiles = gm.getTiles();
+//        GoodDrawingVisitor gdv = new GoodDrawingVisitor();
+//        for (int i = 0; i < tiles.length; i++) {
+//            for (int j = 0; j < tiles[0].length; j++) {
+//                if (tiles[i][j] == null)
+//                    continue;
+//                RegionMap regionMap = tiles[i][j].getRegionMap();
+//                Iterator<Region> regionIterator = regionMap.getMyRegions();
+//                while (regionIterator.hasNext()) {
+//                    Region r = regionIterator.next();
+//                    List<Region> connectedRegions = r.getRegionSet().getRoadRegions();
+//                    for (Region roadEnd : connectedRegions) {
+//                        PixelPoint start = PixelMap.getMapTileOrigin(new HexLocation(i,j));
+//                        PixelPoint end = getRegionCenter(roadEnd);
+//                        roads.add(new Line(start, end));
+//                    }
+//                }
+//            }
+//        }
+
+
+
         return roads;
     }
 
     private PixelPoint getRegionCenter(Region r) {
-        GameModelFacade gmf = GameModelFacade.getInstance();
-        GameMap gm = gmf.debugGetMap();
-        GameTile[][] tiles = gm.getTiles();
-        GoodDrawingVisitor gdv = new GoodDrawingVisitor();
-        for (int i = 0; i < tiles.length; i++) {
-            for (int j = 0; j < tiles[0].length; j++) {
-                if (tiles[i][j] == null)
-                    continue;
-                RegionMap regionMap = tiles[i][j].getRegionMap();
-                if (regionMap.contains(r))
-                    return PixelMap.getMapTileOrigin(new HexLocation(i, j));
-            }
-        }
-        return null;
+        GameTile tile = r.getParentTile();
+        tile.getListHexaIndexRegion(r);
+        RegionVertexUtility.
     }
 
 }

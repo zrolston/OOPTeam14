@@ -10,6 +10,7 @@ import Gameplay.Model.Tile.RegionMap;
 import Gameplay.Model.Utility.GameModelFacade;
 import Gameplay.Model.Utility.HexaVertex;
 import Gameplay.Views.Utility.PixelMap;
+import Gameplay.Views.Utility.PolygonUtility;
 import MapBuilder.Model.Utility.HexLocation;
 import MapBuilder.Views.Utility.PixelPoint;
 
@@ -47,10 +48,19 @@ public class AllGoodDrawer {
 //            }
 //        }
         List<Region> regions = gmf.getAllRegionsWithGoodsBag();
+        GoodDrawingVisitor gdv = new GoodDrawingVisitor();
         for (Region region : regions) {
             GameTile tile = region.getParentTile();
             HexLocation location = gm.getHexLocationOf(tile);
-            List<HexaVertex> tile.getListHexaIndexRegion(region);
+            List<HexaVertex> verticse = tile.getListHexaIndexRegion(region);
+            PixelPoint origin = PixelMap.getMapTileOrigin(location);
+
+            GoodsBag gb = gmf.getGoodsBag(region);
+            gdv.setOrigin(origin);
+            for (Good good : gb.getGoods()) {
+                good.accept(gdv);
+                images.add(gdv.getImageWithLocation());
+            }
         }
         return images;
     }

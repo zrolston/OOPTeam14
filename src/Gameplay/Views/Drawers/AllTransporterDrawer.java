@@ -1,6 +1,7 @@
 package Gameplay.Views.Drawers;
 
 import Gameplay.Model.Map.GameMap;
+import Gameplay.Model.Region.Region;
 import Gameplay.Model.Tile.GameTile;
 import Gameplay.Model.Tile.RegionMap;
 import Gameplay.Model.Transporters.LandTransporters.Donkey;
@@ -26,22 +27,37 @@ public class AllTransporterDrawer {
         List<ImageWithLocation> images = new ArrayList<ImageWithLocation>();
         GameModelFacade gmf = GameModelFacade.getInstance();
         GameMap gm = gmf.debugGetMap();
-        GameTile[][] tiles = gm.getTiles();
+//        GameTile[][] tiles = gm.getTiles();
+//        TransporterDrawingVisitor tdv = new TransporterDrawingVisitor();
+//        for (int i = 0; i < tiles.length; i++) {
+//            for (int j = 0; j < tiles[0].length; j++) {
+//                if (tiles[i][j] == null)
+//                    continue;
+//                PixelPoint origin = PixelMap.getMapTileOrigin(new HexLocation(i,j));
+//                RegionMap regionMap = tiles[i][j].getRegionMap();
+//                for (List<HexaVertex> vertices : regionMap.getRegionMap().keySet()) {
+//                    tdv.setOrigin(new PixelPoint(origin.getX() + 20, origin.getY() + 20));
+//                    List<Transporter> transporters = gmf.getTransporters(regionMap.getRegionAt(vertices.get(0)));
+//                    for (Transporter transporter : transporters) {
+//                        transporter.accept(tdv);
+//                        images.add(tdv.getImageWithLocation());
+//                    }
+//                }
+//            }
+//        }
+        List<Region> regions = gmf.getAllRegionsWithTransporter();
         TransporterDrawingVisitor tdv = new TransporterDrawingVisitor();
-        for (int i = 0; i < tiles.length; i++) {
-            for (int j = 0; j < tiles[0].length; j++) {
-                if (tiles[i][j] == null)
-                    continue;
-                PixelPoint origin = PixelMap.getMapTileOrigin(new HexLocation(i,j));
-                RegionMap regionMap = tiles[i][j].getRegionMap();
-                for (List<HexaVertex> vertices : regionMap.getRegionMap().keySet()) {
-                    tdv.setOrigin(new PixelPoint(origin.getX() + 20, origin.getY() + 20));
-                    List<Transporter> transporters = gmf.getTransporters(regionMap.getRegionAt(vertices.get(0)));
-                    for (Transporter transporter : transporters) {
-                        transporter.accept(tdv);
-                        images.add(tdv.getImageWithLocation());
-                    }
-                }
+        for (Region region : regions) {
+            GameTile tile = region.getParentTile();
+            HexLocation location = gm.getHexLocationOf(tile);
+            List<HexaVertex> verticse = tile.getListHexaIndexRegion(region);
+            PixelPoint origin = PixelMap.getMapTileOrigin(location);
+
+            List<Transporter> transporterIterator = gmf.getTransporters(region);
+            tdv.setOrigin(origin);
+            for (int i = 0; i < transporterIterator.size(); i++) {
+                transporterIterator.get(0).accept(tdv);
+                images.add(tdv.getImageWithLocation());
             }
         }
         return images;
