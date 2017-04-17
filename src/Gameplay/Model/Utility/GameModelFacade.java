@@ -91,7 +91,7 @@ public class GameModelFacade { //TODO make an abstract facade
         try {
             Wall wall = new Wall();
             wall.strengthen();
-            wall.setPlayerID(PlayerID.getNewPlayerID());
+            wall.setPlayerID(PlayerID.getNeutralPlayerID());
             wallHandler.addWall(tile1.getRegionAtHexaVertex(HexaVertex.createVertex(4)), tile2.getRegionAtHexaVertex(HexaVertex.createVertex(6)), wall);
         } catch(Exception e) {
             System.out.println(e.getStackTrace());

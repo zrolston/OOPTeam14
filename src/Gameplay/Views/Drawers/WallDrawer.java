@@ -45,17 +45,7 @@ public class WallDrawer {
 
     private BufferedImage getImage(Wall wall) {
         BufferedImage wallImage = null;
-        switch (wall.getPlayerID().getID()) {
-            case -1:
-                wallImage = ImageLoader.getImage("NEUTRAL_WALL");
-                break;
-            case 0:
-                wallImage = ImageLoader.getImage("BLUE_WALL");
-                break;
-            case 1:
-                wallImage = ImageLoader.getImage("ORANGE_WALL");
-                break;
-        }
+        wallImage = ImageLoader.getImage(wall.getPlayerID().getPlayerColor() + "_WALL");
         BufferedImage allWalls = new BufferedImage(wallImage.getWidth(), wallImage.getHeight() * wall.getStrength(), wallImage.getType());
         for (int i = 0; i < wall.getStrength(); i++) {
             Graphics g = allWalls.getGraphics();
