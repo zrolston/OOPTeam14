@@ -22,6 +22,13 @@ public class UserRequest extends Request {
             goods.put(source, addedGoods);
     }
 
+    public GoodsBag addProducedGoods(GoodsBag addedGoods) {
+        for (GoodsBag goodsBag : goods.keySet()) {
+            addedGoods = goodsBag.add(addedGoods);
+        }
+        return addedGoods;
+    }
+
     public void addTransporter(Transporter transporter) {
         inputtedTransporter = transporter;
     }

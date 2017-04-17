@@ -153,9 +153,9 @@ public class GameModelFacade { //TODO make an abstract facade
                     r.accept(pcv);
                     if (pcv.getPlacable()) {
 //                        // TODO: DELETE THIS
-//                        GoodsBag gb = new GoodsBag();
+                        GoodsBag gb = new GoodsBag();
 //                        gb.addBoard(new Board());
-//                        goodsHandler.place(gb, r);
+                        goodsHandler.place(gb, r);
 //
 //                        // TODO: DELETE THIS
 //                        Transporter tt = t.create();
@@ -357,7 +357,5 @@ public class GameModelFacade { //TODO make an abstract facade
 
         return new CarriableIterator(myShit);
     }
-
-
 
 }
