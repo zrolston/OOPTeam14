@@ -68,7 +68,7 @@ public class BuildingController implements KeyListener, MainViewController {
 
     public void buildWall(HexaIndex hexaIndex){
         if (userRequestController.getRegion() != null) {
-            gameModelFacade.build
+            gameModelFacade.buildWall(userRequestController.getRegion(), hexaIndex);
         }
     }
 }

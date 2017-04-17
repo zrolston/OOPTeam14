@@ -4,6 +4,7 @@ import Gameplay.Controller.MainViewController;
 import Gameplay.Controller.SubControllers.TransporterCarriableControllers.BuildingController;
 import Gameplay.Controller.SubControllers.TransporterCarriableControllers.UserRequestController;
 import Gameplay.Views.MainView.MainView;
+import MapBuilder.Model.Utility.HexaIndex;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -31,14 +32,54 @@ public class WallSelectionController implements MainViewController {
     @Override
     public void activateController(MainView mainView) {
         ArrayList<JButton> buttons = mainView.getWallSelectionView().getButtons();
-        for (int i = 0; i < buttons.size(); i++) {
-            buttons.get(i).addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-
-                }
-            });
-        }
+        buttons.get(0).addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    buildingController.buildWall(HexaIndex.createIndex(1));
+                } catch (Exception d) {}
+            }
+        });
+        buttons.get(1).addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    buildingController.buildWall(HexaIndex.createIndex(2));
+                } catch (Exception d) {}
+            }
+        });
+        buttons.get(2).addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    buildingController.buildWall(HexaIndex.createIndex(3));
+                } catch (Exception d) {}
+            }
+        });
+        buttons.get(3).addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    buildingController.buildWall(HexaIndex.createIndex(4));
+                } catch (Exception d) {}
+            }
+        });
+        buttons.get(4).addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    buildingController.buildWall(HexaIndex.createIndex(5));
+                } catch (Exception d) {}
+            }
+        });
+        buttons.get(5).addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    buildingController.buildWall(HexaIndex.createIndex(6));
+                } catch (Exception d) {}
+            }
+        });
     }
 
 }

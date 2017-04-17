@@ -19,6 +19,8 @@ public class WallSelectionView extends JPanel {
     private BufferedImage hexImage;
     private BufferedImage tileShadow;
 
+    ArrayList<JButton> btns;
+
     public WallSelectionView() {
         setLayout(new GridLayout(0, 3));
         setBounds((int)(PixelMap.SCREEN_WIDTH *7.0/40), (int)(PixelMap.SCREEN_HEIGHT * .55), (int)(PixelMap.SCREEN_HEIGHT * (0.20)), (int)(PixelMap.SCREEN_HEIGHT * (0.10)));
@@ -31,7 +33,7 @@ public class WallSelectionView extends JPanel {
         orangeWall = ImageLoader.getImage("ORANGE_WALL");
         blueWall = ImageLoader.getImage("BLUE_WALL");
 
-        ArrayList<JButton> btns = new ArrayList<>();
+        btns = new ArrayList<>();
         ArrayList<String> strings = new ArrayList<>();
 
         strings.add("N");

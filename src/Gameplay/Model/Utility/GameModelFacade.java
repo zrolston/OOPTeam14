@@ -416,7 +416,7 @@ public class GameModelFacade { //TODO make an abstract facade
     }
 
     public void buildWall(Region r, HexaIndex direction) {
-        
+        System.out.println(r + " " + direction);
     }
 
 }
