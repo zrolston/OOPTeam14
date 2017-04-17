@@ -4,6 +4,9 @@ import Gameplay.Model.Map.GameMap;
 import Gameplay.Model.Phases.PhaseManager;
 import Gameplay.Model.Phases.PhaseState;
 import Gameplay.Model.Producer.Producer;
+import Gameplay.Model.Producer.SecondaryProducer.GoodProducer.SecondaryGoodProducer;
+import Gameplay.Model.Producer.SecondaryProducer.SecondaryProducer;
+import Gameplay.Model.Producer.SecondaryProducer.TransporterProducer.SecondaryTransporterProducer;
 import Gameplay.Model.Region.Region;
 
 import Gameplay.Model.Goods.*;
@@ -388,6 +391,17 @@ public class GameModelFacade { //TODO make an abstract facade
 
     public List<Carriable> getUserRequestCarriables() {
         return userRequestHandler.getCarriables();
+    }
+
+    public void produce(Region r) {
+        SecondaryTransporterProducer stp = secondaryProducerHandler.getTransporterProducerAt(r);
+        SecondaryGoodProducer sgp = secondaryProducerHandler.getSecondaryProducerAt(r);
+        if (stp != null) {
+            stp.produce(userRequestHandler.getUserRequest());
+        }
+        else if (sgp != null) {
+
+        }
     }
 
 }
