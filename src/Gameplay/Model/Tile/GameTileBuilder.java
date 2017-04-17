@@ -37,7 +37,9 @@ public class GameTileBuilder {
         riverConvention.setRivers(riverIndices);
         riverType = riverConvention.getRiverType();
         rotationNumber = riverConvention.getRiverRotation();
-        return new GameTile(state.getTerrain(), new RegionMap(regionHashMap), riverType, rotationNumber);
+        GameTile newTile = new GameTile(state.getTerrain(), new RegionMap(regionHashMap), riverType, rotationNumber);
+        regionHashMap.forEach((hexaVertices, region) -> region.configureParent(newTile));
+        return newTile;
     }
 
     private void setState(String terrain){

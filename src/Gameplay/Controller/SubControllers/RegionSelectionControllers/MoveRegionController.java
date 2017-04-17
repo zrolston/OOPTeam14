@@ -1,11 +1,11 @@
 package Gameplay.Controller.SubControllers.RegionSelectionControllers;
 
 import Gameplay.Controller.PanelControllers.MapSelectionControllers.RegionSelectionController;
-import Gameplay.Controller.SubControllers.TransporterCarriableControllers.DropController;
+import Gameplay.Controller.SubControllers.TransporterCarriableControllers.MoveController;
+import Gameplay.Model.Iterators.TransporterIterator;
 import Gameplay.Model.Region.Region;
 import Gameplay.Model.Transporters.Transporter;
-
-import java.util.List;
+import Gameplay.Model.Utility.GameModelFacade;
 
 /**
  * Created by jordi on 4/16/2017.
@@ -13,11 +13,12 @@ import java.util.List;
 public class MoveRegionController extends RegionSelectionController {
 
     private boolean movement = false;
-    //TODO: Transporter iterator
-    private DropController dropController;
+    private MoveController moveController;
+    GameModelFacade gameModelFacade = GameModelFacade.getInstance();
+    Transporter currentTransporter;
 
-    public MoveRegionController(DropController dropController) {
-        this.dropController = dropController;
+    public MoveRegionController(MoveController moveController) {
+        this.moveController = moveController;
     }
 
     /**
@@ -27,12 +28,14 @@ public class MoveRegionController extends RegionSelectionController {
     protected void rightClick() {
 
         if (movement) {
-            //TODO: getRegion from view
-            //gameModelFacade.move(//region that was gotten);
+
+            if (currentTransporter != null) {
+                gameModelFacade.move(getCurrentRegion(),currentTransporter);
+
+            }
             disallowMovement();
             emptyDropController();
         }
-
     }
 
     /**
@@ -40,21 +43,25 @@ public class MoveRegionController extends RegionSelectionController {
      */
     @Override
     protected void leftClick() {
-        //TODO: getRegion
-        //Todo: selectRegion, get transporters and add it to the controller
-        //todo: dropController.addTransporters(region that was selected)
-        emptyDropController();
+        addTransporters(getCurrentRegion());
+        moveController.setRegion(getCurrentRegion());
+        //TODO: UNCOMENT THIISSSSSSS!!!!!!!!!!!!!!!!!!!!!!
+//        moveController.checkForDisplay();
     }
 
     @Override
     protected void resume() {
     }
 
+    @Override
+    protected void suspend() {
+        getMapView().removeMouseListener(this);
+    }
 
-    private List<Transporter> addTransporters(Region region) {
-        //TODO: gameModelFacade.getTransporters()
-        //TODO: dropController.addTransporters();
-        return null;
+
+    private void addTransporters(Region region) {
+        TransporterIterator tr = getTransporters(region);
+        moveController.addTransporters(tr);
     }
 
     public void allowMovement() {
@@ -65,8 +72,17 @@ public class MoveRegionController extends RegionSelectionController {
         movement = false;
     }
 
+    public void receiveTransporter(Transporter transporter){
+        this.currentTransporter = transporter;
+    }
+
     private void emptyDropController(){
-        dropController.emptyPanel();
-        dropController.checkForDisplay();
+        //moveController.emptyPanel();
+        moveController.addTransporters(gameModelFacade.getTransporters(getCurrentRegion()));
+        //TODO: UNCOMENT THIISSSSSSS!!!!!!!!!!!!!!!!!!!!!!
+//     moveController.checkForDisplay();
+    }
+    private TransporterIterator getTransporters(Region region){
+        return gameModelFacade.getTransporters(region);
     }
 }

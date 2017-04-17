@@ -7,20 +7,23 @@
 
 package Gameplay.Controller;
 import Gameplay.Model.Map.GameMap;
-import Gameplay.Model.Region.Region;
 import Gameplay.Model.Tile.GameTile;
+import Gameplay.Model.Tile.RegionMap;
 import Gameplay.Model.Utility.GameModelFacade;
+import Gameplay.Model.Utility.HexaVertex;
 import Gameplay.Views.Utility.*;
-import MapBuilder.Model.Tile.Tile;
+import Gameplay.Views.Utility.PolygonProportions.RegionVertexUtility;
 import MapBuilder.Model.Utility.HexLocation;
 import MapBuilder.Model.Utility.ILocation;
 import MapBuilder.Views.Utility.PixelPoint;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.List;
+
 
 public class CameraController implements MouseMotionListener, MouseListener{
 
@@ -36,6 +39,7 @@ public class CameraController implements MouseMotionListener, MouseListener{
 
     @Override
     public void mouseMoved(MouseEvent e) {
+        cursorState.setMarkerActive(true);
         //Hovering goes here
         updateActiveTile(e);
         updateRegion(e);
@@ -46,12 +50,19 @@ public class CameraController implements MouseMotionListener, MouseListener{
     public void mousePressed(MouseEvent e) {
         camera.recordPress(new PixelPoint(e.getX(), e.getY()));
         cursorState.setMarkerActive(false);
+
+        //Testing any kind of functionality
+        if(SwingUtilities.isRightMouseButton(e)){
+            Executor executor = cursorState.executor;
+            if(executor != null){
+                executor.execute();
+            }
+        }
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
         camera.releasePress();
-        cursorState.setMarkerActive(true);
     }
 
     @Override
@@ -61,7 +72,7 @@ public class CameraController implements MouseMotionListener, MouseListener{
     public void mouseExited(MouseEvent e) {}
 
     @Override
-    public void mouseClicked(MouseEvent e) {}
+    public void mouseClicked(MouseEvent e) { }
 
     public void updateActiveTile(MouseEvent e){
         HexLocation location = PixelMap.getHexLocationAtPixelPoint(new PixelPoint(e.getX(), e.getY()));
@@ -76,7 +87,7 @@ public class CameraController implements MouseMotionListener, MouseListener{
         }
 
         ILocation location = cursorState.getActiveTile();
-        if(location.getRow() >= 0 && location.getCol() >= 0) {
+        if(location.getRow() >= 0 && location.getCol() >= 0 && location.getRow() < map.getWidth() && location.getCol() < map.getWidth()) {
             //Get locations of current Tile
             GameTile active = map.getTileAt(location);
             //River Type and Rotations from tile
@@ -87,19 +98,33 @@ public class CameraController implements MouseMotionListener, MouseListener{
                 rotation = active.getRotationNumber();
             }catch (Exception exe){ return; }
             List<PolygonPointSet> polygonPoints = PolygonUtility.getRegionsByType(new Integer(riverType));
-            updateCursorRegion(polygonPoints, e, rotation);
+            updateCursorRegion(polygonPoints, e, riverType, rotation, active);
         }
     }
 
 
-    public void updateCursorRegion(List<PolygonPointSet> polygonPoints, MouseEvent e, Integer rotation){
+    public void updateCursorRegion(List<PolygonPointSet> polygonPoints, MouseEvent e, Integer riverType, Integer rotation, GameTile active){
         PixelPoint origin = PixelMap.getMapTileOrigin(cursorState.getActiveTile());
         Point current = new Point(e.getX(), e.getY());
+        int regionIndex = 0;
         for(PolygonPointSet pointSet: polygonPoints){
             pointSet.setCurrRotation(rotation);
             Polygon polygon = pointSet.getPolygon(origin);
-            if(polygon.contains(current))
+            if(polygon.contains(current)) {
                 cursorState.setRegionArea(polygon);
+                cursorState.setPointSet(pointSet);
+                HexaVertex vertex = null;
+                try {
+                    vertex = RegionVertexUtility.getVertexAt(riverType, rotation, regionIndex);
+                }catch(Exception ex){ex.printStackTrace();}
+                RegionMap rm = active.getRegionMap();
+                cursorState.setActiveRegion(rm.getRegionAt(vertex));
+            }
+            regionIndex++;
         }
+    }
+
+    public void executer(){
+
     }
 }

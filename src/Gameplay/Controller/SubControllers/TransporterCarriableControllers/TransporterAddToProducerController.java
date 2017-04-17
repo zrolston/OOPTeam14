@@ -22,4 +22,9 @@ public class TransporterAddToProducerController extends TransporterCarriableCont
     protected void carriableClick() {
 
     }
+
+    @Override
+    protected void transporterClick() {
+
+    }
 }
