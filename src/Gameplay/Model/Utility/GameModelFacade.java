@@ -96,18 +96,23 @@ public class GameModelFacade { //TODO make an abstract facade
                     Region r = regionIterator.next();
                     r.accept(pcv);
                     if (pcv.getPlacable()) {
+                        // TODO: DELETE THIS
                         GoodsBag gb = new GoodsBag();
                         gb.addBoard(new Board());
                         goodsHandler.place(gb, r);
 
+                        // TODO: DELETE THIS
                         Transporter tt = t.create();
+
+                        tt.pickUpGood( new Board() );
+
+
                         tt.setPlayerID( p2 );
 
                         Transporter ttt = t2.create();
                         ttt.setPlayerID( p2 );
                         transporterHandler.place(tt, r);
                         transporterHandler.place(ttt, r);
-
                     }
                 }
             }

@@ -45,9 +45,6 @@ public class TransporterIterator implements StuffIterator {
         getCurrent().accept(t);
         BufferedImage transporterImage = t.getImage();
 
-        System.out.println("curr = " + cur);
-        System.out.println("image = " + transporterImage);
-
         return transporterImage;
     }
 

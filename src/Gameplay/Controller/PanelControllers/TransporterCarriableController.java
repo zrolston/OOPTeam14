@@ -91,17 +91,6 @@ public abstract class TransporterCarriableController implements MainViewControll
     @Override
     public void mousePressed(MouseEvent e) {
         PixelPoint point = new PixelPoint(e.getX(), e.getY());
-
-
-
-        // pass iterator to view
-
-
-
-
-
-
-
         setIndex(view.getCarriableIndex(point));
         System.out.println(index);
         if (!isOutOfBounds(index)) {
@@ -114,10 +103,16 @@ public abstract class TransporterCarriableController implements MainViewControll
     }
 
     private void determineClick(int index) {
+
+        System.out.println("index = " + index);
+//        System.out.println("index = " + index);
+
+
         if (index > buttonNumber - 1) {
-            setCurrentCarriable(index % buttonNumber);
+            this.index=index%buttonNumber;
+            setCurrentCarriable(this.index);
             carriableClick();
-            removeCarriable();//implemented now it might change
+//            removeCarriable();//implemented now it might change
         } else {
             setCurrentTransporter(index);
             leftColumnClick();
@@ -179,6 +174,9 @@ public abstract class TransporterCarriableController implements MainViewControll
      */
     protected void leftColumnClick() {
         setCarrItFromFacade();
+
+        System.out.println("size = " + carrIt.size());
+
         addToPanelRightColumn(carrIt);
         transporterClick();
     }
@@ -202,7 +200,7 @@ public abstract class TransporterCarriableController implements MainViewControll
 
     protected void setCurrentTransporter(int number) {
         if (transIt != null) {
-            currentCarriable = transIt.getTransporterAt(number);
+            currentTransporter = transIt.getTransporterAt(number);
         }
     }
 

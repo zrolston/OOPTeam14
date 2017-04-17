@@ -46,6 +46,12 @@ public class TransporterDrawingVisitor implements TransporterVisitor {
     @Override
     public void visitWagon(Wagon w) {
 
+        int i = 0;
+        if(i == 0) {
+            image = ImageLoader.getImage("ORANGE_WAGON");
+            return;
+        }
+
         switch (w.getPlayerID().getID()) {
             case 1:
                 image = ImageLoader.getImage("BLUE_WAGON");
