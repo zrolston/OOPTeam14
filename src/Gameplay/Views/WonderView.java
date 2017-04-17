@@ -43,7 +43,7 @@ public class WonderView extends JPanel {
 		drawBrick(g, 0, "BLUE", x, y, width, height);
 		drawBrick(g, 1, "WHITE", x, y, width, height);
 		drawBrick(g, 2, "ORANGE", x, y, width, height);
-		drawBrick(g, 3, "WHITE", x, y, width, height);
+		drawBrick(g, 61, "WHITE", x, y, width, height);
 	}
 
 	private void drawCircle(Graphics g, int position, String color, int x, int y, int width, int height) {
