@@ -9,11 +9,13 @@ import Gameplay.Model.Map.*;
 import Gameplay.Model.Phases.PhaseManager;
 import Gameplay.Model.Phases.PhaseState;
 import Gameplay.Model.Producer.Producer;
+import Gameplay.Model.Producer.ProducerRequest;
 import Gameplay.Model.Producer.SecondaryProducer.GoodProducer.CoalBurner;
 import Gameplay.Model.Producer.SecondaryProducer.GoodProducer.Sawmill;
 import Gameplay.Model.Producer.SecondaryProducer.GoodProducer.SecondaryGoodProducer;
 import Gameplay.Model.Producer.SecondaryProducer.GoodProducer.StockMarket;
 import Gameplay.Model.Producer.SecondaryProducer.TransporterProducer.SecondaryTransporterProducer;
+import Gameplay.Model.Producer.UserRequest;
 import Gameplay.Model.Region.Region;
 import Gameplay.Model.Tile.GameTile;
 import Gameplay.Model.Tile.RegionMap;
@@ -404,8 +406,20 @@ public class GameModelFacade { //TODO make an abstract facade
         System.out.println("Create Bridge");
     }
     public void generateRoad(Region start, Region end) {
-        //Implementation goes Here
-        System.out.println("Create Road");
+        GoodsBag cost = new GoodsBag();
+        cost.addStone(new Stone());
+        ProducerRequest requiredInputs = new ProducerRequest(cost, null);
+        UserRequest userInputs = userRequestHandler.getUserRequest();
+        if (userInputs.contains(requiredInputs)) {
+            if (start.getRegionSet().getLandRegions().contains(end)) {
+                if (end.getRegionSet().getLandRegions().contains(start)) {
+                    start.getRegionSet().removeLandRegion(end);
+                    start.getRegionSet().addRoadRegion(end);
+                    end.getRegionSet().removeLandRegion(start);
+                    end.getRegionSet().addRoadRegion(start);
+                }
+            }
+        }
     }
 
     public List<Carriable> getUserRequestCarriables() {

@@ -21,6 +21,7 @@ public class RotatedImageWithLocation extends ImageWithLocation {
     public void draw(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
         g2.rotate(Math.toRadians(rotation), location.getX() + image.getWidth()/2, location.getY() + image.getHeight()/2);
+        ((Graphics2D)(g)).setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
         g2.drawImage(image, location.getX(), location.getY(), null);
         g2.dispose();
     }
