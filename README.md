@@ -1,16 +1,20 @@
 # OOPTeam14
+
 <!--Dr. StrangeOOP or: How I stopped worrying and learned to love the objects. -->
 
-## OO implementation of [Roads & Boats](https://github.com/zrolston/OOPTeam14/blob/mapEditor/demo/RB3Erules.pdf)
+An OO implementation of [Roads & Boats](https://github.com/zrolston/OOPTeam14/blob/mapEditor/demo/RB3Erules.pdf). 
+
+Players start with a modest collection of donkeys, geese, boards, and stone. With these few materials, players work to develop their civilization. The emphasis in the game is logistical transport as you bring goods to producers to make new goods. 
 
 ### Compile and run the source code
 
 ```javascript
-git clone https://github.com/zrolston/OOPTeam14 -b master --single-branch
+git clone -b master --single-branch git://github.com/zrolston/OOPTeam14/
 cd OOPTeam14
 mv res/Images/ src
-(find ./src/* | grep .java > argfile) && javac @argfile
-java -cp src MapBuilder.Main
+find ./src/* | grep .java > argfile
+javac @argfile
+java -cp src RunGame
 ```
 ***
 
