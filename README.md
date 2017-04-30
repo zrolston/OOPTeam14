@@ -4,18 +4,18 @@
 
 An OO implementation of [Roads & Boats](https://github.com/zrolston/OOPTeam14/blob/mapEditor/demo/RB3Erules.pdf). 
 
-Players start with a modest collection of donkeys, geese, boards, and stone. With these few materials, players work to develop their civilization. The emphasis in the game is logistical transport as you bring goods to producers to make new goods. 
-
 ### Compile and run the source code
 
 ```javascript
 git clone -b master --single-branch git://github.com/zrolston/OOPTeam14/
-cd OOPTeam14
-mv res/Images/ src
+cd OOPTeam14 && mv res/Images/ src
 find ./src/* | grep .java > argfile
 javac @argfile
 java -cp src RunGame
 ```
+
+![bride demo](https://github.com/zrolston/OOPTeam14/raw/mapEditor/demo/bridgeDemo.gif)
+
 ***
 
 # Map editor
@@ -33,7 +33,5 @@ Run from the command line or double-click the executable JAR file:
 java -jar MapEditor.jar 
 ```
 
-![map demo](https://github.com/zrolston/OOPTeam14/raw/mapEditor/demo/mapDemo.gif)
+![map_editor demo](https://github.com/zrolston/OOPTeam14/raw/mapEditor/demo/mapDemo.gif)
 
-
-***
