@@ -31,12 +31,12 @@ public class BuildingController implements KeyListener, MainViewController {
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_B && mainView != null) {
             isPSVOn = !isPSVOn;
-            mainView.getProducerSelectionView().setVisible(isPSVOn);
-
             if (userRequestController.getRegion() != null) {
                 List<BuildAbility> abilities = gameModelFacade.getBuildAbilities(userRequestController.getRegion());
                 mainView.getProducerSelectionView().updateProducerImages(abilities);
             }
+            mainView.getProducerSelectionView().setVisible(isPSVOn);
+
         }
         if (e.getKeyCode() == KeyEvent.VK_W && mainView != null) {
             isWSVOn = !isWSVOn;
@@ -45,9 +45,7 @@ public class BuildingController implements KeyListener, MainViewController {
             mainView.getWallSelectionView().setVisible(isWSVOn);
         }
 
-
     }
-
 
     @Override
     public void keyReleased(KeyEvent e) {

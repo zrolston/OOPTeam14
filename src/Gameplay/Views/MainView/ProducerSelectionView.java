@@ -133,7 +133,11 @@ public class ProducerSelectionView extends JPanel {
         for(Rectangle r: buttons){
             g.drawRoundRect((int)r.getX(), (int)r.getY(), (int)r.getWidth(), (int)r.getHeight(), 5, 5);
             // draw producers
-            g.drawImage(producerImages.get(0), (int)r.getX(), (int)r.getY(), (int)r.getWidth(), (int)r.getHeight(), null);
+            try {
+                g.drawImage(producerImages.get(0), (int)r.getX(), (int)r.getY(), (int)r.getWidth(), (int)r.getHeight(), null);
+            } catch (Exception e) {
+//                e.printStackTrace();
+            }
         }
     }
 

@@ -59,7 +59,14 @@ public class UserRequestController extends MoveController implements DropControl
     @Override
     protected void carriableClick() {
         //TODO: view check if the region is a river, if it isn't drop it on the tile and gameModelFacade.canDropCarriable()
-        dropCarriable(getCurrentTransporter().getCurrentRegion());
+
+        try {
+            if (getCurrentTransporter()!=null) {
+                dropCarriable(getCurrentTransporter().getCurrentRegion());
+            }
+        } catch (Exception e) {
+//            e.printStackTrace();
+        }
         //TODO: UNCOMENT THIISSSSSSS!!!!!!!!!!!!!!!!!!!!!!
 //        checkForDisplay();
     }

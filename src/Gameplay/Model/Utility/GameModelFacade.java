@@ -1,6 +1,7 @@
 package Gameplay.Model.Utility;
 
 import Gameplay.Model.BuildAbilities.BuildAbility;
+import Gameplay.Model.Builders.RoadBuilder;
 import Gameplay.Model.Map.GameMap;
 import Gameplay.Model.Phases.PhaseManager;
 import Gameplay.Model.Phases.PhaseState;
@@ -55,42 +56,50 @@ public class GameModelFacade { //TODO make an abstract facade
         maxMapWidth = map.getWidth();
     }
 
-    public void setCurrentPlayer(PlayerID player){
+    public void setCurrentPlayer(PlayerID player) {
         currentPlayer = player;
         System.out.println(currentPlayer.getID());
     }
 
     //Controlling the Phase Manager
-    public void setPhaseManager(PhaseManager phaseManager){ this.phaseManager = phaseManager; }
-    public void nextTurn(){ phaseManager.nextTurn(); }
-    public PhaseState getCurrentPhase(){ return phaseManager.getCurrentState(); }
+    public void setPhaseManager(PhaseManager phaseManager) {
+        this.phaseManager = phaseManager;
+    }
 
-    public static GameModelFacade getInstance(){
+    public void nextTurn() {
+        phaseManager.nextTurn();
+    }
+
+    public PhaseState getCurrentPhase() {
+        return phaseManager.getCurrentState();
+    }
+
+    public static GameModelFacade getInstance() {
         if (isInitialized()) {
             return gameModelFacade;
         }
         return null;
     }
 
-    public static void initialize( GameMap map ){
-        if (!isInitialized()){
+    public static void initialize(GameMap map) {
+        if (!isInitialized()) {
             gameModelFacade = new GameModelFacade(map);
         }
     }
 
-    private static boolean isInitialized(){
+    private static boolean isInitialized() {
         return gameModelFacade != null;
     }
 
-    public static int getMaxMapLength(){
+    public static int getMaxMapLength() {
         return maxMapLength;
     }
 
-    public static int getMaxMapWidth(){
+    public static int getMaxMapWidth() {
         return maxMapWidth;
     }
 
-    public GameMap getMap(){
+    public GameMap getMap() {
         return gameMap;
     }
 
@@ -109,7 +118,8 @@ public class GameModelFacade { //TODO make an abstract facade
             gameMap.getTiles()[10][10].getRegionMap().getRegionAt(HexaVertex.createVertex(1)).getRegionSet().addBridgeRegion(
                     gameMap.getTiles()[10][10].getRegionMap().getRegionAt(HexaVertex.createVertex(3))
             );
-        } catch(Exception e) {}
+        } catch (Exception e) {
+        }
 
         GameTile tile1 = gameMap.getTiles()[10][10];
         GameTile tile2 = gameMap.getTiles()[9][10];
@@ -119,7 +129,7 @@ public class GameModelFacade { //TODO make an abstract facade
             wall.strengthen();
             wall.setPlayerID(PlayerID.getNeutralPlayerID());
             wallHandler.addWall(tile1.getRegionAtHexaVertex(HexaVertex.createVertex(4)), tile2.getRegionAtHexaVertex(HexaVertex.createVertex(6)), wall);
-        } catch(Exception e) {
+        } catch (Exception e) {
             System.out.println(e.getStackTrace());
         }
     }
@@ -142,7 +152,7 @@ public class GameModelFacade { //TODO make an abstract facade
         t.setPlayerID(PlayerID.getPlayer1ID());
 
         try {
-            Region r = gameMap.getTileAt(new HexLocation(10,10)).getRegionAtHexaVertex(HexaVertex.createVertex(1));
+            Region r = gameMap.getTileAt(new HexLocation(10, 10)).getRegionAtHexaVertex(HexaVertex.createVertex(1));
             GoodsBag goodsBag = new GoodsBag();
             goodsBag.addStone(new Stone());
             goodsHandler.place(goodsBag, r);
@@ -150,12 +160,12 @@ public class GameModelFacade { //TODO make an abstract facade
             secondaryProducerHandler.placeGoodsProducer(new Sawmill(), r);
             tr.pickUpGood(new Trunk());
 
-            tr.pickUpGood(new Trunk());
+            tr.pickUpGood(new Stone());
             t.pickUpGood(new Board());
             t.pickUpGood(new Stock());
             SecondaryProducerHandler.getInstance().placeGoodsProducer(new Sawmill(), r);
             r.enterRegion(tr);
-            r = gameMap.getTileAt(new HexLocation(10,10)).getRegionAtHexaVertex(HexaVertex.createVertex(8));
+            r = gameMap.getTileAt(new HexLocation(10, 10)).getRegionAtHexaVertex(HexaVertex.createVertex(8));
             transporterHandler.place(t, r);
             r.enterRegion(t);
         } catch (Exception e) {
@@ -199,9 +209,10 @@ public class GameModelFacade { //TODO make an abstract facade
     /**
      * TODO: this is to be implemented differently on different phases so that the view
      * can display different carriables
+     *
      * @return
      */
-    public CarriableIterator testGetCarriablesThisShouldBeDeleted(){
+    public CarriableIterator testGetCarriablesThisShouldBeDeleted() {
         ArrayList<Carriable> transporters = new ArrayList<>();
         TransporterFactory tf = new DonkeyFactory();
         transporters.add(tf.create());
@@ -219,7 +230,7 @@ public class GameModelFacade { //TODO make an abstract facade
 
     }
 
-    public StuffIterator testGetTransporterIteratorDELETETHIS(){
+    public StuffIterator testGetTransporterIteratorDELETETHIS() {
         ArrayList<Transporter> transporters = new ArrayList<>();
         TransporterFactory tf = new DonkeyFactory();
         transporters.add(tf.create());
@@ -231,7 +242,7 @@ public class GameModelFacade { //TODO make an abstract facade
         return new TransporterIterator(transporters);
     }
 
-    public void move(Region region, Transporter transporter){
+    public void move(Region region, Transporter transporter) {
         System.out.println("MOOOOOOOOOOOOOOOOOVVVVVVVVVVVVVVVVVVEEEEEEEEEEEEEEEEEEEEEEEEEEE");
         movementManager.move(transporter, region, false);
     }
@@ -239,6 +250,7 @@ public class GameModelFacade { //TODO make an abstract facade
 
     /**
      * TODO: to be implemented, made for when a transporter needs to drop a carriable on a certain tile
+     *
      * @param region
      */
     public void dropCarriable(Region region, Transporter target, Carriable carriable) {
@@ -250,11 +262,12 @@ public class GameModelFacade { //TODO make an abstract facade
     /**
      * TODO: to be implemented,
      * given the set of parameters pickup the transporter
+     *
      * @param region
      * @param transporter
      * @param carriable
      */
-    public void pickUpCarriable(Region region, Transporter transporter, Carriable carriable){
+    public void pickUpCarriable(Region region, Transporter transporter, Carriable carriable) {
         TransporterOccupancy transporterOccupancy = transporterHandler.getOccupancyAt(region);
         GoodsBag goodsBag = goodsHandler.getGoodsBagAt(region);
         carriable.accept(new PickUpExchangeHandler(transporterOccupancy, goodsBag, transporter));
@@ -262,10 +275,11 @@ public class GameModelFacade { //TODO make an abstract facade
 
     /**
      * TODO: to be implemented, pass a list of transporters or ITERATOR owned by the player given a region
+     *
      * @param region
      * @return
      */
-    public TransporterIterator getTransporters(Region region){
+    public TransporterIterator getTransporters(Region region) {
         return new TransporterIterator(transporterHandler.getTransportersAt(region));
     }
 
@@ -348,18 +362,20 @@ public class GameModelFacade { //TODO make an abstract facade
 
     /**
      * TODO: to be implemented, given a tile and a list of vertices return a region
+     *
      * @return
      */
-    public Region getRegion(GameTile tile, HexaVertex vertex){
-        return  tile.getRegionMap().getRegionAt(vertex);
+    public Region getRegion(GameTile tile, HexaVertex vertex) {
+        return tile.getRegionMap().getRegionAt(vertex);
     }
 
     /**
      * given a transporter return its carriable depending on the phase it is in
+     *
      * @param transporter
      * @return
      */
-    public CarriableIterator getTransporterCarriable(Transporter transporter){
+    public CarriableIterator getTransporterCarriable(Transporter transporter) {
         ArrayList<Carriable> myShit = transporter.getCarriables();
 
         return new CarriableIterator(myShit);
@@ -367,10 +383,11 @@ public class GameModelFacade { //TODO make an abstract facade
 
     /**
      * given a region return its carriable depending on the phase
+     *
      * @param region
      * @return
      */
-    public CarriableIterator getRegionCarriable(Region region){
+    public CarriableIterator getRegionCarriable(Region region) {
         ArrayList<Carriable> myShit = new ArrayList<>();
 
         myShit.addAll(transporterHandler.getTransportersAt(region));
@@ -383,7 +400,7 @@ public class GameModelFacade { //TODO make an abstract facade
         userRequestHandler.addCarriable(t.getGoodsBag(), c);
     }
 
-    
+
     public void addCarriableToUserRequest(Region r, Carriable c) {
         userRequestHandler.addCarriable(goodsHandler.getGoodsBagAt(r), c);
     }
@@ -393,13 +410,18 @@ public class GameModelFacade { //TODO make an abstract facade
     }
 
 
-    public void generateBridge(Region start, Region end){
+    public void generateBridge(Region start, Region end) {
         //Implementation goes Here
         System.out.println("Create Bridge");
     }
+
     public void generateRoad(Region start, Region end) {
         //Implementation goes Here
-        System.out.println("Create Road");
+
+
+//        RoadBuilder rb = new RoadBuilder();
+//        rb.buildRoad(userRequestHandler.getUserRequest(), start, end);
+//        System.out.println("Create Road");
     }
 
     public List<Carriable> getUserRequestCarriables() {
@@ -411,8 +433,7 @@ public class GameModelFacade { //TODO make an abstract facade
         SecondaryGoodProducer sgp = secondaryProducerHandler.getSecondaryProducerAt(r);
         if (stp != null) {
             stp.produce(userRequestHandler.getUserRequest());
-        }
-        else if (sgp != null) {
+        } else if (sgp != null) {
             sgp.produce(userRequestHandler.getUserRequest());
         }
     }
